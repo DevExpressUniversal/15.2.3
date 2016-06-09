@@ -1,0 +1,40 @@
+﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ output extension=".cs" #>
+using System;
+using System.Windows;
+using DevExpress.Xpf.Editors;
+
+namespace DevExpress.Xpf.Reports.UserDesigner.Native {
+<#foreach(var editor in new string[] { "Button", "ComboBox" }) {#>
+<#foreach(var isEditSettings in new bool[] { false, true }) {#>
+<#
+	string settingsSuffix = isEditSettings ? "Settings" : "";
+#>
+    partial class <#=editor#>Edit<#=settingsSuffix#>Ex {
+        public static readonly DependencyProperty ShowEditorButtonsAlwaysProperty =
+            DependencyProperty.Register("ShowEditorButtonsAlways", typeof(bool), typeof(<#=editor#>Edit<#=settingsSuffix#>Ex), new PropertyMetadata(false));
+
+        public bool ShowEditorButtonsAlways {
+            get { return (bool)GetValue(ShowEditorButtonsAlwaysProperty); }
+            set { SetValue(ShowEditorButtonsAlwaysProperty, value); }
+        }
+<#if(!isEditSettings) {#>
+        protected override void SetShowEditorButtons(bool show) {
+            base.SetShowEditorButtons(show || ShowEditorButtonsAlways);
+        }
+<#} else {#>
+        protected override void AssignToEditCore(IBaseEdit edit) {
+            base.AssignToEditCore(edit);
+            var target = edit as <#=editor#>EditEx;
+            if(target == null) return;
+            SetValueFromSettings(ShowEditorButtonsAlwaysProperty, () => target.ShowEditorButtonsAlways = ShowEditorButtonsAlways);
+        }
+<#}#>
+    }
+<#}#>
+<#}#>
+}

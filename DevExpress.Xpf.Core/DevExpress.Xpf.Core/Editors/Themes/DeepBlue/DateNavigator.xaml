@@ -1,0 +1,279 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:dxtEx="clr-namespace:DevExpress.Xpf.Utils.Themes"
+    xmlns:dx="clr-namespace:DevExpress.Xpf.Core"
+    xmlns:dxcn="clr-namespace:DevExpress.Xpf.Core.Native"
+    xmlns:dxe="clr-namespace:DevExpress.Xpf.Editors"
+    xmlns:dxec="clr-namespace:DevExpress.Xpf.Editors.Controls"
+    xmlns:dxedn="clr-namespace:DevExpress.Xpf.Editors.DateNavigator"
+    xmlns:dxednc="clr-namespace:DevExpress.Xpf.Editors.DateNavigator.Controls"
+    xmlns:dxeh="clr-namespace:DevExpress.Xpf.Editors.Helpers"
+    xmlns:dxet="clr-namespace:DevExpress.Xpf.Editors.Themes"
+    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+    <!--BEGIN WPF-->
+    <ResourceDictionary.MergedDictionaries>
+        <dxtEx:ResourceDictionaryEx Source="{dx:EditorsResource Themes/DeepBlue/Brushes.xaml}"/>
+        <dxtEx:ResourceDictionaryEx Source="{dx:EditorsResource Themes/TransferStyles.xaml}"/>
+        <dxtEx:ResourceDictionaryEx Source="{dx:EditorsResource Themes/DeepBlue/PopupBaseEdit.xaml}"/>
+        <dxtEx:ResourceDictionaryEx Source="{dx:EditorsResource Themes/Generic/DateNavigator.xaml}"/>
+    </ResourceDictionary.MergedDictionaries>
+    <!--END WPF-->
+    <!--BEGIN WPF-->
+    <Style x:Key="{dxet:DateNavigatorThemeKey ResourceKey=TodayButtonStyle}" TargetType="{x:Type Button}">
+    <!--END WPF-->
+    <!--ONLY SL
+    <Style x:Key="{dxet:DateNavigatorThemeKey ResourceKey=TodayButtonStyle}" TargetType="{x:Type Button}" dx:ThemeManager.SameBasedOnType="True" dx:ThemeManager.InheritedStyleSource="{StaticResource CoreDictionary}">
+    ONLY SL-->
+        <Setter Property="Content" Value="{Binding Path=IsTabStop, RelativeSource={RelativeSource Self}, ConverterParameter=Today, Converter={StaticResource EditorStringIdConverter}}"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="Visibility" Value="{Binding Path=ShowTodayButton, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BoolToVisibilityConverter}}"/>
+        <Setter Property="dx:FocusHelper2.Focusable" Value="False"/>
+        <Setter Property="dx:ThemeManager.ThemeName" Value="DeepBlue"/>
+		<Setter Property="Margin" Value="0,0,0,12"/>
+		<Setter Property="SnapsToDevicePixels" Value="True"/>
+    </Style>
+    <Style x:Key="{dxet:DateNavigatorThemeKey ResourceKey=HeaderStyle}" TargetType="{x:Type Border}">
+        <Setter Property="Background" Value="#FFC7DBF8"/>
+        <Setter Property="BorderBrush" Value="#FF86A9D9"/>
+        <Setter Property="BorderThickness" Value="0,0,0,1"/>
+    </Style>
+    <SolidColorBrush x:Key="{dxet:DateNavigatorThemeKey ResourceKey=BackgroundBrush}" Color="#FFFFFFFF"/>
+    <Style x:Key="{dxet:DateNavigatorThemeKey ResourceKey=CellButtonStyle}" TargetType="{x:Type Button}">
+    </Style>
+
+    <dx:EditorStringIdConverter x:Key="EditorStringIdConverter"/>
+    <ControlTemplate x:Key="{dxet:DateNavigatorThemeKey ResourceKey=HeaderButtonTemplate}" TargetType="{x:Type Button}">
+        <Grid SnapsToDevicePixels="True">
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup x:Name="CommonStates">
+                    <VisualState x:Name="Normal"/>
+                    <VisualState x:Name="MouseOver">
+                        <Storyboard>
+                            <ColorAnimation Storyboard.TargetName="ForegroundBrush" Storyboard.TargetProperty="Color" Duration="0" To="#FF234884"/>
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Pressed">
+                        <Storyboard>
+                            <ColorAnimation Storyboard.TargetName="ForegroundBrush" Storyboard.TargetProperty="Color" Duration="0" To="#FF234884"/>
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Disabled"/>
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+            <Border>
+                <ContentControl x:Name="Content" Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" Width="Auto" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,5,0,3" dx:FocusHelper2.Focusable="False">
+                    <ContentControl.Foreground>
+                        <SolidColorBrush x:Name="ForegroundBrush" Color="#FF466ba4"/>
+                    </ContentControl.Foreground>
+                </ContentControl>
+            </Border>
+        </Grid>
+    </ControlTemplate>
+    <Style x:Key="{dxet:DateNavigatorThemeKey ResourceKey=HeaderButtonStyle}" TargetType="{x:Type Button}">
+        <Setter Property="Template" Value="{DynamicResource {dxet:DateNavigatorThemeKey ResourceKey=HeaderButtonTemplate}}"/>
+        <Setter Property="Background" Value="#00000000"/>
+        <Setter Property="dx:FocusHelper2.Focusable" Value="False"/>
+    </Style>
+    <Style x:Key="{dxet:DateNavigatorThemeKey ResourceKey=WeekdayNameStyle}" TargetType="{x:Type TextBlock}">
+    </Style>
+    <Style x:Key="{dxet:DateNavigatorThemeKey ResourceKey=WeekNumberStyle}" TargetType="{x:Type TextBlock}">
+        <Setter Property="Foreground" Value="#FFCCCCCC"/>
+        <Setter Property="Margin" Value="0,0,4,0"/>
+		<Setter Property="FontSize" Value="10"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
+    <Style x:Key="{dxet:DateNavigatorThemeKey ResourceKey=WeekdayAbbreviationStyle}" TargetType="{x:Type TextBlock}">
+        <Setter Property="Foreground" Value="#FF000000"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="Margin" Value="0,0,0,4"/>
+    </Style>
+    <ControlTemplate x:Key="{dxet:DateNavigatorThemeKey ResourceKey=MonthInfoDelimeter}">
+        <Border SnapsToDevicePixels="True" Height="1" Background="#FF959595"/>
+    </ControlTemplate>
+    <ControlTemplate x:Key="{dxet:DateNavigatorThemeKey ResourceKey=WeekNumberDelimeter}">
+        <Border Width="1" BorderThickness="0" SnapsToDevicePixels="True"/>
+    </ControlTemplate>
+    <ControlTemplate x:Key="{dxet:DateNavigatorThemeKey ResourceKey=CellButtonTemplate}" TargetType="{x:Type dxednc:DateNavigatorCalendarCellButton}">
+        <dxednc:DateNavigatorCalendarCellButtonContent x:Name="PART_Content" SelectedForegroundSolidColor="White" MouseOverForegroundSolidColor="White" TodayForegroundSolidColor="Black" InactiveForegroundSolidColor="#FFD3D3D3" HolidayForegroundSolidColor="#FFCC3333">
+            <dxednc:DateNavigatorCalendarCellButtonContent.Template>
+                <ControlTemplate>
+                    <Grid Background="Transparent">
+                        <Border x:Name="PART_Today" Background="#FF9FC8F2" CornerRadius="2" Visibility="Collapsed"/>
+                        <Border x:Name="PART_Focused" BorderBrush="#FF3C619B" BorderThickness="1" CornerRadius="2" Visibility="Collapsed"/>
+                        <Border x:Name="PART_MouseOver" Background="#FF6C91CB" CornerRadius="2" Visibility="Collapsed"/>
+                        <Border x:Name="PART_Selected" Background="#FF3C619B" CornerRadius="2" Visibility="Collapsed"/>
+                        <TextBlock x:Name="PART_Text" HorizontalAlignment="Center" Margin="1,0,1,1" VerticalAlignment="Center"/>
+                    </Grid>
+                </ControlTemplate>
+            </dxednc:DateNavigatorCalendarCellButtonContent.Template>
+        </dxednc:DateNavigatorCalendarCellButtonContent>
+    </ControlTemplate>
+    <ControlTemplate x:Key="{dxet:DateNavigatorThemeKey ResourceKey=YearInfoTemplate}">
+        <Grid x:Name="PART_ContentGrid" SnapsToDevicePixels="True">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+        </Grid>
+    </ControlTemplate>
+    <ControlTemplate x:Key="{dxet:DateNavigatorThemeKey ResourceKey=MonthInfoTemplate}">
+        <Grid x:Name="PART_ContentGrid" SnapsToDevicePixels="True">
+            <Grid.Resources>
+                <dx:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
+            </Grid.Resources>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <ContentControl Template="{DynamicResource {dxet:DateNavigatorThemeKey IsVisibleInBlend=True, ResourceKey=MonthInfoDelimeter}}" Grid.Column="2" Grid.ColumnSpan="7" Grid.Row="1" Margin="0,0,0,5" dx:FocusHelper2.Focusable="False"/>
+            <ContentControl Template="{DynamicResource {dxet:DateNavigatorThemeKey IsVisibleInBlend=True, ResourceKey=WeekNumberDelimeter}}" x:Name="WeekNumberDelimeter" Visibility="{Binding Path=(dxedn:DateNavigator.Navigator).ShowWeekNumbers, RelativeSource={RelativeSource Self}, Converter={StaticResource BoolToVisibilityConverter}}" Grid.Column="1" Grid.Row="2" Grid.RowSpan="6" dx:FocusHelper2.Focusable="False"/>
+        </Grid>
+    </ControlTemplate>
+    <Style TargetType="TextBlock" x:Key="{dxet:DateNavigatorThemeKey IsVisibleInBlend=True, ResourceKey=CalendarCurrentDateStyle}">
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+    </Style>
+    <ControlTemplate x:Key="{dxet:DateNavigatorThemeKey ResourceKey=LeftArrowTemplate}" TargetType="ButtonBase">
+        <Grid Margin="0,0,0,0" Width="Auto" SnapsToDevicePixels="True">
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup x:Name="CommonStates">
+                    <VisualState x:Name="Normal"/>
+                    <VisualState x:Name="MouseOver">
+                        <Storyboard>
+                            <ColorAnimation Storyboard.TargetName="pathFill" Storyboard.TargetProperty="Color" Duration="0" To="#FFFFFFFF"/>
+                            <ColorAnimation Storyboard.TargetName="path1Fill" Storyboard.TargetProperty="Color" Duration="0" To="#FF44689F"/>
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Pressed">
+                        <Storyboard>
+                            <ColorAnimation Storyboard.TargetName="pathFill" Storyboard.TargetProperty="Color" Duration="0" To="#FFFFFFFF"/>
+                            <ColorAnimation Storyboard.TargetName="path1Fill" Storyboard.TargetProperty="Color" Duration="0" To="#FF23416E"/>
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Disabled"/>
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+            <Border HorizontalAlignment="Stretch" x:Name="back" Width="17" Height="17" Background="{x:Null}" CornerRadius="0,0,0,0">
+                <Path Stretch="Fill" Data="F1 M 1275.5,759C 1279.64,759 1283,762.358 1283,766.5C 1283,770.642 1279.64,774 1275.5,774C 1271.36,774 1268,770.642 1268,766.5C 1268,762.358 1271.36,759 1275.5,759 Z " Width="15" Height="15" VerticalAlignment="Center" HorizontalAlignment="Center" x:Name="path1">
+                    <Path.Fill>
+                        <SolidColorBrush x:Name="path1Fill" Color="Transparent"/>
+                    </Path.Fill>
+                </Path>
+            </Border>
+            <Border Margin="0,0,0,0" Width="17" Height="17">
+                <Path Stretch="Fill" Data="F1 M 1256,768L 1261,765L 1261,772L 1256,769L 1256,768 Z " HorizontalAlignment="Center" x:Name="path" VerticalAlignment="Center" Width="6" Height="7" Margin="0,0,1,0">
+                    <Path.Fill>
+                        <SolidColorBrush x:Name="pathFill" Color="#FF34507A"/>
+                    </Path.Fill>
+                </Path>
+            </Border>
+        </Grid>
+    </ControlTemplate>
+    <ControlTemplate x:Key="{dxet:DateNavigatorThemeKey ResourceKey=RightArrowTemplate}" TargetType="ButtonBase">
+        <Grid Margin="0,0,0,0" Width="Auto" SnapsToDevicePixels="True">
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup x:Name="CommonStates">
+                    <VisualState x:Name="Normal"/>
+                    <VisualState x:Name="MouseOver">
+                        <Storyboard>
+                            <ColorAnimation Storyboard.TargetName="pathFill" Storyboard.TargetProperty="Color" Duration="0" To="#FFFFFFFF"/>
+                            <ColorAnimation Storyboard.TargetName="path1Fill" Storyboard.TargetProperty="Color" Duration="0" To="#FF44689F"/>
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Pressed">
+                        <Storyboard>
+                            <ColorAnimation Storyboard.TargetName="pathFill" Storyboard.TargetProperty="Color" Duration="0" To="#FFFFFFFF"/>
+                            <ColorAnimation Storyboard.TargetName="path1Fill" Storyboard.TargetProperty="Color" Duration="0" To="#FF23416E"/>
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Disabled"/>
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+            <Border HorizontalAlignment="Stretch" x:Name="back" Width="17" Height="17" Background="{x:Null}" CornerRadius="0,0,0,0">
+                <Path Stretch="Fill" Data="F1 M 1275.5,759C 1279.64,759 1283,762.358 1283,766.5C 1283,770.642 1279.64,774 1275.5,774C 1271.36,774 1268,770.642 1268,766.5C 1268,762.358 1271.36,759 1275.5,759 Z " HorizontalAlignment="Center" x:Name="path1" VerticalAlignment="Center" Width="15" Height="15">
+                    <Path.Fill>
+                        <SolidColorBrush x:Name="path1Fill" Color="Transparent"/>
+                    </Path.Fill>
+                </Path>
+            </Border>
+            <Border Margin="0,0,0,0" Width="17" Height="17">
+                <Path Stretch="Fill" Data="F1 M 1256,768L 1261,765L 1261,772L 1256,769L 1256,768 Z " HorizontalAlignment="Center" x:Name="path" VerticalAlignment="Center" Width="6" Height="7" Margin="1,0,0,0" RenderTransformOrigin="0.5,0.5">
+                    <Path.Fill>
+                        <SolidColorBrush x:Name="pathFill" Color="#FF34507A"/>
+                    </Path.Fill>
+                    <Path.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform ScaleX="-1" ScaleY="1"/>
+                            <SkewTransform AngleX="0" AngleY="0"/>
+                            <RotateTransform Angle="0"/>
+                            <TranslateTransform X="0" Y="0"/>
+                        </TransformGroup>
+                    </Path.RenderTransform>
+                </Path>
+            </Border>
+        </Grid>
+    </ControlTemplate>
+    <!--BEGIN TOSLONLY REPLACE 'RepeatButton'wpfcompatibility:SLRepeatButton'-->
+    <Style x:Key="{dxet:DateNavigatorThemeKey ResourceKey=LeftArrowStyle}" TargetType="RepeatButton">
+        <Setter Property="Template" Value="{DynamicResource {dxet:DateNavigatorThemeKey ResourceKey=LeftArrowTemplate}}"/>
+        <Setter Property="ClickMode" Value="Press"/>
+        <Setter Property="Delay" Value="400"/>
+        <Setter Property="Interval" Value="400"/>
+        <Setter Property="dx:FocusHelper2.Focusable" Value="False"/>
+        <Setter Property="Margin" Value="5,0,0,0"/>
+    </Style>
+    <Style x:Key="{dxet:DateNavigatorThemeKey ResourceKey=RightArrowStyle}" TargetType="RepeatButton">
+        <Setter Property="Template" Value="{DynamicResource {dxet:DateNavigatorThemeKey ResourceKey=RightArrowTemplate}}"/>
+        <Setter Property="ClickMode" Value="Press"/>
+        <Setter Property="Delay" Value="400"/>
+        <Setter Property="Interval" Value="400"/>
+        <Setter Property="dx:FocusHelper2.Focusable" Value="False"/>
+        <Setter Property="Margin" Value="0,0,5,0"/>
+    </Style>
+    <ControlTemplate x:Key="{dxet:DateNavigatorThemeKey ResourceKey=CalendarTemplate}" TargetType="{x:Type dxednc:DateNavigatorCalendar}">
+        <Grid Margin="8" SnapsToDevicePixels="True">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+			<StackPanel>
+				<TextBlock Style="{DynamicResource {dxet:DateNavigatorThemeKey IsVisibleInBlend=True, ResourceKey=CalendarCurrentDateStyle}}" Text="{Binding Path=CurrentDateText, RelativeSource={RelativeSource TemplatedParent}}"/>
+			</StackPanel>
+            <Border Grid.Row="1" Background="#FFFFFFFF">
+                <Grid>
+                    <Grid x:Name="PART_ContentPaddingPanel"/>
+                    <dxednc:DateNavigatorCalendarContent x:Name="PART_Content" dx:FocusHelper2.Focusable="False"/>
+                </Grid>
+            </Border>
+        </Grid>
+    </ControlTemplate>
+    <!--END TOSLONLY REPLACE 'RepeatButton'wpfcompatibility:SLRepeatButton'-->
+    <ControlTemplate x:Key="{dxet:DateNavigatorThemeKey ResourceKey=CurrentDateButtonTemplate}" TargetType="{x:Type Button}">
+        <ContentPresenter SnapsToDevicePixels="True" HorizontalAlignment="Center" Content="{Binding Path=Content, RelativeSource={RelativeSource TemplatedParent}}" Margin="0,6,0,5"/>
+    </ControlTemplate>
+    <Style x:Key="{dxet:DateNavigatorThemeKey ResourceKey=CurrentDateButtonStyle}" TargetType="{x:Type Button}" BasedOn="{StaticResource {dxet:DateNavigatorThemeKey ResourceKey=HeaderButtonStyle}}">
+        <Setter Property="Template" Value="{DynamicResource {dxet:DateNavigatorThemeKey ResourceKey=CurrentDateButtonTemplate}}"/>
+    </Style>
+</ResourceDictionary>

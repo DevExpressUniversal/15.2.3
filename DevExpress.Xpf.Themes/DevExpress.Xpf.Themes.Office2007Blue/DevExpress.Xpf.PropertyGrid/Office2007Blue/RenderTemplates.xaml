@@ -1,0 +1,110 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:dxn="http://schemas.devexpress.com/winfx/2008/xaml/core/internal"
+                    xmlns:dxprg="http://schemas.devexpress.com/winfx/2008/xaml/propertygrid"
+                    xmlns:dxprgt="http://schemas.devexpress.com/winfx/2008/xaml/propertygrid/themekeys"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib"                    
+                    >
+
+
+    <dxn:RenderTemplate x:Key="{dxprgt:VSViewRenderTemplateThemeKey ResourceKey=RowCommandButton}" >
+        <dxn:RenderBorder Name="Root" Background="#FFF2F8FF" Width="10" Height="10" Margin="5,0,6,0">
+            <dxn:RenderPath Stretch="Fill" Fill="#FF6593CF" Data="F1 M 10,10L 0,10L 0,0L 10,0L 10,10 Z M 1,1L 1,9L 5,9L 9,5L 9,1L 1,1 Z " />
+        </dxn:RenderBorder>
+        <dxn:RenderTemplate.Triggers>
+            <dxn:RenderStateGroup Name="CommonStates">
+                <dxn:RenderStateTrigger Name="Normal"/>
+                <dxn:RenderStateTrigger Name="MouseOver">
+                    <dxn:RenderSetter TargetName="Root" Property="Background" Value="#FFD6E8FF" />
+                </dxn:RenderStateTrigger>
+            </dxn:RenderStateGroup>            
+            <dxn:RenderTrigger DependencyProperty="{x:Static dxprg:RowControl.ShouldHighlightValueProperty}" Value="True">
+                <dxn:RenderSetter TargetName="Root" Property="Background" Value="#FF6593CF" />
+            </dxn:RenderTrigger>
+        </dxn:RenderTemplate.Triggers>
+    </dxn:RenderTemplate>
+
+
+    <dxn:RenderTemplate x:Key="{dxprgt:VSViewRenderTemplateThemeKey ResourceKey=RowCollectionButton}" >
+        <dxn:RenderPanel>
+            <dxn:RenderPanel Name="PART_Add" Opacity="0.5">
+                <dxn:RenderPath Stretch="Fill" Fill="#FF6593CF" Data="F1 M 6,0C 9.31371,0 12,2.68629 12,6C 12,9.31371 9.31371,12 6,12C 2.68629,12 -6.35783e-007,9.31371 -6.35783e-007,6C -6.35783e-007,2.68629 2.68629,0 6,0 Z M 2,5L 2,7L 5,7L 5,10L 7,10L 7,7L 10,7L 10,5L 7,5L 7,2L 5,2L 5,5L 2,5 Z " Width="12" Height="12"/>
+            </dxn:RenderPanel>
+            <dxn:RenderPanel Name="PART_Remove" Opacity="0.5" Visibility="Collapsed">
+                <dxn:RenderPath Name="Path" Stretch="Fill" Fill="#FFCC0000" Data="F1 M 1.75736,1.75736C 4.1005,-0.585785 7.89949,-0.585785 10.2426,1.75736C 12.5858,4.10051 12.5858,7.8995 10.2426,10.2426C 7.89949,12.5858 4.1005,12.5858 1.75736,10.2426C -0.585787,7.8995 -0.585787,4.10051 1.75736,1.75736 Z M 2.46447,8.12132L 3.87868,9.53553L 6,7.41421L 8.12132,9.53553L 9.53553,8.12132L 7.41421,6L 9.53553,3.87868L 8.12132,2.46447L 6,4.58579L 3.87868,2.46447L 2.46447,3.87868L 4.58579,6L 2.46447,8.12132 Z " Width="12" Height="12" />
+            </dxn:RenderPanel>
+        </dxn:RenderPanel>
+        <dxn:RenderTemplate.Triggers>
+            <dxn:RenderStateGroup Name="CommonStates">
+                <dxn:RenderStateTrigger Name="Normal"/>
+                <dxn:RenderStateTrigger Name="MouseOver">
+                    <dxn:RenderSetter TargetName="PART_Add" Property="Opacity" Value="1" />
+                    <dxn:RenderSetter TargetName="PART_Remove" Property="Opacity" Value="0.75" />
+                    <dxn:RenderSetter TargetName="Path" Property="Fill" Value="#FF990000" />
+                </dxn:RenderStateTrigger>
+            </dxn:RenderStateGroup>
+            <dxn:RenderStateGroup Name="ButtonKind">
+                <dxn:RenderStateTrigger Name="Add"/>
+                <dxn:RenderStateTrigger Name="Remove">
+                    <dxn:RenderSetter TargetName="PART_Remove" Property="Visibility" Value="Visible" />
+                    <dxn:RenderSetter TargetName="PART_Add" Property="Visibility" Value="Collapsed" />
+                </dxn:RenderStateTrigger>
+            </dxn:RenderStateGroup>            
+        </dxn:RenderTemplate.Triggers>
+    </dxn:RenderTemplate>
+
+    <dxn:RenderTemplate x:Key="{dxprgt:VSViewRenderTemplateThemeKey ResourceKey=Expander}">
+        <dxn:RenderPanel Width="16" Height="16">
+            <dxn:RenderPanel Name="Root" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <dxn:RenderBorder Name="IsUnchecked" CornerRadius="2" Width="9" Height="9">
+                        <dxn:RenderBorder.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="#FF7A7C7E " Offset="0" />
+                                <GradientStop Color="#FF404143 " Offset="1" />
+                            </LinearGradientBrush>
+                        </dxn:RenderBorder.Background>
+                        <dxn:RenderBorder CornerRadius="1" Margin="1">
+                            <dxn:RenderBorder.Background>
+                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                    <GradientStop Color="#FFF2F3F3 " Offset="0" />
+                                    <GradientStop Color="#FFBFC1C4 " Offset="1" />
+                                </LinearGradientBrush>
+                            </dxn:RenderBorder.Background>
+                            <dxn:RenderPanel>
+                                <dxn:RenderPath Stretch="Fill" Fill="#FF272526 " Data="F1 M 17,8.00006L 18,8.00006L 18,10L 20,10L 20,11L 18,11L 18,13.0001L 17,13.0001L 17,11L 15,11L 15,10L 17,10L 17,8.00006 Z " Width="5" Height="5" />
+                            </dxn:RenderPanel>
+                        </dxn:RenderBorder>
+                    </dxn:RenderBorder>
+                    <dxn:RenderBorder Name="IsChecked" CornerRadius="2" Visibility="Collapsed" Width="9" Height="9">
+                        <dxn:RenderBorder.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="#FF7A7C7E " Offset="0" />
+                                <GradientStop Color="#FF404143 " Offset="1" />
+                            </LinearGradientBrush>
+                        </dxn:RenderBorder.Background>
+                        <dxn:RenderBorder CornerRadius="1" Margin="1">
+                            <dxn:RenderBorder.Background>
+                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                    <GradientStop Color="#FFF2F3F3 " Offset="0" />
+                                    <GradientStop Color="#FFBFC1C4 " Offset="1" />
+                                </LinearGradientBrush>
+                            </dxn:RenderBorder.Background>
+                            <dxn:RenderPanel Height="1">
+                                <dxn:RenderBorder Background="#FF272526 " Width="5" />
+                            </dxn:RenderPanel>
+                        </dxn:RenderBorder>
+                    </dxn:RenderBorder>
+                </dxn:RenderPanel>
+            </dxn:RenderPanel>
+        <dxn:RenderTemplate.Triggers>
+            <dxn:RenderStateGroup Name="CheckedStates">
+                <dxn:RenderStateTrigger Name="Checked">
+                    <dxn:RenderSetter TargetName="IsUnchecked" Property="Visibility" Value="Collapsed"/>
+                    <dxn:RenderSetter TargetName="IsChecked" Property="Visibility" Value="Visible"/>
+                </dxn:RenderStateTrigger>
+                <dxn:RenderStateTrigger Name="Unchecked"/>
+            </dxn:RenderStateGroup>
+        </dxn:RenderTemplate.Triggers>
+    </dxn:RenderTemplate>    
+	
+</ResourceDictionary>

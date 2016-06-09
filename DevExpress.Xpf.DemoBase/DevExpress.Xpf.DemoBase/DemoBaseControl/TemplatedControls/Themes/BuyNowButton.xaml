@@ -1,0 +1,29 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:dxdb="clr-namespace:DevExpress.Xpf.DemoBase"
+    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+    xmlns:helpers="clr-namespace:DevExpress.Xpf.DemoBase.Helpers"
+    xmlns:ddhelpers="clr-namespace:DevExpress.DemoData.Helpers;assembly=DevExpress.DemoData.v15.2.Core"
+    xmlns:dxl="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <ddhelpers:SelectConverter x:Key="BuyNowBGConverter">
+        <ddhelpers:SelectState Key="False" Value="{ddhelpers:DoubleValue S=0}" />
+        <ddhelpers:SelectState Key="True" Value="{ddhelpers:DoubleValue S=1}" />
+    </ddhelpers:SelectConverter>
+    <Style TargetType="dxdb:BuyNowButton">
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="FontSize" Value="15" />
+        <Setter Property="FontFamily" Value="Segoe UI, Tahoma" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="dxdb:BuyNowButton">
+                    <Grid>
+                        <Rectangle Fill="#FF3D3D3D" />
+                        <Rectangle Fill="#FFF7941E" Opacity="{ddhelpers:SelectBinding Binding={Binding IsMouseOver, RelativeSource={RelativeSource TemplatedParent}}, Converter={StaticResource BuyNowBGConverter}}" />
+                        <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

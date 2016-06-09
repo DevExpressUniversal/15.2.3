@@ -1,0 +1,27 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:helpers="clr-namespace:DevExpress.Xpf.Core.MvvmSample.Helpers"
+    xmlns:mvvm="clr-namespace:DevExpress.Xpf.Core.MvvmSample"
+    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core">
+
+    <Style TargetType="mvvm:MvvmRoot">
+        <Setter Property="Focusable" Value="False" />
+        <Setter Property="IsTabStop" Value="False" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="mvvm:MvvmRoot">
+                    <dx:BackgroundPanel>
+                        <Grid Margin="{TemplateBinding Padding}">
+                            <helpers:ViewPresenter
+                                Content="{Binding MainModule.CurrentModule.View, RelativeSource={RelativeSource TemplatedParent}}" 
+                                Storyboards="{TemplateBinding Storyboards}" 
+                                Storyboard="{TemplateBinding Storyboard}" 
+                                StoryboardSelector="{Binding MainModule.StoryboardSelector, RelativeSource={RelativeSource TemplatedParent}}" />
+                        </Grid>
+                    </dx:BackgroundPanel>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

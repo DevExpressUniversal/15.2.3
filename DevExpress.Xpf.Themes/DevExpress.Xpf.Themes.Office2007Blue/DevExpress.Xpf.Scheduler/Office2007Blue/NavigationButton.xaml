@@ -1,0 +1,160 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:dxsch="http://schemas.devexpress.com/winfx/2008/xaml/scheduler" xmlns:dxscht="http://schemas.devexpress.com/winfx/2008/xaml/scheduler/themekeys" xmlns:dxschd="http://schemas.devexpress.com/winfx/2008/xaml/scheduler/internal" xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys">
+    <dxsch:SchedulerStringIdConverter x:Key="SchedulerStringIdConverter"/>
+    <ControlTemplate TargetType="{x:Type dxschd:VisualNavigationButton}" x:Key="NavigationButtonTemplate">
+        <Grid x:Name="grid" IsHitTestVisible="True" dxsch:SchedulerControl.HitTestType="NavigationButton">
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup x:Name="DirectionStates">
+                    <VisualState x:Name="Backward" />
+                    <VisualState x:Name="Forward">
+                        <Storyboard>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Border.CornerRadius)" Storyboard.TargetName="pressedState">
+                                <DiscreteObjectKeyFrame KeyTime="0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <CornerRadius>7,0,0,7</CornerRadius>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Border.CornerRadius)" Storyboard.TargetName="OuterBorder">
+                                <DiscreteObjectKeyFrame KeyTime="0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <CornerRadius>8,0,0,8</CornerRadius>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Border.CornerRadius)" Storyboard.TargetName="defaultState">
+                                <DiscreteObjectKeyFrame KeyTime="0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <CornerRadius>7,0,0,7</CornerRadius>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Border.CornerRadius)" Storyboard.TargetName="mouseOverState">
+                                <DiscreteObjectKeyFrame KeyTime="0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <CornerRadius>7,0,0,7</CornerRadius>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.RenderTransform)" Storyboard.TargetName="arrowPath">
+                                <DiscreteObjectKeyFrame KeyTime="0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <RotateTransform Angle="180"/>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </VisualState>
+                </VisualStateGroup>
+                <VisualStateGroup x:Name="CommonStates">
+                    <VisualState x:Name="Disabled">
+                        <Storyboard>
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="contentGrid">
+                                <EasingDoubleKeyFrame KeyTime="0" Value="0.35"/>
+                            </DoubleAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Normal"/>
+                    <VisualState x:Name="MouseOver">
+                        <Storyboard>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="mouseOverState">
+                                <DiscreteObjectKeyFrame KeyTime="0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <Visibility>Visible</Visibility>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="defaultState">
+                                <DiscreteObjectKeyFrame KeyTime="0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <Visibility>Collapsed</Visibility>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Pressed">
+                        <Storyboard>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="pressedState">
+                                <DiscreteObjectKeyFrame KeyTime="0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <Visibility>Visible</Visibility>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="defaultState">
+                                <DiscreteObjectKeyFrame KeyTime="0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <Visibility>Collapsed</Visibility>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="mouseOverState">
+                                <DiscreteObjectKeyFrame KeyTime="0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <Visibility>Collapsed</Visibility>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+            <Border x:Name="OuterBorder" Background="{DynamicResource {dxscht:SchedulerControlThemeKey ResourceKey=DefaultBorderBrush}}" CornerRadius="0,8,8,0" >
+                <Grid Margin="1" >
+                    <Border x:Name="defaultState" CornerRadius="0,7,7,0" Background="{DynamicResource {dxscht:Office2007ThemeKey ResourceKey=NavigationButtonDefaultStateBackground}}" />
+                    <Border x:Name="mouseOverState" CornerRadius="0,7,7,0" Visibility="Collapsed" Background="{DynamicResource {dxscht:Office2007ThemeKey ResourceKey=NavigationButtonMouseOverStateBackground}}" />
+                    <Border x:Name="pressedState" CornerRadius="0,7,7,0" Background="{DynamicResource {dxscht:Office2007ThemeKey ResourceKey=NavigationButtonPressedStateBackground}}" Visibility="Collapsed"/>
+                    <Grid Margin="2,0,4,0" x:Name="contentGrid" SnapsToDevicePixels="True" UseLayoutRounding="True">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Path Stretch="Fill" Fill="#FF444444" Data="F1 M 97,227L 98,227L 98,237L 97,237L 97,227 Z M 99,232L 103,228L 103,230L 101,232L 103,234L 103,236L 99,232 Z " HorizontalAlignment="Center" Height="10" Margin="0,16" UseLayoutRounding="False" VerticalAlignment="Center" Width="6" x:Name="arrowPath" RenderTransformOrigin="0.5,0.5"/>
+                        <dx:LayoutTransformPanel Grid.Row="1" Orientation="Horizontal"  Margin="0,0,0,42">
+                            <TextBlock x:Name="text" Text="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <TextBlock.TextTrimming>
+                                    <TextTrimming>CharacterEllipsis</TextTrimming>
+                                </TextBlock.TextTrimming>
+                            </TextBlock>
+                        </dx:LayoutTransformPanel>
+                    </Grid>
+                </Grid>
+            </Border>
+        </Grid>
+    </ControlTemplate>
+    <Style TargetType="{x:Type dxschd:VisualNavigationButton}" x:Key="{dxscht:SchedulerViewThemeKey ResourceKey=NavigationButtonPrevStyle}">
+        <Setter Property="Template" Value="{StaticResource NavigationButtonTemplate}" />
+        <Setter Property="Direction" Value="Backward" />
+        <Setter Property="Content" Value="{Binding Source={StaticResource SchedulerStringIdConverter}, ConverterParameter=Caption_PrevAppointment, Converter={StaticResource SchedulerStringIdConverter}}"/>
+    </Style>
+
+
+    <Style TargetType="{x:Type dxschd:VisualNavigationButton}" x:Key="{dxscht:SchedulerViewThemeKey ResourceKey=NavigationButtonNextStyle}">
+        <Setter Property="Template" Value="{StaticResource NavigationButtonTemplate}" />
+        <Setter Property="Direction" Value="Forward" />
+        <Setter Property="Content" Value="{Binding Source={StaticResource SchedulerStringIdConverter}, ConverterParameter=Caption_NextAppointment, Converter={StaticResource SchedulerStringIdConverter}}"/>
+    </Style>
+
+
+    <DataTemplate x:Key="{dxscht:SchedulerViewThemeKey ResourceKey=NavigationButtonsPair}">
+        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="0,0,0,0">
+            <dxschd:VisualNavigationButton HorizontalAlignment="Left" VerticalAlignment="Stretch" Style="{Binding Path=View.NavigationButtonPrevStyle}" ButtonInfo="{Binding PrevNavButtonInfo}" />
+            <dxschd:VisualNavigationButton HorizontalAlignment="Right" VerticalAlignment="Stretch" Style="{Binding Path=View.NavigationButtonNextStyle}" ButtonInfo="{Binding NextNavButtonInfo}" />
+        </Grid>
+    </DataTemplate>
+    <DataTemplate x:Key="{dxscht:WeekViewThemeKey ResourceKey=NavigationButtonsPairGroupByResource}">
+        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="-1,0,1,0">
+            <dxschd:VisualNavigationButton HorizontalAlignment="Left" VerticalAlignment="Stretch" Style="{Binding Path=View.NavigationButtonPrevStyle}" ButtonInfo="{Binding PrevNavButtonInfo}" />
+            <dxschd:VisualNavigationButton HorizontalAlignment="Right" VerticalAlignment="Stretch" Style="{Binding Path=View.NavigationButtonNextStyle}" ButtonInfo="{Binding NextNavButtonInfo}" />
+        </Grid>
+    </DataTemplate>
+
+
+
+    <!--<DataTemplate x:Key="{dxscht:SchedulerViewThemeKey ResourceKey=NavigationButtonsPair}">
+        <Grid HorizontalAlignment="Center">
+            <dxschd:VisualNavigationButton Margin="2,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Stretch" Style="{Binding Path=View.NavigationButtonPrevStyle}" ButtonInfo="{Binding PrevNavButtonInfo}" />
+            <dxschd:VisualNavigationButton Margin="0,0,1,0" HorizontalAlignment="Right" VerticalAlignment="Stretch" Style="{Binding Path=View.NavigationButtonNextStyle}" ButtonInfo="{Binding NextNavButtonInfo}" />
+        </Grid>
+    </DataTemplate>-->
+</ResourceDictionary>

@@ -1,0 +1,70 @@
+#region Copyright (c) 2000-2015 Developer Express Inc.
+/*
+{*******************************************************************}
+{                                                                   }
+{       Developer Express .NET Component Library                    }
+{                                                                   }
+{                                                                   }
+{       Copyright (c) 2000-2015 Developer Express Inc.              }
+{       ALL RIGHTS RESERVED                                         }
+{                                                                   }
+{   The entire contents of this file is protected by U.S. and       }
+{   International Copyright Laws. Unauthorized reproduction,        }
+{   reverse-engineering, and distribution of all or any portion of  }
+{   the code contained in this file is strictly prohibited and may  }
+{   result in severe civil and criminal penalties and will be       }
+{   prosecuted to the maximum extent possible under the law.        }
+{                                                                   }
+{   RESTRICTIONS                                                    }
+{                                                                   }
+{   THIS SOURCE CODE AND ALL RESULTING INTERMEDIATE FILES           }
+{   ARE CONFIDENTIAL AND PROPRIETARY TRADE                          }
+{   SECRETS OF DEVELOPER EXPRESS INC. THE REGISTERED DEVELOPER IS   }
+{   LICENSED TO DISTRIBUTE THE PRODUCT AND ALL ACCOMPANYING .NET    }
+{   CONTROLS AS PART OF AN EXECUTABLE PROGRAM ONLY.                 }
+{                                                                   }
+{   THE SOURCE CODE CONTAINED WITHIN THIS FILE AND ALL RELATED      }
+{   FILES OR ANY PORTION OF ITS CONTENTS SHALL AT NO TIME BE        }
+{   COPIED, TRANSFERRED, SOLD, DISTRIBUTED, OR OTHERWISE MADE       }
+{   AVAILABLE TO OTHER INDIVIDUALS WITHOUT EXPRESS WRITTEN CONSENT  }
+{   AND PERMISSION FROM DEVELOPER EXPRESS INC.                      }
+{                                                                   }
+{   CONSULT THE END USER LICENSE AGREEMENT FOR INFORMATION ON       }
+{   ADDITIONAL RESTRICTIONS.                                        }
+{                                                                   }
+{*******************************************************************}
+*/
+#endregion Copyright (c) 2000-2015 Developer Express Inc.
+
+using System;
+using System.ComponentModel;
+using DevExpress.XtraRichEdit;
+using DevExpress.XtraRichEdit.Model;
+using DevExpress.XtraRichEdit.Localization;
+namespace DevExpress.XtraRichEdit.Commands {
+	#region ToggleTableCellsMiddleCenterAlignmentCommand
+	public class ToggleTableCellsMiddleCenterAlignmentCommand : ToggleTableCellsContentAlignmentCommandBase {
+		public ToggleTableCellsMiddleCenterAlignmentCommand(IRichEditControl control)
+			: base(control) {
+		}
+#if !SL
+	[DevExpressRichEditCoreLocalizedDescription("ToggleTableCellsMiddleCenterAlignmentCommandMenuCaptionStringId")]
+#endif
+		public override XtraRichEditStringId MenuCaptionStringId { get { return XtraRichEditStringId.MenuCmd_ToggleTableCellsMiddleCenterAlignment; } }
+#if !SL
+	[DevExpressRichEditCoreLocalizedDescription("ToggleTableCellsMiddleCenterAlignmentCommandDescriptionStringId")]
+#endif
+		public override XtraRichEditStringId DescriptionStringId { get { return XtraRichEditStringId.MenuCmd_ToggleTableCellsMiddleCenterAlignmentDescription; } }
+#if !SL
+	[DevExpressRichEditCoreLocalizedDescription("ToggleTableCellsMiddleCenterAlignmentCommandId")]
+#endif
+		public override RichEditCommandId Id { get { return RichEditCommandId.ToggleTableCellsMiddleCenterAlignment; } }
+		protected internal override VerticalAlignment CellVerticalAlignment { get { return VerticalAlignment.Center; } }
+		protected internal override ParagraphAlignment ParagraphAlignment { get { return ParagraphAlignment.Center; } }
+#if !SL
+	[DevExpressRichEditCoreLocalizedDescription("ToggleTableCellsMiddleCenterAlignmentCommandImageName")]
+#endif
+		public override string ImageName { get { return "AlignMiddleCenter"; } }
+	}
+	#endregion
+}

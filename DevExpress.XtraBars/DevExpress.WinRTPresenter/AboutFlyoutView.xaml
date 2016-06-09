@@ -1,0 +1,61 @@
+﻿<UserControl
+    x:Class="DevExpress.WinRTPresenter.AboutFlyoutView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:DevExpress.WinRTPresenter"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    x:Name="userControl"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <Style x:Key="PageHeaderStyleForDarkBackdround" BasedOn="{StaticResource PageHeaderStyle}" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="White" />
+        </Style>
+    </UserControl.Resources>
+
+    <Grid Background="#6aa0cc">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Button Style="{StaticResource ResourceKey=BackButtonStyle}" Click="Button_Click_1" VerticalAlignment="Center" Margin="20,0,0,0"/>
+            <TextBlock Text="About"                       
+                       Grid.Column="1"
+                       Margin="20,25,20,20"
+                       Style="{StaticResource PageHeaderStyleForDarkBackdround}"/>
+        </Grid>
+        <Grid Grid.Row="1" Margin="20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.Resources>
+                <Style TargetType="TextBlock">
+                    <Setter Property="FontSize" Value="14" />
+                </Style>
+                <Style TargetType="HyperlinkButton">
+                    <Setter Property="FontSize" Value="14" />
+                    <Setter Property="FontWeight" Value="Light" />
+                    <Setter Property="Padding" Value="0" />
+                    <Setter Property="Foreground" Value="#FFEBEBEB"/>
+                </Style>
+            </Grid.Resources>
+            <StackPanel>
+                <TextBlock Text="Version: 13.1.1" />
+                <TextBlock Margin="0,20,0,20" Text="This app manages Live Tiles within the Windows 8 Start Screen for traditional WinForms and WPF desktop applications. The app can display and hide Live Tiles for desktop applications built using the DevExpress WinRTLiveTileManager component for WinForms. " TextWrapping="Wrap"/>
+            </StackPanel>
+            <StackPanel Grid.Row="1">
+                <HyperlinkButton NavigateUri="http://www.devexpress.com" Content="www.devexpress.com" Margin="-5,0,0,0"/>
+                <TextBlock Text="Copyright © 1998-2013 Developer Express Inc" />
+                <TextBlock Text="ALL RIGHTS RESERVED" />
+            </StackPanel>
+
+        </Grid>
+    </Grid>
+
+</UserControl>

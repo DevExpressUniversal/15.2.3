@@ -1,0 +1,190 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:dxr="http://schemas.devexpress.com/winfx/2008/xaml/ribbon" xmlns:dxrt="http://schemas.devexpress.com/winfx/2008/xaml/ribbon/themekeys" xmlns:dxci="http://schemas.devexpress.com/winfx/2008/xaml/core/internal" xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys">
+
+    <ControlTemplate x:Key="{dxrt:BackstageTabItemThemeKey ResourceKey=BorderTemplate}" TargetType="{x:Type dxr:RibbonCheckedBorderControl}">
+        <Grid x:Name="rootGrid">
+            <Grid x:Name="PART_Normal" Width="Auto" Height="Auto" Margin="0">
+                <Border BorderThickness="0,1,0,1" BorderBrush="Transparent" Background="Transparent" SnapsToDevicePixels="True">
+                    <Border Margin="1" Background="Transparent" SnapsToDevicePixels="True" />
+                </Border>
+            </Grid>
+            <Grid x:Name="PART_Hover" Visibility="Collapsed" SnapsToDevicePixels="True">
+				<Border Margin="-1" Opacity="0.12">
+					<Border.Background>
+						<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+							<GradientStop Color="#BF000000" Offset="1" />
+							<GradientStop Color="#3F000000" />
+						</LinearGradientBrush>
+					</Border.Background>
+				</Border>
+				<Border>
+					<Border.Background>
+						<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+							<GradientStop Color="#FF9C9C9C" Offset="0" />
+							<GradientStop Color="#FF80807F" Offset="1" />
+						</LinearGradientBrush>
+					</Border.Background>
+					<Border Margin="0,1">
+						<Border.Background>
+							<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+								<GradientStop Color="#FFF7F7F7" Offset="0" />
+								<GradientStop Color="#FFDCDCDC" Offset="1" />
+							</LinearGradientBrush>
+						</Border.Background>
+					</Border>
+				</Border>
+            </Grid>
+            <Grid x:Name="PART_Pressed" Visibility="Collapsed" SnapsToDevicePixels="True">
+				<Border>
+					<Border.Background>
+						<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+							<GradientStop Color="#FF80807F" />
+							<GradientStop Color="#FF7F7F7F" Offset="1" />
+						</LinearGradientBrush>
+					</Border.Background>
+					<Border Margin="0,1">
+						<Border.Background>
+							<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+								<GradientStop Color="#FFAAAAAA" Offset="1" />
+								<GradientStop Color="#FFBABABA" />
+							</LinearGradientBrush>
+						</Border.Background>
+					</Border>
+				</Border>
+				<Grid Margin="0,0,-1,0" Height="22" Width="12" HorizontalAlignment="Right" VerticalAlignment="Center">
+					<Path Stretch="Fill" Fill="#FF666666" Data="F1 M 84,100L 94,90L 94,100L 94,110L 84,100 Z " Margin="1,0,1,0" UseLayoutRounding="False" />
+					<Path Stretch="Fill" Fill="#FF999999" Data="F1 M 84,100L 94,90L 94,100L 94,110L 84,100 Z " Margin="1,0,1,0" UseLayoutRounding="False" />
+					<Path Stretch="Fill" Fill="#FFFFFFFF" Data="F1 M 84,100L 94,90L 94,100L 94,110L 84,100 Z " Margin="2,0,0,0" UseLayoutRounding="False" />
+				</Grid>
+            </Grid>
+            <ContentPresenter />
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup x:Name="CommonStates">
+                    <VisualState x:Name="Normal">
+                        <Storyboard>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Normal" Storyboard.TargetProperty="Visibility">
+                                <DiscreteObjectKeyFrame KeyTime="0:0:0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <Visibility>Visible</Visibility>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Hover" Storyboard.TargetProperty="Visibility">
+                                <DiscreteObjectKeyFrame KeyTime="0:0:0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <Visibility>Collapsed</Visibility>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Pressed" Storyboard.TargetProperty="Visibility">
+                                <DiscreteObjectKeyFrame KeyTime="0:0:0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <Visibility>Collapsed</Visibility>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Checked">
+                        <Storyboard>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Normal" Storyboard.TargetProperty="Visibility">
+                                <DiscreteObjectKeyFrame KeyTime="0:0:0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <Visibility>Collapsed</Visibility>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Hover" Storyboard.TargetProperty="Visibility">
+                                <DiscreteObjectKeyFrame KeyTime="0:0:0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <Visibility>Collapsed</Visibility>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Pressed" Storyboard.TargetProperty="Visibility">
+                                <DiscreteObjectKeyFrame KeyTime="0:0:0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <Visibility>Visible</Visibility>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Hover">
+                        <Storyboard>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Normal" Storyboard.TargetProperty="Visibility">
+                                <DiscreteObjectKeyFrame KeyTime="0:0:0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <Visibility>Collapsed</Visibility>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Hover" Storyboard.TargetProperty="Visibility">
+                                <DiscreteObjectKeyFrame KeyTime="0:0:0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <Visibility>Visible</Visibility>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Pressed" Storyboard.TargetProperty="Visibility">
+                                <DiscreteObjectKeyFrame KeyTime="0:0:0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <Visibility>Collapsed</Visibility>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Disabled">
+                        <Storyboard>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Normal" Storyboard.TargetProperty="Visibility">
+                                <DiscreteObjectKeyFrame KeyTime="0:0:0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <Visibility>Visible</Visibility>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                            <DoubleAnimation To="0.6" Duration="0:0:0" Storyboard.TargetName="rootGrid" Storyboard.TargetProperty="Opacity" />
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Hover" Storyboard.TargetProperty="Visibility">
+                                <DiscreteObjectKeyFrame KeyTime="0:0:0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <Visibility>Collapsed</Visibility>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Pressed" Storyboard.TargetProperty="Visibility">
+                                <DiscreteObjectKeyFrame KeyTime="0:0:0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <Visibility>Collapsed</Visibility>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+        </Grid>
+    </ControlTemplate>
+
+    <Style x:Key="{dxrt:BackstageTabItemThemeKey ResourceKey=BorderStyle}" TargetType="{x:Type dxr:RibbonCheckedBorderControl}">
+        <Setter Property="Margin" Value="0,1,0,1" />
+        <Setter Property="Template" Value="{DynamicResource {dxrt:BackstageTabItemThemeKey ResourceKey=BorderTemplate}}" />
+    </Style>
+    <Style x:Key="{dxrt:BackstageTabItemThemeKey ResourceKey=NormalTextStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="FontSize" Value="14" />
+    </Style>
+    <Style x:Key="{dxrt:BackstageTabItemThemeKey ResourceKey=HoverTextStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="FontSize" Value="14" />
+    </Style>
+    <Style x:Key="{dxrt:BackstageTabItemThemeKey ResourceKey=SelectedTextStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="Foreground" Value="#FFFFFFFF" />
+    </Style>
+    <Style x:Key="{dxrt:BackstageTabItemThemeKey ResourceKey=ContentStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Margin" Value="2,7,20,7" />
+    </Style>
+    <Style x:Key="{dxrt:BackstageTabItemThemeKey ResourceKey=ContentTabletOfficeStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Margin" Value="25,7,25,7" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+    </Style>
+    
+</ResourceDictionary>

@@ -1,0 +1,66 @@
+﻿#region Copyright (c) 2000-2015 Developer Express Inc.
+/*
+{*******************************************************************}
+{                                                                   }
+{       Developer Express .NET Component Library                    }
+{       XtraReports for ASP.NET                                     }
+{                                                                   }
+{       Copyright (c) 2000-2015 Developer Express Inc.              }
+{       ALL RIGHTS RESERVED                                         }
+{                                                                   }
+{   The entire contents of this file is protected by U.S. and       }
+{   International Copyright Laws. Unauthorized reproduction,        }
+{   reverse-engineering, and distribution of all or any portion of  }
+{   the code contained in this file is strictly prohibited and may  }
+{   result in severe civil and criminal penalties and will be       }
+{   prosecuted to the maximum extent possible under the law.        }
+{                                                                   }
+{   RESTRICTIONS                                                    }
+{                                                                   }
+{   THIS SOURCE CODE AND ALL RESULTING INTERMEDIATE FILES           }
+{   ARE CONFIDENTIAL AND PROPRIETARY TRADE                          }
+{   SECRETS OF DEVELOPER EXPRESS INC. THE REGISTERED DEVELOPER IS   }
+{   LICENSED TO DISTRIBUTE THE PRODUCT AND ALL ACCOMPANYING .NET    }
+{   CONTROLS AS PART OF AN EXECUTABLE PROGRAM ONLY.                 }
+{                                                                   }
+{   THE SOURCE CODE CONTAINED WITHIN THIS FILE AND ALL RELATED      }
+{   FILES OR ANY PORTION OF ITS CONTENTS SHALL AT NO TIME BE        }
+{   COPIED, TRANSFERRED, SOLD, DISTRIBUTED, OR OTHERWISE MADE       }
+{   AVAILABLE TO OTHER INDIVIDUALS WITHOUT EXPRESS WRITTEN CONSENT  }
+{   AND PERMISSION FROM DEVELOPER EXPRESS INC.                      }
+{                                                                   }
+{   CONSULT THE END USER LICENSE AGREEMENT FOR INFORMATION ON       }
+{   ADDITIONAL RESTRICTIONS.                                        }
+{                                                                   }
+{*******************************************************************}
+*/
+#endregion Copyright (c) 2000-2015 Developer Express Inc.
+
+using System.Collections.Generic;
+using System.Drawing;
+using DevExpress.XtraPrinting;
+namespace DevExpress.XtraReports.Web.WebDocumentViewer.Native {
+	class MapNode : IWebDocumentViewerMapNode {
+		public RectangleF Bounds { get; private set; }
+		public IList<IWebDocumentViewerMapNode> Nodes { get; private set; }
+		public Dictionary<string, object> Content { get; private set; }
+		public string Indexes { get; private set; }
+		public int Row { get; set; }
+		public int Column { get; set; }
+		public int GeneralBrickIndex { get; set; }
+		public int NavigationPageIndex { get; set; }
+		public string NavigationIndexes { get; set; }
+		public string Target { get; set; }
+		public string NavigationUrl { get; set; }
+		public string DrillDownKey { get; set; }
+		public MapNode(RectangleF rect, BrickBase brick, string indexes, string text) {
+			NavigationPageIndex = -1;
+			Bounds = rect;
+			Nodes = new List<IWebDocumentViewerMapNode>();
+			Content = new Dictionary<string, object>();
+			Indexes = indexes;
+			if(text != null)
+				Content.Add("text", text);
+		}
+	}
+}

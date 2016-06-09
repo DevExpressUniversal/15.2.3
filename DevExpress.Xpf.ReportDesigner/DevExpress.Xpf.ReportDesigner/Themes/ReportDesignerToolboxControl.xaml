@@ -1,0 +1,50 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+            xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+            xmlns:toolbox="clr-namespace:DevExpress.Xpf.Reports.UserDesigner.Toolbox"
+            xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
+            xmlns:designer="clr-namespace:DevExpress.Xpf.Reports.UserDesigner"
+            xmlns:dxdiag="clr-namespace:DevExpress.Xpf.Diagram;assembly=DevExpress.Xpf.Diagram.v15.2">
+    
+    <Style TargetType="toolbox:ReportDesignerToolboxControl">
+        <Setter Property="Tools" Value="{Binding Path=(designer:ReportDesigner.Document).ReportModel.ToolboxTools, RelativeSource={RelativeSource Self}}" />
+        <Setter Property="SelectedTool" Value="{Binding Path=(designer:ReportDesigner.Document).ReportModel.SelectedToolboxTool, RelativeSource={RelativeSource Self}}" />
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="toolbox:ReportDesignerToolboxControl">
+                    <dxe:ListBoxEdit ItemsSource="{Binding Tools, RelativeSource={RelativeSource TemplatedParent}}" EditValue="{Binding SelectedTool, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ScrollViewer.VerticalScrollBarVisibility="Disabled" ShowBorder="False" AllowUpdateTwoWayBoundPropertiesOnSynchronization="False">
+                        <dxe:ListBoxEdit.StyleSettings>
+                            <dxe:ListBoxEditStyleSettings SelectionEventMode="MouseUp" />
+                        </dxe:ListBoxEdit.StyleSettings>
+                        <dxe:ListBoxEdit.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel Orientation="Vertical" />
+                            </ItemsPanelTemplate>
+                        </dxe:ListBoxEdit.ItemsPanel>
+                        <dxe:ListBoxEdit.ItemContainerStyle>
+                            <Style TargetType="dxe:ListBoxEditItem">
+                                <Setter Property="dxmvvm:Interaction.BehaviorsTemplate">
+                                    <Setter.Value>
+                                        <DataTemplate>
+                                            <ItemsControl>
+                                                <dxdiag:StartDragBehavior Command="{Binding Diagram.Commands.StartDragTool}" CommandAlternate="{Binding Diagram.Commands.StartDragToolAlternate}" CommandParameter="{Binding Tool}" MinDragDistance="{Binding Diagram.MinDragDistance}" />
+                                                <dxmvvm:EventToCommand EventName="MouseDoubleClick" Command="{Binding Diagram.Commands.UseTool}" CommandParameter="{Binding Tool}" />
+                                            </ItemsControl>
+                                        </DataTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter Property="ToolTip" Value="{Binding Tool.ToolName}" />
+                            </Style>
+                        </dxe:ListBoxEdit.ItemContainerStyle>
+                        <dxe:ListBoxEdit.ItemTemplate>
+                            <DataTemplate>
+                                <Image Width="32" Height="32" Stretch="None" Source="{Binding Icon}" />
+                            </DataTemplate>
+                        </dxe:ListBoxEdit.ItemTemplate>
+                    </dxe:ListBoxEdit>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

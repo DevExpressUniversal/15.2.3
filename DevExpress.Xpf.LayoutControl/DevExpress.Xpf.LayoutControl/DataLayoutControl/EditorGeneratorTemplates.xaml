@@ -1,0 +1,355 @@
+﻿<ResourceDictionary 
+    x:Class="DevExpress.Xpf.LayoutControl.UIGeneration.EditorGeneratorTemplates"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:dxlc="clr-namespace:DevExpress.Xpf.LayoutControl"
+    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+    xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
+    xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+    xmlns:dxei="http://schemas.devexpress.com/winfx/2008/xaml/editors/internal"
+    xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
+    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+    
+    <Style x:Key="{dxlc:FilteringUIGeneratorThemeKey IsThemeIndependent=True, ResourceKey=LayoutGroupStyle}" TargetType="dxlc:LayoutGroup">
+        <Setter Property="Header" Value="{Binding Path=(dxlc:DataLayoutItem.AttributeSettings).Label, RelativeSource={RelativeSource Self}}"/>
+        <Setter Property="HeaderTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <ContentPresenter Content="{Binding}" ToolTip="{Binding Path=(dxlc:DataLayoutItem.AttributeSettings).ToolTip, RelativeSource={RelativeSource Self}}"/>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="View" Value="GroupBox"/>
+        <Setter Property="IsCollapsible" Value="True"/>
+        <Setter Property="Orientation" Value="Vertical"/>
+        <Setter Property="GroupBoxDisplayMode" Value="{Binding Path=ActualGroupBoxDisplayMode, RelativeSource={RelativeSource AncestorType=dxlc:LayoutGroup}}"/>
+        <Setter Property="GroupBoxStyle" Value="{Binding Path=GroupBoxStyle, RelativeSource={RelativeSource AncestorType=dxlc:LayoutGroup}}"/>
+        <Setter Property="dxb:BarManager.DXContextMenu">
+            <Setter.Value>
+                <dxb:PopupMenu>
+                    <dxb:BarButtonItem Content="Reset" Command="{Binding Path=(dxlc:DataLayoutItem.UnderlyingObject).ResetCommand, RelativeSource={RelativeSource Self}}"/>
+                </dxb:PopupMenu>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="liStyle" TargetType="dxlc:DataLayoutItem">
+        <Setter Property="DataContext" Value="{Binding Path=(dxlc:DataLayoutItem.UnderlyingObject), RelativeSource={RelativeSource Self}}"/>
+        <Setter Property="AddColonToLabel" Value="{Binding AddColonToLabel, RelativeSource={RelativeSource AncestorType=dxlc:DataLayoutItem}}"/>
+        <Setter Property="ApplySettingsForCustomContent" Value="True"/>
+    </Style>
+    <Style x:Key="lcStyle" TargetType="dxlc:LayoutControl">
+        <Setter Property="Orientation" Value="Horizontal"/>
+        <Setter Property="Padding" Value="0"/>
+        <Setter Property="ScrollBars" Value="None"/>
+        <Setter Property="dx:DXSerializer.Enabled" Value="False"/>
+    </Style>
+    <Style x:Key="baseEditorStyle" TargetType="dxe:BaseEdit">
+        <Setter Property="dxei:RightClickEditorBehavior.IsRightClickEditorBehaviorEnabled" Value="False"/>
+    </Style>
+
+    <!--Range-->
+    <Style x:Key="minSpinEditStyle" BasedOn="{StaticResource baseEditorStyle}" TargetType="dxe:SpinEdit">
+        <Setter Property="MinValue" Value="{Binding Minimum}"/>
+        <Setter Property="MaxValue" Value="{Binding Maximum}"/>
+        <Setter Property="EditValue" Value="{Binding FromValue, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"/>
+    </Style>
+    <Style x:Key="maxSpinEditStyle" BasedOn="{StaticResource minSpinEditStyle}" TargetType="dxe:SpinEdit">
+        <Setter Property="EditValue" Value="{Binding ToValue, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"/>
+    </Style>
+    <Style x:Key="trackEditStyle" BasedOn="{StaticResource baseEditorStyle}" TargetType="dxe:TrackBarEdit">
+        <Setter Property="DataContext" Value="{Binding Path=(dxlc:DataLayoutItem.UnderlyingObject), RelativeSource={RelativeSource Self}}"/>
+        <Setter Property="Minimum" Value="{Binding Minimum}"/>
+        <Setter Property="Maximum" Value="{Binding Maximum}"/>
+        <Setter Property="TickPlacement" Value="None"/>
+        <Setter Property="EditValue">
+            <Setter.Value>
+                <MultiBinding Mode="TwoWay" Converter="{dxe:TrackBarEditRangeMultiValueConverter}" UpdateSourceTrigger="PropertyChanged">
+                    <Binding Path="FromValue" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged"/>
+                    <Binding Path="ToValue" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged"/>
+                </MultiBinding>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="StyleSettings">
+            <Setter.Value>
+                <dxe:TrackBarRangeStyleSettings/>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <DataTemplate x:Key="{dxlc:FilteringUIGeneratorThemeKey IsThemeIndependent=True, ResourceKey=RangeText}">
+        <dxlc:LayoutGroup Style="{DynamicResource {dxlc:FilteringUIGeneratorThemeKey IsThemeIndependent=True, ResourceKey=LayoutGroupStyle}}">
+            <dxlc:LayoutControl Style="{StaticResource lcStyle}">
+                <dxlc:DataLayoutItem Style="{StaticResource liStyle}" Binding="{Binding FromValue}">
+                    <dxe:SpinEdit Style="{StaticResource minSpinEditStyle}" AllowDefaultButton="False"  />
+                </dxlc:DataLayoutItem>
+                <dxlc:DataLayoutItem  Style="{StaticResource liStyle}" Binding="{Binding ToValue}">
+                    <dxe:SpinEdit Style="{StaticResource maxSpinEditStyle}" AllowDefaultButton="False" />
+                </dxlc:DataLayoutItem>
+            </dxlc:LayoutControl>
+        </dxlc:LayoutGroup>
+    </DataTemplate>
+    <DataTemplate x:Key="{dxlc:FilteringUIGeneratorThemeKey IsThemeIndependent=True, ResourceKey=RangeSpin}">
+        <dxlc:LayoutGroup Style="{DynamicResource {dxlc:FilteringUIGeneratorThemeKey IsThemeIndependent=True, ResourceKey=LayoutGroupStyle}}">
+            <dxlc:LayoutControl Style="{StaticResource lcStyle}">
+                <dxlc:DataLayoutItem Style="{StaticResource liStyle}" Binding="{Binding FromValue}">
+                    <dxe:SpinEdit Style="{StaticResource minSpinEditStyle}" AllowDefaultButton="True"  />
+                </dxlc:DataLayoutItem>
+                <dxlc:DataLayoutItem  Style="{StaticResource liStyle}" Binding="{Binding ToValue}">
+                    <dxe:SpinEdit Style="{StaticResource maxSpinEditStyle}" AllowDefaultButton="True" />
+                </dxlc:DataLayoutItem>
+            </dxlc:LayoutControl>
+        </dxlc:LayoutGroup>
+    </DataTemplate>
+    <DataTemplate x:Key="{dxlc:FilteringUIGeneratorThemeKey IsThemeIndependent=True, ResourceKey=RangeTrack}">
+        <dxlc:LayoutGroup Style="{DynamicResource {dxlc:FilteringUIGeneratorThemeKey IsThemeIndependent=True, ResourceKey=LayoutGroupStyle}}">
+            <dxe:TrackBarEdit x:Name="editor" Style="{StaticResource trackEditStyle}"/>
+            <TextBlock HorizontalAlignment="Center">
+                <Run Text="{Binding EditValue.SelectionStart, ElementName=editor, Mode=OneWay}"/>
+                <Run Text=" ... "/>
+                <Run Text="{Binding EditValue.SelectionEnd, ElementName=editor, Mode=OneWay}"/>
+            </TextBlock>
+        </dxlc:LayoutGroup>
+    </DataTemplate>
+    <DataTemplate x:Key="{dxlc:FilteringUIGeneratorThemeKey IsThemeIndependent=True, ResourceKey=RangeDefault}">
+        <dxlc:LayoutGroup Style="{DynamicResource {dxlc:FilteringUIGeneratorThemeKey IsThemeIndependent=True, ResourceKey=LayoutGroupStyle}}">
+            <dxlc:LayoutControl Style="{StaticResource lcStyle}">
+                <dxlc:DataLayoutItem Style="{StaticResource liStyle}" Binding="{Binding FromValue}">
+                    <dxe:SpinEdit Style="{StaticResource minSpinEditStyle}" AllowDefaultButton="False"  />
+                </dxlc:DataLayoutItem>
+                <dxlc:DataLayoutItem  Style="{StaticResource liStyle}" Binding="{Binding ToValue}">
+                    <dxe:SpinEdit Style="{StaticResource maxSpinEditStyle}" AllowDefaultButton="False" />
+                </dxlc:DataLayoutItem>
+            </dxlc:LayoutControl>
+            <dxe:TrackBarEdit x:Name="editor" Style="{StaticResource trackEditStyle}"/>
+        </dxlc:LayoutGroup>
+    </DataTemplate>
+
+    <!--DateTime Range-->
+    <Style x:Key="minDateEditStyle" BasedOn="{StaticResource baseEditorStyle}" TargetType="dxe:DateEdit">
+        <Setter Property="MinValue" Value="{Binding Minimum}"/>
+        <Setter Property="MaxValue" Value="{Binding Maximum}"/>
+        <Setter Property="EditValue" Value="{Binding FromValue, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"/>
+    </Style>
+    <Style x:Key="maxDateEditStyle" BasedOn="{StaticResource minDateEditStyle}" TargetType="dxe:DateEdit">
+        <Setter Property="EditValue" Value="{Binding ToValue, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"/>
+    </Style>
+    <DataTemplate x:Key="{dxlc:FilteringUIGeneratorThemeKey ResourceKey=DateTimeRangeDefault}">
+        <dxlc:LayoutGroup Style="{DynamicResource {dxlc:FilteringUIGeneratorThemeKey IsThemeIndependent=True, ResourceKey=LayoutGroupStyle}}">
+            <dxlc:LayoutControl Style="{StaticResource lcStyle}">
+                <dxlc:DataLayoutItem Style="{StaticResource liStyle}" Binding="{Binding FromValue}">
+                    <dxe:DateEdit Style="{StaticResource minDateEditStyle}"/>
+                </dxlc:DataLayoutItem>
+                <dxlc:DataLayoutItem Style="{StaticResource liStyle}" Binding="{Binding ToValue}">
+                    <dxe:DateEdit Style="{StaticResource maxDateEditStyle}"/>
+                </dxlc:DataLayoutItem>
+            </dxlc:LayoutControl>
+        </dxlc:LayoutGroup>
+    </DataTemplate>
+    <DataTemplate x:Key="{dxlc:FilteringUIGeneratorThemeKey IsThemeIndependent=True, ResourceKey=DateTimeRangePicker}">
+        <dxlc:LayoutGroup Style="{DynamicResource {dxlc:FilteringUIGeneratorThemeKey IsThemeIndependent=True, ResourceKey=LayoutGroupStyle}}">
+            <dxlc:LayoutControl Style="{StaticResource lcStyle}">
+                <dxlc:DataLayoutItem Style="{StaticResource liStyle}" Binding="{Binding FromValue}">
+                    <dxe:DateEdit Style="{StaticResource minDateEditStyle}">
+                        <dxe:DateEdit.StyleSettings> 
+                            <dxe:DateEditPickerStyleSettings /> 
+                        </dxe:DateEdit.StyleSettings>
+                    </dxe:DateEdit>
+                </dxlc:DataLayoutItem>
+                <dxlc:DataLayoutItem Style="{StaticResource liStyle}" Binding="{Binding ToValue}">
+                    <dxe:DateEdit Style="{StaticResource maxDateEditStyle}">
+                        <dxe:DateEdit.StyleSettings> 
+                            <dxe:DateEditPickerStyleSettings /> 
+                        </dxe:DateEdit.StyleSettings>
+                    </dxe:DateEdit>
+                </dxlc:DataLayoutItem>
+            </dxlc:LayoutControl>
+        </dxlc:LayoutGroup>
+    </DataTemplate>
+
+    <!--Check-->
+    <DataTemplate x:Key="BooleanChoiceEditorBehavior">
+        <ContentControl>
+            <dxei:BooleanChoiceEditorBehavior DefaultName="{Binding DefaultName}" TrueName="{Binding TrueName}" FalseName="{Binding FalseName}"/>
+        </ContentControl>
+    </DataTemplate>
+    <Style x:Key="boolBaseEditStyle" BasedOn="{StaticResource baseEditorStyle}" TargetType="dxe:BaseEdit">
+        <Setter Property="DataContext" Value="{Binding Path=(dxlc:DataLayoutItem.UnderlyingObject), RelativeSource={RelativeSource Self}}"/>
+        <Setter Property="EditValue" Value="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+    </Style>
+    <Style x:Key="boolCheckEditStyle" BasedOn="{StaticResource boolBaseEditStyle}" TargetType="dxe:CheckEdit">
+        <Setter Property="IsThreeState" Value="True"/>
+    </Style>
+    <Style x:Key="boolListBoxEditStyle" BasedOn="{StaticResource boolBaseEditStyle}" TargetType="dxe:ListBoxEdit">
+        <Setter Property="ShowBorder" Value="False"/>
+        <Setter Property="dxmvvm:Interaction.BehaviorsTemplate" Value="{StaticResource BooleanChoiceEditorBehavior}"/>
+    </Style>
+    <Style x:Key="boolComboBoxEditStyle" BasedOn="{StaticResource boolBaseEditStyle}" TargetType="dxe:ComboBoxEdit">
+        <Setter Property="IsTextEditable" Value="False"/>
+        <Setter Property="ShowNullText" Value="False"/>
+        <Setter Property="dxmvvm:Interaction.BehaviorsTemplate" Value="{StaticResource BooleanChoiceEditorBehavior}"/>
+    </Style>
+    <DataTemplate x:Key="{dxlc:FilteringUIGeneratorThemeKey IsThemeIndependent=True, ResourceKey=BooleanCheck}">
+        <dxlc:LayoutGroup Style="{DynamicResource {dxlc:FilteringUIGeneratorThemeKey IsThemeIndependent=True, ResourceKey=LayoutGroupStyle}}">
+            <dxe:CheckEdit Style="{StaticResource boolCheckEditStyle}"/>
+        </dxlc:LayoutGroup>
+    </DataTemplate>
+    <DataTemplate x:Key="{dxlc:FilteringUIGeneratorThemeKey IsThemeIndependent=True, ResourceKey=BooleanToggle}">
+        <dxlc:LayoutGroup Style="{DynamicResource {dxlc:FilteringUIGeneratorThemeKey IsThemeIndependent=True, ResourceKey=LayoutGroupStyle}}" 
+                          Header="{x:Null}" IsCollapsible="False">
+            <ToggleButton Content="{Binding Path=(dxlc:DataLayoutItem.AttributeSettings).Label, RelativeSource={RelativeSource Self}}"
+                          DataContext="{Binding Path=(dxlc:DataLayoutItem.UnderlyingObject), RelativeSource={RelativeSource Self}}"
+                          IsChecked="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsThreeState="True"/>
+        </dxlc:LayoutGroup>
+    </DataTemplate>
+    <DataTemplate x:Key="{dxlc:FilteringUIGeneratorThemeKey IsThemeIndependent=True, ResourceKey=BooleanList}">
+        <dxlc:LayoutGroup Style="{DynamicResource {dxlc:FilteringUIGeneratorThemeKey IsThemeIndependent=True, ResourceKey=LayoutGroupStyle}}">
+            <dxe:ListBoxEdit Style="{StaticResource boolListBoxEditStyle}">
+                <dxe:ListBoxEdit.StyleSettings>
+                    <dxe:RadioListBoxEditStyleSettings/> 
+                </dxe:ListBoxEdit.StyleSettings>
+            </dxe:ListBoxEdit>
+        </dxlc:LayoutGroup>
+    </DataTemplate>
+    <DataTemplate x:Key="{dxlc:FilteringUIGeneratorThemeKey IsThemeIndependent=True, ResourceKey=BooleanDropDown}">
+        <dxlc:LayoutGroup Style="{DynamicResource {dxlc:FilteringUIGeneratorThemeKey IsThemeIndependent=True, ResourceKey=LayoutGroupStyle}}">
+            <dxe:ComboBoxEdit Style="{StaticResource boolComboBoxEditStyle}"/>
+        </dxlc:LayoutGroup>
+    </DataTemplate>
+
+    <!--Enum-->
+    <DataTemplate x:Key="EnumBehaviors">
+        <ItemsControl>
+            <dxmvvm:EnumItemsSourceBehavior EnumType="{Binding EnumType}"/>
+            <dxei:FilterListEditorBehavior
+                UseFlags="{Binding UseFlags}" UseSelectAll="{Binding UseSelectAll}" SelectAllName="{Binding SelectAllName}"
+                RadioEditValueBinding="{Binding Values, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={dxei:CheckedListEditValueConverter IsCheckedEditor=False}}"
+                CheckedEditValueBinding="{Binding Values, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={dxei:CheckedListEditValueConverter}}"/>
+        </ItemsControl>
+    </DataTemplate>
+    <DataTemplate x:Key="EnumTokenBehaviors">
+        <ItemsControl>
+            <dxmvvm:EnumItemsSourceBehavior EnumType="{Binding EnumType}"/>
+            <dxei:FilterListEditorBehavior
+                UseTokenStyle="True"
+                UseFlags="{Binding UseFlags}" UseSelectAll="{Binding UseSelectAll}" SelectAllName="{Binding SelectAllName}"
+                RadioEditValueBinding="{Binding Values, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={dxei:CheckedListEditValueConverter IsCheckedEditor=False}}"
+                CheckedEditValueBinding="{Binding Values, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={dxei:CheckedListEditValueConverter}}"/>
+        </ItemsControl>
+    </DataTemplate>
+    <Style x:Key="enumBaseEditStyle" BasedOn="{StaticResource baseEditorStyle}" TargetType="dxe:BaseEdit">
+        <Setter Property="DataContext" Value="{Binding Path=(dxlc:DataLayoutItem.UnderlyingObject), RelativeSource={RelativeSource Self}}"/>
+        <Setter Property="dxmvvm:Interaction.BehaviorsTemplate" Value="{StaticResource EnumBehaviors}"/>
+    </Style>
+    <Style x:Key="enumListBoxEditStyle" BasedOn="{StaticResource enumBaseEditStyle}" TargetType="dxe:ListBoxEdit" >
+        <Setter Property="ShowBorder" Value="False"/>
+    </Style>
+    <Style x:Key="enumComboBoxEditStyle" BasedOn="{StaticResource enumBaseEditStyle}" TargetType="dxe:ComboBoxEdit">
+        <Setter Property="IsTextEditable" Value="False"/>
+    </Style>
+    <Style x:Key="enumTokenBoxEditStyle" BasedOn="{StaticResource enumComboBoxEditStyle}" TargetType="dxe:ComboBoxEdit">
+        <Setter Property="dxmvvm:Interaction.BehaviorsTemplate" Value="{StaticResource EnumTokenBehaviors}"/>
+    </Style>
+    <DataTemplate x:Key="{dxlc:FilteringUIGeneratorThemeKey IsThemeIndependent=True, ResourceKey=EnumList}">
+        <dxlc:LayoutGroup Style="{DynamicResource {dxlc:FilteringUIGeneratorThemeKey IsThemeIndependent=True, ResourceKey=LayoutGroupStyle}}">
+            <dxe:ListBoxEdit Style="{StaticResource enumListBoxEditStyle}"/>
+        </dxlc:LayoutGroup>
+    </DataTemplate>
+    <DataTemplate x:Key="{dxlc:FilteringUIGeneratorThemeKey IsThemeIndependent=True, ResourceKey=EnumCheckedList}">
+        <dxlc:LayoutGroup Style="{DynamicResource {dxlc:FilteringUIGeneratorThemeKey IsThemeIndependent=True, ResourceKey=LayoutGroupStyle}}">
+            <dxe:ListBoxEdit Style="{StaticResource enumListBoxEditStyle}"/>
+        </dxlc:LayoutGroup>
+    </DataTemplate>
+    <DataTemplate x:Key="{dxlc:FilteringUIGeneratorThemeKey IsThemeIndependent=True, ResourceKey=EnumDropDown}">
+        <dxlc:LayoutGroup Style="{DynamicResource {dxlc:FilteringUIGeneratorThemeKey IsThemeIndependent=True, ResourceKey=LayoutGroupStyle}}">
+            <dxe:ComboBoxEdit Style="{StaticResource enumComboBoxEditStyle}"/>
+        </dxlc:LayoutGroup>
+    </DataTemplate>
+    <DataTemplate x:Key="{dxlc:FilteringUIGeneratorThemeKey IsThemeIndependent=True, ResourceKey=EnumCheckedDropDown}">
+        <dxlc:LayoutGroup Style="{DynamicResource {dxlc:FilteringUIGeneratorThemeKey IsThemeIndependent=True, ResourceKey=LayoutGroupStyle}}">
+            <dxe:ComboBoxEdit Style="{StaticResource enumComboBoxEditStyle}"/>
+        </dxlc:LayoutGroup>
+    </DataTemplate>
+    <DataTemplate x:Key="{dxlc:FilteringUIGeneratorThemeKey IsThemeIndependent=True, ResourceKey=EnumToken}">
+        <dxlc:LayoutGroup Style="{DynamicResource {dxlc:FilteringUIGeneratorThemeKey IsThemeIndependent=True, ResourceKey=LayoutGroupStyle}}">
+            <dxe:ComboBoxEdit Style="{StaticResource enumTokenBoxEditStyle}"/>
+        </dxlc:LayoutGroup>
+    </DataTemplate>
+
+    <!--LookUp-->
+    <Style x:Key="MoreButtonStyle" TargetType="Button">
+        <Setter Property="DataContext" Value="{Binding Path=(dxlc:DataLayoutItem.UnderlyingObject), RelativeSource={RelativeSource Self}}"/>
+        <Setter Property="Command" Value="{Binding LoadMoreCommand}"/>
+        <Setter Property="Visibility" Value="{Binding IsLoadMoreAvailable, Converter={dxmvvm:BooleanToVisibilityConverter}}"/>
+        <Setter Property="Content" Value="More"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="VerticalAlignment" Value="Bottom"/>
+    </Style>
+    <Style x:Key="FewerButtonStyle" BasedOn="{StaticResource MoreButtonStyle}" TargetType="Button">
+        <Setter Property="Content" Value="Fewer"/>
+        <Setter Property="Command" Value="{Binding LoadFewerCommand}"/>
+        <Setter Property="Visibility" Value="{Binding IsLoadFewerAvailable, Converter={dxmvvm:BooleanToVisibilityConverter}}"/>
+        <Setter Property="VerticalAlignment" Value="Bottom"/>
+    </Style>
+    <DataTemplate x:Key="LookupBehaviors">
+        <ContentControl>
+            <dxei:FilterListEditorBehavior
+                ItemsSource="{Binding DataSource}" ValueMember="{Binding ValueMember}" DisplayMember="{Binding DisplayMember}"
+                UseFlags="{Binding UseFlags}" UseSelectAll="{Binding UseSelectAll}" SelectAllName="{Binding SelectAllName}"
+                RadioEditValueBinding="{Binding Values, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={dxei:CheckedListEditValueConverter IsCheckedEditor=False}}"
+                CheckedEditValueBinding="{Binding Values, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={dxei:CheckedListEditValueConverter}}"/>
+        </ContentControl>
+    </DataTemplate>
+    <DataTemplate x:Key="LookupTokenBehaviors">
+        <ContentControl>
+            <dxei:FilterListEditorBehavior
+                UseTokenStyle="True"
+                ItemsSource="{Binding DataSourc}" ValueMember="{Binding ValueMember}" DisplayMember="{Binding DisplayMember}"
+                UseFlags="{Binding UseFlags}" UseSelectAll="{Binding UseSelectAll}" SelectAllName="{Binding SelectAllName}"
+                RadioEditValueBinding="{Binding Values, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={dxei:CheckedListEditValueConverter IsCheckedEditor=False}}"
+                CheckedEditValueBinding="{Binding Values, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={dxei:CheckedListEditValueConverter}}"/>
+        </ContentControl>
+    </DataTemplate>
+    <Style x:Key="lookupListBoxEditStyle" BasedOn="{StaticResource enumListBoxEditStyle}" TargetType="dxe:ListBoxEdit">
+        <Setter Property="dxmvvm:Interaction.BehaviorsTemplate" Value="{StaticResource LookupBehaviors}"/>
+    </Style>
+    <Style x:Key="lookupComboBoxEditStyle" BasedOn="{StaticResource enumComboBoxEditStyle}" TargetType="dxe:ComboBoxEdit">
+        <Setter Property="dxmvvm:Interaction.BehaviorsTemplate" Value="{StaticResource LookupBehaviors}"/>
+        <Setter Property="IsTextEditable" Value="True"/>
+        <Setter Property="ImmediatePopup" Value="True"/>
+        <Setter Property="ValidateOnTextInput" Value="False"/>
+        <Setter Property="ValidateOnEnterKeyPressed" Value="True"/>
+        <Setter Property="IncrementalFiltering" Value="True"/>
+    </Style>
+    <Style x:Key="lookupTokenBoxEditStyle" BasedOn="{StaticResource lookupComboBoxEditStyle}" TargetType="dxe:ComboBoxEdit">
+        <Setter Property="dxmvvm:Interaction.BehaviorsTemplate" Value="{StaticResource LookupTokenBehaviors}"/>
+    </Style>
+    <DataTemplate x:Key="{dxlc:FilteringUIGeneratorThemeKey IsThemeIndependent=True, ResourceKey=LookupList}">
+        <dxlc:LayoutGroup Style="{DynamicResource {dxlc:FilteringUIGeneratorThemeKey IsThemeIndependent=True, ResourceKey=LayoutGroupStyle}}">
+            <dxe:ListBoxEdit Style="{StaticResource lookupListBoxEditStyle}"/>
+            <Button Style="{StaticResource MoreButtonStyle}"/>
+            <Button Style="{StaticResource FewerButtonStyle}"/>
+        </dxlc:LayoutGroup>
+    </DataTemplate>
+    <DataTemplate x:Key="{dxlc:FilteringUIGeneratorThemeKey IsThemeIndependent=True, ResourceKey=LookupCheckedList}">
+        <dxlc:LayoutGroup Style="{DynamicResource {dxlc:FilteringUIGeneratorThemeKey IsThemeIndependent=True, ResourceKey=LayoutGroupStyle}}">
+            <dxe:ListBoxEdit Style="{StaticResource lookupListBoxEditStyle}"/>
+            <Button Style="{StaticResource MoreButtonStyle}"/>
+            <Button Style="{StaticResource FewerButtonStyle}"/>
+        </dxlc:LayoutGroup>
+    </DataTemplate>
+    <DataTemplate x:Key="{dxlc:FilteringUIGeneratorThemeKey IsThemeIndependent=True, ResourceKey=LookupDropDown}">
+        <dxlc:LayoutGroup Style="{DynamicResource {dxlc:FilteringUIGeneratorThemeKey IsThemeIndependent=True, ResourceKey=LayoutGroupStyle}}">
+            <dxe:ComboBoxEdit Style="{StaticResource lookupComboBoxEditStyle}"/>
+        </dxlc:LayoutGroup>
+    </DataTemplate>
+    <DataTemplate x:Key="{dxlc:FilteringUIGeneratorThemeKey IsThemeIndependent=True, ResourceKey=LookupCheckedDropDown}">
+        <dxlc:LayoutGroup Style="{DynamicResource {dxlc:FilteringUIGeneratorThemeKey IsThemeIndependent=True, ResourceKey=LayoutGroupStyle}}">
+            <dxe:ComboBoxEdit Style="{StaticResource lookupComboBoxEditStyle}"/>
+        </dxlc:LayoutGroup>
+    </DataTemplate>
+    <DataTemplate x:Key="{dxlc:FilteringUIGeneratorThemeKey IsThemeIndependent=True, ResourceKey=LookupToken}">
+        <dxlc:LayoutGroup Style="{DynamicResource {dxlc:FilteringUIGeneratorThemeKey IsThemeIndependent=True, ResourceKey=LayoutGroupStyle}}">
+            <dxe:ComboBoxEdit Style="{StaticResource lookupTokenBoxEditStyle}"/>
+        </dxlc:LayoutGroup>
+    </DataTemplate>
+
+</ResourceDictionary>

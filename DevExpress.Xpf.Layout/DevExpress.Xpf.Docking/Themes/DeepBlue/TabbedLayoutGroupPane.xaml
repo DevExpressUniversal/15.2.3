@@ -1,0 +1,242 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+    xmlns:local="clr-namespace:DevExpress.Xpf.Docking"
+    xmlns:dxt="clr-namespace:DevExpress.Xpf.Docking.ThemeKeys"
+    xmlns:dxp="clr-namespace:DevExpress.Xpf.Docking.Platform"
+    xmlns:ve="clr-namespace:DevExpress.Xpf.Docking.VisualElements"    
+    >
+    <!-- TabbedLayoutGroupPane Theme Elements -->
+    <ControlTemplate x:Key="{dxt:TabbedLayoutGroupPaneElementsThemeKey ResourceKey=PageHeader}" TargetType="ve:TabbedLayoutGroupItem">
+        <Grid Width="Auto" Height="Auto" Margin="0,0,1,0" x:Name="Grid" Visibility="{Binding Visibility}" ve:DockPane.HitTestType="Header">
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup x:Name="CommonStates">
+                    <VisualState x:Name="MouseOver">
+                        <Storyboard>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Control.Visibility)" Storyboard.TargetName="HighlightBorder">
+                                <DiscreteObjectKeyFrame KeyTime="0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <Visibility>Visible</Visibility>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Normal" />
+                </VisualStateGroup>
+                <VisualStateGroup x:Name="SelectionStates">
+                    <VisualState x:Name="EmptySelectionState" />
+                    <VisualState x:Name="Selected">
+                        <Storyboard>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Control.Background)" Storyboard.TargetName="border2">
+                                <DiscreteObjectKeyFrame KeyTime="0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <LinearGradientBrush EndPoint="0.5,0" StartPoint="0.5,1">
+                                            <GradientStop Color="#FFC7DDF7" Offset="0" />
+                                            <GradientStop Color="#FFE2EEFD" Offset="1" />
+                                        </LinearGradientBrush>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Unselected" />
+                </VisualStateGroup>
+                <VisualStateGroup x:Name="LocationStates">
+                    <VisualState x:Name="Top" />
+                    <VisualState x:Name="Bottom">
+                        <Storyboard>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Border.Padding)" Storyboard.TargetName="TabItemHeader">
+                                <DiscreteObjectKeyFrame KeyTime="0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <Thickness>1,0,1,1</Thickness>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Control.Margin)" Storyboard.TargetName="Grid">
+                                <DiscreteObjectKeyFrame KeyTime="0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <Thickness>0,0,1,0</Thickness>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Border.CornerRadius)" Storyboard.TargetName="TabItemHeader">
+                                <DiscreteObjectKeyFrame KeyTime="0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <CornerRadius>0,0,3,3</CornerRadius>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Border.CornerRadius)" Storyboard.TargetName="border2">
+                                <DiscreteObjectKeyFrame KeyTime="0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <CornerRadius>0,0,2,2</CornerRadius>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Left">
+                        <Storyboard>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Border.Padding)" Storyboard.TargetName="TabItemHeader">
+                                <DiscreteObjectKeyFrame KeyTime="0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <Thickness>1,1,0,1</Thickness>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Control.Margin)" Storyboard.TargetName="Grid">
+                                <DiscreteObjectKeyFrame KeyTime="0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <Thickness>0,0,0,1</Thickness>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Border.CornerRadius)" Storyboard.TargetName="TabItemHeader">
+                                <DiscreteObjectKeyFrame KeyTime="0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <CornerRadius>3,0,0,3</CornerRadius>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Border.CornerRadius)" Storyboard.TargetName="border2">
+                                <DiscreteObjectKeyFrame KeyTime="0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <CornerRadius>2,0,0,2</CornerRadius>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Right">
+                        <Storyboard>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Border.Padding)" Storyboard.TargetName="TabItemHeader">
+                                <DiscreteObjectKeyFrame KeyTime="0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <Thickness>0,1,1,1</Thickness>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Control.Margin)" Storyboard.TargetName="Grid">
+                                <DiscreteObjectKeyFrame KeyTime="0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <Thickness>0,0,0,1</Thickness>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Border.CornerRadius)" Storyboard.TargetName="TabItemHeader">
+                                <DiscreteObjectKeyFrame KeyTime="0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <CornerRadius>0,3,3,0</CornerRadius>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Border.CornerRadius)" Storyboard.TargetName="border2">
+                                <DiscreteObjectKeyFrame KeyTime="0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <CornerRadius>0,2,2,0</CornerRadius>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+            <ve:TabHeaderContainer TopSelectedMargin="0,0,0,-1" BottomSelectedMargin="0,-1,0,0" LeftSelectedMargin="0,0,-1,0" RightSelectedMargin="-1,0,0,0"
+                    CaptionLocation="{Binding CaptionLocation, RelativeSource={RelativeSource TemplatedParent}}" IsSelected="{Binding IsSelected, RelativeSource={RelativeSource TemplatedParent}}">
+                <Border HorizontalAlignment="Stretch" x:Name="TabItemHeader" VerticalAlignment="Stretch" Background="#FF5B81BE" Padding="1,1,1,0" CornerRadius="3,3,0,0">
+                    <Grid>
+                        <Border x:Name="border2" Width="Auto" Height="Auto" Padding="1" CornerRadius="2,2,0,0">
+                            <Border.Background>
+                                <LinearGradientBrush EndPoint="0.5,0" StartPoint="0.5,1">
+                                    <GradientStop Color="#FFB1C9EA" Offset="0" />
+                                    <GradientStop Color="#FFC5DBF7" Offset="1" />
+                                </LinearGradientBrush>
+                            </Border.Background>
+                        </Border>
+                        <Border x:Name="HighlightBorder" VerticalAlignment="Stretch" Height="Auto" BorderThickness="1,1,1,0" CornerRadius="3,3,0,0" Visibility="Collapsed" Margin="-1,-1,-1,0">
+                            <Border.Background>
+                                <LinearGradientBrush EndPoint="0.5,0" StartPoint="0.5,1">
+                                    <GradientStop Color="#00CAE0FF" Offset="0" />
+                                    <GradientStop Color="#FFF2F8FF" Offset="1" />
+                                </LinearGradientBrush>
+                            </Border.Background>
+                        </Border>
+                    </Grid>
+                </Border>
+            </ve:TabHeaderContainer>
+            <ve:TabHeaderTransformPanel CaptionLocation="{Binding CaptionLocation, RelativeSource={RelativeSource TemplatedParent}}" CaptionOrientation="{Binding CaptionOrientation, RelativeSource={RelativeSource TemplatedParent}}">
+                <Grid x:Name="Content">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <ve:TemplatedTabCaptionControl x:Name="PART_CaptionControlPresenter" Padding="4,2" LayoutItem="{Binding}" />
+                    <ve:BaseControlBoxControl x:Name="PART_ControlBox" Margin="0,4,4,2"
+                    LayoutItem="{Binding}"
+					Grid.Column="1"
+					ButtonWidth="16"
+					ButtonHeight="16" />
+                </Grid>
+            </ve:TabHeaderTransformPanel>
+        </Grid>
+    </ControlTemplate>    
+    <ControlTemplate x:Key="{dxt:TabbedLayoutGroupPaneElementsThemeKey ResourceKey=Template}" TargetType="ve:TabbedLayoutGroupPane">
+        <ve:DockingSplitLayoutPanel ve:DockPane.HitTestType="Bounds" TopContent1Margin="6,2,2,0" BottomContent1Margin="6,0,2,2" LeftContent1Margin="2,6,0,2" RightContent1Margin="0,6,2,2" DataContext="{Binding LayoutItem}">
+            <ve:DockingSplitLayoutPanel.Content1Location>
+                <Binding Path="CaptionLocation">
+                    <Binding.Converter>
+                        <ve:GroupCaptionLocationToDockConverter />
+                    </Binding.Converter>
+                </Binding>
+            </ve:DockingSplitLayoutPanel.Content1Location>
+            <ve:DockingSplitLayoutPanel.Content1>
+                <ve:DockingSplitLayoutPanel Canvas.ZIndex="1" x:Name="PART_Header" MaximizeContent1="True">
+                    <ve:DockingSplitLayoutPanel.Content1Location>
+                        <Binding Path="CaptionLocation">
+                            <Binding.Converter>
+                                <ve:TabHeaderCaptionLocationToDockConverter />
+                            </Binding.Converter>
+                        </Binding>
+                    </ve:DockingSplitLayoutPanel.Content1Location>
+                    <ve:DockingSplitLayoutPanel.Content1>
+                        <ItemsPresenter x:Name="PART_HeadersPanelPresenter" />
+                    </ve:DockingSplitLayoutPanel.Content1>
+                    <ve:DockingSplitLayoutPanel.Content2>
+                        <ve:TabHeaderControlBoxControl x:Name="PART_ControlBox"
+                        LayoutItem="{Binding}"
+					    ve:DockPane.HitTestType="ControlBox"
+					    ButtonHeight="16" ButtonWidth="16"
+					    ScrollPrevButtonTemplate="{DynamicResource {dxt:DocumentPaneElementsThemeKey ResourceKey=ScrollPrevButton}}"
+					    ScrollNextButtonTemplate="{DynamicResource {dxt:DocumentPaneElementsThemeKey ResourceKey=ScrollNextButton}}"
+					    ve:TabHeaderControlBoxControl.Location="{Binding CaptionLocation}" />
+                    </ve:DockingSplitLayoutPanel.Content2>
+                </ve:DockingSplitLayoutPanel>
+            </ve:DockingSplitLayoutPanel.Content1>
+            <ve:DockingSplitLayoutPanel.Content2>
+                <Grid x:Name="PART_SelectedPage" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="Auto">
+                    <Border CornerRadius="3,3,3,3" Opacity="1" x:Name="border1" Padding="1,1,1,1">
+                        <Border.Background>
+                            <LinearGradientBrush EndPoint="0.5,0" StartPoint="0.5,1">
+                                <GradientStop Color="#FF415E99" Offset="0" />
+                                <GradientStop Color="#FF5B81BE" Offset="1" />
+                            </LinearGradientBrush>
+                        </Border.Background>
+                        <Border CornerRadius="2,2,2,2" Width="Auto" Height="Auto" x:Name="content_container1" Padding="12">
+                            <Border.Background>
+                                <LinearGradientBrush EndPoint="0.5,0.992" StartPoint="0.5,0.003" SpreadMethod="Pad">
+                                    <GradientStop Color="#FFC7DDF7" Offset="0" />
+                                    <GradientStop Color="#FFB3CEF4" Offset="1" />
+                                </LinearGradientBrush>
+                            </Border.Background>
+                            <ContentPresenter Margin="{TemplateBinding Padding}"
+				                Content="{TemplateBinding SelectedContent}"
+				                ve:DockPane.HitTestType="Content" />
+                        </Border>
+                    </Border>
+                </Grid>
+            </ve:DockingSplitLayoutPanel.Content2>
+        </ve:DockingSplitLayoutPanel>
+    </ControlTemplate>
+    <!-- TabbedLayoutGroupPane Theme Elements -->
+</ResourceDictionary>

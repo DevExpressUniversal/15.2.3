@@ -1,0 +1,50 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+            xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
+            xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+            xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+            xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+            xmlns:local="clr-namespace:DevExpress.Xpf.DataAccess.DataSourceWizard"
+            xmlns:localization="clr-namespace:DevExpress.Xpf.DataAccess.Localization"
+            xmlns:localnative="clr-namespace:DevExpress.Xpf.DataAccess.Native">
+
+    <DataTemplate x:Key="{x:Type local:ChooseObjectTypePage}">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <localnative:WizardTitle Title="{localization:DataAccessUIStringId StringId=WizardPageChooseObjectType}" />
+            <Grid Grid.Row="1" Margin="50,10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <dxg:GridControl ItemsSource="{Binding Items}" CurrentItem="{Binding SelectedObject}" ShowBorder="False">
+                    <dxg:GridControl.View>
+                        <dxg:TreeListView
+                            		NavigationStyle="Row"
+                                    ChildNodesPath="Types" TreeDerivationMode="ChildNodesSelector" AutoWidth="True"
+                                    AllowEditing="False"
+                                    ShowHorizontalLines="False" ShowVerticalLines="False" ShowColumnHeaders="False" ShowIndicator="False"
+                                    VerticalScrollbarVisibility="Auto" ExpandCollapseNodesOnNavigation="True"
+                        />
+                    </dxg:GridControl.View>
+                    <dxg:GridControl.Columns>
+                        <dxg:GridColumn>
+                            <dxg:GridColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Image Source="{Binding Data.ClassType, Converter={local:ImageNameToSourceConverter Folder=ObjectType}}" />
+                                        <TextBlock Text="{Binding Data.TypeName}" VerticalAlignment="Center" Margin="3,0,0,0"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </dxg:GridColumn.CellTemplate>
+                        </dxg:GridColumn>
+                    </dxg:GridControl.Columns>
+                </dxg:GridControl>
+                <dxe:CheckEdit Grid.Row="1" IsEnabled="{Binding EnableShowAll}" EditValue="{Binding ShowAll, Converter={dxmvvm:BooleanNegationConverter}}" Content="{localization:DataAccessUIStringId StringId=WizardPageChooseObjectType_ShowOnlyHighlighted}" Margin="0,0,0,15" />
+            </Grid>
+        </Grid>
+    </DataTemplate>
+</ResourceDictionary>

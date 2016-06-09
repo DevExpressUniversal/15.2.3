@@ -1,0 +1,190 @@
+﻿<Window x:Class="DevExpress.Xpf.Docking.Design.CreateLayoutDialog"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d"
+    xmlns:dxdd="clr-namespace:DevExpress.Xpf.Docking.Design"
+        
+    x:Name="Window"
+	UseLayoutRounding="True"
+    WindowStartupLocation="CenterScreen"
+	WindowStyle="None" AllowsTransparency="True" Background="{x:Null}" Width="450" Height="310">
+    <Window.Title>
+        <Binding>
+            <Binding.Converter>
+                <dxdd:LocalizerConverter DockingStringId="ReplaceDialogTitle" />
+            </Binding.Converter>
+        </Binding>
+    </Window.Title>
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/DevExpress.Xpf.Docking.v15.2.Design;component/Resources/CustomizationPanelResources.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Window.Effect>
+        <DropShadowEffect Direction="0" ShadowDepth="0" BlurRadius="10" Opacity="0.35" />
+    </Window.Effect>
+
+    <Grid x:Name="LayoutRoot" Margin="10">
+        <Grid x:Name="back" d:IsLocked="True">
+            <Border x:Name="top" Background="#5910141F" CornerRadius="5">
+                <Grid Margin="1" ClipToBounds="True">
+                    <Border x:Name="top_Copy" CornerRadius="4">
+                        <Border.Background>
+                            <RadialGradientBrush Center="0.441,0.94" GradientOrigin="0.441,0.94" RadiusY="0.979" RadiusX="0.511">
+                                <GradientStop Color="#FFF7F7F9" Offset="0" />
+                                <GradientStop Color="#FFEBECF1" Offset="1" />
+                            </RadialGradientBrush>
+                        </Border.Background>
+                    </Border>
+                    <Image HorizontalAlignment="Left" VerticalAlignment="Top" Source="Images/Dialog/pattern.png" Stretch="None" Margin="-120,-275,0,0" Clip="M30,34 C30,29.029437 34.029437,25 39,25 L819,25 C823.97056,25 828,29.029437 828,34 L828,595 C828,599.97056 823.97056,604 819,604 L39,604 C34.029437,604 30,599.97056 30,595 z" />
+                </Grid>
+            </Border>
+        </Grid>
+        <Grid x:Name="layout">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid x:Name="header">
+                <Thumb Margin="6,6,6,0" x:Name="dragThumb" DragDelta="dragThumb_DragDelta">
+                    <Thumb.Template>
+                        <ControlTemplate>
+                            <Border Background="Transparent" />
+                        </ControlTemplate>
+                    </Thumb.Template>
+                </Thumb>
+                <StackPanel HorizontalAlignment="Left" Margin="12,8,12,-4" VerticalAlignment="Center" Orientation="Horizontal">
+                    <Image Source="Images/Dialog/app-icon.png" Stretch="None" Margin="0,0,4,0" />
+                    <TextBlock TextWrapping="Wrap" Foreground="#FF1F2735">
+                        <TextBlock.Text>
+                            <Binding>
+                                <Binding.Converter>
+                                    <dxdd:LocalizerConverter DockingStringId="ReplaceDialogTitle" />
+                                </Binding.Converter>
+                            </Binding>
+                        </TextBlock.Text>
+                    </TextBlock>
+                </StackPanel>
+                <Button x:Name="close_button" Content="Button" HorizontalAlignment="Right" Width="24" VerticalAlignment="Top" Style="{DynamicResource Close-button2}" Height="16" d:LayoutOverrides="VerticalAlignment" Margin="3" Click="cancelButton_Click" />
+            </Grid>
+            <Grid x:Name="content_container" Margin="12" Grid.Row="1">
+                <Border x:Name="content_back" CornerRadius="3" Opacity="0.65">
+                    <Border.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#FF9D9AA5" Offset="1" />
+                            <GradientStop Color="#FF9E9EAD" />
+                            <GradientStop Color="#FFCCCED5" Offset="0.4" />
+                            <GradientStop Color="#FFC8CAD1" Offset="0.99" />
+                        </LinearGradientBrush>
+                    </Border.Background>
+                    <Border Background="White" CornerRadius="2" Margin="1,1,1,1" />
+                </Border>
+                <Grid x:Name="content1" Margin="16,12,16,12">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.1*" />
+                        <ColumnDefinition Width="0.8*" />
+                        <ColumnDefinition Width="0.1*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <TextBlock TextWrapping="Wrap" VerticalAlignment="Top" Foreground="#FF1F2735" FontWeight="Bold" d:LayoutOverrides="Width" Grid.ColumnSpan="3" Margin="0,0,0,8">
+                        <TextBlock.Text>
+                            <Binding>
+                                <Binding.Converter>
+                                    <dxdd:LocalizerConverter DockingStringId="ReplaceDialogText" />
+                                </Binding.Converter>
+                            </Binding>
+                        </TextBlock.Text>
+                    </TextBlock>
+                    <StackPanel Width="300" x:Name="content" Grid.Row="1" d:LayoutOverrides="GridBox" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <Button x:Name="button1" Style="{DynamicResource Choose-button}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,0,0,4" Click="create_layoutitem_button_Click">
+                            <StackPanel>
+                                <TextBlock>
+                                    <TextBlock.Text>
+                                        <Binding>
+                                            <Binding.Converter>
+                                                <dxdd:LocalizerConverter DockingStringId="ButtonCreateLayoutItem" />
+                                            </Binding.Converter>
+                                        </Binding>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                                <TextBlock FontSize="10" Foreground="#FF9D9D9D" TextWrapping="Wrap">
+                                    <TextBlock.Text>
+                                        <Binding>
+                                            <Binding.Converter>
+                                                <dxdd:LocalizerConverter DockingStringId="ButtonCreateLayoutItemDetails" />
+                                            </Binding.Converter>
+                                        </Binding>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                            </StackPanel>
+                        </Button>
+                        <Button x:Name="button2" Style="{DynamicResource Choose-button}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,0,0,4" Click="replace_control_button_Click">
+                            <StackPanel>
+                                <TextBlock>
+                                        <TextBlock.Text>
+                                <Binding>
+                                    <Binding.Converter>
+                                        <dxdd:LocalizerConverter DockingStringId="ButtonReplaceControl" />
+                                    </Binding.Converter>
+                                </Binding>
+                            </TextBlock.Text>
+                                </TextBlock>
+                                <TextBlock FontSize="10" Foreground="#FF9D9D9D" TextWrapping="Wrap">
+                                    <TextBlock.Text>
+                                        <Binding>
+                                    <Binding.Converter>
+                                        <dxdd:LocalizerConverter DockingStringId="ButtonReplaceControlDetails" />
+                                    </Binding.Converter>
+                                </Binding>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                            </StackPanel>
+                        </Button>
+                        <Button x:Name="button3" Style="{DynamicResource Choose-button}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,0,0,4" Click="cancelButton_Click">
+                            <Button.Content>
+                                <StackPanel>
+                                    <TextBlock>
+                                        <TextBlock.Text>
+                                            <Binding>
+                                                <Binding.Converter>
+                                                    <dxdd:LocalizerConverter DockingStringId="ButtonDoNothing" />
+                                                </Binding.Converter>
+                                            </Binding>
+                                        </TextBlock.Text>
+                                    </TextBlock>
+                                    <TextBlock FontSize="10" Foreground="#FF9D9D9D" TextWrapping="Wrap">
+                                        <TextBlock.Text>
+                                            <Binding>
+                                                <Binding.Converter>
+                                                    <dxdd:LocalizerConverter DockingStringId="ButtonDoNothingDetails" />
+                                                </Binding.Converter>
+                                            </Binding>
+                                        </TextBlock.Text>
+                                    </TextBlock>
+                                </StackPanel>
+                            </Button.Content>
+                        </Button>
+                    </StackPanel>
+                </Grid>
+            </Grid>
+            <Grid x:Name="footer" Margin="12,0,12,12" Grid.Row="2">
+                <CheckBox x:Name="askNextTimeCheck" HorizontalAlignment="Left" VerticalAlignment="Center" Style="{DynamicResource check-box}" IsChecked="True">
+                    <CheckBox.Content>
+                        <Binding>
+                            <Binding.Converter>
+                                <dxdd:LocalizerConverter DockingStringId="CheckBoxAskNextTime" />
+                            </Binding.Converter>
+                        </Binding>
+                    </CheckBox.Content>
+                </CheckBox>
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>    

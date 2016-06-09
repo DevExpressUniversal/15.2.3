@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Package xmlns="http://schemas.microsoft.com/appx/2010/manifest">
+  <Identity Name="DevExpress.LiveTileManager" Publisher="CN=DevExpress" Version="15.2.0.0" />
+  <Properties>
+    <DisplayName>DevExpress Live Tile Manager</DisplayName>
+    <PublisherDisplayName>DevExpress</PublisherDisplayName>
+    <Logo>Assets\50x50.png</Logo>
+  </Properties>
+  <Prerequisites>
+    <OSMinVersion>6.2.1</OSMinVersion>
+    <OSMaxVersionTested>6.2.1</OSMaxVersionTested>
+  </Prerequisites>
+  <Resources>
+    <Resource Language="x-generate" />
+  </Resources>
+  <Applications>
+    <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="DevExpress.WinRTPresenter.App">
+      <VisualElements DisplayName="DevExpress Live Tile Manager" Logo="Assets\150x150.png" SmallLogo="Assets\30x30.png" Description="DevExpress.WinRTPresenter" ForegroundText="light" BackgroundColor="#6aa0cc">
+        <LockScreen Notification="badge" BadgeLogo="Assets\24x24.png" />
+        <DefaultTile ShowName="allLogos" ShortName="Live Tile Manager" />
+        <SplashScreen Image="Assets\620x300.png" />
+        <InitialRotationPreference>
+          <Rotation Preference="landscape" />
+        </InitialRotationPreference>
+      </VisualElements>
+      <Extensions>
+        <Extension Category="windows.backgroundTasks" EntryPoint="DevExpress.WinRTPresenter.BackgroundTasks.BackgroundClass">
+          <BackgroundTasks>
+            <Task Type="timer" />
+            <Task Type="systemEvent" />
+          </BackgroundTasks>
+        </Extension>
+        <Extension Category="windows.protocol" EntryPoint="DevExpress.WinRTPresenter.App">
+          <Protocol Name="dxlivetilemanager" />
+        </Extension>
+      </Extensions>
+    </Application>
+  </Applications>
+</Package>

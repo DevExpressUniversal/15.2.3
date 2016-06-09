@@ -1,0 +1,231 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:dxtEx="clr-namespace:DevExpress.Xpf.Utils.Themes"
+    xmlns:dx="clr-namespace:DevExpress.Xpf.Core"
+    xmlns:dxe="clr-namespace:DevExpress.Xpf.Editors"
+    xmlns:dxeh="clr-namespace:DevExpress.Xpf.Editors.Helpers"
+    xmlns:dxet="clr-namespace:DevExpress.Xpf.Editors.Themes"
+    xmlns:dxcn="clr-namespace:DevExpress.Xpf.Core.Native"
+    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+
+    <!--BEGIN WPF-->
+    <ResourceDictionary.MergedDictionaries>
+        <dxtEx:ResourceDictionaryEx Source="{dx:EditorsResource Themes/DeepBlue/Brushes.xaml}"/>
+        <dxtEx:ResourceDictionaryEx Source="{dx:EditorsResource Themes/Generic/CheckEdit.xaml}"/>
+    </ResourceDictionary.MergedDictionaries>
+    <!--END WPF-->
+
+    <LinearGradientBrush x:Key="CheckRadioFillNormal">
+        <GradientStop Color="#FFD2D4D2" Offset="0"/>
+        <GradientStop Color="#FFFFFFFF" Offset="1"/>
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="CheckRadioStrokeNormal">
+        <GradientStop Color="#FF004C94" Offset="0"/>
+        <GradientStop Color="#FF003C74" Offset="1"/>
+    </LinearGradientBrush>
+    <!--BEGIN WPF-->    
+    <ControlTemplate x:Key="{dxet:CheckEditThemeKey ResourceKey=CheckEditBoxTemplate}" TargetType="{x:Type dxe:CheckEditBox}">
+    <!--END WPF-->
+    <!--ONLY SL<ControlTemplate x:Key="CheckEditThemeKey_CheckEditBoxTemplate" TargetType="dxe:CheckEditBox">ONLY SL-->
+            <Grid VerticalAlignment="Center" SnapsToDevicePixels="True" Background="#00FFFFFF">
+            <Grid.Resources>
+                <dx:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+                <!--ONLY SL
+                <dx:EnumToObjectConverter x:Key="EnumToObjectConverter">
+                    <dx:EnumToObjectConverter.Values>
+                        <dx:EnumObjectProvider x:Key="LeftToRight" Value="{x:Null}" />
+                        <ScaleTransform x:Key="RightToLeft" CenterX="7" CenterY="0" ScaleX="-1" ScaleY="1" />
+                    </dx:EnumToObjectConverter.Values>
+                </dx:EnumToObjectConverter>
+                ONLY SL-->
+            </Grid.Resources>
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup x:Name="CommonStates">
+                    <VisualState x:Name="Normal" />
+                    <VisualState x:Name="MouseOver">
+                        <Storyboard>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="MultiContentControl" Storyboard.TargetProperty="VisibleChildIndex" Duration="0">
+                                <DiscreteObjectKeyFrame KeyTime="0" Value="1" />
+                            </ObjectAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Pressed" />
+                    <VisualState x:Name="Disabled">
+                        <Storyboard>
+                            <!--ONLY SL
+                            <DoubleAnimation Duration="0" Storyboard.TargetName="contentPresenter" Storyboard.TargetProperty="Opacity" To="0.35" />
+                            ONLY SL-->
+                            <DoubleAnimation Duration="0" Storyboard.TargetName="checkbox" Storyboard.TargetProperty="Opacity" To="0.35" />
+                        </Storyboard>
+                    </VisualState>
+                </VisualStateGroup>
+                <VisualStateGroup x:Name="CheckStates">
+                    <VisualState x:Name="Checked">
+                        <Storyboard>
+                            <DoubleAnimation Duration="0" Storyboard.TargetName="check" Storyboard.TargetProperty="Opacity" To="1" />
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Unchecked" />
+                    <VisualState x:Name="Indeterminate">
+                        <Storyboard>
+                            <DoubleAnimation Duration="0" Storyboard.TargetName="TriState" Storyboard.TargetProperty="Opacity" To="1" />
+                        </Storyboard>
+                    </VisualState>
+                </VisualStateGroup>
+                <VisualStateGroup x:Name="InternalFocusStates">
+                    <VisualState x:Name="InternalFocused">
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetName="FocusElement" Storyboard.TargetProperty="Opacity" Duration="0" To="0.35" />
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="InternalUnfocused" />
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid Margin="{TemplateBinding Padding}">
+                <Border x:Name="FocusElement" Margin="-2,-1" Opacity="0" Background="#FF4882d8" CornerRadius="3" Height="18" />
+                <Grid x:Name="checkbox" VerticalAlignment="Stretch" Width="14" Height="14" Margin="0,3,0,3">
+                    <!--ONLY SL
+                <Grid.RenderTransform>
+                    <Binding Path="FlowDirection" Converter="{StaticResource EnumToObjectConverter}" RelativeSource="{RelativeSource TemplatedParent}" />
+                </Grid.RenderTransform>
+                ONLY SL-->
+                    <Border Margin="0,0,0,0" Width="Auto" Height="Auto" CornerRadius="2,2,2,2" Padding="1,1,1,1">
+                        <Border.Background>
+                            <LinearGradientBrush EndPoint="0.5,1.003" StartPoint="0.5,-0.003">
+                                <GradientStop Color="#FF233B6C" Offset="0" />
+                                <GradientStop Color="#FF5077B3" Offset="1" />
+                                <GradientStop Color="#FF22417C" Offset="0.178" />
+                                <GradientStop Color="#FF264B85" Offset="0.692" />
+                            </LinearGradientBrush>
+                        </Border.Background>
+                        <Grid>
+                            <dxcn:MultiContentControl x:Name="MultiContentControl" VisibleChildIndex="0">
+                                <Border CornerRadius="1,1,1,1" Padding="0,0,0,0">
+                                    <Border.Background>
+                                        <LinearGradientBrush EndPoint="0.5,1.003" StartPoint="0.5,-0.003" MappingMode="RelativeToBoundingBox">
+                                            <GradientStop Color="#FFBEC9E0" Offset="0" />
+                                            <GradientStop Color="#FFFFFFFF" Offset="1" />
+                                            <GradientStop Color="#FFE5E9F1" Offset="0.508" />
+                                        </LinearGradientBrush>
+                                    </Border.Background>
+                                </Border>
+                                <Border CornerRadius="1,1,1,1" Padding="0,0,0,0">
+                                    <Border.Background>
+                                        <LinearGradientBrush EndPoint="0.5,1.003" StartPoint="0.5,-0.003" MappingMode="RelativeToBoundingBox">
+                                            <GradientStop Color="#FFE9F0FF" Offset="0" />
+                                            <GradientStop Color="#FFB0CCFF" Offset="1" />
+                                            <GradientStop Color="#FF96B8EA" Offset="0.495" />
+                                            <GradientStop Color="#FFABC4F0" Offset="0.492" />
+                                        </LinearGradientBrush>
+                                    </Border.Background>
+                                </Border>
+                            </dxcn:MultiContentControl>
+                            <Border x:Name="TriState" Width="8" Height="8" Opacity="0" Background="#FF2A4276" CornerRadius="1,1,1,1" />
+                        </Grid>
+                    </Border>
+                    <Path Fill="#FF2A4276" Stretch="Fill" HorizontalAlignment="Center" Margin="0,0,0,0" x:Name="check" VerticalAlignment="Center" Width="10" Height="10" Opacity="0" Data="F1M423,492L421,494 428,501 429,501 440,490 438,488 429,497 428,497 423,492z" />
+                </Grid>
+            </Grid>
+            <ContentPresenter
+                Name="contentPresenter"
+                Grid.Column="1"
+                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                Margin="4,0,0,0" 
+                VerticalAlignment="{TemplateBinding VerticalContentAlignment}" 
+                SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" 
+                Content="{TemplateBinding Content}" 
+                ContentTemplate="{TemplateBinding ContentTemplate}"                            
+                Visibility="{Binding HasContent, Converter={StaticResource BoolToVisibilityConverter}, RelativeSource={RelativeSource TemplatedParent}}"
+                RecognizesAccessKey="True">
+            </ContentPresenter>
+        </Grid>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
+            </Trigger>
+            <Trigger Property="FlowDirection" Value="RightToLeft">
+                <Setter Property="LayoutTransform" TargetName="checkbox">
+                    <Setter.Value>
+                        <ScaleTransform CenterX="0.5" CenterY="0.5" ScaleX="-1" ScaleY="1"/>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+    <Style BasedOn="{StaticResource BaseCheckEditBoxStyle}" x:Key="{dxet:CheckEditThemeKey ResourceKey=CheckEditBoxStyle}" TargetType="{x:Type dxe:CheckEditBox}">
+        <Setter Property="BorderThickness" Value="1,1,1,1"/>
+        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+        <Setter Property="FocusVisualStyle" Value="{Binding Path=(dxe:BaseEdit.OwnerEdit).FocusVisualStyle, RelativeSource={RelativeSource TemplatedParent}}"/>
+        <Setter Property="Template" Value="{DynamicResource {dxet:CheckEditThemeKey ResourceKey=CheckEditBoxTemplate}}"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
+    <Style BasedOn="{StaticResource BaseCheckEditBoxInplaceStyle}" x:Key="{dxet:CheckEditThemeKey ResourceKey=CheckEditBoxInplaceStyle}" TargetType="{x:Type dxe:CheckEditBox}">
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        <Setter Property="Template" Value="{DynamicResource {dxet:CheckEditThemeKey ResourceKey=CheckEditBoxTemplate}}"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+    </Style>
+
+    <Thickness x:Key="{dxet:CheckEditThemeKey ResourceKey=Padding}">0,1,0,1</Thickness>
+
+    <ControlTemplate x:Key="{dxet:CheckEditThemeKey ResourceKey=EditTemplate}">
+        <dxe:CheckEditBox
+            x:Name="PART_Editor"
+            Style="{DynamicResource {dxet:CheckEditThemeKey ResourceKey=CheckEditBoxStyle}}"/>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="{dxet:CheckEditThemeKey ResourceKey=DisplayInplaceTemplate}">
+        <dxe:CheckEditBox  
+            x:Name="PART_Editor"
+            Style="{DynamicResource {dxet:CheckEditThemeKey ResourceKey=CheckEditBoxInplaceStyle}}"
+        />
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="{dxet:CheckEditThemeKey ResourceKey=EditInplaceTemplate}">
+        <dxe:CheckEditBox
+            x:Name="PART_Editor"
+            Style="{DynamicResource {dxet:CheckEditThemeKey ResourceKey=CheckEditBoxInplaceStyle}}"/>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="{dxet:CheckEditThemeKey ResourceKey=Template}" TargetType="{x:Type dxe:CheckEdit}">
+        <dxe:EditorControl Grid.Column="0" x:Name="PART_Content" SnapsToDevicePixels="True" Template="{TemplateBinding ActualEditorControlTemplate}">
+            <!--ONLY SL
+            <dxe:EditorControl.Resources>
+                <dx:EnumToObjectConverter x:Key="EnumToObjectConverter">
+                    <dx:EnumToObjectConverter.DefaultValue>
+                        <HorizontalAlignment>Stretch</HorizontalAlignment>
+                    </dx:EnumToObjectConverter.DefaultValue>
+                    <dx:EnumToObjectConverter.Values>
+                        <dx:EnumObjectProvider x:Key="InpaceActive">
+                            <dx:EnumObjectProvider.Value>
+                                <HorizontalAlignment>Center</HorizontalAlignment>
+                            </dx:EnumObjectProvider.Value>
+                        </dx:EnumObjectProvider>
+                        <dx:EnumObjectProvider x:Key="InpaceInactive">
+                            <dx:EnumObjectProvider.Value>
+                                <HorizontalAlignment>Center</HorizontalAlignment>
+                            </dx:EnumObjectProvider.Value>
+                        </dx:EnumObjectProvider>
+                    </dx:EnumToObjectConverter.Values>
+                </dx:EnumToObjectConverter>
+            </dxe:EditorControl.Resources>
+            <dxe:EditorControl.HorizontalAlignment>
+                <Binding Path="EditMode" RelativeSource="{RelativeSource TemplatedParent}" Converter="{StaticResource EnumToObjectConverter}"/>
+            </dxe:EditorControl.HorizontalAlignment>
+            ONLY SL-->
+        </dxe:EditorControl>
+        <ControlTemplate.Triggers>
+            <Trigger Property="EditMode" Value="InplaceInactive">
+                <Setter Property="HorizontalAlignment" Value="Center"/>
+            </Trigger>
+            <Trigger Property="EditMode" Value="InplaceActive">
+                <Setter Property="HorizontalAlignment" Value="Center"/>
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+</ResourceDictionary>

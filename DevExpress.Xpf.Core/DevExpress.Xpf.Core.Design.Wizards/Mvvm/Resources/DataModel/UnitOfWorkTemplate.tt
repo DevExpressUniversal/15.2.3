@@ -1,0 +1,25 @@
+﻿<#@ template language="C#" #>
+<#@ import namespace="System" #>
+<#@ import namespace="DevExpress.Xpf.Core.Design.Wizards.Mvvm.EntityFramework" #>
+<#@ import namespace="DevExpress.Xpf.Core.Design.Wizards.Mvvm" #>
+<#
+    this.PasteUsingList();
+    EntityModelData entityModel = this.GetTemplateInfo().Properties["EntityModelData"] as EntityModelData;
+#>
+
+namespace <#=this.GetNamespace()#> {
+    /// <summary>
+    /// I<#=entityModel.Name#>UnitOfWork extends the IUnitOfWork interface with repositories representing specific entities.
+    /// </summary>
+    public interface I<#=entityModel.Name#>UnitOfWork : IUnitOfWork {
+<#
+    if(entityModel != null)
+        foreach(EntitySetData entity in entityModel.Entities) {
+#>        
+        /// <summary>
+        /// The <#=entity.Type#> entities repository.
+        /// </summary>
+		I<#if(entity.ReadOnly){#>ReadOnly<#}#>Repository<<#=entity.Type#><#if(!entity.ReadOnly){#>, <#=entity.PrimaryKeyType#><#}#>> <#=entity.Name#> { get; }
+<#}#>
+    }
+}

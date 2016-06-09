@@ -1,0 +1,337 @@
+EofCode = EOF;
+TokenKind = Type;
+TokenValue = Value;
+
+SCANNER CSharpScanner
+
+FRAME
+-->begin
+using System;
+using System.IO;
+using System.Collections;
+using System.Collections.Specialized;
+
+#if DXCORE
+namespace DevExpress.CodeRush.StructuralParser.CSharp
+#else
+namespace DevExpress.CodeParser.CSharp
+#endif
+{
+	public class CSharpScanner : CSharpScannerBase
+	{
+	  -->declarations
+		
+		//constructors...
+		public CSharpScanner(ISourceReader s)
+		{
+			Initialize(s);
+		}
+		
+		public CSharpScanner(ISourceReader s, ScannerExtension extension)
+		{
+			Initialize(s);
+			ScannerExtension = extension;
+		}
+		
+		// protected methods...
+		protected override int GetUnicodeLetterIndex()
+		{
+			return UnicodeLetterIndex;
+		}
+		protected override int GetNextState(int input)
+		{
+			return start[input];
+		}
+		protected override void InitializeIgnoreTable()
+		{
+			ignore = new BitArray(charSetSize + 1);
+			ignore[' '] = true;  // blanks are always white space
+			-->initialization
+		}			
+		protected override void NextChCasing()
+		{
+			-->casing1
+		}
+		protected override void AddCh()
+		{
+			base.AddCh();
+			-->casing2
+			NextCh();
+		}
+
+	  -->comments
+
+		void CheckLiteral()
+		{
+			-->literals
+		}
+		protected override void NextTokenComments()
+		{
+			-->scan1
+		}
+
+		protected override void NextTokenScan(int state)
+		{
+      int recKind = noSym;
+		  int recEnd = pos;
+      int recPrevLineStart = prevLineStart;
+
+			AddCh();		
+			switch (state)
+			{
+				case -1: { t.Type = eofSym; break; } // NextCh already done
+				case 0:
+        {
+				  if (recKind != noSym)
+          {
+					  tlen = recEnd - t.StartPosition;
+            prevLineStart = recPrevLineStart;
+					  BackTrackScannerToToken();
+				  }
+				  t.Type = recKind;
+          break;
+			  }
+			  -->scan2
+			}
+		}
+
+	}
+}
+$$$
+ENDFRAME
+
+CHARACTERS
+  tab                = '\u0009'. /*  9 = tabulator */
+  eol                = '\u000a'. /* 10 = line feed */
+  cr                 = '\u000d'. /* 13 = carriage return */
+  newLine            = cr + eol. /* Line separator character (U+2028) + Paragraph separator character (U+2029) */
+
+  startLetter        = 'A' .. 'Z' + 'a' .. 'z' + '_' + '\u00aa' + '\u00b5' + '\u00ba' + '\u00c0' .. '\u00d6' + '\u00d8' .. '\u00f6' + '\u00f8' .. '\u00ff' + UnicodeLetter.
+  partLetter         = '0' .. '9' + 'A' .. 'Z' + 'a' .. 'z' + '_' +  '\u00aa' + '\u00b5' + '\u00ba' + '\u00c0' .. '\u00d6' + '\u00d8' .. '\u00f6' + '\u00f8' .. '\u00ff' + UnicodeLetter.
+
+  digit              = "0123456789".  
+  hexDigit           = digit + "ABCDEFabcdef".
+  notDigit           = ANY - digit.
+
+  char               = ANY - "'" - '\\' - newLine.
+  verbatimStringChar = ANY - '"'.
+  regularStringChar  = ANY - '"' - '\\' - newLine.
+  notNewLine         = ANY - newLine .
+  ws                 = " " + tab + '\u000b' + '\u000c'. /* Any character with Unicode class Zs */	
+  intSuffix			 = "ULul".
+  multilinecommentschar						= ANY -"*"-"/".
+  razorcommentschar = ANY - "*" -"@".
+  singlelinecommentschar					= ANY - cr - eol -"/".	
+
+
+TOKENS
+  IDENT =
+    ['@']
+    ( startLetter
+    | '\\'
+      ( 'u' hexDigit hexDigit hexDigit hexDigit
+      | 'U' hexDigit hexDigit hexDigit hexDigit hexDigit hexDigit hexDigit hexDigit
+      )
+    )
+    { partLetter
+    | '\\'
+      ( 'u' hexDigit hexDigit hexDigit hexDigit
+      | 'U' hexDigit hexDigit hexDigit hexDigit hexDigit hexDigit hexDigit hexDigit
+      )
+    }.
+  /*--------------------------------------------------------------------------------*/
+  INTCON =
+    ( digit {digit} 
+    | ("0x" | "0X") hexDigit {hexDigit}
+    )
+    ["U" | "u" | "L" | "l" | "UL" | "Ul" | "uL" | "ul" | "LU" | "Lu" | "lU" | "lu"].
+  /*--------------------------------------------------------------------------------*/
+  REALCON =
+    "." digit {digit} 
+    [("e" | "E") ["+" | "-"] digit {digit}] 
+    ["F" | "f" | "D" | "d" | "M" | "m"]
+  | digit {digit} 
+    ( "." digit {digit} 
+      [("e" | "E" ) ["+" | "-"] digit {digit} ] 
+      ["F" | "f" | "D" | "d" | "M" | "m"]
+    | ("e" | "E") ["+" | "-"] digit {digit}
+      ["F" | "f" | "D" | "d" | "M" | "m"]
+    | "F" | "f" | "D" | "d" | "M" | "m"
+    ).
+  /*--------------------------------------------------------------------------------*/
+  CHARCON =
+    "'" ( char
+        | "\\\'" | "\\\"" | "\\\\" | "\\0" | "\\a" | "\\b" | "\\f" | "\\n" | "\\r" | "\\t" | "\\v"
+        | "\\x" hexDigit [hexDigit] [hexDigit] [hexDigit]
+        | "\\u" hexDigit hexDigit hexDigit hexDigit
+        | "\\U" hexDigit hexDigit hexDigit hexDigit hexDigit hexDigit hexDigit hexDigit
+        ) 
+    "'".
+  /*--------------------------------------------------------------------------------*/
+  STRINGCON =
+    "\""  { regularStringChar
+          | "\\\'" | "\\\"" | "\\\\" | "\\0" | "\\a" | "\\b" | "\\f" | "\\n" | "\\r" | "\\t" | "\\v"
+          | "\\x" hexDigit [hexDigit] [hexDigit] [hexDigit]
+          | "\\u" hexDigit hexDigit hexDigit hexDigit
+          | "\\U" hexDigit hexDigit hexDigit hexDigit hexDigit hexDigit hexDigit hexDigit
+          } 
+    "\""
+  | "@\"" {verbatimStringChar | "\"\""} "\"".
+
+
+  /*----- keyword names needed in LL(1) resolvers -----*/
+  SHARPCOCODIRECTIVE = "-->"{ws}{startLetter|partLetter}.
+  LINETERMINATOR = cr [eol] | eol.
+  ABSTRACT   = "abstract".
+  AS         = "as".
+  BASE       = "base".
+  BOOL       = "bool".
+  BREAK      = "break".
+  BYTE       = "byte".
+  CASE       = "case".
+  CATCH      = "catch".
+  CHAR       = "char".
+  CHECKED    = "checked".
+  CLASS      = "class".
+  CONST      = "const".
+  CONTINUE   = "continue".
+  DECIMAL    = "decimal".
+  DEFAULT    = "default".
+  DELEGATE   = "delegate".
+  DO         = "do".
+  DOUBLE     = "double".
+  ELSE       = "else".
+  ENUM       = "enum".
+  EVENT      = "event".
+  EXPLICIT   = "explicit".
+  EXTERN     = "extern".
+  FALSE      = "false".
+  FINALLY    = "finally".
+  FIXED      = "fixed".
+  FLOAT      = "float".
+  FOR        = "for".
+  FOREACH    = "foreach".
+  GOTO       = "goto".
+  IFCLAUSE   = "if".
+  IMPLICIT   = "implicit".
+  IN         = "in".
+  INT        = "int".
+  INTERFACE  = "interface".
+  INTERNAL   = "internal".
+  IS         = "is".
+  LOCK       = "lock".
+  LONG       = "long".
+  NAMESPACE  = "namespace".
+  NEW        = "new".
+  NULL       = "null".
+  //OBJECT     = "object".
+  OPERATOR   = "operator".
+  OUT        = "out".
+  OVERRIDE   = "override".
+  PARAMS     = "params".
+  PRIVATE    = "private".
+  PROTECTED  = "protected".
+  PUBLIC     = "public".
+  READONLY   = "readonly".
+  REF        = "ref".
+  RETURN     = "return".
+  SBYTE      = "sbyte".
+  SEALED     = "sealed".
+  SHORT      = "short".
+  SIZEOF     = "sizeof".
+  STACKALLOC = "stackalloc".
+  STATIC     = "static".
+  //STRING     = "string".
+  STRUCT     = "struct".
+  SWITCH     = "switch".
+  THIS       = "this".
+  THROW      = "throw".
+  TRUE       = "true".
+  TRY        = "try".
+  TYPEOF     = "typeof".
+  UINT       = "uint".
+  ULONG      = "ulong".
+  UNCHECKED  = "unchecked".
+  UNSAFE     = "unsafe".
+  USHORT     = "ushort".
+  USINGKW    = "using".
+  VIRTUAL    = "virtual".
+  VOID       = "void".
+  VOLATILE   = "volatile".
+  WHILE      = "while".
+  
+  ARGLIST    = "__arglist".
+  REFVALUE   = "__refvalue".
+  /*----- Operators and special characters needed in LL(1) resolvers --------------*/
+  AND        = "&".
+  ANDASSGN   = "&=".
+  ASSGN      = "=".
+  ATCOLON    = "@:".
+  AT         = "@".
+  COLON      = ":".
+  COMMA      = ",".
+  DEC        = "--".
+  DIVASSGN   = "/=".
+  DOT        = ".".
+  DBLCOLON   = "::".
+  EQ         = "==".
+  GT         = ">".
+  GTEQ       = ">=".
+  INC        = "++".
+  LBRACE     = "{".
+  LBRACK     = "[".
+  LPAR       = "(".
+  LSHASSGN   = "<<=".
+  LT         = "<".
+  LTLT       = "<<".
+  MINUS      = "-".
+  MINUSASSGN = "-=".
+  MODASSGN   = "%=".
+  NEQ        = "!=".
+  NOT        = "!".
+  ORASSGN    = "|=".
+  PLUS       = "+".
+  PLUSASSGN  = "+=".
+  QUESTION   = "?".
+  RBRACE     = "}".
+  RBRACK     = "]".
+  RPAR       = ")".
+  SCOLON     = ";".
+  TILDE      = "~".
+  TIMES      = "*".
+  TIMESASSGN = "*=".
+  XORASSGN   = "^=".
+  POINTERTOMEMBER = "->*".
+  SINGLELINECOMMENT ="/" "/" {singlelinecommentschar| "/"} .
+  MULTILINECOMMENT = "/*" {"/" | multilinecommentschar | "*" {"*"} multilinecommentschar} "*" {"*"} "/".					 
+  RAZORCOMMENT = "@*" {"@" | razorcommentschar | "*" {"*"} razorcommentschar} "*" {"*"} "@".					 
+	
+//  YIELD	  = "yield".
+  DBLQUEST = "??".
+  DBLOR		= "||".
+  DBLAND	= "&&".
+  OR		= "|".
+  XOR		= "^".
+  LOWOREQ	= "<=".
+  DIV		= "/".
+  MOD		= "%".
+  POINT		= "->".
+  LAMBDA	= "=>".
+  DEFINE  = "#" {ws} "define" .
+  UNDEF	  = "#" {ws} "undef" .
+  IFDIR   = "#" {ws} "if" .
+  ELIF    = "#" {ws} "elif" .
+  ELSEDIR    = "#" {ws} "else" .
+  ENDIF   = "#" {ws} "endif".
+  LINE    = "#" {ws} "line" .
+  ERROR   = "#" {ws} "error" .
+  WARNING = "#" {ws} "warning" .
+  REGION  = "#" {ws} "region" .
+  ENDREG  = "#" {ws} "endregion" .
+  PRAGMADIR  = "#" {ws} "pragma" .
+
+PRAGMAS
+
+IGNORE eol + cr + tab
+
+END CSharpScanner.

@@ -1,0 +1,45 @@
+﻿<dxcn:DXTabControlHeaderMenuTemplateSelectorBase 
+    x:Class="DevExpress.Xpf.Core.Native.DXTabControlHeaderMenuTemplateSelector"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:dxcn="clr-namespace:DevExpress.Xpf.Core.Native"
+    xmlns:dxb="clr-namespace:DevExpress.Xpf.Bars"
+    xmlns:dx="clr-namespace:DevExpress.Xpf.Core">
+    <dxcn:DXTabControlHeaderMenuTemplateSelectorBase.ItemTemplate>
+        <DataTemplate>
+            <ContentControl>
+                <dxb:BarCheckItem Content="{Binding ActualHeaderMenuContent}" ContentTemplate="{Binding ActualHeaderMenuContentTemplate}" Glyph="{Binding ActualHeaderMenuGlyph}"
+                                  AllowUncheckInGroup="False" GroupIndex="0"
+                                  IsVisible="{Binding Path=VisibleInHeaderMenu, Converter={dx:BooleanToVisibilityConverter}}"
+                                  Command="{Binding Path=MenuInfo.SelectTabCommand, RelativeSource={RelativeSource AncestorType={x:Type dx:DXTabControl}}}" CommandParameter="{Binding}"
+                                  CloseSubMenuOnClick="{Binding Path=View.CloseHeaderMenuOnItemSelecting, RelativeSource={RelativeSource AncestorType={x:Type dx:DXTabControl}}}"
+                                  IsChecked="{Binding IsSelected, Mode=OneWay}"/>
+            </ContentControl>
+        </DataTemplate>
+    </dxcn:DXTabControlHeaderMenuTemplateSelectorBase.ItemTemplate>
+    <dxcn:DXTabControlHeaderMenuTemplateSelectorBase.OldTemplate>
+        <DataTemplate>
+            <ContentControl>
+                <dxb:BarCheckItem Content="{Binding ActualHeaderMenuContent}" ContentTemplate="{Binding ActualHeaderMenuContentTemplate}"
+                                  AllowUncheckInGroup="False" GroupIndex="0"
+                                  Command="{Binding Path=MenuInfo.SelectTabCommand, RelativeSource={RelativeSource AncestorType={x:Type dx:DXTabControl}}}" CommandParameter="{Binding}"
+                                  CloseSubMenuOnClick="{Binding Path=View.CloseHeaderMenuOnItemSelecting, RelativeSource={RelativeSource AncestorType={x:Type dx:DXTabControl}}}"
+                                  IsVisible="{Binding Path=VisibleInHeaderMenu, Converter={dx:BooleanToVisibilityConverter}}"
+                                  IsChecked="{Binding IsSelected, Mode=OneWay}">
+                    <dxb:BarCheckItem.GlyphTemplate>
+                        <DataTemplate>
+                            <ContentPresenter Content="{Binding HeaderMenuIcon}"/>
+                        </DataTemplate>
+                    </dxb:BarCheckItem.GlyphTemplate>
+                </dxb:BarCheckItem>
+            </ContentControl>
+        </DataTemplate>
+    </dxcn:DXTabControlHeaderMenuTemplateSelectorBase.OldTemplate>
+    <dxcn:DXTabControlHeaderMenuTemplateSelectorBase.SeparatorTemplate>
+        <DataTemplate>
+            <ContentControl>
+                <dxb:BarItemSeparator/>
+            </ContentControl>
+        </DataTemplate>
+    </dxcn:DXTabControlHeaderMenuTemplateSelectorBase.SeparatorTemplate>
+</dxcn:DXTabControlHeaderMenuTemplateSelectorBase>

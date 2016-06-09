@@ -1,0 +1,208 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application VersionFormat="バージョン {0}.{1}.{2}" ProtectedContentText="保護されたコンテンツ">
+  <ActionDesign>
+    <Actions>
+      <Action Id="Cancel" Caption="キャンセル" />
+      <Action Id="CreateDashboard" Caption="ダッシュボードの作成" />
+      <Action Id="Delete" Caption="削除" ConfirmationMessage="選択されたアイテムを削除しようとしています。続行しますか？" />
+      <Action Id="Delete Item" Caption="アイテムの削除" ConfirmationMessage="選択されたアイテムを削除しようとしています。続行しますか？" />
+      <Action Id="Diagnostic Info" Caption="診断情報" />
+      <Action Id="Diagnostic Info.Actions Info">
+        <ChoiceActionItems>
+          <ChoiceActionItem Id="Actions Info" Caption="操作情報" />
+        </ChoiceActionItems>
+      </Action>
+      <Action Id="Diagnostic Info.View Info">
+        <ChoiceActionItems>
+          <ChoiceActionItem Id="View Info" Caption="表示情報" />
+        </ChoiceActionItems>
+      </Action>
+      <Action Id="DialogCancel" Caption="キャンセル" />
+      <Action Id="FullTextSearch" NullValuePrompt="検索するテキスト..." Caption="テキストでフィルター" ToolTip="テキストでオブジェクトをフィルター" ShortCaption="検索" />
+      <Action Id="HideItemsFromDashboard" Caption="ダッシュボードのアイテムを非表示" ToolTip="選択されたアイテムをダッシュボードで非表示" />
+      <Action Id="Link" Caption="リンク" />
+      <Action Id="ListViewShowObject" Caption="開く" />
+      <Action Id="Logoff" Caption="ログオフ" />
+      <Action Id="Logon" Caption="ログオン" />
+      <Action Id="NavigateBack" ToolTip="前のビューへ移動" Caption="前へ" />
+      <Action Id="NavigateForward" ToolTip="次のビューへ移動" Caption="次へ" />
+      <Action Id="New" Caption="新規">
+        <DisableReasons>
+          <Reason Id="MasterObjectIsNew" Caption="新しいオブジェクトが編集されました。" />
+        </DisableReasons>
+      </Action>
+      <Action Id="NextObject" Caption="次のオブジェクト" />
+      <Action Id="OrganizeDashboard" Caption="ダッシュボードの整理" />
+      <Action Id="PreviousObject" Caption="前のオブジェクト" />
+      <Action Id="Refresh" Caption="更新" />
+      <Action Id="Save" Caption="保存" />
+      <Action Id="SaveAndClose" Caption="保存して閉じる" />
+      <Action Id="SaveAndNew" Caption="保存して新規作成" />
+      <Action Id="SetFilter" Caption="フィルター" />
+      <Action Id="ShowItemsOnDashboard" Caption="ダッシュボードのアイテムを表示" ToolTip="選択されたアイテムをダッシュボードに表示" />
+      <Action Id="ShowNavigationItem" Caption="ナビゲーション" />
+      <Action Id="Unlink" Caption="リンクの解除" ConfirmationMessage="選択されたレコードのリンクを解除しようとしています。続行しますか？" />
+    </Actions>
+    <DisableReasons>
+      <Reason Id="ByContext_RequireMultipleObjects" Caption="1つ以上のオブジェクトの選択が必要です。" />
+      <Reason Id="ByContext_RequireSingleObject" Caption="1つのオブジェクトの選択が必要です。" />
+      <Reason Id="Security" Caption="アクセス許可は拒否されました。" />
+    </DisableReasons>
+  </ActionDesign>
+  <BOModel>
+    <Class Name="DevExpress.ExpressApp.Editors.CriteriaProvider" Caption="基準プロバイダ">
+      <OwnMembers>
+        <Member Name="FilteredObjectsType" Caption="フィルターされたオブジェクト タイプ" />
+        <Member Name="FilterString" Caption="フィルター文字列" />
+      </OwnMembers>
+    </Class>
+    <Class Name="DevExpress.ExpressApp.SystemModule.AboutInfo" Caption="アプリケーションについて">
+      <OwnMembers>
+        <Member Name="Company" Caption="会社名" />
+        <Member Name="Description" Caption="説明" />
+        <Member Name="LogoImageName" Caption="ロゴ画像名" />
+        <Member Name="ProductName" Caption="製品名" />
+        <Member Name="Version" Caption="バージョン" />
+      </OwnMembers>
+    </Class>
+    <Class Name="DevExpress.ExpressApp.SystemModule.ActionContainerDashboardOrganizationItem" Caption="操作コンテナ">
+      <OwnMembers>
+        <Member Name="ActionContainer" Caption="操作コンテナ" />
+        <Member Name="ActionContainers" Caption="操作コンテナ" />
+      </OwnMembers>
+    </Class>
+    <Class Name="DevExpress.ExpressApp.SystemModule.ActionContainerDescriptor" Caption="操作コンテナ記述子">
+      <OwnMembers>
+        <Member Name="ActionContainerId" Caption="操作コンテナ ID" />
+      </OwnMembers>
+    </Class>
+    <Class Name="DevExpress.ExpressApp.SystemModule.DashboardCreationInfo" Caption="ダッシュボード作成ウィザード">
+      <OwnMembers>
+        <Member Name="DashboardName" Caption="名前" />
+        <Member Name="NavigationGroupName" Caption="ナビゲーション アイテムを作成" />
+        <Member Name="ViewItems" Caption="アイテムの表示" />
+      </OwnMembers>
+    </Class>
+    <Class Name="DevExpress.ExpressApp.SystemModule.DashboardOrganizationItem" Caption="ダッシュボード整理アイテム">
+      <OwnMembers>
+        <Member Name="Id" Caption="ID" />
+        <Member Name="Item" Caption="アイテム" />
+        <Member Name="Visibility" Caption="表示の有無" />
+      </OwnMembers>
+    </Class>
+    <Class Name="DevExpress.ExpressApp.SystemModule.DashboardOrganizer" Caption="ダッシュボード オーガナイザー">
+      <OwnMembers>
+        <Member Name="ViewItems" Caption="アイテムの表示" />
+      </OwnMembers>
+    </Class>
+    <Class Name="DevExpress.ExpressApp.SystemModule.DashboardViewItemDescriptor" Caption="ダッシュボード ビュー アイテム記述子">
+      <OwnMembers>
+        <Member Name="ModelView" Caption="モデル ビュー" />
+        <Member Name="ViewCaption" Caption="キャプションの表示" />
+        <Member Name="ViewDescription" Caption="説明の表示" />
+        <Member Name="ViewId" Caption="ID の表示" />
+      </OwnMembers>
+    </Class>
+    <Class Name="DevExpress.ExpressApp.SystemModule.DiagnosticInfoObject" Caption="診断情報オブジェクト">
+      <OwnMembers>
+        <Member Name="AsText" Caption="テキストとして表示" />
+      </OwnMembers>
+    </Class>
+    <Class Name="DevExpress.ExpressApp.SystemModule.StaticImageDashboardOrganizationItem" Caption="静止画">
+      <OwnMembers>
+        <Member Name="ImageName" Caption="画像名" />
+        <Member Name="Preview" Caption="プレビュー" />
+      </OwnMembers>
+    </Class>
+    <Class Name="DevExpress.ExpressApp.SystemModule.StaticTextDashboardOrganizationItem" Caption="静的なテキスト">
+      <OwnMembers>
+        <Member Name="Text" Caption="テキスト" />
+      </OwnMembers>
+    </Class>
+    <Class Name="DevExpress.ExpressApp.SystemModule.ViewDashboardOrganizationItem" Caption="表示">
+      <OwnMembers>
+        <Member Name="ActionsToolbarVisibility" Caption="操作ツールバーの表示" />
+        <Member Name="AvailableViews" Caption="使用可能なビュー" />
+        <Member Name="Criteria" Caption="基準" />
+        <Member Name="ObjectType" Caption="オブジェクト タイプ" />
+        <Member Name="ViewDescriptor" Caption="表示" />
+      </OwnMembers>
+    </Class>
+    <Class Name="DevExpress.ExpressApp.Updating.ModuleInfo" Caption="モジュール情報" />
+    <Class Name="DevExpress.Xpo.PersistentBase" Caption="永続ベース" />
+    <Class Name="DevExpress.Xpo.XPBaseObject" Caption="XPBase オブジェクト" />
+    <Class Name="DevExpress.Xpo.XPCustomObject" Caption="XPCustom オブジェクト" />
+    <Class Name="DevExpress.Xpo.XPObject">
+      <OwnMembers>
+        <Member Name="Oid" Caption="OID" />
+      </OwnMembers>
+    </Class>
+    <Class Name="DevExpress.Xpo.XPObjectType" Caption="XPObject タイプ">
+      <OwnMembers>
+        <Member Name="Oid" Caption="OID" />
+      </OwnMembers>
+    </Class>
+  </BOModel>
+  <Localization>
+    <LocalizationGroup Name="Captions">
+      <LocalizationItem Name="DashboardView" Value="ダッシュボード ビュー" />
+      <LocalizationItem Name="DetailView" Value="詳細ビュー" />
+      <LocalizationItem Name="DiagnosticChildWindowAddition" Value="(子ウィンドウ)" />
+      <LocalizationItem Name="EditCriteria" Value="基準を編集" />
+      <LocalizationItem Name="ListView" Value="リスト ビュー" />
+      <LocalizationItem Name="View" Value="ビュー" />
+    </LocalizationGroup>
+    <LocalizationGroup Name="DashboardOrganizationItems">
+      <LocalizationItem Name="ActionContainer" Value="アクション コンテナ" />
+      <LocalizationItem Name="StaticImage" Value="画像" />
+      <LocalizationItem Name="StaticText" Value="テキスト" />
+    </LocalizationGroup>
+    <LocalizationGroup Name="DialogButtons">
+      <LocalizationItem Name="Abort" Value="中止(&amp;A)" />
+      <LocalizationItem Name="Add" Value="追加" />
+      <LocalizationItem Name="Apply" Value="適用" />
+      <LocalizationItem Name="Back" Value="&lt; 戻る" />
+      <LocalizationItem Name="Cancel" Value="キャンセル(&amp;C)" />
+      <LocalizationItem Name="Clear" Value="クリア(&amp;L)" />
+      <LocalizationItem Name="Close" Value="閉じる" />
+      <LocalizationItem Name="Find" Value="検索" />
+      <LocalizationItem Name="Ignore" Value="無視(&amp;I)" />
+      <LocalizationItem Name="Next" Value="次へ &gt;" />
+      <LocalizationItem Name="No" Value="いいえ(&amp;N)" />
+      <LocalizationItem Name="OK" Value="OK(&amp;O)" />
+      <LocalizationItem Name="Remove" Value="削除" />
+      <LocalizationItem Name="Retry" Value="再実行(&amp;R)" />
+      <LocalizationItem Name="Yes" Value="はい(&amp;Y)" />
+    </LocalizationGroup>
+    <LocalizationGroup Name="Enums">
+      <LocalizationGroup Name="DevExpress.ExpressApp.Editors.ViewItemVisibility" Value="ビュー アイテムの表示">
+        <LocalizationItem Name="Hide" Value="非表示" />
+        <LocalizationItem Name="Show" Value="表示" />
+        <LocalizationItem Name="ShowEmptySpace" Value="空スペースを表示" />
+      </LocalizationGroup>
+      <LocalizationGroup Name="DevExpress.ExpressApp.SystemModule.DashboardItemVisibility" Value="ダッシュボード アイテムの可視性">
+        <LocalizationItem Name="Hidden" Value="非表示" />
+        <LocalizationItem Name="Visible" Value="表示" />
+      </LocalizationGroup>
+      <LocalizationGroup Name="DevExpress.ExpressApp.Templates.ActionsToolbarVisibility" Value="操作ツールバーの表示">
+        <LocalizationItem Name="Default" Value="デフォルト" />
+        <LocalizationItem Name="Hide" Value="非表示" />
+        <LocalizationItem Name="Show" Value="表示" />
+      </LocalizationGroup>
+    </LocalizationGroup>
+    <LocalizationGroup Name="Messages">
+      <LocalizationItem Name="User" Value="ユーザー: {0}" />
+    </LocalizationGroup>
+    <LocalizationGroup Name="Texts">
+      <LocalizationItem Name="Error" Value="エラー" />
+      <LocalizationItem Name="Warning" Value="警告" />
+    </LocalizationGroup>
+  </Localization>
+  <Views>
+    <DetailView Id="AboutInfo_DetailView" Caption="アプリケーションについて">
+      <Items>
+        <StaticText Id="AboutText" Text="{0:ProductName}&lt;br&gt;{0:Version}&lt;br&gt;&lt;br&gt;{0:Copyright}&lt;br&gt;&lt;br&gt;{0:Description}" />
+      </Items>
+    </DetailView>
+  </Views>
+</Application>

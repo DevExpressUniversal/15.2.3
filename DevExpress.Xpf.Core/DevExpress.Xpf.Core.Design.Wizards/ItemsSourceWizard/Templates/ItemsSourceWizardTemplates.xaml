@@ -1,0 +1,436 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:utils="clr-namespace:DevExpress.Xpf.Core.Design.Wizards.Utils"
+    xmlns:l="clr-namespace:DevExpress.Xpf.Core.Design.Wizards"
+    xmlns:lt="clr-namespace:DevExpress.Xpf.Core.Design.Wizards.ItemsSourceWizard.Templates">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/DevExpress.Xpf.Core.v15.2.Design.Wizards;component/ItemsSourceWizard/Templates/ItemsSourceWizardResources.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+    <ControlTemplate x:Key="validationTemplate">
+        <Grid>
+            <Border BorderBrush="Red" BorderThickness="2" Opacity="0.35" />
+            <AdornedElementPlaceholder />
+        </Grid>
+    </ControlTemplate>
+    <DataTemplate x:Key="TablesTemplate">
+        <ComboBox DisplayMemberPath="Name" Style="{StaticResource ComboBoxBorderStyle}" 
+                  ItemsSource="{Binding Tables}"
+                  IsSynchronizedWithCurrentItem="True" Validation.ErrorTemplate="{StaticResource validationTemplate}"
+                  Visibility="{Binding IsTableEnabled, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWayToSource}">
+            <ComboBox.SelectedItem>
+                <Binding Path="SelectedTable" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <DataErrorValidationRule />
+                        <ExceptionValidationRule />
+                    </Binding.ValidationRules>
+                </Binding>
+            </ComboBox.SelectedItem>
+        </ComboBox>
+    </DataTemplate>
+    <DataTemplate x:Key="TypeNameTemplate">
+        <lt:AutoCompletedComboBox Style="{StaticResource AutoCompleteComboBoxStyle}" ItemsSource="{Binding DisplayTypes, Mode=OneWay}" Validation.ErrorTemplate="{StaticResource validationTemplate}"
+                          IsSynchronizedWithCurrentItem="True" Visibility="{Binding IsTypeNameEnabled, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWayToSource}">
+            <lt:AutoCompletedComboBox.SelectedItem>
+                <Binding Path="TypeName" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <DataErrorValidationRule />
+                        <ExceptionValidationRule />
+                    </Binding.ValidationRules>
+                </Binding>
+            </lt:AutoCompletedComboBox.SelectedItem>
+        </lt:AutoCompletedComboBox>
+        <!--<TextBox Text="{Binding TypeName}"/>-->
+    </DataTemplate>
+    <DataTemplate x:Key="QueryTemplate">
+        <ComboBox DisplayMemberPath="Name" Style="{StaticResource ComboBoxBorderStyle}" 
+                  ItemsSource="{Binding Tables}"
+                  Validation.ErrorTemplate="{StaticResource validationTemplate}"
+                  IsSynchronizedWithCurrentItem="True" Visibility="{Binding IsQueryEnabled, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWayToSource}">
+            <ComboBox.SelectedItem>
+                <Binding Path="SelectedTable" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <DataErrorValidationRule />
+                        <ExceptionValidationRule />
+                    </Binding.ValidationRules>
+                </Binding>
+            </ComboBox.SelectedItem>
+        </ComboBox>
+    </DataTemplate>
+    <DataTemplate x:Key="ChooseSortingTemplate">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <ComboBox Grid.Column="0" ItemsSource="{Binding FieldNames}" SelectedItem="{Binding SelectedSortFieldName}"
+                                      Style="{StaticResource ComboBoxBorderStyle}" Margin="0,0,2,0" />
+            <ComboBox Grid.Column="1" ItemsSource="{Binding Directions}" SelectedItem="{Binding SelectedSortDirection}"
+                                      Style="{StaticResource ComboBoxBorderStyle}" />
+        </Grid>
+    </DataTemplate>
+    <DataTemplate x:Key="CollectionViewDescriptionsTemplate">
+        <StackPanel Orientation="Vertical" x:Name="root">
+            <StackPanel>
+                <TextBlock Text="{l:ItemsSourceWizardStringId StringId=CollectionViewType}" Margin="0,0,0,5" FontSize="16" Foreground="{StaticResource ColorSilver}" />
+                <ComboBox DisplayMemberPath="Name" Style="{StaticResource ComboBoxBorderStyle}" ItemsSource="{Binding CollectionViewTypes}"
+                          SelectedItem="{Binding SelectedCollectionViewType}" />
+                <StackPanel Visibility="{Binding IsPageSizeEnable, Converter={StaticResource BoolToVisibilityConverter}}">
+                    <TextBlock Text="{l:ItemsSourceWizardStringId StringId=PageSize}" Margin="0,0,0,5" FontSize="16" Foreground="{StaticResource ColorSilver}" />
+                    <lt:IntegerTextBox Style="{StaticResource TextBoxStyle}" Foreground="#FFB0B0B0" Validation.ErrorTemplate="{StaticResource validationTemplate}">
+                        <lt:IntegerTextBox.Text>
+                            <Binding Path="PageSize" UpdateSourceTrigger="PropertyChanged">
+                                <!--<Binding.ValidationRules>
+                                    <DataErrorValidationRule />
+                                    <ExceptionValidationRule />
+                                </Binding.ValidationRules>-->
+                            </Binding>
+                        </lt:IntegerTextBox.Text>
+                    </lt:IntegerTextBox>
+                </StackPanel>
+            </StackPanel>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <GroupBox Header="{l:ItemsSourceWizardStringId StringId=GroupDesc}" FontSize="16" Foreground="{StaticResource ColorSilver}" Style="{StaticResource GroupBoxStyle}"
+                          Visibility="{Binding IsCollectionViewCanGroup, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}">
+                    <StackPanel Orientation="Vertical">
+                        <ListBox ItemsSource="{Binding GroupDescriptions}" SelectedIndex="{Binding SelectedGroupDescription}" 
+                                 Style="{DynamicResource ListStyleBase}" Height="70" DisplayMemberPath="PropertyName">
+                        </ListBox>
+                        <ComboBox ItemsSource="{Binding FieldNames}" SelectedItem="{Binding SelectedGroupFieldName}"  
+                              Style="{StaticResource ComboBoxBorderStyle}" Margin="2" />
+                        <Grid Margin="0,5,0,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Button Content="{l:ItemsSourceWizardStringId StringId=Add}" Height="25" Margin="2" Command="{Binding AddGroup}" Style="{StaticResource ButtonStyle}" />
+                            <Button Grid.Column="1" Content="{l:ItemsSourceWizardStringId StringId=Delete}" Margin="2" Height="25" Command="{Binding DeleteGroup}" Style="{StaticResource ButtonStyle}" />
+                        </Grid>
+                    </StackPanel>
+                </GroupBox>
+                <GroupBox Grid.Column="1" Header="{l:ItemsSourceWizardStringId StringId=SortDesc}" FontSize="16" Foreground="{StaticResource ColorSilver}" Style="{StaticResource GroupBoxStyle}"
+                          Visibility="{Binding IsCollectionViewCanSort, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}">
+                    <StackPanel Orientation="Vertical">
+                        <ListBox ItemsSource="{Binding SortDescriptions}" SelectedIndex="{Binding SelectedSortDescription}" 
+                                 Style="{DynamicResource ListStyleBase}" DisplayMemberPath="PropertyName" Height="70">
+                        </ListBox>
+                        <!--<ContentControl Content="{Binding}" Margin="2" ContentTemplate="{StaticResource ChooseSortingTemplate}"/>-->
+                        <Grid Margin="2">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <ComboBox Grid.Column="0" ItemsSource="{Binding FieldNames}" SelectedItem="{Binding SelectedSortFieldName}"
+                                      Style="{StaticResource ComboBoxBorderStyle}" Margin="0,0,2,0" />
+                            <ComboBox Grid.Column="1" ItemsSource="{Binding Directions}" SelectedItem="{Binding SelectedSortDirection}"
+                                      Style="{StaticResource ComboBoxBorderStyle}" />
+                        </Grid>
+                        <Grid Margin="0,5,0,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Button Content="{l:ItemsSourceWizardStringId StringId=Add}" Height="25" Margin="2" Command="{Binding AddSort}" Style="{StaticResource ButtonStyle}" />
+                            <Button Grid.Column="1" Content="{l:ItemsSourceWizardStringId StringId=Delete}" Margin="2" Height="25" Command="{Binding DeleteSort}" Style="{StaticResource ButtonStyle}" />
+                        </Grid>
+                    </StackPanel>
+                </GroupBox>
+            </Grid>
+        </StackPanel>
+    </DataTemplate>
+    <DataTemplate x:Key="CollectionViewDescriptionsTemplateWithoutType">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <GroupBox Header="{l:ItemsSourceWizardStringId StringId=GroupDesc}" FontSize="16" Foreground="{StaticResource ColorSilver}">
+                <StackPanel Orientation="Vertical">
+                    <ListBox ItemsSource="{Binding GroupDescriptions}" SelectedIndex="{Binding SelectedGroupDescription}" 
+                                 Style="{DynamicResource ListStyleBase}" Height="70" DisplayMemberPath="PropertyName">
+                    </ListBox>
+                    <ComboBox ItemsSource="{Binding SelectedTable.FieldNames}" SelectedItem="{Binding SelectedGroupFieldName}"  
+                              Style="{StaticResource ComboBoxBorderStyle}" Margin="2" />
+                    <Grid Margin="0,5,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Button Content="{l:ItemsSourceWizardStringId StringId=Add}" Height="25" Margin="2" Command="{Binding AddGroup}" Style="{StaticResource ButtonStyle}" />
+                        <Button Grid.Column="1" Content="{l:ItemsSourceWizardStringId StringId=Delete}" Margin="2" Height="25" Command="{Binding DeleteGroup}" Style="{StaticResource ButtonStyle}" />
+                    </Grid>
+                </StackPanel>
+            </GroupBox>
+            <GroupBox Grid.Column="1" Header="{l:ItemsSourceWizardStringId StringId=SortDesc}" FontSize="16" Foreground="{StaticResource ColorSilver}">
+                <StackPanel Orientation="Vertical">
+                    <ListBox ItemsSource="{Binding SortDescriptions}" SelectedIndex="{Binding SelectedSortDescription}" 
+                                 Style="{DynamicResource ListStyleBase}" DisplayMemberPath="PropertyName" Height="70">
+                    </ListBox>
+                    <ContentControl Content="{Binding}" Margin="2" ContentTemplate="{StaticResource ChooseSortingTemplate}" />
+                    <Grid Margin="0,5,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Button Content="{l:ItemsSourceWizardStringId StringId=Add}" Height="25" Margin="2" Command="{Binding AddSort}" Style="{StaticResource ButtonStyle}" />
+                        <Button Grid.Column="1" Content="{l:ItemsSourceWizardStringId StringId=Delete}" Margin="2" Height="25" Command="{Binding DeleteSort}" Style="{StaticResource ButtonStyle}" />
+                    </Grid>
+                </StackPanel>
+            </GroupBox>
+        </Grid>
+    </DataTemplate>
+    <DataTemplate x:Key="ComboBoxCulturesTemlate">
+        <ComboBox Style="{StaticResource ComboBoxBorderStyle}" 
+                  ItemsSource="{Binding Cultures, Mode=OneWay}" SelectedItem="{Binding SelectedCulture}" />
+    </DataTemplate>
+    <DataTemplate x:Key="ComboBoxCollectionViewTypesTemlate">
+        <ComboBox DisplayMemberPath="Name" Style="{StaticResource ComboBoxBorderStyle}" 
+                  ItemsSource="{Binding CollectionViewTypes, Mode=OneWay}" SelectedItem="{Binding SelectedCollectionViewType}" />
+    </DataTemplate>
+    <DataTemplate x:Key="DesignDataSwitcherTemplate">
+        <CheckBox Style="{DynamicResource CheckBoxStyle}" Foreground="{StaticResource ColorSilver}" 
+                      FontSize="16" Content="{l:ItemsSourceWizardStringId StringId=ShowDesignData}" IsChecked="{Binding DesignData.IsEnable}" Margin="0,0,10,0" />
+    </DataTemplate>
+    <DataTemplate x:Key="PropertyHelpTemplate2">
+        <Border BorderThickness="1" BorderBrush="{StaticResource ColorLightSilver}" Background="White">
+            <lt:BindableRichTextBox IsDocumentEnabled="True" DocumentStream="{Binding}" 
+                                    BorderThickness="0" IsReadOnly="True" IsReadOnlyCaretVisible="False" DocumentFontSize="12" DocumentFontFamily="Segoe UI"
+                                    Foreground="{StaticResource ColorSilver}" Width="450" Margin="0,7" />
+        </Border>
+    </DataTemplate>
+    <DataTemplate x:Key="DesignDataConfiguratorTemplate">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <CheckBox x:Name="cbEnable" Style="{DynamicResource CheckBoxStyle}" Foreground="{StaticResource ColorSilver}" 
+                      FontSize="16" Content="{l:ItemsSourceWizardStringId StringId=ShowDesignData}" IsChecked="{Binding DesignData.IsEnable}" Margin="0,0,0,10"
+                      />
+            <Popup x:Name="popup" PlacementTarget="{Binding ElementName=cbEnable}" Style="{StaticResource popupStyle}">
+                <ContentControl Content="{Binding DataContext.ConfigurationPropertiesHelp[0], RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ContentControl}}}" 
+                                ContentTemplate="{StaticResource PropertyHelpTemplate2}" />
+            </Popup>
+            <CheckBox x:Name="cbDictValues" Grid.Row="1" Style="{DynamicResource CheckBoxStyle}" Foreground="{StaticResource ColorSilver}" 
+                      Margin="0,0,0,10"
+                      Visibility="{Binding DesignData.IsEnable, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}"
+                      FontSize="16" Content="{l:ItemsSourceWizardStringId StringId=DistinctValue}" IsChecked="{Binding DesignData.IsDifferentValues}" />
+            <Popup PlacementTarget="{Binding ElementName=cbDictValues}" Style="{StaticResource popupStyle}">
+                <ContentControl Content="{Binding DataContext.ConfigurationPropertiesHelp[1], RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ContentControl}}}" 
+                                ContentTemplate="{StaticResource PropertyHelpTemplate2}" />
+            </Popup>
+            <Grid Grid.Row="2" Visibility="{Binding IsTypeNameEnabled, Converter={StaticResource BoolToVisibilityConverter}}">
+                <CheckBox x:Name="cbFlattenHierarchy" Style="{DynamicResource CheckBoxStyle}" Foreground="{StaticResource ColorSilver}" Margin="0,0,0,10"
+                      Visibility="{Binding DesignData.IsEnable, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}"
+                      FontSize="16" Content="{l:ItemsSourceWizardStringId StringId=FlattenHierarchy}" IsChecked="{Binding DesignData.FlattenHierarchy}" />
+                <Popup PlacementTarget="{Binding ElementName=cbFlattenHierarchy}" Style="{StaticResource popupStyle}">
+                    <ContentControl Content="{Binding DataContext.ConfigurationPropertiesHelp[3], RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ContentControl}}}" 
+                                ContentTemplate="{StaticResource PropertyHelpTemplate2}"/>
+                </Popup>
+            </Grid>
+            <Grid x:Name="rowsCountGrid" Grid.Row="3" Visibility="{Binding DesignData.IsEnable, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" Foreground="{StaticResource ColorSilver}" FontSize="16"
+                           Margin="0,0,10,0" Text="{l:ItemsSourceWizardStringId StringId=Rows}" />
+                <lt:IntegerTextBox x:Name="itbRows" Grid.Column="1" Style="{StaticResource TextBoxStyle}" Foreground="{StaticResource ColorSilver}" 
+                                   Validation.ErrorTemplate="{StaticResource validationTemplate}">
+                    <lt:IntegerTextBox.Text>
+                        <Binding Path="DesignData.RowCount" UpdateSourceTrigger="PropertyChanged">
+                            <Binding.ValidationRules>
+                                <DataErrorValidationRule />
+                                <ExceptionValidationRule />
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </lt:IntegerTextBox.Text>
+                </lt:IntegerTextBox>
+                <Popup PlacementTarget="{Binding ElementName=rowsCountGrid}" Style="{StaticResource popupStyle}">
+                    <ContentControl Content="{Binding DataContext.ConfigurationPropertiesHelp[2], RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ContentControl}}}" 
+                                ContentTemplate="{StaticResource PropertyHelpTemplate2}" />
+                </Popup>
+            </Grid>
+        </Grid>
+    </DataTemplate>
+    <DataTemplate x:Key="CheckBoxRowsThreadSafeTemplate">
+        <CheckBox Style="{DynamicResource CheckBoxStyle}" Foreground="{StaticResource ColorSilver}" 
+                      FontSize="16" Content="{l:ItemsSourceWizardStringId StringId=AreSourceRowsThreadSafe}" IsChecked="{Binding AreSourceRowsThreadSafe}" />
+    </DataTemplate>
+    <DataTemplate x:Key="IsSynchronizedWithCurrentItemTemplate">
+        <CheckBox Style="{DynamicResource CheckBoxStyle}" Foreground="{StaticResource ColorSilver}" 
+                      FontSize="16" Content="{l:ItemsSourceWizardStringId StringId=SynchronizedWithCurrentItem}" IsChecked="{Binding IsSynchronizedWithCurrentItem}" />
+    </DataTemplate>
+    <DataTemplate x:Key="ComboBoxKeyExpressionTemlate">
+        <ComboBox Style="{StaticResource ComboBoxBorderStyle}" Height="26"
+                  ItemsSource="{Binding SelectedTable.KeyExpressions, Mode=OneWay}" SelectedValuePath="Expression" SelectedValue="{Binding SelectedKeyExpression, Mode=TwoWay}" IsSynchronizedWithCurrentItem="True" />
+    </DataTemplate>
+    <DataTemplate x:Key="TextBoxServiceRoot">
+        <Grid Height="26">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <TextBox x:Name="tb" Grid.Column="0" Margin="0,0,5,0" Style="{StaticResource TextBoxStyle}" Foreground="{StaticResource ColorSilver}"
+                     Validation.ErrorTemplate="{StaticResource validationTemplate}"
+                     Visibility="{Binding IsServiceRootEnabled, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWayToSource}">
+                <TextBox.Text>
+                    <Binding Path="ServiceUriString" UpdateSourceTrigger="PropertyChanged">
+                        <Binding.ValidationRules>
+                            <DataErrorValidationRule />
+                            <ExceptionValidationRule />
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
+            <Button Grid.Column="1" Content="{l:ItemsSourceWizardStringId StringId=TestConnection}" Height="25" FontSize="16" Width="80" Command="{Binding TestConnectionCmd}" 
+                    Style="{StaticResource ButtonStyle}" IsEnabled="{Binding Path=(Validation.HasError), ElementName=tb, Mode=OneWay, Converter={StaticResource BoolInverseConverter}}" />
+        </Grid>
+    </DataTemplate>
+    <DataTemplate x:Key="DefaultSortingTemplate">
+        <Grid Height="26">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <ComboBox Grid.Column="0" ItemsSource="{Binding FieldNames}" SelectedItem="{Binding SelectedSortFieldName}"
+                                      Style="{StaticResource ComboBoxBorderStyle}" />
+            <StackPanel Grid.Column="1" Orientation="Horizontal" Margin="5,0,0,0" Width="80" 
+                        Visibility="{Binding IsDefaultSortingSelected, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}">
+                <ToggleButton Width="38" IsChecked="{Binding IsAscDirection}" Style="{StaticResource ToggleButtonStyle}">
+                    <Image Source="..\Images\Up.png" Stretch="None" />
+                </ToggleButton>
+                <ToggleButton Margin="4,0,0,0" Width="38" IsChecked="{Binding IsAscDirection, Converter={StaticResource BoolInverseConverter}}" 
+                              Style="{StaticResource ToggleButtonStyle}">
+                    <Image Source="..\Images\Down.png" Stretch="None" />
+                </ToggleButton>
+            </StackPanel>
+        </Grid>
+    </DataTemplate>
+
+    <!--DomainDataSource Part-->
+    <DataTemplate x:Key="DomainDataSourceDescriptionsTemplate">
+        <StackPanel Orientation="Vertical" x:Name="root">
+            <StackPanel>
+                <TextBlock Text="{l:ItemsSourceWizardStringId StringId=PageSize}" Margin="0,0,0,5" FontSize="16" Foreground="{StaticResource ColorSilver}" />
+                <lt:IntegerTextBox Style="{StaticResource TextBoxStyle}" Foreground="{StaticResource ColorSilver}" Validation.ErrorTemplate="{StaticResource validationTemplate}">
+                    <lt:IntegerTextBox.Text>
+                        <Binding Path="PageSize" UpdateSourceTrigger="PropertyChanged">
+                            <Binding.ValidationRules>
+                                <!--<DataErrorValidationRule />
+                                <ExceptionValidationRule />-->
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </lt:IntegerTextBox.Text>
+                </lt:IntegerTextBox>
+            </StackPanel>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <GroupBox Header="{l:ItemsSourceWizardStringId StringId=GroupDesc}" FontSize="16" Foreground="{StaticResource ColorSilver}" Style="{StaticResource GroupBoxStyle}"
+                          >
+                    <StackPanel Orientation="Vertical">
+                        <ListBox ItemsSource="{Binding GroupDescriptions}" SelectedIndex="{Binding SelectedGroupDescription}" 
+                                 Style="{DynamicResource ListStyleBase}" Height="70" DisplayMemberPath="PropertyName">
+                        </ListBox>
+                        <ComboBox ItemsSource="{Binding FieldNames}" SelectedItem="{Binding SelectedGroupFieldName}"  
+                              Style="{StaticResource ComboBoxBorderStyle}" Margin="2" />
+                        <Grid Margin="0,5,0,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Button Content="{l:ItemsSourceWizardStringId StringId=Add}" Height="25" Margin="2" Command="{Binding AddGroup}" Style="{StaticResource ButtonStyle}" />
+                            <Button Grid.Column="1" Content="{l:ItemsSourceWizardStringId StringId=Delete}" Margin="2" Height="25" Command="{Binding DeleteGroup}" Style="{StaticResource ButtonStyle}" />
+                        </Grid>
+                    </StackPanel>
+                </GroupBox>
+                <GroupBox Grid.Column="1" Header="{l:ItemsSourceWizardStringId StringId=SortDesc}" FontSize="16" Foreground="{StaticResource ColorSilver}" Style="{StaticResource GroupBoxStyle}"
+                          >
+                    <StackPanel Orientation="Vertical">
+                        <ListBox ItemsSource="{Binding SortDescriptions}" SelectedIndex="{Binding SelectedSortDescription}" 
+                                 Style="{DynamicResource ListStyleBase}" DisplayMemberPath="PropertyName" Height="70">
+                        </ListBox>
+                        <Grid Margin="2">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <ComboBox Grid.Column="0" ItemsSource="{Binding FieldNames}" SelectedItem="{Binding SelectedSortFieldName}"
+                                      Style="{StaticResource ComboBoxBorderStyle}" Margin="0,0,2,0" />
+                            <ComboBox Grid.Column="1" ItemsSource="{Binding Directions}" SelectedItem="{Binding SelectedSortDirection}"
+                                      Style="{StaticResource ComboBoxBorderStyle}" />
+                        </Grid>
+                        <Grid Margin="0,5,0,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Button Content="{l:ItemsSourceWizardStringId StringId=Add}" Height="25" Margin="2" Command="{Binding AddSort}" Style="{StaticResource ButtonStyle}" />
+                            <Button Grid.Column="1" Content="{l:ItemsSourceWizardStringId StringId=Delete}" Margin="2" Height="25" Command="{Binding DeleteSort}" Style="{StaticResource ButtonStyle}" />
+                        </Grid>
+                    </StackPanel>
+                </GroupBox>
+            </Grid>
+        </StackPanel>
+    </DataTemplate>
+    <DataTemplate x:Key="LoadDelayTemplate">
+        <lt:IntegerTextBox Style="{StaticResource TextBoxStyle}" Foreground="{StaticResource ColorSilver}" Validation.ErrorTemplate="{StaticResource validationTemplate}" Margin="2">
+            <lt:IntegerTextBox.Text>
+                <Binding Path="LoadDelay" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <DataErrorValidationRule />
+                        <ExceptionValidationRule />
+                    </Binding.ValidationRules>
+                </Binding>
+            </lt:IntegerTextBox.Text>
+        </lt:IntegerTextBox>
+    </DataTemplate>
+    <DataTemplate x:Key="LoadIntervalTemplate">
+        <lt:IntegerTextBox Style="{StaticResource TextBoxStyle}" Foreground="{StaticResource ColorSilver}" Validation.ErrorTemplate="{StaticResource validationTemplate}" Margin="2">
+            <lt:IntegerTextBox.Text>
+                <Binding Path="LoadInterval" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <DataErrorValidationRule />
+                        <ExceptionValidationRule />
+                    </Binding.ValidationRules>
+                </Binding>
+            </lt:IntegerTextBox.Text>
+        </lt:IntegerTextBox>
+    </DataTemplate>
+    <DataTemplate x:Key="LoadSizeTemplate">
+        <lt:IntegerTextBox Style="{StaticResource TextBoxStyle}" Foreground="{StaticResource ColorSilver}" Validation.ErrorTemplate="{StaticResource validationTemplate}" Margin="2">
+            <lt:IntegerTextBox.Text>
+                <Binding Path="LoadSize" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <DataErrorValidationRule />
+                        <ExceptionValidationRule />
+                    </Binding.ValidationRules>
+                </Binding>
+            </lt:IntegerTextBox.Text>
+        </lt:IntegerTextBox>
+    </DataTemplate>
+    <DataTemplate x:Key="RefreshIntervalTemplate">
+        <lt:IntegerTextBox Style="{StaticResource TextBoxStyle}" Foreground="{StaticResource ColorSilver}" Validation.ErrorTemplate="{StaticResource validationTemplate}" Margin="2">
+            <lt:IntegerTextBox.Text>
+                <Binding Path="RefreshInterval" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <DataErrorValidationRule />
+                        <ExceptionValidationRule />
+                    </Binding.ValidationRules>
+                </Binding>
+            </lt:IntegerTextBox.Text>
+        </lt:IntegerTextBox>
+    </DataTemplate>
+    <DataTemplate x:Key="AutoLoadTemplate">
+        <CheckBox Style="{DynamicResource CheckBoxStyle}" Foreground="{StaticResource ColorSilver}" 
+                      FontSize="16" Content="{l:ItemsSourceWizardStringId StringId=Enable}" IsChecked="{Binding AutoLoad}" Margin="2" />
+    </DataTemplate>
+</ResourceDictionary>

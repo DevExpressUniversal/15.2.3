@@ -1,0 +1,354 @@
+﻿<#@ template language="C#" #>
+<#@ import namespace="System" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="DevExpress.Design.Mvvm" #>
+<#@ import namespace="DevExpress.Xpf.Core.Design.Wizards.Mvvm.EntityFramework" #>
+<#@ import namespace="DevExpress.Xpf.Core.Design.Wizards.Mvvm" #>
+<#@ import namespace="DevExpress.Xpf.Core.Design.Wizards.Mvvm.ViewModelData" #>
+<#@ import namespace="DevExpress.Xpf.Core.Native" #>
+<#@ import namespace="DevExpress.Mvvm.UI.Native.ViewGenerator" #>
+<#@ import namespace="DevExpress.Mvvm.Native" #>
+<#@ import namespace="DevExpress.Xpf.Internal.EntityFrameworkWrappers" #>
+<#
+    T4TemplateInfo templateInfo = this.GetTemplateInfo();
+    EntityViewModelData viewModelData = templateInfo.Properties["IViewModelInfo"] as EntityViewModelData;
+    UIType uiType = (UIType)templateInfo.Properties["UIType"];
+    string viewName = templateInfo.Properties["ViewName"].ToString();    
+    string localNamespace = templateInfo.Properties["Namespace"].ToString();
+    string viewFullName = localNamespace + "." + viewName;
+    var editorInfos = (PropertyEditorGroupInfo)templateInfo.Properties["EditorInfos"];
+    var allInfos = editorInfos.Groups.Flatten(g => g.Groups).Concat(new[] { editorInfos }).SelectMany(g => g.Items);
+    bool hasHiddenEditors = allInfos.Any(i => i.Property.Attributes.Hidden());
+    XamlNamespaces xamlNamespaces = templateInfo.Properties["XamlNamespaces"] as XamlNamespaces;
+    string viewModelPrefix = templateInfo.Properties["viewModelPrefix"].ToString();
+    var context = (TemplateGenerationContext)templateInfo.Properties["TemplateGenerationContext"];
+    string defaultNamespace = (string)templateInfo.Properties["DefaultNamespacePrefix"];
+#>
+<UserControl x:Class="<#=viewFullName#>"
+    <#PasteXamlNamespaces(xamlNamespaces);#>
+    xmlns:view="clr-namespace:<#=defaultNamespace#><#=localNamespace#>"
+<#this.ExecuteEntityViewHook(TemplatesCodeGen.STR_EntityViewHook_GenerateAdditionalXmlNamespaces);#>
+    mc:Ignorable="<#=xamlNamespaces.GetPrefix(XamlNamespaces.xmlns_blend)#>"
+    d:DesignHeight="400" d:DesignWidth="600"
+<#if(viewModelData.UseProxyFactory) {#>
+    DataContext="{dxmvvm:ViewModelSource <#=viewModelPrefix#>:<#=viewModelData.Name#>}"<#}#>>
+<#if(!viewModelData.UseProxyFactory) {#>
+    <UserControl.DataContext>
+        <<#=viewModelPrefix#>:<#=viewModelData.Name#>/>
+    </UserControl.DataContext>
+<#}#>
+<#if(viewModelData.SupportServices) {#>
+    <dxmvvm:Interaction.Behaviors>
+        <dx:DXMessageBoxService/>
+        <dxmvvm:EventToCommand Event="Loaded" Command="{Binding OnLoadedCommand}" />
+    </dxmvvm:Interaction.Behaviors>
+<#}#>
+    <Grid>
+        <DockPanel>
+            <dxr:RibbonControl RibbonStyle="Office2010" DockPanel.Dock="Top" AllowCustomization="False">
+                <dxr:RibbonDefaultPageCategory Caption="defaultCategory">
+                    <dxr:RibbonPage Caption="<#if(uiType == UIType.OutlookInspired) {#>HOME<#} else {#>Home<#}#>">
+                        <dxr:RibbonPageGroup Caption="<#=TemplatesCodeGen.GetCaption(viewModelData.EntityTypeName)#> Tasks">
+<#foreach(CommandInfo command in viewModelData.NonLayoutCommands) {#>
+                            <dxb:BarButtonItem Content="<#=command.Caption#>" Command="{Binding <#=command.CommandPropertyName#>}" <#if(command.HasGlyphs()){#>LargeGlyph="<#=command.LargeGlyph#>" Glyph="<#=command.SmallGlyph#>"<#}#>/>
+<#}#>
+                        </dxr:RibbonPageGroup>
+                        <dxr:RibbonPageGroup Caption="Layout">
+                            <dxb:BarCheckItem Content="Customize" IsChecked="{Binding IsCustomization, ElementName=layoutControl}" LargeGlyph="{dx:DXImage Image=PageSetup_32x32.png}" Glyph="{dx:DXImage Image=PageSetup_16x16.png}" />
+<#foreach(CommandInfo command in viewModelData.LayoutCommands) {#>
+                            <dxb:BarButtonItem Content="<#=command.Caption#>" Command="{Binding <#=command.CommandPropertyName#>}" <#if(command.HasGlyphs()){#>LargeGlyph="<#=command.LargeGlyph#>" Glyph="<#=command.SmallGlyph#>"<#}#>/>
+<#}#>
+                        </dxr:RibbonPageGroup>
+                    </dxr:RibbonPage>
+                </dxr:RibbonDefaultPageCategory>
+            </dxr:RibbonControl>
+            <dxr:RibbonStatusBarControl DockPanel.Dock="Bottom"/>
+            <Grid>
+                <dxmvvm:Interaction.Behaviors>
+                    <dxmvvm:LayoutSerializationService />
+                </dxmvvm:Interaction.Behaviors>
+                <dxlc:DataLayoutControl AutoGenerateItems="False" CurrentItem="{Binding <#=viewModelData.EntityPropertyName#>}" x:Name="layoutControl" Orientation="Vertical" IsEnabled="{Binding Entity, Converter={dxmvvm:ObjectToBooleanConverter}}">
+                    <dxmvvm:Interaction.Behaviors>
+                        <dxmvvm:EventToCommand Event="{x:Static Binding.SourceUpdatedEvent}" Command="{Binding UpdateCommand}" />
+                    </dxmvvm:Interaction.Behaviors>
+<#if(!this.ExecuteEntityViewHook(TemplatesCodeGen.STR_EntityViewHook_GenerateCustomLayoutItems)) {#>
+<#                    PushIndent("                    ");
+                    WriteEditors(editorInfos, viewModelData.EntityPropertyName, viewModelData.EntityTypeName, context, true);
+                    PopIndent();
+#>
+<#this.ExecuteEntityViewHook(TemplatesCodeGen.STR_EntityViewHook_GenerateAdditionalLayoutItems);#>
+<#AddLookUpTables(context, viewModelData, templateInfo);#>
+<#if(hasHiddenEditors) {#>
+                    <dxlc:LayoutControl.AvailableItems>
+<#                    PushIndent("                    ");
+                    WriteEditors(editorInfos, viewModelData.EntityPropertyName, viewModelData.EntityTypeName, context, false);
+                    PopIndent();
+#>
+                    </dxlc:LayoutControl.AvailableItems>
+<#}#>
+<#}#>
+                </dxlc:DataLayoutControl>
+            </Grid>
+        </DockPanel>
+    </Grid>
+</UserControl>
+<#+
+public void WriteEditors(PropertyEditorGroupInfo rootGroup, string entityPropertyName, string entityName, TemplateGenerationContext context, bool visible) {
+    foreach(var info in rootGroup.Items) {
+        WriteEditor(info, entityPropertyName, entityName, context, visible);
+    }
+    int n = 0;
+    foreach(var group in rootGroup.Groups) {
+        WriteGroup(group, visible, entityPropertyName, entityName, context, ref n);
+    }
+}
+void WriteGroup(PropertyEditorGroupInfo group, bool visible, string entityPropertyName, string entityName, TemplateGenerationContext context, ref int n) {
+    n++;
+    var items = group.Items.Where(i => i.Property.Attributes.Hidden() == !visible);
+    if (items.Any()) #>
+<dxlc:LayoutGroup x:Name="layoutGroup<#=n#>" View="<#=group.View#>" Orientation="<#=group.Orientation#>" Header="<#=group.Name#>" >
+<#+
+        PushIndent("    ");
+        foreach(var info in items) {
+            WriteEditor(info, entityPropertyName, entityName, context, visible);
+        }
+        foreach(var subgroup in group.Groups) {
+            WriteGroup(subgroup, visible, entityPropertyName, entityName, context, ref n);
+        }
+        PopIndent();        
+#>
+</dxlc:LayoutGroup>
+<#+}
+public void WriteEditor(PropertyEditorInfo info, string entityPropertyName, string entityName, TemplateGenerationContext context, bool visible) {
+    if(info.Property.Attributes.Hidden() == visible)
+        return;
+    if(info.IsLookup) {
+        
+        if (info.IsReadonly) { #>
+<dxlc:DataLayoutItem Label="<#=info.Label#>" Name="layoutItem<#=info.Property.Name#>" Binding="{Binding <#=info.Lookup.BindingPath#>, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True" />
+<#+     } else {
+            var lookupProp = info.Lookup.ItemsSource;
+            var suffix = ".Entities";
+            var lookupPropSansEntities = lookupProp.EndsWith(suffix) ? lookupProp.Substring(0, lookupProp.Length - suffix.Length) : lookupProp;
+            bool isCompositeKey = false;
+            var editValue = entityPropertyName + "." + info.Lookup.ForeignKeyInfo.ForeignKeyPropertyName;
+            if (context != null && context.MetadataWorkspace != null) {
+                var entityWrapper = TemplatesCodeGen.FindEntityType(context.MetadataWorkspace, entityName);
+                var navigationProperty = entityWrapper.NavigationProperties.First(x => x.Name == info.Property.Name);
+                var lookupEntityType = navigationProperty.ToEndMember.GetEntityType();
+                isCompositeKey = lookupEntityType.KeyMembers.Count() > 1;
+                if (isCompositeKey) {
+                    editValue = lookupPropSansEntities + "Entity";
+                }
+            }
+ #>
+<dxlc:LayoutItem Label="<#=info.Label#>" Name="layoutItem<#=info.Property.Name#>">
+    <dxg:LookUpEdit ItemsSource="{Binding <#=info.Lookup.ItemsSource#>}"
+                    EditValue="{Binding <#=editValue#>, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnSourceUpdated=True}"
+<#+if (!isCompositeKey) {#>
+                    ValueMember="<#=info.Lookup.ForeignKeyInfo.PrimaryKeyPropertyName#>"
+<#+}#>
+                    DisplayMember="<#=info.Lookup.DisplayMemberPropertyName#>"
+                    IsTextEditable="False"
+                    AllowUpdateTwoWayBoundPropertiesOnSynchronization="False">
+<#+ if(lookupProp.EndsWith(suffix)) {
+        lookupProp = lookupPropSansEntities;
+#>
+        <dxg:LookUpEdit.PopupContentTemplate>
+            <ControlTemplate TargetType="ContentControl">
+                <dxg:GridControl x:Name="PART_GridControl" ShowBorder="False" ShowLoadingPanel="{Binding <#=lookupProp#>.IsLoading}" />
+            </ControlTemplate>
+        </dxg:LookUpEdit.PopupContentTemplate>
+<#+ } #>
+    </dxg:LookUpEdit>
+</dxlc:LayoutItem>
+<#+        }
+    } else if (info.IsImage) { #>
+<dxlc:LayoutItem Label="<#=info.Label#>" Name="layoutItem<#=info.Property.Name#>">
+    <dxe:ImageEdit EditValue="{Binding <#=entityPropertyName#>.<#=info.Property.Name#>, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnSourceUpdated=True}" MaxHeight="200" />
+</dxlc:LayoutItem>
+<#+ } else { 
+        string readOnly = null;
+        if(info.IsReadonly) {
+            readOnly = "True";
+        } else if (context != null && context.MetadataWorkspace != null) {
+            var entity = TemplatesCodeGen.FindEntityType(context.MetadataWorkspace, entityName);
+            var keyMember = entity.KeyMembers.FirstOrDefault(m => m.Name == info.Property.Name);
+            if (keyMember != null) {
+                readOnly = "{Binding DataContext.IsPrimaryKeyReadOnly, RelativeSource={RelativeSource AncestorType={x:Type dxlc:DataLayoutControl}}}";
+            }
+        }
+#>
+<dxlc:DataLayoutItem Label="<#=info.Label#>" Name="layoutItem<#=info.Property.Name#>" Binding="{Binding <#=info.Property.Name#>, UpdateSourceTrigger=PropertyChanged}"<#+if(readOnly != null){#> IsReadOnly="<#=readOnly#>"<#+}#> />
+<#+ }
+}
+void AddLookUpTables(TemplateGenerationContext context, EntityViewModelData viewModelData, T4TemplateInfo templateInfo) {
+    var m2ms = new List<Tuple<ManyToManyInfo, NavigationPropertyRuntimeWrapper>>();
+    if (context.MetadataWorkspace != null) { // not viewmodel -> view
+        var entityTypeWrapper = TemplatesCodeGen.FindEntityType(context.MetadataWorkspace, viewModelData.EntityTypeName);
+        foreach(var navigation in entityTypeWrapper.NavigationProperties) {
+            var manyToMany = TemplatesCodeGen.FindManyToManyAssociation(context.MetadataWorkspace, entityTypeWrapper.Name, navigation.ToEndMember.GetEntityType().Name);
+            if (manyToMany != null) {
+                m2ms.Add(Tuple.Create(manyToMany, navigation));
+            }
+        }
+    }
+    if (!viewModelData.LookUpTables.Any() && !m2ms.Any())
+        return;
+#>
+    <dxlc:LayoutGroup x:Name="Tabs" View="Tabs" MinHeight="250">
+<#+
+    foreach(var t in m2ms) {
+        var navigation = t.Item2;
+        var m2m = t.Item1;
+#>
+	<dxb:BarManager MDIMergeStyle="Never" dxlc:LayoutControl.TabHeader="<#=m2m.OtherEntity.Name#>" dxb:BarNameScope.IsScopeOwner="True" DataContext="{Binding <#=navigation.Name#>DetailEntities}">
+        <dxmvvm:Interaction.Behaviors>
+            <dx:DialogService DialogWindowStartupLocation="CenterOwner">
+                <dx:DialogService.DialogStyle>
+                    <Style TargetType="Window">
+                        <Setter Property="Width" Value="600" />
+                        <Setter Property="Height" Value="400" />
+                        <Setter Property="ResizeMode" Value="NoResize" />
+                        <Setter Property="ShowInTaskbar" Value="False" />
+                        <Setter Property="WindowStyle" Value="ToolWindow" />
+                    </Style>
+                </dx:DialogService.DialogStyle>
+                <dx:DialogService.ViewTemplate>
+                    <DataTemplate>
+                        <dxg:GridControl ItemsSource="{Binding AvailableEntities}" SelectedItems="{Binding SelectedEntities}" SelectionMode="Row" ShowBorder="False" AutoGenerateColumns="RemoveOld" EnableSmartColumnsGeneration="True">
+                            <dxg:GridControl.TotalSummary>
+                                <dxg:GridSummaryItem SummaryType="Count" Alignment="Right" />
+                            </dxg:GridControl.TotalSummary>
+                            <dxg:GridControl.View>
+                                <dxg:TableView AllowEditing="False" ShowFixedTotalSummary="True" AllowPerPixelScrolling="True" ShowGroupPanel="False" AutoWidth="True" />
+                            </dxg:GridControl.View>
+                        </dxg:GridControl>
+                    </DataTemplate>
+                </dx:DialogService.ViewTemplate>
+            </dx:DialogService>
+        </dxmvvm:Interaction.Behaviors>
+        <dxb:BarManager.Bars>
+            <dxb:Bar>
+                <dxb:BarButtonItem IsVisible="{Binding IsCreateDetailButtonVisible}" ToolTip="Create Detail Entity" Glyph="{dx:DXImage Image=New_16x16.png}" Command="{Binding CreateDetailEntityCommand}" />
+                <dxb:BarButtonItem ToolTip="Edit Detail Entity" Glyph="{dx:DXImage Image=Edit_16x16.png}" Command="{Binding EditDetailEntityCommand}" />
+                <dxb:BarButtonItem ToolTip="Add Associations" Glyph="{dx:DXImage Image=Add_16x16.png}" Command="{Binding AddDetailEntitiesCommand}" />
+                <dxb:BarButtonItem ToolTip="Remove Associations" Glyph="{dx:DXImage Image=Remove_16x16.png}" Command="{Binding RemoveDetailEntitiesCommand}" />
+            </dxb:Bar>
+        </dxb:BarManager.Bars>
+        <dxg:GridControl ItemsSource="{Binding DetailEntities}" SelectedItems="{Binding SelectedEntities}" ShowBorder="False" SelectionMode="Row" AutoGenerateColumns="RemoveOld" EnableSmartColumnsGeneration="True">
+            <dxg:GridControl.TotalSummary>
+                <dxg:GridSummaryItem SummaryType="Count" Alignment="Right" />
+            </dxg:GridControl.TotalSummary>
+            <dxg:GridControl.View>
+                <dxg:TableView AllowEditing="False" ShowFixedTotalSummary="True" AllowPerPixelScrolling="True" ShowGroupPanel="False" AutoWidth="True">
+                </dxg:TableView>
+            </dxg:GridControl.View>
+        </dxg:GridControl>
+    </dxb:BarManager>
+<#+
+    }
+    foreach(LookUpCollectionViewModelData item in viewModelData.LookUpTables) {
+        if (TemplatesCodeGen.IsAlreadyHandled(item, m2ms.Select(t => t.Item2)))
+            continue;
+        AddLookUpTable(context, viewModelData, item, templateInfo);
+    }
+#>
+    </dxlc:LayoutGroup>
+<#+
+}
+void AddLookUpTable(TemplateGenerationContext context, EntityViewModelData parentViewModelData, LookUpCollectionViewModelData viewModelData, T4TemplateInfo templateInfo) {
+    string generatedFieldsBase64 = (string)templateInfo.Properties["GeneratedFieldsBase64."+viewModelData.Name];
+    string generatedBandsBase64 = (string)templateInfo.Properties["GeneratedBandsBase64."+viewModelData.Name];
+    var manyToMany = TemplatesCodeGen.FindManyToManyAssociation(context.MetadataWorkspace, parentViewModelData.EntityTypeName, viewModelData.EntityTypeName);
+    string dataContext = GetLookUpPropertyName(parentViewModelData, viewModelData);
+#>
+    <Grid dxb:MergingProperties.AllowMerging="False" x:Name="<#=dataContext#>Panel" dxb:BarNameScope.IsScopeOwner="True" DataContext="{Binding <#=dataContext#>}" dxlc:LayoutControl.TabHeader="<#=viewModelData.LookUpCollectionPropertyAssociationName#>">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <dxb:ToolBarControl>
+<#+foreach(CommandInfo command in viewModelData.Commands) {#>
+            <dxb:BarButtonItem BarItemDisplayMode="ContentAndGlyph" Content="<#=command.Caption#>" Command="{Binding <#=command.CommandPropertyName#>}" <#+if(command.HasParameter()){#>CommandParameter="{Binding <#=command.ParameterPropertyName#>}"<#+}#> <#+if(command.HasGlyphs()){#>Glyph="<#=command.SmallGlyph#>"<#+}#>/>
+<#+}#>
+        </dxb:ToolBarControl>
+        <dxg:GridControl dx:DXSerializer.SerializationID="<#=dataContext#>Grid" ItemsSource="{Binding <#=viewModelData.CollectionPropertyName#>}" <#+if(viewModelData.HasEntityPropertyName()){#>CurrentItem="{Binding <#=viewModelData.EntityPropertyName#>}"<#+}#> MaxHeight="2000" ShowLoadingPanel="{Binding IsLoading}" Grid.Row="1">
+            <#+if(viewModelData.HasEntityEditProperty()) {#>
+            <dxmvvm:Interaction.Behaviors>
+                <dxmvvm:EventToCommand PassEventArgsToCommand="True" Command="{Binding EditCommand}" EventName="MouseDoubleClick">
+                    <dxmvvm:EventToCommand.EventArgsConverter>
+                        <dx:EventArgsToDataRowConverter/>
+                    </dxmvvm:EventToCommand.EventArgsConverter>
+                </dxmvvm:EventToCommand>
+            </dxmvvm:Interaction.Behaviors>
+<#+}#>
+<#+if(!string.IsNullOrEmpty(generatedFieldsBase64)) {#>
+            <dxg:GridControl.Columns>
+                <#=generatedFieldsBase64#>
+            </dxg:GridControl.Columns>
+<#+}#>
+<#+if(!string.IsNullOrEmpty(generatedBandsBase64)) {#>
+            <dxg:GridControl.Bands>
+                <#=generatedBandsBase64#>
+            </dxg:GridControl.Bands>
+<#+}#>
+            <dxg:GridControl.TotalSummary>
+                <dxg:GridSummaryItem SummaryType="Count" Alignment="Right"/>
+            </dxg:GridControl.TotalSummary>
+            <dxg:GridControl.GroupSummary>
+                <dxg:GridSummaryItem SummaryType="Count"/>
+            </dxg:GridControl.GroupSummary>
+            <dxg:GridControl.View>
+                <dxg:TableView AllowEditing="False" ShowFixedTotalSummary="True" AllowPerPixelScrolling="True" ShowGroupPanel="False">
+                    <dxg:TableView.RowCellMenuCustomizations>
+<#+foreach(CommandInfo command in viewModelData.Commands) {#>
+                    <dxb:BarButtonItem Content="<#=command.Caption#>" Command="{Binding View.DataContext.<#=command.CommandPropertyName#>}" <#+if(command.HasParameter()){#>CommandParameter="{Binding Row.Row}"<#+}#> <#+if(command.HasGlyphs()){#>Glyph="<#=command.SmallGlyph#>"<#+}#>/>
+<#+}#>
+                    </dxg:TableView.RowCellMenuCustomizations>
+                </dxg:TableView>
+            </dxg:GridControl.View>
+        </dxg:GridControl>    
+    </Grid>
+<#+}
+void AddBarButtonItemsForLookUpTables(EntityViewModelData viewModelData, T4TemplateInfo templateInfo){
+    foreach(LookUpCollectionViewModelData item in viewModelData.LookUpTables) 
+        AddBarButtonItemsForLookUpTable(viewModelData, item, templateInfo);
+}
+void AddBarButtonItemsForLookUpTable(EntityViewModelData parentViewModelData, LookUpCollectionViewModelData viewModelData, T4TemplateInfo templateInfo){
+    string lookUpTablePropertyName = GetLookUpPropertyName(parentViewModelData, viewModelData);
+    foreach(CommandInfo command in viewModelData.Commands) {
+        string commandName = GetCommandName(command, viewModelData.EntityTypeName);#>
+        <dxb:BarButtonItem Content="<#=command.Caption#>" Command="{Binding <#=lookUpTablePropertyName#>.<#=command.CommandPropertyName#>}" <#+if(command.HasParameter()){#>CommandParameter="{Binding <#=lookUpTablePropertyName#>.<#=command.ParameterPropertyName#>}"<#+}#> <#+if(command.HasGlyphs()){#>LargeGlyph="<#=command.LargeGlyph#>" Glyph="<#=command.SmallGlyph#>"<#+}#>/>
+<#+}
+}
+
+string GetCommandName(CommandInfo info, string entityTypeName){
+    string str_command = "Command";
+    string infoCommandPropertyName = info.CommandPropertyName;
+    string shortName = infoCommandPropertyName.EndsWith(str_command) ? infoCommandPropertyName.Remove(infoCommandPropertyName.Length - str_command.Length) : null;
+    if(string.IsNullOrEmpty(shortName))
+        return infoCommandPropertyName+entityTypeName;
+    return shortName+entityTypeName+str_command;
+}
+string GetLookUpGridName(LookUpCollectionViewModelData viewModelData){
+    return viewModelData.LookUpCollectionPropertyAssociationName+"Grid";
+}
+string GetLookUpPropertyName(EntityViewModelData parentViewModelData, LookUpCollectionViewModelData viewModelData){
+    return parentViewModelData.EntityTypeName+viewModelData.LookUpCollectionPropertyAssociationName + "Details";    
+}
+void PasteXamlNamespaces(XamlNamespaces xamlNamespaces) {
+    string[] toAdd = new string[]{
+        XmlNamespaceConstants.RibbonNamespaceDefinition,
+        XmlNamespaceConstants.EditorsNamespaceDefinition,
+        XmlNamespaceConstants.LayoutControlNamespaceDefinition,
+        XmlNamespaceConstants.BarsNamespaceDefinition,
+        XmlNamespaceConstants.UtilsNamespaceDefinition,
+        XmlNamespaceConstants.GridNamespaceDefinition,
+        XmlNamespaceConstants.MvvmNamespaceDefinition
+    };
+    xamlNamespaces.AddDevExpressXamlNamespaces(toAdd);
+    this.WriteLine(xamlNamespaces.GetXaml());
+}#>

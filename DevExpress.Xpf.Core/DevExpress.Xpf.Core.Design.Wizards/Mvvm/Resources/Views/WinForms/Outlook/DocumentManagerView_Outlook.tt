@@ -1,0 +1,153 @@
+﻿<#@ template language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="DevExpress.Design.Mvvm" #>
+<#@ import namespace="DevExpress.Xpf.Core.Design.Wizards.Mvvm.EntityFramework" #>
+<#@ import namespace="DevExpress.Xpf.Core.Design.Wizards.Mvvm" #>
+<#@ import namespace="DevExpress.Xpf.Core.Design.Wizards.Mvvm.ViewModelData" #>
+<#@ import namespace="DevExpress.Xpf.Core.Native" #>
+<#
+	T4TemplateInfo templateInfo = this.GetTemplateInfo();
+    string viewName = templateInfo.Properties["ViewName"].ToString();
+    string localNamespace = templateInfo.Properties["Namespace"].ToString();
+	string viewFullName = localNamespace +"." + viewName; 
+	DocumentManagerViewModelInfo viewModelData = templateInfo.Properties["IViewModelInfo"] as DocumentManagerViewModelInfo;
+	string mvvmContextFullName = viewModelData.Namespace+"."+viewModelData.Name;
+	bool IsVisualBasic = (bool)templateInfo.Properties["IsVisualBasic"];
+#>
+<#
+if(!IsVisualBasic){
+#>
+using System;
+using System.Linq;
+using System.Collections.Generic;
+using DevExpress.XtraEditors;
+using DevExpress.XtraBars;
+using DevExpress.Utils.MVVM.Services;
+using DevExpress.Utils.MVVM;
+
+namespace <#=viewFullName#>{
+    public partial class <#=viewName#> : XtraUserControl {
+        public <#=viewName#>() {
+			InitializeComponent();
+			if(!mvvmContext.IsDesignMode)
+                InitializeNavigation();
+            ribbonControl.Merge += ribbonControl_Merge;
+            ribbonControl.UnMerge += ribbonControl_UnMerge;
+        }
+
+        private void ribbonControl_UnMerge(object sender, DevExpress.XtraBars.Ribbon.RibbonMergeEventArgs e) {
+            ribbonControl.SelectedPage = e.MergeOwner.SelectedPage;
+            ribbonControl.StatusBar.UnMergeStatusBar();
+        }
+
+        void ribbonControl_Merge(object sender, DevExpress.XtraBars.Ribbon.RibbonMergeEventArgs e) {
+            ribbonControl.SelectedPage = e.MergedChild.SelectedPage;
+            ribbonControl.StatusBar.MergeStatusBar(e.MergedChild.StatusBar);
+        }
+        void InitializeNavigation() {
+			DevExpress.XtraEditors.WindowsFormsSettings.SetDPIAware();
+            DevExpress.XtraEditors.WindowsFormsSettings.EnableFormSkins();
+            DevExpress.XtraEditors.WindowsFormsSettings.AllowPixelScrolling = DevExpress.Utils.DefaultBoolean.True;
+            DevExpress.XtraEditors.WindowsFormsSettings.ScrollUIMode = DevExpress.XtraEditors.ScrollUIMode.Touch;
+            DevExpress.LookAndFeel.UserLookAndFeel.Default.SetSkinStyle("Office 2013 Light Gray");	
+
+            mvvmContext.RegisterService(DocumentManagerService.Create(navigationFrame));
+            DevExpress.Utils.MVVM.MVVMContext.RegisterFlyoutDialogService();
+            // We want to use buttons in Ribbon to show the specific modules
+            var fluentAPI = mvvmContext.OfType<<#=mvvmContextFullName#>>();
+			<#
+			int indexer =0;
+			foreach(var item in viewModelData.Tables){
+				string nameForItem = "navigationBarItem" + item.ViewName;
+				string nameForRibbonItem = "barButtonItem" + item.ViewName;
+			#>
+            fluentAPI.BindCommand(<#=nameForItem#>, (x, m) => x.Show(m), x => x.Modules[<#=indexer#>]);
+			fluentAPI.BindCommand(<#=nameForRibbonItem#>, (x, m) => x.Show(m), x => x.Modules[<#=indexer#>]);
+			<#indexer++;}#>
+			<#
+			foreach(var item in viewModelData.Views){
+				string nameForItem = "navigationBarItem" + item.ViewName;
+				string nameForRibbonItem = "barButtonItem" + item.ViewName;
+			#>
+			fluentAPI.BindCommand(<#=nameForItem#>, (x, m) => x.Show(m), x => x.Modules[<#=indexer#>]);
+			fluentAPI.BindCommand(<#=nameForRibbonItem#>, (x, m) => x.Show(m), x => x.Modules[<#=indexer#>]);
+			<#indexer++;}#>
+            // We want show the default module when our UserControl is loaded
+            fluentAPI.WithEvent<EventArgs>(this, "Load")
+                .EventToCommand(x => x.OnLoaded(null), x => x.DefaultModule);
+        }
+    }
+}
+<#
+}
+if(IsVisualBasic){
+#>
+Imports System
+Imports System.Linq
+Imports System.Collections.Generic
+Imports DevExpress.XtraEditors
+Imports DevExpress.XtraBars
+Imports DevExpress.Utils.MVVM.Services
+Imports DevExpress.Utils.MVVM
+
+Namespace Global.<#=viewFullName#>
+	Partial Public Class <#=viewName#>
+		Inherits XtraUserControl
+
+		Public Sub New()
+			InitializeComponent()
+			If Not mvvmContext.IsDesignMode Then
+				InitializeNavigation()
+			End If
+			AddHandler ribbonControl.Merge, AddressOf ribbonControl_Merge
+			AddHandler ribbonControl.UnMerge, AddressOf ribbonControl_UnMerge
+		End Sub
+
+		Private Sub ribbonControl_UnMerge(ByVal sender As Object, ByVal e As DevExpress.XtraBars.Ribbon.RibbonMergeEventArgs)
+			ribbonControl.SelectedPage = e.MergeOwner.SelectedPage
+			ribbonControl.StatusBar.UnMergeStatusBar()
+		End Sub
+
+		Private Sub ribbonControl_Merge(ByVal sender As Object, ByVal e As DevExpress.XtraBars.Ribbon.RibbonMergeEventArgs)
+			ribbonControl.SelectedPage = e.MergedChild.SelectedPage
+			ribbonControl.StatusBar.MergeStatusBar(e.MergedChild.StatusBar)
+		End Sub
+		Private Sub InitializeNavigation()
+			DevExpress.XtraEditors.WindowsFormsSettings.SetDPIAware()
+			DevExpress.XtraEditors.WindowsFormsSettings.EnableFormSkins()
+			DevExpress.XtraEditors.WindowsFormsSettings.AllowPixelScrolling = DevExpress.Utils.DefaultBoolean.True
+			DevExpress.XtraEditors.WindowsFormsSettings.ScrollUIMode = DevExpress.XtraEditors.ScrollUIMode.Touch
+			DevExpress.LookAndFeel.UserLookAndFeel.Default.SetSkinStyle("Office 2013 Light Gray")
+
+			mvvmContext.RegisterService(DocumentManagerService.Create(navigationFrame))
+			DevExpress.Utils.MVVM.MVVMContext.RegisterFlyoutDialogService()
+			' We want to use buttons in Ribbon to show the specific modules
+			Dim fluentAPI = mvvmContext.OfType(Of Global.<#=mvvmContextFullName#>)()
+			<#
+			int indexer =0;
+			foreach(var item in viewModelData.Tables){
+				string nameForItem = "navigationBarItem" + item.ViewName;
+				string nameForRibbonItem = "barButtonItem" + item.ViewName;
+			#>
+            fluentAPI.BindCommand(<#=nameForItem#>, Sub(x, m) x.Show(m), Function(x) x.Modules(<#=indexer#>))
+			fluentAPI.BindCommand(<#=nameForRibbonItem#>, Sub(x, m) x.Show(m), Function(x) x.Modules(<#=indexer#>))
+			<#indexer++;}#>
+			<#
+			foreach(var item in viewModelData.Views){
+				string nameForItem = "navigationBarItem" + item.ViewName;
+				string nameForRibbonItem = "barButtonItem" + item.ViewName;
+			#>
+			fluentAPI.BindCommand(<#=nameForItem#>, Sub(x, m) x.Show(m), Function(x) x.Modules(<#=indexer#>))
+			fluentAPI.BindCommand(<#=nameForRibbonItem#>, Sub(x, m) x.Show(m), Function(x) x.Modules(<#=indexer#>))
+			<#indexer++;}#>
+			' We want show the default module when our UserControl is loaded
+			fluentAPI.WithEvent (Of EventArgs)(Me, "Load").EventToCommand(Sub(x) x.OnLoaded(Nothing), Function(x) x.DefaultModule)
+		End Sub
+	End Class
+End Namespace
+<#
+}
+#>

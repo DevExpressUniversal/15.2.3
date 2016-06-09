@@ -1,0 +1,54 @@
+﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ output extension=".cs" #>
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel;
+using DevExpress.Diagram.Core;
+using DevExpress.Mvvm.Native;
+using DevExpress.Xpf.Core;
+using DevExpress.Xpf.Diagram;
+
+namespace DevExpress.Xpf.Reports.UserDesigner.XRDiagram {
+<#foreach(var classNamePart in new string[] { "Item", "List", "Container", "Root" }) {#>
+<#
+	string className = "Diagram" + classNamePart;
+	string controllerName = className + "Controller";
+#>
+    partial class XR<#=className#> : ILogicalOwner {
+        protected class XR<#=controllerName#>Base : <#=controllerName#> {
+            public XR<#=controllerName#>Base(I<#=className#> item) : base(item) { }
+		    protected new XRDiagramControl Diagram { get { return (XRDiagramControl)base.Diagram; } }
+		    protected new DiagramItem Item { get { return (DiagramItem)base.Item; } }
+            protected override IAdorner CreateDragPreviewAdorner(IDiagramControl diagram) {
+                return XRDiagramItemBase.CreateDragPreviewAdorner(diagram);
+            }
+            protected override void BeforeDelete(Transaction transaction) {
+                XRDiagramItemBase.GetBeforeDeleteCallback(Item).Do(x => x(transaction));
+            }
+        }
+
+        protected override IEnumerable<PropertyDescriptor> GetEditablePropertiesCore() {
+            return XRDiagramItemBase.GetEditableProperties(this) ?? new PropertyDescriptor[] { };
+        }
+        protected sealed override <#=controllerName#> Create<#=classNamePart#>Controller() {
+            return CreateXR<#=classNamePart#>Controller();
+        }
+        protected virtual XR<#=controllerName#>Base CreateXR<#=classNamePart#>Controller() {
+            return new XR<#=controllerName#>(this);
+        }
+
+		void ILogicalOwner.AddChild(object child) {
+            XRDiagramItemBase.AddLogicalChild(this, child);
+        }
+        void ILogicalOwner.RemoveChild(object child) {
+            XRDiagramItemBase.RemoveLogicalChild(this, child);
+        }
+        protected override IEnumerator LogicalChildren { get { return XRDiagramItemBase.GetLogicalChildrenEnumerator(this, base.LogicalChildren); } }
+	}
+<#}#>
+}

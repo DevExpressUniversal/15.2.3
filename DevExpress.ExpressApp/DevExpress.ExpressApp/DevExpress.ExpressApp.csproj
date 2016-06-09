@@ -1,0 +1,1022 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <ProjectType>Local</ProjectType>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{39E0DE91-4458-44FA-9320-55F94BD812AB}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ApplicationIcon>
+    </ApplicationIcon>
+    <AssemblyKeyContainerName>
+    </AssemblyKeyContainerName>
+    <AssemblyName>DevExpress.ExpressApp.v15.2</AssemblyName>
+    <AssemblyOriginatorKeyFile>..\..\DevExpress.Key\StrongKey.snk</AssemblyOriginatorKeyFile>
+    <DefaultClientScript>JScript</DefaultClientScript>
+    <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
+    <DefaultTargetSchema>IE50</DefaultTargetSchema>
+    <DelaySign>false</DelaySign>
+    <OutputType>Library</OutputType>
+    <RootNamespace>DevExpress.ExpressApp</RootNamespace>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <StartupObject>
+    </StartupObject>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <SignAssembly>true</SignAssembly>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <OldToolsVersion>4.0</OldToolsVersion>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>..\..\..\Bin\Framework\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>TRACE;DEBUG;Common</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>true</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>false</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>full</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>..\..\..\Bin\Framework\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>TRACE</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>false</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>true</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>none</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  
+  
+  
+  <ItemGroup>
+    <Reference Include="DevExpress.Data.v15.2">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Bin\Framework\DevExpress.Data.v15.2.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DevExpress.Printing.v15.2.Core">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Bin\Framework\DevExpress.Printing.v15.2.Core.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DevExpress.Utils.v15.2">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Bin\Framework\DevExpress.Utils.v15.2.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    
+    <Reference Include="System">
+      <Name>System</Name>
+    <Private>False</Private></Reference>
+    <Reference Include="System.configuration"><Private>False</Private></Reference>
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    <Private>False</Private></Reference>
+    <Reference Include="System.Data"><Private>False</Private></Reference>
+    <Reference Include="System.Drawing"><Private>False</Private></Reference>
+    <Reference Include="System.Runtime.Remoting"><Private>False</Private></Reference>
+    <Reference Include="System.Runtime.Serialization">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    <Private>False</Private></Reference>
+    <Reference Include="System.ServiceModel">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    <Private>False</Private></Reference>
+    <Reference Include="System.Windows.Forms"><Private>False</Private></Reference>
+    <Reference Include="System.Xml">
+      <Name>System.XML</Name>
+    <Private>False</Private></Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AssemblyVersionInfo.cs">
+      
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ApplicationModelsManager.cs" />
+    <Compile Include="BaseObjectSpace.cs" />
+    <Compile Include="Core\DataTypePropertyAttribute.cs" />
+    <Compile Include="MiddleTier\Logger.cs" />
+    <Compile Include="MiddleTier\ServiceModel\IService.cs" />
+    <Compile Include="MiddleTier\ServiceModel\IServiceProviderEx.cs" />
+    <Compile Include="MiddleTier\ServiceModel\ServiceBase.cs" />
+    <Compile Include="MiddleTier\ServiceModel\ServiceProvider.cs" />
+    <Compile Include="ModelDifferenceDbStore.cs" />
+    <Compile Include="Design\EF\EFDesignTimeExportedTypeHelper.cs" />
+    <Compile Include="Design\EF\EFDesignTimeTypeInfoHelper.cs" />
+    <Compile Include="Design\EF\EFDesignTimeTypeInfoSource.cs" />
+    <Compile Include="Model\ColumnModelNodesComparer.cs" />
+    <Compile Include="Model\DomainLogics\ModelBandViewLogic.cs" />
+    <Compile Include="Model\IModelBandsLayout.cs" />
+    <Compile Include="Model\ModelXmlCombiner.cs" />
+    <Compile Include="Model\NodeWrappers\ModelLayoutElementCollection.cs" />
+    <Compile Include="NonPersistentObjectSpaceProvider.cs" />
+    <Compile Include="SystemModule\ActionCollection.cs" />
+    <Compile Include="SystemModule\ActionControlsSiteController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="SystemModule\ModelDifferenceAspectViewController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="SystemModule\ModelDifferenceViewController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="SystemModule\ResetViewSettingsController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="SystemModule\Notifications\NotificationsPostponeTime.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Templates\ActionControls\ActionControlContainerManager.cs" />
+    <Compile Include="Templates\ActionControls\Binding\ActionBinding.cs" />
+    <Compile Include="Templates\ActionControls\Binding\ActionBindingFactory.cs" />
+    <Compile Include="Templates\ActionControls\Binding\ActionToControlBinder.cs" />
+    <Compile Include="Templates\ActionControls\Binding\ParametrizedActionBinding.cs" />
+    <Compile Include="Templates\ActionControls\Binding\SimpleActionBinding.cs" />
+    <Compile Include="Templates\ActionControls\Binding\SingleChoiceActionBinding.cs" />
+    <Compile Include="Templates\ActionControls\IActionControl.cs" />
+    <Compile Include="Templates\ActionControls\IActionControlContainer.cs" />
+    <Compile Include="Templates\ActionControls\IActionControlsSite.cs" />
+    <Compile Include="Templates\ActionControls\IParametrizedActionControl.cs" />
+    <Compile Include="Templates\ActionControls\ISimpleActionControl.cs" />
+    <Compile Include="Templates\ActionControls\ISingleChoiceActionControl.cs" />
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <Compile Include="Updating\DatabaseUpdaterManager.cs" />
+    <Compile Include="Utils\Binding.cs" />
+    <Compile Include="Utils\DataViewExpression.cs" />
+    <Compile Include="Utils\ExpressionTypeResolver.cs" />
+    <Compile Include="Utils\IsAssignableFromViewModelClassCriteriaOperator.cs" />
+    <Compile Include="Utils\XafDataViewExpressionDescriptor.cs" />
+    <Compile Include="Utils\DataViewEvaluatorContextDescriptor.cs" />
+    <Compile Include="Core\ElementTypePropertyAttribute.cs" />
+    <Compile Include="CurrentAspectProvider.cs" />
+    <Compile Include="DashboardView.cs" />
+    <Compile Include="DC\BaseTypeInfoSource.cs" />
+    <Compile Include="DC\CustomLogics.cs" />
+    <Compile Include="DC\DCInterfaceWithUniqueValue.cs" />
+    <Compile Include="DC\IDCEntityStore.cs" />
+    <Compile Include="DC\ITypesInfoProvider.cs" />
+    <Compile Include="DC\NonPersistentEntityStore.cs" />
+    <Compile Include="DevExpress.Persistent.Base\ICheckedListBoxItemsProvider.cs" />
+    <Compile Include="DevExpress.Persistent.Base\UpdatableParameter.cs" />
+    <Compile Include="Editors\FormattingProvider.cs" />
+    <Compile Include="Editors\ISupportFilter.cs" />
+    <Compile Include="Editors\PropertyEditorHelper.cs" />
+    <Compile Include="IDataLockingManager.cs" />
+    <Compile Include="IModelNodeContainer.cs" />
+    <Compile Include="ISupportToolTip.cs" />
+    <Compile Include="Model\Core\ModelXmlConverterBase.cs" />
+    <Compile Include="Model\DomainLogics\ModelOptionsLogic.cs" />
+    <Compile Include="Model\NodeGenerators\ModelNodesGeneratorSettings.cs" />
+    <Compile Include="Model\NodeGenerators\ModelNodeIdHelper.cs" />
+    <Compile Include="NonPersistentExportedTypeHelper.cs" />
+    <Compile Include="Design\BusinessClassTypeConverter.cs" />
+    <Compile Include="CollectionSourceModeAttribute.cs" />
+    <Compile Include="CompositeView.cs" />
+    <Compile Include="Controls\NodeObjectAdapter.cs" />
+    <Compile Include="Editors\ObjectEditorHelper.cs" />
+    <Compile Include="Editors\ObjectEditorHelperBase.cs" />
+    <Compile Include="ExportedTypeHelpers.cs" />
+    <Compile Include="Localization\ApplicationStatusMesssages.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ApplicationStatusMesssages.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Core\TypeGenerator.cs" />
+    <Compile Include="Model\FastModelEditorHelper.cs" />
+    <Compile Include="NonPersistentObjectSpace.cs" />
+    <Compile Include="Model\ModelSynchronizer.cs" />
+    <Compile Include="DC\Attributes.cs" />
+    <Compile Include="EasyTest\ControlFinderBase.cs">
+    </Compile>
+    <Compile Include="Editors\ColumnsListEditor.cs" />
+    <Compile Include="Editors\ConditionalAppearance.cs" />
+    <Compile Include="Editors\DashboardViewItem.cs" />
+    <Compile Include="Editors\EditorAliases.cs" />
+    <Compile Include="Editors\EditorDescriptors.cs" />
+    <Compile Include="Editors\EditorFactory.cs" />
+    <Compile Include="Editors\EditorInfoCalculator.cs" />
+    <Compile Include="Editors\EditorFactoryInterfaces.cs" />
+    <Compile Include="Editors\ISupportFooter.cs" />
+    <Compile Include="Editors\ValueWithTrendProvider.cs" />
+    <Compile Include="DC\EntitiesToGenerateInfo.cs" />
+    <Compile Include="Filtering\CriteriaStringHelper.cs" />
+    <Compile Include="IObjectSpaceProvider.cs" />
+    <Compile Include="ISettingsProvider.cs" />
+    <Compile Include="ListViewFindPanelAttribute.cs" />
+    <Compile Include="Localization\ControlLocalizers.cs" />
+    <Compile Include="Localization\ServerLogMessages.Designer.cs" />
+    <Compile Include="MiddleTier\Utils.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Model\Core\ModelApplicationCreatorInfo.cs" />
+    <Compile Include="Model\Core\ModelApplicationProperties.cs" />
+    <Compile Include="Model\Core\ModelInterfacesCollector.cs" />
+    <Compile Include="Model\Core\ModelInterfacesHelper.cs" />
+    <Compile Include="Model\Core\ModelNodeInfo.cs" />
+    <Compile Include="Model\Core\ModelNodeList.cs" />
+    <Compile Include="Model\Core\ModelValueFactory.cs" />
+    <Compile Include="Model\Core\ModelValueInfo.cs" />
+    <Compile Include="Model\ModelException.cs" />
+    <Compile Include="ModuleHelper.cs" />
+    <Compile Include="ObjectHandleHelper.cs" />
+    <Compile Include="Obsoletes\ObsoleteMessages.cs" />
+    <Compile Include="Security\PermissionRequest.cs" />
+    <Compile Include="Security\PermissionTargetBusinessClassListConverter.cs" />
+    <Compile Include="SystemModule\AboutInfo.cs" />
+    <Compile Include="SystemModule\ListEditorSecurityController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="SystemModule\ListViewControllerBase.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="SystemModule\ListViewDataAccessModeGeneratorUpdater.cs" />
+    <Compile Include="SystemModule\Dashboard\DashboardModelOptions.cs" />
+    <Compile Include="SystemModule\ModelXmlConverters.cs" />
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <Compile Include="Updating\ModuleUpdater.cs" />
+    <Compile Include="Utils\CodeGeneration\CSCodeCompiler.cs" />
+    <Compile Include="Utils\Constants.cs" />
+    <Compile Include="Utils\Reflection\AssemblyHelper.cs" />
+    <Compile Include="Utils\CustomizeTableNameEventArgs.cs" />
+    <Compile Include="Utils\ObjectFactory.cs" />
+    <Compile Include="Utils\Reflection\AttributeHelper.cs" />
+    <Compile Include="Utils\Reflection\TypeHierarchyHelper.cs" />
+    <Compile Include="Utils\TranslatorProvider.cs" />
+    <Compile Include="Model\CalculatedModelNodeList.cs" />
+    <Compile Include="Model\Core\ModelApplicationCodeGenerator.cs" />
+    <Compile Include="Model\Core\ModelApplicationCreator.cs" />
+    <Compile Include="Model\DomainLogics\ActionsDesignLogics.cs" />
+    <Compile Include="Model\DomainLogics\EditorFactoryLogics.cs" />
+    <Compile Include="Model\DomainLogics\ModelClassReportsVisibilityLogic.cs" />
+    <Compile Include="Model\DomainLogics\ModelDashboardViewItemLogic.cs" />
+    <Compile Include="Model\DomainLogics\ModelDetailViewItemLogics.cs" />
+    <Compile Include="Model\DomainLogics\ModelViewLogic.cs" />
+    <Compile Include="Model\IModelCompositeView.cs" />
+    <Compile Include="Model\IModelDashboardView.cs" />
+    <Compile Include="Model\IModelListView.cs" />
+    <Compile Include="Model\IModelObjectView.cs" />
+    <Compile Include="Model\IModelView.cs" />
+    <Compile Include="Model\ModelEditorHelper.cs" />
+    <Compile Include="Model\ModelInterfaceExtenders.cs" />
+    <Compile Include="Model\ModelInterfaces.cs" />
+    <Compile Include="Model\IModelDetailView.cs" />
+    <Compile Include="Model\ModelImageSources.cs" />
+    <Compile Include="Model\ModelNodeGenerator.cs" />
+    <Compile Include="Model\Core\ModelNodesDefaultInterfaceGenerator.cs" />
+    <Compile Include="Model\ModelNodesGeneratorUpdater.cs" />
+    <Compile Include="Model\ModelReportsVisibility.cs" />
+    <Compile Include="Model\NodeGenerators\BOModelNodesGenerator.cs" />
+    <Compile Include="Model\NodeGenerators\ImageSourceNodesGenerator.cs" />
+    <Compile Include="Model\DomainLogics\ModelClassLogic.cs" />
+    <Compile Include="Model\NodeGenerators\ActionsDesignNodesGenerator.cs" />
+    <Compile Include="Model\NodeGenerators\ModelDetailViewLayoutNodesGenerator.cs" />
+    <Compile Include="Model\NodeGenerators\ModelDetailViewNodesGenerator.cs" />
+    <Compile Include="Model\NodeGenerators\ModelListViewNodesGenerator.cs" />
+    <Compile Include="Model\NodeGenerators\ModelLocalizationNodesGenerator.cs" />
+    <Compile Include="Model\NodeGenerators\ModelLookupViewNodesGenerator.cs" />
+    <Compile Include="Model\DomainLogics\ModelMemberLogic.cs" />
+    <Compile Include="Model\NodeGenerators\ModelNestedListViewNodesGenerator.cs" />
+    <Compile Include="Model\NodeGenerators\ModelViewsNodesGenerator.cs" />
+    <Compile Include="Model\ModelAttributes.cs" />
+    <Compile Include="Model\ModelPropertyEditorInterfaces.cs" />
+    <Compile Include="Model\Core\ModelValueCalculator.cs" />
+    <Compile Include="Model\ModelXmlWriter.cs" />
+    <Compile Include="Model\Core\VisibilityCalculators.cs" />
+    <Compile Include="ObjectViewController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ProxyCollection.cs" />
+    <Compile Include="SystemModule\CustomizeTemplateControllerBase.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="SystemModule\Dashboard\DashboardCreationWizard.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="SystemModule\Dashboard\DashboardCustomizationController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="SystemModule\Dashboard\DashboardOrganizationItems.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="SystemModule\Dashboard\DashboardOrganizer.cs" />
+    <Compile Include="SystemModule\ExportController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="SystemModule\LogoffController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Templates\ActionContainers\SimpleActionContainer.cs" />
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <Compile Include="Editors\CriteriaEditorHelper.cs" />
+    <Compile Include="Editors\AlignmentProvider.cs" />
+    <Compile Include="Editors\DateTimeGroupInterval.cs" />
+    <Compile Include="Model\Core\ModelNode.cs" />
+    <Compile Include="Model\Core\ModelValue.cs" />
+    <Compile Include="LookupEditPropertyCollectionSource.cs" />
+    <Compile Include="Filtering\FilterObjectValidator.cs" />
+    <Compile Include="Filtering\FilterWithObjectProcessor.cs" />
+    <Compile Include="Model\Core\ModelApplication.cs" />
+    <Compile Include="NestedFrame.cs" />
+    <Compile Include="ObjectView.cs" />
+    <Compile Include="Actions\ActionBase.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="BusinessClassAssembliesList.cs" />
+    <Compile Include="BusinessClassesList.cs" />
+    <Compile Include="Core\Design\Attributes.cs" />
+    <Compile Include="Core\Design\ActionParameterValueTypeConverter.cs" />
+    <Compile Include="DC\BaseInfo.cs" />
+    <Compile Include="DC\DcAssemblyInfo.cs" />
+    <Compile Include="DC\IAssemblyInfo.cs" />
+    <Compile Include="DC\IEntityStore.cs" />
+    <Compile Include="DC\ITypeInfoSource.cs" />
+    <Compile Include="DC\MemberPathInfo.cs" />
+    <Compile Include="DC\XafMemberInfo.cs" />
+    <Compile Include="DC\ReflectionTypeInfoSource.cs" />
+    <Compile Include="DC\TypeInfo.cs" />
+    <Compile Include="DC\TypesInfo.cs" />
+    <Compile Include="DC\IBaseInfo.cs" />
+    <Compile Include="DC\IMemberInfo.cs" />
+    <Compile Include="IObjectSpace.cs" />
+    <Compile Include="DC\ITypeInfo.cs" />
+    <Compile Include="DC\ITypesInfo.cs" />
+    <Compile Include="DevExpress.Persistent.Base\ClassInfoTypeConverter.cs" />
+    <Compile Include="DevExpress.Persistent.Base\CollectionsHelper.cs" />
+    <Compile Include="DevExpress.Persistent.Base\CriteriaParameters.cs" />
+    <Compile Include="DevExpress.Persistent.Base\CriteriaProcessorBase.cs" />
+    <Compile Include="DevExpress.Persistent.Base\CriteriaWrapper.cs" />
+    <Compile Include="DevExpress.Persistent.Base\HitCountCache.cs" />
+    <Compile Include="DevExpress.Persistent.Base\IValueManager.cs" />
+    <Compile Include="DevExpress.Persistent.Base\LocalizedClassInfoTypeConverter.cs" />
+    <Compile Include="DevExpress.Persistent.Base\ObjectFormatter.cs" />
+    <Compile Include="DevExpress.Persistent.Base\Parameter.cs" />
+    <Compile Include="DevExpress.Persistent.Base\ReflectionHelper.cs" />
+    <Compile Include="DevExpress.Persistent.Base\SimpleTypes.cs" />
+    <Compile Include="DevExpress.Persistent.Base\StringHelper.cs" />
+    <Compile Include="DevExpress.Persistent.Base\Tracing.cs" />
+    <Compile Include="DevExpress.Persistent.Base\Attributes.cs" />
+    <Compile Include="Editors\IFrameContainer.cs" />
+    <Compile Include="Editors\PredefinedValuesEditorHelper.cs" />
+    <Compile Include="EventArgs.cs" />
+    <Compile Include="Exceptions.cs" />
+    <Compile Include="ExpressApplicationSetupParameters.cs" />
+    <Compile Include="FrameTemplateFactoryBase.cs" />
+    <Compile Include="Localization\ControlResourcesLocalizerLogic.cs" />
+    <Compile Include="Localization\ExceptionLocalizers.cs" />
+    <Compile Include="Localization\Interfaces.cs" />
+    <Compile Include="Localization\SystemExceptions.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SystemExceptions.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Localization\UserVisibleExceptions.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>UserVisibleExceptions.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Localization\XafResourceLocalizer.cs" />
+    <Compile Include="ModuleList.cs" />
+    <Compile Include="SystemModule\CheckDeletedObjectController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="SystemModule\ConvertLayoutDiffsController.cs">
+    </Compile>
+    <Compile Include="SystemModule\FocusDefaultDetailViewItemController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="SystemModule\ListEditorNewObjectController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="SystemModule\ListViewAutoFilterRowController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="SystemModule\ListEditorPreviewRowViewController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="SystemModule\ListViewNewItemRowController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="SystemModule\RefreshController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="TemplateContext.cs" />
+    <Compile Include="Templates\ActionContainers\INavigationControl.cs" />
+    <Compile Include="Templates\ActionContainers\NavigationHelper.cs" />
+    <Compile Include="Templates\ActionContainers\TreeListNodeChoiceActionItemWrapperBase.cs" />
+    <Compile Include="Templates\ChoiceActionItemWrapper.cs" />
+    
+    
+    
+    
+    <Compile Include="Model\CommonInterfaces.cs" />
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <Compile Include="Utils\BindingListBase.cs" />
+    <Compile Include="Utils\BoolList.cs" />
+    <Compile Include="Editors\ISupportViewEditMode.cs" />
+    <Compile Include="SystemModule\FindLookupDialogControllers.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Security\EditModelPermission.cs" />
+    <Compile Include="Editors\CriteriaProvider.cs" />
+    <Compile Include="Utils\DesignerModelFactory.cs" />
+    <Compile Include="Utils\DialogButtonsLocalizer.cs" />
+    <Compile Include="Utils\DisposeContainer.cs" />
+    <Compile Include="Utils\EnumDescriptor.cs" />
+    <Compile Include="Utils\Enumerator.cs" />
+    <Compile Include="Utils\EnumeratorConverter.cs" />
+    <Compile Include="Utils\Guard.cs" />
+    <Compile Include="Utils\InitializeIndicator.cs" />
+    <Compile Include="Utils\ISupportNavigationActionContainerTesting.cs" />
+    <Compile Include="Utils\ListHelper.cs" />
+    <Compile Include="Utils\Locker.cs" />
+    <Compile Include="Utils\PropertyObserverBase.cs" />
+    <Compile Include="Utils\SizeLimitedStack.cs" />
+    <Compile Include="Utils\SplitString.cs" />
+    <Compile Include="Templates\ActionBaseItem.cs" />
+    <Compile Include="Actions\ChoiceActionBase.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Actions\ChoiceActionItem.cs">
+    </Compile>
+    <Compile Include="ShowViewStrategyBase.cs" />
+    <Compile Include="DataManipulationRight.cs" />
+    <Compile Include="Editors\CommonItems.cs" />
+    <Compile Include="Filtering\LocalizedCriteriaWrapper.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Filtering\CurrentUserParameter.cs" />
+    <Compile Include="SystemModule\DetailViewLinkController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="SystemModule\DialogController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Updating\ISchemaUpdater.cs" />
+    <Compile Include="Utils\ErrorMessages.cs" />
+    <Compile Include="Editors\ViewItem.cs" />
+    <Compile Include="Editors\DetailPropertyEditor.cs" />
+    <Compile Include="Utils\SummaryItemsSerializer.cs" />
+    <Compile Include="Utils\Tick.cs" />
+    <Compile Include="Utils\Reflection\TypeHelper.cs" />
+    <Compile Include="Utils\UserDifferencesHelper.cs" />
+    <Compile Include="XafApplication.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Security\ISecurity.cs" />
+    <Compile Include="Security\SecurityDummy.cs" />
+    <Compile Include="SystemModule\ActionsCriteriaViewController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="SystemModule\ModificationsController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="SystemModule\DetailViewEditorActionController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="SystemModule\DiagnosticInfoController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="SystemModule\FillActionContainersController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="SystemModule\ListViewProcessCurrentObjectController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="SystemModule\ObjectMethodActionsViewController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="SystemModule\WindowTemplateController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Templates\ContextActionsMenu.cs" />
+    <Compile Include="Templates\IContextMenuTemplate.cs" />
+    <Compile Include="Utils\ObjectSerializer.cs" />
+    <Compile Include="SystemModule\DeleteObjectsViewController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="SystemModule\DependentEditorController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="SystemModule\HideActionsViewController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="SystemModule\ViewNavigationController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="SystemModule\NewObjectViewController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Templates\ICustomazableFrameTemplate.cs" />
+    <Compile Include="Updating\ApplicationUpdater.cs" />
+    <Compile Include="Updating\Updater.cs" />
+    <Compile Include="Core\ActionList.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Actions\ActionUrl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ModuleBase.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Actions\ParametrizedAction.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Actions\PopupWindowShowAction.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Actions\SimpleAction.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Actions\SingleChoiceAction.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Model\NodeWrappers\NodeWrapper.cs" />
+    <Compile Include="Security\PermissionBase.cs" />
+    <Compile Include="Security\ObjectAccessPermission.cs" />
+    <Compile Include="Updating\DatabaseUpdater.cs" />
+    <Compile Include="Controller.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CollectionSourceBase.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CollectionSource.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PropertyCollectionSource.cs">
+    </Compile>
+    <Compile Include="Core\Design\ActionDesigners.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Editors\LookupEditorHelper.cs">
+    </Compile>
+    <Compile Include="ApplicationModulesManager.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Core\ControllersManager.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ModelDifferenceStore.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Core\ModuleFactory.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DetailView.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Editors\IComplexEditor.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Editors\PropertyEditorAttribute.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Editors\PropertyEditorsFactory.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Filtering\FullTextSearchEngine.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Frame.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Editors\ListEditor.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ISelectionContext.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Layout\ControlDetailItem.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Layout\ViewItemsCollection.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Layout\LayoutManager.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Editors\ListPropertyEditor.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ListView.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ISupportUpdate.cs" />
+    <Compile Include="Utils\CaptionHelper.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Editors\PropertyEditor.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="SecuritySystem.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Core\ViewShortcut.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="SystemModule\Module.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="SystemModule\LinkUnlinkController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="SystemModule\FilterController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="SystemModule\RecordsNavigationController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="SystemModule\ShowNavigationItemController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Templates\IActionContainer.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Templates\IFrameTemplate.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Utils\ImageLoader.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Utils\LightDictionary.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Utils\NavigationHistory.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Utils\ParametersObject.cs" />
+    <Compile Include="Utils\SettingsStorage.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Utils\SettingsStorageOnDictionary.cs" />
+    <Compile Include="Utils\SettingsStorageOnRegistry.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Utils\EasyTestTagHelper.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Localization\XafResourceManager.cs" />
+    <Compile Include="View.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ViewController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Window.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="WindowController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Filtering\XafEvaluatorContextDescriptor.cs" />
+    <Compile Include="XafDataView.cs" />
+    <Compile Include="XafDataViewRecord.cs" />
+    <Compile Include="XafObjectToIdCriteriaProcessor.cs" />
+    <Compile Include="XafPropertyDescriptor.cs" />
+    <Compile Include="XafTypesInfo.cs" />
+    <EmbeddedResource Include="Model.DesignedDiffs.xafml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Model.DesignedDiffs.Localization.ru.xafml" />
+    <EmbeddedResource Include="Model.DesignedDiffs.Localization.ja.xafml" />
+    <EmbeddedResource Include="Model.DesignedDiffs.Localization.es.xafml" />
+    <EmbeddedResource Include="Model.DesignedDiffs.Localization.de.xafml" />
+    <EmbeddedResource Include="SystemModule\DeleteObjectsViewController.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>DeleteObjectsViewController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SystemModule\LinkUnlinkController.resx">
+      <DependentUpon>LinkUnlinkController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SystemModule\FilterController.resx">
+      <DependentUpon>FilterController.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SystemModule\RecordsNavigationController.resx">
+      <DependentUpon>RecordsNavigationController.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SystemModule\ViewNavigationController.resx">
+      <DependentUpon>ViewNavigationController.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SystemModule\NewObjectViewController.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>NewObjectViewController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SystemModule\ShowNavigationItemController.resx">
+      <DependentUpon>ShowNavigationItemController.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WindowController.resx">
+      <DependentUpon>WindowController.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Localization\SystemExceptions.resx">
+      <SubType>Designer</SubType>
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>SystemExceptions.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Localization\SystemExceptions.ru.resx" />
+    <EmbeddedResource Include="Localization\SystemExceptions.ja.resx" />
+    <EmbeddedResource Include="Localization\SystemExceptions.es.resx" />
+    <EmbeddedResource Include="Localization\SystemExceptions.de.resx" />
+    <EmbeddedResource Include="Localization\UserVisibleExceptions.resx">
+      <SubType>Designer</SubType>
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>UserVisibleExceptions.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Localization\UserVisibleExceptions.ru.resx" />
+    <EmbeddedResource Include="Localization\UserVisibleExceptions.ja.resx" />
+    <EmbeddedResource Include="Localization\UserVisibleExceptions.es.resx" />
+    <EmbeddedResource Include="Localization\UserVisibleExceptions.de.resx" />
+    <EmbeddedResource Include="SystemModule\RefreshController.resx">
+      <DependentUpon>RefreshController.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Toolbox_XAFApplication.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Toolbox_ViewController_Designer.ico" />
+    <EmbeddedResource Include="Resources\Toolbox_WindowController_Designer.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Toolbox_Module_System.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="about.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\ModelEditor_Actions.png" />
+    <EmbeddedResource Include="Images\ModelEditor_Actions_ActionDesign.png" />
+    <EmbeddedResource Include="Images\ModelEditor_Actions_ActionToContainerMapping.png" />
+    <EmbeddedResource Include="Images\ModelEditor_Actions_DisableReasons.png" />
+    <EmbeddedResource Include="Images\ModelEditor_Application.png" />
+    <EmbeddedResource Include="Images\ModelEditor_Business_Object_Model.png" />
+    <EmbeddedResource Include="Images\ModelEditor_Class_Object.png" />
+    <EmbeddedResource Include="Images\ModelEditor_Controllers.png" />
+    <EmbeddedResource Include="Images\ModelEditor_CreatableItems_Object.png" />
+    <EmbeddedResource Include="Images\ModelEditor_Default.png" />
+    <EmbeddedResource Include="Images\ModelEditor_DetailView.png" />
+    <EmbeddedResource Include="Images\ModelEditor_EditorFactory.png" />
+    <EmbeddedResource Include="Images\ModelEditor_ImageSources.png" />
+    <EmbeddedResource Include="Images\ModelEditor_ListView.png" />
+    <EmbeddedResource Include="Images\ModelEditor_Member.png" />
+    <EmbeddedResource Include="Images\ModelEditor_Navigation_Items.png" />
+    <EmbeddedResource Include="Images\ModelEditor_Settings.png" />
+    <EmbeddedResource Include="Images\ModelEditor_Views.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Actions\Action_ParametrizedAction.bmp" />
+    <EmbeddedResource Include="Resources\Actions\Action_PopupWindowShowAction.bmp" />
+    <EmbeddedResource Include="Resources\Actions\Action_SimpleAction.bmp" />
+    <EmbeddedResource Include="Resources\Actions\Action_SingleChoiceAction.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\BO_Localization.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\Navigation_Item_View.png" />
+    <EmbeddedResource Include="Images\Navigation_Item_PivotChart.png" />
+    <EmbeddedResource Include="Images\Navigation_Item_Report.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Module.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\ModelEditor_Action_ResetDifferences_Xml.ico" />
+    <EmbeddedResource Include="Images\ModelEditor_Action_Schema.ico" />
+    <EmbeddedResource Include="Images\ModelEditor_Action_ShowDifferences_Xml.ico" />
+    <EmbeddedResource Include="Images\ModelEditor_Action_Xml.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    
+    
+    
+    
+    <EmbeddedResource Include="Images\ModelEditor_DetailViewItems.png" />
+    <EmbeddedResource Include="Images\Navigation_Item_PivotChart_32x32.png" />
+    <EmbeddedResource Include="Images\Navigation_Item_Report_32x32.png" />
+    <EmbeddedResource Include="Images\ModelEditor_Views_32x32.png" />
+    <EmbeddedResource Include="Images\Navigation_Item_View_32x32.png" />
+    <EmbeddedResource Include="Images\ModelEditor_DashboardView.png" />
+    <EmbeddedResource Include="Images\ModelEditor_DashboardView_32x32.png" />
+    <EmbeddedResource Include="Images\Navigation_Item_Dashboard.png" />
+    <EmbeddedResource Include="Images\Navigation_Item_Dashboard_32x32.png" />
+    <EmbeddedResource Include="Images\ModelEditor_Band.png" />
+    <Content Include="Model\Core\BreakingChanges.txt" />
+    <EmbeddedResource Include="Localization\ApplicationStatusMesssages.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ApplicationStatusMesssages.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Localization\ApplicationStatusMesssages.ru.resx" />
+    <EmbeddedResource Include="Localization\ApplicationStatusMesssages.ja.resx" />
+    <EmbeddedResource Include="Localization\ApplicationStatusMesssages.es.resx" />
+    <EmbeddedResource Include="Localization\ApplicationStatusMesssages.de.resx" />
+    <EmbeddedResource Include="Resources\Toolbox_ServerApplication.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="DevExpress.ExpressApp.Images.v15.2"><Name>DevExpress.ExpressApp.Images.v15.2</Name><HintPath>..\..\..\Bin\Framework\DevExpress.ExpressApp.Images.v15.2.dll</HintPath></Reference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    
+    
+  </PropertyGroup>
+<ItemGroup><EmbeddedResource Include="Descriptions.resx" /></ItemGroup><ItemGroup><Compile Include="Descriptions.cs" /></ItemGroup></Project>

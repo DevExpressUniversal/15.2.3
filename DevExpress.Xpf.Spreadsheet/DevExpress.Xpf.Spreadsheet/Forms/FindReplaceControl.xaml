@@ -1,0 +1,53 @@
+﻿<UserControl x:Class="DevExpress.Xpf.Spreadsheet.Forms.FindReplaceControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:dxc="http://schemas.devexpress.com/winfx/2008/xaml/core"
+             xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+             xmlns:dxsps="clr-namespace:DevExpress.Xpf.Spreadsheet" 
+             mc:Ignorable="d" Width="625"
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <dxc:BooleanToVisibilityConverter x:Key="boolToVisibilityConverter" />
+        <dxsps:SpreadsheetControlStringIdConverter x:Key="stringIdConverter" />
+    </UserControl.Resources>
+    <Grid Margin="10,10,12,0" FocusManager.FocusedElement="{Binding ElementName=edtFindWhat}">
+        <dxc:DXTabControl x:Name="tabControl" SelectionChanging="DXTabControl_SelectionChanging" SelectionChanged="DXTabControl_SelectionChanged">
+            <dxc:DXTabControl.Items>
+                <dxc:DXTabItem x:Name="tabFind" Header="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_FindReplaceFormFindPage, Converter={StaticResource stringIdConverter}}">
+                    <Grid x:Name="formContent">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+        
+                        <TextBlock VerticalAlignment="Center" Margin="6,6,12,0" Grid.Row="0" Grid.Column="0" Text="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_FindReplaceFormFindWhat, Converter={StaticResource stringIdConverter}}" />
+                        <dxe:TextEdit x:Name="edtFindWhat" VerticalAlignment="Center" Grid.ColumnSpan="3" Grid.Row="0" Grid.Column="1" Margin="0,6,6,0" EditValue="{Binding FindWhat, UpdateSourceTrigger=PropertyChanged}" />
+
+                        <TextBlock VerticalAlignment="Center" Margin="6,6,12,6" Grid.Row="1" Grid.Column="0" Text="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_FindReplaceFormReplaceWith, Converter={StaticResource stringIdConverter}}" Visibility="{Binding ReplaceMode, Converter={StaticResource ResourceKey=boolToVisibilityConverter}, ConverterParameter=HiddenOnFalse}" />
+                        <dxe:TextEdit VerticalAlignment="Center" Grid.ColumnSpan="3" Grid.Row="1" Grid.Column="1" Margin="0,6,6,6" EditValue="{Binding ReplaceWith, UpdateSourceTrigger=PropertyChanged}" Visibility="{Binding ReplaceMode, Converter={StaticResource ResourceKey=boolToVisibilityConverter}, ConverterParameter=HiddenOnFalse}" />
+
+                        <TextBlock VerticalAlignment="Center" Margin="6,12,12,0" Grid.Row="2" Grid.Column="0" Text="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_FindReplaceFormSearchBy, Converter={StaticResource stringIdConverter}}" />
+                        <dxe:ComboBoxEdit VerticalAlignment="Center" Margin="0,12,6,0" Grid.Row="2" Grid.Column="1" MinWidth="100" IsTextEditable="False" EditValue="{Binding SearchBy}" ItemsSource="{Binding SearchByDataSource}" />
+                        <dxe:CheckEdit VerticalAlignment="Center" Margin="6,12,12,0" Grid.Row="2" Grid.Column="2" EditValue="{Binding MatchCase}" Content="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_FindReplaceFormMatchCase, Converter={StaticResource stringIdConverter}}" />
+
+                        <TextBlock VerticalAlignment="Center" Margin="6,6,12,6" Grid.Row="3" Grid.Column="0" Text="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_FindReplaceFormSearchIn, Converter={StaticResource stringIdConverter}}" />
+                        <dxe:ComboBoxEdit VerticalAlignment="Center" Margin="0,6,6,6" Grid.Row="3" Grid.Column="1" MinWidth="100" IsTextEditable="False" EditValue="{Binding SearchIn}" ItemsSource="{Binding SearchInDataSource}" />
+                        <dxe:CheckEdit VerticalAlignment="Center" Margin="6,6,12,6" Grid.Row="3" Grid.Column="2" EditValue="{Binding MatchEntireCellContents}"  Content="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_FindReplaceFormMatchEntireCellContents, Converter={StaticResource stringIdConverter}}" />
+                    </Grid>
+                </dxc:DXTabItem>
+                <dxc:DXTabItem x:Name="tabReplace" IsEnabled="{Binding ReplaceEnabled}" Header="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_FindReplaceFormReplacePage, Converter={StaticResource stringIdConverter}}" />
+            </dxc:DXTabControl.Items>
+        </dxc:DXTabControl>
+    </Grid>
+</UserControl>

@@ -1,0 +1,247 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+		     xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+             xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
+		     xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+             xmlns:dxsch="clr-namespace:DevExpress.Xpf.Scheduler"
+             xmlns:dxschdui="clr-namespace:DevExpress.Xpf.Scheduler.UI"
+             xmlns:dxschd="clr-namespace:DevExpress.Xpf.Scheduler.Drawing"
+             xmlns:dxr="http://schemas.devexpress.com/winfx/2008/xaml/ribbon" xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars" x:Class="DevExpress.Xpf.Scheduler.UI.AppointmentRibbonForm"
+             mc:Ignorable="d"  x:Name="AptForm" Loaded="OnLoaded">
+    <UserControl.Resources>
+        <dxsch:SchedulerControlStringIdConverter x:Key="SchedulerControlStringIdConverter" />
+        <dxschd:TimeSpanToDateTimeConverter x:Key="timeSpanToDateTimeConverter" />
+        <dxschd:InvertedBoolConverter x:Key="invertedBoolConverter" />
+        <dx:BoolToVisibilityConverter x:Key="booleanToVisibilityConverter" />
+        <dx:BoolToVisibilityInverseConverter x:Key="invertedBooleanToVisibilityConverter" />
+
+        <DataTemplate x:Key="RecTypeTemplate">
+            <TextBlock Text="{Binding Description}" VerticalAlignment="Center" />
+        </DataTemplate>
+        <DataTemplate x:Key="ResourceItemTemplate">
+            <TextBlock Text="{Binding Caption}" VerticalAlignment="Center" />
+        </DataTemplate>
+
+        <DataTemplate x:Key="ResourcesTemplate">
+            <dxschdui:AppointmentResourcesEdit SchedulerControl="{Binding Path=DataContext.Control, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}"
+                ResourceIds="{Binding Path=DataContext.AppointmentResourceIds, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+        		IsEnabled="{Binding Path=DataContext.IsRecurrenceEditable , RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}"
+                Width="150" AutomationProperties.Name="{Binding ConverterParameter=Form_Resource, Converter={StaticResource SchedulerControlStringIdConverter}, Source={StaticResource SchedulerControlStringIdConverter}}"/>
+        </DataTemplate>
+
+        <Style TargetType="{x:Type TextBlock}">
+            <Setter Property="Margin" Value="0,0,0,4" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+
+        <Style TargetType="{x:Type dxe:TextEdit}">
+            <Setter Property="Margin" Value="0,0,0,4" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+        <Style TargetType="{x:Type dxschdui:TimeZoneEdit}">
+            <Setter Property="Margin" Value="0,0,0,4" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+        <Style TargetType="{x:Type dxe:ButtonEdit}">
+            <Setter Property="Margin" Value="0,0,0,4" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="MinHeight" Value="22" />
+        </Style>
+        <Style TargetType="{x:Type dxe:DateEdit}">
+            <Setter Property="Margin" Value="0,0,0,4" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="MinHeight" Value="22" />
+        </Style>
+        <Style TargetType="{x:Type dxe:ComboBoxEdit}">
+            <Setter Property="Padding" Value="4,0,0,0" />
+            <Setter Property="Margin" Value="0,0,0,4" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="MinHeight" Value="22" />
+        </Style>
+
+        <Style TargetType="{x:Type dxe:CheckEdit}">
+            <Setter Property="Margin" Value="0,0,0,4" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+    </UserControl.Resources>
+
+    <dxb:BarManager>
+        <dxb:BarManager.Items>
+            <dxb:BarButtonItem x:Name="btnSave" Content="{Binding ConverterParameter=ButtonCaption_Save, Converter={StaticResource SchedulerControlStringIdConverter}, Source={StaticResource SchedulerControlStringIdConverter}}"
+                    Glyph="{dx:DXImage Image=Save_16x16.png}" LargeGlyph="{dx:DXImage Image=Save_32x32.png}" Command="{Binding SaveAppointmentCommand}" />
+            <dxb:BarButtonItem x:Name="btnUndo" Content="{Binding ConverterParameter=ButtonCaption_Undo, Converter={StaticResource SchedulerControlStringIdConverter}, Source={StaticResource SchedulerControlStringIdConverter}}"
+                    Glyph="{dx:DXImage Image=Undo_16x16.png}" LargeGlyph="{dx:DXImage Image=Undo_32x32.png}" Command="{Binding UndoCommand}"/>
+            <dxb:BarButtonItem x:Name="btnRedo" Content="{Binding ConverterParameter=ButtonCaption_Redo, Converter={StaticResource SchedulerControlStringIdConverter}, Source={StaticResource SchedulerControlStringIdConverter}}"
+                    Glyph="{dx:DXImage Image=Redo_16x16.png}" LargeGlyph="{dx:DXImage Image=Redo_32x32.png}" Command="{Binding RedoCommand}"/>
+            <dxb:BarButtonItem x:Name="btnPrevious" Content="{Binding ConverterParameter=ButtonCaption_Previous, Converter={StaticResource SchedulerControlStringIdConverter}, Source={StaticResource SchedulerControlStringIdConverter}}"
+                    Glyph="{dx:DXImage Image=MoveUp_16x16.png}" LargeGlyph="{dx:DXImage Image=MoveUp_32x32.png}" Command="{Binding PreviousCommand}"/>
+            <dxb:BarButtonItem x:Name="btnNext" Content="{Binding ConverterParameter=ButtonCaption_Next, Converter={StaticResource SchedulerControlStringIdConverter}, Source={StaticResource SchedulerControlStringIdConverter}}"
+                    Glyph="{dx:DXImage Image=MoveDown_16x16.png}" LargeGlyph="{dx:DXImage Image=MoveDown_32x32.png}" Command="{Binding NextCommand}"/>
+            <dxb:BarButtonItem x:Name="toolbarBtnDelete" Content="{Binding ConverterParameter=ButtonCaption_Delete, Converter={StaticResource SchedulerControlStringIdConverter}, Source={StaticResource SchedulerControlStringIdConverter}}"
+                    Glyph="{dx:DXImage Image=Delete_16x16.png}" LargeGlyph="{dx:DXImage Image=Delete_32x32.png}" Command="{Binding RemoveAppointmentCommand}"/>
+
+            <dxb:BarButtonItem x:Name="btnSaveAndClose" AutomationProperties.Name="{Binding ConverterParameter=ButtonCaption_OK, Converter={StaticResource SchedulerControlStringIdConverter}, Source={StaticResource SchedulerControlStringIdConverter}}"
+				            Content="{Binding ConverterParameter=ButtonCaption_SaveAndClose, Converter={StaticResource SchedulerControlStringIdConverter}, Source={StaticResource SchedulerControlStringIdConverter}}"
+				            IsEnabled="{Binding (dxe:ValidationService.HasValidationError), Converter={dx:NegationConverter}, ElementName=validationContainer}" Command="{Binding SaveAndCloseAppointmentCommand}" 
+                            LargeGlyph="{dx:DXImage Image=SaveAndClose_32x32.png}"/>
+            <dxb:BarButtonItem x:Name="btnDelete" AutomationProperties.Name="{Binding ConverterParameter=ButtonCaption_Delete, Converter={StaticResource SchedulerControlStringIdConverter}, Source={StaticResource SchedulerControlStringIdConverter}}"
+				            Content="{Binding ConverterParameter=ButtonCaption_Delete, Converter={StaticResource SchedulerControlStringIdConverter}, Source={StaticResource SchedulerControlStringIdConverter}}"
+				            Command="{Binding RemoveAppointmentCommand}" LargeGlyph="{dx:DXImage Image=Delete_32x32.png}"/>
+
+            <dxb:BarEditItem Content="{Binding ConverterParameter=Form_Label, Converter={StaticResource SchedulerControlStringIdConverter}, Source={StaticResource SchedulerControlStringIdConverter}}"
+                            EditValue="{Binding Label, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="{Binding IsReadOnly}" EditWidth="150" x:Name="barLabel">
+                <dxb:BarEditItem.EditSettings>
+                    <dxschdui:AppointmentLabelEditSettings x:Name="labelEdit" AutomationProperties.Name="{Binding ConverterParameter=Form_Label, Converter={StaticResource SchedulerControlStringIdConverter}, Source={StaticResource SchedulerControlStringIdConverter}}"
+					                Storage="{Binding Storage}"/>
+                </dxb:BarEditItem.EditSettings>
+            </dxb:BarEditItem>
+            <dxb:BarEditItem Content="{Binding ConverterParameter=Form_ShowTimeAs, Converter={StaticResource SchedulerControlStringIdConverter}, Source={StaticResource SchedulerControlStringIdConverter}}"
+                            EditValue="{Binding Status, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="{Binding IsReadOnly}" EditWidth="150" x:Name="barStatus">
+                <dxb:BarEditItem.EditSettings>
+                    <dxschdui:AppointmentStatusEditSettings x:Name="statusEdit" AutomationProperties.Name="{Binding ConverterParameter=Form_ShowTimeAs, Converter={StaticResource SchedulerControlStringIdConverter}, Source={StaticResource SchedulerControlStringIdConverter}}"
+				                    Storage="{Binding Storage}"/>
+                </dxb:BarEditItem.EditSettings>
+            </dxb:BarEditItem>
+            <dxb:BarEditItem Content="{Binding ConverterParameter=Form_Resource, Converter={StaticResource SchedulerControlStringIdConverter}, Source={StaticResource SchedulerControlStringIdConverter}}"
+                            EditTemplate="{StaticResource ResourcesTemplate}" IsVisible="{Binding ResourceSharing}" x:Name="barResources"/>
+            <dxb:BarEditItem  Content="{Binding ConverterParameter=Form_Resource, Converter={StaticResource SchedulerControlStringIdConverter}, Source={StaticResource SchedulerControlStringIdConverter}}"
+                            EditWidth="150" EditValue="{Binding ResourceId, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsVisible="{Binding ResourceSharing, Converter={dxschd:InvertedBoolConverter}}" x:Name="barResource">
+                <dxb:BarEditItem.EditSettings>
+                    <dxschdui:AppointmentResourceEditSettings x:Name="resourceEdit" SchedulerControl="{Binding Control}" IsEnabled="{Binding IsRecurrenceEditable}"
+        		                    AutomationProperties.Name="{Binding ConverterParameter=Form_Resource, Converter={StaticResource SchedulerControlStringIdConverter}, Source={StaticResource SchedulerControlStringIdConverter}}"/>
+                </dxb:BarEditItem.EditSettings>
+            </dxb:BarEditItem>
+            <dxb:BarEditItem Content="{Binding ConverterParameter=Form_Reminder, Converter={StaticResource SchedulerControlStringIdConverter}, Source={StaticResource SchedulerControlStringIdConverter}}"
+                            EditWidth="150" EditValue="{Binding ReminderSpan, Mode=TwoWay}" IsReadOnly="{Binding IsReadOnly}" x:Name="barReminder">
+                <dxb:BarEditItem.EditSettings>
+                    <dxe:ComboBoxEditSettings x:Name="reminderEdit" AutomationProperties.Name="{Binding ConverterParameter=Form_Reminder, Converter={StaticResource SchedulerControlStringIdConverter}, Source={StaticResource SchedulerControlStringIdConverter}}"
+			                        IsTextEditable="True" AutoComplete="True" ItemsSource="{Binding ReminderSpans}"/>
+                </dxb:BarEditItem.EditSettings>
+            </dxb:BarEditItem>
+            <dxb:BarCheckItem x:Name="btnRecurrence" IsChecked="{Binding IsRecurrentAppointment, Mode=TwoWay}"
+				            AutomationProperties.Name="{Binding ConverterParameter=ButtonCaption_Recurrence, Converter={StaticResource SchedulerControlStringIdConverter}, Source={StaticResource SchedulerControlStringIdConverter}}"
+				            Content="{Binding ConverterParameter=ButtonCaption_Recurrence, Converter={StaticResource SchedulerControlStringIdConverter}, Source={StaticResource SchedulerControlStringIdConverter}}"
+				            Command="{Binding EditRecurrenceCommand}" LargeGlyph="{dx:DXImage Image=Recurrence_32x32.png}" Glyph="{dx:DXImage Image=Recurrence_16x16.png}" RibbonStyle="Large" />
+            <dxb:BarCheckItem x:Name="btnTimeZones" IsVisible="{Binding TimeZonesEnabled}"
+				            AutomationProperties.Name="{Binding ConverterParameter=ButtonCaption_TimeZones, Converter={StaticResource SchedulerControlStringIdConverter}, Source={StaticResource SchedulerControlStringIdConverter}}"
+				            Content="{Binding ConverterParameter=ButtonCaption_TimeZones, Converter={StaticResource SchedulerControlStringIdConverter}, Source={StaticResource SchedulerControlStringIdConverter}}"
+				            Command="{Binding EditTimeZoneCommand}" LargeGlyph="{dx:DXImage Image=BOLocalization_32x32.png}" Glyph="{dx:DXImage Image=BOLocalization_16x16.png}" RibbonStyle="Large"/>
+
+        </dxb:BarManager.Items>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <dxr:RibbonControl RowIndent="0" RibbonStyle="Office2010" ShowApplicationButton="False" x:Name="ribbonControl">
+                <dxr:RibbonControl.ToolbarItems>
+                </dxr:RibbonControl.ToolbarItems>
+                <dxr:RibbonDefaultPageCategory Caption="defaultCategory">
+                    <dxr:RibbonPage Caption="{Binding ConverterParameter=Caption_PageAppointment, Converter={StaticResource SchedulerControlStringIdConverter}, Source={StaticResource SchedulerControlStringIdConverter}}">
+                        <dxr:RibbonPageGroup Caption="{Binding ConverterParameter=PageCaption_Actions, Converter={StaticResource SchedulerControlStringIdConverter}, Source={StaticResource SchedulerControlStringIdConverter}}" x:Name="groupActions">
+                        </dxr:RibbonPageGroup>
+                        <dxr:RibbonPageGroup Caption="{Binding ConverterParameter=PageCaption_Options, Converter={StaticResource SchedulerControlStringIdConverter}, Source={StaticResource SchedulerControlStringIdConverter}}" x:Name="groupOptions">
+                        </dxr:RibbonPageGroup>
+                    </dxr:RibbonPage>
+                </dxr:RibbonDefaultPageCategory>
+            </dxr:RibbonControl>
+            <Grid Grid.Row="1" x:Name="validationContainer" ShowGridLines="False" dxe:ValidationService.IsValidationContainer="True" Margin="12">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" MinWidth="90" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Row="1" Text="{Binding ConverterParameter=Form_Subject, Converter={StaticResource SchedulerControlStringIdConverter}, Source={StaticResource SchedulerControlStringIdConverter}}" />
+                <dxe:TextEdit x:Name="subjectEdit"
+			AutomationProperties.Name="{Binding ConverterParameter=Form_Subject, Converter={StaticResource SchedulerControlStringIdConverter}, Source={StaticResource SchedulerControlStringIdConverter}}"
+			Grid.Row="1" Grid.Column="1" EditValue="{Binding Subject, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="{Binding IsReadOnly}"/>
+
+                <TextBlock Grid.Row="2" Grid.Column="0"
+			Text="{Binding ConverterParameter=Form_Location, Converter={StaticResource SchedulerControlStringIdConverter}, Source={StaticResource SchedulerControlStringIdConverter}}"
+			Margin="0,0,0,12" />
+                <dxe:TextEdit x:Name="locationEdit"
+			AutomationProperties.Name="{Binding ConverterParameter=Form_Location, Converter={StaticResource SchedulerControlStringIdConverter}, Source={StaticResource SchedulerControlStringIdConverter}}"
+			Grid.Row="2" Grid.Column="1" EditValue="{Binding Location, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,12" IsReadOnly="{Binding IsReadOnly}" />
+
+                <TextBlock Grid.Row="3" Grid.Column="0"
+			Text="{Binding ConverterParameter=Form_StartTime, Converter={StaticResource SchedulerControlStringIdConverter}, Source={StaticResource SchedulerControlStringIdConverter}}" />
+                <Grid Grid.Row="3" Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <dxe:DateEdit x:Name="edtStartDate"
+				AutomationProperties.Name="{Binding ConverterParameter=Form_StartDate, Converter={StaticResource SchedulerControlStringIdConverter}, Source={StaticResource SchedulerControlStringIdConverter}}"
+				MinWidth="150" Grid.Row="0" Grid.Column="0" Margin="0,0,4,4" IsReadOnly="{Binding IsReadOnly}" EditValue="{Binding DisplayStartDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                IsEnabled="{Binding IsDateTimeEditable}"/>
+                    <dxe:ButtonEdit x:Name="edtStartTime"
+				AutomationProperties.Name="{Binding ConverterParameter=Form_StartTime, Converter={StaticResource SchedulerControlStringIdConverter}, Source={StaticResource SchedulerControlStringIdConverter}}"
+				MinWidth="150" MaskType="DateTime" DisplayFormatString="{Binding TimeEditMask}" Mask="{Binding TimeEditMask}" Grid.Row="0" Grid.Column="1"
+				EditValue="{Binding DisplayStartTime, Converter={StaticResource timeSpanToDateTimeConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" AllowDefaultButton="False"
+				IsEnabled="{Binding IsTimeEnabled}" IsReadOnly="{Binding IsReadOnly}"/>
+                    <dxe:CheckEdit x:Name="chkAllDay"
+				AutomationProperties.Name="{Binding ConverterParameter=Form_AllDayEvent, Converter={StaticResource SchedulerControlStringIdConverter}, Source={StaticResource SchedulerControlStringIdConverter}}"
+				Margin="16,0,0,4" Grid.Row="0" Grid.Column="2"
+				Content="{Binding ConverterParameter=Form_AllDayEvent, Converter={StaticResource SchedulerControlStringIdConverter}, Source={StaticResource SchedulerControlStringIdConverter}}"
+				EditValue="{Binding AllDay, Mode=TwoWay}" IsReadOnly="{Binding IsReadOnly}" IsEnabled="{Binding IsDateTimeEditable}" />
+                </Grid>
+
+                <TextBlock Grid.Row="4" Grid.Column="0"
+			Text="{Binding ConverterParameter=Form_EndTime, Converter={StaticResource SchedulerControlStringIdConverter}, Source={StaticResource SchedulerControlStringIdConverter}}"
+			Margin="0,0,0,12" />
+                <Grid Grid.Row="4" Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="150" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <dxe:DateEdit x:Name="edtEndDate"
+				AutomationProperties.Name="{Binding ConverterParameter=Form_EndDate, Converter={StaticResource SchedulerControlStringIdConverter}, Source={StaticResource SchedulerControlStringIdConverter}}"
+				MinWidth="150" Grid.Row="0" Grid.Column="0" EditValue="{Binding DisplayEndDate, Mode=TwoWay, ValidatesOnExceptions=True}"  Margin="0,0,4,12"
+				IsReadOnly="{Binding IsReadOnly}" IsEnabled="{Binding IsDateTimeEditable}"/>
+
+                    <dxe:ButtonEdit x:Name="edtEndTime"
+				AutomationProperties.Name="{Binding ConverterParameter=Form_EndTime, Converter={StaticResource SchedulerControlStringIdConverter}, Source={StaticResource SchedulerControlStringIdConverter}}"
+				MinWidth="150" Margin="0,0,0,12" MaskType="DateTime" DisplayFormatString="{Binding TimeEditMask}"  
+				Mask="{Binding TimeEditMask}" Grid.Row="0" Grid.Column="1"
+				EditValue ="{Binding DisplayEndTime, Converter={StaticResource timeSpanToDateTimeConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}" AllowDefaultButton="False"
+				IsEnabled="{Binding IsTimeEnabled}"
+				IsReadOnly="{Binding IsReadOnly}"/>
+                    <dxschdui:TimeZoneEdit x:Name="edtTimeZone" Grid.Column="2" Margin="16,0,0,4" VerticalAlignment="Top" IsEnabled="{Binding TimeZoneEnabled}" 
+                Visibility="{Binding TimeZoneVisible, Converter={StaticResource booleanToVisibilityConverter}}" EditValue="{Binding TimeZoneId, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="{Binding IsReadOnly}"/>
+                </Grid>
+
+                <TextBlock Grid.Row="5" Grid.Column="0"
+			Text="{Binding ConverterParameter=Form_Description, Converter={StaticResource SchedulerControlStringIdConverter}, Source={StaticResource SchedulerControlStringIdConverter}}"
+			VerticalAlignment="Top" Margin="0,3,0,0"/>
+                <dxe:TextEdit x:Name="tbDescription" Grid.Row="5" Grid.Column="1"
+			AutomationProperties.Name="{Binding ConverterParameter=Form_Description, Converter={StaticResource SchedulerControlStringIdConverter}, Source={StaticResource SchedulerControlStringIdConverter}}"
+			VerticalAlignment="Stretch" MinHeight="50" EditValue="{Binding Description, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" AcceptsReturn="True" TextWrapping="Wrap" VerticalScrollBarVisibility="Visible"
+			HorizontalContentAlignment="Left" VerticalContentAlignment="Top" IsReadOnly="{Binding IsReadOnly}"/>
+            </Grid>
+        </Grid>
+    </dxb:BarManager>
+</UserControl>

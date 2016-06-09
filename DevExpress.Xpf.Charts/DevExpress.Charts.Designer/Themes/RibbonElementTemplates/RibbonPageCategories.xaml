@@ -1,0 +1,33 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+    xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
+    xmlns:dxr="http://schemas.devexpress.com/winfx/2008/xaml/ribbon"
+    xmlns:local="clr-namespace:DevExpress.Charts.Designer">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary
+            Source="{dx:ChartDesignerResource /Themes/RibbonElementTemplates/RibbonPage.xaml}"/>
+    </ResourceDictionary.MergedDictionaries>
+
+    <DataTemplate
+        x:Key="ribbonDefaultPageCategory">
+        <ContentControl>
+            <dxr:RibbonDefaultPageCategory
+                PagesSource="{Binding Pages}"
+                PageTemplate="{StaticResource ribbonPageTemplate}" />
+        </ContentControl>
+    </DataTemplate>
+
+    <DataTemplate
+        x:Key="ribbonPageCategory">
+        <ContentControl>
+            <dxr:RibbonPageCategory
+                Caption="{Binding Caption}"
+                IsVisible="{Binding Visible, Mode=TwoWay}"
+                PagesSource="{Binding Pages}"
+                PageTemplate="{StaticResource ribbonPageTemplate}" />
+        </ContentControl>
+    </DataTemplate>
+
+</ResourceDictionary>

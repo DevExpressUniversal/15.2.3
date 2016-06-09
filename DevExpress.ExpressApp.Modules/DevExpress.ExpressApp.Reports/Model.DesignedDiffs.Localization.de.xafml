@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application>
+  <ActionDesign>
+    <Actions>
+      <Action Id="ShowInReport" Caption="Anzeigen in Bericht" ToolTip="Selektierte Datensätze anzeigen in Bericht" />
+    </Actions>
+  </ActionDesign>
+  <BOModel>
+    <Class Name="DevExpress.Persistent.BaseImpl.ReportData" Caption="Bericht">
+      <OwnMembers>
+        <Member Name="DataTypeCaption" Caption="Datentyp" />
+        <Member Name="IsInplaceReport" Caption="Eingebetteter Bericht" />
+        <Member Name="ReportName" Caption="Berichtname" />
+      </OwnMembers>
+    </Class>
+  </BOModel>
+  <NavigationItems RelatedReportsGroupCaption="Reporte">
+    <Items>
+      <Item Id="Reports" Caption="Reporte" >
+        <Items>
+          <Item Id="Reports" Caption="Berichte" />
+        </Items>
+      </Item>
+    </Items>
+  </NavigationItems>
+  <Views>
+    <ListView Id="ReportData_ListView" Caption="Berichte" />
+  </Views>
+</Application>

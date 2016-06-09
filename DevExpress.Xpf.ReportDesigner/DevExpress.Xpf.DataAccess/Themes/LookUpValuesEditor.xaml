@@ -1,0 +1,88 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+            xmlns:local="clr-namespace:DevExpress.Xpf.DataAccess.DataSourceWizard"
+            xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+            xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
+            xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+            xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
+            xmlns:native="clr-namespace:DevExpress.Xpf.DataAccess.Native"
+            xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid">
+
+
+    <native:EnumToItemsSourceConverter x:Key="EnumToItemsSourceConverter" />
+
+    <Style TargetType="{x:Type local:LookUpValuesEditor}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:LookUpValuesEditor">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        
+                        <dxg:GridControl Grid.Row="0"
+                                            ItemsSource="{Binding LookUpValues, RelativeSource={RelativeSource TemplatedParent}, UpdateSourceTrigger=PropertyChanged}"
+                                            SelectedItem="{Binding SelectedLookUpValue, RelativeSource={RelativeSource TemplatedParent}, UpdateSourceTrigger=PropertyChanged}" >
+
+                            <dxg:GridControl.Columns>
+                                <dxg:GridColumn FieldName="Value">
+                                    <dxg:GridColumn.CellTemplateSelector>
+                                        <native:ParameterLookUpValueTemplateSelector>
+                                            <native:ParameterLookUpValueTemplateSelector.ListBoxTemplate>
+                                                <DataTemplate>
+                                                    <dxe:ComboBoxEdit x:Name="PART_Editor" IsTextEditable="False" ItemsSource="{Binding Path=RowData.Row.Value, Converter={StaticResource EnumToItemsSourceConverter}}"/>
+                                                </DataTemplate>
+                                            </native:ParameterLookUpValueTemplateSelector.ListBoxTemplate>
+                                            <native:ParameterLookUpValueTemplateSelector.DateTimeTemplate>
+                                                <DataTemplate>
+                                                    <dxe:DateEdit x:Name="PART_Editor" IsTextEditable="False" />
+                                                </DataTemplate>
+                                            </native:ParameterLookUpValueTemplateSelector.DateTimeTemplate>
+                                            <native:ParameterLookUpValueTemplateSelector.CheckBoxTemplate>
+                                                <DataTemplate>
+                                                    <dxe:CheckEdit x:Name="PART_Editor"></dxe:CheckEdit>
+                                                </DataTemplate>
+                                            </native:ParameterLookUpValueTemplateSelector.CheckBoxTemplate>
+                                            <native:ParameterLookUpValueTemplateSelector.TextEditTemplate>
+                                                <DataTemplate>
+                                                    <dxe:TextEdit x:Name="PART_Editor"></dxe:TextEdit>
+                                                </DataTemplate>
+                                            </native:ParameterLookUpValueTemplateSelector.TextEditTemplate>
+                                        </native:ParameterLookUpValueTemplateSelector>
+                                    </dxg:GridColumn.CellTemplateSelector>
+                                </dxg:GridColumn>
+
+                                <dxg:GridColumn FieldName="Description" >
+                                    <dxg:GridColumn.EditSettings>
+                                        <dxe:TextEditSettings  />
+                                    </dxg:GridColumn.EditSettings>
+                                </dxg:GridColumn>
+                            </dxg:GridControl.Columns>
+                            <dxg:GridControl.View>
+                                <dxg:TableView ShowGroupPanel="False" AutoWidth="True" NavigationStyle="Cell" />
+                            </dxg:GridControl.View>
+                        </dxg:GridControl>
+
+                        <Grid Grid.Row="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Button Content="Add" Command="{Binding AddParametersLookUpValueCommand, RelativeSource={RelativeSource TemplatedParent}}" Margin="5" />
+                            <Button Grid.Column="1" Content="Remove" Command="{Binding RemoveParametersLookUpValueCommand, RelativeSource={RelativeSource TemplatedParent}}" Margin="5"/>
+                        </Grid>
+
+                        <dx:DialogFooter Grid.Row="2">
+                            <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                                <dx:DialogButton DialogResult="OK" Command="{Binding SaveCommand, RelativeSource={RelativeSource TemplatedParent}}" />
+                                <dx:DialogButton DialogResult="Cancel" />
+                            </StackPanel>
+                        </dx:DialogFooter>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

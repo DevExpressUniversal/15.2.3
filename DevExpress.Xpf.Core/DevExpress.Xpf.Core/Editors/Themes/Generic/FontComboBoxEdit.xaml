@@ -1,0 +1,24 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:dx="clr-namespace:DevExpress.Xpf.Core"
+    xmlns:dxe="clr-namespace:DevExpress.Xpf.Editors"
+    xmlns:dxoui="clr-namespace:DevExpress.Xpf.Office.UI">
+
+    <!--BEGIN WPF-->
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="{dx:EditorsResource Themes/Generic/Generic.xaml}" />
+    </ResourceDictionary.MergedDictionaries>
+
+    <Style TargetType="{x:Type dxoui:FontComboBoxEdit}" BasedOn="{StaticResource {x:Type dxe:ComboBoxEdit}}">
+        <Setter Property="ItemTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <TextBlock Text="{Binding}" FontFamily="{Binding FontFamily}" dxoui:FontComboBoxEditSettings.ItemFontFamily="{Binding}" />
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="ValidateOnTextInput" Value="False" />
+        <Setter Property="AutoComplete" Value="True" />
+    </Style>
+    <!--END WPF-->
+</ResourceDictionary>

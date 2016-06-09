@@ -1,0 +1,46 @@
+﻿<UserControl x:Class="DevExpress.Xpf.RichEdit.UI.BorderShadingTypeLineUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" 
+             xmlns:dxec="clr-namespace:DevExpress.Xpf.Editors.Controls;assembly=DevExpress.Xpf.Core.v15.2" 
+             xmlns:dxre="clr-namespace:DevExpress.Xpf.RichEdit"  
+             xmlns:dxreui="clr-namespace:DevExpress.Xpf.RichEdit.UI"
+             xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             dx:StyleManager.ApplyApplicationTheme="True">
+
+    <UserControl.Resources>
+        <dxre:RichEditStringIdConverter x:Key="RichEditStringIdConverter" />
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="0,0" Grid.Row="0">
+            <TextBlock Text="{Binding Source={StaticResource RichEditStringIdConverter}, ConverterParameter=Caption_BorderShadingTypeLineUserControlStyleLabel, Converter={StaticResource RichEditStringIdConverter}}" Margin="10,3,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" dx:StyleManager.ApplyApplicationTheme="True"/>
+            <!--<ListBox x:Name="borderLineStyleListBox" Margin="10,3,10,10" VerticalAlignment="Top" HorizontalAlignment="Stretch" SelectionChanged="borderLineStyleListBox_SelectionChanged">
+                <ListBoxItem Content="Single"/>
+                <ListBoxItem Content="Double"/>
+                <ListBoxItem Content="Triple"/>
+            </ListBox>-->
+            <dxreui:RichEditBorderLineComboBoxEdit x:Name="borderLineStyleEdit" Margin="10,3,10,10" VerticalAlignment="Top" HorizontalAlignment="Stretch" EditValueChanged="borderLineStyleEdit_EditValueChanged"/>
+        </StackPanel>
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="0,0" Grid.Row="1">
+            <TextBlock Text="{Binding Source={StaticResource RichEditStringIdConverter}, ConverterParameter=Caption_BorderShadingTypeLineUserControlColorLabel, Converter={StaticResource RichEditStringIdConverter}}" Margin="10,0,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" dx:StyleManager.ApplyApplicationTheme="True"/>
+            <dxe:ColorEdit x:Name="colorEdit" Height="Auto" Width="Auto"  Margin="10,3,10,10" VerticalAlignment="Top" HorizontalAlignment="Stretch" ColorChanged="colorEdit_ColorChanged"/>
+        </StackPanel>
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="0,0" Grid.Row="2">
+            <TextBlock Text="{Binding Source={StaticResource RichEditStringIdConverter}, ConverterParameter=Caption_BorderShadingTypeLineUserControlWidthLabel, Converter={StaticResource RichEditStringIdConverter}}" Margin="10,0,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" dx:StyleManager.ApplyApplicationTheme="True"/>
+            <!--<ListBox x:Name="borderLineWeidthListBox" Margin="10,3,10,10" VerticalAlignment="Top" HorizontalAlignment="Stretch" SelectionChanged="borderLineWeightListBox_SelectionChanged">
+                --><!--<ListBoxItem Content="3/4 pt"/>
+                <ListBoxItem Content="1 pt"/>
+                <ListBoxItem Content="1.5 pt"/>--><!--
+            </ListBox>-->
+            <dxreui:RichEditBorderLineWidthEdit x:Name="borderLineWidthEdit" Margin="10,3,10,10" VerticalAlignment="Top" HorizontalAlignment="Stretch" EditValueChanged="borderLineWidthEdit_EditValueChanged"/>
+        </StackPanel>
+    </Grid>
+</UserControl>

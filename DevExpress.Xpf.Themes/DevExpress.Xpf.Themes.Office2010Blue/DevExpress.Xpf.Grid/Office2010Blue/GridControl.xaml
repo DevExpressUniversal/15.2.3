@@ -1,0 +1,95 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid" xmlns:dxgt="http://schemas.devexpress.com/winfx/2008/xaml/grid/themekeys" xmlns:dxgcore="http://schemas.devexpress.com/winfx/2008/xaml/grid" xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:cs="colorscheme_ignorable_uri" mc:Ignorable="cs">
+    <ControlTemplate x:Key="{dxgt:GridControlThemeKey ResourceKey=ErrorPanelTemplate}" TargetType="dxg:ErrorPanel">
+        <Grid Margin="5,5,5,5">
+            <Border x:Name="Shadow" Background="#BF80838F" Margin="6,6,-6,-6" CornerRadius="2" cs:Name="Border_0001" />
+            <Border Padding="1" CornerRadius="2" Background="#FF849DBD" cs:Name="Border_0002">
+                <Border Padding="8,3,8,4" CornerRadius="1">
+                    <Border.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" cs:Name="LinearGradientBrush_0453">
+                            <GradientStop Color="#FFEFF5FB" Offset="0" cs:Name="GradientStop_0001" />
+                            <GradientStop Color="#FFD1E0EF" Offset="1" cs:Name="GradientStop_0002" />
+                        </LinearGradientBrush>
+                    </Border.Background>
+                    <Grid Width="247" Margin="5,5,5,18">
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Padding="9,3,0,0" Foreground="#FF1E395B" Text="Error" Grid.Row="0" Grid.Column="1" TextAlignment="Left" FontSize="18" cs:Name="TextBlock_0001" />
+                        <Image x:Name="icon" Grid.RowSpan="2" Stretch="None" VerticalAlignment="Top" HorizontalAlignment="Left">
+                            <Image.Source>
+                                <Binding Source="DevExpress.Xpf.Core.Core.Images.ErrorIcon.png" Converter="{dx:EmbeddedResourceImageConverter}" />
+                            </Image.Source>
+                        </Image>
+                        <TextBlock Padding="9,3,0,0" Foreground="#FF1E395B" Text="{Binding}" Grid.Row="1" Grid.Column="1" TextWrapping="Wrap" TextAlignment="Left" cs:Name="TextBlock_0002" />
+                    </Grid>
+                </Border>
+            </Border>
+        </Grid>
+    </ControlTemplate>
+    <ControlTemplate x:Key="{dxgt:GridControlThemeKey ResourceKey=BorderTemplate}" TargetType="{x:Type ContentControl}">
+        <Border Background="#FF849DBD" cs:Name="Border_0003">
+            <Border.Padding>
+                <Binding Path="(dxg:GridBorderHelper.ShowBorder)" RelativeSource="{RelativeSource TemplatedParent}">
+                    <Binding.Converter>
+                        <dx:BoolToObjectConverter FalseValue="0" TrueValue="1" />
+                    </Binding.Converter>
+                </Binding>
+            </Border.Padding>
+            <Border Background="#FFCFDDEE" cs:Name="Border_0004">
+                <ContentPresenter />
+            </Border>
+        </Border>
+    </ControlTemplate>
+    <ControlTemplate x:Key="{dxgt:GridControlThemeKey ResourceKey=Template}" TargetType="{x:Type dxg:DataControlBase}">
+        <!--BEGIN WPF-->
+        <AdornerDecorator>
+            <!--END WPF-->
+            <Grid>
+                <dx:DXArranger>
+                    <dxgcore:DXGridThemesLoader x:Name="PART_ThemesLoader" dxgcore:GridBorderHelper.ShowBorder="{Binding Path=ShowBorder, RelativeSource={RelativeSource TemplatedParent}}" Template="{DynamicResource {dxgt:GridControlThemeKey ResourceKey=BorderTemplate}}" />
+                </dx:DXArranger>
+                <dxgcore:ErrorPanel x:Name="PART_ErrorPanel" Visibility="Collapsed" />
+                <dx:WaitIndicator x:Name="PART_LoadingPanel" DeferedVisibility="{TemplateBinding ShowLoadingPanel}" Style="{Binding Path=View.WaitIndicatorStyle, RelativeSource={RelativeSource TemplatedParent}}" />
+                <Canvas>
+                    <Border x:Name="PART_selectionRectangle" Style="{Binding Path=View.SelectionRectangleStyle, RelativeSource={RelativeSource TemplatedParent}}" Visibility="Collapsed" />
+                </Canvas>
+            </Grid>
+            <!--BEGIN WPF-->
+        </AdornerDecorator>
+        <!--END WPF-->
+    </ControlTemplate>
+    <ControlTemplate x:Key="{dxgt:GridControlThemeKey ResourceKey=FocusedGroupRowBorderTemplate}">
+        <Rectangle StrokeDashArray="2 2" Stroke="#FF1E395B" StrokeThickness="1" Margin="1,1,1,2" cs:Name="Rectangle_0001" />
+    </ControlTemplate>
+    <ControlTemplate x:Key="{dxgt:GridControlThemeKey ResourceKey=VerticalFocusedGroupRowBorderTemplate}">
+        <Rectangle StrokeDashArray="2 2" Stroke="#FF1E395B" StrokeThickness="1" Margin="1,1,2,1" cs:Name="Rectangle_0002" />
+    </ControlTemplate>
+    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Grid.DetailHeaderControl}" TargetType="{x:Type dxg:DetailHeaderControl}">
+        <Setter Property="Foreground" Value="#FF1E395B" cs:Name="Setter_0001" />
+        <Setter Property="FontWeight" Value="Bold" />
+        <Setter Property="Template" Value="{DynamicResource {dxgt:GridControlThemeKey ResourceKey=DetailHeaderControlTemplate}}" />
+    </Style>
+    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Grid.GroupPanelCaptionControl}" TargetType="{x:Type dxg:GroupPanelCaptionControl}">
+        <Setter Property="Foreground" Value="#FF1E395B" cs:Name="Setter_0002" />
+        <Setter Property="Template" Value="{DynamicResource {dxgt:GridControlThemeKey ResourceKey=GroupPanelCaptionTemplate}}" />
+    </Style>
+    <ControlTemplate x:Key="{dxgt:GridControlThemeKey ResourceKey=FocusedRowBorderTemplate}">
+        <Rectangle StrokeDashArray="2 2" Stroke="#FF849DBD" StrokeThickness="1" cs:Name="Rectangle_0003" />
+    </ControlTemplate>
+    <ControlTemplate x:Key="{dxgt:GridControlThemeKey ResourceKey=FocusedCellBorderTemplate}">
+        <Rectangle StrokeDashArray="2 2" Stroke="#FF849DBD" StrokeThickness="1" Margin="0,0,1,0" cs:Name="Rectangle_0004" />
+    </ControlTemplate>
+    <!--BEGIN WPF-->
+    <ControlTemplate x:Key="{dxgt:GridControlThemeKey ResourceKey=FocusedCellBorderCardViewTemplate}">
+        <Rectangle StrokeDashArray="2 2" Stroke="#FF849DBD" StrokeThickness="1" Margin="1" cs:Name="Rectangle_0005" />
+    </ControlTemplate>
+    <ControlTemplate x:Key="{dxgt:GridControlThemeKey ResourceKey=FocusedCardBorderTemplate}">
+        <Rectangle StrokeDashArray="2 2" Stroke="#FF849DBD" StrokeThickness="1" cs:Name="Rectangle_0006" />
+    </ControlTemplate>
+    <!--END WPF-->
+</ResourceDictionary>

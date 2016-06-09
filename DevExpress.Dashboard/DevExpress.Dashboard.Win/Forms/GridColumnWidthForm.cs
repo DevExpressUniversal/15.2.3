@@ -1,0 +1,73 @@
+﻿#region Copyright (c) 2000-2015 Developer Express Inc.
+/*
+{*******************************************************************}
+{                                                                   }
+{       Developer Express .NET Component Library                    }
+{       Dashboard                                                   }
+{                                                                   }
+{       Copyright (c) 2000-2015 Developer Express Inc.              }
+{       ALL RIGHTS RESERVED                                         }
+{                                                                   }
+{   The entire contents of this file is protected by U.S. and       }
+{   International Copyright Laws. Unauthorized reproduction,        }
+{   reverse-engineering, and distribution of all or any portion of  }
+{   the code contained in this file is strictly prohibited and may  }
+{   result in severe civil and criminal penalties and will be       }
+{   prosecuted to the maximum extent possible under the law.        }
+{                                                                   }
+{   RESTRICTIONS                                                    }
+{                                                                   }
+{   THIS SOURCE CODE AND ALL RESULTING INTERMEDIATE FILES           }
+{   ARE CONFIDENTIAL AND PROPRIETARY TRADE                          }
+{   SECRETS OF DEVELOPER EXPRESS INC. THE REGISTERED DEVELOPER IS   }
+{   LICENSED TO DISTRIBUTE THE PRODUCT AND ALL ACCOMPANYING .NET    }
+{   CONTROLS AS PART OF AN EXECUTABLE PROGRAM ONLY.                 }
+{                                                                   }
+{   THE SOURCE CODE CONTAINED WITHIN THIS FILE AND ALL RELATED      }
+{   FILES OR ANY PORTION OF ITS CONTENTS SHALL AT NO TIME BE        }
+{   COPIED, TRANSFERRED, SOLD, DISTRIBUTED, OR OTHERWISE MADE       }
+{   AVAILABLE TO OTHER INDIVIDUALS WITHOUT EXPRESS WRITTEN CONSENT  }
+{   AND PERMISSION FROM DEVELOPER EXPRESS INC.                      }
+{                                                                   }
+{   CONSULT THE END USER LICENSE AGREEMENT FOR INFORMATION ON       }
+{   ADDITIONAL RESTRICTIONS.                                        }
+{                                                                   }
+{*******************************************************************}
+*/
+#endregion Copyright (c) 2000-2015 Developer Express Inc.
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using DevExpress.DashboardCommon;
+using DevExpress.Utils;
+using System.Windows.Forms;
+namespace DevExpress.DashboardWin.Native {
+	public partial class GridColumnWidthForm : DashboardForm {
+		readonly DashboardDesigner designer;
+		readonly GridColumnBase column;
+		readonly GridDashboardItem grid;
+		readonly Dictionary<GridColumnBase, int> columnActualWidthsTable;
+		public GridColumnWidthForm() {
+			InitializeComponent();
+		}
+		public GridColumnWidthForm(DashboardDesigner designer, GridDashboardItem grid, GridColumnBase column, float charWidth, Dictionary<GridColumnBase, int> columnActualWidthsTable)
+			: base(designer.LookAndFeel) {
+			InitializeComponent();
+			Guard.ArgumentNotNull(designer, "designer");
+			Guard.ArgumentNotNull(grid, "grid");
+			Guard.ArgumentNotNull(columnActualWidthsTable, "columnActualWidthsTable");
+			this.designer = designer;
+			this.grid = grid;
+			this.column = column;
+			this.columnActualWidthsTable = columnActualWidthsTable;
+			teWidth.EditValue = Math.Round(columnActualWidthsTable[column] / charWidth, 2);
+		}
+		void OnBtnOkClick(object sender, EventArgs e) {
+			double newFixedWidth = (double)teWidth.EditValue;
+			GridColumnFixedWidthHistoryItem historyItem = new GridColumnFixedWidthHistoryItem(grid, columnActualWidthsTable, column, newFixedWidth != 0, newFixedWidth);
+			designer.History.RedoAndAdd(historyItem);
+			this.DialogResult = DialogResult.OK;
+		}
+	}
+}

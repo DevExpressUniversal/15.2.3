@@ -1,0 +1,69 @@
+﻿#region Copyright (c) 2000-2015 Developer Express Inc.
+/*
+{*******************************************************************}
+{                                                                   }
+{       Developer Express .NET Component Library                    }
+{                                                                   }
+{                                                                   }
+{       Copyright (c) 2000-2015 Developer Express Inc.              }
+{       ALL RIGHTS RESERVED                                         }
+{                                                                   }
+{   The entire contents of this file is protected by U.S. and       }
+{   International Copyright Laws. Unauthorized reproduction,        }
+{   reverse-engineering, and distribution of all or any portion of  }
+{   the code contained in this file is strictly prohibited and may  }
+{   result in severe civil and criminal penalties and will be       }
+{   prosecuted to the maximum extent possible under the law.        }
+{                                                                   }
+{   RESTRICTIONS                                                    }
+{                                                                   }
+{   THIS SOURCE CODE AND ALL RESULTING INTERMEDIATE FILES           }
+{   ARE CONFIDENTIAL AND PROPRIETARY TRADE                          }
+{   SECRETS OF DEVELOPER EXPRESS INC. THE REGISTERED DEVELOPER IS   }
+{   LICENSED TO DISTRIBUTE THE PRODUCT AND ALL ACCOMPANYING .NET    }
+{   CONTROLS AS PART OF AN EXECUTABLE PROGRAM ONLY.                 }
+{                                                                   }
+{   THE SOURCE CODE CONTAINED WITHIN THIS FILE AND ALL RELATED      }
+{   FILES OR ANY PORTION OF ITS CONTENTS SHALL AT NO TIME BE        }
+{   COPIED, TRANSFERRED, SOLD, DISTRIBUTED, OR OTHERWISE MADE       }
+{   AVAILABLE TO OTHER INDIVIDUALS WITHOUT EXPRESS WRITTEN CONSENT  }
+{   AND PERMISSION FROM DEVELOPER EXPRESS INC.                      }
+{                                                                   }
+{   CONSULT THE END USER LICENSE AGREEMENT FOR INFORMATION ON       }
+{   ADDITIONAL RESTRICTIONS.                                        }
+{                                                                   }
+{*******************************************************************}
+*/
+#endregion Copyright (c) 2000-2015 Developer Express Inc.
+
+using System;
+using System.ComponentModel;
+using System.Drawing;
+using DevExpress.Utils.Controls;
+namespace DevExpress.XtraEditors.Filtering.Templates.Lookup {
+	[Browsable(false), ToolboxItem(false)]
+	public partial class ListTemplate : XtraUserControl, IXtraResizableControl {
+		ListAutoSizeHelper helper;
+		public ListTemplate() {
+			InitializeComponent();
+			helper = new ListAutoSizeHelper(Part_Values, Part_MoreButton, Part_FewerButton);
+		}
+		protected override void OnParentBackColorChanged(EventArgs e) {
+			base.OnParentBackColorChanged(e);
+			System.Windows.Forms.Control parent = Parent;
+			while(parent != null) {
+				if(parent.BackColor != Color.Transparent) {
+					Part_Values.BackColor = parent.BackColor;
+					break;
+				}
+				parent = parent.Parent;
+			}
+		}
+		Size IXtraResizableControl.MinSize {
+			get { return new Size(ListAutoSizeHelper.DefaultMinWidth, helper.GetBestHeight(helper.CalcAreButtonsAvailable(this), Padding.Vertical)); }
+		}
+		Size IXtraResizableControl.MaxSize {
+			get { return new Size(0, helper.GetBestHeight(helper.CalcAreButtonsAvailable(this), Padding.Vertical)); }
+		}
+	}
+}

@@ -1,0 +1,142 @@
+﻿<dxc:DXWindow
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:dxc="http://schemas.devexpress.com/winfx/2008/xaml/core"
+        xmlns:dxpg="http://schemas.devexpress.com/winfx/2008/xaml/propertygrid" 
+        xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
+        xmlns:local="clr-namespace:DevExpress.Xpf.Controls.Design.Features.TileNavPaneDesigner"
+        xmlns:dmvvmi="http://schemas.devexpress.com/winfx/2008/xaml/mvvm/internal"
+        xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
+        xmlns:dxn="http://schemas.devexpress.com/winfx/2008/xaml/navigation"
+        xmlns:dxni="http://schemas.devexpress.com/winfx/2008/xaml/navigation/internal"
+        xmlns:dxd="http://schemas.devexpress.com/winfx/2008/xaml/docking"
+        x:Name="dXWindow" x:Class="DevExpress.Xpf.Controls.Design.Features.TileNavPaneDesigner.TileNavPaneDesignerWindow"
+        dxc:ThemeManager.ThemeName="MetropolisLight"
+        ShowInTaskbar="False" WindowStartupLocation="CenterOwner"
+        Icon="../../Images/TileNavPaneDesigner.ico"
+        Title="TileNav Pane Designer" Width="1300" Height="775" MinWidth="1020" MinHeight="680">
+    <Grid>
+        <dxd:DockLayoutManager>
+            <dxd:DockLayoutManager.Resources>
+                <Style TargetType="dxpg:PropertyGridControl">
+                    <Setter Property="AllowExpanding" Value="Never"/>
+                    <Setter Property="AllowInstanceInitializer" Value="False"/>
+                    <Setter Property="AllowListItemInitializer" Value="False"/>
+                    <Setter Property="UseCollectionEditor" Value="False"/>
+                    <Setter Property="ShowMenuButtonInRows" Value="False"/>
+                    <Setter Property="ExpandCategoriesWhenSelectedObjectChanged" Value="True"/>
+                    <Setter Property="BorderThickness" Value="0,1,0,0" />
+                    <Setter Property="FilterCriteria" Value="[IsReadOnly]=false AND [IsAttached]=false"/>
+                </Style>
+                <DataTemplate x:Key="HeaderTemplate">
+                    <DockPanel>
+                        <Label FontSize="18" Margin="10, 5" Content="{Binding Name}" DockPanel.Dock="Left"/>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" DockPanel.Dock="Right">
+                            <StackPanel.Resources>
+                                <Style TargetType="Button">
+                                    <Setter Property="Margin" Value="1, 3"/>
+                                    <Setter Property="IsEnabled" Value="{Binding RelativeSource={RelativeSource Self}, Path=Command, Converter={local:NullToFalseConverter}}"/>
+                                </Style>
+                            </StackPanel.Resources>
+                            <Button Content="Add" Command="{Binding AddItemCommand}" Margin="1,3,7,3"/>
+                            <Button Content="&lt;" Command="{Binding MoveLeftCommand}" CommandParameter="{Binding SelectedIndex}"/>
+                            <Button Content="&gt;" Command="{Binding MoveRightCommand}" CommandParameter="{Binding SelectedIndex}"/>
+                            <Button Content="Remove" Command="{Binding RemoveItemCommand}" CommandParameter="{Binding SelectedIndex}" Margin="7,3,1,3" />
+                        </StackPanel>
+                    </DockPanel>
+                </DataTemplate>
+                
+                <Style TargetType="local:DesignTimeTileBar">
+                    <Setter Property="dxc:ThemeManager.Theme" Value="{x:Static local:TileNavPaneDesigner.InheritedTheme}"/>
+                    <Setter Property="ItemTemplate">
+                        <Setter.Value>
+                            <DataTemplate>
+                                <Grid>
+                                    <ContentPresenter x:Name="contentPresenter" Content="{Binding}"/>
+                                </Grid>
+                            </DataTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+              
+                <Style TargetType="dxd:LayoutPanel">
+                    <Setter Property="AllowHide" Value="False" />
+                    <Setter Property="AllowClose" Value="False" />
+                    <Setter Property="AllowDrag" Value="False" />
+                </Style>
+            </dxd:DockLayoutManager.Resources>
+            <dxd:LayoutGroup>
+                <dxd:LayoutPanel ItemWidth="5*" MinWidth="100" ShowCaption="False" ShowBorder="False">
+                    <dxlc:LayoutControl Orientation="Vertical" AllowItemSizing="True" Grid.Column="1" Padding="0">
+                        <dxlc:LayoutGroup View="GroupBox" DataContext="{Binding CategoriesVM}" Header="{Binding}" HeaderTemplate="{StaticResource HeaderTemplate}">
+                            <local:DesignTimeTileBar ItemsSource="{Binding Items}" SelectionChanged="categories_SelectionChanged" SelectedIndex="{Binding SelectedIndex, Mode=TwoWay}" x:Name="categories" />
+                        </dxlc:LayoutGroup>
+                        <dxlc:LayoutGroup View="GroupBox" DataContext="{Binding CategoriesVM.ItemsVM}" Header="{Binding}"  HeaderTemplate="{StaticResource HeaderTemplate}">
+                            <local:DesignTimeTileBar ItemsSource="{Binding Items}" SelectionChanged="items_SelectionChanged" x:Name="items" SelectedIndex="{Binding SelectedIndex, Mode=TwoWay}"/>
+                        </dxlc:LayoutGroup>
+                        <dxlc:LayoutGroup View="GroupBox" Header="{Binding}"  DataContext="{Binding CategoriesVM.ItemsVM.SubItemsVM}" HeaderTemplate="{StaticResource HeaderTemplate}">
+                            <local:DesignTimeTileBar ItemsSource="{Binding Items}" SelectionChanged="subItems_SelectionChanged" x:Name="subItems" SelectedIndex="{Binding SelectedIndex, Mode=TwoWay}"/>
+                        </dxlc:LayoutGroup>
+                    </dxlc:LayoutControl>
+                </dxd:LayoutPanel>
+                <dxd:LayoutGroup Orientation="Vertical" ItemWidth="1.7*">
+                    <dxd:LayoutPanel ItemWidth="1.7*" Caption="Properties" ShowBorder="True">
+                        <dxc:DXTabControl Grid.Column="3" x:Name="propetyGridTabControl" Padding="0,0,0,0" Margin="0,2,0,0">
+                            <dxc:DXTabItem Header="Categories">
+                                <dxpg:PropertyGridControl DataContext="{Binding CategoriesVM}" SelectedObject="{Binding SelectedItem, ElementName=categories}">
+                                    <dxmvvm:Interaction.Triggers>
+                                        <dxmvvm:EventToCommand dmvvmi:InteractionHelper.BehaviorInDesignMode="AsWellAsNotInDesignMode" EventName="CellValueChanged" PassEventArgsToCommand="True" Command="{Binding ChangePropertyCommand}" />
+                                    </dxmvvm:Interaction.Triggers>
+                                </dxpg:PropertyGridControl>
+                            </dxc:DXTabItem>
+                            <dxc:DXTabItem Header="Items">
+                                <dxpg:PropertyGridControl DataContext="{Binding CategoriesVM.ItemsVM}" SelectedObject="{Binding SelectedItem, ElementName=items}">
+                                    <dxmvvm:Interaction.Triggers>
+                                        <dxmvvm:EventToCommand dmvvmi:InteractionHelper.BehaviorInDesignMode="AsWellAsNotInDesignMode" EventName="CellValueChanged" PassEventArgsToCommand="True" Command="{Binding ChangePropertyCommand}" />
+                                    </dxmvvm:Interaction.Triggers>
+                                </dxpg:PropertyGridControl>
+                            </dxc:DXTabItem>
+                            <dxc:DXTabItem Header="SubItems">
+                                <dxpg:PropertyGridControl DataContext="{Binding CategoriesVM.ItemsVM.SubItemsVM}" SelectedObject="{Binding SelectedItem, ElementName=subItems}">
+                                    <dxmvvm:Interaction.Triggers>
+                                        <dxmvvm:EventToCommand dmvvmi:InteractionHelper.BehaviorInDesignMode="AsWellAsNotInDesignMode" EventName="CellValueChanged" PassEventArgsToCommand="True" Command="{Binding ChangePropertyCommand}" />
+                                    </dxmvvm:Interaction.Triggers>
+                                </dxpg:PropertyGridControl>
+                            </dxc:DXTabItem>
+                        </dxc:DXTabControl>
+                    </dxd:LayoutPanel>
+                    <dxd:LayoutPanel ItemWidth="1.7*" Caption="TileNav Pane Structure">
+                        <Grid>
+                            <Grid.Resources>
+                                <Style TargetType="TreeView">
+                                    <Setter Property="ItemTemplate">
+                                        <Setter.Value>
+                                            <HierarchicalDataTemplate ItemsSource="{Binding Items}">
+                                                <DockPanel>
+                                                    <Image Source="Images\TreeViewIcon.png" DockPanel.Dock="Left" Margin="3, 0"/>
+                                                    <TextBlock>
+                                                        <TextBlock.Text>
+                                                            <MultiBinding Converter="{local:TileContentToTreeViewItemHeaderTextConverter}" >
+                                                                <Binding Path="TileContent"/>
+                                                                <Binding Path="Content"/>
+                                                            </MultiBinding>
+                                                        </TextBlock.Text>
+                                                    </TextBlock>
+                                                </DockPanel>
+                                            </HierarchicalDataTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                                <Style TargetType="TreeViewItem">
+                                    <Setter Property="IsSelected" Value="{Binding Header.IsSelected, RelativeSource={RelativeSource Self}, Mode=OneWay}"/>
+                                    <EventSetter Event="Selected" Handler="treeView_SelectionChanged"/>
+                                </Style>
+                            </Grid.Resources>
+                            <TreeView ItemsSource="{Binding CategoriesVM.Items}" x:Name="treeView" BorderThickness="0"/>
+                        </Grid>
+                    </dxd:LayoutPanel>
+                </dxd:LayoutGroup>
+            </dxd:LayoutGroup>
+        </dxd:DockLayoutManager>
+    </Grid>
+</dxc:DXWindow>

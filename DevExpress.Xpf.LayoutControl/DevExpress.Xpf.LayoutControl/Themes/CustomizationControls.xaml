@@ -1,0 +1,669 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:system="clr-namespace:System;assembly=mscorlib"
+    xmlns:core="http://schemas.devexpress.com/winfx/2008/xaml/core"
+    xmlns:local="clr-namespace:DevExpress.Xpf.LayoutControl">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/DevExpress.Xpf.LayoutControl.v15.2;component/generic.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    <local:Resources x:Key="Resources" />
+    
+    <Style TargetType="local:MaximizedElementPositionIndicator">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:MaximizedElementPositionIndicator">
+                    <Canvas Width="100" Height="100" Margin="7" Opacity="0.8" Background="LightGray">
+                        <Rectangle x:Name="NoChangeElement" Canvas.Left="35" Canvas.Top="35" Width="30" Height="30" Fill="White" />
+
+                        <Rectangle x:Name="LeftElement" Width="35" Height="100" RadiusX="3" RadiusY="3" Fill="Gray" />
+                        <Rectangle x:Name="TopElement" Width="100" Height="35" RadiusX="3" RadiusY="3" Fill="Gray" />
+                        <Rectangle x:Name="RightElement" Width="35" Height="100" Canvas.Left="65" RadiusX="3" RadiusY="3" Fill="Gray" />
+                        <Rectangle x:Name="BottomElement" Width="100" Height="35" Canvas.Top="65" RadiusX="3" RadiusY="3" Fill="Gray" />
+
+                        <Rectangle Canvas.Left="-1" Canvas.Top="-1" Width="102" Height="102" RadiusX="3" RadiusY="3" Stroke="White" Opacity="1" />
+                        <Rectangle Canvas.Left="-2" Canvas.Top="-2" Width="104" Height="104" RadiusX="3" RadiusY="3" Stroke="White" Opacity="0.7" />
+                        <Rectangle Canvas.Left="-3" Canvas.Top="-3" Width="106" Height="106" RadiusX="3" RadiusY="3" Stroke="White" Opacity="0.45" />
+                        <Rectangle Canvas.Left="-4" Canvas.Top="-4" Width="108" Height="108" RadiusX="3" RadiusY="3" Stroke="White" Opacity="0.3" />
+                        <Rectangle Canvas.Left="-5" Canvas.Top="-5" Width="110" Height="110" RadiusX="3" RadiusY="3" Stroke="White" Opacity="0.2" />
+                        <Rectangle Canvas.Left="-6" Canvas.Top="-6" Width="112" Height="112" RadiusX="3" RadiusY="3" Stroke="White" Opacity="0.1" />
+                        <Rectangle Canvas.Left="-7" Canvas.Top="-7" Width="114" Height="114" RadiusX="3" RadiusY="3" Stroke="White" Opacity="0.05" />
+                    </Canvas>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="local:LayoutItemSelectionIndicator">
+        <Setter Property="Background">
+            <Setter.Value>
+                <SolidColorBrush Color="Red" Opacity="0.2" />
+            </Setter.Value>
+        </Setter>
+        <Setter Property="BorderBrush" Value="Red" />
+        <Setter Property="FontFamily" Value="Verdana" />
+        <Setter Property="FontSize" Value="10" />
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="IsTabStop" Value="False" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:LayoutItemSelectionIndicator">
+                    <core:Container>
+                        <Rectangle Margin="-2" RadiusX="2" RadiusY="2" IsHitTestVisible="False" StrokeThickness="2"
+                                   Stroke="{TemplateBinding BorderBrush}" Fill="{TemplateBinding Background}" />
+
+                        <local:DockLayoutControl Margin="-2" ItemSpace="0" core:FrameworkElementHelper.IsVisible="{TemplateBinding AllowSizing}">
+                            <local:DockLayoutControl.Resources>
+                                <Style x:Key="SizerStyle" TargetType="local:ElementSizer">
+                                    <Setter Property="CollapseOnDoubleClick" Value="False" />
+                                    <Setter Property="UseSizingStep" Value="True" />
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="local:ElementSizer">
+                                                <core:Container>
+                                                    <Rectangle x:Name="HorizontalRootElement" Height="4" Cursor="SizeNS" Fill="Transparent" />
+                                                    <Rectangle x:Name="VerticalRootElement" Width="4" Cursor="SizeWE" Fill="Transparent" />
+                                                </core:Container>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </local:DockLayoutControl.Resources>
+
+                            <local:ElementSizer x:Name="LeftSizingElement" local:DockLayoutControl.Dock="Left"
+                                                Element="{TemplateBinding Element}" Side="Left" Style="{StaticResource SizerStyle}" />
+                            <local:ElementSizer x:Name="RightSizingElement" local:DockLayoutControl.Dock="Right"
+                                                Element="{TemplateBinding Element}" Side="Right" Style="{StaticResource SizerStyle}" />
+                            <local:ElementSizer x:Name="TopSizingElement" local:DockLayoutControl.Dock="Top"
+                                                Element="{TemplateBinding Element}" Side="Top" Style="{StaticResource SizerStyle}" />
+                            <local:ElementSizer x:Name="BottomSizingElement" local:DockLayoutControl.Dock="Bottom"
+                                                Element="{TemplateBinding Element}" Side="Bottom" Style="{StaticResource SizerStyle}" />
+
+                            <core:Container local:DockLayoutControl.Dock="Client" Margin="-2">
+                                <core:Container core:FrameworkElementHelper.IsVisible="{TemplateBinding IsHorizontalSizing}">
+                                    <Rectangle Height="1" Fill="{TemplateBinding Foreground}" />
+                                    <Polygon HorizontalAlignment="Left" VerticalAlignment="Center" Fill="{TemplateBinding Foreground}" Points="0,3.5 4,0 4,7" />
+                                    <Polygon HorizontalAlignment="Right" VerticalAlignment="Center" Fill="{TemplateBinding Foreground}" Points="0,0 4,3.5 0,7" />
+                                </core:Container>
+
+                                <core:Container core:FrameworkElementHelper.IsVisible="{TemplateBinding IsVerticalSizing}">
+                                    <Rectangle Width="1" Fill="{TemplateBinding Foreground}" />
+                                    <Polygon HorizontalAlignment="Center" VerticalAlignment="Top" Fill="{TemplateBinding Foreground}" Points="0,4 3.5,0 7,4" />
+                                    <Polygon HorizontalAlignment="Center" VerticalAlignment="Bottom" Fill="{TemplateBinding Foreground}" Points="0,0 3.5,4 7,0" />
+                                </core:Container>
+                            </core:Container>
+
+                            <core:Container local:DockLayoutControl.Dock="Client" HorizontalAlignment="Center" VerticalAlignment="Center"
+                                            core:FrameworkElementHelper.IsVisible="{TemplateBinding IsSizing}">
+                                <Rectangle RadiusX="2" RadiusY="2" Fill="{TemplateBinding Foreground}" />
+                                <TextBlock DataContext="{TemplateBinding ElementSize}" Text="{Binding}"
+                                           Padding="3,0,3,1" Foreground="{TemplateBinding BorderBrush}" />
+                            </core:Container>
+                        </local:DockLayoutControl>
+                    </core:Container>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="local:LayoutItemParentIndicator">
+        <Setter Property="BorderBrush" Value="Red" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:LayoutItemParentIndicator">
+                    <Rectangle Margin="-2" RadiusX="2" RadiusY="2" Stroke="{TemplateBinding BorderBrush}" StrokeThickness="2" StrokeDashArray="1,1" />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="local:LayoutItemDragAndDropInsertionPointIndicator">
+        <Setter Property="Background" Value="Red" />
+        <Setter Property="BorderBrush" Value="Red" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:LayoutItemDragAndDropInsertionPointIndicator">
+                    <Rectangle x:Name="RootElement" RadiusX="3" RadiusY="3" Stroke="{TemplateBinding BorderBrush}" Fill="{TemplateBinding Background}">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualStateGroup.Transitions>
+                                    <VisualTransition GeneratedDuration="0:0:0.15" />
+                                </VisualStateGroup.Transitions>
+
+                                <VisualState x:Name="Normal">
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="RootElement" Storyboard.TargetProperty="(Fill).Opacity" To="0.2" Duration="0" />
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="MouseOver">
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="RootElement" Storyboard.TargetProperty="(Fill).Opacity" To="0.6" Duration="0" />
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                    </Rectangle>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <SolidColorBrush x:Key="ToolBackground" Color="Black" Opacity="0.3" />
+    <SolidColorBrush x:Key="ToolBorderBrush" Color="Black" Opacity="0.5" />
+    <SolidColorBrush x:Key="ToolTextForeground" Color="White" />
+    <SolidColorBrush x:Key="ToolTextBackground" Color="Gray" />
+    <LinearGradientBrush x:Key="ToolItemBackground">
+        <GradientStop Offset="0.3" Color="White" />
+        <GradientStop Offset="1" Color="LightGray" />
+    </LinearGradientBrush>
+    <SolidColorBrush x:Key="ToolItemMouseOverBackground" Color="LightGray" />
+    <SolidColorBrush x:Key="ToolItemPressedBackground" Color="DarkGray" />
+    <SolidColorBrush x:Key="ToolItemBorderBrush" Color="DimGray" />
+    <SolidColorBrush x:Key="ToolItemTextForeground" Color="Black" />
+
+    <Style x:Key="ElementStyle" TargetType="Rectangle">
+        <Setter Property="Fill" Value="White" />
+        <Setter Property="Stroke" Value="Gray" />
+        <Setter Property="RadiusX" Value="1" />
+        <Setter Property="RadiusY" Value="1" />
+    </Style>
+
+    <Style TargetType="local:LayoutItemCustomizationToolbar">
+        <Setter Property="Background" Value="{StaticResource ToolBackground}" />
+        <Setter Property="BorderBrush" Value="{StaticResource ToolBorderBrush}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="IsTabStop" Value="False" />
+        <Setter Property="Padding" Value="5" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:LayoutItemCustomizationToolbar">
+                    <Border Margin="3" CornerRadius="3" BorderThickness="{TemplateBinding BorderThickness}" Padding="{TemplateBinding Padding}"
+                            Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}"
+                            >
+                        <local:LayoutControl Orientation="Horizontal" Padding="0" ItemSpace="5" ScrollBars="None" Background="Transparent">
+                            <local:LayoutItemAlignmentControl x:Name="HorizontalAlignmentElement" Orientation="Horizontal" VerticalAlignment="Center" />
+                            <local:LayoutItemAlignmentControl x:Name="VerticalAlignmentElement" Orientation="Vertical" VerticalAlignment="Center" />
+                            <local:LayoutGroup Orientation="Vertical" VerticalAlignment="Center" ItemSpace="0" Visibility="{TemplateBinding ItemMovingUIVisibility}">
+                                <local:LayoutItemCustomizationToolbarButton x:Name="MoveItemBackwardElement" CornerRadius="3,3,0,0" BorderThickness="1,1,1,0"
+                                                                            IsEnabled="{TemplateBinding CanMoveItemBackward}">
+                                    <StackPanel Orientation="Vertical">
+                                        <local:LayoutItemCustomizationToolbarButtonArrow Direction="{TemplateBinding ItemMovingBackwardDirection}" />
+                                        <Rectangle Height="2" />
+                                        <Rectangle Width="17" Height="6" Style="{StaticResource ElementStyle}" />
+                                    </StackPanel>
+                                </local:LayoutItemCustomizationToolbarButton>
+                                <Rectangle Height="1" Fill="{StaticResource ToolItemBorderBrush}" />
+                                <local:LayoutItemCustomizationToolbarButton x:Name="MoveItemForwardElement" CornerRadius="0,0,3,3" BorderThickness="1,0,1,1"
+                                                                            IsEnabled="{TemplateBinding CanMoveItemForward}">
+                                    <StackPanel Orientation="Vertical">
+                                        <Rectangle Width="17" Height="6" Style="{StaticResource ElementStyle}" />
+                                        <Rectangle Height="2" />
+                                        <local:LayoutItemCustomizationToolbarButtonArrow Direction="{TemplateBinding ItemMovingForwardDirection}" />
+                                    </StackPanel>
+                                </local:LayoutItemCustomizationToolbarButton>
+                            </local:LayoutGroup>
+                            <local:LayoutGroup Orientation="Vertical" VerticalAlignment="Center">
+                                <TextBox x:Name="RenamingEditElement" Width="150" Padding="5,2" Visibility="Collapsed"
+                                         BorderThickness="1" BorderBrush="{StaticResource ToolItemBorderBrush}" Background="White" Foreground="Black" CaretBrush="Black"
+                                         Template="{StaticResource LayoutItemCustomizationToolbar.RenamingEditElement}" />
+                                <local:LayoutItemCustomizationToolbarButton x:Name="RenameElement"
+                                                                            Visibility="{Binding ItemRenamingUIVisibility, RelativeSource={RelativeSource TemplatedParent}}">
+                                    <TextBlock Text="{Binding Strings.LayoutControl_Customization_Rename, Source={StaticResource Resources}}"
+                                               Margin="4,0" HorizontalAlignment="Center" Foreground="{StaticResource ToolItemTextForeground}" />
+                                </local:LayoutItemCustomizationToolbarButton>
+                                <local:LayoutGroup HorizontalAlignment="Center" Visibility="{TemplateBinding AvailableItemsUIVisibility}">
+                                    <local:LayoutItemCustomizationToolbarButton x:Name="AddNewItemElement"
+                                                                                Visibility="{TemplateBinding NewItemsUIVisibility}">
+                                        <Canvas Width="20" Height="12">
+                                            <Line Canvas.Top="3" Width="8" Height="2" X1="0" Y1="1" X2="8" Y2="1" StrokeThickness="2" Stroke="Black" />
+                                            <Line Canvas.Left="3" Width="2" Height="8" X1="1" Y1="0" X2="1" Y2="8" StrokeThickness="2" Stroke="Black" />
+
+                                            <Rectangle Canvas.Left="6" Canvas.Top="6" Width="14" Height="6" Style="{StaticResource ElementStyle}" />
+                                        </Canvas>
+                                    </local:LayoutItemCustomizationToolbarButton>
+                                    <local:LayoutItemCustomizationToolbarButton x:Name="MoveToAvailableItemsElement">
+                                        <Canvas Width="22" Height="16">
+                                            <Rectangle Canvas.Top="4" Width="22" Height="8" Style="{StaticResource ElementStyle}" />
+
+                                            <Line Canvas.Left="3" Width="16" Height="16" X1="0" Y1="0" X2="16" Y2="16" StrokeThickness="2.5" Stroke="Black" />
+                                            <Line Canvas.Left="3" Width="16" Height="16" X1="0" Y1="16" X2="16" Y2="0" StrokeThickness="2.5" Stroke="Black" />
+                                        </Canvas>
+                                    </local:LayoutItemCustomizationToolbarButton>
+                                </local:LayoutGroup>
+                            </local:LayoutGroup>
+                            <local:LayoutItemCustomizationToolbarButton x:Name="SelectParentElement" VerticalAlignment="Center">
+                                <Canvas Width="31" Height="25">
+                                    <Canvas.Resources>
+                                        <Style x:Key="CustomElementStyle" TargetType="Rectangle" BasedOn="{StaticResource ElementStyle}">
+                                            <Setter Property="Width" Value="9" />
+                                            <Setter Property="Height" Value="5" />
+                                        </Style>
+                                        <Style x:Key="SelectionStyle" TargetType="Rectangle">
+                                            <Setter Property="Height" Value="7" />
+                                            <Setter Property="RadiusX" Value="1" />
+                                            <Setter Property="RadiusY" Value="1" />
+                                            <Setter Property="Fill">
+                                                <Setter.Value>
+                                                    <SolidColorBrush Color="Red" Opacity="0.2" />
+                                                </Setter.Value>
+                                            </Setter>
+                                            <Setter Property="Stroke" Value="Red" />
+                                        </Style>
+                                    </Canvas.Resources>
+
+                                    <Rectangle Canvas.Left="1" Canvas.Top="1" Style="{StaticResource CustomElementStyle}" />
+                                    <Rectangle Canvas.Left="11" Canvas.Top="1" Style="{StaticResource CustomElementStyle}" />
+                                    <Rectangle Canvas.Left="21" Canvas.Top="1" Style="{StaticResource CustomElementStyle}" />
+                                    <Rectangle Canvas.Left="0" Canvas.Top="0" Width="31" Style="{StaticResource SelectionStyle}" />
+
+                                    <local:LayoutItemCustomizationToolbarButtonArrow Canvas.Left="12" Canvas.Top="9" Direction="Top" />
+
+                                    <Rectangle Canvas.Left="1" Canvas.Top="19" Style="{StaticResource CustomElementStyle}" />
+                                    <Rectangle Canvas.Left="11" Canvas.Top="19" Style="{StaticResource CustomElementStyle}" />
+                                    <Rectangle Canvas.Left="21" Canvas.Top="19" Style="{StaticResource CustomElementStyle}" />
+                                    <Rectangle Canvas.Left="10" Canvas.Top="18" Width="11" Style="{StaticResource SelectionStyle}" />
+                                </Canvas>
+                            </local:LayoutItemCustomizationToolbarButton>
+                        </local:LayoutControl>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="local:LayoutItemAlignmentButton">
+        <Setter Property="IsTabStop" Value="False" />
+        <Setter Property="Width" Value="20" />
+        <Setter Property="Height" Value="20" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:LayoutItemAlignmentButton">
+                    <Border x:Name="RootElement" BorderThickness="1" CornerRadius="{TemplateBinding CornerRadius}" Margin="-1"
+                            Background="Transparent" BorderBrush="{StaticResource ToolItemBorderBrush}">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal" />
+                                <VisualState x:Name="MouseOver">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="RootElement" Storyboard.TargetProperty="Background">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource ToolItemMouseOverBackground}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Pressed">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="RootElement" Storyboard.TargetProperty="Background">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource ToolItemPressedBackground}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="CheckStates">
+                                <VisualState x:Name="Unchecked">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="CheckElement" Storyboard.TargetProperty="Visibility">
+                                            <DiscreteObjectKeyFrame KeyTime="0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <Visibility>Collapsed</Visibility>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Checked" />
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+
+                        <core:Container>
+                            <Rectangle x:Name="CheckElement">
+                                <Rectangle.Fill>
+                                    <LinearGradientBrush>
+                                        <GradientStop Offset="0" Color="Gray" />
+                                        <GradientStop Offset="0.8" Color="DarkGray" />
+                                    </LinearGradientBrush>
+                                </Rectangle.Fill>
+                            </Rectangle>
+
+                            <Canvas x:Name="GlyphLeft" Width="12" Height="12">
+                                <Rectangle Width="2" Height="12" Fill="Black" />
+                                <Rectangle Canvas.Left="2" Canvas.Top="3" Width="10" Height="6" Style="{StaticResource ElementStyle}" />
+                            </Canvas>
+
+                            <Canvas x:Name="GlyphHorizontalCenter" Width="12" Height="12">
+                                <Rectangle Canvas.Left="5" Width="2" Height="12" Fill="Black" />
+                                <Rectangle Canvas.Left="0" Canvas.Top="3" Width="12" Height="6" Style="{StaticResource ElementStyle}" />
+                            </Canvas>
+
+                            <Canvas x:Name="GlyphRight" Width="12" Height="12">
+                                <Rectangle Canvas.Left="0" Canvas.Top="3" Width="10" Height="6" Style="{StaticResource ElementStyle}" />
+                                <Rectangle Canvas.Left="10" Width="2" Height="12" Fill="Black" />
+                            </Canvas>
+
+                            <Canvas x:Name="GlyphHorizontalStretch" Width="28" Height="12">
+                                <Rectangle Width="2" Height="12" Fill="Black" />
+                                <Rectangle Canvas.Left="2" Canvas.Top="3" Width="24" Height="6" Style="{StaticResource ElementStyle}" />
+                                <Rectangle Canvas.Left="26" Width="2" Height="12" Fill="Black" />
+                            </Canvas>
+
+                            <Canvas x:Name="GlyphTop" Width="12" Height="12">
+                                <Rectangle Width="12" Height="2" Fill="Black" />
+                                <Rectangle Canvas.Left="3" Canvas.Top="2" Width="6" Height="10" Style="{StaticResource ElementStyle}" />
+                            </Canvas>
+
+                            <Canvas x:Name="GlyphVerticalCenter" Width="12" Height="12">
+                                <Rectangle Canvas.Top="5" Width="12" Height="2" Fill="Black" />
+                                <Rectangle Canvas.Left="3" Canvas.Top="0" Width="6" Height="12" Style="{StaticResource ElementStyle}" />
+                            </Canvas>
+
+                            <Canvas x:Name="GlyphBottom" Width="12" Height="12">
+                                <Rectangle Canvas.Left="3" Canvas.Top="0" Width="6" Height="10" Style="{StaticResource ElementStyle}" />
+                                <Rectangle Canvas.Top="10" Width="12" Height="2" Fill="Black" />
+                            </Canvas>
+
+                            <Canvas x:Name="GlyphVerticalStretch" Width="12" Height="28">
+                                <Rectangle Width="12" Height="2" Fill="Black" />
+                                <Rectangle Canvas.Left="3" Canvas.Top="2" Width="6" Height="24" Style="{StaticResource ElementStyle}" />
+                                <Rectangle Canvas.Top="26" Width="12" Height="2" Fill="Black" />
+                            </Canvas>
+                        </core:Container>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="local:LayoutItemAlignmentControl">
+        <Setter Property="IsTabStop" Value="False" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:LayoutItemAlignmentControl">
+                    <core:Container>
+                        <local:LayoutControl x:Name="HorizontalRootElement" Orientation="Vertical" Padding="1" ItemSpace="1" ScrollBars="None"
+                                             Background="{StaticResource ToolItemBackground}">
+                            <local:LayoutControl.Clip>
+                                <GeometryGroup>
+                                    <RectangleGeometry Rect="0,0,64,43" RadiusX="3.5" RadiusY="3.5" />
+                                </GeometryGroup>
+                            </local:LayoutControl.Clip>
+
+                            <local:LayoutGroup Orientation="Horizontal" ItemSpace="1">
+                                <local:LayoutItemAlignmentButton x:Name="HorizontalStartElement" Kind="Left" CornerRadius="3,0,0,0" />
+                                <local:LayoutItemAlignmentButton x:Name="HorizontalCenterElement" Kind="HorizontalCenter" />
+                                <local:LayoutItemAlignmentButton x:Name="HorizontalEndElement" Kind="Right" CornerRadius="0,3,0,0" />
+                            </local:LayoutGroup>
+                            <local:LayoutItemAlignmentButton x:Name="HorizontalStretchElement" Kind="HorizontalStretch" Width="62" CornerRadius="0,0,3,3" />
+                        </local:LayoutControl>
+
+                        <local:LayoutControl x:Name="VerticalRootElement" Orientation="Horizontal" Padding="1" ItemSpace="1" ScrollBars="None"
+                                             Background="{StaticResource ToolItemBackground}">
+                            <local:LayoutControl.Clip>
+                                <GeometryGroup>
+                                    <RectangleGeometry Rect="0,0,43,64" RadiusX="3.5" RadiusY="3.5" />
+                                </GeometryGroup>
+                            </local:LayoutControl.Clip>
+
+                            <local:LayoutGroup Orientation="Vertical" ItemSpace="1">
+                                <local:LayoutItemAlignmentButton x:Name="VerticalStartElement" Kind="Top" CornerRadius="3,0,0,0" />
+                                <local:LayoutItemAlignmentButton x:Name="VerticalCenterElement" Kind="VerticalCenter" />
+                                <local:LayoutItemAlignmentButton x:Name="VerticalEndElement" Kind="Bottom" CornerRadius="0,0,0,3" />
+                            </local:LayoutGroup>
+                            <local:LayoutItemAlignmentButton x:Name="VerticalStretchElement" Kind="VerticalStretch" Height="62" CornerRadius="0,3,3,0" />
+                        </local:LayoutControl>
+                    </core:Container>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="local:LayoutItemCustomizationToolbarButton">
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="CornerRadius" Value="3" />
+        <Setter Property="Padding" Value="3" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:LayoutItemCustomizationToolbarButton">
+                    <Grid>
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal" />
+                                <VisualState x:Name="MouseOver">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="RootElement" Storyboard.TargetProperty="Background">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource ToolItemMouseOverBackground}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Pressed">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="RootElement" Storyboard.TargetProperty="Background">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource ToolItemPressedBackground}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Disabled">
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="DisabledElement" Storyboard.TargetProperty="Opacity"
+                                                         To="0.4" Duration="0" />
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+
+                        <Border x:Name="RootElement"
+                            BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{TemplateBinding CornerRadius}" Padding="{TemplateBinding Padding}"
+                            BorderBrush="{StaticResource ToolItemBorderBrush}" Background="{StaticResource ToolItemBackground}">
+                            <ContentPresenter Content="{TemplateBinding Content}" />
+                        </Border>
+
+                        <Border x:Name="DisabledElement" CornerRadius="{TemplateBinding CornerRadius}" Background="White" Opacity="0" IsHitTestVisible="False"
+                                />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="local:LayoutItemCustomizationToolbarButtonArrow">
+        <Setter Property="DefaultDirection" Value="Top" />
+        <Setter Property="Foreground" Value="Black" />
+        <Setter Property="Height" Value="7" />
+        <Setter Property="Width" Value="7" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:LayoutItemCustomizationToolbarButtonArrow">
+                    <Polygon Points="3.5,1 6,3.5 4.5,3.5 4.5,6.5 2.5,6.5 2.5,3.5 1,3.5"
+                             RenderTransformOrigin="0.5,0.5" RenderTransform="{TemplateBinding RotateTransform}"
+                             Stroke="{TemplateBinding Foreground}" Fill="{TemplateBinding Foreground}" />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="local:LayoutControlCustomizationControl">
+        <Setter Property="BorderBrush" Value="Red" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="Padding" Value="2" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:LayoutControlCustomizationControl">
+                    <Border BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}"
+                            Padding="{TemplateBinding Padding}"
+                            >
+                        <local:LayoutControlAvailableItemsControl x:Name="AvailableItemsElement"
+                                                                  AvailableItems="{TemplateBinding AvailableItems}" NewItemsInfo="{TemplateBinding NewItemsInfo}"
+                                                                  NewItemsUIVisibility="{TemplateBinding NewItemsUIVisibility}"
+                                                                  Visibility="{TemplateBinding AvailableItemsUIVisibility}" />
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="local:LayoutControlAvailableItemsControl">
+        <Setter Property="IsTabStop" Value="False" />
+        <Setter Property="LayoutGroupItemTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <TextBlock Text="{Binding}" FontWeight="Bold" />
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:LayoutControlAvailableItemsControl">
+                    <Grid>
+                        <Grid.Resources>
+                            <core:MultiplyConverter x:Key="MultiplyConverter" />
+                            <Style x:Key="listItemStyle" TargetType="local:LayoutControlAvailableListBoxItem">
+                                <Setter Property="Background" Value="{StaticResource ToolItemBackground}" />
+                                <Setter Property="BorderBrush" Value="{StaticResource ToolItemBorderBrush}" />
+                                <Setter Property="BorderThickness" Value="1" />
+                                <Setter Property="Foreground" Value="{StaticResource ToolItemTextForeground}" />
+                                <Setter Property="HorizontalContentAlignment" Value="Left" />
+                                <Setter Property="Padding" Value="8,3" />
+                                <Setter Property="VerticalContentAlignment" Value="Center" />
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="local:LayoutControlAvailableListBoxItem">
+                                            <Border x:Name="RootElement" Margin="0,0,0,1" CornerRadius="2" BorderThickness="{TemplateBinding BorderThickness}"
+                                                    Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}">
+                                                <VisualStateManager.VisualStateGroups>
+                                                    <VisualStateGroup x:Name="CommonStates">
+                                                        <VisualState x:Name="Normal" />
+                                                        <VisualState x:Name="MouseOver">
+                                                            <Storyboard>
+                                                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="RootElement" Storyboard.TargetProperty="Background">
+                                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource ToolItemMouseOverBackground}" />
+                                                                </ObjectAnimationUsingKeyFrames>
+                                                            </Storyboard>
+                                                        </VisualState>
+                                                    </VisualStateGroup>
+                                                </VisualStateManager.VisualStateGroups>
+
+                                                <local:DockLayoutControl ItemSpace="0">
+                                                    <ContentPresenter Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}"
+                                                                      local:DockLayoutControl.Dock="Client" Margin="{TemplateBinding Padding}"
+                                                                      HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                                      VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                                                    <local:LayoutItemCustomizationToolbarButton x:Name="DeleteElement"
+                                                                                                local:DockLayoutControl.Dock="Right"
+                                                                                                Margin="0,0,4,0" VerticalAlignment="Center" CornerRadius="7"
+                                                                                                Visibility="{TemplateBinding DeleteElementVisibility}">
+                                                        <Grid Width="6" Height="6">
+                                                            <Line X1="0" Y1="0" X2="6" Y2="6" StrokeThickness="1.5" Stroke="Black" />
+                                                            <Line X1="0" Y1="6" X2="6" Y2="0" StrokeThickness="1.5" Stroke="Black" />
+                                                        </Grid>
+                                                    </local:LayoutItemCustomizationToolbarButton>
+                                                </local:DockLayoutControl>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                            <Style x:Key="listStyle" TargetType="ListBox">
+                                <Setter Property="Background" Value="Transparent" />
+                                <Setter Property="ItemContainerStyle" Value="{StaticResource listItemStyle}" />
+                                <Setter Property="ItemsPanel">
+                                    <Setter.Value>
+                                        <ItemsPanelTemplate>
+                                            <StackPanel />
+                                        </ItemsPanelTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter Property="Padding" Value="2" />
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="ListBox">
+                                            <ScrollViewer x:Name="ScrollViewer" Padding="{TemplateBinding Padding}" Background="{TemplateBinding Background}"
+                                                          BorderThickness="0" BorderBrush="Transparent">
+                                                <ItemsPresenter />
+                                            </ScrollViewer>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </Grid.Resources>
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="LayoutStates">
+                                <VisualStateGroup.Transitions>
+                                    <VisualTransition From="ListOpen" To="ListClosed">
+                                        <Storyboard>
+                                            <DoubleAnimation Storyboard.TargetName="ListElement" Storyboard.TargetProperty="(RenderTransform).X"
+                                                             From="0" Duration="0:0:0.2" />
+                                            <DoubleAnimation Storyboard.TargetName="ListElement" Storyboard.TargetProperty="Opacity"
+                                                             To="0" BeginTime="0:0:0.2" Duration="0" />
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="IconElement" Storyboard.TargetProperty="Visibility" BeginTime="0:0:0.2">
+                                                <DiscreteObjectKeyFrame KeyTime="0">
+                                                    <DiscreteObjectKeyFrame.Value>
+                                                        <Visibility>Visible</Visibility>
+                                                    </DiscreteObjectKeyFrame.Value>
+                                                </DiscreteObjectKeyFrame>
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualTransition>
+                                </VisualStateGroup.Transitions>
+                                
+                                <VisualState x:Name="ListClosed" />
+                                <VisualState x:Name="ListOpen">
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="ListElement" Storyboard.TargetProperty="Opacity"
+                                                         To="1" Duration="0" />
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ListElement" Storyboard.TargetProperty="IsHitTestVisible">
+                                            <DiscreteObjectKeyFrame KeyTime="0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <system:Boolean>True</system:Boolean>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <DoubleAnimation Storyboard.TargetName="ListElement" Storyboard.TargetProperty="(RenderTransform).X"
+                                                         To="0" Duration="0:0:0.2" />
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="IconElement" Storyboard.TargetProperty="Visibility" BeginTime="0:0:0.2">
+                                            <DiscreteObjectKeyFrame KeyTime="0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <Visibility>Collapsed</Visibility>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+
+                        <Border x:Name="IconElement" Width="20" Height="20" HorizontalAlignment="Left" VerticalAlignment="Top"
+                                BorderThickness="1" CornerRadius="2" Padding="2"
+                                Background="{StaticResource ToolBackground}" BorderBrush="{StaticResource ToolBorderBrush}">
+                            <StackPanel>
+                                <Rectangle Height="4" Style="{StaticResource ElementStyle}" />
+                                <Rectangle Height="4" Margin="0,1,0,0" Style="{StaticResource ElementStyle}" />
+                                <Rectangle Height="4" Margin="0,1,0,0" Style="{StaticResource ElementStyle}" />
+                            </StackPanel>
+                        </Border>
+
+                        <Border x:Name="ListElement" HorizontalAlignment="Left" CornerRadius="3" BorderThickness="1" Opacity="0" IsHitTestVisible="False"
+                                Background="{StaticResource ToolBackground}" BorderBrush="{StaticResource ToolBorderBrush}">
+                            <Border.RenderTransform>
+                                <TranslateTransform X="{Binding ElementName=ListElement, Path=ActualWidth, Converter={StaticResource MultiplyConverter}, ConverterParameter=-1}" />
+                            </Border.RenderTransform>
+
+                            <local:LayoutControl Orientation="Vertical" Padding="0" ItemSpace="0">
+                                <StackPanel VerticalAlignment="Top" Orientation="Vertical" Visibility="{TemplateBinding NewItemsUIVisibility}">
+                                    <Border CornerRadius="2,2,0,0" Background="{StaticResource ToolTextBackground}">
+                                        <TextBlock Text="{Binding Strings.LayoutControl_Customization_NewItems, Source={StaticResource Resources}}"
+                                                   Margin="5,1" Foreground="{StaticResource ToolTextForeground}" />
+                                    </Border>
+                                    <ListBox x:Name="NewItemsListElement" Style="{StaticResource listStyle}" />
+                                </StackPanel>
+
+                                <Border VerticalAlignment="Top" CornerRadius="2,2,0,0" Background="{StaticResource ToolTextBackground}">
+                                    <TextBlock Text="{Binding Strings.LayoutControl_Customization_AvailableItems, Source={StaticResource Resources}}"
+                                               Margin="5,1" Foreground="{StaticResource ToolTextForeground}" />
+                                </Border>
+                                <ListBox x:Name="AvailableItemsListElement" MinHeight="60" Style="{StaticResource listStyle}" />
+                            </local:LayoutControl>
+                        </Border>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

@@ -1,0 +1,145 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+            xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+            xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+            xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+            xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
+            xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
+            xmlns:printing="clr-namespace:DevExpress.XtraPrinting;assembly=DevExpress.Printing.v15.2.Core"
+            xmlns:designernative="clr-namespace:DevExpress.Xpf.Reports.UserDesigner.Native"
+            xmlns:designereditors="clr-namespace:DevExpress.Xpf.Reports.UserDesigner.Editors">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/DevExpress.Xpf.ReportDesigner.v15.2;component/Themes/PropertyEditors/GroupBox.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    <Style TargetType="designereditors:FormatStringUITypeEditor">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="designereditors:FormatStringUITypeEditor">
+                    <Grid>
+                        <dxlc:LayoutControl Height="260" Orientation="Horizontal">
+                            <dxlc:LayoutGroup Width="125" Orientation="Vertical" HorizontalAlignment="Left" Margin="0,0,6,0">
+                                <dxlc:LayoutItem Label="Category" LabelPosition="Top" VerticalAlignment="Stretch">
+                                    <dxe:ListBoxEdit  DisplayMember="Name" ItemsSource="{Binding Categories, RelativeSource={RelativeSource TemplatedParent}}" EditValue="{Binding SelectedCategory, RelativeSource={RelativeSource TemplatedParent}}" />
+                                </dxlc:LayoutItem>
+                            </dxlc:LayoutGroup>
+                            
+                            <dxlc:LayoutGroup Width="320" Grid.Column="1" View="Tabs" Margin="6,0,0,0" 
+                                              SelectedTabIndex="{Binding IsCustomFormats, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" >
+                                
+                                <dxlc:LayoutGroup Header="Standard Formats" Orientation="Vertical">
+                                    <dxlc:LayoutGroup.Resources>
+                                        <dxmvvm:BooleanToObjectConverter x:Key="generalFormatTemplateConverter" >
+                                            <dxmvvm:BooleanToObjectConverter.TrueValue>
+                                                <DataTemplate>
+                                                    <dxlc:LayoutGroup>
+                                                        <dxlc:LayoutItem LabelPosition="Top" Label="Prefix:">
+                                                            <dxe:TextEdit EditValue="{Binding GeneralFormatPrefix, UpdateSourceTrigger=PropertyChanged, 
+                                                                                              RelativeSource={RelativeSource AncestorType=designereditors:FormatStringUITypeEditor}}" />
+                                                        </dxlc:LayoutItem>
+                                                        <dxlc:LayoutItem LabelPosition="Top" Label="Sufix:">
+                                                            <dxe:TextEdit EditValue="{Binding GeneralFormatSuffix, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType=designereditors:FormatStringUITypeEditor}}" />
+                                                        </dxlc:LayoutItem>
+                                                    </dxlc:LayoutGroup>
+                                                </DataTemplate>
+                                            </dxmvvm:BooleanToObjectConverter.TrueValue>
+                                            <dxmvvm:BooleanToObjectConverter.FalseValue>
+                                                <DataTemplate>
+                                                    <dxe:ListBoxEdit ItemsSource="{Binding SelectedCategory.StandardFormats, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=designereditors:FormatStringUITypeEditor}}"
+                                                                 EditValue="{Binding SelectedStandardFormat, RelativeSource={RelativeSource AncestorType=designereditors:FormatStringUITypeEditor}}" />
+                                                </DataTemplate>
+                                            </dxmvvm:BooleanToObjectConverter.FalseValue>
+                                        </dxmvvm:BooleanToObjectConverter>
+                                    </dxlc:LayoutGroup.Resources>
+                                    <dxlc:LayoutGroup VerticalAlignment="Stretch">
+                                        <ContentControl Content="{Binding}" ContentTemplate="{Binding IsGeneralCategorySelected, Converter={StaticResource generalFormatTemplateConverter}, RelativeSource={RelativeSource TemplatedParent}}" />
+                                    </dxlc:LayoutGroup>
+                                    <dxlc:LayoutGroup VerticalAlignment="Bottom" HorizontalAlignment="Stretch">
+                                        <dxlc:LayoutItem HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Label="Sample:" Margin="0,9,0,0">
+                                            <TextBlock Text="{Binding SampleText, RelativeSource={RelativeSource TemplatedParent}}" />
+                                        </dxlc:LayoutItem>
+                                    </dxlc:LayoutGroup>
+                                </dxlc:LayoutGroup>
+                                
+                                <dxlc:LayoutGroup Header="Custom Formats" Orientation="Vertical">
+                                    <dxlc:LayoutGroup.Resources>
+                                        <dxmvvm:BooleanToObjectConverter x:Key="generalFormatTemplateConverter" >
+                                            <dxmvvm:BooleanToObjectConverter.TrueValue>
+                                                <DataTemplate>
+                                                    <TextBlock Text="not supported" />
+                                                </DataTemplate>
+                                            </dxmvvm:BooleanToObjectConverter.TrueValue>
+                                            <dxmvvm:BooleanToObjectConverter.FalseValue>
+                                                <DataTemplate>
+                                                    <dxlc:LayoutGroup Orientation="Vertical">
+                                                        <dxlc:LayoutItem VerticalAlignment="Stretch">
+                                                            <dxe:ListBoxEdit ItemsSource="{Binding SelectedCategory.CustomFormats, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=designereditors:FormatStringUITypeEditor}}"
+                                                         EditValue="{Binding SelectedCustomFormat, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=designereditors:FormatStringUITypeEditor}}">
+                                                                <dxe:ListBoxEdit.ItemContainerStyle>
+                                                                    <Style TargetType="dxe:ListBoxEditItem">
+                                                                        <Setter Property="HorizontalAlignment" Value="Stretch" />
+                                                                        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                                                                        <Setter Property="ContentTemplate">
+                                                                            <Setter.Value>
+                                                                                <DataTemplate>
+                                                                                    <Grid HorizontalAlignment="Stretch">
+                                                                                        <Grid.ColumnDefinitions>
+                                                                                            <ColumnDefinition Width="*" />
+                                                                                            <ColumnDefinition Width="auto" />
+                                                                                        </Grid.ColumnDefinitions>
+                                                                                        <TextBlock Text="{Binding}" />
+                                                                                        <Button Command="{Binding RemoveFormatCommand, RelativeSource={RelativeSource AncestorType=designereditors:FormatStringUITypeEditor}}" 
+                                                                                                CommandParameter="{Binding}" Grid.Column="1" Visibility="{Binding IsEnabled, RelativeSource={RelativeSource Self}, Converter={dx:BooleanToVisibilityConverter} }" >
+                                                                                            <Button.Template>
+                                                                                                <ControlTemplate>
+                                                                                                    <Image Source="{dx:DXImage Image=Delete_16x16.png}" />
+                                                                                                </ControlTemplate>
+                                                                                            </Button.Template>
+                                                                                        </Button>
+                                                                                    </Grid>
+                                                                                </DataTemplate>
+                                                                            </Setter.Value>
+                                                                        </Setter>
+                                                                    </Style>
+                                                                </dxe:ListBoxEdit.ItemContainerStyle>
+                                                            </dxe:ListBoxEdit>
+
+                                                        </dxlc:LayoutItem>
+                                                        <dxlc:LayoutGroup VerticalAlignment="Bottom" Orientation="Horizontal">
+                                                            <dxlc:LayoutItem HorizontalAlignment="Stretch">
+                                                                <dxe:TextEdit Name="newFormatEdit" EditValue="{Binding NewFormat, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=designereditors:FormatStringUITypeEditor}}" />
+                                                            </dxlc:LayoutItem>
+                                                            <dxlc:LayoutItem HorizontalAlignment="Right" VerticalAlignment="Stretch">
+                                                                <Button Grid.Column="1" Padding="12,0" Content="Add" VerticalAlignment="Center" Command="{Binding AddFormatCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=designereditors:FormatStringUITypeEditor}}" />
+                                                            </dxlc:LayoutItem>
+                                                        </dxlc:LayoutGroup>
+                                                    </dxlc:LayoutGroup>
+                                                </DataTemplate>
+                                            </dxmvvm:BooleanToObjectConverter.FalseValue>
+                                        </dxmvvm:BooleanToObjectConverter>
+                                    </dxlc:LayoutGroup.Resources>
+                                    <dxlc:LayoutItem VerticalAlignment="Stretch">
+                                        <ContentControl Content="{Binding}" ContentTemplate="{Binding IsGeneralCategorySelected, Converter={StaticResource generalFormatTemplateConverter}, RelativeSource={RelativeSource TemplatedParent}}" />
+                                    </dxlc:LayoutItem>
+                                    <dxlc:LayoutGroup VerticalAlignment="Bottom" HorizontalAlignment="Stretch">
+                                        <dxlc:LayoutItem HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Label="Sample:" Margin="0,9,0,0">
+                                            <TextBlock Text="{Binding SampleText, RelativeSource={RelativeSource TemplatedParent}}" />
+                                        </dxlc:LayoutItem>
+                                    </dxlc:LayoutGroup>
+                                </dxlc:LayoutGroup>
+                            </dxlc:LayoutGroup>
+                        </dxlc:LayoutControl>
+                        <dx:DialogFooter>
+                            <Grid>
+                                <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                                    <dx:DialogButton DialogResult="OK" Command="{Binding SaveCommand, RelativeSource={RelativeSource TemplatedParent}}" />
+                                    <dx:DialogButton DialogResult="Cancel" />
+                                </StackPanel>
+                            </Grid>
+                        </dx:DialogFooter>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

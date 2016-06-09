@@ -1,0 +1,42 @@
+﻿<UserControl x:Class="DevExpress.Xpf.Spreadsheet.Forms.FormatCellsControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+             xmlns:dxpspi="clr-namespace:DevExpress.Xpf.Spreadsheet.Internal"
+             xmlns:local="clr-namespace:DevExpress.Xpf.Spreadsheet.Forms"
+             xmlns:dxsps="clr-namespace:DevExpress.Xpf.Spreadsheet" 
+             mc:Ignorable="d" Height="390" Width="503"
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <dxpspi:InitialTabPageToIntConverter x:Key="InitialTabPageToIntConverter"/>
+        <dxpspi:ProtectedToVisibilityConverter x:Key="ProtectedToVisibilityConverter"/>
+        <dxsps:SpreadsheetControlStringIdConverter x:Key="stringIdConverter" />
+    </UserControl.Resources>
+    <Grid Margin="5,5">
+        <dx:DXTabControl SelectedIndex="{Binding InitialTabPage, Converter={StaticResource InitialTabPageToIntConverter}, Mode=OneWay}">
+            <dx:DXTabControl.Items>
+                <dx:DXTabItem Header="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_FormatCellsFormTabNumber, Converter={StaticResource stringIdConverter}}">
+                    <local:FormatCellsNumberControl/>
+                </dx:DXTabItem>
+                <dx:DXTabItem Header="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_FormatCellsFormTabAlignment, Converter={StaticResource stringIdConverter}}">
+                    <local:FormatCellsAlignmentControl/>
+                </dx:DXTabItem>
+                <dx:DXTabItem Header="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_FormatCellsFormTabFont, Converter={StaticResource stringIdConverter}}">
+                    <local:FormatCellsFontControl/>
+                </dx:DXTabItem>
+                <dx:DXTabItem Header="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_FormatCellsFormTabBorder, Converter={StaticResource stringIdConverter}}">
+                    <local:FormatCellsBorderControl/>
+                </dx:DXTabItem>
+                <dx:DXTabItem Header="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_FormatCellsFormTabFill, Converter={StaticResource stringIdConverter}}">
+                    <local:FormatCellsFillControl/>
+                </dx:DXTabItem>
+                <dx:DXTabItem Header="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_FormatCellsFormTabProtection, Converter={StaticResource stringIdConverter}}"
+                    Visibility="{Binding IsProtected, Converter={StaticResource ProtectedToVisibilityConverter}}">
+                    <local:FormatCellsProtectionControl />
+                </dx:DXTabItem>
+            </dx:DXTabControl.Items>
+        </dx:DXTabControl>
+    </Grid>
+</UserControl>

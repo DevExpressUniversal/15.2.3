@@ -1,0 +1,171 @@
+﻿<UserControl x:Class="DevExpress.Xpf.Spreadsheet.Forms.PageSetupPageControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:dxsps="clr-namespace:DevExpress.Xpf.Spreadsheet" 
+             xmlns:dxspsi="clr-namespace:DevExpress.Xpf.Spreadsheet.Internal"
+             xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <dxsps:SpreadsheetControlStringIdConverter x:Key="stringIdConverter" />
+        <dxspsi:InverseBoolConverter x:Key="InverseBoolConverter" />
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Margin="0,3,0,3" Text="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_PageSetupFormPageOrienation, Converter={StaticResource stringIdConverter}}" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            <Separator Margin="10,3,0,3" Grid.Column="1" VerticalAlignment="Center"/>
+        </Grid>
+        <Grid Grid.Row="1" Margin="10,3,0,3">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <RadioButton Margin="0,3,0,3" 
+                         Grid.Row="0" 
+                         Content="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_PageSetupFormPagePortraitOrienation, Converter={StaticResource stringIdConverter}}"
+                         IsChecked="{Binding Path=OrientationPortrait, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <RadioButton Margin="0,3,0,3" 
+                         Grid.Row="1" 
+                         Content="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_PageSetupFormPageLandscapeOrienation, Converter={StaticResource stringIdConverter}}" 
+                         IsChecked="{Binding Path=OrientationPortrait, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource InverseBoolConverter}}"/>
+        </Grid>
+        <Grid Grid.Row="2" Margin="0,3,0,3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Margin="0,3,0,0" 
+                       Text="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_PageSetupFormPageScaling, Converter={StaticResource stringIdConverter}}" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            <Separator Margin="10,3,0,0" 
+                       Grid.Column="1" 
+                       VerticalAlignment="Center"/>
+        </Grid>
+        <Grid Grid.Row="3" Margin="10, 0, 0, 0">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="75"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="75"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <RadioButton Grid.Row="0" 
+                         Grid.Column="0"
+                         Margin="0,5,0,3" 
+                         Content="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_PageSetupFormPageAdjustTo, Converter={StaticResource stringIdConverter}}" 
+                         IsChecked="{Binding Path=FitToPage, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource InverseBoolConverter}}"/>
+            <dxe:SpinEdit Grid.Row="0"
+                          Grid.Column="1"
+                          Margin="5,3,0,3"
+                          AllowNullInput="True"
+                          IsFloatValue="False"
+                          Value="{Binding Scale, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBlock Grid.Row="0"
+                       Grid.Column="2" 
+                       Margin="5,3,0,3"    
+                       Text="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_PageSetupFormPageNormalSizeScaling, Converter={StaticResource stringIdConverter}}" 
+                       HorizontalAlignment="Left" 
+                       VerticalAlignment="Center"/>
+            <RadioButton Grid.Row="1" 
+                         Grid.Column="0"
+                         Margin="0,5,0,3" 
+                         Content="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_PageSetupFormPageFitTo, Converter={StaticResource stringIdConverter}}" 
+                         IsChecked="{Binding Path=FitToPage, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <dxe:SpinEdit Grid.Row="1"
+                          Grid.Column="1"
+                          Margin="5,3,0,3"
+                          AllowNullInput="True"
+                          IsFloatValue="False"
+                          Value="{Binding FitToWidth, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBlock Grid.Row="1"
+                       Grid.Column="2" 
+                       Margin="5,3,0,3"    
+                       Text="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_PageSetupFormPagePagesWideBy, Converter={StaticResource stringIdConverter}}" 
+                       HorizontalAlignment="Left" 
+                       VerticalAlignment="Center"/>
+            <dxe:SpinEdit Grid.Row="1"
+                          Grid.Column="3"
+                          Margin="5,3,0,3"
+                          AllowNullInput="True"
+                          IsFloatValue="False"
+                          Value="{Binding FitToHeight, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBlock Grid.Row="1"
+                       Grid.Column="4" 
+                       Margin="5,3,0,3"    
+                       Text="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_PageSetupFormPageTall, Converter={StaticResource stringIdConverter}}" 
+                       HorizontalAlignment="Left" 
+                       VerticalAlignment="Center"/>
+        </Grid>
+        <Grid Grid.Row="4">
+            <Separator Margin="0,5,0,5" 
+                       VerticalAlignment="Center"/>
+        </Grid>
+        <Grid Grid.Row="5">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="80"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Row="0" 
+                       Grid.Column="0" 
+                       Margin="0,3,0,3"
+                       Text="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_PageSetupFormPagePaperSize, Converter={StaticResource stringIdConverter}}" 
+                       HorizontalAlignment="Left" 
+                       VerticalAlignment="Center"/>
+            <dxe:ComboBoxEdit Grid.Row="0" 
+                              Grid.Column="1"
+                              Margin="0,3,0,3"
+                              ItemsSource="{Binding PaperTypes}"
+                              SelectedItem="{Binding PaperType, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBlock Grid.Row="1" 
+                       Grid.Column="0" 
+                       Margin="0,3,0,3"
+                       Text="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_PageSetupFormPagePrintQuality, Converter={StaticResource stringIdConverter}}" 
+                       HorizontalAlignment="Left" 
+                       VerticalAlignment="Center"/>
+            <dxe:ComboBoxEdit Grid.Row="1"
+                              Grid.Column="1"
+                              Margin="0,3,0,3" 
+                              ItemsSource="{Binding PrintQuality}"
+                              SelectedItem="{Binding PrintQualityMode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                              IsTextEditable="False"/>
+        </Grid>
+        <Grid Grid.Row="6">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="75"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_PageSetupFormPageFirstPageNumber, Converter={StaticResource stringIdConverter}}" 
+                       HorizontalAlignment="Left" 
+                       VerticalAlignment="Center"/>
+            <dxe:TextEdit Grid.Column="1" 
+                          Margin="5,3,0,0"
+                          Text="{Binding FirstPageNumber, Mode=TwoWay}"/>
+        </Grid>
+        <Grid Grid.Row="7">
+            <dxspsi:PageSetupPrintButtonsControl/>
+        </Grid>
+    </Grid>
+</UserControl>

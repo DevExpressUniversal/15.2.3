@@ -1,0 +1,1510 @@
+TokenKind = Type;
+TokenValue = Value;
+GenLinePragmas = false;
+
+PARSER Parser
+ 
+FRAME
+-->begin
+using System;
+using System.Collections;
+using System.Collections.Specialized;
+
+#if DXCORE
+namespace DevExpress.CodeRush.StructuralParser.JavaScript
+#else
+namespace DevExpress.CodeParser.JavaScript
+#endif
+{
+#if DXCORE
+using StructuralParser = DevExpress.CodeRush.StructuralParser;
+#else
+using StructuralParser = DevExpress.CodeParser;
+#endif
+
+	-->constants
+	partial class JavaScriptParser
+	{
+		-->declarations
+		// private methods...
+		protected override void HandlePragmas()
+		{
+			-->pragmas
+		}
+		-->productions
+		void Parse()
+		{
+			la = new Token();
+			la.Value = "";
+			Get();
+	-->parseRoot
+			Expect(0);
+			if (Context != null)
+				Context.SetRange(GetRange(Context, tToken));
+			CloseContext();
+			BindComments();
+		}
+				
+		protected override bool[,] CreateSetArray()
+		{
+			bool[,] set =
+			{
+	-->initialization
+			};
+			return set;
+		}
+	} // end Parser
+
+	public class JavaScriptParserErrors : ParserErrorsBase
+	{
+		protected override string GetSyntaxErrorText(int n)
+		{
+			string s;
+			switch (n)
+			{
+	-->errors
+				default:
+					s = "error " + n;
+					break;
+			}
+			return s;
+		}
+	}
+}
+$$$
+ENDFRAME
+
+TOKENNAMES
+	EOF		= EOF
+	INTEGERLITERAL = INTEGERLITERAL
+	DECIMALLITERAL = DECIMALLITERAL
+	STRINGLITERAL  = STRINGLITERAL
+	IDENTIFIER     = IDENTIFIER
+	CODEEMBEDDING = CODEEMBEDDING
+	//Keywords
+	BREAK = BREAK
+	CASE = CASE
+	CATCH = CATCH
+	CONTINUE = CONTINUE
+	DEFAULT = DEFAULT
+	DELETE = DELETE
+	DO = DO
+	ELSE = ELSE
+	FINALLY = FINALLY
+	FOR = FOR
+	FUNCTION = FUNCTION
+	IFKEYWORD = IFKEYWORD
+	IN = IN
+	INSTANCEOF = INSTANCEOF
+	NEW = NEW
+	RETURN = RETURN
+	SWITCH = SWITCH
+	THIS = THIS
+	THROW = THROW
+	TRY = TRY
+	TYPEOF = TYPEOF
+	VAR = VAR
+	VOID = VOID
+	WHILE = WHILE
+	WITH = WITH
+//Reserved words
+/*
+	ABSTRACT = ABSTRACT
+	BOOLEAN = BOOLEAN
+	BYTE = BYTE
+	CHAR = CHAR
+	CLASS = CLASS
+	CONST = CONST
+	ENUM = ENUM
+	EXPORT = EXPORT
+	EXTENDS = EXTENDS
+	FINAL = FINAL
+	FLOAT = FLOAT
+	GOTO = GOTO
+	IMPLEMENTS = IMPLEMENTS
+	INT = INT
+	INTERFACE = INTERFACE
+	LONG = LONG
+	NATIVE = NATIVE
+	PACKAGE = PACKAGE
+	PRIVATE = PRIVATE
+	PROTECTED = PROTECTED
+	SHORT = SHORT
+	STATIC = STATIC
+	SUPER = SUPER
+	SYNCHRONIZED = SYNCHRONIZED
+	THROWS = THROWS
+	TRANSIENT = TRANSIENT
+	VOLATILE = VOLATILE
+	DOUBLE = DOUBLE
+	IMPORT = IMPORT
+	PUBLIC = PUBLIC
+*/
+	NULL   = NULL
+	TRUE   = TRUE
+	FALSE  = FALSE
+	
+	LBRACE = LBRACE
+	RBRACE = RBRACE
+	LPAR = LPAR
+	RPAR = RPAR
+	LBRACK = LBRACK
+	RBRACK = RBRACK
+	DOT = DOT
+	SEMICOLON = SEMICOLON
+	COMMA = COMMA
+	LESSTHAN = LESSTHAN
+	GREATERTHAN = GREATERTHAN
+	LESSOREQUAL = LESSOREQUAL
+	GREATEROREQUAL = GREATEROREQUAL
+	DOUBLEEQUALS = DOUBLEEQUALS
+	NOTEQUALS = NOTEQUALS
+	TRIPLEEQUALS = TRIPLEEQUALS
+	NOTDOUBLEEQUALS = NOTDOUBLEEQUALS
+	PLUS = PLUS
+	MINUS = MINUS
+	ASTERISK = ASTERISK
+	PERCENTSYMBOL = PERCENTSYMBOL
+	PLUSPLUS = PLUSPLUS
+	MINUSMINUS = MINUSMINUS
+	SHIFTLEFT = SHIFTLEFT
+	SHIFTRIGHT = SHIFTRIGHT
+	TRIPLESHIFTRIGHT = TRIPLESHIFTRIGHT
+	BITAND = BITAND
+	BITOR = BITOR
+	XORSYMBOL = XORSYMBOL
+	EXCLAMATIONSYMBOL = EXCLAMATIONSYMBOL 
+	TILDE = TILDE
+	ANDAND = ANDAND
+	OROR = OROR
+	QUESTIONSYMBOL = QUESTIONSYMBOL
+	COLON = COLON
+	EQUALSSYMBOL = EQUALSSYMBOL
+	PLUSEQUAL = PLUSEQUAL
+	MINUSEQUAL = MINUSEQUAL
+	MULEQUAL = MULEQUAL
+	MODEQUAL = MODEQUAL
+	SHIFTLEFTEQUAL = SHIFTLEFTEQUAL
+	SHIFTRIGHTEQUAL = SHIFTRIGHTEQUAL
+	TRIPLESHIFTRIGHTEQUAL = TRIPLESHIFTRIGHTEQUAL
+	ANDEQUAL = ANDEQUAL
+	OREQUAL = OREQUAL
+	XOREQUAL = XOREQUAL
+	SLASH = SLASH
+	DIVEQUAL = DIVEQUAL
+	SINGLELINECOMMENT = SINGLELINECOMMENT
+	MULTILINECOMMENT = MULTILINECOMMENT
+	REGEXPLITERAL = REGEXPLITERAL
+	XMLCOMMENT = XMLCOMMENT
+TOKENS
+	IDENTIFIER
+	CODEEMBEDDING
+	INTEGERLITERAL
+	DECIMALLITERAL
+	STRINGLITERAL 
+	//Keywords
+	BREAK
+	CASE
+	CATCH
+	CONTINUE
+	DEFAULT
+	DELETE
+	DO
+	ELSE
+	FINALLY
+	FOR
+	FUNCTION
+	IFKEYWORD
+	IN
+	INSTANCEOF
+	NEW
+	RETURN
+	SWITCH
+	THIS
+	THROW
+	TRY
+	TYPEOF
+	VAR
+	VOID
+	WHILE
+	WITH
+//Reserved words
+/*
+	ABSTRACT
+	BOOLEAN
+	BYTE
+	CHAR
+	CLASS
+	CONST
+	ENUM
+	EXPORT
+	EXTENDS
+	FINAL
+	FLOAT
+	GOTO
+	IMPLEMENTS
+	INT
+	INTERFACE
+	LONG
+	NATIVE
+	PACKAGE
+	PRIVATE
+	PROTECTED
+	SHORT
+	STATIC
+	SUPER
+	SYNCHRONIZED
+	THROWS
+	TRANSIENT
+	VOLATILE
+	DOUBLE
+	IMPORT
+	PUBLIC
+	*/
+	NULL
+	TRUE
+	FALSE
+	
+	LBRACE
+	RBRACE
+	LPAR
+	RPAR
+	LBRACK
+	RBRACK
+	DOT
+	SEMICOLON
+	COMMA
+	LESSTHAN
+	GREATERTHAN
+	LESSOREQUAL
+	GREATEROREQUAL
+	DOUBLEEQUALS
+	NOTEQUALS
+	TRIPLEEQUALS
+	NOTDOUBLEEQUALS
+	PLUS
+	MINUS
+	ASTERISK
+	PERCENTSYMBOL
+	PLUSPLUS
+	MINUSMINUS
+	SHIFTLEFT
+	SHIFTRIGHT
+	TRIPLESHIFTRIGHT
+	BITAND
+	BITOR
+	XORSYMBOL
+	EXCLAMATIONSYMBOL
+	TILDE
+	ANDAND
+	OROR
+	QUESTIONSYMBOL
+	COLON
+	EQUALSSYMBOL
+	PLUSEQUAL
+	MINUSEQUAL
+	MULEQUAL
+	MODEQUAL
+	SHIFTLEFTEQUAL
+	SHIFTRIGHTEQUAL
+	TRIPLESHIFTRIGHTEQUAL
+	ANDEQUAL
+	OREQUAL
+	XOREQUAL
+	SLASH
+	DIVEQUAL
+	
+	SINGLELINECOMMENT
+	MULTILINECOMMENT
+	XMLCOMMENT
+	
+	REGEXPLITERAL
+	
+//////////////////////////////////GRAMMAR//////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////
+	
+PRODUCTIONS
+
+///////ROOT/////////////
+
+Parser = [XMLCOMMENT] SourceElement {SourceElement}
+.
+
+SourceElement = 
+  IF (la.Type != Tokens.FUNCTION) Statement
+| FunctionDeclaration
+.
+
+FunctionDeclaration
+(.
+  Method method = null;
+  SourceRange nameRange = SourceRange.Empty;
+  SourceRange parenOpenRange = SourceRange.Empty;
+  SourceRange parenCloseRange = SourceRange.Empty;
+  LanguageElementCollection parameters = null;
+.) =
+  FUNCTION
+  (.
+    method = new Method(la.Value);
+    method.Visibility = MemberVisibility.Public;
+    OpenContext(method);
+    method.SetRange(tToken.Range);
+    nameRange = la.Range;
+  .)
+  Identifier LPAR(.parenOpenRange = tToken.Range;.)
+  [FormalParameterList<out parameters>]
+  RPAR(.parenCloseRange = tToken.Range;.)
+  LBRACE
+  (.
+    SetMethodProperties(method, nameRange, parenOpenRange, parenCloseRange, parameters);
+    ReadBlockStart(tToken.Range);
+  .)
+  FunctionBody
+  (.
+    ReadBlockEnd(la.Range);
+  .)
+  RBRACE
+  (.
+    CloseContext();
+    method.SetRange(GetRange(method, tToken));
+  .)
+.
+
+
+FormalParameterList<out LanguageElementCollection parameters>
+(.
+  parameters = new LanguageElementCollection();
+  Param parameter = null;
+.) =
+  FormalParameter<out parameter>
+  (.
+    if (parameter != null)
+      parameters.Add(parameter);
+  .)
+  {
+    COMMA FormalParameter<out parameter>
+    (.
+      if (parameter != null)
+        parameters.Add(parameter);
+    .)
+  }
+.
+
+FormalParameter<out Param parameter>
+(.
+  parameter = CreateParam(la);
+.) =
+  Identifier
+.
+
+FunctionBody =
+  SourceElement {SourceElement}
+.
+
+Statement =
+  IF (IsLabelledStatement())
+  LabelledStatement
+|(
+  IF (la.Type == Tokens.LBRACE)
+  Block
+| EmptyStatement
+| ExpressionStatement
+| IfStatement
+| DoStatement
+| WhileStatement
+| ForStatements
+| ContinueStatement
+| BreakStatement
+| ReturnStatement
+| WithStatement
+| VariableStatement
+| SwitchStatement
+| ThrowStatement
+| TryStatement
+)
+.
+
+Block
+(.
+  Block block = null;
+  if ((Context != null && Context is DelimiterCapableBlock && !(Context as DelimiterCapableBlock).BlockStart.IsEmpty) || Context is Block || Context is Case)
+  {
+    block = new Block();
+    OpenContext(block);
+    block.SetRange(la.Range);
+  }
+  ReadBlockStart(la.Range); 
+  if (Context != null && Context is ParentingStatement)
+    (Context as ParentingStatement).HasBlock = true;
+.) =
+  LBRACE [StatementList] RBRACE
+  (.
+    ReadBlockEnd(tToken.Range); 
+    if (block != null)
+    {
+      block.SetRange(GetRange(block, tToken.Range));
+      CloseContext();
+    }
+  .)
+.
+
+StatementList =
+  Statement {Statement} SEMICOLON
+.
+
+VariableStatement
+(.
+  LanguageElementCollection variableList = null;
+.) =
+  VAR VariableDeclarationList<out variableList>
+  (.
+    if (variableList != null)
+      for (int i = 0; i < variableList.Count; i++)
+        AddNode(variableList[i]);
+  .) SEMICOLON
+.
+
+VariableDeclarationList<out LanguageElementCollection variableList>
+(.
+  variableList = new LanguageElementCollection();
+  Variable variable = null;
+  Variable prevVariable = null;
+  Variable firstVariable = null;
+  SourceRange varRange = tToken.Range;
+.) =
+  VariableDeclaration<varRange, varRange, out variable>
+  (.
+    if (variable != null)
+    {
+      firstVariable = variable;
+      prevVariable = variable;
+      variableList.Add(variable);
+    }
+  .)
+  {
+    COMMA VariableDeclaration<varRange, la.Range, out variable>
+    (.
+      if (variable != null)
+      {
+        variable.SetPreviousVariable(prevVariable);
+        variable.SetAncestorVariable(firstVariable);
+        prevVariable.SetNextVariable(variable);
+        prevVariable = variable;
+        variableList.Add(variable);
+      }
+    .)
+  }
+.
+
+VariableDeclaration<SourceRange varRange, SourceRange startRange, out Variable variable>
+(.
+  variable = null;
+  Expression expression = null;
+  SourceRange equalsRange = SourceRange.Empty;
+  SourceRange nameRange = la.Range;
+  String name = la.Value;
+  SourceRange endRange = SourceRange.Empty;
+.) =
+  (Identifier [EQUALSSYMBOL(.equalsRange = tToken.Range;.) AssignmentExpression<out expression>])
+  (.
+    if (la.Type == Tokens.SEMICOLON || la.Type == Tokens.COMMA)
+      endRange = la.Range;
+    else
+      endRange = tToken.Range;
+    variable = CreateVariable(name, nameRange, expression, varRange, startRange, endRange, equalsRange);
+  .)
+.
+
+EmptyStatement
+(.
+  StructuralParser.Statement emptyStatement = new EmptyStatement();
+  emptyStatement.Name = ";";
+  emptyStatement.SetRange(la.Range);
+  AddNode(emptyStatement);
+.) =
+  SEMICOLON
+.
+
+ExpressionStatement
+(.
+  Expression expression = null;
+  StructuralParser.Statement statement = null;
+.) =
+  (. Token testToken = tToken; .)
+  Expression<out expression> SEMICOLON
+  (.
+    if (expression != null)
+    {
+      if (expression is AssignmentExpression)
+        statement = Assignment.FromAssignmentExpression(expression as AssignmentExpression);
+      else if (expression is MethodCallExpression)
+        statement = MethodCall.FromMethodCallExpression(expression as MethodCallExpression);
+      else
+        statement = StructuralParser.Statement.FromExpression(expression);
+      statement.SetRange(GetRange(expression, tToken));
+    }
+    else
+    {
+      if (tToken.Type == Tokens.SEMICOLON)
+      {
+        statement = new Statement(tToken.Value);
+        statement.SetRange(tToken.Range);
+      }
+      else
+        Get();
+    }
+    if (testToken == tToken)
+      Get();
+    if (statement != null)
+      AddNode(statement);
+	.)
+.
+
+IfStatement
+(.
+  Expression expression = null;
+  SourceRange lparRange = SourceRange.Empty;
+  SourceRange rparRange = SourceRange.Empty;
+  If ifStatement = new If();
+  ifStatement.SetRange(la.Range);
+  OpenContext(ifStatement);
+.)
+ =
+  IFKEYWORD LPAR(.lparRange = tToken.Range;.) Expression<out expression> RPAR(.rparRange = tToken.Range;.) Statement
+  (.
+    CloseContext();
+    ifStatement.SetRange(GetRange(ifStatement, tToken));
+    ifStatement.SetParensRange(GetRange(lparRange, rparRange));
+    if (expression != null)
+      ifStatement.SetExpression(expression);
+  .)
+  [ELSE
+  (.
+    Else elseStatement = new Else();
+    elseStatement.SetRange(tToken.Range);
+    OpenContext(elseStatement);
+  .) Statement
+  (.
+    CloseContext();
+    elseStatement.SetRange(GetRange(elseStatement, tToken));
+  .)
+  ]
+.
+
+ForStatements
+(.
+  Expression expression = null;
+  Expression inExpression = null;
+  Expression initializer = null;
+  Expression condition = null;
+  Expression incrementor = null;
+  Variable variable = null;
+  SourceRange varRange = SourceRange.Empty;
+  SourceRange lparRange = SourceRange.Empty;
+  SourceRange rparRange = SourceRange.Empty;
+  SourceRange startRange = la.Range;
+  LanguageElement forBlock = null;
+  LanguageElementCollection variables = null;
+.) =
+  FOR LPAR(.lparRange = tToken.Range;.)
+  (
+    IF(IsForEachLoop())
+    (
+      (. InsideForEachLoop = true; .)
+      (
+        Expression<out expression>
+        | VAR VariableDeclaration<tToken.Range, tToken.Range, out variable>
+      )
+      IN Expression<out inExpression> RPAR
+      (.
+        rparRange = tToken.Range;
+        ForEach forEach = new ForEach(variable, inExpression, null);
+        forEach.SetRange(startRange);
+        OpenContext(forEach);
+        forBlock = forEach;
+        forEach.SetParensRange(GetRange(lparRange, rparRange));
+        forEach.FieldType = String.Empty;
+        if (expression != null)
+        {
+          forEach.AddDetailNode(expression);
+          forEach.Field = expression.ToString();
+        }
+        else
+        {
+          if (variable != null)
+          {
+            forEach.AddDetailNode(variable);
+            forEach.Field = variable.Name;
+          }
+        }
+        if (inExpression != null)
+        {
+          forEach.Expression = inExpression;
+          forEach.Collection = inExpression.ToString();
+        }
+        InsideForEachLoop = false;
+      .) Statement
+    )
+    |
+    (
+      (
+        [Expression<out initializer>]
+        | VAR VariableDeclarationList<out variables>
+      )
+      SEMICOLON [Expression<out condition>] SEMICOLON [Expression<out incrementor>] RPAR
+      (.
+        rparRange = tToken.Range;
+        For forStatement = new For();
+        forStatement.SetRange(startRange);
+        OpenContext(forStatement);
+        forBlock = forStatement;
+        forStatement.SetParensRange(GetRange(lparRange, rparRange));
+        if (initializer != null)
+        {
+          forStatement.AddInitializer(initializer);
+        }
+        else
+        {
+          if (variables != null)
+            for (int i = 0; i < variables.Count; i++)
+              forStatement.AddInitializer(variables[i]);
+        }
+        if (condition != null)
+        {
+          forStatement.Condition = condition;
+          forStatement.AddDetailNode(condition);
+        }
+        if (incrementor != null)
+          forStatement.AddIncrementor(incrementor);
+      .) Statement
+    )
+  )
+  (.
+    if (forBlock != null)
+    {
+      CloseContext();
+     forBlock.SetRange(GetRange(forBlock, tToken));
+    }
+  .)
+.
+
+DoStatement
+(.
+  Expression expression = null;
+  SourceRange lparRange = SourceRange.Empty;
+  SourceRange rparRange = SourceRange.Empty;
+  Do doStatement = new Do();
+  doStatement.SetRange(la.Range);
+  OpenContext(doStatement);
+.) =
+  DO Statement WHILE
+  LPAR(.lparRange = tToken.Range;.)
+  Expression<out expression>
+  RPAR(.rparRange = tToken.Range;.) SEMICOLON
+  (.
+    CloseContext();
+    if (expression != null)
+      doStatement.SetCondition(expression);
+    doStatement.SetParensRange(GetRange(lparRange, rparRange));
+    doStatement.SetRange(GetRange(doStatement, tToken));
+  .)
+.
+
+WhileStatement
+(.
+  Expression expression = null;
+  SourceRange lparRange = SourceRange.Empty;
+  SourceRange rparRange = SourceRange.Empty;
+  While whileStatement = new While();
+  whileStatement.SetRange(la.Range);
+  OpenContext(whileStatement);
+.) =
+  WHILE LPAR(.lparRange = tToken.Range;.) Expression<out expression> RPAR(.rparRange = tToken.Range;.) Statement
+  (.
+    CloseContext();
+    if (expression != null)
+      whileStatement.SetCondition(expression);
+    whileStatement.SetParensRange(GetRange(lparRange, rparRange));
+    whileStatement.SetRange(GetRange(whileStatement, tToken));
+  .)
+.
+
+ContinueStatement
+(.
+  Continue continueStatement = new Continue();
+  AddNode(continueStatement);
+  SourceRange startRange = la.Range;
+.) = 
+  CONTINUE [Identifier(.continueStatement.Name = tToken.Value;.)] SEMICOLON
+  (.
+    continueStatement.SetRange(GetRange(startRange, tToken.Range));
+  .)
+.
+
+BreakStatement
+(.
+  Break breakStatement = new Break();
+  AddNode(breakStatement);
+  SourceRange startRange = la.Range;
+.) =
+  BREAK [Identifier(.breakStatement.Name = tToken.Value;.)] SEMICOLON
+  (.
+    breakStatement.SetRange(GetRange(startRange, tToken.Range));
+  .)
+.
+
+ReturnStatement
+(.
+  Expression expression = null;
+  Return returnStatement = new Return();
+  AddNode(returnStatement);
+  SourceRange startRange = la.Range;
+.) = 
+  RETURN [Expression<out expression>
+  (.
+    if (expression != null)
+    {
+      returnStatement.Expression = expression;
+      returnStatement.AddDetailNode(expression);
+    }
+  .)] SEMICOLON
+  (.
+    returnStatement.SetRange(GetRange(startRange, tToken.Range));
+  .)
+.
+
+WithStatement
+(.
+  With withStatement = new With();
+  Expression expression = null;
+  SourceRange lparRange = SourceRange.Empty;
+  SourceRange rparRange = SourceRange.Empty;
+  withStatement.SetRange(la.Range);
+  OpenContext(withStatement);
+.) =
+  WITH
+  LPAR(.lparRange = tToken.Range;.)
+  Expression<out expression>
+  RPAR(.rparRange = tToken.Range;.)
+  Statement
+  (.
+    if (expression != null)
+    {
+      withStatement.Expression = expression;
+      withStatement.AddDetailNode(expression);
+    }
+    withStatement.SetRange(GetRange(withStatement, tToken));
+    withStatement.SetParensRange(GetRange(lparRange, rparRange));
+    CloseContext();
+  .)
+.
+
+SwitchStatement
+(.
+  Expression expression = null;
+  Switch switchStatement = new Switch();
+  switchStatement.SetRange(la.Range);
+  OpenContext(switchStatement);
+  SourceRange lparRange = SourceRange.Empty;
+  SourceRange rparRange = SourceRange.Empty;
+.) =
+  SWITCH LPAR(.lparRange = tToken.Range;.) Expression<out expression>
+  (.
+    if (expression != null)
+      switchStatement.Expression = expression;	
+  .) RPAR(.rparRange = tToken.Range;.) 
+
+  LBRACE(. ReadBlockStart(tToken.Range);.) {CaseClause} RBRACE(. ReadBlockEnd(tToken.Range);.)
+
+  (.
+    switchStatement.SetParensRange(GetRange(lparRange, rparRange));
+    CloseContext();
+    switchStatement.SetRange(GetRange(switchStatement, tToken));
+  .)
+.
+
+CaseClause
+(.
+  Case caseClause = new Case();
+  caseClause.SetRange(la.Range);
+  if (la.Type == Tokens.DEFAULT)
+    caseClause.IsDefault = true;
+  OpenContext(caseClause);
+  Expression expression = null;
+.) = 
+  (
+    CASE Expression<out expression>
+    (.
+      if (expression != null)
+      {
+        caseClause.Expression = expression;
+        caseClause.AddDetailNode(expression);
+      }
+    .) COLON [StatementList]
+  | DEFAULT COLON [StatementList]
+  )
+  (.
+    CloseContext();
+    caseClause.SetRange(GetRange(caseClause, tToken));
+  .)
+.
+
+LabelledStatement
+(.
+  Label label = new Label();
+  label.Name = la.Value;
+  AddNode(label);
+.) =
+  Identifier(.label.SetRange(GetRange(tToken, la));.) COLON Statement
+.
+
+ThrowStatement
+(.
+  Expression expression = null;
+  Throw throwStatement = new Throw();
+  AddNode(throwStatement);
+  SourceRange startRange = la.Range;
+.) =
+  THROW Expression<out expression>
+  (.
+    if (expression != null)
+    {
+      throwStatement.Expression = expression;
+      throwStatement.AddDetailNode(expression);
+    }
+  .)
+  SEMICOLON
+  (. throwStatement.SetRange(GetRange(startRange, tToken.Range)); .)
+.
+
+TryStatement
+(.
+  Try tryBlock = new Try();
+  OpenContext(tryBlock);
+  tryBlock.SetRange(la.Range);
+.) =
+  TRY Block
+  (.
+    CloseContext();
+    tryBlock.SetRange(GetRange(tryBlock, tToken));
+  .)
+  {Catch | Finally}
+.
+
+Catch
+(.
+  Catch catchBlock = new Catch();
+  OpenContext(catchBlock);
+  catchBlock.SetRange(la.Range);
+  SourceRange lparRange = SourceRange.Empty;
+  SourceRange rparRange = SourceRange.Empty;
+  Token catchesException = null;
+.) = 
+  CATCH LPAR(.lparRange = tToken.Range;.) Identifier(.catchesException = tToken;.) RPAR(.rparRange = tToken.Range;.) Block
+  (.
+    catchBlock.SetParensRange(GetRange(lparRange, rparRange));
+    if (catchesException != null)
+    {
+      catchBlock.CatchesException = catchesException.Value;
+      TypeReferenceExpression exception = CreateTypeReference(catchesException);
+      catchBlock.Exception = exception;
+    }
+    CloseContext();
+    catchBlock.SetRange(GetRange(catchBlock, tToken));
+  .)
+.
+
+Finally
+(.
+  Finally finallyBlock = new Finally();
+  OpenContext(finallyBlock);
+  finallyBlock.SetRange(la.Range);
+.) =
+  FINALLY Block
+  (.
+    CloseContext();
+    finallyBlock.SetRange(GetRange(finallyBlock, tToken));
+  .)
+.
+
+PrimaryExpression<out Expression result>
+(.
+  result = null;
+  SourceRange startRange = la.Range;
+.) =
+  THIS (. result = CreateThisExpression(tToken); .)
+| Identifier (. result = CreateElementReference(tToken); .)
+| Literal<out result>
+| (.Token startToken = la; (scanner as JavaScriptScanner).ShouldReadRegExpToken = true;.)
+ (SLASH | DIVEQUAL)(.(scanner as JavaScriptScanner).ShouldReadRegExpToken = false;.) REGEXPLITERAL
+  (.
+    result = new PrimitiveExpression(String.Concat(startToken.Value, tToken.Value), GetRange(startToken, tToken.Range));
+    (result as PrimitiveExpression).PrimitiveType = PrimitiveType.RegularExpression;
+  .)
+| ArrayLiteral<out result>
+| ObjectLiteral<out result>
+| LPAR Expression<out result> RPAR (. result = CreateParenthesizedExpression(result, startRange, tToken.Range); .)
+.
+
+Literal<out Expression result>
+(.
+  result = null;
+  PrimitiveExpression primitive = new PrimitiveExpression(la.Value, la.Range);
+  primitive.PrimitiveType = JavaScriptPrimitiveTypeUtils.ToPrimitiveType(la.Type, la.Value);
+  primitive.PrimitiveValue = JavaScriptPrimitiveTypeUtils.ToPrimitiveValue(la.Type, la.Value);
+  result = primitive;
+.) =
+  INTEGERLITERAL
+| DECIMALLITERAL
+| STRINGLITERAL
+| NULL
+| TRUE
+| FALSE
+.
+
+ArrayLiteral<out Expression result>
+(.
+  result = null;
+  ExpressionCollection initializers = null;
+  SourceRange startRange = la.Range;
+.) =
+  LBRACK [ElementList<out initializers>] RBRACK
+  (.
+    result = CreateArrayInitializerExpression(startRange, tToken.Range, initializers);
+  .)
+.
+EmptyArrayElementExpression<out Expression result>
+(.
+  result = null;
+  int commaCount = 0;
+  SourceRange startRange = la.Range;
+.)
+=
+  {
+    COMMA (.commaCount ++;.)
+  }
+  (.
+    if (commaCount > 0)
+    {
+      EmptyArrayElementExpression emptyElement = new EmptyArrayElementExpression(commaCount);
+      emptyElement.SetRange(GetRange(startRange, tToken));
+      result = emptyElement;
+    }
+  .)
+.
+
+ElementList<out ExpressionCollection initializers>
+(.
+  Expression expression = null;
+  Expression emptyElements = null;
+  initializers = new ExpressionCollection();
+.) =
+  EmptyArrayElementExpression<out emptyElements>
+  (.
+    if (emptyElements != null)
+      initializers.Add(emptyElements);
+  .)
+  AssignmentExpression<out expression>
+  (.
+    if (expression != null)
+      initializers.Add(expression);
+  .) 
+  {
+    COMMA
+    EmptyArrayElementExpression<out emptyElements> 
+    (.
+      if (emptyElements != null)
+        initializers.Add(emptyElements);
+    .)
+    AssignmentExpression<out expression> 
+    (.
+      if (expression != null)
+        initializers.Add(expression);
+      else if ((emptyElements as EmptyArrayElementExpression) != null)
+        (emptyElements as EmptyArrayElementExpression).EmptyElementsCount++;
+    .)
+  }
+.
+ObjectLiteral<out Expression result>
+(.
+  result = null;
+  ExpressionCollection initializers = null;
+  SourceRange startRange = la.Range;
+.) =
+  LBRACE [PropertyNameAndValueList<out initializers>] RBRACE
+  (.
+    result = CreateObjectInitializer(initializers, startRange, tToken.Range);
+  .)
+.
+
+PropertyNameAndValueList<out ExpressionCollection initializers>
+(.
+  initializers = new ExpressionCollection();
+  Expression initializer = null;
+.) =
+  NameValuePair<out initializer>
+  (.
+    if (initializer != null)
+      initializers.Add(initializer);
+  .)
+  {
+    COMMA NameValuePair<out initializer>
+    (.
+      if (initializer != null)
+        initializers.Add(initializer);
+    .)
+  }
+.
+
+NameValuePair<out Expression initializer>
+(.
+  initializer = null;
+  Expression expression = null;
+  Token nameToken = la;
+.) =
+  PropertyName COLON AssignmentExpression<out expression>
+  (.
+    initializer = CreateMemberInitializer(nameToken, expression);
+  .)
+.
+
+PropertyName =
+  Identifier
+| STRINGLITERAL
+| DECIMALLITERAL
+| INTEGERLITERAL
+.
+
+TypeReference<out TypeReferenceExpression typeReference>
+(.
+  typeReference = null;
+
+.)
+=
+  (
+    LPAR
+    (.
+      SourceRange startRange = tToken.Range;
+      Expression expression = null;
+    .)
+    Expression<out expression>
+    (.
+      ParenthesizedTypeReferenceExpression result = new ParenthesizedTypeReferenceExpression();
+      result.Expression = expression;
+      result.SetRange(GetRange(startRange, la.Range));
+      typeReference = result;
+    .)
+    RPAR
+  )
+  |
+  (Identifier | THIS) (. typeReference = CreateTypeReference(tToken); .)
+  {
+    DOT (. typeReference = CreateTypeReference(typeReference, la); .)
+    (Identifier | THIS)
+  }
+.
+NewExpression<out Expression result>
+(.
+  result = null;
+  TypeReferenceExpression typeReference = null;
+  ExpressionCollection arguments = null;
+  SourceRange lparRange = SourceRange.Empty;
+  SourceRange rparRange = SourceRange.Empty;
+  SourceRange startRange = la.Range;
+.) = 
+  (
+    NEW
+    ( TypeReference<out typeReference> [LPAR(.lparRange = tToken.Range;.) [ArgumentList<out arguments>] RPAR(.rparRange = tToken.Range;.)]
+    (. result = CreateObjectCreationExpression(typeReference, arguments, lparRange, rparRange, startRange, tToken.Range); .) |
+    FunctionExpression<out result>
+    )
+  )
+.
+
+MemberExpression<out Expression result>
+(.
+  result = null;
+  Expression expression = null;
+.) =
+(
+  PrimaryExpression<out result>
+| FunctionExpression<out result>
+| NewExpression<out result>
+)
+  {
+    LBRACK  Expression<out expression> RBRACK
+    (.
+      result = CreateIndexerExpression(result, expression, tToken.Range);
+    .)
+    | DOT Identifier (. result = CreateElementReference(result, tToken); .)
+    | LPAR (. SourceRange lparRange = tToken.Range; .)
+    (. ExpressionCollection arguments = null; .)
+    [ ArgumentList<out arguments>] RPAR
+    (.
+      SourceRange rparRange = tToken.Range;
+      result = CreateMethodCallExpression(result, arguments, lparRange, rparRange);
+    .)
+  }
+.
+
+ArgumentList<out ExpressionCollection arguments>
+(.
+  arguments = new ExpressionCollection();
+  Expression expression = null;
+.) =
+  AssignmentExpression<out expression>
+  (.
+    if (expression != null)
+      arguments.Add(expression);
+  .)
+  {
+    COMMA AssignmentExpression<out expression>
+    (.
+      if (expression != null)
+        arguments.Add(expression);
+    .)
+  }
+.
+
+PostfixExpression<out Expression result>
+(.
+  result = null;
+.) =
+  MemberExpression<out result>
+  [
+    PLUSPLUS (. result = CreateUnaryPostfixIncrement(result, tToken); .)
+    | MINUSMINUS (. result = CreateUnaryPostfixDecrement(result, tToken); .)
+  ]
+.
+
+UnaryExpression<out Expression result>
+(.
+  result = null;
+  Token operatorToken = la;
+.) =
+  PostfixExpression<out result>
+  |
+  (
+    DELETE UnaryExpression<out result>
+    (. result = CreateDeleteExpression(result, operatorToken); .)
+    | EXCLAMATIONSYMBOL UnaryExpression<out result>
+    (. result = CreateLogicalInversion(result, operatorToken); .)
+    | TYPEOF UnaryExpression<out result>
+    (. result = CreateTypeOfExpression(result, operatorToken); .)
+    | PLUSPLUS UnaryExpression<out result>
+    (. result = CreateUnaryPrefixIncrement(result, operatorToken); .)
+    | MINUSMINUS UnaryExpression<out result>
+    (. result = CreateUnaryPrefixDecrement(result, operatorToken); .)
+    |  TILDE UnaryExpression<out result>(. result = CreateUnaryExpression(result, operatorToken); .)
+    |  VOID UnaryExpression<out result>(. result = CreateUnaryExpression(result, operatorToken); .)
+    |  PLUS UnaryExpression<out result>(. result = CreateUnaryExpression(result, operatorToken); .)
+    |  MINUS UnaryExpression<out result>(. result = CreateUnaryExpression(result, operatorToken); .)
+  )
+.
+
+MultiplicativeExpression<out Expression result>
+(.
+  Expression rightPart = null;
+  Token operatorToken = null;
+  result = null;
+.) =
+  UnaryExpression<out result>
+  {
+    (
+      ASTERISK
+      | SLASH
+      | PERCENTSYMBOL
+    )
+    (.operatorToken = tToken;.)
+    UnaryExpression<out rightPart>
+    (. result = CreateBinaryOperatorExpression(result, rightPart, operatorToken); .)
+  }
+.
+
+AdditiveExpression<out Expression result>
+(.
+  Expression rightPart = null;
+  Token operatorToken = null;
+  result = null;
+  int mulExpCount = 0;
+.) =
+  MultiplicativeExpression<out result>
+  {
+    (
+      PLUS
+      | MINUS
+    )
+    (.
+      operatorToken = tToken;
+      mulExpCount++;
+    .)
+    MultiplicativeExpression<out rightPart>
+    (.
+      if (mulExpCount < _MaxMult)
+        result = CreateBinaryOperatorExpression(result, rightPart, operatorToken);
+    .)
+  }
+.
+
+ShiftExpression<out Expression result>
+(.
+  Expression rightPart = null;
+  Token operatorToken = null;
+  result = null;
+.) =
+  AdditiveExpression<out result>
+  {
+    (
+      SHIFTLEFT
+      | SHIFTRIGHT
+      | TRIPLESHIFTRIGHT
+    )
+    (. operatorToken = tToken; .)
+    AdditiveExpression<out rightPart>
+    (. result = CreateBinaryOperatorExpression(result, rightPart, operatorToken); .)
+  }
+.
+
+RelationalExpression<out Expression result>
+(.
+  Expression rightPart = null;
+  Token operatorToken = null;
+  result = null;
+.) =
+  ShiftExpression<out result>
+  (.
+    if (la.Type == Tokens.IN && InsideForEachLoop)
+      return;
+  .)
+  {
+    (. operatorToken = la; .)
+    (
+      IN  ShiftExpression<out rightPart>
+      (. result = CreateBinaryOperatorExpression(result, rightPart, operatorToken); .)
+      | INSTANCEOF ShiftExpression<out rightPart>
+      (. result = CreateTypeCheckExpression(result, rightPart, operatorToken); .)
+      |
+      (
+        LESSTHAN
+        | GREATERTHAN
+        | GREATEROREQUAL
+        | LESSOREQUAL
+      )
+      ShiftExpression<out rightPart>
+      (. result = CreateRelationalOperation(result, rightPart, operatorToken); .)
+    )
+  }
+.
+
+EqualityExpression<out Expression result>
+(.
+  Expression rightPart = null;
+  Token operatorToken = null;
+  result = null;
+.) =
+  RelationalExpression<out result>
+  {
+    (
+      DOUBLEEQUALS
+      | NOTEQUALS
+      | TRIPLEEQUALS
+      | NOTDOUBLEEQUALS
+    )
+    (.operatorToken = tToken;.)
+    RelationalExpression<out rightPart>
+    (. result = CreateRelationalOperation(result, rightPart, operatorToken); .)
+  }
+.
+
+BitwiseAndExpression<out Expression result>
+(.
+  Expression rightPart = null;
+  Token operatorToken = null;
+  result = null;
+.) =
+  EqualityExpression<out result>
+  {
+    BITAND(. operatorToken = tToken; .) EqualityExpression<out rightPart>
+    (. result = CreateLogicalOperation(result, rightPart, operatorToken); .)
+  }
+.
+
+BitwiseXorExpression<out Expression result>
+(.
+  Expression rightPart = null;
+  Token operatorToken = null;
+  result = null;
+.) =
+  BitwiseAndExpression<out result>
+  {
+    XORSYMBOL(.operatorToken = tToken;.) BitwiseAndExpression<out rightPart>
+    (. result = CreateLogicalOperation(result, rightPart, operatorToken); .)
+  }
+.
+
+BitwiseOrExpression<out Expression result>
+(.
+  Expression rightPart = null;
+  Token operatorToken = null;
+  result = null;
+.) =
+  BitwiseXorExpression<out result>
+  {
+    BITOR(.operatorToken = tToken;.) BitwiseXorExpression<out rightPart>
+    (. result = CreateLogicalOperation(result, rightPart, operatorToken); .)
+  }
+.
+
+LogicalAndExpression<out Expression result>
+(.
+  Expression rightPart = null;
+  Token operatorToken = null;
+  result = null;
+.) =
+  BitwiseOrExpression<out result>
+  {
+    ANDAND(.operatorToken = tToken;.) BitwiseOrExpression<out rightPart>
+    (. result = CreateLogicalOperation(result, rightPart, operatorToken); .)
+  }
+.
+
+LogicalOrExpression<out Expression result>
+(.
+  Expression rightPart = null;
+  Token operatorToken = null;
+  result = null;
+.) =
+  LogicalAndExpression<out result>
+  {
+    OROR(.operatorToken = tToken;.) LogicalAndExpression<out rightPart>
+    (. result = CreateLogicalOperation(result, rightPart, operatorToken); .)
+  }
+.
+
+ConditionalExpression<out Expression result>
+(.
+  Expression trueExpression = null;
+  Expression falseExpression = null;
+  result = null;
+.) =
+  LogicalOrExpression<out result> 
+  [
+    QUESTIONSYMBOL AssignmentExpression<out trueExpression>
+    COLON AssignmentExpression<out falseExpression>
+    (.
+      result = CreateConditionalExpression(result, trueExpression, falseExpression);
+    .)
+  ]
+.
+
+AssignmentExpression<out Expression result>
+(.
+  Expression rightPart = null;
+  result = null;
+  Token operatorToken = null;
+.) =
+  ConditionalExpression<out result> 
+  [
+    AssignmentOperator (. operatorToken = tToken; .)
+    AssignmentExpression<out rightPart>
+    (.
+      result = CreateAssignmentExpression(result, rightPart, operatorToken);
+    .)
+  ]
+.
+
+AssignmentOperator =
+  EQUALSSYMBOL
+| MULEQUAL
+| DIVEQUAL
+| MODEQUAL
+| PLUSEQUAL
+| MINUSEQUAL
+| SHIFTLEFTEQUAL
+| SHIFTRIGHTEQUAL
+| TRIPLESHIFTRIGHTEQUAL
+| ANDEQUAL
+| OREQUAL
+| XOREQUAL
+.
+
+Expression<out Expression result>
+(.
+  Expression nextExpression = null;
+  ComplexExpression complexExpression = null;
+  result = null;
+.) =
+  AssignmentExpression<out result> 
+  {
+    COMMA AssignmentExpression<out nextExpression>
+    (.
+      if (nextExpression != null)
+      {
+        if (complexExpression == null && result != null)
+        {
+          complexExpression = new ComplexExpression();
+          complexExpression.Expressions.Add(result);
+          complexExpression.AddDetailNode(result);
+          complexExpression.SetRange(result.Range);
+          result = complexExpression;
+        }
+        if (complexExpression != null)
+        {
+          complexExpression.Expressions.Add(nextExpression);
+          complexExpression.AddDetailNode(nextExpression);
+          complexExpression.SetRange(GetRange(complexExpression, nextExpression));
+        }
+      }
+    .)
+  }
+.
+
+
+FunctionExpression<out Expression result>
+(.
+  result = null;
+  bool isConstructor = tToken.Type == Tokens.NEW;
+  LanguageElementCollection parameters = null;
+  SourceRange startRange = SourceRange.Empty;
+  if (isConstructor)
+    startRange = tToken.Range;
+  else
+    startRange = la.Range;
+  SourceRange lparRange = SourceRange.Empty;
+  SourceRange rparRange = SourceRange.Empty;
+  Token nameToken = null;
+.)
+ = 
+  FUNCTION [Identifier (. nameToken = tToken; .) ]
+  LPAR (.lparRange = tToken.Range;.)
+  [FormalParameterList<out parameters>]
+  RPAR (.rparRange = tToken.Range;.)
+  (.
+    AnonymousMethodExpression anonymousMethod = null;
+    if (isConstructor)
+      anonymousMethod = CreateAnonymousConstructor(startRange, lparRange, rparRange, parameters, nameToken);
+    else
+      anonymousMethod = CreateAnonymousMethod(startRange, lparRange, rparRange, parameters, nameToken);
+    LanguageElement oldContext = Context;
+    SetContext(anonymousMethod);
+  .)
+  LBRACE
+  (.
+    ReadBlockStart(tToken.Range);
+  .)
+  FunctionBody
+  RBRACE
+  (.
+    ReadBlockEnd(tToken.Range);
+    anonymousMethod.SetRange(GetRange(anonymousMethod,tToken));
+    SetContext(oldContext);
+    result = anonymousMethod; 
+  .)
+.
+
+Identifier =
+  IDENTIFIER
+| CODEEMBEDDING
+.
+
+END Parser.

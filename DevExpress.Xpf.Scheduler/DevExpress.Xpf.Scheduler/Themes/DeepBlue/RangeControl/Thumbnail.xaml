@@ -1,0 +1,15 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:dxsch="clr-namespace:DevExpress.Xpf.Scheduler"
+    xmlns:dxscht="clr-namespace:DevExpress.Xpf.Scheduler.ThemeKeys"
+    xmlns:dxschd="clr-namespace:DevExpress.Xpf.Scheduler.Drawing"
+    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core">
+    <ControlTemplate x:Key="{dxscht:RangeControlThemeKey ResourceKey=ThumbnailControlTemplate}" TargetType="{x:Type dxsch:ThumbnailControl}">
+        <Border Background="{Binding LabelColor, Converter={dxschd:DataItemThumbnailColorToBrushConverter DefaultColor=#FFBABABA}}"/>
+    </ControlTemplate>
+    <ControlTemplate x:Key="{dxscht:RangeControlThemeKey ResourceKey=ThumbnailGroupControlTemplate}" TargetType="{x:Type dxsch:ThumbnailGroupControl}">
+        <Viewbox Stretch="Uniform">
+            <TextBlock Text="{Binding Count}" Foreground="#FFBABABA"/>
+        </Viewbox>
+    </ControlTemplate>
+</ResourceDictionary>

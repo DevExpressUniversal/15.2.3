@@ -1,0 +1,205 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{4CDEF11B-490D-4FE1-B840-6462029E7D89}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DevExpress.ExpressApp.Workflow</RootNamespace>
+    <AssemblyName>DevExpress.ExpressApp.Workflow.v15.2</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>..\..\DevExpress.Key\StrongKey.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\..\Bin\Framework\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\..\Bin\Framework\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  
+  <ItemGroup>
+    <Reference Include="DevExpress.ExpressApp.ConditionalAppearance.v15.2">
+      <HintPath>..\..\..\Bin\Framework\DevExpress.ExpressApp.ConditionalAppearance.v15.2.dll</HintPath>
+    <Private>False</Private></Reference>
+    <Reference Include="DevExpress.ExpressApp.Security.v15.2">
+      <HintPath>..\..\..\Bin\Framework\DevExpress.ExpressApp.Security.v15.2.dll</HintPath>
+    <Private>False</Private></Reference>
+    <Reference Include="DevExpress.Printing.v15.2.Core">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Bin\Framework\DevExpress.Printing.v15.2.Core.dll</HintPath>
+    <Private>False</Private></Reference>
+    <Reference Include="DevExpress.Data.v15.2">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Bin\Framework\DevExpress.Data.v15.2.dll</HintPath>
+    <Private>False</Private></Reference>
+    <Reference Include="DevExpress.ExpressApp.v15.2">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Bin\Framework\DevExpress.ExpressApp.v15.2.dll</HintPath>
+    <Private>False</Private></Reference>
+    <Reference Include="DevExpress.Persistent.Base.v15.2">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Bin\Framework\DevExpress.Persistent.Base.v15.2.dll</HintPath>
+    <Private>False</Private></Reference>
+    <Reference Include="DevExpress.Utils.v15.2">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Bin\Framework\DevExpress.Utils.v15.2.dll</HintPath>
+    <Private>False</Private></Reference>
+    
+    <Reference Include="System"><Private>False</Private></Reference>
+    <Reference Include="System.Activities"><Private>False</Private></Reference>
+    <Reference Include="System.configuration"><Private>False</Private></Reference>
+    <Reference Include="System.Core"><Private>False</Private></Reference>
+    <Reference Include="System.Drawing"><Private>False</Private></Reference>
+    <Reference Include="System.Runtime.DurableInstancing"><Private>False</Private></Reference>
+    <Reference Include="System.Runtime.Remoting"><Private>False</Private></Reference>
+    <Reference Include="System.ServiceModel"><Private>False</Private></Reference>
+    <Reference Include="System.ServiceModel.Activities"><Private>False</Private></Reference>
+    <Reference Include="System.Xaml"><Private>False</Private></Reference>
+    <Reference Include="System.Xml.Linq"><Private>False</Private></Reference>
+    <Reference Include="System.Data.DataSetExtensions"><Private>False</Private></Reference>
+    <Reference Include="Microsoft.CSharp"><Private>False</Private></Reference>
+    <Reference Include="System.Data"><Private>False</Private></Reference>
+    <Reference Include="System.Xml"><Private>False</Private></Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AssemblyVersionInfo.cs">
+      
+    </Compile>
+    <Compile Include="ActivityInformation.cs" />
+    <Compile Include="CommonServices\StartWorkflowConditionsProvider.cs" />
+    <Compile Include="CommonServices\WorkflowDefinitionProvider.cs" />
+    <Compile Include="Controllers\RunningWorkflowInstanceInfoViewer.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\ActivationController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\StartWorkflowController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="WorkflowDataTypesHepler.cs" />
+    <Compile Include="WorkflowDefinitionsUpdater.cs" />
+    <Compile Include="MiddleTier\XpoStartWorkflowRequestWorkflowStarterService.cs" />
+    <Compile Include="SerializableObjectLayerObjectSpaceProvider.cs" />
+    <Compile Include="ServiceModel\IService.cs" />
+    <Compile Include="ServiceModel\IServiceProviderEx.cs" />
+    <Compile Include="ServiceModel\ServiceBase.cs" />
+    <Compile Include="ServiceModel\ServiceProvider.cs" />
+    <Compile Include="StartWorkflowConditions\IStartWorkflowCondition.cs" />
+    <Compile Include="MiddleTier\MiddleTierService.cs" />
+    <Compile Include="MiddleTier\SingleCallMiddleTier.cs" />
+    <Compile Include="MiddleTier\SingleCallMiddleTierSerializableObjectLayer.cs" />
+    <Compile Include="MiddleTier\StartWorkflowService.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Module.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="StartWorkflowConditions\ObjectCreatedStartWorkflowCondition.cs" />
+    <Compile Include="Versioning\UserActivityVersion.cs" />
+    <Compile Include="Versioning\WorkflowDefinition.cs" />
+    <Compile Include="Versioning\WorkflowVersionedDefinitionProvider.cs" />
+    <Compile Include="Versioning\WorkflowVersioningEngine.cs" />
+    <Compile Include="Visualization\TrackingRecordVisualizationInfo.cs" />
+    <Compile Include="Visualization\RunningInstanceController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Visualization\RunningWorkflowInstanceInfoControllerBase.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Visualization\TrackingVisualizationController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Visualization\VisualizationInfo.cs" />
+    <Compile Include="WorkflowDefinition.cs" />
+    <Compile Include="WorkflowServer\BaseTimerService.cs" />
+    <Compile Include="WorkflowServer\WorkflowOperationRequestProcessor.cs" />
+    <Compile Include="WorkflowServer\WorkflowServer.cs" />
+    <Compile Include="WorkflowServer\HostCommandService.cs" />
+    <Compile Include="WorkflowServer\RefreshWorkflowDefinitionsService.cs" />
+    <Compile Include="WorkflowServer\RunningWorkflowInstanceInfoService.cs" />
+    <Compile Include="WorkflowServer\StartWorkflowByRequestService.cs" />
+    <Compile Include="WorkflowServer\StartWorkflowListenerService.cs" />
+    <Compile Include="WorkflowServer\HostManagerActivityProvider.cs" />
+    <Compile Include="WorkflowServer\WorkflowServerStartWorkflowService.cs" />
+    <Compile Include="WorkflowServiceHostEngine.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="DevExpress.Workflow.Activities.v15.2"><Name>DevExpress.Workflow.Activities.v15.2</Name><HintPath>..\..\..\Bin\Framework\DevExpress.Workflow.Activities.v15.2.dll</HintPath></Reference>
+    <Reference Include="DevExpress.Workflow.Activities.v15.2.Design"><Name>DevExpress.Workflow.Activities.v15.2.Design</Name><HintPath>..\..\..\Bin\Framework\DevExpress.Workflow.Activities.v15.2.Design.dll</HintPath></Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\AddToCollection.bmp" />
+    <EmbeddedResource Include="Images\Assign.bmp" />
+    <EmbeddedResource Include="Images\CancellationScope.bmp" />
+    <EmbeddedResource Include="Images\ClearCollection.bmp" />
+    <EmbeddedResource Include="Images\CompensableActivity.bmp" />
+    <EmbeddedResource Include="Images\Compensate.bmp" />
+    <EmbeddedResource Include="Images\Confirm.bmp" />
+    <EmbeddedResource Include="Images\CorrelationScope.bmp" />
+    <EmbeddedResource Include="Images\Delay.bmp" />
+    <EmbeddedResource Include="Images\DoWhile.bmp" />
+    <EmbeddedResource Include="Images\ExistsInCollection.bmp" />
+    <EmbeddedResource Include="Images\Flowchart.bmp" />
+    <EmbeddedResource Include="Images\FlowDecision.bmp" />
+    <EmbeddedResource Include="Images\FlowSwitch.bmp" />
+    <EmbeddedResource Include="Images\ForEach.bmp" />
+    <EmbeddedResource Include="Images\If.bmp" />
+    <EmbeddedResource Include="Images\InitializeCorrelation.bmp" />
+    <EmbeddedResource Include="Images\Interop.bmp" />
+    <EmbeddedResource Include="Images\InvokeMethod.bmp" />
+    <EmbeddedResource Include="Images\Parallel.bmp" />
+    <EmbeddedResource Include="Images\ParallelForEach.bmp" />
+    <EmbeddedResource Include="Images\Persist.bmp" />
+    <EmbeddedResource Include="Images\Pick.bmp" />
+    <EmbeddedResource Include="Images\PickBranch.bmp" />
+    <EmbeddedResource Include="Images\Receive.bmp" />
+    <EmbeddedResource Include="Images\ReceiveReply.bmp" />
+    <EmbeddedResource Include="Images\RemoveFromCollection.bmp" />
+    <EmbeddedResource Include="Images\Rethrow.bmp" />
+    <EmbeddedResource Include="Images\Send.bmp" />
+    <EmbeddedResource Include="Images\SendReply.bmp" />
+    <EmbeddedResource Include="Images\Sequence.bmp" />
+    <EmbeddedResource Include="Images\Switch.bmp" />
+    <EmbeddedResource Include="Images\TerminateWorkflow.bmp" />
+    <EmbeddedResource Include="Images\Throw.bmp" />
+    <EmbeddedResource Include="Images\TransactedReceiveScope.bmp" />
+    <EmbeddedResource Include="Images\TransactionScope.bmp" />
+    <EmbeddedResource Include="Images\TryCatch.bmp" />
+    <EmbeddedResource Include="Images\While.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Toolbox_Module_Workflow.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\WriteLine.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Model.DesignedDiffs.xafml" />
+    <EmbeddedResource Include="Model.DesignedDiffs.Localization.ru.xafml" />
+    <EmbeddedResource Include="Model.DesignedDiffs.Localization.ja.xafml" />
+    <EmbeddedResource Include="Model.DesignedDiffs.Localization.de.xafml" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

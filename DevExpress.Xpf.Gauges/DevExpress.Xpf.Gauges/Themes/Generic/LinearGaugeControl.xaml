@@ -1,0 +1,39 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:core="http://schemas.devexpress.com/winfx/2008/xaml/core"
+                    xmlns:local="clr-namespace:DevExpress.Xpf.Gauges">
+    <Style TargetType="local:LinearGaugeControl">
+        <Setter Property="ScalePanelTemplate">
+            <Setter.Value>
+                <ItemsPanelTemplate>
+                    <Grid/>
+                </ItemsPanelTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:LinearGaugeControl">
+                    <Border BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            Background="{TemplateBinding Background}"
+                            Padding="{TemplateBinding Padding}">
+                        <local:GaugeBaseLayoutElement x:Name="PART_BaseLayoutElement">
+                            <core:DXContentPresenter Content="{TemplateBinding ActualModel}" />
+                            <Border Background="Transparent" 
+                                    Padding="{Binding Path=ActualModel.InnerPadding, RelativeSource={RelativeSource TemplatedParent}}">
+                                <ItemsControl ItemsSource="{TemplateBinding Scales}" ItemsPanel="{TemplateBinding ScalePanelTemplate}"/>
+                            </Border>
+                            <local:GaugeItemsControl ItemsSource="{TemplateBinding Elements}">
+                                <local:GaugeItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <local:GaugeElementsPanel/>
+                                    </ItemsPanelTemplate>
+                                </local:GaugeItemsControl.ItemsPanel>
+                            </local:GaugeItemsControl>
+                        </local:GaugeBaseLayoutElement>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

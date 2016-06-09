@@ -1,0 +1,990 @@
+<script type="text/html" id="dxrd-menubutton-template-base">
+    <div class="dxrd-menu-container" style="position:relative; float:left; width:0; height:100%"></div>
+    <div class="dxrd-menu-button">
+        <div class="dxrd-menu-place" style="width:54px;"></div>
+        <div class="dxrd-menu-button-image" data-bind="dxAction: toggleAppMenu"></div>
+        <div data-bind="dxPopup: {
+                            width: 250,
+                            height: '100%',
+                            position: { my: 'left top', at: 'right top', offset: '10 0' },
+                            showTitle: false,
+                            showCloseButton: false,
+                            container:'.dxrd-menu-container',
+                            target: '.dxrd-menu-place',
+                            animation: {},
+                            closeOnOutsideClick: true,
+                            shading: false,
+                            focusStateEnabled: false,
+                            visible: appMenuVisible()}">
+            <div class="dxrd-menu-break"></div>
+            <!-- ko foreach: actionLists.menuItems -->
+            <div class="dxrd-menu-item" data-bind="dxAction: function(e) { if(disabled && !disabled() || !disabled) { $root.toggleAppMenu(); clickAction($root.model(), e); }}, css: { 'dxrd-disabled-button': disabled }, visible: visible">
+                <div class="dxrd-menu-item-image" data-bind="css: ko.unwrap(imageClassName), attr: { title: DevExpress.Designer.getLocalization(text) }"></div>
+                <div class="dxrd-menu-item-text" data-bind="text: DevExpress.Designer.getLocalization(text)"></div>
+                <div class="dxrd-menu-item-separator" data-bind="visible: $data.hasSeparator"></div>
+            </div>
+            <!-- /ko -->
+        </div>
+    </div>
+</script>
+
+<script type="text/html" id="dxrd-toolbar-template-base">
+    <div class="dxrd-toolbar-wrapper">
+        <div class="dxrd-toolbar" data-bind="template: {name: 'dxrd-toolbar-tmplt', data: actionLists.toolbarItems }"></div>
+    </div>
+</script>
+
+<script type="text/html" id="dxrd-toolbox-template-base">
+    <div class="dxrd-toolbox-wrapper" data-bind="dxScrollView: { showScrollbar: 'onHover' }">
+        <!-- ko foreach: toolboxItems -->
+        <div class="dxrd-toolbox-item" data-bind="attr: { title: type }">
+            <div class="dxrd-image-padding" data-bind="css: imageClassName, draggable: $root.toolboxDragHandler"></div>
+        </div>
+        <!-- /ko -->
+    </div>
+</script>
+
+
+<script type="text/html" id="dx-right-panel-lightweight">
+    <div class="dxrd-right-panel" data-bind="styleunit: { width: tabPanel.width }, resizable: { starting: function() { $($element).css('left', '' );}, stopped: $.noop, handles: 'w', resize: function() { $($element).css('right', '1px' ).css('left', '' ); tabPanel.width($($element).width()) }, zoom: 1, minWidth: 325, maxWidth: 1000, }">
+        <!-- ko foreach: tabPanel.tabs -->
+        <!-- ko lazy: { template: $data.template } -->
+        <!-- /ko -->
+        <!-- /ko -->
+    </div>
+</script>
+
+<script type="text/html" id="dxrd-surface-template-base">
+    <!-- ko ifnot: isLoading -->
+    <!-- ko with: surface -->
+    <div class="dxrd-surface-wrapper" data-bind="template: templateName, click: function(_, e) { $root.selection.clickHandler($data, e); e.stopPropagation(); }">
+    </div>
+    <!-- /ko -->
+    <!-- /ko -->
+    <!-- ko if: isLoading -->
+    <div class="dxrd-surface-wrapper">
+        <div style="text-align: center; padding-top: 49%;">
+            <div data-bind="dxLoadIndicator: { visible: isLoading() }"></div>
+        </div>
+    </div>
+    <!-- /ko -->
+</script>
+
+<script type="text/html" id="dxrd-right-panel-template-base">
+    <div class="dxrd-right-panel-collapse" data-bind="styleunit: { width: 50 + (tabPanel.collapsed() ? 0 : tabPanel.width()) }, dxAction: function() { tabPanel.collapsed(!tabPanel.collapsed()); }, attr: { title: tabPanel.toggleCollapsedText }">
+        <div class="dxrd-right-panel-collapse-image" data-bind="css: tabPanel.toggleCollapsedImageClassName"></div>
+    </div>
+
+    <div class="dxrd-right-panel" data-bind="styleunit: { width: tabPanel.width }, resizable: { starting: function() { $($element).css('left', '' );}, stopped: $.noop, handles: 'w', resize: function() { $($element).css('right', '50px' ).css('left', '' ); tabPanel.width($($element).width()) }, disabled: tabPanel.collapsed(), zoom: 1, minWidth: 325, maxWidth: 1000, }">
+        <!-- ko foreach: tabPanel.tabs -->
+        <!-- ko lazy: { template: $data.template } -->
+        <!-- /ko -->
+        <!-- /ko -->
+    </div>
+
+    <div class="dxrd-right-tabs" data-bind="css: { 'dxrd-right-tabs-border': tabPanel.collapsed() }">
+        <!-- ko foreach: tabPanel.tabs -->
+        <div class="dxrd-tab-item" data-bind="dxAction: $parent.tabPanel.selectTab, css: { 'dxrd-tab-item-active': active }, attr: { title: text }, visible: visible">
+            <div class="dxrd-image-padding" data-bind="css: imageClassName"></div>
+        </div>
+        <!-- /ko -->
+    </div>
+</script>
+
+<script type="text/html" id="dxrd-designer">
+    <div class="dx-viewport dx-theme-desktop dx-theme-desktop-typography">
+        <div class="dxrd-designer-wrapper dxrd-designer dxd-editors" data-bind="visible: (!$data.designMode || designMode()), css: $data.rootStyle">
+            <!-- ko foreach: parts -->
+            <!-- ko template: { name: templateName, data: model }-->
+            <!-- /ko -->
+            <!-- /ko -->
+        </div>
+
+        <!-- ko if: ($data.addOns) -->
+        <!-- ko foreach: addOns -->
+        <!-- ko template: { name: templateName, data: model } -->
+        <!-- /ko -->
+        <!-- /ko -->
+        <!-- /ko -->
+
+    </div>
+</script>
+<script type="text/html" id="dxrd-toolbar-tmplt">
+    <!-- ko foreach: $data -->
+    <!-- ko if: $data.templateName -->
+    <!-- ko template: templateName  -->
+    <!-- /ko -->
+    <!-- /ko -->
+    <!-- ko if: !$data.templateName -->
+    <div class="dxrd-toolbar-item" data-bind="dxAction: function() { if(disabled && !disabled() || !disabled) { clickAction($root.model && $root.model()); } }, visible: visible">
+        <div data-bind="attr: { class: 'dxrd-toolbar-item-image ' + ko.unwrap(imageClassName), title: DevExpress.Designer.getLocalization(text) }, css: {'dxrd-disabled-button': disabled }"></div>
+        <div class="dxrd-toolbar-item-separator" data-bind="visible: $data.hasSeparator"></div>
+    </div>
+    <!-- /ko -->
+    <!-- /ko -->
+</script>
+
+<script type="text/html" id="dxrd-zoom-select-template">
+    <div class="dxrd-toolbar-item-zoom" data-bind="visible: visible">
+        <div class="dxrd-toolbar-item-zoom-editor" data-bind="dxSelectBox: { items: [5, 2, 1.5, 1, 0.75, 0.5, 0.25], value: $data.zoom, displayExpr: function(val) { return Math.round((val || this.option('value')) * 100) + '%'; }, displayCustomValue: true }"></div>
+    </div>
+</script>
+
+<script type="text/html" id="dxrd-collectionactions-template">
+    <div class="dxrd-action-items-container"></div>
+    <div class="dxrd-treelist-action" data-bind="dxButton: { onClick: togglePopoverVisible, disabled: disabled, icon: ko.unwrap(imageClassName) }, attr: { id: id, title: text }"></div>
+    <div data-bind="dxPopup: { width: 210, height: 'auto',
+            position: { my: 'right top', at: 'bottom', of: $('#' + id) },
+            showTitle: false,
+            showCloseButton: false,
+            animation: {},
+            closeOnOutsideClick: true,
+            container: '.dxrd-action-items-container',
+            shading: false,
+            visible: popoverVisible }">
+        <!-- ko foreach: actions -->
+        <div class="dxrd-action-item" data-bind="dxAction: clickAction, css: { 'dxrd-disabled-button': disabled }">
+            <div class="dxrd-action-item-image" data-bind="css: ko.unwrap(imageClassName), attr: { title: DevExpress.Designer.getLocalization(text) }"></div>
+        </div>
+        <!-- /ko -->
+    </div>
+</script>
+
+<script type='text/html' id='dxrd-bordereditor'>
+<div class="bordereditor-content">
+    <!-- ko with: value-->
+    <div class="bordereditor-button dxrd-image-borders-none" data-bind="css: { selected: (!bottom() && !left() && !top() && !right()) }, click: function() { setNone() }"></div>
+    <div class="bordereditor-button dxrd-image-borders-all right-margin" data-bind="css: { selected: (bottom() && left() && top() && right()) }, click: function() { setAll() }"></div>
+    <div class="bordereditor-button dxrd-image-borders-left" data-bind="css: { selected: left() }, click: function() { setValue('left') }"></div>
+    <div class="bordereditor-button dxrd-image-borders-top" data-bind="css: { selected: top() }, click: function() { setValue('top') }"></div>
+    <div class="bordereditor-button dxrd-image-borders-right" data-bind="css: { selected: right() }, click: function() { setValue('right') }"></div>
+    <div class="bordereditor-button dxrd-image-borders-bottom" data-bind="css: { selected: bottom() }, click: function() { setValue('bottom') }"></div>
+    <!-- /ko -->
+</div></script>
+
+<script type='text/html' id='dxrd-collectioneditor'>
+<div class="dx-collectioneditor">
+    <div data-bind="dxrdAccordion: { collapsed: collapsed, alwaysShow: alwaysShow }">
+        <div class="dxrd-collectioneditor-header dxrd-accordion-header">
+            <div class="dxrd-editor-header">
+                <div class="dx-field">
+                    <!-- ko if: showButtons-->
+                    <div class="dxrd-collectioneditor-actions-wrapper">
+                        <div class="dxrd-collectioneditor-action" data-bind="attr: { title: DevExpress.Designer.getLocalization('Delete') }, dxButton: { onClick: remove, disabled: !selectedItem(), icon: 'dxrd-image-remove' }"></div>
+                        <div class="dxrd-collectioneditor-action" data-bind="attr: { title: DevExpress.Designer.getLocalization('Add') }, dxButton: { onClick: add, icon: 'dxrd-image-add' }"></div>
+                        <div class="dxrd-collectioneditor-action-separator"></div>
+                        <div class="dxrd-collectioneditor-action" data-bind=" attr: { title: DevExpress.Designer.getLocalization('Move Down') }, dxButton: { onClick: down,disabled: !selectedItem(), icon: 'dxrd-image-movedown' }"></div>
+                        <div class="dxrd-collectioneditor-action" data-bind="attr: { title: DevExpress.Designer.getLocalization('Move Up') }, dxButton: { onClick: up, disabled: !selectedItem(), icon: 'dxrd-image-moveup' }"></div>
+                    </div>
+                    <!-- /ko -->
+                    <!-- ko if: displayName -->
+                    <div class="dxrd-collectioneditor-header-text" data-bind="styleunit: { 'paddingLeft': padding }">
+                        <div class="propertygrid-editor-collapsed" data-bind="css: { 'dxrd-image-collapsed': collapsed(), 'dxrd-image-expanded': !collapsed() }"></div>
+                        <div class="dxrd-group-header-font" data-bind="text: DevExpress.Designer.getLocalization(displayName)"></div>
+                    </div>
+                    <!-- /ko -->
+                </div>
+            </div>
+        </div>
+        <div class="dxrd-accordion-content">
+            <!-- ko if: values().length === 0 && showButtons -->
+            <div class="dxrd-collectioneditor-empty">
+                <span class="dxrd-collectioneditor-empty-text" data-bind="text: DevExpress.Designer.getLocalization('To create an item click the Add button.')"></span>
+            </div>
+            <!-- /ko -->
+            <!-- ko if: values().length !== 0 -->
+            <div class="dxrd-collectioneditor-items" data-bind="foreach: values">
+                <div data-bind="with: new DevExpress.Designer.Widgets.CollectionItemWrapper($parents[1], $parent.values, $index, $parent.displayPropertyName)">
+                    <div class="dxrd-collectioneditor-item-container" data-bind="dxAction: $parents[1].select, css: { 'dxrd-collectioneditor-item-container-selected' : $parents[1].selectedItem() === $data }">
+                        <div class="dx-collection-item"></div>
+                    </div>
+                </div>
+            </div>
+            <!-- /ko -->
+        </div>
+    </div>
+</div></script>
+
+<script type="text/html" id="dxrd-expressioneditor">
+    <div>
+        <div class="no-margin-right" data-bind="dxFilterStringEditor: { value: value, buttonAction: function() { popupVisible(true); } }"></div>
+        <div class="dx-expressioneditor" data-bind="dxPopup: { showTitle: true, title: 'Expression Editor', visible: popupVisible, buttons: buttonItems, showCloseButton: true, fullScreen: false, container: '.dx-viewport', height: '65%', width: '29%' }">
+            <div class="dx-expression-tree">
+                <div class="dx-expressioneditor-textarea" data-bind="dxTextArea: { value: textAreaValue, isValid: isValid, onKeyPress: function() { isValid(true); } }"></div>
+                <div class="dx-expressioneditor-tools">
+                    <!-- ko with: tools-->
+                    <div class="dx-expressioneditor-tools-popular">
+                        <div class="dx-expressioneditor-tools-popular-content">
+                            <!-- ko foreach: popularItems-->
+                            <!-- ko if: $data.templateName -->
+                            <!-- ko template: { name: $data.templateName }-->
+                            <!-- /ko -->
+                            <!-- /ko -->
+                            <!-- ko if: !$data.templateName -->
+                            <div class="dx-expressioneditor-tools-popular-item" data-bind="css: imgClassName, attr: { title: $data.description }, dxAction: function() { $data.click($data); }"></div>
+                            <!-- ko if: $data.hasSeparator-->
+                            <div class="dx-expressioneditor-tools-popular-item-separator"></div>
+                            <!-- /ko -->
+                            <!-- /ko -->
+                            <!-- /ko -->
+                        </div>
+                    </div>
+                    <div class="dx-expressioneditor-tools-tabs">
+                        <!-- ko foreach: toolBox-->
+                        <div class="dx-expressioneditor-tools-tab" data-bind="style: { width: width } ">
+                            <div class="dx-expressioneditor-tools-tab-title" data-bind="text: title"></div>
+                            <div class="dx-expressioneditor-tools-tab-content-wrapper" data-bind="dxScrollView: { showScrollbar: 'onHover' }">
+                                <div class="dx-expressioneditor-tools-tab-content">
+                                    <!-- ko if: !$data.templateName -->
+                                    <!-- ko foreach: content-->
+                                    <div class=" dx-expressioneditor-tools-tab-item" data-bind="text: $data.text, dxAction: function() { $parent.selection($data); },  event: { dblclick: function() { $parent.click($data); } }"></div>
+                                    <!-- /ko -->
+                                    <!-- /ko -->
+                                    <!-- ko if: $data.templateName -->
+                                    <!-- ko template: { name: $data.templateName }-->
+                                    <!-- /ko -->
+                                    <!-- /ko -->
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /ko-->
+                        <div class="dx-expressioneditor-description" data-bind="text: description"></div>
+                    </div>
+                    <!-- /ko -->
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
+
+<script type="text/html" id="dx-expressioneditor-description">
+
+</script>
+
+<script type="text/html" id="dxrd-expressioneditor-fields">
+    <!-- ko if: content.fields -->
+    <div class="dx-treelist-wrapper" data-bind="treelist: content.fields"></div>
+    <!-- /ko -->
+    <div class="dx-treelist-wrapper" data-bind="treelist: content.parameters"></div>
+</script>
+
+<script type="text/html" id="dxrd-filtereditor">
+    <div>
+        <div class="no-margin-right" data-bind="dxFilterStringEditor: { value: options().value, disabled: options().disabled, isValid: isValid, buttonAction: function() { popupVisible($data.isValid()); } }"></div>
+        <div class="dxrd-filtereditor" data-bind="dxPopup: { showTitle: true, width: '30%', height: '50%', title: 'Filter Editor', visible: popupVisible, buttons: buttonItems, showCloseButton: true, container: '.dx-viewport' }">
+            <div class="dx-filtereditor-tree" data-bind="dxScrollView: { showScrollbar: 'onHover', direction: 'both' }">
+                <!-- ko with: operandSurface -->
+                <!-- ko template: { name: $data.templateName, data: $data}-->
+                <!-- /ko -->
+                <!-- /ko -->
+            </div>
+        </div>
+        <div class="dx-selectbox-popup-wrapper dx-dropdownlist-popup-wrapper dx-filtereditor-criteriaoperator-popup dx-dropdowneditor-overlay" data-bind="dxPopupWithAutoHeight: { width: '170px', height: 'auto',
+        position: { my: 'left top', at: 'left bottom', of: popupService.target },
+        container: '.dx-viewport',
+        target: popupService.target,
+        showTitle: false,
+        showCloseButton: false,
+        animation: {},
+        closeOnOutsideClick: true,
+        shading: false,
+        visible: popupService.visible }">
+            <!-- ko with: popupService-->
+            <!-- ko with: data -->
+            <!-- ko template: template-->
+            <!-- /ko -->
+            <!-- /ko -->
+            <!-- /ko -->
+        </div>
+    </div>
+</script>
+
+<script type="text/html" id="dx-filtereditor-popup-common">
+    <div class="dx-widget" data-bind="dxScrollView: { showScrollbar: 'onHover' }">
+        <!-- ko foreach: data -->
+        <div class="dx-filtereditor-popup-item dx-item dx-list-item">
+            <span class="dx-item-content dx-list-item-content" data-bind="text: name, click: function() { $parent.click($data); } "></span>
+        </div>
+        <!-- /ko -->
+    </div>
+</script>
+
+<script type="text/html" id="dx-filtereditor-create">
+    <div class="criteria-operator-action" data-bind="dxAction: showPopup">
+        <div class="criteria-operator-action-image dxrd-image-filtereditor-add"></div>
+    </div>
+</script>
+
+<script type="text/html" id="dx-filtereditor-change">
+    <div class="criteria-operator-text clickable" data-bind="text: target.displayType, dxAction: showPopup, css: target.css"></div>
+</script>
+
+<script type="text/html" id="dx-filtereditor-changeParameter">
+    <div class="criteria-operator-text clickable " data-bind="text: target.parameterName(), dxAction: showPopup, css: { 'selected': target.isSelected }"></div>
+</script>
+
+<script type="text/html" id="dx-filtereditor-changeProperty">
+    <div class="criteria-operator-text clickable" data-bind="text: target.propertyName(), dxAction: showPopup, css: { 'selected': target.isSelected }"></div>
+</script>
+
+<script id="dx-filtereditor-group" type="text/html">
+    <div class="criteria-operator-group">
+        <div class="criteria-operator-group-item">
+            <div class="criteria-operator-action" data-bind="dxAction: function() {  $data.remove && $data.remove(); }">
+                <div class="criteria-operator-action-image dxrd-image-filtereditor-remove" data-bind="visible: !!$data.remove"></div>
+            </div>
+            <div class="criteria-operator-item">
+                <div data-bind="service: { name: 'createChangeType' }"></div>
+            </div>
+            <div data-bind="service: { name: 'createAddButton' }"></div>
+        </div>
+        <div class="criteria-operator-content">
+            <!-- ko foreach: operands -->
+            <!-- ko template: { name: templateName, data: $data } -->
+            <!-- /ko-->
+            <!-- /ko -->
+        </div>
+    </div>
+</script>
+
+<script id="dx-filtereditor-aggregate-common" type="text/html">
+    <!-- ko with: property-->
+    <!-- ko template: { name: templateName, data: $data }-->
+    <!-- /ko -->
+    <!-- /ko -->
+    <div data-bind="service: { name: 'createChangeType' }"></div>
+    <!-- ko if: $data.aggregatedExpression() -->
+    <div class="criteria-operator-text">(</div>
+    <!-- ko with: aggregatedExpression-->
+    <!-- ko template: { name: templateName, data: $data }-->
+    <!-- /ko -->
+    <!-- /ko -->
+    <div class="criteria-operator-text">)</div>
+    <!-- /ko -->
+</script>
+
+<script id="dx-filtereditor-aggregate" type="text/html">
+    <div class="criteria-operator-group">
+        <div class="criteria-operator-group-item">
+            <div class="criteria-operator-action" data-bind="dxAction: function() {  $data.remove && $data.remove(); }">
+                <div class="criteria-operator-action-image dxrd-image-filtereditor-remove" data-bind="visible: !!$data.remove"></div>
+            </div>
+            <!-- ko template: { name: 'dx-filtereditor-aggregate-common' }-->
+            <!-- /ko -->
+        </div>
+        <div class="criteria-operator-content">
+            <!-- ko with: condition-->
+            <!-- ko template: { name: templateName, data: $data }-->
+            <!-- /ko -->
+            <!-- /ko -->
+        </div>
+    </div>
+</script>
+
+<script id="dx-filtereditor-property" type="text/html">
+    <div class="criteria-operator-text" data-bind="css: css">
+        <div data-bind="service: { name: 'createChangeProperty' }"></div>
+        <!-- ko if: $data.changeValueType -->
+        <div data-bind="service: { name: 'createChangeValueType' }"></div>
+        <!-- /ko -->
+    </div>
+</script>
+
+<script id="dx-filtereditor-value" type="text/html">
+    <div class="criteria-operator-item">
+        <!-- ko if: $data.valueType() === "String" -->
+        <div class="criteria-operator-item-editor" data-bind="dxTextBox: { value: _value, onFocusOut: function() { isEditable(false); } }, focus: { on: isEditable }, visible: isEditable"></div>
+        <!-- /ko -->
+        <!-- ko if: $data.valueType() === "Bool" -->
+        <div class="criteria-operator-item-editor" data-bind="visible: isEditable, focus: isEditable, dxLocalizedSelectBox: { dataSource: [ { val: true, text: 'Yes' }, { val: false, text: 'No' }], valueExpr: 'val', displayExpr: 'text', value: _value, onFocusOut: function() { isEditable(false); } }"></div>
+        <!-- /ko -->
+        <!-- ko if: $data.valueType() === "Date" -->
+        <div class="criteria-operator-item-editor" data-bind="visible: isEditable, focus: isEditable, dxDateBox: { value: _value, closeOnValueChange: true, format: 'datetime', onFocusOut: function() { isEditable(false); } }"></div>
+        <!-- /ko -->
+        <!-- ko if: $data.valueType() !== "String" && $data.valueType() !== "Bool" && $data.valueType() !== "Date" -->
+        <div class="criteria-operator-item-editor" data-bind="visible: isEditable, focus: { on: isEditable }, dxNumberBox: { value: _value, onFocusOut: function() { isEditable(false); } }"></div>
+        <!-- /ko -->
+    </div>
+    <div class="criteria-operator-text criteria-operator-item-value clickable" data-bind="visible: !isEditable()">
+        <div class="criteria-operator-text" data-bind="text: value, click: function() { isEditable(true); }, css: { 'default': $data.value() === DevExpress.Designer.Widgets.OperandValueSurface.defaultDisplay } "></div>
+        <div data-bind="service: { name: 'createChangeValueType' }"></div>
+    </div>
+</script>
+
+<script id="dx-filtereditor-parameter" type="text/html">
+    <div class="criteria-operator-text" data-bind="css: css">
+        <div data-bind="service: { name: 'createChangeParameter' }"></div>
+        <div data-bind="service: { name: 'createChangeValueType' }"></div>
+    </div>
+</script>
+
+<script id="dx-filtereditor-changeValueType" type="text/html">
+    <div class="criteria-operator-action" data-bind="dxAction: showPopup">
+        <div class="criteria-operator-action-image-edit dxrd-image-filtereditor-edit"></div>
+    </div>
+</script>
+
+<script id="dx-filtereditor-common" type="text/html">
+    <!-- ko template: contentTemplateName -->
+    <!-- /ko -->
+    <!-- ko if: $data.leftPart.condition -->
+    <div class="criteria-operator-content">
+        <!-- ko with: leftPart-->
+        <!-- ko with: condition-->
+        <!-- ko template: { name: templateName, data: $data }-->
+        <!-- /ko -->
+        <!-- /ko -->
+        <!-- /ko -->
+    </div>
+    <!-- /ko -->
+</script>
+
+<script id="dx-filtereditor-between" type="text/html">
+    <div class="criteria-operator-group">
+        <div class="criteria-operator-group-item">
+            <div class="criteria-operator-action" data-bind="dxAction: function() {  $data.remove && $data.remove(); }">
+                <div class="criteria-operator-action-image dxrd-image-filtereditor-remove" data-bind="visible: !!$data.remove"></div>
+            </div>
+            <!-- ko with: property-->
+            <!-- ko template: { name: templateName, data: $data }-->
+            <!-- /ko -->
+            <!-- /ko -->
+            <div data-bind="service: { name: 'createChangeType' }"></div>
+            <!-- ko with: begin-->
+            <!-- ko template: { name: templateName, data: $data }-->
+            <!-- /ko -->
+            <!-- /ko -->
+            <div class="criteria-operator-text">and</div>
+            <!-- ko with: end-->
+            <!-- ko template: { name: templateName, data: $data }-->
+            <!-- /ko -->
+            <!-- /ko -->
+        </div>
+    </div>
+</script>
+
+<script id="dx-filtereditor-binary" type="text/html">
+    <div class="criteria-operator-group">
+        <div class="criteria-operator-group-item">
+            <div class="criteria-operator-action" data-bind="dxAction: function() {  $data.remove && $data.remove(); }">
+                <div class="criteria-operator-action-image dxrd-image-filtereditor-remove" data-bind="visible: !!$data.remove"></div>
+            </div>
+            <!-- ko with: leftOperand-->
+            <!-- ko template: { name: templateName, data: $data }-->
+            <!-- /ko -->
+            <!-- /ko -->
+            <div data-bind="service: { name: 'createChangeType' }"></div>
+            <!-- ko with: rightOperand-->
+            <!-- ko template: { name: templateName, data: $data }-->
+            <!-- /ko -->
+            <!-- /ko -->
+        </div>
+    </div>
+</script>
+
+<script id="dx-filtereditor-unary" type="text/html">
+    <div class="criteria-operator-group">
+        <div class="criteria-operator-group-item">
+            <div class="criteria-operator-action" data-bind="dxAction: function() {  $data.remove && $data.remove(); }">
+                <div class="criteria-operator-action-image dxrd-image-filtereditor-remove" data-bind="visible: !!$data.remove"></div>
+            </div>
+            <!-- ko with: operand-->
+            <div class="criteria-operator-item">
+                <!-- ko template: { name: templateName, data: $data }-->
+                <!-- /ko -->
+            </div>
+            <!-- /ko -->
+            <div data-bind="service: { name: 'createChangeType' }"></div>
+        </div>
+    </div>
+</script>
+
+<script id="dx-filtereditor-not" type="text/html">
+    <!-- ko with: operand-->
+    <!-- ko template: { name: templateName, data: $data }-->
+    <!-- /ko -->
+    <!-- /ko -->
+</script>
+
+<script id="dx-filtereditor-in" type="text/html">
+    <div class="criteria-operator-group">
+        <div class="criteria-operator-group-item">
+            <div class="criteria-operator-action" data-bind="dxAction: function() {  $data.remove && $data.remove(); }">
+                <div class="criteria-operator-action-image dxrd-image-filtereditor-remove" data-bind="visible: !!$data.remove"></div>
+            </div>
+            <!-- ko with: criteriaOperator-->
+            <!-- ko template: { name: templateName, data: $data }-->
+            <!-- /ko -->
+            <!-- /ko -->
+            <div data-bind="service: { name: 'createChangeType' }"></div>
+            <!-- ko if: $data.operands().length > 1-->
+            <div class="criteria-operator-item criteria-operator-text">(</div>
+            <div class="criteria-operator-item">
+                <!-- ko foreach: $data.operands() -->
+                <!-- ko template: { name: $data.templateName, data: $data }-->
+                <!-- /ko -->
+                <div class="criteria-operator-item criteria-operator-text">,</div>
+                <!-- /ko -->
+            </div>
+            <div class="criteria-operator-item criteria-operator-text">)</div>
+            <!-- /ko -->
+            <!-- ko if: $data.operands().length == 1-->
+            <!-- ko template: { name: $data.operands()[0].templateName, data: $data.operands()[0] }-->
+            <!-- /ko -->
+            <!-- /ko -->
+            <div class="criteria-operator-action" data-bind="dxAction: addValue">
+                <div class="criteria-operator-action-image dxrd-image-filtereditor-add"></div>
+            </div>
+        </div>
+    </div>
+</script>
+
+<script id="dx-filtereditor-function" type="text/html">
+    <div class="criteria-operator-group">
+        <div class="criteria-operator-group-item">
+            <div class="criteria-operator-action" data-bind="dxAction: function() {  $data.remove && $data.remove(); }">
+                <div class="criteria-operator-action-image dxrd-image-filtereditor-remove" data-bind="visible: !!$data.remove"></div>
+            </div>
+            <!-- ko template: { name: $data.operands()[0].templateName, data: $data.operands()[0] }-->
+            <!-- /ko -->
+            <div data-bind="service: { name: 'createChangeType' }"></div>
+            <!-- ko if: $data.operands().length > 1 -->
+            <!-- ko template: { name: $data.operands()[1].templateName, data: $data.operands()[1] }-->
+            <!-- /ko -->
+            <!-- /ko -->
+        </div>
+    </div>
+</script>
+<script type='text/html' id='dxrd-propertieswrapper'>
+<div class="dxrd-properties-wrapper" data-bind="visible: active() && visible()">
+    <div data-bind="template: {name: 'dxrd-propertygrid', data: model }" style="height:100%"></div>
+</div></script>
+
+<script type='text/html' id='dxrd-propertygrid'>
+<div class="dxrd-right-panel-header">
+    <span data-bind="text: DevExpress.Designer.getLocalization('Properties')"></span>
+</div>
+<!-- ko if: $root.getControlsDS().visible -->
+<div class="dxrd-properties-focused-item-image" data-bind="css: focusedImageClassName" style=""></div>
+<div class="dxrd-properties-focused-item" data-bind="dxSelectBox: {
+            dataSource: $root.getControlsDS(),
+            value: focusedItem,
+            displayExpr: displayExpr
+    }">
+</div>
+<!-- /ko -->
+<div class="dxrd-properties-grid" data-bind="dxScrollView: { showScrollbar: 'onHover' }, styleunit: { top: $root.getControlsDS().visible ? 90 : 40 }">
+    <!-- ko template: { name: 'dxrd-top-grid', data: { elementActions: $root.elementActions, popularProperties: $root.popularProperties, collapsed: ko.observable(false) } } -->
+    <!-- /ko -->
+    <!-- ko foreach: groups -->
+    <div class="dx-fieldset" data-bind="visible: visible">
+        <div data-bind="dxrdAccordion: { collapsed: collapsed }">
+            <div class="dxrd-group-header dxrd-accordion-header" data-bind="css: { 'dxrd-group-header-collapsed': collapsed() }">
+                <div data-bind="css: { 'dxrd-image-collapsed': collapsed(), 'dxrd-image-expanded': !collapsed() }" style="display:inline-block;"></div>
+                <span class="dxrd-group-header-text" data-bind="text: DevExpress.Designer.getLocalization(displayName)"></span>
+            </div>
+            <div class="dxrd-accordion-content">
+                <!-- ko template: 'dxrd-shadow' -->
+                <!-- /ko -->
+                <!-- ko ifnot: editorsCreated -->
+                <div class="dxrd-accordion-content-loading-panel">
+                    <div data-bind="dxLoadIndicator: { visible: !editorsCreated() }"></div>
+                </div>
+                <!-- /ko -->
+                <div data-bind="visible: editorsCreated">
+                    <!-- ko foreach: editors -->
+                    <!-- ko template: editorTemplate -->
+                    <!-- /ko -->
+                    <!-- ko if: ($index() === $parent.editors().length - 1 && $parent.editorsCreated(true)) -->
+                    <!-- /ko -->
+                    <!-- /ko -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /ko -->
+    <div data-bind="dxPopup: { width: 148, height: 'auto',
+        position: { my: 'right top', at: 'left top', of: popupService.target },
+        container: '.dx-viewport',
+        target: popupService.target,
+        showTitle: false,
+        showCloseButton: false,
+        animation: {},
+        closeOnOutsideClick: true,
+        shading: false,
+        visible: popupService.visible }">
+        <div data-options="dxTemplate: { name: 'content' }">
+            <!-- ko if: popupService.title -->
+            <div class="dxrd-editor-menu-caption" data-bind="text: popupService.title"></div>
+            <!-- /ko -->
+            <!-- ko foreach: popupService.actions -->
+            <!-- ko if: (!visible || visible && visible()) -->
+            <div class="dxrd-editor-menu-item" data-bind="dxAction: action">
+                <div class="dxrd-menuitem-box"></div>
+                <span class="dxrd-editor-menu-title" data-bind="text: title"></span>
+            </div>
+            <!-- /ko -->
+            <!-- /ko -->
+        </div>
+    </div>
+</div>
+</script>
+
+<script type="text/html" id="dxrd-top-grid">
+    <!-- ko if: elementActions.visible -->
+    <div class="dx-fieldset">
+        <div data-bind="dxrdAccordion: { collapsed: collapsed }">
+            <div class="dxrd-group-header dxrd-accordion-header" data-bind="css: { 'dxrd-group-header-collapsed': collapsed() }">
+                <div data-bind="css: { 'dxrd-image-collapsed': collapsed(), 'dxrd-image-expanded': !collapsed() }" style="display:inline-block;"></div>
+                <span class="dxrd-group-header-text" data-bind="text: DevExpress.Designer.getLocalization('Actions')"></span>
+            </div>
+            <div class="dxrd-accordion-content">
+                <!-- ko template: 'dxrd-shadow' -->
+                <!-- /ko -->
+                <!-- ko with: elementActions -->
+                <!-- ko foreach: actions -->
+                <!-- ko if: $data.templateName -->
+                <!-- ko template: templateName  -->
+                <!-- /ko -->
+                <!-- /ko -->
+                <!-- ko if: !$data.templateName -->
+                <div class="dxrd-properties-grid-action" data-bind="dxAction: function() { if(disabled && !disabled() || !disabled) { clickAction(); } }, css: { 'dxrd-disabled-button': disabled }">
+                    <div class="dxrd-properties-grid-action-image" data-bind="css: imageClassName, attr: { title: DevExpress.Designer.getLocalization(text) }"></div>
+                    <!--<div class="dxrd-toolbar-item-separator" data-bind="visible: $data.hasSeparator"></div>-->
+                </div>
+                <!-- /ko -->
+                <!-- /ko -->
+                <!-- /ko -->
+                <!-- ko with: popularProperties -->
+                <div style="position: relative" data-bind="template: { name: 'dxrd-propertieseditor', data: $data }"></div>
+                <!-- /ko -->
+            </div>
+        </div>
+    </div>
+    <!-- /ko -->
+</script>
+
+<script type="text/html" id="dxrd-shadow">
+    <div class="dxrd-group-shadow-top dxrd-group-shadow-lighter">
+        <div class="dxrd-group-shadow-top dxrd-group-shadow-darker"></div>
+    </div>
+    <div class="dxrd-group-shadow-bottom dxrd-group-shadow-lighter">
+        <div class="dxrd-group-shadow-bottom dxrd-group-shadow-darker"></div>
+    </div>
+</script>
+
+<script type="text/html" id="dxrd-property-editor">
+    <div class="dxrd-editor" data-bind="visible: visible">
+        <div data-bind="dxrdAccordion: { collapsed: collapsed }">
+            <div class="dxrd-editor-header">
+                <div class="dx-field">
+                    <div class="dx-field-label dxrd-accordion-header" data-bind="styleunit: { 'paddingLeft': padding }, style: { 'right': templateName !== 'dxrd-emptyHeader' ? '64%' : '8px' }">
+                        <!-- ko if: isComplexEditor -->
+                        <div class="propertygrid-editor-collapsed" data-bind="css: { 'dxrd-image-collapsed': collapsed(), 'dxrd-image-expanded': !collapsed() }"></div>
+                        <div class="dxrd-group-header-font" data-bind="text: localizationId ? (Globalize.localize(localizationId) || displayName) : DevExpress.Designer.getLocalization(displayName)"></div>
+                        <!-- /ko -->
+                        <!-- ko if: !isComplexEditor -->
+                        <div class="propertygrid-editor-displayName" data-bind="text: localizationId ? (Globalize.localize(localizationId) || displayName) : DevExpress.Designer.getLocalization(displayName), style: { fontWeight: isPropertyModified() ? 'Bold' : ''}"></div>
+                        <!-- /ko -->
+                    </div>
+                    <!-- ko if: templateName !== 'dxrd-emptyHeader' -->
+                    <div class="dx-field-value">
+                        <div data-bind="service: { name: 'createEditorAddOn' }"></div>
+                        <!-- ko lazy: { template: templateName } -->
+                        <!-- /ko -->
+                    </div>
+                    <!-- /ko -->
+                </div>
+            </div>
+            <!-- ko if: isComplexEditor -->
+            <div class="dxrd-editor-content dxrd-accordion-content">
+                <!-- ko if: (!$data.editorCreated || editorCreated) -->
+                <!-- ko template: contentTemplateName -->
+                <!-- /ko -->
+                <!-- /ko -->
+            </div>
+            <!-- /ko -->
+        </div>
+    </div>
+</script>
+
+<script type="text/html" id="dxrd-propertieseditor">
+    <div class="dx-fieldset">
+        <!-- ko foreach: getEditors() -->
+        <!-- ko template: editorTemplate -->
+        <!-- /ko -->
+        <!-- /ko -->
+    </div>
+</script>
+
+<script type="text/html" id="dxrd-editor-addons">
+    <!-- ko if: visible -->
+    <div class="dxrd-editormenu-button" data-bind="dxAction: showPopup, css: editorMenuButtonCss"></div>
+    <!-- /ko -->
+</script>
+
+<script type="text/html" id="dxrd-color">
+    <div data-bind="dxColorBox: { value: value, editAlphaChannel: true, disabled: disabled }"></div>
+</script>
+
+<script type="text/html" id="dxrd-filterstring">
+    <div data-bind="dxFilterEditor: { options: value, fieldListProvider: $root.fieldListProvider }"></div>
+</script>
+
+<script type="text/html" id="dxrd-expressionstring">
+    <div data-bind="dxExpressionEditor: { options: value, fieldListProvider: $root.fieldListProvider }"></div>
+</script>
+
+<script type="text/html" id="dxrd-controls">
+    <div data-bind="dxLocalizedSelectBox: { items: $root.controls, value: value, displayExpr: 'displayName', valueExpr: 'value', disabled: disabled }"></div>
+</script>
+
+<script type="text/html" id="dxrd-innercontrols">
+    <div data-bind="dxLocalizedSelectBox: { items: $root.getControls(_model), value: value, displayExpr: 'displayName', valueExpr: 'value', disabled: disabled }"></div>
+</script>
+
+<script type="text/html" id="dxrd-combobox">
+    <div data-bind="dxLocalizedSelectBox: { items: values, value: value, valueExpr: 'value', displayExpr: 'displayValue', displayCustomValue: true, disabled: disabled }, dxValidator: { validationRules: $data.validationRules || [] }"></div>
+</script>
+
+<script type="text/html" id="dxrd-combobox-editable">
+    <div data-bind="dxSelectBox: { items: values, value: value, valueExpr: 'value', displayExpr: 'displayValue', editEnabled: true, disabled: disabled }"></div>
+</script>
+
+<script type="text/html" id="dxrd-boolean">
+    <div class="propertygrid-editor-checkbox" data-bind="dxCheckBox: { value: value, disabled: disabled }, dxValidator: { validationRules: validationRules || [] }"></div>
+</script>
+
+<script type="text/html" id="dxrd-text">
+    <div data-bind="dxTextBox: { value: value, disabled: disabled }, dxValidator: { validationRules: validationRules || [] }"></div>
+</script>
+
+<script type="text/html" id="dxrd-image">
+    <div data-bind="dxFileImagePicker: { value: value, disabled: disabled }"></div>
+</script>
+
+<script type="text/html" id="dxrd-borders">
+    <div class="dxrd-bordereditor" data-bind="dxBorderEditor: { value: value }"></div>
+</script>
+
+<script type="text/html" id="dxrd-modificators">
+    <div class="dxrd-font-content">
+        <div class="dx-field">
+            <div class="dx-field-label" data-bind="styleunit: { 'paddingLeft': padding }"></div>
+            <!-- ko with: value -->
+            <div class="dx-field-value">
+                <div class="dxrd-font-styles-content">
+                    <div class="dxrd-font-style-button dxrd-image-fontstyle-bold" data-bind="css: { selected: bold() }, click: function() { bold(!bold()); }"></div>
+                    <div class="dxrd-font-style-button dxrd-image-fontstyle-italic" data-bind="css: { selected: italic() }, click: function() { italic(!italic()); }"></div>
+                    <div class="dxrd-font-style-button dxrd-image-fontstyle-underline" data-bind="css: { selected: underline() }, click: function() { underline(!underline()); }"></div>
+                    <div class="dxrd-font-style-button dxrd-image-fontstyle-strikeout" data-bind="css: { selected: strikeout() }, click: function() { strikeout(!strikeout()); }"></div>
+                </div>
+            </div>
+            <!-- /ko -->
+        </div>
+    </div>
+</script>
+
+<script type="text/html" id="dxrd-numeric">
+    <div data-bind="dxNumberBox: { value: value, showSpinButtons: true, disabled: disabled }, dxValidator: { validationRules: validationRules || [] }"></div>
+</script>
+
+<script type="text/html" id="dxrd-date">
+    <div data-bind="dxDateBox: { value: value.extend({ throttle: 500 }), closeOnValueChange: true, format: 'datetime', disabled: disabled }, dxValidator: { validationRules: validationRules || [] }"></div>
+</script>
+
+<script type="text/html" id="dxrd-emptyHeader">
+</script>
+
+<script type="text/html" id="dxrd-objectEditorContent">
+    <!-- ko if: visible -->
+    <div data-bind="template: { name: 'dxrd-propertieseditor', data: viewmodel }"></div>
+    <!-- /ko -->
+</script>
+
+<script type="text/html" id="dxrd-objectEditor">
+    <div data-bind="template: { name: 'dxrd-propertieseditor', data: new DevExpress.Designer.Widgets.ObjectProperties(ko.observable($data), null, $parent.level) }"></div>
+</script>
+
+<script type="text/html" id="dxrd-treelistContent">
+    <!-- ko if: visible -->
+    <!-- ko if: value -->
+    <div data-bind="treelist: { itemsProvider: value().itemsProvider, selectedPath: value().selectedPath, treeListController: value().treeListController }"></div>
+    <!-- /ko -->
+    <!-- /ko -->
+</script>
+
+<script type="text/html" id="dxrd-field">
+    <!-- ko if: value-->
+    <div data-bind="dxFieldListPicker: { value: value().fullPath, displayExpr: value().displayExpr }">
+        <div class="dx-treelist-wrapper" data-bind="treelist: { itemsProvider: $root.fieldListProvider(), selectedPath: value().fullPath, treeListController: value().treeListController }"></div>
+    </div>
+    <!--/ko -->
+</script>
+
+<script type="text/html" id="dxrd-dataMember">
+    <!-- ko if: value-->
+    <div data-bind="dxFieldListPicker: { value: value().fullPath, displayExpr: value().displayExpr }">
+        <div class="dx-treelist-wrapper" data-bind="treelist: { itemsProvider: $root.fieldListProvider(), selectedPath: value().fullPath, treeListController: value().treeListController }"></div>
+    </div>
+    <!--/ko -->
+</script>
+
+<script type="text/html" id="dxrd-commonCollection">
+    <div class="dxrd-editor" data-bind="visible: visible">
+        <div data-bind="dxCollectionEditor: { values: value, displayName: displayName, level: level, info: info }">
+        </div>
+    </div>
+</script>
+
+<script type="text/html" id="dxrd-multivalue">
+    <!-- ko if: value-->
+    <div data-bind="dxSelectBox: { items: value().displayItems, itemTemplate: 'valueItem', onClosed: value().updateValue, displayExpr: function(val) { return value().selectedValuesString(); }, displayCustomValue: true }">
+        <div class="dxrd-multivalue-editor-item" data-options="dxTemplate:{ name:'valueItem' }" data-bind="dxAction: function(e) { toggleSelected(); event.stopPropagation(); }">
+            <div class="dxrd-multivalue-editor-item-checkState" data-bind="dxCheckBox: { value: selected, readOnly: true }"></div>
+            <div class="dxrd-multivalue-editor-item-text" data-bind="text: displayValue"></div>
+        </div>
+    </div>
+    <!--/ko -->
+</script>
+
+<script type="text/html" id="dxrd-multivalue-editable">
+    <div class="dxrd-editor" data-bind="visible: visible">
+        <div data-bind="dxCollectionEditor: { values: value, info: info, level: level, displayName: DevExpress.Designer.getLocalization(displayName) }">
+            <div data-bind="template: { name: 'dxrd-propertieseditor', data: new DevExpress.Designer.Widgets.ObjectProperties( value, null, editor.level + 1 ) }"></div>
+        </div>
+    </div>
+</script>
+
+<script type='text/html' id='dxrd-treelist'>
+<div class="dx-treelist">
+    <!-- ko foreach: $data -->
+    <!-- ko if: templateName -->
+    <!-- ko template: templateName -->
+    <!-- /ko -->
+    <!-- /ko -->
+    <!-- ko if: !templateName -->
+    <div class="dxrd-treelist-item" data-bind="event: { dblclick:toggleCollapsed }, styleunit: { 'paddingLeft': 20 * level + 12 }, css: { 'dxrd-treelist-item-selected': isSelected }">
+        <div class="dxrd-treelist-item-images">
+            <div class="dxrd-treelist-collapsedbutton" data-bind="css: nodeImageClass, click: toggleCollapsed"></div>
+            <!-- ko if: isDraggable -->
+            <div class="dxrd-treelist-image" data-bind="css: imageClassName, attr: { title: text }, draggable: $root.fieldDragHandler"></div>
+            <!-- /ko -->
+            <!-- ko if: !isDraggable -->
+            <div class="dxrd-treelist-image" data-bind="css: imageClassName, attr: { title: text }"></div>
+            <!-- /ko -->
+        </div>
+        <div class="dxrd-treelist-caption">
+            <div class="dxrd-treelist-action-container" data-bind="foreach: actions, visible: isSelected">
+                <!-- ko if: $data.templateName -->
+                <!-- ko template: templateName  -->
+                <!-- /ko -->
+                <!-- /ko -->
+                <!-- ko if: !$data.templateName -->
+                <div class="dxrd-treelist-action" data-bind="dxButton: { onClick: clickAction, icon: imageClassName }, attr: { title: text }"></div>
+                <!-- /ko -->
+            </div>
+            <!-- ko if: isDraggable -->
+            <div class="dxrd-treelist-selectedcontent" data-bind="click: toggleSelected, draggable: $root.fieldDragHandler">
+                <div class="dxrd-treelist-text" data-bind="text: text, attr: { title: text }"></div>
+            </div>
+            <!-- /ko -->
+            <!-- ko if: !isDraggable -->
+            <div class="dxrd-treelist-selectedcontent" data-bind="click: toggleSelected">
+                <div class="dxrd-treelist-text" data-bind="text: text, attr: { title: text }"></div>
+            </div>
+            <!-- /ko -->
+        </div>
+    </div>
+    <!-- /ko -->
+    <div data-bind="visible: !collapsed()">
+        <!-- ko template: { name: 'dxrd-treelist', data: items } -->
+        <!-- /ko -->
+    </div>
+    <!-- /ko -->
+</div>
+</script>
+
+<script type="text/html" id="dx-chart-leftPanel">
+    <div class="dx-chart-left-panel">
+        <div class="dxrd-right-panel">
+            <div class="dxrd-right-panel-header">
+                <span data-bind="text: DevExpress.Designer.getLocalization('Chart Structure')"></span>
+            </div>
+            <!-- ko if: chartStructure -->
+            <!-- ko with: chartStructure-->
+            <div class="dxcd-chart-structure" data-bind="treelist: { itemsProvider: itemsProvider, selectedPath: selectedPath, treeListController: treeListController, path: 'Chart' }"></div>
+            <!-- /ko -->
+            <!-- /ko -->
+        </div>
+    </div>
+</script>
+
+<script type="text/html" id="dxcd-toolbar">
+    <div class="dxrd-toolbar-wrapper" style="left: 326px">
+        <div class="dxrd-toolbar" data-bind="template: {name: 'dxrd-toolbar-tmplt', data: actionLists.toolbarItems }"></div>
+    </div>
+</script>
+
+<script type="text/html" id="dx-chart-middlePart">
+    <!-- ko ifnot: isLoading -->
+    <!-- ko with: surface -->
+    <div class="dxrd-surface-wrapper" style="top: 0" data-bind="template: templateName, click: function(_, e) { $root.selection.clickHandler($data, e); e.stopPropagation(); }">
+    </div>
+    <!-- /ko -->
+    <!-- /ko -->
+    <!-- ko if: isLoading -->
+    <div class="dxrd-surface-wrapper">
+        <div style="text-align: center; padding-top: 49%;">
+            <div data-bind="dxLoadIndicator: { visible: isLoading() }"></div>
+        </div>
+    </div>
+    <!-- /ko -->
+</script>
+
+<script type="text/html" id="dx-chart-surface">
+    <div class="dxrd-surface" data-bind="styleunit: { 'width': Math.min(width(), $root.surfaceSize()) }, click: function(_, e) { e.stopPropagation(); }">
+        <div class="dxrd-viewport" data-bind="styleunit: { minWidth: Math.min(width(), $root.surfaceSize()), maxWidth: width(),  maxHeight: height() + 20 }">
+            <div class="dxrd-control" style="border:none; background: none;">
+                <div data-bind="zoom: zoom, styleunit: { 'height': height() / zoom(), 'width': width() / zoom() }">
+                    <img data-bind="attr: {src: imageSrc }, styleunit: { 'height': height() / zoom(), 'width': width() / zoom() }" />
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
+
+<script type="text/html" id="dxrd-collection-lookup-header">
+    <div data-bind="dxSelectBox: { dataSource: value, displayExpr: 'name', value: selectedItem, disabled: disabled }"></div>
+</script>
+
+<script type="text/html" id="dxrd-series-item">
+    <!-- ko if: selectedItem -->
+    <div data-bind="template: { name: 'dxrd-propertieseditor', data:  new DevExpress.Designer.Widgets.ObjectProperties(selectedItem, { editors: DevExpress.Designer.Chart.seriesSerializationsInfo }, 1) }"></div>
+    <!--/ko -->
+</script>
+
+<script type="text/html" id="dxrd-titles-item">
+    <!-- ko if: selectedItem -->
+    <div data-bind="template: { name: 'dxrd-propertieseditor', data:  new DevExpress.Designer.Widgets.ObjectProperties(selectedItem, { editors: DevExpress.Designer.Chart.titlesSerializationsInfo }, 1) }"></div>
+    <!--/ko -->
+</script>
+
+<script type="text/html" id="dxrd-propertygridtab">
+    <div class="dxrd-right-panel-header">
+        <span data-bind="text: DevExpress.Designer.getLocalization('Properties')"></span>
+    </div>
+    <div class="dxrd-properties-grid" data-bind="dxScrollView: { showScrollbar: 'onHover' }, styleunit: { top: $root.getControlsDS().visible ? 90 : 40 }">
+        <!-- ko template: { name: 'dxrd-propertieseditor', data: $root.selectedElement }-->
+        <!-- /ko -->
+    </div>
+</script>
+
+<script type="text/html" id="dxrd-viewSelect">
+    <div data-bind="dxSelectBox: { dataSource: values, itemTemplate: 'stateItem', valueExpr: 'value', value: value, displayExpr: 'displayValue', disabled: disabled }">
+        <div class="lookupItem" data-options="dxTemplate:{ name:'stateItem' }">
+            <div style="display:inline-block; width: 16px; height: 16px;" data-bind="css: 'dxrd-image-fieldlist-' + DevExpress.Designer.Chart.SeriesViewModel.getClassName(value)"></div>
+            <div style="display:inline-block" data-bind="text: displayValue"></div>
+        </div>
+    </div>
+</script>

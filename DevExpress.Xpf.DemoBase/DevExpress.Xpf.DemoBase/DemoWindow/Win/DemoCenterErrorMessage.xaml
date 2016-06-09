@@ -1,0 +1,53 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
+    xmlns:helpers="clr-namespace:DevExpress.DemoData.Helpers;assembly=DevExpress.DemoData.v15.2.Core"
+    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+    xmlns:demoparts="clr-namespace:DevExpress.DemoData.DemoParts">
+
+    <helpers:SelectConverter x:Key="OKButtonBackgroundConverter">
+        <helpers:SelectState Key="Normal" Value="{helpers:BrushValue S=Transparent}" />
+        <helpers:SelectState Key="MouseOver" Value="{helpers:BrushValue S=#FFA0A0A0}" />
+        <helpers:SelectState Key="Pressed" Value="{helpers:BrushValue S=#FF909090}" />
+        <helpers:SelectState Key="Disabled" Value="{helpers:BrushValue S=Transparent}" />
+    </helpers:SelectConverter>
+    <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    <dxmvvm:ObjectToObjectConverter x:Key="IsErrorToBackgroundConverter">
+        <dxmvvm:MapItem Source="True">
+            <dxmvvm:MapItem.Target>
+                <SolidColorBrush Color="#FFF9F9F9" />
+            </dxmvvm:MapItem.Target>
+        </dxmvvm:MapItem>
+        <dxmvvm:MapItem Source="False">
+            <dxmvvm:MapItem.Target>
+                <SolidColorBrush Color="White" />
+            </dxmvvm:MapItem.Target>
+        </dxmvvm:MapItem>
+    </dxmvvm:ObjectToObjectConverter>
+    <Style TargetType="{x:Type demoparts:DemoCenterErrorMessage}">
+        <Setter Property="Width" Value="400" />
+        <Setter Property="UseLayoutRounding" Value="True" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="demoparts:DemoCenterErrorMessage">
+                    <dx:DXBorder x:Name="LayoutRoot" BorderThickness="1" BorderBrush="#FF9F9F9F" Background="{TemplateBinding IsError, Converter={StaticResource IsErrorToBackgroundConverter}}" Padding="12">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <dx:DocumentPresenter Background="Transparent" Foreground="Black" Document="{TemplateBinding Message}" />
+                            <StackPanel Grid.Row="1" Margin="0,12,0,0" HorizontalAlignment="Center" Orientation="Horizontal">
+                                <Button x:Name="IgnoreButton" Content="Ignore" Width="80"
+                                        Visibility="{TemplateBinding ShowIgnoreButton, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                                <dx:DXBorder Width="10" Visibility="{TemplateBinding ShowIgnoreButton, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                                <Button x:Name="OKButton" Content="OK" Width="80" />
+                            </StackPanel>
+                        </Grid>
+                    </dx:DXBorder>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

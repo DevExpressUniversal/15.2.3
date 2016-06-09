@@ -1,0 +1,986 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <ProjectType>Local</ProjectType>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{10B8DDCB-20D3-4736-A771-91C7C5D5C9D4}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ApplicationIcon>
+    </ApplicationIcon>
+    <AssemblyKeyContainerName>
+    </AssemblyKeyContainerName>
+    <AssemblyName>DevExpress.Pdf.v15.2.Core</AssemblyName>
+    <AssemblyOriginatorKeyFile>..\..\DevExpress.Key\StrongKey.snk</AssemblyOriginatorKeyFile>
+    <DefaultClientScript>JScript</DefaultClientScript>
+    <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
+    <DefaultTargetSchema>IE50</DefaultTargetSchema>
+    <DelaySign>false</DelaySign>
+    <OutputType>Library</OutputType>
+    <RootNamespace>DevExpress.Pdf</RootNamespace>
+    <StartupObject>
+    </StartupObject>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <SignAssembly>true</SignAssembly>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>..\..\..\Bin\Framework\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>TRACE;DEBUG;CODE_ANALYSIS</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>true</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <Optimize>false</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>full</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>..\..\..\Bin\Framework\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>TRACE</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>true</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <Optimize>true</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>full</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  
+  <ItemGroup>
+    <Reference Include="DevExpress.Data.v15.2">
+      <SpecificVersion>False</SpecificVersion>
+    <HintPath>..\..\..\Bin\Framework\DevExpress.Data.v15.2.dll</HintPath><Private>False</Private></Reference>
+    
+    <Reference Include="System">
+      <Name>System</Name>
+    <Private>False</Private></Reference>
+    <Reference Include="System.Core"><Private>False</Private></Reference>
+    <Reference Include="System.Drawing"><Private>False</Private></Reference>
+    <Reference Include="System.Numerics"><Private>False</Private></Reference>
+    <Reference Include="System.Security"><Private>False</Private></Reference>
+    <Reference Include="System.XML"><Private>False</Private></Reference>
+    <Reference Include="System.Xml.Linq"><Private>False</Private></Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="API\PdfCreationOptions.cs" />
+    <Compile Include="API\PdfFileAttachment.cs" />
+    <Compile Include="API\PdfBookmark.cs" />
+    <Compile Include="API\PdfFormData.cs" />
+    <Compile Include="API\PdfFormDataFormat.cs" />
+    <Compile Include="API\PdfPaperSize.cs" />
+    <Compile Include="API\Permissions\PdfDocumentDataExtractionPermissions.cs" />
+    <Compile Include="API\Permissions\PdfDocumentInteractivityPermissions.cs" />
+    <Compile Include="API\Permissions\PdfDocumentModificationPermissions.cs" />
+    <Compile Include="API\Permissions\PdfDocumentPrintingPermissions.cs" />
+    <Compile Include="API\StringFormat\PdfHotkeyPrefix.cs" />
+    <Compile Include="API\StringFormat\PdfStringAlignment.cs" />
+    <Compile Include="API\StringFormat\PdfStringFormat.cs" />
+    <Compile Include="API\StringFormat\PdfStringFormatFlags.cs" />
+    <Compile Include="API\StringFormat\PdfStringTrimming.cs" />
+    <Compile Include="CommandInterpreter\PdfPolygon.cs" />
+    <Compile Include="CommandInterpreter\PdfPolygonClipper.cs" />
+    <Compile Include="DataRecognition\PdfCache.cs" />
+    <Compile Include="DataRecognition\PdfPageData.cs" />
+    <Compile Include="DataRecognition\PdfPageDataCache.cs" />
+    <Compile Include="DocumentModel\Actions\PdfAdditionalActions.cs" />
+    <Compile Include="DocumentModel\Actions\PdfJumpAction.cs" />
+    <Compile Include="DocumentModel\ColorSpace\ColorSpaceTransformation\PdfCMYKColorSpaceTransformation.cs" />
+    <Compile Include="DocumentModel\ColorSpace\ColorSpaceTransformation\PdfColorSpaceTransformation.cs" />
+    <Compile Include="DocumentModel\ColorSpace\ColorSpaceTransformation\PdfGrayColorSpaceTransformation.cs" />
+    <Compile Include="DocumentModel\ColorSpace\ColorSpaceTransformation\PdfRGBColorSpaceTransformation.cs" />
+    <Compile Include="DocumentModel\Commands\PdfCommandList.cs" />
+    <Compile Include="DocumentModel\Commands\Type3Font\PdfSetCacheDeviceCommand.cs" />
+    <Compile Include="DocumentModel\Commands\Type3Font\PdfSetCharWidthCommand.cs" />
+    <Compile Include="DocumentModel\DocumentCatalog\Annotations\Appearance\PdfAnnotationAppearanceState.cs" />
+    <Compile Include="DocumentModel\DocumentCatalog\Annotations\PathAnnotation\PdfNumberFormat.cs" />
+    <Compile Include="DocumentModel\DocumentCatalog\Annotations\PathAnnotation\PdfPathAnnotation.cs" />
+    <Compile Include="DocumentModel\DocumentCatalog\Annotations\PathAnnotation\PdfRectilinearMeasure.cs" />
+    <Compile Include="DocumentModel\DocumentCatalog\Annotations\PathAnnotation\PdfUnclosedPathAnnotation.cs" />
+    <Compile Include="DocumentModel\DocumentCatalog\Annotations\ShapeAnnotation\PdfShapeAnnotation.cs" />
+    <Compile Include="DocumentModel\DocumentCatalog\Annotations\WidgetAnnotation\PdfIconFit.cs" />
+    <Compile Include="DocumentModel\DocumentCatalog\Bookmarks\IPdfBookmarkParent.cs" />
+    <Compile Include="DocumentModel\DocumentCatalog\Bookmarks\PdfBookmarksList.cs" />
+    <Compile Include="DocumentModel\DocumentCatalog\Destinations\PdfDestinationObject.cs" />
+    <Compile Include="DocumentModel\DocumentCatalog\InteractiveForm\Fields\PdfInteractiveFormFieldTextState.cs" />
+    <Compile Include="DocumentModel\DocumentCatalog\InteractiveForm\PdfInteractiveFormFieldValueChangedEvent.cs" />
+    <Compile Include="DocumentModel\DocumentCatalog\InteractiveForm\PdfInteractiveFormFieldValueChangingEvent.cs" />
+    <Compile Include="DocumentModel\DocumentCatalog\Permissions\Signature\PdfPlaceholder.cs" />
+    <Compile Include="DocumentModel\DocumentCatalog\Permissions\Signature\PdfSignatureByteRange.cs" />
+    <Compile Include="DocumentModel\DocumentCatalog\Permissions\Signature\PdfSignatureContents.cs" />
+    <Compile Include="DocumentModel\Filters\JBIG2\GenericRegionDecoder\JBIG2GenericRegionDecoder.cs" />
+    <Compile Include="DocumentModel\Filters\JBIG2\GenericRegionDecoder\JBIG2Template0Decoder.cs" />
+    <Compile Include="DocumentModel\Filters\JBIG2\GenericRegionDecoder\JBIG2Template1Decoder.cs" />
+    <Compile Include="DocumentModel\Filters\JBIG2\GenericRegionDecoder\JBIG2Template2aDecoder.cs" />
+    <Compile Include="DocumentModel\Filters\JBIG2\GenericRegionDecoder\JBIG2Template2Decoder.cs" />
+    <Compile Include="DocumentModel\Filters\JBIG2\GenericRegionDecoder\JBIG2Template3Decoder.cs" />
+    <Compile Include="DocumentModel\Filters\JBIG2\GenericRegionDecoder\JBIG2TPGDON0Decoder.cs" />
+    <Compile Include="DocumentModel\Filters\JBIG2\GenericRegionDecoder\JBIG2TPGDON1Decoder.cs" />
+    <Compile Include="DocumentModel\Filters\JBIG2\GenericRegionDecoder\JBIG2TPGDON2Decoder.cs" />
+    <Compile Include="DocumentModel\Filters\JBIG2\GenericRegionDecoder\JBIG2TPGDON3Decoder.cs" />
+    <Compile Include="DocumentModel\Filters\JBIG2\GenericRegionDecoder\JBIG2TPGDONDecoder.cs" />
+    <Compile Include="DocumentModel\Fonts\CharacterMapping\PdfCharacterMappingFindResult.cs" />
+    <Compile Include="DocumentModel\Fonts\CharacterMapping\PdfCharacterMappingTreeBranch.cs" />
+    <Compile Include="DocumentModel\Fonts\CharacterMapping\PdfCharacterMappingTreeLeaf.cs" />
+    <Compile Include="DocumentModel\Fonts\CharacterMapping\PdfCharacterMappingTreeNode.cs" />
+    <Compile Include="DocumentModel\Patterns\Shading\MeshShading\PdfBezierCurve.cs" />
+    <Compile Include="DocumentModel\Patterns\Shading\MeshShading\PdfTriangleWriter.cs" />
+    <Compile Include="DocumentModel\Patterns\Shading\PdfGradientShading.cs" />
+    <Compile Include="DocumentModel\Patterns\Shading\MeshShading\PdfCoonsPatch.cs" />
+    <Compile Include="DocumentModel\Patterns\Shading\MeshShading\PdfDecodeRange.cs" />
+    <Compile Include="DocumentModel\Patterns\Shading\MeshShading\PdfGourandShadedTriangleMesh.cs" />
+    <Compile Include="DocumentModel\Patterns\Shading\MeshShading\PdfTensorProductPatch.cs" />
+    <Compile Include="DocumentModel\Patterns\Shading\MeshShading\PdfTriangle.cs" />
+    <Compile Include="DocumentModel\Patterns\Shading\MeshShading\PdfVertex.cs" />
+    <Compile Include="DocumentModel\Patterns\Shading\MeshShading\PdfIntegerStreamReader.cs" />
+    <Compile Include="DocumentModel\PdfCompatibility.cs" />
+    <Compile Include="FontUtils\FontFile\FontFileTable\Glyf\PdfGlyphDescription.cs" />
+    <Compile Include="FontUtils\FontFile\FontFileTable\PdfFontKernTableDirectoryEntry.cs" />
+    <Compile Include="FontUtils\FontFile\PdfTrueTypeCollectionFontFile.cs" />
+    <Compile Include="FontUtils\PdfCharacterCache.cs" />
+    <Compile Include="FontUtils\FontFile\FontFileTable\PdfFontHmtxTableDirectoryEntry.cs" />
+    <Compile Include="FontUtils\FontFile\FontFileTable\PdfFontPostTableDirectoryEntry.cs" />
+    <Compile Include="FontUtils\FontFile\FontFileTable\Glyf\PdfTrueTypeGlyfTableDirectoryEntry.cs" />
+    <Compile Include="FontUtils\FontFile\PdfTrueTypeFontValidationResult.cs" />
+    <Compile Include="FontUtils\Type1\Cipher\PdfType1FontEexecASCIICipher.cs" />
+    <Compile Include="FontUtils\Type1\Cipher\PdfType1FontEexecBinaryCipher.cs" />
+    <Compile Include="FontUtils\Type1\Cipher\PdfType1FontEexecCipher.cs" />
+    <Compile Include="FontUtils\Type1\Cipher\PdfType1FontCipher.cs" />
+    <Compile Include="FontUtils\Type1\PdfType1FontProgram.cs" />
+    <Compile Include="FontUtils\Type1\PdfType1FontInfo.cs" />
+    <Compile Include="ImageUtils\OpacityStream\IOpacityStream.cs" />
+    <Compile Include="ImageUtils\OpacityStream\PdfInterpolatedOpacityStream.cs" />
+    <Compile Include="ImageUtils\OpacityStream\PdfOpacityInterpolator.cs" />
+    <Compile Include="ImageUtils\OpacityStream\PdfOpacityStream.cs" />
+    <Compile Include="IPdfViewer.cs" />
+    <Compile Include="IPdfInteractiveOperationController.cs" />
+    <Compile Include="PdfCommandConstructor.cs" />
+    <Compile Include="PdfFileAttachmentList.cs" />
+    <Compile Include="PdfMathUtils.cs" />
+    <Compile Include="PdfCursor.cs" />
+    <Compile Include="PdfDocumentProcessorHelper.cs" />
+    <Compile Include="API\PdfRGBColor.cs" />
+    <Compile Include="DocumentModel\ColorSpace\PdfCustomColorSpace.cs" />
+    <Compile Include="DocumentModel\ColorSpace\SpecialColorSpace\IndexedColorSpace\PdfIndexedColorSpaceEightBitTransformation.cs" />
+    <Compile Include="DocumentModel\ColorSpace\SpecialColorSpace\IndexedColorSpace\PdfIndexedColorSpaceFourBitTransformation.cs" />
+    <Compile Include="DocumentModel\ColorSpace\SpecialColorSpace\IndexedColorSpace\PdfIndexedColorSpaceOneTwoBitTransformation.cs" />
+    <Compile Include="DocumentModel\ColorSpace\SpecialColorSpace\IndexedColorSpace\PdfIndexedColorSpaceTransformation.cs" />
+    <Compile Include="DocumentModel\Commands\CommandGroup\MarkedContent\PdfCustomProperties.cs" />
+    <Compile Include="DocumentModel\Commands\TextCommand\PdfBeginTextCommand.cs" />
+    <Compile Include="DocumentModel\Commands\TextCommand\PdfEndTextCommand.cs" />
+    <Compile Include="DocumentModel\Commands\CommandGroup\MarkedContent\PdfProperties.cs" />
+    <Compile Include="API\PdfSaveOptions.cs" />
+    <Compile Include="PdfTarget.cs" />
+    <Compile Include="DocumentModel\DocumentCatalog\LogicalStructure\Attributes\PdfCustomLogicalStructureElementAttribute.cs" />
+    <Compile Include="DocumentModel\DocumentCatalog\LogicalStructure\Attributes\Layout\PdfLayoutLogicalStructureElementAttribute.cs" />
+    <Compile Include="DocumentModel\DocumentCatalog\LogicalStructure\Attributes\Layout\PdfBLSELayoutLogicalStructureElementAttribute.cs" />
+    <Compile Include="DocumentModel\DocumentCatalog\LogicalStructure\Attributes\Layout\PdfColumnLayoutLogicalStructureElementAttribute.cs" />
+    <Compile Include="DocumentModel\DocumentCatalog\LogicalStructure\Attributes\Layout\PdfILSELayoutLogicalStructureElementAttribute.cs" />
+    <Compile Include="DocumentModel\DocumentCatalog\LogicalStructure\Attributes\PdfListLogicalStructureElementAttribute.cs" />
+    <Compile Include="DocumentModel\DocumentCatalog\LogicalStructure\Attributes\PdfPrintFieldLogicalStructureElementAttribute.cs" />
+    <Compile Include="DocumentModel\DocumentCatalog\LogicalStructure\Attributes\PdfTableLogicalStructureElementAttribute.cs" />
+    <Compile Include="DocumentModel\DocumentCatalog\LogicalStructure\Items\PdfLogicalStructureMarkedContentReference.cs" />
+    <Compile Include="DocumentModel\DocumentCatalog\LogicalStructure\Items\PdfLogicalStructureContentItem.cs" />
+    <Compile Include="DocumentModel\DocumentCatalog\LogicalStructure\Items\PdfLogicalStructureMcidContent.cs" />
+    <Compile Include="DocumentModel\DocumentCatalog\LogicalStructure\Items\PdfLogicalStructure.cs" />
+    <Compile Include="DocumentModel\DocumentCatalog\LogicalStructure\Items\PdfLogicalStructureElement.cs" />
+    <Compile Include="DocumentModel\DocumentCatalog\LogicalStructure\Items\PdfLogicalStructureEntry.cs" />
+    <Compile Include="DocumentModel\DocumentCatalog\LogicalStructure\Items\PdfLogicalStructureItem.cs" />
+    <Compile Include="DocumentModel\DocumentCatalog\LogicalStructure\Attributes\PdfLogicalStructureElementAttribute.cs" />
+    <Compile Include="DocumentModel\DocumentCatalog\OptionalContent\PdfOptionalContent.cs" />
+    <Compile Include="DocumentModel\DocumentCatalog\OptionalContent\PdfOptionalContentConfiguration.cs" />
+    <Compile Include="DocumentModel\DocumentCatalog\OptionalContent\PdfOptionalContentGroup.cs" />
+    <Compile Include="DocumentModel\DocumentCatalog\OptionalContent\PdfOptionalContentIntent.cs" />
+    <Compile Include="DocumentModel\DocumentCatalog\OptionalContent\PdfOptionalContentOrder.cs" />
+    <Compile Include="DocumentModel\DocumentCatalog\OptionalContent\PdfOptionalContentProperties.cs" />
+    <Compile Include="DocumentModel\DocumentCatalog\OptionalContent\PdfOptionalContentVisibilityExpression.cs" />
+    <Compile Include="DocumentModel\DocumentCatalog\OptionalContent\Usage\PdfOptionalContentUsage.cs" />
+    <Compile Include="DocumentModel\DocumentCatalog\OptionalContent\Usage\PdfOptionalContentUsageApplication.cs" />
+    <Compile Include="DocumentModel\DocumentCatalog\OptionalContent\Usage\PdfOptionalContentUsageCreatorInfo.cs" />
+    <Compile Include="DocumentModel\DocumentCatalog\PageTree\PdfPageTreeNodeCreator.cs" />
+    <Compile Include="DocumentModel\DocumentCatalog\Permissions\PdfDocumentPermissions.cs" />
+    <Compile Include="DocumentModel\DocumentCatalog\LogicalStructure\PdfMarkInfo.cs" />
+    <Compile Include="DocumentModel\DocumentCatalog\PdfOutputIntent.cs" />
+    <Compile Include="DocumentModel\DocumentCatalog\Permissions\PdfLegalContentAttestations.cs" />
+    <Compile Include="API\PdfSignature.cs" />
+    <Compile Include="DocumentModel\DocumentCatalog\Permissions\Signature\PdfSignatureReference.cs" />
+    <Compile Include="DocumentModel\DocumentCatalog\Permissions\TransformMethods\PdfDocumentMDPTransformMethod.cs" />
+    <Compile Include="DocumentModel\DocumentCatalog\Permissions\TransformMethods\PdfFieldMDPTransformMethod.cs" />
+    <Compile Include="DocumentModel\DocumentCatalog\Permissions\TransformMethods\PdfTransformMethod.cs" />
+    <Compile Include="DocumentModel\DocumentCatalog\Permissions\TransformMethods\PdfUsageRightsTransformMethod.cs" />
+    <Compile Include="DocumentModel\Filters\HuffmanTree\PdfHuffmanTreeBranch.cs" />
+    <Compile Include="DocumentModel\Filters\HuffmanTree\PdfHuffmanTreeLeaf.cs" />
+    <Compile Include="DocumentModel\Filters\HuffmanTree\PdfHuffmanTreeNode.cs" />
+    <Compile Include="DocumentModel\Filters\JBIG2\ArithmeticCoding\JBIG2ArithmeticContext.cs" />
+    <Compile Include="DocumentModel\Filters\JBIG2\ArithmeticCoding\JBIG2ArithmeticDecoderResult.cs" />
+    <Compile Include="DocumentModel\Filters\JBIG2\ArithmeticCoding\JBIG2ArithmeticIntContext.cs" />
+    <Compile Include="DocumentModel\Filters\JBIG2\ArithmeticCoding\JBIG2ArithmeticQe.cs" />
+    <Compile Include="DocumentModel\Filters\JBIG2\ArithmeticCoding\JBIG2ArithmeticState.cs" />
+    <Compile Include="DocumentModel\Filters\JBIG2\JBIG2Corner.cs" />
+    <Compile Include="DocumentModel\Filters\JBIG2\JBIG2Decoder.cs" />
+    <Compile Include="DocumentModel\Filters\JBIG2\JBIG2GenericRegion.cs" />
+    <Compile Include="DocumentModel\Filters\JBIG2\JBIG2Image.cs" />
+    <Compile Include="DocumentModel\Filters\JBIG2\JBIG2PageInfo.cs" />
+    <Compile Include="DocumentModel\Filters\JBIG2\JBIG2RefinementRegion.cs" />
+    <Compile Include="DocumentModel\Filters\JBIG2\JBIG2RegionSegmentInfo.cs" />
+    <Compile Include="DocumentModel\Filters\JBIG2\JBIG2SegmentData.cs" />
+    <Compile Include="DocumentModel\Filters\JBIG2\JBIG2SegmentHeader.cs" />
+    <Compile Include="DocumentModel\Filters\JBIG2\JBIG2StreamHelper.cs" />
+    <Compile Include="DocumentModel\Filters\JBIG2\JBIG2SymbolDictionary.cs" />
+    <Compile Include="DocumentModel\Filters\JBIG2\JBIG2TextRegion.cs" />
+    <Compile Include="DocumentModel\Filters\JBIG2\JBIG2UnknownSegment.cs" />
+    <Compile Include="DocumentModel\Filters\PdfDCTDecodeFilter.cs" />
+    <Compile Include="DocumentModel\Filters\PdfJBIG2DecodeFilter.cs" />
+    <Compile Include="DocumentModel\Filters\PdfJBIG2GlobalSegments.cs" />
+    <Compile Include="DocumentModel\Filters\PdfJPXDecodeFilter.cs" />
+    <Compile Include="DocumentModel\Filters\PdfPngPredictor.cs" />
+    <Compile Include="DocumentModel\Filters\PdfRunLengthDecodeFilter.cs" />
+    <Compile Include="DocumentModel\Fonts\CompositeFonts\PdfCompositeFontDescriptor.cs" />
+    <Compile Include="DocumentModel\Fonts\CompositeFonts\PdfCompositeFontEncoding.cs" />
+    <Compile Include="DocumentModel\Fonts\CompositeFonts\PdfCustomCompositeFontEncoding.cs" />
+    <Compile Include="DocumentModel\Fonts\CompositeFonts\PdfPredefinedCompositeFontEncoding.cs" />
+    <Compile Include="DocumentModel\Fonts\PdfFontDescriptor.cs" />
+    <Compile Include="DocumentModel\Function\SampledFunction\PdfSampledDataConverter.cs" />
+    <Compile Include="DocumentModel\Function\SampledFunction\PdfSampledDataHighBitsCountConverter.cs" />
+    <Compile Include="DocumentModel\Function\SampledFunction\PdfSampledDataLowBitsCountConverter.cs" />
+    <Compile Include="DocumentModel\Function\SampledFunction\PdfSampledDataSingleByteConverter.cs" />
+    <Compile Include="DocumentModel\Path\PdfRectangularGraphicsPath.cs" />
+    <Compile Include="DocumentModel\PdfProgressChangedEventArgs.cs" />
+    <Compile Include="FontUtils\FontFile\FontFileTable\Cmap\PdfFontCmapGlyphRange.cs" />
+    <Compile Include="FontUtils\PdfFontFamilyClass.cs" />
+    <Compile Include="DocumentModel\Fonts\CharacterMapping\PdfCharacterMapping.cs" />
+    <Compile Include="DocumentModel\Fonts\SimpleFonts\PdfSimpleFontEncoding.cs" />
+    <Compile Include="DocumentModel\CommonDataTypes\PdfPrivateData.cs" />
+    <Compile Include="DocumentModel\CommonDataTypes\PdfParallelogram.cs" />
+    <Compile Include="DocumentModel\PdfPieceInfoEntry.cs" />
+    <Compile Include="DocumentModel\DocumentCatalog\PageTree\PdfPagePresentation.cs" />
+    <Compile Include="API\PdfDocumentArea.cs" />
+    <Compile Include="API\PdfDocumentContent.cs" />
+    <Compile Include="Platform\Win32\TypeUtils.cs" />
+    <Compile Include="PostScript\Operators\PdfPostScriptAddOperator.cs" />
+    <Compile Include="PostScript\Operators\PdfPostScriptAndOperator.cs" />
+    <Compile Include="PostScript\Operators\PdfPostScriptCvrOperator.cs" />
+    <Compile Include="PostScript\Operators\PdfPostScriptEqOperator.cs" />
+    <Compile Include="PostScript\Operators\PdfPostScriptExecOperator.cs" />
+    <Compile Include="PostScript\Operators\PdfPostScriptExecuteOnlyOperator.cs" />
+    <Compile Include="PostScript\Operators\PdfPostScriptFindFontOperator.cs" />
+    <Compile Include="PostScript\Operators\PdfPostScriptFontDirectoryOperator.cs" />
+    <Compile Include="PostScript\Operators\PdfPostScriptCurrentDictOperator.cs" />
+    <Compile Include="PostScript\Operators\PdfPostScriptCurrentFileOperator.cs" />
+    <Compile Include="PostScript\Operators\PdfPostScriptDupOperator.cs" />
+    <Compile Include="PostScript\Operators\PdfPostScriptEexecOperator.cs" />
+    <Compile Include="PostScript\Operators\PdfPostScriptEndOperator.cs" />
+    <Compile Include="PostScript\Operators\PdfPostScriptForOperator.cs" />
+    <Compile Include="PostScript\Operators\PdfPostScriptGetOperator.cs" />
+    <Compile Include="PostScript\Operators\PdfPostScriptGtOperator.cs" />
+    <Compile Include="PostScript\Operators\PdfPostScriptIfElseOperator.cs" />
+    <Compile Include="PostScript\Operators\PdfPostScriptIfOperator.cs" />
+    <Compile Include="PostScript\Operators\PdfPostScriptIndexOperator.cs" />
+    <Compile Include="PostScript\Operators\PdfPostScriptArrayOperator.cs" />
+    <Compile Include="PostScript\Operators\PdfPostScriptBeginOperator.cs" />
+    <Compile Include="PostScript\Operators\PdfPostScriptDefOperator.cs" />
+    <Compile Include="PostScript\Operators\PdfPostScriptDictOperator.cs" />
+    <Compile Include="PostScript\Operators\PdfPostScriptComment.cs" />
+    <Compile Include="PostScript\Operators\PdfPostScriptExchOperator.cs" />
+    <Compile Include="PostScript\Operators\PdfPostScriptKnownOperator.cs" />
+    <Compile Include="PostScript\Operators\PdfPostScriptMulOperator.cs" />
+    <Compile Include="PostScript\Operators\PdfPostScriptType1FontOperator.cs" />
+    <Compile Include="PostScript\Operators\PdfPostScriptNoAccessOperator.cs" />
+    <Compile Include="PostScript\Operators\PdfPostScriptNotOperator.cs" />
+    <Compile Include="PostScript\Operators\PdfPostScriptOperator.cs" />
+    <Compile Include="PostScript\Operators\PdfPostScriptPopOperator.cs" />
+    <Compile Include="PostScript\Operators\PdfPostScriptPutOperator.cs" />
+    <Compile Include="PostScript\Operators\PdfPostScriptReadonlyOperator.cs" />
+    <Compile Include="PostScript\Operators\PdfPostScriptReadStringOperator.cs" />
+    <Compile Include="PostScript\Operators\PdfPostScriptRollOperator.cs" />
+    <Compile Include="PostScript\Operators\PdfPostScriptStringOperator.cs" />
+    <Compile Include="PostScript\Operators\PdfPostScriptSubOperator.cs" />
+    <Compile Include="PostScript\Operators\PdfPostScriptSystemDictOperator.cs" />
+    <Compile Include="PostScript\PdfPostScriptDictionary.cs" />
+    <Compile Include="PostScript\PdfPostScriptFileParser.cs" />
+    <Compile Include="PostScript\Operators\PdfPostScriptSaveOperator.cs" />
+    <Compile Include="PostScript\Operators\PdfPostScriptStandardEncodingOperator.cs" />
+    <Compile Include="PostScript\PdfPostScriptInterpreter.cs" />
+    <Compile Include="PostScript\PdfPostScriptStack.cs" />
+    <Compile Include="ReadWrite\Converters\PdfSupportUndefinedValueAttribute.cs" />
+    <Compile Include="ReadWrite\Dictionary\PdfDeferredItem.cs" />
+    <Compile Include="ReadWrite\Dictionary\PdfDeferredSortedDictionary.cs" />
+    <Compile Include="ReadWrite\Dictionary\PdfElementsDictionaryWriter.cs" />
+    <Compile Include="API\PdfEncryptionOptions.cs" />
+    <Compile Include="ReadWrite\DocumentReader\ObjectParser\PdfEncryptedDocumentParser.cs" />
+    <Compile Include="ReadWrite\DocumentReader\ObjectParser\PdfType3FontContentStreamParser.cs" />
+    <Compile Include="ReadWrite\DocumentReader\PdfDocumentStructureReader.cs" />
+    <Compile Include="ReadWrite\DocumentReader\FdfDocumentReader.cs" />
+    <Compile Include="ReadWrite\DocumentReader\ObjectParser\PdfCharSetStringParser.cs" />
+    <Compile Include="ReadWrite\DocumentReader\ObjectParser\PdfComment.cs" />
+    <Compile Include="ReadWrite\DocumentReader\ObjectParser\PdfObjectParser.cs" />
+    <Compile Include="ReadWrite\DocumentStream\PdfCommandsStream.cs" />
+    <Compile Include="ReadWrite\DocumentWriter\FdfDocumentWriter.cs" />
+    <Compile Include="ReadWrite\DocumentWriter\IPdfWritableObject.cs" />
+    <Compile Include="ReadWrite\DocumentWriter\Arrays\PdfWritableArray.cs" />
+    <Compile Include="ReadWrite\DocumentWriter\Arrays\PdfWritableDoubleArray.cs" />
+    <Compile Include="ReadWrite\DocumentWriter\PdfObjectWriter.cs" />
+    <Compile Include="ReadWrite\ElementTree\PdfByteArrayComparer.cs" />
+    <Compile Include="API\PdfDocumentPosition.cs" />
+    <Compile Include="ReadWrite\ElementTree\PdfNameTreeEncoding.cs" />
+    <Compile Include="ReadWrite\Encryption\PdfDocumentPermissionsFlags.cs" />
+    <Compile Include="ReadWrite\Encryption\PdfGetPasswordAction.cs" />
+    <Compile Include="ReadWrite\LowLevelObjects\IPdfDeferredSavedObject.cs" />
+    <Compile Include="ReadWrite\LowLevelObjects\PdfArrayData.cs" />
+    <Compile Include="ReadWrite\LowLevelObjects\PdfData.cs" />
+    <Compile Include="ReadWrite\LowLevelObjects\PdfDocumentItem.cs" />
+    <Compile Include="ReadWrite\LowLevelObjects\PdfObjectList.cs" />
+    <Compile Include="ReadWrite\LowLevelObjects\PdfObjectPointer.cs" />
+    <Compile Include="ReadWrite\LowLevelObjects\PdfStreamData.cs" />
+    <Compile Include="ReadWrite\ObjectCollection\PdfDeferredList.cs" />
+    <Compile Include="ReadWrite\ObjectCollection\PdfPageList.cs" />
+    <Compile Include="ReadWrite\DocumentStream\PdfDocumentStream.cs" />
+    <Compile Include="DocumentModel\DocumentCatalog\Permissions\Signature\PdfUnsignedDocumentStream.cs" />
+    <Compile Include="DocumentModel\Patterns\Shading\MeshShading\PdfIntegerStream.cs" />
+    <Compile Include="ReadWrite\DocumentWriter\Arrays\PdfWritableConvertableArray.cs" />
+    <Compile Include="ReadWrite\DocumentWriter\Arrays\PdfWritableIntArray.cs" />
+    <Compile Include="ReadWrite\DocumentWriter\Arrays\PdfWritableObjectArray.cs" />
+    <Compile Include="ReadWrite\DocumentWriter\Arrays\PdfWritablePointsArray.cs" />
+    <Compile Include="ReadWrite\DocumentStream\PdfDocumentWritableStream.cs" />
+    <Compile Include="ReadWrite\Resources\PdfPageResources.cs" />
+    <Compile Include="ReadWrite\PdfAdler32.cs" />
+    <Compile Include="ReadWrite\Stream\PdfFlateEncoder.cs" />
+    <Compile Include="StringFormat\GlyphMapping\PdfGlyphMapper.cs" />
+    <Compile Include="StringFormat\GlyphMapping\PdfGlyphMappingResult.cs" />
+    <Compile Include="StringFormat\GlyphMapping\PdfNotEmbeddedGlyphMapper.cs" />
+    <Compile Include="StringFormat\GlyphMapping\PdfNotEmbeddedStringGlyphRun.cs" />
+    <Compile Include="StringFormat\GlyphMapping\PdfStringGlyph.cs" />
+    <Compile Include="StringFormat\GlyphMapping\PdfStringGlyphRun.cs" />
+    <Compile Include="StringFormat\PdfLineFormatter.cs" />
+    <Compile Include="StringFormat\PdfLineFormatterState.cs" />
+    <Compile Include="StringFormat\Trimming\PdfLineTrimmingAlgorithm.cs" />
+    <Compile Include="StringFormat\Trimming\PdfLineTrimmingCharAlgorithm.cs" />
+    <Compile Include="StringFormat\Trimming\PdfLineTrimmingEllipsisCharAlgorithm.cs" />
+    <Compile Include="StringFormat\Trimming\PdfLineTrimmingEllipsisWordAlgorithm.cs" />
+    <Compile Include="StringFormat\Trimming\PdfLineTrimmingWordAlgorithm.cs" />
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <Compile Include="Text\PdfCharacterCollection.cs" />
+    <Compile Include="Text\PdfPageTextLineBuilder.cs" />
+    <Compile Include="Text\PdfPageTextPosition.cs" />
+    <Compile Include="Text\PdfPageTextRange.cs" />
+    
+    
+    
+    <Compile Include="Text\PdfPageWordBuilder.cs" />
+    <Compile Include="Text\PdfSortedTextItemCollection.cs" />
+    <Compile Include="Text\PdfTextParser.cs" />
+    <Compile Include="Text\PdfTextParserState.cs" />
+    <Compile Include="Text\PdfTextPosition.cs" />
+    <Compile Include="Text\PdfTextRange.cs" />
+    <Compile Include="Text\PdfTextUtils.cs" />
+    <Compile Include="Text\PdfWordCollection.cs" />
+    <Compile Include="Text\PdfWordPart.cs" />
+    
+    
+    
+    
+    <Compile Include="DocumentModel\Fonts\CompositeFonts\PdfCIDSystemInfo.cs" />
+    <Compile Include="DocumentModel\Function\PdfCustomFunction.cs" />
+    <Compile Include="DocumentModel\Function\PdfStitchingFunction.cs" />
+    <Compile Include="DocumentModel\PdfOpenPrepressInterface.cs" />
+    <Compile Include="DocumentModel\Patterns\Shading\MeshShading\PdfMeshShading.cs" />
+    <Compile Include="DocumentModel\SoftMask\PdfAlphaSoftMask.cs" />
+    <Compile Include="DocumentModel\SoftMask\PdfCustomSoftMask.cs" />
+    <Compile Include="FontUtils\FontFile\FontFileTable\Cmap\LongVersion\PdfFontCmapLongFormatEntry.cs" />
+    <Compile Include="FontUtils\FontFile\FontFileTable\Cmap\LongVersion\PdfFontCmapManyToOneRangeMappingFormatEntry.cs" />
+    <Compile Include="FontUtils\FontFile\FontFileTable\Cmap\LongVersion\PdfFontCmapMixedCoverageFormatEntry.cs" />
+    <Compile Include="FontUtils\FontFile\FontFileTable\Cmap\LongVersion\PdfFontCmapRangeMappingFormatEntry.cs" />
+    <Compile Include="FontUtils\FontFile\FontFileTable\Cmap\LongVersion\PdfFontCmapSegmentedCoverageFormatEntry.cs" />
+    <Compile Include="FontUtils\FontFile\FontFileTable\Cmap\LongVersion\PdfFontCmapGroup.cs" />
+    <Compile Include="FontUtils\FontFile\FontFileTable\Cmap\LongVersion\PdfFontCmapTrimmedArrayFormatEntry.cs" />
+    <Compile Include="FontUtils\FontFile\FontFileTable\Cmap\LongVersion\PdfFontCmapUnicodeVariationSelectorRecord.cs" />
+    <Compile Include="FontUtils\FontFile\FontFileTable\Cmap\LongVersion\PdfFontCmapUnicodeVariationSequenciesFormatEntry.cs" />
+    <Compile Include="FontUtils\FontFile\FontFileTable\Cmap\ShortVersion\PdfFontCmapHighByteMappingThroughSubHeader.cs" />
+    <Compile Include="FontUtils\FontFile\FontFileTable\Cmap\ShortVersion\PdfFontCmapShortFormatEntry.cs" />
+    <Compile Include="ImageUtils\PdfDCTDecodeResult.cs" />
+    <Compile Include="ImageUtils\PdfDecodedImageData.cs" />
+    <Compile Include="ImageUtils\PdfImageColor.cs" />
+    <Compile Include="ImageUtils\PdfImageData.cs" />
+    <Compile Include="ImageUtils\PdfImageDataDecoder.cs" />
+    <Compile Include="ImageUtils\PdfImageInterpolator.cs" />
+    <Compile Include="ImageUtils\PdfSoftMaskData.cs" />
+    <Compile Include="FontUtils\PdfPanose.cs" />
+    <Compile Include="PdfPixelFormat.cs" />
+    <Compile Include="PdfUnicodeConverter.cs" />
+    <Compile Include="Platform\Win32\AssemblyInfo.cs" />
+    <Compile Include="CommandInterpreter\PdfGraphicsStateChange.cs" />
+    <Compile Include="CommandInterpreter\PdfStringData.cs" />
+    <Compile Include="DocumentModel\Actions\PdfEmbeddedGoToAction.cs" />
+    <Compile Include="DocumentModel\Actions\PdfGoTo3dViewAction.cs" />
+    <Compile Include="DocumentModel\Actions\PdfGoToAction.cs" />
+    <Compile Include="DocumentModel\Actions\PdfHideAction.cs" />
+    <Compile Include="DocumentModel\Actions\PdfImportDataAction.cs" />
+    <Compile Include="DocumentModel\Actions\PdfJavaScriptAction.cs" />
+    <Compile Include="DocumentModel\Actions\PdfLaunchAction.cs" />
+    <Compile Include="DocumentModel\Actions\PdfMovieAction.cs" />
+    <Compile Include="DocumentModel\Actions\PdfNamedAction.cs" />
+    <Compile Include="DocumentModel\Actions\PdfRemoteGoToAction.cs" />
+    <Compile Include="DocumentModel\Actions\PdfRenditionAction.cs" />
+    <Compile Include="DocumentModel\Actions\PdfResetFormAction.cs" />
+    <Compile Include="DocumentModel\Actions\PdfSetOcgStateAction.cs" />
+    <Compile Include="DocumentModel\Actions\PdfSoundAction.cs" />
+    <Compile Include="DocumentModel\Actions\PdfSubmitFormAction.cs" />
+    <Compile Include="DocumentModel\Actions\PdfThreadAction.cs" />
+    <Compile Include="DocumentModel\Actions\PdfTransitionAction.cs" />
+    <Compile Include="DocumentModel\Actions\PdfUriAction.cs" />
+    <Compile Include="DocumentModel\CommonDataTypes\PdfQuadrilateral.cs" />
+    <Compile Include="DocumentModel\CommonDataTypes\PdfTextJustification.cs" />
+    <Compile Include="DocumentModel\CommonDataTypes\PdfTransparencyGroup.cs" />
+    <Compile Include="DocumentModel\DocumentCatalog\Annotations\Appearance\PdfAnnotationAppearance.cs" />
+    <Compile Include="DocumentModel\DocumentCatalog\Annotations\Appearance\PdfAnnotationBorder.cs" />
+    <Compile Include="DocumentModel\DocumentCatalog\Annotations\Appearance\PdfAnnotationBorderEffect.cs" />
+    <Compile Include="DocumentModel\DocumentCatalog\Annotations\Appearance\PdfAnnotationBorderStyle.cs" />
+    <Compile Include="DocumentModel\DocumentCatalog\Annotations\Appearance\PdfAnnotationCallout.cs" />
+    <Compile Include="DocumentModel\DocumentCatalog\Annotations\Appearance\PdfAnnotationHighlightingMode.cs" />
+    <Compile Include="DocumentModel\DocumentCatalog\Annotations\Appearance\PdfAnnotationLineEndingStyle.cs" />
+    <Compile Include="DocumentModel\DocumentCatalog\Annotations\WidgetAnnotation\PdfWidgetAppearanceCharacteristics.cs" />
+    <Compile Include="DocumentModel\DocumentCatalog\Annotations\Pdf3dAnnotation.cs" />
+    <Compile Include="DocumentModel\DocumentCatalog\Annotations\PdfAnnotation.cs" />
+    <Compile Include="DocumentModel\DocumentCatalog\Annotations\PdfAnnotationActions.cs" />
+    <Compile Include="DocumentModel\DocumentCatalog\Annotations\RichMediaAnnotation\PdfCuePoint.cs" />
+    <Compile Include="DocumentModel\DocumentCatalog\Annotations\RichMediaAnnotation\PdfRichMediaActivation.cs" />
+    <Compile Include="DocumentModel\DocumentCatalog\Annotations\RichMediaAnnotation\PdfRichMediaAnnotation.cs" />
+    <Compile Include="DocumentModel\DocumentCatalog\Annotations\RichMediaAnnotation\PdfRichMediaConfiguration.cs" />
+    <Compile Include="DocumentModel\DocumentCatalog\Annotations\RichMediaAnnotation\PdfRichMediaContentType.cs" />
+    <Compile Include="DocumentModel\DocumentCatalog\Annotations\RichMediaAnnotation\PdfRichMediaDeactivation.cs" />
+    <Compile Include="DocumentModel\DocumentCatalog\Annotations\RichMediaAnnotation\PdfRichMediaInstance.cs" />
+    <Compile Include="DocumentModel\DocumentCatalog\Annotations\RichMediaAnnotation\PdfRichMediaParams.cs" />
+    <Compile Include="DocumentModel\DocumentCatalog\Annotations\RichMediaAnnotation\PdfRichMediaSettings.cs" />
+    <Compile Include="DocumentModel\DocumentCatalog\InteractiveForm\PdfInteractiveFormActions.cs" />
+    <Compile Include="DocumentModel\DocumentCatalog\Annotations\PdfCaretAnnotation.cs" />
+    <Compile Include="DocumentModel\DocumentCatalog\Annotations\ShapeAnnotation\PdfCircleAnnotation.cs" />
+    <Compile Include="DocumentModel\DocumentCatalog\Annotations\PdfFileAttachmentAnnotation.cs" />
+    <Compile Include="DocumentModel\DocumentCatalog\Annotations\PdfFreeTextAnnotation.cs" />
+    <Compile Include="DocumentModel\DocumentCatalog\Annotations\PdfTextMarkupAnnotation.cs" />
+    <Compile Include="DocumentModel\DocumentCatalog\Annotations\PdfInkAnnotation.cs" />
+    <Compile Include="DocumentModel\DocumentCatalog\Annotations\PathAnnotation\PdfLineAnnotation.cs" />
+    <Compile Include="DocumentModel\DocumentCatalog\Annotations\PdfLinkAnnotation.cs" />
+    <Compile Include="DocumentModel\DocumentCatalog\Annotations\PdfMarkupAnnotation.cs" />
+    <Compile Include="DocumentModel\DocumentCatalog\Annotations\PdfMovieAnnotation.cs" />
+    <Compile Include="DocumentModel\DocumentCatalog\Annotations\PathAnnotation\PdfPolygonAnnotation.cs" />
+    <Compile Include="DocumentModel\DocumentCatalog\Annotations\PathAnnotation\PdfPolyLineAnnotation.cs" />
+    <Compile Include="DocumentModel\DocumentCatalog\Annotations\PdfPopupAnnotation.cs" />
+    <Compile Include="DocumentModel\DocumentCatalog\Annotations\PdfPrinterMarkAnnotation.cs" />
+    <Compile Include="DocumentModel\DocumentCatalog\Annotations\PdfRedactAnnotation.cs" />
+    <Compile Include="DocumentModel\DocumentCatalog\Annotations\PdfScreenAnnotation.cs" />
+    <Compile Include="DocumentModel\DocumentCatalog\Annotations\PdfSoundAnnotation.cs" />
+    <Compile Include="DocumentModel\DocumentCatalog\Annotations\ShapeAnnotation\PdfSquareAnnotation.cs" />
+    <Compile Include="DocumentModel\DocumentCatalog\Annotations\PdfRubberStampAnnotation.cs" />
+    <Compile Include="DocumentModel\DocumentCatalog\Annotations\PdfTextAnnotation.cs" />
+    <Compile Include="DocumentModel\DocumentCatalog\Annotations\PdfTrapNetAnnotation.cs" />
+    <Compile Include="DocumentModel\DocumentCatalog\Annotations\PdfWatermarkAnnotation.cs" />
+    <Compile Include="DocumentModel\DocumentCatalog\Annotations\WidgetAnnotation\PdfWidgetAnnotation.cs" />
+    <Compile Include="DocumentModel\DocumentCatalog\ArticleThread\PdfBead.cs" />
+    <Compile Include="DocumentModel\DocumentCatalog\Destinations\PdfXYZDestination.cs" />
+    <Compile Include="DocumentModel\DocumentCatalog\Destinations\PdfDestination.cs" />
+    <Compile Include="DocumentModel\DocumentCatalog\Destinations\PdfFitBBoxDestination.cs" />
+    <Compile Include="DocumentModel\DocumentCatalog\Destinations\PdfFitBBoxHorizontallyDestination.cs" />
+    <Compile Include="DocumentModel\DocumentCatalog\Destinations\PdfFitBBoxVerticallyDestination.cs" />
+    <Compile Include="DocumentModel\DocumentCatalog\Destinations\PdfFitDestination.cs" />
+    <Compile Include="DocumentModel\DocumentCatalog\Destinations\PdfFitHorizontallyDestination.cs" />
+    <Compile Include="DocumentModel\DocumentCatalog\Destinations\PdfFitRectangleDestination.cs" />
+    <Compile Include="DocumentModel\DocumentCatalog\Destinations\PdfFitVerticallyDestination.cs" />
+    <Compile Include="DocumentModel\DocumentCatalog\InteractiveForm\Fields\PdfButtonFormField.cs" />
+    <Compile Include="DocumentModel\DocumentCatalog\InteractiveForm\Fields\PdfChoiceFormField.cs" />
+    <Compile Include="DocumentModel\DocumentCatalog\InteractiveForm\Fields\PdfInteractiveFormField.cs" />
+    <Compile Include="DocumentModel\DocumentCatalog\InteractiveForm\Fields\PdfOptionsFormFieldOption.cs" />
+    <Compile Include="DocumentModel\DocumentCatalog\InteractiveForm\Fields\PdfSignatureFormField.cs" />
+    <Compile Include="DocumentModel\DocumentCatalog\InteractiveForm\Fields\PdfTextFormField.cs" />
+    <Compile Include="DocumentModel\DocumentCatalog\InteractiveForm\PdfXFAForm.cs" />
+    <Compile Include="DocumentModel\DocumentCatalog\Annotations\Appearance\PdfAnnotationAppearances.cs" />
+    <Compile Include="DocumentModel\CommonDataTypes\PdfFileSpecification.cs" />
+    <Compile Include="DocumentModel\DocumentCatalog\Names\PdfNames.cs" />
+    <Compile Include="DocumentModel\DocumentCatalog\Names\SpiderSet\PdfImageSet.cs" />
+    <Compile Include="DocumentModel\DocumentCatalog\Names\SpiderSet\PdfPageSet.cs" />
+    <Compile Include="DocumentModel\DocumentCatalog\Names\SpiderSet\PdfSourceInformation.cs" />
+    <Compile Include="DocumentModel\DocumentCatalog\Names\SpiderSet\PdfSpiderSet.cs" />
+    <Compile Include="DocumentModel\DocumentCatalog\Outlines\PdfOutlineItem.cs" />
+    <Compile Include="DocumentModel\DocumentCatalog\Outlines\PdfOutlines.cs" />
+    <Compile Include="DocumentModel\DocumentCatalog\Outlines\PdfOutline.cs" />
+    <Compile Include="DocumentModel\DocumentCatalog\ArticleThread\PdfArticleThread.cs" />
+    <Compile Include="DocumentModel\Actions\PdfAction.cs" />
+    <Compile Include="DocumentModel\DocumentCatalog\InteractiveForm\PdfInteractiveForm.cs" />
+    <Compile Include="DocumentModel\DocumentCatalog\PageTree\PdfPageActions.cs" />
+    <Compile Include="DocumentModel\DocumentCatalog\PdfDocumentActions.cs" />
+    <Compile Include="DocumentModel\DocumentCatalog\PdfPageLabel.cs" />
+    <Compile Include="ReadWrite\Converters\PdfDefaultFieldAttribute.cs" />
+    <Compile Include="ReadWrite\Converters\PdfEnumToValueConverter.cs" />
+    <Compile Include="ReadWrite\Converters\PdfEnumToStringConverter.cs" />
+    <Compile Include="ReadWrite\Converters\PdfFieldValueAttribute.cs" />
+    <Compile Include="ReadWrite\ElementTree\PdfNameTreeNode.cs" />
+    <Compile Include="ReadWrite\ElementTree\PdfNumberTreeNode.cs" />
+    <Compile Include="DocumentModel\DocumentCatalog\PdfPrintPageRange.cs" />
+    <Compile Include="DocumentModel\DocumentCatalog\PdfViewerPreferences.cs" />
+    <Compile Include="DocumentModel\Halftone\PdDefaultHalftone.cs" />
+    <Compile Include="DocumentModel\Halftone\PdfPrederinedSpotFunction.cs" />
+    <Compile Include="DocumentModel\Halftone\PdfSeparateHalftone.cs" />
+    <Compile Include="DocumentModel\Halftone\PdfStandardHalftone.cs" />
+    <Compile Include="ReadWrite\ElementTree\PdfElementTreeBranch.cs" />
+    <Compile Include="ReadWrite\ElementTree\PdfElementTreeLeaf.cs" />
+    <Compile Include="ReadWrite\ElementTree\PdfElementTreeNode.cs" />
+    <Compile Include="DocumentModel\DocumentCatalog\OptionalContent\PdfOptionalContentMembership.cs" />
+    <Compile Include="DocumentModel\Patterns\PdfPattern.cs" />
+    <Compile Include="DocumentModel\Patterns\PdfShadingPattern.cs" />
+    <Compile Include="DocumentModel\Patterns\Shading\PdfAxialShading.cs" />
+    <Compile Include="DocumentModel\Patterns\Shading\MeshShading\PdfCoonsPatchMesh.cs" />
+    <Compile Include="DocumentModel\Patterns\Shading\MeshShading\PdfFreeFormGourandShadedTriangleMesh.cs" />
+    <Compile Include="DocumentModel\Patterns\Shading\PdfFunctionBasedShading.cs" />
+    <Compile Include="DocumentModel\Patterns\Shading\MeshShading\PdfLatticeFormGourandShadedTriangleMesh.cs" />
+    <Compile Include="DocumentModel\Patterns\Shading\PdfRadialShading.cs" />
+    <Compile Include="DocumentModel\Patterns\Shading\PdfShading.cs" />
+    <Compile Include="DocumentModel\Patterns\Shading\MeshShading\PdfTensorProductPatchMesh.cs" />
+    <Compile Include="DocumentModel\Patterns\PdfTilingPattern.cs" />
+    <Compile Include="DocumentModel\ColorSpace\SpecialColorSpace\PdfNChannelColorSpace.cs" />
+    <Compile Include="DocumentModel\SoftMask\PdfEmptySoftMask.cs" />
+    <Compile Include="DocumentModel\SoftMask\PdfLuminositySoftMask.cs" />
+    <Compile Include="PdfCoreResLocalizer.cs" />
+    <Compile Include="Platform\Win32\PdfDCTDecoder.cs" />
+    <Compile Include="ReadWrite\Dictionary\PdfWriterDictionary.cs" />
+    <Compile Include="ReadWrite\Encryption\PdfPasswordRequestedEventArgs.cs" />
+    <Compile Include="ReadWrite\Encryption\PdfEncryptionInfo.win32.cs" />
+    <Compile Include="ReadWrite\DocumentReader\ObjectParser\PdfOperands.cs" />
+    <Compile Include="ReadWrite\DocumentReader\PdfIncorrectPasswordException.cs" />
+    <Compile Include="DocumentModel\CommonDataTypes\PdfDouble.cs" />
+    <Compile Include="ReadWrite\Converters\PdfFieldNameAttribute.cs" />
+    <Compile Include="ReadWrite\Resources\PdfResources.cs" />
+    <Compile Include="ReadWrite\DocumentWriter\PdfBinaryToken.cs" />
+    <Compile Include="ReadWrite\Stream\PdfCompressedStream.cs" />
+    <Compile Include="ReadWrite\DocumentWriter\PdfDocumentWriter.cs" />
+    <Compile Include="ReadWrite\DocumentWriter\PdfTokenNoWhitespace.cs" />
+    <Compile Include="ReadWrite\DocumentWriter\PdfToken.cs" />
+    <Compile Include="DocumentModel\Filters\PdfCCITTFaxDecoder.cs" />
+    <Compile Include="DocumentModel\Filters\PdfCryptFilter.cs" />
+    <Compile Include="DocumentModel\Filters\PdfASCIIHexDecodeFilter.cs" />
+    <Compile Include="ReadWrite\Dictionary\PdfReaderDictionary.cs" />
+    <Compile Include="ReadWrite\Stream\PdfReaderStream.cs" />
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <Compile Include="API\PdfOrientedRectangle.cs" />
+    <Compile Include="DataRecognition\PdfPageImageData.cs" />
+    <Compile Include="Text\PdfTextLine.cs" />
+    <Compile Include="API\PdfCharacter.cs" />
+    <Compile Include="Text\PdfFontData.cs" />
+    <Compile Include="Text\PdfTextSearch.cs" />
+    <Compile Include="Text\PdfTextSearchOptions.cs" />
+    <Compile Include="API\PdfTextSearchParameters.cs" />
+    <Compile Include="API\PdfTextSearchResults.cs" />
+    <Compile Include="Text\PdfTextBlock.cs" />
+    <Compile Include="DataRecognition\PdfDataRecognizer.cs" />
+    <Compile Include="DocumentModel\Commands\ClippingPaths\PdfModifyClippingPathUsingEvenOddRuleCommand.cs" />
+    <Compile Include="DocumentModel\Commands\ClippingPaths\PdfModifyClippingPathUsingNonzeroWindingNumberRuleCommand.cs" />
+    <Compile Include="DocumentModel\Commands\Color\CMYKColorSpace\PdfSetCMYKColorSpaceCommand.cs" />
+    <Compile Include="DocumentModel\Commands\Color\CMYKColorSpace\PdfSetCMYKColorSpaceForNonStrokingOperationsCommand.cs" />
+    <Compile Include="DocumentModel\Commands\Color\CMYKColorSpace\PdfSetCMYKColorSpaceForStrokingOperationsCommand.cs" />
+    <Compile Include="DocumentModel\Commands\Color\Color\PdfSetColorAdvancedCommand.cs" />
+    <Compile Include="DocumentModel\Commands\Color\Color\PdfSetColorAdvancedForNonStrokingOperationsCommand.cs" />
+    <Compile Include="DocumentModel\Commands\Color\Color\PdfSetColorAdvancedForStrokingOperationsCommand.cs" />
+    <Compile Include="DocumentModel\Commands\Color\Color\PdfSetColorCommand.cs" />
+    <Compile Include="DocumentModel\Commands\Color\Color\PdfSetColorForNonStrokingOperationsCommand.cs" />
+    <Compile Include="DocumentModel\Commands\Color\Color\PdfSetColorForStrokingOperationsCommand.cs" />
+    <Compile Include="DocumentModel\Commands\Color\GrayColorSpace\PdfSetGrayColorSpaceCommand.cs" />
+    <Compile Include="DocumentModel\Commands\Color\GrayColorSpace\PdfSetGrayColorSpaceForNonStrokingOperationsCommand.cs" />
+    <Compile Include="DocumentModel\Commands\Color\GrayColorSpace\PdfSetGrayColorSpaceForStrokingOperationsCommand.cs" />
+    <Compile Include="DocumentModel\Commands\Color\ColorSpace\PdfSetColorSpaceCommand.cs" />
+    <Compile Include="DocumentModel\Commands\Color\ColorSpace\PdfSetColorSpaceForStrokingOperationsCommand.cs" />
+    <Compile Include="DocumentModel\Commands\Color\ColorSpace\PdfSetColorSpaceForNonstrokingOperationsCommand.cs" />
+    <Compile Include="DocumentModel\Commands\Color\RGBColorSpace\PdfSetRGBColorSpaceCommand.cs" />
+    <Compile Include="DocumentModel\Commands\Color\RGBColorSpace\PdfSetRGBColorSpaceForNonStrokingOperationsCommand.cs" />
+    <Compile Include="DocumentModel\Commands\Color\RGBColorSpace\PdfSetRGBColorSpaceForStrokingOperationsCommand.cs" />
+    <Compile Include="DocumentModel\Commands\GraphicsState\PdfModifyTransformationMatrixCommand.cs" />
+    <Compile Include="DocumentModel\Commands\GraphicsState\PdfRestoreGraphicsStateCommand.cs" />
+    <Compile Include="DocumentModel\Commands\GraphicsState\PdfSaveGraphicsStateCommand.cs" />
+    <Compile Include="DocumentModel\Commands\GraphicsState\PdfSetFlatnessToleranceCommand.cs" />
+    <Compile Include="DocumentModel\Commands\GraphicsState\PdfSetGraphicsStateParametersCommand.cs" />
+    <Compile Include="DocumentModel\Commands\GraphicsState\PdfSetLineCapStyleCommand.cs" />
+    <Compile Include="DocumentModel\Commands\GraphicsState\PdfSetLineJoinStyleCommand.cs" />
+    <Compile Include="DocumentModel\Commands\GraphicsState\PdfSetLineStyleCommand.cs" />
+    <Compile Include="DocumentModel\Commands\GraphicsState\PdfSetLineWidthCommand.cs" />
+    <Compile Include="DocumentModel\Commands\GraphicsState\PdfSetMiterLimitCommand.cs" />
+    <Compile Include="DocumentModel\Commands\GraphicsState\PdfSetRenderingIntentCommand.cs" />
+    <Compile Include="DocumentModel\Commands\CommandGroup\MarkedContent\PdfDesignateMarkedContentPointCommand.cs" />
+    <Compile Include="DocumentModel\Commands\CommandGroup\MarkedContent\PdfDesignateMarkedContentPointWithParametersCommand.cs" />
+    <Compile Include="DocumentModel\Commands\PathConstruction\PdfAppendBezierCurveCommand.cs" />
+    <Compile Include="DocumentModel\Commands\PathConstruction\PdfAppendBezierCurveWithNextControlPointCommand.cs" />
+    <Compile Include="DocumentModel\Commands\PathConstruction\PdfAppendBezierCurveWithPreviousControlPointCommand.cs" />
+    <Compile Include="DocumentModel\Commands\PathConstruction\PdfAppendLineSegmentCommand.cs" />
+    <Compile Include="DocumentModel\Commands\PathConstruction\PdfAppendRectangleCommand.cs" />
+    <Compile Include="DocumentModel\Commands\PathConstruction\PdfBeginPathCommand.cs" />
+    <Compile Include="DocumentModel\Commands\PathConstruction\PdfClosePathCommand.cs" />
+    <Compile Include="DocumentModel\Commands\PathPainting\PdfCloseAndStrokePathCommand.cs" />
+    <Compile Include="DocumentModel\Commands\PathPainting\PdfCloseFillAndStrokePathUsingEvenOddRuleCommand.cs" />
+    <Compile Include="DocumentModel\Commands\PathPainting\PdfCloseFillAndStrokePathUsingNonzeroWindingNumberRuleCommand.cs" />
+    <Compile Include="DocumentModel\Commands\PathPainting\PdfEndPathWithoutFillingAndStrokingCommand.cs" />
+    <Compile Include="DocumentModel\Commands\PathPainting\PdfFillAndStrokePathUsingEvenOddRuleCommand.cs" />
+    <Compile Include="DocumentModel\Commands\PathPainting\PdfFillAndStrokePathUsingNonzeroWindingNumberRuleCommand.cs" />
+    <Compile Include="DocumentModel\Commands\PathPainting\PdfFillPathUsingEvenOddRuleCommand.cs" />
+    <Compile Include="DocumentModel\Commands\PathPainting\PdfFillPathUsingNonzeroWindingNumberRuleCommand.cs" />
+    <Compile Include="DocumentModel\Commands\PathPainting\PdfStrokePathCommand.cs" />
+    <Compile Include="DocumentModel\Commands\PdfCommand.cs" />
+    <Compile Include="DocumentModel\Commands\CommandGroup\PdfCommandGroup.cs" />
+    <Compile Include="CommandInterpreter\PdfCommandInterpreter.cs" />
+    <Compile Include="DocumentModel\Commands\CommandGroup\PdfCompatibilityCommandGroup.cs" />
+    <Compile Include="DocumentModel\Commands\PdfPaintImageCommand.cs" />
+    <Compile Include="DocumentModel\Commands\CommandGroup\MarkedContent\PdfMarkedContentCommand.cs" />
+    <Compile Include="DocumentModel\Commands\PdfPaintShadingPatternCommand.cs" />
+    <Compile Include="DocumentModel\Commands\PdfPaintXObjectCommand.cs" />
+    <Compile Include="DocumentModel\Commands\PdfUnknownCommand.cs" />
+    <Compile Include="DocumentModel\Commands\TextPositioning\PdfSetTextMatrixCommand.cs" />
+    <Compile Include="DocumentModel\Commands\TextPositioning\PdfStartTextLineCommand.cs" />
+    <Compile Include="DocumentModel\Commands\TextPositioning\PdfStartTextLineWithOffsetsCommand.cs" />
+    <Compile Include="DocumentModel\Commands\TextPositioning\PdfStartTextLineWithOffsetsAndLeadingCommand.cs" />
+    <Compile Include="DocumentModel\Commands\TextShowing\PdfShowTextCommand.cs" />
+    <Compile Include="DocumentModel\Commands\TextShowing\PdfShowTextOnNextLineCommand.cs" />
+    <Compile Include="DocumentModel\Commands\TextShowing\PdfShowTextWithGlyphPositioningCommand.cs" />
+    <Compile Include="DocumentModel\Commands\TextState\PdfSetCharacterSpacingCommand.cs" />
+    <Compile Include="DocumentModel\Commands\TextState\PdfSetTextFontCommand.cs" />
+    <Compile Include="DocumentModel\Commands\TextState\PdfSetTextHorizontalScalingCommand.cs" />
+    <Compile Include="DocumentModel\Commands\TextState\PdfSetTextLeadingCommand.cs" />
+    <Compile Include="DocumentModel\Commands\TextState\PdfSetTextRenderingModeCommand.cs" />
+    <Compile Include="DocumentModel\Commands\TextState\PdfSetTextRiseCommand.cs" />
+    <Compile Include="DocumentModel\Commands\TextState\PdfSetWordSpacingCommand.cs" />
+    <Compile Include="DocumentModel\Function\PdfExponentialInterpolationFunction.cs" />
+    <Compile Include="DocumentModel\Function\PdfPostScriptCalculatorFunction.cs" />
+    <Compile Include="DocumentModel\Function\PdfPredefinedFunction.cs" />
+    <Compile Include="DocumentModel\Function\SampledFunction\PdfSampledFunction.cs" />
+    <Compile Include="ReadWrite\DocumentReader\ObjectParser\PdfCMapStreamParser.cs" />
+    <Compile Include="FontUtils\CompactFontFormat\PdfCompactFontFormatIndex.cs" />
+    <Compile Include="FontUtils\CompactFontFormat\PdfCompactFontFormatParser.cs" />
+    <Compile Include="FontUtils\CompactFontFormat\PdfCompactFontFormatStringIndex.cs" />
+    <Compile Include="FontUtils\CompactFontFormat\PdfCompactFontFormatTopDictIndex.cs" />
+    <Compile Include="DocumentModel\Fonts\CompositeFonts\PdfCIDType0Font.cs" />
+    <Compile Include="DocumentModel\Fonts\CompositeFonts\PdfCIDType2Font.cs" />
+    <Compile Include="DocumentModel\Fonts\PdfEncoding.cs" />
+    <Compile Include="DocumentModel\Fonts\PdfGlyphNames.cs" />
+    <Compile Include="DocumentModel\Fonts\CompositeFonts\PdfIdentityEncoding.cs" />
+    <Compile Include="DocumentModel\Fonts\IFont.cs" />
+    <Compile Include="DocumentModel\Fonts\IType1Font.cs" />
+    <Compile Include="DocumentModel\Fonts\ITrueTypeFont.cs" />
+    <Compile Include="DocumentModel\Fonts\PdfFont.cs" />
+    <Compile Include="DocumentModel\Fonts\SimpleFonts\PdfMMType1Font.cs" />
+    <Compile Include="DocumentModel\Fonts\SimpleFonts\PdfSimpleFont.cs" />
+    <Compile Include="DocumentModel\Fonts\SimpleFonts\PdfTrueTypeFont.cs" />
+    <Compile Include="DocumentModel\Fonts\CompositeFonts\PdfType0Font.cs" />
+    <Compile Include="DocumentModel\Fonts\SimpleFonts\PdfType1Font.cs" />
+    <Compile Include="DocumentModel\Fonts\SimpleFonts\PdfType3Font.cs" />
+    <Compile Include="DocumentModel\Fonts\SimpleFonts\PdfUnknownFont.cs" />
+    <Compile Include="DocumentModel\Path\PdfBezierGraphicsPathSegment.cs" />
+    <Compile Include="DocumentModel\Path\PdfGraphicsPathSegment.cs" />
+    <Compile Include="DocumentModel\Path\PdfLineGraphicsPathSegment.cs" />
+    <Compile Include="DocumentModel\GraphicsState\PdfBlendMode.cs" />
+    <Compile Include="DocumentModel\ColorSpace\CIEBasedColorSpace\PdfCIEBasedColorSpace.cs" />
+    <Compile Include="DocumentModel\ColorSpace\CIEBasedColorSpace\PdfCalGrayColorSpace.cs" />
+    <Compile Include="DocumentModel\ColorSpace\CIEBasedColorSpace\PdfCalRGBColorSpace.cs" />
+    <Compile Include="DocumentModel\ColorSpace\CIEBasedColorSpace\PdfCIEColor.cs" />
+    <Compile Include="DocumentModel\ColorSpace\ColorSpaceTransformation\PdfColorSpaceTransformResult.cs" />
+    <Compile Include="DocumentModel\XObject\Form\PdfGroupForm.cs" />
+    <Compile Include="DocumentModel\CommonDataTypes\PdfRange.cs" />
+    <Compile Include="DocumentModel\ColorSpace\CIEBasedColorSpace\PdfColorSpaceMatrix.cs" />
+    <Compile Include="DocumentModel\ColorSpace\CIEBasedColorSpace\PdfGamma.cs" />
+    <Compile Include="DocumentModel\ColorSpace\CIEBasedColorSpace\PdfICCBasedColorSpace.cs" />
+    <Compile Include="DocumentModel\ColorSpace\CIEBasedColorSpace\PdfLabColorSpace.cs" />
+    <Compile Include="DocumentModel\ColorSpace\SpecialColorSpace\PdfDeviceNColorSpace.cs" />
+    <Compile Include="DocumentModel\ColorSpace\SpecialColorSpace\IndexedColorSpace\PdfIndexedColorSpace.cs" />
+    <Compile Include="DocumentModel\ColorSpace\SpecialColorSpace\PdfPatternColorSpace.cs" />
+    <Compile Include="DocumentModel\ColorSpace\SpecialColorSpace\PdfSeparationColorSpace.cs" />
+    <Compile Include="DocumentModel\ColorSpace\SpecialColorSpace\PdfSpecialColorSpace.cs" />
+    <Compile Include="DocumentModel\ColorSpace\PdfColor.cs" />
+    <Compile Include="DocumentModel\ColorSpace\PdfColorSpace.cs" />
+    <Compile Include="DocumentModel\ColorSpace\PdfDeviceColorSpace.cs" />
+    <Compile Include="DocumentModel\GraphicsState\PdfGraphicsStateParameters.cs" />
+    <Compile Include="DocumentModel\Halftone\PdfHalftone.cs" />
+    <Compile Include="DocumentModel\GraphicsState\PdfLineStyle.cs" />
+    <Compile Include="DocumentModel\Path\PdfGraphicsPath.cs" />
+    <Compile Include="DocumentModel\GraphicsState\PdfLineCapStyle.cs" />
+    <Compile Include="DocumentModel\GraphicsState\PdfLineJoinStyle.cs" />
+    <Compile Include="DocumentModel\GraphicsState\PdfOverprintMode.cs" />
+    <Compile Include="DocumentModel\CommonDataTypes\PdfPoint.cs" />
+    <Compile Include="DocumentModel\GraphicsState\PdfRenderingIntent.cs" />
+    <Compile Include="DocumentModel\SoftMask\PdfSoftMask.cs" />
+    <Compile Include="DocumentModel\GraphicsState\PdfTextRenderingMode.cs" />
+    <Compile Include="DocumentModel\GraphicsState\PdfTextState.cs" />
+    <Compile Include="DocumentModel\XObject\Form\PdfForm.cs" />
+    <Compile Include="DocumentModel\XObject\PdfImage.cs" />
+    <Compile Include="DocumentModel\XObject\PdfXObject.cs" />
+    <Compile Include="DocumentModel\DocumentCatalog\PageTree\PdfAnnotationTabOrder.cs" />
+    <Compile Include="DocumentModel\CommonDataTypes\PdfRectangle.cs" />
+    <Compile Include="DocumentModel\GraphicsState\PdfGraphicsState.cs" />
+    <Compile Include="DocumentModel\GraphicsState\PdfTransformationMatrix.cs" />
+    <Compile Include="DocumentModel\Function\PdfFunction.cs" />
+    <Compile Include="DocumentModel\CommonDataTypes\PdfMetadata.cs" />
+    <Compile Include="ReadWrite\Dictionary\PdfDictionary.cs" />
+    <Compile Include="DocumentModel\PdfDeveloperExtension.cs" />
+    <Compile Include="ReadWrite\ObjectCollection\PdfObjectCollection.cs" />
+    <Compile Include="DocumentModel\DocumentCatalog\PdfDocumentCatalog.cs" />
+    <Compile Include="DocumentModel\PdfDocumentInfo.cs" />
+    <Compile Include="ReadWrite\Encryption\PdfEncryptionInfo.cs" />
+    <Compile Include="DocumentModel\DocumentCatalog\PageTree\PdfPageTreeObject.cs" />
+    <Compile Include="ReadWrite\LowLevelObjects\PdfFreeObject.cs" />
+    <Compile Include="DocumentModel\CommonDataTypes\PdfName.cs" />
+    <Compile Include="ReadWrite\LowLevelObjects\PdfIndirectObject.cs" />
+    <Compile Include="ReadWrite\LowLevelObjects\PdfObject.cs" />
+    <Compile Include="ReadWrite\LowLevelObjects\PdfObjectContainer.cs" />
+    <Compile Include="ReadWrite\LowLevelObjects\PdfObjectReference.cs" />
+    <Compile Include="ReadWrite\LowLevelObjects\PdfObjectSlot.cs" />
+    <Compile Include="ReadWrite\LowLevelObjects\PdfObjectStream.cs" />
+    <Compile Include="ReadWrite\LowLevelObjects\PdfObjectStreamElement.cs" />
+    <Compile Include="DocumentModel\DocumentCatalog\PageTree\PdfPage.cs" />
+    <Compile Include="DocumentModel\DocumentCatalog\PdfPageLayout.cs" />
+    <Compile Include="DocumentModel\DocumentCatalog\PdfPageMode.cs" />
+    <Compile Include="DocumentModel\DocumentCatalog\PageTree\PdfPageTreeNode.cs" />
+    <Compile Include="ReadWrite\DocumentReader\CrossReferenceDecoder\PdfCrossReferenceDecoder.cs" />
+    <Compile Include="DocumentModel\Filters\PdfASCII85DecodeFilter.cs" />
+    <Compile Include="DocumentModel\Filters\PdfCCITTFaxDecodeFilter.cs" />
+    <Compile Include="DocumentModel\Filters\PdfFilter.cs" />
+    <Compile Include="DocumentModel\Filters\PdfFlateDecodeFilter.cs" />
+    <Compile Include="DocumentModel\Filters\PdfFlateLZWDecodeFilter.cs" />
+    <Compile Include="DocumentModel\Filters\PdfLZWDecodeFilter.cs" />
+    <Compile Include="ReadWrite\DocumentReader\ObjectParser\PdfContentStreamParser.cs" />
+    <Compile Include="ReadWrite\DocumentReader\PdfDocumentReader.cs" />
+    <Compile Include="DocumentModel\PdfDocument.cs" />
+    <Compile Include="DocumentModel\PdfFileVersion.cs" />
+    <Compile Include="ReadWrite\DocumentReader\CrossReferenceDecoder\PdfIndexDescription.cs" />
+    <Compile Include="ReadWrite\DocumentReader\ObjectParser\PdfDocumentParser.cs" />
+    <Compile Include="ReadWrite\Stream\PdfStream.cs" />
+    <Compile Include="ReadWrite\DocumentReader\PdfTokenDescription.cs" />
+    <Compile Include="FontUtils\FontFile\FontFileTable\Cmap\ShortVersion\PdfFontCmapByteEncodingFormatEntry.cs" />
+    <Compile Include="FontUtils\FontFile\FontFileTable\Cmap\PdfFontCmapFormatEntry.cs" />
+    <Compile Include="FontUtils\FontFile\FontFileTable\Cmap\ShortVersion\PdfFontCmapHighByteMappingThroughFormatEntry.cs" />
+    <Compile Include="FontUtils\FontFile\FontFileTable\Cmap\ShortVersion\PdfFontCmapSegmentMappingFormatEntry.cs" />
+    <Compile Include="FontUtils\FontFile\FontFileTable\Cmap\PdfFontCmapTableDirectoryEntry.cs" />
+    <Compile Include="FontUtils\FontFile\FontFileTable\Cmap\ShortVersion\PdfFontCmapTrimmedMappingFormatEntry.cs" />
+    <Compile Include="FontUtils\FontFile\FontFileTable\Cmap\PdfFontCmapFormatID.cs" />
+    <Compile Include="FontUtils\FontFile\FontFileTable\PdfFontEncodingID.cs" />
+    <Compile Include="FontUtils\FontFile\FontFileTable\Name\PdfFontLanguageID.cs" />
+    <Compile Include="FontUtils\FontFile\FontFileTable\Name\PdfFontNameID.cs" />
+    <Compile Include="FontUtils\FontFile\FontFileTable\PdfFontPlatformID.cs" />
+    <Compile Include="FontUtils\FontFile\FontFileTable\Name\PdfFontNameRecord.cs" />
+    <Compile Include="FontUtils\FontFile\FontFileTable\Name\PdfFontNameTableDirectoryEntry.cs" />
+    <Compile Include="FontUtils\FontFile\FontFileTable\PdfFontOS2TableDirectoryEntry.cs" />
+    <Compile Include="FontUtils\FontFile\FontFileTable\PdfFontHeadTableDirectoryEntry.cs" />
+    <Compile Include="FontUtils\FontFile\FontFileTable\PdfFontMaxpTableDirectoryEntry.cs" />
+    <Compile Include="FontUtils\FontFile\FontFileTable\PdfFontTableDirectoryEntry.cs" />
+    <Compile Include="FontUtils\FontFile\FontFileTable\PdfOpenTypeCFFTableDirectoryEntry.cs" />
+    <Compile Include="FontUtils\FontFile\FontFileTable\PdfFontHheaTableDirectoryEntry.cs" />
+    <Compile Include="FontUtils\FontFile\FontFileTable\PdfTrueTypeLocaTableDirectoryEntry.cs" />
+    <Compile Include="FontUtils\FontFile\PdfFontFile.cs" />
+    <Compile Include="FontUtils\FontFile\PdfOpenTypeFontCreator.cs" />
+    <Compile Include="FontUtils\FontFile\PdfTrueTypeFontValidator.cs" />
+    <Compile Include="Localization.cs" />
+    <Compile Include="FontUtils\PdfBinaryStream.cs" />
+    <Compile Include="PdfDisposableObject.cs" />
+    
+    
+    
+    
+    
+    
+    
+    
+    <Compile Include="API\PdfWord.cs" />
+    <Compile Include="Text\Rules\IPdfTextRule.cs" />
+    <Compile Include="Text\Rules\LineBreak\PdfLineBreakByAngleRule.cs" />
+    <Compile Include="Text\Rules\LineBreak\PdfLineBreakByVerticalPositionRule.cs" />
+    <Compile Include="Text\Rules\PdfRuleSet.cs" />
+    <Compile Include="Text\Rules\PdfTextRTLRule.cs" />
+    <Compile Include="Text\Rules\PdfTextWrapRule.cs" />
+    <Compile Include="Text\Rules\Whitespace\PdfWhitespaceBreakByPositionRule.cs" />
+    <Compile Include="Text\Rules\Whitespace\PdfWhitespaceBreakBySeparatorRule.cs" />
+    <Compile Include="Text\Rules\Whitespace\PdfWhitespaceBreakBySymbolRule.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="LocalizationRes.resx" />
+    <EmbeddedResource Include="LocalizationRes.ru.resx" />
+    <EmbeddedResource Include="LocalizationRes.ja.resx" />
+    <EmbeddedResource Include="LocalizationRes.es.resx" />
+    <EmbeddedResource Include="LocalizationRes.de.resx" />
+  </ItemGroup>
+  
+  <ItemGroup />
+  <ItemGroup>
+    
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    
+    
+  </PropertyGroup>
+</Project>

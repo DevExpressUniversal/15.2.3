@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application>
+  <ActionDesign>
+    <Actions>
+      <Action Id="RefreshKpi" Caption="Leistungsindikator aktualisieren" />
+      <Action Id="ShowChart" Caption="Diagramm anzeigen" />
+      <Action Id="ClearKpiCache" Caption="Löschen Kpi Cache" />
+    </Actions>
+  </ActionDesign>
+  <BOModel>
+    <Class Name="DevExpress.ExpressApp.Kpi.BaseKpiObject" Caption="Basis Kpi Objekt" />
+    <Class Name="DevExpress.ExpressApp.Kpi.IDateRange" Caption="IDaten Bereich">
+      <OwnMembers>
+        <Member Name="Caption" Caption="Beschriftung" />
+        <Member Name="EndPoint" Caption="Endpunkt" />
+        <Member Name="StartPoint" Caption="Startpunkt" />
+      </OwnMembers>
+    </Class>
+    <Class Name="DevExpress.ExpressApp.Kpi.KpiDefinition">
+      <OwnMembers>
+        <Member Name="Active" Caption="Aktiv" />
+        <Member Name="Compare" Caption="Vergleich" />
+        <Member Name="Criteria" Caption="Kriterium" />
+        <Member Name="Current" Caption="Aktuell" />
+        <Member Name="Direction" Caption="Direktion" />
+        <Member Name="EnableCustomizeRepresentation" Caption="Aktiviere Benutzerdefinierte Repräsentation" />
+        <Member Name="Expression" Caption="Ausdruck" />
+        <Member Name="GreenZone" Caption="Grüne Zone" />
+        <Member Name="MeasurementFrequency" Caption="Masseinheit Frequenz" />
+        <Member Name="Objects" Caption="Objekte" />
+        <Member Name="Period" Caption="Periode" />
+        <Member Name="Range" Caption="Bereich" />
+        <Member Name="RangeToCompare" Caption="Bereich Zum Vergleichen" />
+        <Member Name="RedZone" Caption="Rote Zone" />
+        <Member Name="SuppressedSeries" Caption="Unterdrückte Serien" />
+        <Member Name="TargetObjectType" Caption="Ziel Objekt Typ" />
+      </OwnMembers>
+    </Class>
+    <Class Name="DevExpress.ExpressApp.Kpi.KpiHistoryItem" Caption="KPI Verlauf Artikel">
+      <OwnMembers>
+        <Member Name="RangeEnd" Caption="Endet am" />
+        <Member Name="RangeStart" Caption="Beginn" />
+        <Member Name="Value" Caption="Wert" />
+      </OwnMembers>
+    </Class>
+    <Class Name="DevExpress.ExpressApp.Kpi.IDateRange" Caption="IDaten Bereich">
+      <OwnMembers>
+        <Member Name="Caption" Caption="Beschriftung" />
+        <Member Name="EndPoint" Caption="Endpunkt" />
+        <Member Name="StartPoint" Caption="Startpunkt" />
+      </OwnMembers>
+    </Class>
+    <Class Name="DevExpress.ExpressApp.Kpi.KpiDashboardOrganizationItem">
+      <OwnMembers>
+        <Member Name="ActionsToolbarVisibility" Caption="Symbolleiste Sichtbarkeit" />
+        <Member Name="AvailableIndicators" Caption="Verfügbare Indikatoren" />
+      </OwnMembers>
+    </Class>
+    <Class Name="DevExpress.ExpressApp.Kpi.KpiInstance" Caption="Kpi Beispiel">
+      <OwnMembers>
+        <Member Name="Change" Caption="Tausche" />
+        <Member Name="ChartDataSource" Caption="Diagramm Daten Quellcode" />
+        <Member Name="Current" Caption="Aktuell" />
+        <Member Name="GaugeDataSource" Caption="Gauge Daten Quellcode" />
+        <Member Name="HistoryItems" Caption="Info Artikel" />
+        <Member Name="Period" Caption="Periode" />
+        <Member Name="Previous" Caption="Nächstes" />
+        <Member Name="Scorecards" Caption="Wertungslisten" />
+        <Member Name="Sparkline" Caption="Wortgrafik" />
+        <Member Name="Trend" Caption="Verlauf" />
+      </OwnMembers>
+    </Class>
+    <Class Name="DevExpress.ExpressApp.Kpi.KpiScorecard" Caption="Wertungsliste">
+      <OwnMembers>
+        <Member Name="Indicators" Caption="Indikatoren" />
+      </OwnMembers>
+    </Class>
+  </BOModel>
+  <Localization>
+    <LocalizationGroup Name="DateRanges">
+      <LocalizationItem Name="DayMonthAgo" Value="Tag Monat Zurück" />
+      <LocalizationItem Name="DayWeekAgo" Value="Tag Woche Zurück" />
+      <LocalizationItem Name="DayYearAgo" Value="Tag Jahr Zurück" />
+      <LocalizationItem Name="LastMonthToDate" Value="Letzter Monat bis heute" />
+      <LocalizationItem Name="LastTenDays" Value="Letzte 10 Tage" />
+      <LocalizationItem Name="LastThirtyDays" Value="Letzte 30 Tage" />
+      <LocalizationItem Name="LastThreeDays" Value="Letzte 3 Tage" />
+      <LocalizationItem Name="LastWeekToDate" Value="Letzte Woche bis heute" />
+      <LocalizationItem Name="LastYearToDate" Value="Letztes Jahr bis heute" />
+      <LocalizationItem Name="Now" Value="Jetzt" />
+      <LocalizationItem Name="ThisMonthToDate" Value="Diesen Monat bis heute" />
+      <LocalizationItem Name="ThisWeekToDate" Value="Diese Woche bis heute" />
+      <LocalizationItem Name="ThisYearToDate" Value="Dieses Jahr bis heute" />
+      <LocalizationItem Name="Today" Value="Heute" />
+      <LocalizationItem Name="Yesterday" Value="Gestern" />
+    </LocalizationGroup>
+    <LocalizationGroup Name="Enums">
+      <LocalizationGroup Name="DevExpress.ExpressApp.Editors.Trend" Value="Verlauf">
+        <LocalizationItem Name="Better" Value="Besser" />
+        <LocalizationItem Name="NoChange" Value="Keine Veränderung" />
+        <LocalizationItem Name="Worse" Value="Schlechter" />
+      </LocalizationGroup>
+      <LocalizationGroup Name="DevExpress.ExpressApp.Kpi.Direction" Value="Richtung">
+        <LocalizationItem Name="HighIsBetter" Value="Höher ist besser" />
+        <LocalizationItem Name="LowIsBetter" Value="Tiefer ist besser" />
+      </LocalizationGroup>
+      <LocalizationGroup Name="DevExpress.ExpressApp.Kpi.TimeIntervalType" Value="Typ Zeitinterval">
+        <LocalizationItem Name="Day" Value="Tag" />
+        <LocalizationItem Name="Hour" Value="Stunde" />
+        <LocalizationItem Name="Month" Value="Monat" />
+        <LocalizationItem Name="Week" Value="Woche" />
+        <LocalizationItem Name="Year" Value="Jahr" />
+      </LocalizationGroup>
+      <LocalizationGroup Name="DevExpress.ExpressApp.Kpi.MeasurementType" Value="Masseinheit Typ">
+        <LocalizationItem Name="Current" Value="Aktuell" />
+        <LocalizationItem Name="Previous" Value="Nächstes" />
+      </LocalizationGroup>
+    </LocalizationGroup>
+    <LocalizationGroup Name="Exceptions">
+      <LocalizationItem Name="RangeNotFound" Value="Der '{0}' Bereich wurde nicht gefunden." />
+    </LocalizationGroup>
+  </Localization>
+  <Views>
+    <DetailView Id="KpiDefinition_DetailView">
+      <Layout>
+        <TabbedGroup Id="Tabs">
+          <LayoutGroup Id="Definition">
+            <LayoutGroup Id="SimpleEditors">
+              <LayoutGroup Id="SizeableEditors" Caption="Kriterium" />
+            </LayoutGroup>
+            <LayoutGroup Id="Options">
+              <TabbedGroup Id="OptionsTabs">
+                <LayoutGroup Id="MeasurementOptions" Caption="Messoptionen" />
+                <LayoutGroup Id="Zones" Caption="Zonen" />
+              </TabbedGroup>
+            </LayoutGroup>
+          </LayoutGroup>
+          <LayoutGroup Id="Preview" Caption="Vorschau">
+            <LayoutGroup Id="Objects_Group" Caption="Objekte" />
+            <LayoutGroup Id="Preview.Objects_Group" Caption="Vorschau.Objekte_Gruppe" />
+          </LayoutGroup>
+        </TabbedGroup>
+      </Layout>
+    </DetailView>
+  </Views>
+</Application>

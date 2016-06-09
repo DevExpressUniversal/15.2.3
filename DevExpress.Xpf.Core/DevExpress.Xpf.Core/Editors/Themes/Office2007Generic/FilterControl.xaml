@@ -1,0 +1,23 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:dxtEx="clr-namespace:DevExpress.Xpf.Utils.Themes"
+    xmlns:dxc="clr-namespace:DevExpress.Xpf.Core"
+    xmlns:dxet="clr-namespace:DevExpress.Xpf.Editors.Themes"
+    xmlns:dxef="clr-namespace:DevExpress.Xpf.Editors.Filtering">
+
+    <!--BEGIN WPF-->
+    <ResourceDictionary.MergedDictionaries>
+		<dxtEx:ResourceDictionaryEx Source="{dxc:EditorsResource Themes/Generic/FilterControl.xaml}" />
+	</ResourceDictionary.MergedDictionaries>
+    <!--END WPF-->
+    <dxef:GroupTypeConverter x:Key="FilterControlGroupTypeConverter" />
+    <dxef:OperationStringConverter x:Key="FilterControlOperationStringConverter" />
+    <ControlTemplate x:Key="{dxet:FilterControlThemeKey ResourceKey=FilterControlGroupTypeButtonTemplate}" TargetType="{x:Type ContentControl}">
+        <TextBlock x:Name="TextButton" Text="{Binding Path=NodeType, Converter={StaticResource FilterControlGroupTypeConverter}}" Foreground="Red" />
+    </ControlTemplate>
+    <ControlTemplate x:Key="{dxet:FilterControlThemeKey ResourceKey=FilterControlFirstOperandButtonTemplate}" TargetType="{x:Type ContentControl}">
+        <dxc:XPFContentControl x:Name="FirstOperandButton" Margin="0,2,0,2" VerticalAlignment="Center" Cursor="Hand" Content="{Binding Path=ColumnHeaderCaption}" ContentTemplate="{Binding Path=ColumnHeaderTemplate}" ContentTemplateSelector="{Binding Path=ColumnHeaderTemplateSelector}" Foreground="Blue" />
+    </ControlTemplate>
+    <ControlTemplate x:Key="{dxet:FilterControlThemeKey ResourceKey=FilterControlClauseOperationButtonTemplate}" TargetType="{x:Type ContentControl}">
+        <TextBlock x:Name="TextButton" VerticalAlignment="Center" Margin="0,2,0,2" Text="{Binding Path=Operation, Converter={StaticResource FilterControlOperationStringConverter}}" Foreground="Green" />
+    </ControlTemplate>
+</ResourceDictionary>

@@ -1,0 +1,126 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
+                    xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+                    xmlns:dxd="http://schemas.devexpress.com/winfx/2008/xaml/docking"
+                    xmlns:sysdrawing="clr-namespace:System.Drawing;assembly=System.Drawing"
+                    xmlns:wizardUtils="clr-namespace:DevExpress.Xpf.Reports.UserDesigner.ReportWizard.Utils"
+                    xmlns:dataaccessNative="clr-namespace:DevExpress.Xpf.DataAccess.Native;assembly=DevExpress.Xpf.DataAccess.v15.2"
+                    xmlns:local="clr-namespace:DevExpress.Xpf.Reports.UserDesigner.ReportWizard.Pages">
+    <DataTemplate x:Key="{x:Type local:CustomizeLabelPage}">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <dataaccessNative:WizardTitle Title="You can adjust the label's parameters here if required." />
+            <dxlc:LayoutControl Margin="50,20" Padding="0" Grid.Row="1" Orientation="Horizontal" Grid.IsSharedSizeScope="True">
+                <dxlc:LayoutControl.Resources>
+                    <Style TargetType="dxlc:LayoutItem">
+                        <Setter Property="LabelPosition" Value="Left"/>
+                        <Setter Property="AddColonToLabel" Value="True"/>
+                    </Style>
+                </dxlc:LayoutControl.Resources>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="3*"/>
+                        <ColumnDefinition Width="5*"/>
+                    </Grid.ColumnDefinitions>
+                    <dxlc:LayoutGroup Orientation="Vertical" Margin="0,0,6,0" ItemLabelsAlignment="Local">
+                        <dxlc:LayoutItem Label="Page Size" Name="pageSizeItem" VerticalAlignment="Top" Padding="0,0,0,6" LabelVerticalAlignment="Top">
+                            <StackPanel>
+                                <dxe:ComboBoxEdit ItemsSource="{Binding PaperKinds}" IsTextEditable="False" EditValue="{Binding SelectedPaperKind, UpdateSourceTrigger=PropertyChanged}" ApplyItemTemplateToSelectedItem="True">
+                                    <dxe:ComboBoxEdit.ItemTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Margin="2,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" >
+                                                <TextBlock.Text>
+                                                    <MultiBinding Converter="{wizardUtils:PaperKindToDisplayNameConverter}">
+                                                        <Binding Path="Name" />
+                                                        <Binding Path="IsRollPaper" />
+                                                    </MultiBinding>
+                                                </TextBlock.Text>
+                                            </TextBlock>
+                                        </DataTemplate>
+                                    </dxe:ComboBoxEdit.ItemTemplate>
+                                </dxe:ComboBoxEdit>
+                                <TextBlock Foreground="Gray" Margin="6,0,0,0">
+                                    <TextBlock.Text>
+                                        <MultiBinding Converter="{wizardUtils:PaperKindToSizeStringConverter}" >
+                                            <Binding Path="SelectedPaperKind.Width"/>
+                                            <Binding Path="SelectedPaperKind.Height"/>
+                                            <Binding Path="SelectedPaperKind.Unit"/>
+                                            <Binding Path="Unit" />
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                            </StackPanel>
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutGroup Grid.Row="1" Orientation="Vertical" VerticalAlignment="Stretch" >
+                            <dxlc:LayoutGroup.Resources>
+                                <Style TargetType="dxe:SpinEdit">
+                                    <Setter Property="MaskUseAsDisplayFormat" Value="True"/>
+                                    <Setter Property="Mask" Value="{Binding Unit, Converter={wizardUtils:GraphicsUnitsToMaskConverter}}" />
+                                    <Setter xmlns:sys="clr-namespace:System;assembly=mscorlib"  Property="EditValueType" Value="{x:Type sys:Single}" />
+                                    <Setter Property="Increment" Value="{Binding Unit, Converter={wizardUtils:GraphicsUnitsToIncrementConverter}}" />
+                                </Style>
+                            </dxlc:LayoutGroup.Resources>
+                            <dxlc:LayoutGroup Orientation="Vertical" Padding="0,0,0,6">
+                                <dxlc:LayoutItem Label="Label Width">
+                                    <dxe:SpinEdit EditValue="{Binding Width, UpdateSourceTrigger=PropertyChanged}" />
+                                </dxlc:LayoutItem>
+                                <dxlc:LayoutItem Label="Label Height">
+                                    <dxe:SpinEdit EditValue="{Binding Height, UpdateSourceTrigger=PropertyChanged}" />
+                                </dxlc:LayoutItem>
+                            </dxlc:LayoutGroup>
+                            <dxlc:LayoutGroup Orientation="Vertical" Padding="0,0,0,6">
+                                <dxlc:LayoutItem Label="Vertical Pitch">
+                                    <dxe:SpinEdit EditValue="{Binding VerticalPitch, UpdateSourceTrigger=PropertyChanged}" />
+                                </dxlc:LayoutItem>
+                                <dxlc:LayoutItem Label="Horizontal Pitch">
+                                    <dxe:SpinEdit EditValue="{Binding HorizontalPitch, UpdateSourceTrigger=PropertyChanged}" />
+                                </dxlc:LayoutItem>
+                            </dxlc:LayoutGroup >
+                            <dxlc:LayoutGroup Orientation="Vertical" >
+                                <dxlc:LayoutItem Label="Top Margin">
+                                    <dxe:SpinEdit EditValue="{Binding TopMargin, UpdateSourceTrigger=PropertyChanged}" />
+                                </dxlc:LayoutItem>
+                                <dxlc:LayoutItem Label="Left Margin">
+                                    <dxe:SpinEdit EditValue="{Binding LeftMargin, UpdateSourceTrigger=PropertyChanged}" />
+                                </dxlc:LayoutItem>
+                                <dxlc:LayoutItem Label="Right Margin">
+                                    <dxe:SpinEdit EditValue="{Binding RightMargin, Mode=OneWay}" IsEnabled="False" />
+                                </dxlc:LayoutItem>
+                                <dxlc:LayoutItem Label="Bottom Margin">
+                                    <dxe:SpinEdit EditValue="{Binding BottomMargin, Mode=OneWay}" IsEnabled="False" />
+                                </dxlc:LayoutItem>
+                            </dxlc:LayoutGroup>
+                        </dxlc:LayoutGroup>
+                    </dxlc:LayoutGroup>
+
+                    <dxlc:LayoutGroup Orientation="Vertical" VerticalAlignment="Stretch" Grid.Column="1" Margin="6,0,0,0">
+                        <dxlc:LayoutItem Height="{Binding ActualHeight, ElementName=pageSizeItem}" VerticalContentAlignment="Top">
+                            <dxe:ListBoxEdit ShowBorder="False" ItemsSource="{Binding Units}" EditValue="{Binding Unit, UpdateSourceTrigger=PropertyChanged}">
+                                <dxe:ListBoxEdit.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding}" Margin="0,0,12,0" />
+                                    </DataTemplate>
+                                </dxe:ListBoxEdit.ItemTemplate>
+                                <dxe:ListBoxEdit.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <StackPanel Orientation="Horizontal" />
+                                    </ItemsPanelTemplate>
+                                </dxe:ListBoxEdit.ItemsPanel>
+                                <dxe:ListBoxEdit.StyleSettings>
+                                    <dxe:RadioListBoxEditStyleSettings />
+                                </dxe:ListBoxEdit.StyleSettings>
+                            </dxe:ListBoxEdit>
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem>
+                            <Image Source="/DevExpress.Xpf.ReportDesigner.v15.2;component/Images/Wizard/labelReportPage.png" Stretch="Uniform" />
+                        </dxlc:LayoutItem>
+                    </dxlc:LayoutGroup>
+                </Grid>
+            </dxlc:LayoutControl>
+        </Grid>
+    </DataTemplate>
+</ResourceDictionary>

@@ -1,0 +1,189 @@
+﻿<UserControl x:Class="DevExpress.XtraRichEdit.Forms.PageSetupFormControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+    xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+    xmlns:dxec="clr-namespace:DevExpress.Xpf.Editors.Controls;assembly=DevExpress.Xpf.Core.v15.2"
+    xmlns:dxre="clr-namespace:DevExpress.Xpf.RichEdit"
+    xmlns:dxreui="clr-namespace:DevExpress.Xpf.RichEdit.UI"
+    xmlns:design="clr-namespace:DevExpress.XtraRichEdit"
+    mc:Ignorable="d"
+    d:DesignHeight="300" d:DesignWidth="400" dx:StyleManager.ApplyApplicationTheme="True">
+
+    <UserControl.Resources>
+        <dxre:RichEditStringIdConverter x:Key="RichEditStringIdConverter" />
+    </UserControl.Resources>
+    <Grid x:Name="LayoutRoot" MinWidth="400" MinHeight="250">
+        <dx:DXTabControl x:Name="tabControl">
+            <dx:DXTabControl.View>
+                <dx:TabControlScrollView />
+            </dx:DXTabControl.View>
+            <dx:DXTabItem Header="{Binding Source={StaticResource RichEditStringIdConverter}, ConverterParameter=Caption_PageSetupMarginsTab, Converter={StaticResource RichEditStringIdConverter}}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid Margin="0,0,0,3" Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="{Binding Source={StaticResource RichEditStringIdConverter}, ConverterParameter=Caption_PageSetupMarginsLabel, Converter={StaticResource RichEditStringIdConverter}}" />
+                        <dxec:DXSeparator HorizontalAlignment="Stretch" VerticalAlignment="Center" Grid.Column="1" Margin="3,0,0,0" />
+                    </Grid>
+                    <Grid Margin="20,3,0,0" Grid.Row="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition MinWidth="100" />
+                            <ColumnDefinition Width="0.2*" MinWidth="20" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition MinWidth="100" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Margin="0,3,3,3" VerticalAlignment="Center" Text="{Binding Source={StaticResource RichEditStringIdConverter}, ConverterParameter=Caption_PageSetupTopMarginLabel, Converter={StaticResource RichEditStringIdConverter}}" />
+                        <TextBlock Grid.Row="1" Margin="0,3,3,3" VerticalAlignment="Center" Text="{Binding Source={StaticResource RichEditStringIdConverter}, ConverterParameter=Caption_PageSetupLeftMarginLabel, Converter={StaticResource RichEditStringIdConverter}}" />
+                        <TextBlock Grid.Column="3" Margin="3,3,3,3" VerticalAlignment="Center" Text="{Binding Source={StaticResource RichEditStringIdConverter}, ConverterParameter=Caption_PageSetupBottomMarginLabel, Converter={StaticResource RichEditStringIdConverter}}" />
+                        <TextBlock Grid.Column="3" Grid.Row="1" Margin="3,3,3,3" VerticalAlignment="Center" Text="{Binding Source={StaticResource RichEditStringIdConverter}, ConverterParameter=Caption_PageSetupRightMarginLabel, Converter={StaticResource RichEditStringIdConverter}}" />
+                        <dxreui:RichTextIndentEdit Grid.Column="1" Margin="3,3,3,3" x:Name="edtMarginTop" HorizontalAlignment="Stretch" VerticalAlignment="Center" MinWidth="60" />
+                        <dxreui:RichTextIndentEdit Grid.Column="4" Margin="3,3,3,3" x:Name="edtMarginBottom" HorizontalAlignment="Stretch" VerticalAlignment="Center" MinWidth="60" />
+                        <dxreui:RichTextIndentEdit Grid.Row="1" Grid.Column="1" Margin="3,3,3,3" x:Name="edtMarginLeft" HorizontalAlignment="Stretch" VerticalAlignment="Center" MinWidth="60" />
+                        <dxreui:RichTextIndentEdit Grid.Row="1" Grid.Column="4" Margin="3,3,3,3" x:Name="edtMarginRight" HorizontalAlignment="Stretch" VerticalAlignment="Center" MinWidth="60" />
+                    </Grid>
+                    <Grid Margin="0,18,0,3" Grid.Row="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="{Binding Source={StaticResource RichEditStringIdConverter}, ConverterParameter=Caption_PageSetupOrientationLabel, Converter={StaticResource RichEditStringIdConverter}}" />
+                        <dxec:DXSeparator HorizontalAlignment="Stretch" VerticalAlignment="Center" Grid.Column="1" Margin="3,0,0,0" />
+                    </Grid>
+                    <StackPanel Orientation="Vertical" Margin="20,3,0,0" Grid.Row="3">
+                        <RadioButton x:Name="chkPortrait" GroupName="rgrpOrientation" Content="{Binding Source={StaticResource RichEditStringIdConverter}, ConverterParameter=Caption_PageSetupOrientationPortraitRadioButton, Converter={StaticResource RichEditStringIdConverter}}" dx:StyleManager.ApplyApplicationTheme="True" />
+                        <RadioButton x:Name="chkLandscape" GroupName="rgrpOrientation" Content="{Binding Source={StaticResource RichEditStringIdConverter}, ConverterParameter=Caption_PageSetupOrientationLandscapeRadioButton, Converter={StaticResource RichEditStringIdConverter}}" dx:StyleManager.ApplyApplicationTheme="True" />
+                    </StackPanel>
+                    <Grid Grid.Row="5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="2*" MinWidth="100" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Margin="0,3,3,3" VerticalAlignment="Center" Text="{Binding Source={StaticResource RichEditStringIdConverter}, ConverterParameter=Caption_PageSetupApplyToLabel, Converter={StaticResource RichEditStringIdConverter}}" />
+                        <dxe:ComboBoxEdit Grid.Column="1" x:Name="cbMarginsApplyTo" IsTextEditable="False" Margin="3,3,3,3" MinWidth="150" dx:StyleManager.ApplyApplicationTheme="True" />
+                    </Grid>
+                </Grid>
+            </dx:DXTabItem>
+            <dx:DXTabItem Header="{Binding Source={StaticResource RichEditStringIdConverter}, ConverterParameter=Caption_PageSetupPaperTab, Converter={StaticResource RichEditStringIdConverter}}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid Margin="0,0,0,3" Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="{Binding Source={StaticResource RichEditStringIdConverter}, ConverterParameter=Caption_PageSetupPaperSizeLabel, Converter={StaticResource RichEditStringIdConverter}}" />
+                        <dxec:DXSeparator HorizontalAlignment="Stretch" VerticalAlignment="Center" Grid.Column="1" Margin="3,0,0,0" />
+                    </Grid>
+                    <Grid Margin="20,3,0,0" Grid.Row="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition MinWidth="100" />
+                            <ColumnDefinition Width="2*" />
+                        </Grid.ColumnDefinitions>
+                        <dxe:ComboBoxEdit Grid.ColumnSpan="2" x:Name="cbPaperSize" IsTextEditable="False" Margin="0,3,3,3" MinWidth="60" dx:StyleManager.ApplyApplicationTheme="True" />
+                        <TextBlock Grid.Row="1" Margin="0,0,3,3" VerticalAlignment="Center" Text="{Binding Source={StaticResource RichEditStringIdConverter}, ConverterParameter=Caption_PageSetupPaperWidthLabel, Converter={StaticResource RichEditStringIdConverter}}" />
+                        <TextBlock Grid.Row="2" Margin="0,3,3,3" VerticalAlignment="Center" Text="{Binding Source={StaticResource RichEditStringIdConverter}, ConverterParameter=Caption_PageSetupPaperHeightLabel, Converter={StaticResource RichEditStringIdConverter}}" />
+                        <dxreui:RichTextIndentEdit Grid.Row="1" Grid.Column="1" Margin="3,3,3,3" x:Name="edtPaperWidth" VerticalAlignment="Center" MinWidth="60" />
+                        <dxreui:RichTextIndentEdit Grid.Row="2" Grid.Column="1" Margin="3,3,3,3" x:Name="edtPaperHeight" VerticalAlignment="Center" MinWidth="60" />
+                        
+                    </Grid>
+                    <Grid Grid.Row="4">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="2*" MinWidth="100" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Margin="0,3,3,3" VerticalAlignment="Center" Text="{Binding Source={StaticResource RichEditStringIdConverter}, ConverterParameter=Caption_PageSetupApplyToLabel, Converter={StaticResource RichEditStringIdConverter}}" />
+                        <dxe:ComboBoxEdit Grid.Column="1" x:Name="cbPaperApplyTo" IsTextEditable="False" Margin="3,3,3,3" MinWidth="150" dx:StyleManager.ApplyApplicationTheme="True" />
+                    </Grid>
+                </Grid>
+            </dx:DXTabItem>
+            <dx:DXTabItem Header="{Binding Source={StaticResource RichEditStringIdConverter}, ConverterParameter=Caption_PageSetupLayoutTab, Converter={StaticResource RichEditStringIdConverter}}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid Margin="0,0,0,3" Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="{Binding Source={StaticResource RichEditStringIdConverter}, ConverterParameter=Caption_PageSetupSectionLabel, Converter={StaticResource RichEditStringIdConverter}}" />
+                        <dxec:DXSeparator HorizontalAlignment="Stretch" VerticalAlignment="Center" Grid.Column="1" Margin="3,0,0,0" />
+                    </Grid>
+                    <Grid Margin="20,3,0,0" Grid.Row="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition MinWidth="100" />
+                            <ColumnDefinition Width="0.2*" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Margin="0,0,3,3" VerticalAlignment="Center" Text="{Binding Source={StaticResource RichEditStringIdConverter}, ConverterParameter=Caption_PageSetupSectionStartLabel, Converter={StaticResource RichEditStringIdConverter}}" />
+                        <dxe:ComboBoxEdit Grid.Column="1" x:Name="cbSectionStart" IsTextEditable="False" Margin="3,3,3,3" VerticalAlignment="Center" MinWidth="60" />
+                    </Grid>
+                    <Grid Margin="0,18,0,3" Grid.Row="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="{Binding Source={StaticResource RichEditStringIdConverter}, ConverterParameter=Caption_PageSetupHeadersAndFootersLabel, Converter={StaticResource RichEditStringIdConverter}}" />
+                        <dxec:DXSeparator HorizontalAlignment="Stretch" VerticalAlignment="Center" Grid.Column="1" Margin="3,0,0,0" />
+                    </Grid>
+                    <StackPanel Orientation="Vertical" Margin="20,3,0,0" Grid.Row="3">
+                        <dxe:CheckEdit x:Name="chkDifferentOddAndEvenPage" Content="{Binding Source={StaticResource RichEditStringIdConverter}, ConverterParameter=Caption_PageSetupDifferentOddAndEvenLabel, Converter={StaticResource RichEditStringIdConverter}}" dx:StyleManager.ApplyApplicationTheme="True" />
+                        <dxe:CheckEdit x:Name="chkDifferentFirstPage" Content="{Binding Source={StaticResource RichEditStringIdConverter}, ConverterParameter=Caption_PageSetupDifferentFirstPageLabel, Converter={StaticResource RichEditStringIdConverter}}" dx:StyleManager.ApplyApplicationTheme="True" />
+                    </StackPanel>
+                    <Grid Grid.Row="5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="2*" MinWidth="100" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Margin="0,3,3,3" VerticalAlignment="Center" Text="{Binding Source={StaticResource RichEditStringIdConverter}, ConverterParameter=Caption_PageSetupApplyToLabel, Converter={StaticResource RichEditStringIdConverter}}" />
+                        <dxe:ComboBoxEdit Grid.Column="1" x:Name="cbLayoutApplyTo" IsTextEditable="False" Margin="3,3,3,3" MinWidth="150" dx:StyleManager.ApplyApplicationTheme="True" />
+                    </Grid>
+                </Grid>
+            </dx:DXTabItem>
+        </dx:DXTabControl>
+    </Grid>
+</UserControl>

@@ -1,0 +1,115 @@
+﻿<UserControl x:Class="DevExpress.Xpf.Grid.SummaryEditorControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+    xmlns:dxet="http://schemas.devexpress.com/winfx/2008/xaml/editors/themekeys"
+    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"         
+    MinWidth="400" MinHeight="282" MaxHeight="500">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <dx:BoolToVisibilityConverter x:Key="boolToVisibilityConverter"/>
+            <dx:BoolToVisibilityInverseConverter x:Key="boolToVisibilityConverterInverse" />
+            <dx:EnumToWidthConverter x:Key="enumToWidthConverter" EnumValue="TotalSummaryPanel" WidthTrue="158" WidthFalse="322"/>
+            <Style TargetType="dxe:CheckEdit">
+                <Setter Property="Margin" Value="0,0,0,4" />
+            </Style>
+            <DataTemplate x:Key="itemTemplate">
+                <TextBlock Name="text" Text="{Binding}" VerticalAlignment="Center">
+                    <TextBlock.FontWeight>
+                        <Binding Path="HasSummary">
+                            <Binding.Converter>
+                                <dx:BoolToObjectConverter TrueValue="Bold" FalseValue="Normal" />
+                            </Binding.Converter>
+                        </Binding>
+                    </TextBlock.FontWeight>
+                </TextBlock>
+            </DataTemplate>
+            <Thickness x:Key="ltrbMargin">3</Thickness>
+            <Thickness x:Key="largeltrbMargin">9</Thickness>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <dx:DXTabControl x:Name="tbControl" Margin="12,12,12,12">
+            <dx:DXTabItem Name="tabItems">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <ListBox Margin="0,0,12,0" x:Name="itemList" ItemTemplate="{StaticResource itemTemplate}" SelectionChanged="OnItemListSelectionChanged" />
+                    <StackPanel Margin="0,0,24,0" Name="summaryTypePanel" Orientation="Vertical" Grid.Column="1">
+                        <dxe:CheckEdit Name="maxCheck" Unchecked="OnSummaryTypeChanged" Checked="OnSummaryTypeChanged" />
+                        <dxe:CheckEdit Name="minCheck" Unchecked="OnSummaryTypeChanged" Checked="OnSummaryTypeChanged" />
+                        <dxe:CheckEdit Name="averageCheck" Unchecked="OnSummaryTypeChanged" Checked="OnSummaryTypeChanged" />
+                        <dxe:CheckEdit Name="sumCheck" Unchecked="OnSummaryTypeChanged" Checked="OnSummaryTypeChanged" />
+                        <dxe:CheckEdit Name="countCheck" Unchecked="OnSummaryTypeChanged" Checked="OnSummaryTypeChanged"/>
+                    </StackPanel>
+                    <dxe:CheckEdit Grid.Row="1" Grid.ColumnSpan="2" Name="globalCountCheck" Visibility="Collapsed" Margin="0,16,0,0"
+                                   Unchecked="OnCountSummaryTypeChanged" Checked="OnCountSummaryTypeChanged"/>
+                </Grid>
+            </dx:DXTabItem>
+            <dx:DXTabItem Name="tabOrder">
+                <Grid x:Name="gridTabOrder">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock x:Name="tbLeftSideCaption" Visibility="Collapsed" Margin="0,0,0,3"/>
+                        <ListBox Grid.Row="1" x:Name="orderList" SelectionChanged="OnOrderListSelectionChanged" Margin="0,0,6,0" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                                 HorizontalAlignment="Stretch"/>
+                    </Grid>
+                    <Grid Grid.Column="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Visibility="{Binding Path=Visibility, ElementName=tbLeftSideCaption}" Margin="0,0,0,3" Text=" "/>
+                        <StackPanel Grid.Row="1" Orientation="Vertical" Margin="0,5,0,0">
+                            <Button Name="upButton" Click="OnMoveButtonClick" Width="24" Height="22" Margin="0,0,0,4" Padding="0">
+                                <Path Name="upPath" Data="F1 M 574,370L 579,375L 576,375L 576,380L 572,380L 572,375L 569,375L 574,370 Z " Stretch="Fill" Height="10" Width="10" Fill="{Binding Path=Foreground, ElementName=upButton}"/>
+                            </Button>
+                            <Button Name="downButton" Click="OnMoveButtonClick" Width="24" Height="22" Margin="0,0,0,4" Padding="0">
+                                <Path Name="downPath" Data="F1 M 583,395L 578,390L 581,390L 581,385L 585,385L 585,390L 588,390L 583,395 Z " Stretch="Fill" Height="10" Width="10" Fill="{Binding Path=Foreground, ElementName=downButton}"/>
+                            </Button>
+                            <Button Name="leftButton" Click="OnAlignmentButtonClick" Visibility="Collapsed" Width="24" Height="22" Margin="0,0,0,4" Padding="0">
+                                <Path x:Name="leftPath" Data="F1 M 561,389L 566,384L 566,387L 571,387L 571,391L 566,391L 566,394L 561,389 Z " Stretch="Fill" Height="10" Width="10" Fill="{Binding Path=Foreground, ElementName=leftButton}"/>
+                            </Button>
+                            <Button Name="rightButton" Click="OnAlignmentButtonClick" Visibility="Collapsed" Width="24" Height="22" Margin="0,0,0,4" Padding="0">
+                                <Path x:Name="rightPath" Data="F1 M 605,392L 600,397L 600,394L 595,394L 595,390L 600,390L 600,387L 605,392 Z " Stretch="Fill" Height="10" Width="10" Fill="{Binding Path=Foreground, ElementName=rightButton}"/>
+                            </Button>
+                        </StackPanel>
+                    </Grid>
+                    <Grid x:Name="gridRightSide" Grid.Column="2" Visibility="Collapsed">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock x:Name="tbRightSideCaption" Margin="6,0,0,3"/>
+                        <ListBox Grid.Row="1" x:Name="orderListRight" SelectionChanged="OnOrderListSelectionChanged" Margin="6,0,0,0" HorizontalAlignment="Stretch" ScrollViewer.HorizontalScrollBarVisibility="Disabled"/>
+                    </Grid>
+                    <dx:DisplayFormatTextControl Grid.Row="1" Grid.ColumnSpan="3" x:Name="displayFormatControl" Margin="0,15,0,0"
+                                                 CurrentDisplayFormatChanged="displayFormatControl_CurrentDisplayFormatChanged"/>
+                </Grid>
+            </dx:DXTabItem>
+        </dx:DXTabControl>
+    </Grid>
+</UserControl>

@@ -1,0 +1,217 @@
+﻿<#@ template language="C#" #>
+<#@ import namespace="System" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="DevExpress.Design.Mvvm" #>
+<#@ import namespace="DevExpress.Entity.Model" #>
+<#@ import namespace="DevExpress.Mvvm.UI.Native.ViewGenerator" #>
+<#@ import namespace="DevExpress.Xpf.Core.Design.Wizards.Mvvm.EntityFramework" #>
+<#@ import namespace="DevExpress.Xpf.Core.Design.Wizards.Mvvm" #>
+<#@ import namespace="DevExpress.Xpf.Internal.EntityFrameworkWrappers" #>
+<#
+    T4TemplateInfo templateInfo = this.GetTemplateInfo();
+    string viewModelName = templateInfo.Properties["ViewModelName"].ToString();
+    string unitOfWorkFactoryType = templateInfo.Properties["IUnitOfWorkFactoryType"].ToString();
+    string unitOfWorkType = templateInfo.Properties["IUnitOfWorkType"].ToString();
+    string entityRepositoryProperty = templateInfo.Properties["CreateEntityRepositoryMethod"].ToString();
+
+    EntitySetData entityData = templateInfo.Properties["EntitySetData"] as EntitySetData;
+    IEntitySetInfo entitySetInfo = templateInfo.Properties["IEntitySetInfo"] as IEntitySetInfo;
+    IDataModel dataModel = templateInfo.Properties["DataModel"] as IDataModel;
+	var context = (TemplateGenerationContext)templateInfo.Properties["TemplateGenerationContext"];
+	string displayMemberPropertyName = DevExpress.Mvvm.UI.Native.ViewGenerator.EditorsSource.GetDisplayMemberPropertyName(entityData.ElementType);
+#>
+using System;
+using System.Linq;
+using System.Linq.Expressions;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using DevExpress.Mvvm;
+using DevExpress.Mvvm.POCO;
+<#this.PasteUsingList(this.GetTemplateInfo().UsingList, false);#>
+
+namespace <#=this.GetNamespace()#> {
+    /// <summary>
+    /// Represents the single <#=entityData.Type#> object view model.
+    /// </summary>
+    public partial class <#=viewModelName#> : SingleObjectViewModel<<#=entityData.Type#>, <#=entityData.PrimaryKeyType#>, I<#=dataModel.DbContainer.Name#>UnitOfWork> {
+
+        /// <summary>
+        /// Creates a new instance of <#=viewModelName#> as a POCO view model.
+        /// </summary>
+        /// <param name="unitOfWorkFactory">A factory used to create a unit of work instance.</param>
+        public static <#=viewModelName#> Create(IUnitOfWorkFactory<I<#=dataModel.DbContainer.Name#>UnitOfWork> unitOfWorkFactory = null) {
+            return ViewModelSource.Create(() => new <#=viewModelName#>(unitOfWorkFactory));
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <#=viewModelName#> class.
+        /// This constructor is declared protected to avoid undesired instantiation of the <#=viewModelName#> type without the POCO proxy factory.
+        /// </summary>
+        /// <param name="unitOfWorkFactory">A factory used to create a unit of work instance.</param>
+        protected <#=viewModelName#>(IUnitOfWorkFactory<I<#=dataModel.DbContainer.Name#>UnitOfWork> unitOfWorkFactory = null)
+            : base(unitOfWorkFactory ?? UnitOfWorkSource.GetUnitOfWorkFactory(), x => x.<#=entityRepositoryProperty#>, x => x.<#=displayMemberPropertyName#>) {
+        }
+<# var entitiesToReload = new List<string>();
+foreach(EntitySetData info in entityData.FKCollections) {
+		if (context != null && context.MetadataWorkspace != null && info.KeyProperties.Count() != 1) {
+			var entityWrapper = TemplatesCodeGen.FindEntityType(context.MetadataWorkspace, entityData.Type);
+			var navigationProperty = entityWrapper.NavigationProperties.First(x => x.ToEndMember.GetEntityType().Name == info.Name);
+			entitiesToReload.Add(navigationProperty.Name);
+			var foreignKeyProperties = navigationProperty.GetDependentProperties();
+			if (!foreignKeyProperties.Any())
+				continue;
+			var fkAssignmentStatements = foreignKeyProperties.Zip(info.KeyProperties,
+				(p, k) => string.Format("Entity.{0} = LookUp{1}Entity.{2};", p.Name, info.Type, k.Name))
+				.Aggregate((l, r) => l + "\r\n" + r);
+			var whereClause = foreignKeyProperties.Zip(info.KeyProperties,
+				(p, k) => string.Format("x.{0} == Entity.{1}", k.Name, p.Name))
+				.Aggregate((l, r) => l + " && " + r);
+#>
+
+		public virtual <#=info.Type#> LookUp<#=info.Type#>Entity { get; set; }
+        protected void OnLookUp<#=info.Type#>EntityChanged() {
+            if(LookUp<#=info.Type#>Entity == null || Entity == null)
+                return;
+			<#=fkAssignmentStatements#>
+		}
+
+		void ReloadLookUp<#=info.Type#>Entity() {
+			if (Entity == null)
+				return;
+			LookUp<#=info.Type#>Entity = LookUp<#=info.Type#>.Entities.FirstOrDefault(x => <#=whereClause#>);
+		}
+<#
+		}
+#>
+
+<#if (entitiesToReload.Any()) {#>
+<#			foreach(var prop in entitiesToReload) {#>
+		void ReloadLookUp<#=prop#>EntityHandler(object sender, System.ComponentModel.PropertyChangedEventArgs e) {
+			if(e.PropertyName == "Entities") {
+                ReloadLookUp<#=prop#>Entity();
+            }
+		}
+<#}#>
+		protected override void OnLookupCollectionsUpdated() {
+<#			foreach(var prop in entitiesToReload) {#>
+			var inptLookUp<#=prop#> = LookUp<#=prop#> as System.ComponentModel.INotifyPropertyChanged;
+            if (inptLookUp<#=prop#> != null) {
+                inptLookUp<#=prop#>.PropertyChanged += ReloadLookUp<#=prop#>EntityHandler;
+            }
+            ReloadLookUp<#=prop#>Entity();
+<#			}#>
+        }
+<#}#>
+
+        /// <summary>
+		/// The view model that contains a look-up collection of <#=info.Name#> for the corresponding navigation property in the view.
+        /// </summary>
+        public IEntitiesViewModel<<#=info.Type#>> LookUp<#=info.Name#> {
+            get { return GetLookUpEntitiesViewModel((<#=viewModelName#> x) => x.LookUp<#=info.Name#>, x => x.<#=info.Name#>); }
+        }
+<#}
+		var m2ms = new List<Tuple<EntityTypeRuntimeWrapper, NavigationPropertyRuntimeWrapper, ManyToManyInfo>>();
+		var entityTypeWrapper = TemplatesCodeGen.FindEntityType(context.MetadataWorkspace, entityData.Type);
+		foreach(var navigation in entityTypeWrapper.NavigationProperties) {
+			var manyToMany = TemplatesCodeGen.FindManyToManyAssociation(context.MetadataWorkspace, entityTypeWrapper.Name, navigation.ToEndMember.GetEntityType().Name);
+			if (manyToMany == null)
+				continue;
+			m2ms.Add(Tuple.Create(entityTypeWrapper, navigation, manyToMany));
+		}
+		if (m2ms.Any()) {
+#>
+		protected override void RefreshLookUpCollections(bool raisePropertyChanged) {
+            base.RefreshLookUpCollections(raisePropertyChanged);
+<#			foreach(var t in m2ms) {
+				var navigation = t.Item2;
+				var entityType = t.Item1;
+				var m2m = t.Item3;
+				if (!context.SelectedTables.Any(x => x.ElementType.Type.Name == m2m.OtherEntity.Name))
+					continue;
+				var otherEntityDbSetName = TemplatesCodeGen.FindDbSetName(context.MetadataWorkspace, m2m.OtherEntity.Name);
+				var otherEntityName = m2m.OtherEntity.Name;
+				if (m2m.ExplicitJunctionEntity != null) {
+					var junctionDbSetName = context.SelectedTables.First(x => x.ElementType.Type.Name == m2m.ExplicitJunctionEntity.Name).Name;
+					var entityKey = m2m.ThisEntityJunctionForeignKey.Single().Name;
+					var lookupKey = m2m.OtherEntityJunctionForeignKey.Single().Name;
+#>
+				<#=navigation.Name#>DetailEntities = CreateAddRemoveJunctionDetailEntitiesViewModel(x => x.<#=otherEntityDbSetName#>, x => x.<#=junctionDbSetName#>, x => x.<#=entityKey#>, x => x.<#=lookupKey#>);
+<#              
+				} else {
+#>
+				<#=navigation.Name#>DetailEntities = CreateAddRemoveDetailEntitiesViewModel(x => x.<#=otherEntityDbSetName#>, x => x.<#=navigation.Name#>);
+<#
+				}
+			}
+#>
+		}
+<#
+		}
+		foreach(var t in m2ms) {
+			var navigation = t.Item2;
+			var entityType = t.Item1;
+			var m2m = t.Item3;
+			var entityKey = TemplatesCodeGen.PrintPrimaryKeyType(entityType);
+			var lookupKey = TemplatesCodeGen.PrintPrimaryKeyType(m2m.OtherEntity);
+			if (m2m.ExplicitJunctionEntity != null) {
+				var junctionKey = TemplatesCodeGen.PrintPrimaryKeyType(m2m.ExplicitJunctionEntity);
+#>
+		public virtual AddRemoveJunctionDetailEntitiesViewModel<<#=entityType.Name#>, <#=entityKey#>, <#=m2m.OtherEntity.Name#>, <#=lookupKey#>, <#=m2m.ExplicitJunctionEntity.Name#>, <#=junctionKey#>, I<#=dataModel.DbContainer.Name#>UnitOfWork> <#=navigation.Name#>DetailEntities { get; protected set; }
+<#
+			} else {
+#>
+		public virtual AddRemoveDetailEntitiesViewModel<<#=entityType.Name#>, <#=entityKey#>, <#=m2m.OtherEntity.Name#>, <#=lookupKey#>, I<#=dataModel.DbContainer.Name#>UnitOfWork> <#=navigation.Name#>DetailEntities { get; protected set; }
+<#
+            }
+		}
+        foreach(EntitySetData lookUpTable in entityData.LookUpTables) {
+			GenerateLookUpViewModelProperty(context, viewModelName, entityData, entitySetInfo, lookUpTable, dataModel);
+		}
+#>
+    }
+}
+<#+
+string GetLookUpPropertyName(IEntitySetInfo entitySetInfo, EntitySetData lookUpTable, string suffix){
+    return entitySetInfo.ElementType.Type.Name + lookUpTable.PropertyName + suffix;
+}
+void GenerateLookUpViewModelProperty(TemplateGenerationContext context, string viewModelName, EntitySetData entityDataType, IEntitySetInfo entitySetInfo, EntitySetData lookUpTable, IDataModel dataModel){
+    string propertyName = GetLookUpPropertyName(entitySetInfo, lookUpTable, "Details");
+	IEdmAssociationPropertyInfo propertyInfo = entitySetInfo.ElementType.LookupTables.First(x => x.Name == lookUpTable.PropertyName);
+    var entityRepositoryInfo = dataModel.EntityRepositories.FirstOrDefault(er => er.EntitySet.ElementType.Type.FullName == lookUpTable.TypeFullName);
+	var foreignKeyProperties = propertyInfo.ForeignKeyProperties;
+	if(foreignKeyProperties == null)
+		return;
+	var fkPropertiesString = "";
+	if (foreignKeyProperties.Count() == 1) {
+		fkPropertiesString = string.Format("x.{0}", foreignKeyProperties.First().Name);
+	} else {
+		var arguments = foreignKeyProperties.Select(p => string.Format("x.{0}", p.Name)).Aggregate((l, r) => l + ", " + r);
+		fkPropertiesString = string.Format("Tuple.Create({0})", arguments);
+	}
+#>
+
+        /// <summary>
+        /// The view model for the <#=entitySetInfo.ElementType.Type.Name#><#=lookUpTable.PropertyName#> detail collection.
+        /// </summary>
+<#+if(lookUpTable.ReadOnly){#>
+        public ReadOnlyCollectionViewModel<<#=lookUpTable.Type#>, I<#=dataModel.DbContainer.Name#>UnitOfWork> <#=propertyName#> { 
+            get { return GetReadOnlyDetailsCollectionViewModel((<#=viewModelName#> x) => x.<#=propertyName#>, x => x.<#=entityRepositoryInfo.Name#>, x => <#=fkPropertiesString#>); }
+        }
+<#+} else {
+		var entityType = TemplatesCodeGen.FindEntityType(context.MetadataWorkspace, entityDataType.Type);
+		var lookupType = TemplatesCodeGen.FindEntityType(context.MetadataWorkspace, lookUpTable.Type);
+		var fkAssignmentsString = "";
+		if (foreignKeyProperties.Count() == 1) {
+			fkAssignmentsString = string.Format("x.{0} = key;", foreignKeyProperties.First().Name);
+		} else {
+			fkAssignmentsString = foreignKeyProperties.Zip(Enumerable.Range(0, foreignKeyProperties.Count()),
+				(p, i) => string.Format("x.{0} = key.Item{1};", p.Name, i + 1))
+				.Aggregate((l, r) => l + " " + r);
+		}
+#>
+        public CollectionViewModel<<#=lookUpTable.Type#>, <#=lookUpTable.PrimaryKeyType#>, I<#=dataModel.DbContainer.Name#>UnitOfWork> <#=propertyName#> { 
+            get { return GetDetailsCollectionViewModel((<#=viewModelName#> x) => x.<#=propertyName#>, x => x.<#=entityRepositoryInfo.Name#>, x => <#=fkPropertiesString#>, (x, key) => { <#=fkAssignmentsString#><#=this.ExecuteEntityViewModelHookAndReturnEmptyString(TemplatesCodeGen.STR_EntityViewModelHook_GenerateLookUpProjection + "_" + propertyName)#> }); } 
+        }
+<#+}
+}#>

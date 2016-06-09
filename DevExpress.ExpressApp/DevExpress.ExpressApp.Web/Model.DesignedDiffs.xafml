@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application>
+  <ActionDesign>
+    <Actions>
+      <Action Id="NextObject" AdaptivePriority="3" ImageName="Action_Navigation_History_Forward" ConfirmUnsavedChanges="True" />
+      <Action Id="PreviousObject" AdaptivePriority="3" ImageName="Action_Navigation_History_Back" ConfirmUnsavedChanges="True" />
+      <Action Id="New" AdaptivePriority="0" ConfirmUnsavedChanges="True" />
+      <Action Id="DialogCancel" ConfirmUnsavedChanges="True" />
+      <Action Id="DialogClose" ConfirmUnsavedChanges="True" />
+      <Action Id="ChooseTheme" ConfirmUnsavedChanges="True" />
+      <Action Id="Refresh" AdaptivePriority="2" ConfirmUnsavedChanges="True" />
+      <Action Id="Cancel" ConfirmUnsavedChanges="True" />
+      <Action Id="Edit" AdaptivePriority="5" ConfirmUnsavedChanges="True" />
+      <Action Id="Logoff" ConfirmUnsavedChanges="True" />
+      <Action Id="ChangeVariant" AdaptivePriority="1" ConfirmUnsavedChanges="True" />
+
+      <Action Id="Delete" AdaptivePriority="4" />
+      <Action Id="Save" AdaptivePriority="1" />
+      <Action Id="SaveAndClose" AdaptivePriority="1" />
+      <Action Id="SaveAndNew" AdaptivePriority="1" />
+
+      <Action Id="Export" IsPostBackRequired="True" />
+      <Action Id="Link" UseFindTemplate="True" ShowInFindPopup="True" />
+    </Actions>
+  </ActionDesign>
+  <Views>
+    <DetailView Id="LogonAttemptsAmountedToLimit_DetailView" Caption="Log On" ClassName="DevExpress.ExpressApp.Web.LogonAttemptsAmountedToLimit">
+      <Items IsNewNode="True">
+        <StaticText Id="LogonText" Text="After three unsuccessful login attempts, the browser should be closed. Please consider contacting an administrator about your login details." HorizontalAlign="Center" IsNewNode="True" />
+      </Items>
+      <Layout IsNewNode="True">
+        <LayoutGroup Id="RootGroup" Direction="Horizontal" Index="0" ShowCaption="False" IsNewNode="True">
+          <LayoutItem Id="LogonText" Index="1" ShowCaption="False" RelativeSize="100" ViewItem="LogonText" IsNewNode="True" />
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="ParameterlessLogonFailedInfo_DefaultDetailView" Caption="Log On" ClassName="DevExpress.ExpressApp.Web.ParameterlessLogonFailedInfo" IsNewNode="True">
+      <Items IsNewNode="True">
+        <StaticImage Id="Image" ImageName="State_Validation_Invalid_48x48" SizeMode="AutoSize" VerticalAlign="Middle" IsNewNode="True" />
+        <StaticText Id="Message" Text="{0} Please consider contacting an administrator about your login details." HorizontalAlign="Center" IsNewNode="True" />
+      </Items>
+      <Layout IsNewNode="True">
+        <LayoutGroup Id="RootGroup" Direction="Horizontal" Index="0" ShowCaption="False" IsNewNode="True">
+          <LayoutItem Id="Image" Index="0" ShowCaption="False" RelativeSize="1" ViewItem="Image" IsNewNode="True" />
+          <LayoutItem Id="Message" Index="1" ShowCaption="False" RelativeSize="99" ViewItem="Message" IsNewNode="True" />
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="AboutInfo_DetailView">
+      <Items>
+        <StaticText Id="AboutText" Text="{0:ProductName}&lt;br&gt;{0:Version}&lt;br&gt;{0:Copyright}&lt;br&gt;{0:Description}" />
+      </Items>
+    </DetailView>
+  </Views>
+  <Localization>
+    <LocalizationGroup Name="Texts">
+      <LocalizationItem Name="IgnoreWarning" Value="Ignore warnings." IsNewNode="True" />
+    </LocalizationGroup>
+    <LocalizationGroup Name="Messages">
+      <LocalizationItem Name="ThereAreNoRecordsToDisplay" Value="There are no records to display." IsNewNode="True" />
+      <LocalizationItem Name="BrowserIsIncompatible" Value="The current browser version is not supported. Currently, the following browsers are supported: Internet Explorer 9, Chrome, Safari, FireFox, Opera" IsNewNode="True" />
+    </LocalizationGroup>
+    <LocalizationGroup Name="ASPxImagePropertyEditor" IsNewNode="True">
+      <LocalizationItem Name="Edit" Value="Edit" IsNewNode="True" />
+      <LocalizationItem Name="Clear" Value="Clear" IsNewNode="True" />
+    </LocalizationGroup>
+    <LocalizationGroup Name="Captions">
+      <LocalizationItem Name="SelectAll" Value="(Select All)" IsNewNode="True" />
+      <LocalizationItem Name="MyAccount" Value="My Account" IsNewNode="True" />
+    </LocalizationGroup>
+    <LocalizationGroup Name="Confirmations" IsNewNode="True">
+      <LocalizationItem Name="Cancel" Value="Unsaved changes will be lost. Do you want to proceed?" IsNewNode="True" />
+    </LocalizationGroup>
+  </Localization>
+  <SchemaModules>
+    <SchemaModule Name="SystemAspNetModule" Version="13.1.1.0" IsNewNode="True" />
+    <SchemaModule Name="SystemModule" Version="13.1.6.0" IsNewNode="True" />
+  </SchemaModules>
+</Application>

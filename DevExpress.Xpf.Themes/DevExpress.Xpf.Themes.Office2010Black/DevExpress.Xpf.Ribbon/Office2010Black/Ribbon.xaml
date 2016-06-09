@@ -1,0 +1,858 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:dxcn="http://schemas.devexpress.com/winfx/2008/xaml/core/internal" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:dxr="http://schemas.devexpress.com/winfx/2008/xaml/ribbon" xmlns:dxrt="http://schemas.devexpress.com/winfx/2008/xaml/ribbon/themekeys" xmlns:sys="clr-namespace:System;assembly=mscorlib" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:cs="colorscheme_ignorable_uri" mc:Ignorable="cs">
+    <!--BEGIN WPF-->
+    <dxr:RibbonStyle x:Key="{dxrt:RibbonThemeKey ResourceKey=AeroBorderRibbonStyle}">Office2010</dxr:RibbonStyle>
+    <sys:Double x:Key="{dxrt:RibbonThemeKey ResourceKey=AeroBorderTopOffset}">1</sys:Double>
+    <sys:Double x:Key="{dxrt:RibbonThemeKey ResourceKey=CollapsedRibbonAeroBorderTopOffset}">2</sys:Double>
+    <!--END WPF-->
+    <dx:ColorOverlayConverter x:Key="colorOverlayConverter" />
+    <dx:BoolToVisibilityConverter x:Key="boolToVisibilityConverter" />
+    <dx:BoolToVisibilityInverseConverter x:Key="boolToVisibilityConverterInverse" />
+    <Thickness x:Key="{dxrt:RibbonThemeKey ResourceKey=SelectedPagePopupMargin}">-1,0,-1,0</Thickness>
+    <sys:Double x:Key="{dxrt:RibbonThemeKey ResourceKey=RowIndent}">0.0</sys:Double>
+    <sys:Double x:Key="{dxrt:RibbonThemeKey ResourceKey=ColumnIndent}">0.0</sys:Double>
+    <sys:Double x:Key="{dxrt:RibbonThemeKey ResourceKey=DefaultRightPaneWidth}">200.0</sys:Double>
+    <sys:Double x:Key="{dxrt:RibbonThemeKey ResourceKey=ApplicationMenuHorizontalOffset}">0</sys:Double>
+    <sys:Double x:Key="{dxrt:RibbonThemeKey ResourceKey=ApplicationMenuVerticalOffset}">22</sys:Double>
+    <sys:Double x:Key="{dxrt:RibbonThemeKey ResourceKey=MaxPageCaptionTextIndent}">16.0</sys:Double>
+    <sys:Double x:Key="{dxrt:ApplicationButtonThemeKey ResourceKey=PopupHorizontalOffset}">0.0</sys:Double>
+    <sys:Double x:Key="{dxrt:ApplicationButtonThemeKey ResourceKey=PopupVerticalOffset}">0.0</sys:Double>
+    <sys:Double x:Key="{dxrt:ApplicationButtonThemeKey ResourceKey=Popup2010HorizontalOffset}">0.0</sys:Double> 
+    <sys:Double x:Key="{dxrt:ApplicationButtonThemeKey ResourceKey=Popup2010VerticalOffset}">0.0</sys:Double>
+    <sys:Double x:Key="{dxrt:RibbonThemeKey ResourceKey=HeaderMinHeight}">26.0</sys:Double>
+    <sys:Double x:Key="{dxrt:RibbonThemeKey ResourceKey=AeroHeaderMinHeight}">23.0</sys:Double>
+    <sys:Double x:Key="{dxrt:RibbonThemeKey ResourceKey=HeaderMinHeightTouch}">26.0</sys:Double>
+    <sys:Double x:Key="{dxrt:RibbonThemeKey ResourceKey=AeroHeaderMinHeightTouch}">23.0</sys:Double>
+    <Style x:Key="{dxrt:RibbonThemeKey ResourceKey=ShowAutoHidePopupButtonStyle}" TargetType="{x:Type dxr:ShowAutoHidePopupButton}"> 
+        <Setter Property="MinWidth"  Value="31"/>
+        <Setter Property="Height" Value="17"/>
+        <Setter Property="Margin" Value="0,0,0,4" />
+    </Style>    
+    <Style x:Key="{dxrt:RibbonThemeKey ResourceKey=ApplicationIconContainerStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="HorizontalAlignment" Value="Left" />
+        <Setter Property="VerticalAlignment" Value="Center" />  
+        <Setter Property="Margin" Value="0,0,4,0" />
+    </Style>
+    <Style x:Key="{dxrt:RibbonThemeKey ResourceKey=CaptionStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="VerticalAlignment" Value="Center" /> 
+        <Setter Property="Foreground" Value="#FFDEDEDE" cs:Name="Setter_0001" />
+    </Style>
+    <Style x:Key="{dxrt:RibbonThemeKey ResourceKey=IconAndCaptionAreaStyle}" TargetType="{x:Type ContentControl}" />
+    <Style x:Key="{dxrt:RibbonThemeKey ResourceKey=FooterQuickAccessToolbarContainerStyle}" TargetType="ContentControl">
+        <Setter Property="Margin" Value="0,2,0,0" />
+    </Style>
+    <Style x:Key="{dxrt:RibbonThemeKey ResourceKey=HeaderQuickAccessToolbar2007ContainerStyle}" TargetType="ContentControl">
+        <Setter Property="HorizontalAlignment" Value="Left" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="Margin" Value="1,0,0,0" />
+    </Style>
+    <Style x:Key="{dxrt:RibbonThemeKey ResourceKey=HeaderQuickAccessToolbar2007ContainerStyleInRibbonWindow}" TargetType="ContentControl">
+        <Setter Property="HorizontalAlignment" Value="Left" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="Margin" Value="1,0,0,0" />
+    </Style>
+    <Style x:Key="{dxrt:RibbonThemeKey ResourceKey=HeaderQuickAccessToolbarContainerStyleWithoutApplicationIcon}" TargetType="ContentControl">
+        <Setter Property="HorizontalAlignment" Value="Left" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="Margin" Value="1,0,0,0" />
+    </Style>
+    <Style x:Key="{dxrt:RibbonThemeKey ResourceKey=HeaderQuickAccessToolbar2010ContainerStyle}" TargetType="ContentControl">
+        <Setter Property="HorizontalAlignment" Value="Left" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="Margin" Value="1,0,0,0" />
+    </Style>
+    <Style x:Key="{dxrt:RibbonThemeKey ResourceKey=HeaderQuickAccessToolbar2010ContainerStyleInRibbonWindow}" TargetType="ContentControl">
+        <Setter Property="HorizontalAlignment" Value="Left" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="Margin" Value="1,0,0,0" />
+    </Style>
+    <Style x:Key="{dxrt:RibbonThemeKey ResourceKey=NormalPageCaptionTextStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Foreground" Value="#FFFFFFFF" cs:Name="Setter_0002" />
+        <Setter Property="Margin" Value="0,4,0,3" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+    </Style>
+    <Style x:Key="{dxrt:RibbonThemeKey ResourceKey=SelectedPageCaptionTextStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Foreground" Value="#FF000000" cs:Name="Setter_0003" />
+        <Setter Property="Margin" Value="0,4,0,3" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+    </Style>
+    <Style x:Key="{dxrt:RibbonThemeKey ResourceKey=HoverPageCaptionTextStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Foreground" Value="#FFFFFFFF" cs:Name="Setter_0004" />
+        <Setter Property="Margin" Value="0,4,0,3" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+    </Style>
+    <Style x:Key="{dxrt:RibbonThemeKey ResourceKey=GroupCaptionTextStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Foreground" Value="#FF242424" cs:Name="Setter_0005" />
+    </Style>
+    <ControlTemplate x:Key="{dxrt:RibbonThemeKey ResourceKey=CollapsedSelectedPageBorderTemplate}" TargetType="ContentControl">
+        <Border Background="#FF5E5E5E" Height="1" cs:Name="Border_0001" />
+    </ControlTemplate>
+    <ControlTemplate x:Key="{dxrt:RibbonThemeKey ResourceKey=BackgroundTemplate}" TargetType="{x:Type ContentControl}">
+        <Border Background="{x:Null}" />
+    </ControlTemplate>
+    <ControlTemplate x:Key="{dxrt:RibbonThemeKey ResourceKey=FooterQuickAccessToolbarContainerTemplate}" TargetType="ContentControl">
+        <Border>
+            <Border.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" cs:Name="LinearGradientBrush_0592">
+                    <GradientStop Color="#FF5E5E5E" Offset="0" cs:Name="GradientStop_0001" />
+                    <GradientStop Color="#FF4E4E4E" Offset="1" cs:Name="GradientStop_0002" />
+                </LinearGradientBrush>
+            </Border.Background>
+            <Border Background="#FF797979" BorderBrush="#FF848484" BorderThickness="0,1,0,1" Margin="1,1,0,0" cs:Name="Border_0003">
+                <ContentPresenter HorizontalAlignment="Left" />
+            </Border>
+        </Border>
+    </ControlTemplate>
+    <ControlTemplate x:Key="{dxrt:RibbonThemeKey ResourceKey=RightRepeatButtonTemplate}" TargetType="{x:Type RepeatButton}">
+        <Grid Width="12" Height="20" SnapsToDevicePixels="True">
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup x:Name="CommonStates">
+                    <VisualState x:Name="Normal">
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="NormalState" Duration="0" To="1" />
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="MouseOver">
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="HoverState" Duration="0" To="1" />
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Pressed">
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="PressedState" Duration="0" To="1" />
+                        </Storyboard>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+            <Border x:Name="NormalState" Background="#FF6A6A6A" Opacity="0" cs:Name="Border_0004">
+                <Border Margin="1">
+                    <Border.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" cs:Name="LinearGradientBrush_0593">
+                            <GradientStop Color="#FFB3B3B3" Offset="0" cs:Name="GradientStop_0003" />
+                            <GradientStop Color="#FF9F9F9F" Offset="1" cs:Name="GradientStop_0004" />
+                        </LinearGradientBrush>
+                    </Border.Background>
+                </Border>
+            </Border>
+            <Border x:Name="HoverState" Opacity="0">
+                <Border.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" cs:Name="LinearGradientBrush_0594">
+                        <GradientStop Color="#BFC79810" Offset="0" cs:Name="GradientStop_0005" />
+                        <GradientStop Color="#BFA88407" Offset="1" cs:Name="GradientStop_0006" />
+                    </LinearGradientBrush>
+                </Border.Background>
+                <Border Margin="1">
+                    <Border.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" cs:Name="LinearGradientBrush_0595">
+                            <GradientStop Color="#FFFFFAE6" Offset="0" cs:Name="GradientStop_0007" />
+                            <GradientStop Color="#FFFFFFED" Offset="1" cs:Name="GradientStop_0008" />
+                        </LinearGradientBrush>
+                    </Border.Background>
+                    <Border Margin="1">
+                        <Border.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" cs:Name="LinearGradientBrush_0596">
+                                <GradientStop Color="#FFFFEEA8" Offset="0" cs:Name="GradientStop_0009" />
+                                <GradientStop Color="#FFFFFCE0" Offset="1" cs:Name="GradientStop_0010" />
+                                <GradientStop Color="#FFFFE277" Offset="0.5" cs:Name="GradientStop_0011" />
+                            </LinearGradientBrush>
+                        </Border.Background>
+                    </Border>
+                </Border>
+            </Border>
+            <Border x:Name="PressedState" Opacity="0">
+                <Border.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" cs:Name="LinearGradientBrush_0597">
+                        <GradientStop Color="#BFA26F16" Offset="0" cs:Name="GradientStop_0012" />
+                        <GradientStop Color="#BFA2832C" Offset="1" cs:Name="GradientStop_0013" />
+                    </LinearGradientBrush>
+                </Border.Background>
+                <Border Margin="1">
+                    <Border.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" cs:Name="LinearGradientBrush_0598">
+                            <GradientStop Color="#FFFFE575" Offset="0" cs:Name="GradientStop_0014" />
+                            <GradientStop Color="#FFFFF37F" Offset="1" cs:Name="GradientStop_0015" />
+                            <GradientStop Color="#FFFFD86C" Offset="0.5" cs:Name="GradientStop_0016" />
+                        </LinearGradientBrush>
+                    </Border.Background>
+                </Border>
+            </Border>
+            <Path Stretch="Fill" Fill="#FF3C3C3C" Data="F1 M 127.5,56.5002L 127.5,64.5002L 131.5,60.5002L 127.5,56.5002 Z" Margin="1,0,0,0" Width="4" Height="8" VerticalAlignment="Center" HorizontalAlignment="Center" UseLayoutRounding="False" cs:Name="Path_0001" />
+        </Grid>
+    </ControlTemplate>
+    <ControlTemplate x:Key="{dxrt:RibbonThemeKey ResourceKey=LeftRepeatButtonTemplate}" TargetType="{x:Type RepeatButton}">
+        <Grid Width="12" Height="20" SnapsToDevicePixels="True">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="12" />
+                <ColumnDefinition Width="3" />
+            </Grid.ColumnDefinitions>
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup x:Name="CommonStates">
+                    <VisualState x:Name="Normal">
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="NormalState" Duration="0" To="1" />
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="MouseOver">
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="HoverState" Duration="0" To="1" />
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Pressed">
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="PressedState" Duration="0" To="1" />
+                        </Storyboard>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+            <Border x:Name="NormalState" Background="#FF6A6A6A" Opacity="0" cs:Name="Border_0005">
+                <Border Margin="1">
+                    <Border.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" cs:Name="LinearGradientBrush_0599">
+                            <GradientStop Color="#FFB3B3B3" Offset="0" cs:Name="GradientStop_0017" />
+                            <GradientStop Color="#FF9F9F9F" Offset="1" cs:Name="GradientStop_0018" />
+                        </LinearGradientBrush>
+                    </Border.Background>
+                </Border>
+            </Border>
+            <Border x:Name="HoverState" Opacity="0">
+                <Border.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" cs:Name="LinearGradientBrush_0600">
+                        <GradientStop Color="#BFC79810" Offset="0" cs:Name="GradientStop_0019" />
+                        <GradientStop Color="#BFA88407" Offset="1" cs:Name="GradientStop_0020" />
+                    </LinearGradientBrush>
+                </Border.Background>
+                <Border Margin="1">
+                    <Border.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" cs:Name="LinearGradientBrush_0601">
+                            <GradientStop Color="#FFFFFAE6" Offset="0" cs:Name="GradientStop_0021" />
+                            <GradientStop Color="#FFFFFFED" Offset="1" cs:Name="GradientStop_0022" />
+                        </LinearGradientBrush>
+                    </Border.Background>
+                    <Border Margin="1">
+                        <Border.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" cs:Name="LinearGradientBrush_0602">
+                                <GradientStop Color="#FFFFEEA8" Offset="0" cs:Name="GradientStop_0023" />
+                                <GradientStop Color="#FFFFFCE0" Offset="1" cs:Name="GradientStop_0024" />
+                                <GradientStop Color="#FFFFE277" Offset="0.5" cs:Name="GradientStop_0025" />
+                            </LinearGradientBrush>
+                        </Border.Background>
+                    </Border>
+                </Border>
+            </Border>
+            <Border x:Name="PressedState" Opacity="0">
+                <Border.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" cs:Name="LinearGradientBrush_0603">
+                        <GradientStop Color="#BFA26F16" Offset="0" cs:Name="GradientStop_0026" />
+                        <GradientStop Color="#BFA2832C" Offset="1" cs:Name="GradientStop_0027" />
+                    </LinearGradientBrush>
+                </Border.Background>
+                <Border Margin="1">
+                    <Border.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" cs:Name="LinearGradientBrush_0604">
+                            <GradientStop Color="#FFFFE575" Offset="0" cs:Name="GradientStop_0028" />
+                            <GradientStop Color="#FFFFF37F" Offset="1" cs:Name="GradientStop_0029" />
+                            <GradientStop Color="#FFFFD86C" Offset="0.5" cs:Name="GradientStop_0030" />
+                        </LinearGradientBrush>
+                    </Border.Background>
+                </Border>
+            </Border>
+            <Path x:Name="Glyph" Stretch="Fill" Fill="#FF3C3C3C" Data="F1 M 124.5,56.5002L 124.5,64.5002L 120.5,60.5002L 124.5,56.5002 Z" Margin="0,0,1,0" Height="8" Width="4" VerticalAlignment="Center" HorizontalAlignment="Center" UseLayoutRounding="False" cs:Name="Path_0002" />
+        </Grid>
+    </ControlTemplate>
+    <ControlTemplate x:Key="{dxrt:RibbonThemeKey ResourceKey=SelectedPageBorderTemplateInPopup}" TargetType="{x:Type ContentControl}">
+        <Border>
+            <Border.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" cs:Name="LinearGradientBrush_0605">
+                    <GradientStop Color="#FF5E5E5E" Offset="0" cs:Name="GradientStop_0031" />
+                    <GradientStop Color="#FF4E4E4E" Offset="1" cs:Name="GradientStop_0032" />
+                </LinearGradientBrush>
+            </Border.Background>
+            <Border Margin="1,1,1,1">
+                <Border.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" cs:Name="LinearGradientBrush_0606">
+                        <GradientStop Color="#FFC9C9C9" Offset="0" cs:Name="GradientStop_0033" />
+                        <GradientStop Color="#FFA3A3A3" Offset="1" cs:Name="GradientStop_0034" />
+                        <GradientStop Color="#FFB9B9B9" Offset="0.5" cs:Name="GradientStop_0035" />
+                    </LinearGradientBrush>
+                </Border.Background>
+            </Border>
+        </Border>
+    </ControlTemplate>
+    <ControlTemplate x:Key="{dxrt:RibbonThemeKey ResourceKey=SelectedPageBorderTemplate}" TargetType="{x:Type ContentControl}">
+        <Border>
+            <Border.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" cs:Name="LinearGradientBrush_0607">
+                    <GradientStop Color="#FF5E5E5E" Offset="0" cs:Name="GradientStop_0036" />
+                    <GradientStop Color="#FF4E4E4E" Offset="1" cs:Name="GradientStop_0037" />
+                </LinearGradientBrush>
+            </Border.Background>
+            <Border Margin="0,1,0,1">
+                <Border.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" cs:Name="LinearGradientBrush_0608">
+                        <GradientStop Color="#FFC9C9C9" Offset="0" cs:Name="GradientStop_0038" />
+                        <GradientStop Color="#FFA3A3A3" Offset="1" cs:Name="GradientStop_0039" />
+                        <GradientStop Color="#FFB9B9B9" Offset="0.5" cs:Name="GradientStop_0040" />
+                    </LinearGradientBrush>
+                </Border.Background>
+            </Border>
+        </Border>
+    </ControlTemplate>
+    <ControlTemplate x:Key="{dxrt:RibbonThemeKey ResourceKey=StandaloneHeaderBorderTemplate}" TargetType="{x:Type ContentControl}">
+        <Border Background="#FF717171" cs:Name="Border_0006" />
+    </ControlTemplate>
+    <!--BEGIN WPF-->
+    <ControlTemplate x:Key="{dxrt:RibbonThemeKey ResourceKey=HeaderBorderTemplateInRibbonWindow}" TargetType="{x:Type ContentControl}">
+        <Border x:Name="PART_Header" SnapsToDevicePixels="True" Margin="-1,0,-1,0">
+            <Border.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" cs:Name="LinearGradientBrush_0609">
+                    <GradientStop Color="#FF797979" Offset="0" cs:Name="GradientStop_0041" />
+                    <GradientStop Color="#FF717171" Offset="1" cs:Name="GradientStop_0042" />
+                </LinearGradientBrush>
+            </Border.Background>
+        </Border>
+        <ControlTemplate.Triggers>
+            <DataTrigger Binding="{Binding Path=(dx:FloatingContainer.IsActive), RelativeSource={RelativeSource Mode=TemplatedParent}}" Value="False">
+                <Setter Property="Background" TargetName="PART_Header" Value="#FF9E9E9E" cs:Name="Setter_0006" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Path=(dx:FloatingContainer.IsMaximized), RelativeSource={RelativeSource Mode=TemplatedParent}}" Value="True">
+
+            </DataTrigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+    <!--END WPF-->
+    <ControlTemplate x:Key="{dxrt:RibbonThemeKey ResourceKey=TabPartBorderTemplate}" TargetType="{x:Type ContentControl}">
+        <Grid>
+            <Border Background="#FF717171" Margin="-1,0,-1,0" cs:Name="Border_0019" />
+            <!--BEGIN WPF-->
+            <Border Background="#FF9E9E9E" Visibility="{Binding Path=(dx:FloatingContainer.IsActive), RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource boolToVisibilityConverterInverse}}" cs:Name="Border_0020" />
+            <!--END WPF-->
+        </Grid>
+    </ControlTemplate>
+    <ControlTemplate x:Key="{dxrt:RibbonThemeKey ResourceKey=HighlightedSelectedPageBorderTemplateInPopup}" TargetType="{x:Type ContentControl}">
+        <Grid>
+            <Border>
+                <Border.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" cs:Name="LinearGradientBrush_0610">
+                        <GradientStop Color="#FF5E5E5E" Offset="0" cs:Name="GradientStop_0043" />
+                        <GradientStop Color="#FF4E4E4E" Offset="1" cs:Name="GradientStop_0044" />
+                    </LinearGradientBrush>
+                </Border.Background>
+            </Border>
+            <Border BorderBrush="{Binding Path=DataContext, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource colorOverlayConverter}, ConverterParameter=#FF707070}" BorderThickness="0,1,0,1" Margin="1,0,1,0">
+                <Border.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" cs:Name="LinearGradientBrush_0611">
+                        <GradientStop Color="#FFC9C9C9" Offset="0" cs:Name="GradientStop_0045" />
+                        <GradientStop Color="#FFA3A3A3" Offset="1" cs:Name="GradientStop_0046" />
+                        <GradientStop Color="#FFB9B9B9" Offset="0.5" cs:Name="GradientStop_0047" />
+                    </LinearGradientBrush>
+                </Border.Background>
+            </Border>
+        </Grid>
+    </ControlTemplate>
+    <ControlTemplate x:Key="{dxrt:RibbonThemeKey ResourceKey=HighlightedSelectedPageBorderTemplate}" TargetType="{x:Type ContentControl}">
+        <Border Background="{Binding Path=DataContext, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource colorOverlayConverter}, ConverterParameter=#FF666666}">
+            <Border Margin="0,1,0,1">
+                <Border.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" cs:Name="LinearGradientBrush_0613">
+                        <GradientStop Color="#FFC9C9C9" Offset="0" cs:Name="GradientStop_0048" />
+                        <GradientStop Color="#FFA3A3A3" Offset="1" cs:Name="GradientStop_0049" />
+                        <GradientStop Color="#FFB9B9B9" Offset="0.5" cs:Name="GradientStop_0050" />
+                    </LinearGradientBrush>
+                </Border.Background>
+            </Border>
+        </Border>
+    </ControlTemplate>
+    <Style x:Key="{dxrt:RibbonThemeKey ResourceKey=MinimizationButtonStyle}" TargetType="{x:Type dxr:RibbonCheckedBorderControl}" />
+    <ControlTemplate x:Key="{dxrt:RibbonThemeKey ResourceKey=MinimizationButtonTemplate}" TargetType="{x:Type dxr:RibbonCheckedBorderControl}">
+        <Grid MinWidth="21" MinHeight="22" Margin="0,2,0,2" SnapsToDevicePixels="True">
+            <Grid x:Name="HoverState" Opacity="0">
+                <Border CornerRadius="2">
+                    <Border.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" cs:Name="LinearGradientBrush_0614">
+                            <GradientStop Color="#BFC79810" Offset="0" cs:Name="GradientStop_0051" />
+                            <GradientStop Color="#BFA88407" Offset="1" cs:Name="GradientStop_0052" />
+                        </LinearGradientBrush>
+                    </Border.Background>
+                    <Border Margin="1" CornerRadius="1">
+                        <Border.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" cs:Name="LinearGradientBrush_0615">
+                                <GradientStop Color="#FFFFFAE6" Offset="0" cs:Name="GradientStop_0053" />
+                                <GradientStop Color="#FFFFFFED" Offset="1" cs:Name="GradientStop_0054" />
+                            </LinearGradientBrush>
+                        </Border.Background>
+                        <Border Margin="1">
+                            <Border.Background>
+                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" cs:Name="LinearGradientBrush_0616">
+                                    <GradientStop Color="#FFFFEEA8" Offset="0" cs:Name="GradientStop_0055" />
+                                    <GradientStop Color="#FFFFFCE0" Offset="1" cs:Name="GradientStop_0056" />
+                                    <GradientStop Color="#FFFFE277" Offset="0.5" cs:Name="GradientStop_0057" />
+                                </LinearGradientBrush>
+                            </Border.Background>
+                        </Border>
+                    </Border>
+                </Border>
+            </Grid>
+            <Grid x:Name="PressedState" Opacity="0">
+                <Border CornerRadius="2">
+                    <Border.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" cs:Name="LinearGradientBrush_0617">
+                            <GradientStop Color="#BFA26F16" Offset="0" cs:Name="GradientStop_0058" />
+                            <GradientStop Color="#BFA2832C" Offset="1" cs:Name="GradientStop_0059" />
+                        </LinearGradientBrush>
+                    </Border.Background>
+                    <Border Margin="1" CornerRadius="1">
+                        <Border.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" cs:Name="LinearGradientBrush_0618">
+                                <GradientStop Color="#FFFFE575" Offset="0" cs:Name="GradientStop_0060" />
+                                <GradientStop Color="#FFFFF37F" Offset="1" cs:Name="GradientStop_0061" />
+                                <GradientStop Color="#FFFFD86C" Offset="0.5" cs:Name="GradientStop_0062" />
+                            </LinearGradientBrush>
+                        </Border.Background>
+                    </Border>
+                </Border>
+            </Grid>
+            <Grid x:Name="Glyph" Height="7" Width="9" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" RenderTransformOrigin="0.5,0.5">
+                <Grid.RenderTransform>
+                    <RotateTransform Angle="0" />
+                </Grid.RenderTransform>
+                <Path Stretch="Fill" Fill="#BF3C3C3C" Data="F1 M 380,62L 380,64.9999L 382,65L 384,63L 385,63L 387,65L 389,65L 389,62L 385,58L 384,58L 380,62 Z " cs:Name="Path_0003" />
+                <Path Stretch="Fill" Fill="#FFDEDEDE" Data="F1 M 386,59L 387,59L 390,62L 390,64L 389,64L 387,62L 386,62L 384,64L 383,64L 383,62L 386,59 Z " Margin="1" cs:Name="Path_0004" />
+            </Grid>
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup x:Name="CommonStates">
+                    <VisualState x:Name="Normal" />
+                    <VisualState x:Name="Hover">
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetName="HoverState" Storyboard.TargetProperty="Opacity" To="1" Duration="0" />
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Pressed">
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetName="PressedState" Storyboard.TargetProperty="Opacity" To="1" Duration="0" />
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Focused">
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetName="HoverState" Storyboard.TargetProperty="Opacity" To="1" Duration="0" />
+                        </Storyboard>
+                    </VisualState>
+                </VisualStateGroup>
+                <VisualStateGroup x:Name="CheckedStates">
+                    <VisualState x:Name="Checked">
+                        <Storyboard>
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="Glyph" Storyboard.TargetProperty="(Grid.RenderTransform).(RotateTransform.Angle)">
+                                <DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="180" />
+                            </DoubleAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Unchecked">
+                        <Storyboard>
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="Glyph" Storyboard.TargetProperty="(Grid.RenderTransform).(RotateTransform.Angle)">
+                                <DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="0" />
+                            </DoubleAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+        </Grid>
+    </ControlTemplate>
+    <ControlTemplate x:Key="{dxrt:KeyTipControlThemeKey ResourceKey=BorderTemplate}" TargetType="{x:Type dxr:RibbonCheckedBorderControl}">
+        <Grid x:Name="Root" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
+            <Border Background="#FF767676" CornerRadius="2" MinWidth="15" cs:Name="Border_0009">
+                <Border Margin="1" CornerRadius="1">
+                    <Border.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" cs:Name="LinearGradientBrush_0619">
+                            <GradientStop Color="#FFFEFEFE" Offset="0" cs:Name="GradientStop_0063" />
+                            <GradientStop Color="#FFE7E7E7" Offset="1" cs:Name="GradientStop_0064" />
+                        </LinearGradientBrush>
+                    </Border.Background>
+                </Border>
+            </Border>
+            <ContentPresenter x:Name="contentPresenter" />
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup x:Name="EnabledStated">
+                    <VisualState x:Name="Enabled"/>
+                    <VisualState x:Name="Disabled">
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetName="Root" Storyboard.TargetProperty="Opacity" Duration="0" To="0.5" />
+                            <DoubleAnimation Storyboard.TargetName="contentPresenter" Storyboard.TargetProperty="Opacity" Duration="0" To="0.5" />
+                        </Storyboard>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+        </Grid>
+    </ControlTemplate>
+    <Style x:Key="{dxrt:KeyTipControlThemeKey ResourceKey=ContentStyle}" TargetType="{x:Type TextBlock}">
+        <Setter Property="Margin" Value="3,0,3,1" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="Foreground" Value="#FF3C3C3C" cs:Name="Setter_0007" />
+    </Style>
+    <!--BEGIN WPF-->
+    <!-- DeepBlue ... -->
+    <ControlTemplate x:Key="{dxrt:RibbonThemeKey ResourceKey=CollapsedSelectedPageBorderTemplateInAeroWindow}" TargetType="ContentControl">
+        <!--#FF4E4E4E-->
+        <StackPanel>
+            <Border BorderBrush="#40000000" BorderThickness="0,1,0,0" cs:Name="Border_0010" />
+            <Border BorderBrush="#7F000000" BorderThickness="0,1,0,0" cs:Name="Border_0011" />
+        </StackPanel>
+    </ControlTemplate>
+    <ControlTemplate x:Key="{dxrt:RibbonThemeKey ResourceKey=BackgroundTemplateInRibbonAeroWindow}" TargetType="{x:Type ContentControl}">
+        <Border Background="{x:Null}" />
+    </ControlTemplate>
+    <ControlTemplate x:Key="{dxrt:RibbonThemeKey ResourceKey=HeaderBorderTemplateInRibbonAeroWindow}" TargetType="{x:Type ContentControl}">
+        <Border Background="Transparent" cs:Name="Border_0012" />
+    </ControlTemplate>
+    <ControlTemplate x:Key="{dxrt:RibbonThemeKey ResourceKey=TabPartBorderTemplateInRibbonAeroWindow}" TargetType="{x:Type ContentControl}"></ControlTemplate>
+    <ControlTemplate x:Key="{dxrt:RibbonThemeKey ResourceKey=HeaderAndTabsBorderTemplatedInAeroWindow}" TargetType="{x:Type ContentControl}">
+        <Grid ClipToBounds="True">
+            <Border Margin="10,0,10,0" BorderBrush="#FF5E5E5E" BorderThickness="0,0,0,0" SnapsToDevicePixels="True" IsHitTestVisible="False" CornerRadius="30,30,0,0" cs:Name="Border_0013">
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1" cs:Name="LinearGradientBrush_0620">
+                        <GradientStop Color="#00000000" Offset="0" cs:Name="GradientStop_0065" />
+                        <GradientStop Color="#E0000000" Offset="1" cs:Name="GradientStop_0066" />
+                    </LinearGradientBrush>
+                </Border.Background>
+                <Border.Effect>
+                    <BlurEffect Radius="20" RenderingBias="Performance" />
+                </Border.Effect>
+            </Border>
+        </Grid>
+    </ControlTemplate>
+    <!-- DeepBlue ... -->
+    <ControlTemplate x:Key="{dxrt:RibbonThemeKey ResourceKey=RightRepeatButtonTemplateInRibbonAeroWindow}" TargetType="{x:Type RepeatButton}">
+        <Grid Width="12" Height="20" SnapsToDevicePixels="True">
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup x:Name="CommonStates">
+                    <VisualState x:Name="Normal">
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="NormalState" Duration="0" To="1" />
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="MouseOver">
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="HoverState" Duration="0" To="1" />
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Pressed">
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="PressedState" Duration="0" To="1" />
+                        </Storyboard>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+            <Border x:Name="NormalState" Background="#FF6A6A6A" cs:Name="Border_0014">
+                <Border Margin="1">
+                    <Border.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" cs:Name="LinearGradientBrush_0621">
+                            <GradientStop Color="#FFB3B3B3" Offset="0" cs:Name="GradientStop_0067" />
+                            <GradientStop Color="#FF9F9F9F" Offset="1" cs:Name="GradientStop_0068" />
+                        </LinearGradientBrush>
+                    </Border.Background>
+                </Border>
+            </Border>
+            <Border x:Name="HoverState" Opacity="0">
+                <Border.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" cs:Name="LinearGradientBrush_0622">
+                        <GradientStop Color="#BFC79810" Offset="0" cs:Name="GradientStop_0069" />
+                        <GradientStop Color="#BFA88407" Offset="1" cs:Name="GradientStop_0070" />
+                    </LinearGradientBrush>
+                </Border.Background>
+                <Border Margin="1">
+                    <Border.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" cs:Name="LinearGradientBrush_0623">
+                            <GradientStop Color="#FFFFFAE6" Offset="0" cs:Name="GradientStop_0071" />
+                            <GradientStop Color="#FFFFFFED" Offset="1" cs:Name="GradientStop_0072" />
+                        </LinearGradientBrush>
+                    </Border.Background>
+                    <Border Margin="1">
+                        <Border.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" cs:Name="LinearGradientBrush_0624">
+                                <GradientStop Color="#FFFFEEA8" Offset="0" cs:Name="GradientStop_0073" />
+                                <GradientStop Color="#FFFFFCE0" Offset="1" cs:Name="GradientStop_0074" />
+                                <GradientStop Color="#FFFFE277" Offset="0.5" cs:Name="GradientStop_0075" />
+                            </LinearGradientBrush>
+                        </Border.Background>
+                    </Border>
+                </Border>
+            </Border>
+            <Border x:Name="PressedState" Opacity="0">
+                <Border.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" cs:Name="LinearGradientBrush_0625">
+                        <GradientStop Color="#BFA26F16" Offset="0" cs:Name="GradientStop_0076" />
+                        <GradientStop Color="#BFA2832C" Offset="1" cs:Name="GradientStop_0077" />
+                    </LinearGradientBrush>
+                </Border.Background>
+                <Border Margin="1">
+                    <Border.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" cs:Name="LinearGradientBrush_0626">
+                            <GradientStop Color="#FFFFE575" Offset="0" cs:Name="GradientStop_0078" />
+                            <GradientStop Color="#FFFFF37F" Offset="1" cs:Name="GradientStop_0079" />
+                            <GradientStop Color="#FFFFD86C" Offset="0.5" cs:Name="GradientStop_0080" />
+                        </LinearGradientBrush>
+                    </Border.Background>
+                </Border>
+            </Border>
+            <Path Stretch="Fill" Fill="#FF3C3C3C" Data="F1 M 127.5,56.5002L 127.5,64.5002L 131.5,60.5002L 127.5,56.5002 Z" Margin="1,0,0,0" Width="4" Height="8" VerticalAlignment="Center" HorizontalAlignment="Center" UseLayoutRounding="False" cs:Name="Path_0007" />
+        </Grid>
+    </ControlTemplate>
+    <!-- DeepBlue ... -->
+    <ControlTemplate x:Key="{dxrt:RibbonThemeKey ResourceKey=LeftRepeatButtonTemplateInRibbonAeroWindow}" TargetType="{x:Type RepeatButton}">
+        <Grid Width="12" Height="20" SnapsToDevicePixels="True">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="12" />
+                <ColumnDefinition Width="3" />
+            </Grid.ColumnDefinitions>
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup x:Name="CommonStates">
+                    <VisualState x:Name="Normal">
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="NormalState" Duration="0" To="1" />
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="MouseOver">
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="HoverState" Duration="0" To="1" />
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Pressed">
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="PressedState" Duration="0" To="1" />
+                        </Storyboard>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+            <Border x:Name="NormalState" Background="#FF6A6A6A" Opacity="0" cs:Name="Border_0015">
+                <Border Margin="1">
+                    <Border.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" cs:Name="LinearGradientBrush_0627">
+                            <GradientStop Color="#FFB3B3B3" Offset="0" cs:Name="GradientStop_0081" />
+                            <GradientStop Color="#FF9F9F9F" Offset="1" cs:Name="GradientStop_0082" />
+                        </LinearGradientBrush>
+                    </Border.Background>
+                </Border>
+            </Border>
+            <Border x:Name="HoverState" Opacity="0">
+                <Border.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" cs:Name="LinearGradientBrush_0628">
+                        <GradientStop Color="#BFC79810" Offset="0" cs:Name="GradientStop_0083" />
+                        <GradientStop Color="#BFA88407" Offset="1" cs:Name="GradientStop_0084" />
+                    </LinearGradientBrush>
+                </Border.Background>
+                <Border Margin="1">
+                    <Border.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" cs:Name="LinearGradientBrush_0629">
+                            <GradientStop Color="#FFFFFAE6" Offset="0" cs:Name="GradientStop_0085" />
+                            <GradientStop Color="#FFFFFFED" Offset="1" cs:Name="GradientStop_0086" />
+                        </LinearGradientBrush>
+                    </Border.Background>
+                    <Border Margin="1">
+                        <Border.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" cs:Name="LinearGradientBrush_0630">
+                                <GradientStop Color="#FFFFEEA8" Offset="0" cs:Name="GradientStop_0087" />
+                                <GradientStop Color="#FFFFFCE0" Offset="1" cs:Name="GradientStop_0088" />
+                                <GradientStop Color="#FFFFE277" Offset="0.5" cs:Name="GradientStop_0089" />
+                            </LinearGradientBrush>
+                        </Border.Background>
+                    </Border>
+                </Border>
+            </Border>
+            <Border x:Name="PressedState" Opacity="0">
+                <Border.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" cs:Name="LinearGradientBrush_0631">
+                        <GradientStop Color="#BFA26F16" Offset="0" cs:Name="GradientStop_0090" />
+                        <GradientStop Color="#BFA2832C" Offset="1" cs:Name="GradientStop_0091" />
+                    </LinearGradientBrush>
+                </Border.Background>
+                <Border Margin="1">
+                    <Border.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" cs:Name="LinearGradientBrush_0632">
+                            <GradientStop Color="#FFFFE575" Offset="0" cs:Name="GradientStop_0092" />
+                            <GradientStop Color="#FFFFF37F" Offset="1" cs:Name="GradientStop_0093" />
+                            <GradientStop Color="#FFFFD86C" Offset="0.5" cs:Name="GradientStop_0094" />
+                        </LinearGradientBrush>
+                    </Border.Background>
+                </Border>
+            </Border>
+            <Path x:Name="Glyph" Stretch="Fill" Fill="#FF3C3C3C" Data="F1 M 124.5,56.5002L 124.5,64.5002L 120.5,60.5002L 124.5,56.5002 Z" Margin="0,0,1,0" Height="8" Width="4" VerticalAlignment="Center" HorizontalAlignment="Center" UseLayoutRounding="False" cs:Name="Path_0008" />
+        </Grid>
+    </ControlTemplate>
+    <Style x:Key="{dxrt:RibbonThemeKey ResourceKey=MinimizationButtonStyleInRibbonAeroWindow}" TargetType="{x:Type dxr:RibbonCheckedBorderControl}" />
+    <ControlTemplate x:Key="{dxrt:RibbonThemeKey ResourceKey=MinimizationButtonTemplateInRibbonAeroWindow}" TargetType="{x:Type dxr:RibbonCheckedBorderControl}">
+        <Grid Width="21" Height="22" SnapsToDevicePixels="True">
+            <Grid x:Name="HoverState" Opacity="0">
+                <Border CornerRadius="2">
+                    <Border.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" cs:Name="LinearGradientBrush_0633">
+                            <GradientStop Color="#BFC79810" Offset="0" cs:Name="GradientStop_0095" />
+                            <GradientStop Color="#BFA88407" Offset="1" cs:Name="GradientStop_0096" />
+                        </LinearGradientBrush>
+                    </Border.Background>
+                    <Border Margin="1" CornerRadius="1">
+                        <Border.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" cs:Name="LinearGradientBrush_0634">
+                                <GradientStop Color="#FFFFFAE6" Offset="0" cs:Name="GradientStop_0097" />
+                                <GradientStop Color="#FFFFFFED" Offset="1" cs:Name="GradientStop_0098" />
+                            </LinearGradientBrush>
+                        </Border.Background>
+                        <Border Margin="1">
+                            <Border.Background>
+                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" cs:Name="LinearGradientBrush_0635">
+                                    <GradientStop Color="#FFFFEEA8" Offset="0" cs:Name="GradientStop_0099" />
+                                    <GradientStop Color="#FFFFFCE0" Offset="1" cs:Name="GradientStop_0100" />
+                                    <GradientStop Color="#FFFFE277" Offset="0.5" cs:Name="GradientStop_0101" />
+                                </LinearGradientBrush>
+                            </Border.Background>
+                        </Border>
+                    </Border>
+                </Border>
+            </Grid>
+            <Grid x:Name="PressedState" Opacity="0">
+                <Border CornerRadius="2">
+                    <Border.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" cs:Name="LinearGradientBrush_0636">
+                            <GradientStop Color="#BFA26F16" Offset="0" cs:Name="GradientStop_0102" />
+                            <GradientStop Color="#BFA2832C" Offset="1" cs:Name="GradientStop_0103" />
+                        </LinearGradientBrush>
+                    </Border.Background>
+                    <Border Margin="1" CornerRadius="1">
+                        <Border.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" cs:Name="LinearGradientBrush_0637">
+                                <GradientStop Color="#FFFFE575" Offset="0" cs:Name="GradientStop_0104" />
+                                <GradientStop Color="#FFFFF37F" Offset="1" cs:Name="GradientStop_0105" />
+                                <GradientStop Color="#FFFFD86C" Offset="0.5" cs:Name="GradientStop_0106" />
+                            </LinearGradientBrush>
+                        </Border.Background>
+                    </Border>
+                </Border>
+            </Grid>
+            <Grid x:Name="Glyph" Height="7" Width="9" HorizontalAlignment="Center" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5">
+                <Grid.RenderTransform>
+                    <RotateTransform Angle="0" />
+                </Grid.RenderTransform>
+                <Path Stretch="Fill" Fill="#BF3C3C3C" Data="F1 M 380,62L 380,64.9999L 382,65L 384,63L 385,63L 387,65L 389,65L 389,62L 385,58L 384,58L 380,62 Z " cs:Name="Path_0009" />
+                <Path Stretch="Fill" Fill="#FFDEDEDE" Data="F1 M 386,59L 387,59L 390,62L 390,64L 389,64L 387,62L 386,62L 384,64L 383,64L 383,62L 386,59 Z " Margin="1" cs:Name="Path_0010" />
+            </Grid>
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup x:Name="CommonStates">
+                    <VisualState x:Name="Normal" />
+                    <VisualState x:Name="Hover">
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetName="HoverState" Storyboard.TargetProperty="Opacity" To="1" Duration="0" />
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Pressed">
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetName="PressedState" Storyboard.TargetProperty="Opacity" To="1" Duration="0" />
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Focused">
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetName="HoverState" Storyboard.TargetProperty="Opacity" To="1" Duration="0" />
+                        </Storyboard>
+                    </VisualState>
+                </VisualStateGroup>
+                <VisualStateGroup x:Name="CheckedStates">
+                    <VisualState x:Name="Checked">
+                        <Storyboard>
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="Glyph" Storyboard.TargetProperty="(Grid.RenderTransform).(RotateTransform.Angle)">
+                                <DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="180" />
+                            </DoubleAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Unchecked">
+                        <Storyboard>
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="Glyph" Storyboard.TargetProperty="(Grid.RenderTransform).(RotateTransform.Angle)">
+                                <DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="0" />
+                            </DoubleAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+        </Grid>
+    </ControlTemplate>
+    <Style x:Key="{dxrt:RibbonThemeKey ResourceKey=CaptionStyleInRibbonAeroWindow}" TargetType="{x:Type ContentControl}">
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="Foreground" Value="#FF000000" cs:Name="Setter_0008" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ContentControl">
+                    <Grid>
+                        <Border Background="#FFFFFFFF" CornerRadius="6" Opacity="0.3" Margin="-2,0,-2,0" cs:Name="Border_0016">
+                            <Border.Effect>
+                                <BlurEffect Radius="10" />
+                            </Border.Effect>
+                        </Border>
+                        <TextBlock x:Name="PART_Text" Background="{x:Null}" Foreground="#FF000000" Text="{TemplateBinding Content}" cs:Name="TextBlock_0001" TextTrimming="CharacterEllipsis" TextAlignment="Left"/>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="VerticalAlignment" Value="Center" />
+    </Style>
+    <Style x:Key="{dxrt:RibbonThemeKey ResourceKey=ApplicationIconContainerStyleInRibbonAeroWindow}" TargetType="{x:Type ContentControl}">
+        <Setter Property="HorizontalAlignment" Value="Left" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="Margin" Value="0,2,0,0" />
+    </Style>
+    <Style x:Key="{dxrt:RibbonThemeKey ResourceKey=IconAndCaptionAreaStyleInRibbonAeroWindow}" TargetType="{x:Type ContentControl}"></Style>
+    <Style x:Key="{dxrt:RibbonThemeKey ResourceKey=HeaderQuickAccessToolbarContainerStyleWithoutAppIconInAeroWindow}" TargetType="ContentControl">
+        <Setter Property="HorizontalAlignment" Value="Left" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="Margin" Value="0,0,0,0" />
+    </Style>
+    <Style x:Key="{dxrt:RibbonThemeKey ResourceKey=HeaderQuickAccessToolbar2007ContainerStyleInAeroWindow}" TargetType="ContentControl">
+        <Setter Property="HorizontalAlignment" Value="Left" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="Margin" Value="0,2,0,0" />
+    </Style>
+    <Style x:Key="{dxrt:RibbonThemeKey ResourceKey=HeaderQuickAccessToolbar2010ContainerStyleInAeroWindow}" TargetType="ContentControl">
+        <Setter Property="HorizontalAlignment" Value="Left" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="Margin" Value="0,2,0,0" />
+    </Style>
+    <sys:Double x:Key="{dxrt:RibbonThemeKey ResourceKey=ApplicationMenuHorizontalOffsetInAeroWindow}">0</sys:Double>
+    <sys:Double x:Key="{dxrt:RibbonThemeKey ResourceKey=ApplicationMenuVerticalOffsetInAeroWindow}">22</sys:Double>
+    <!--END WPF-->
+    <ControlTemplate x:Key="{dxrt:RibbonCustomizationThemeKey ResourceKey=UpArrowThemeKey}">
+        <Path Stretch="Fill" Fill="#FF3C3C3C" Data="F1 M 692,437L 700,437L 696,433L 692,437 Z" Height="4" Width="8" cs:Name="Path_0005" />
+    </ControlTemplate>
+    <ControlTemplate x:Key="{dxrt:RibbonCustomizationThemeKey ResourceKey=DownArrowThemeKey}">
+        <Path Stretch="Fill" Fill="#FF3C3C3C" Data="F1 M 692,427L 700,427L 696,431L 692,427 Z" Height="4" Width="8" cs:Name="Path_0006" />
+    </ControlTemplate>
+    <ControlTemplate x:Key="{dxrt:RibbonCustomizationThemeKey ResourceKey=CustomizationArrowControlTemplate}" TargetType="{x:Type dxr:CustomizationArrowControl}">
+        <Grid SnapsToDevicePixels="True">
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup x:Name="DirectionStates">
+                    <VisualState x:Name="Up">
+                        <Storyboard>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_UpGlyph" Storyboard.TargetProperty="Visibility" dxcn:ValueSetter.Visibility="Visible" />
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Down">
+                        <Storyboard>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_DownGlyph" Storyboard.TargetProperty="Visibility" dxcn:ValueSetter.Visibility="Visible" />
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Left">
+                        <Storyboard>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_LeftGlyph" Storyboard.TargetProperty="Visibility" dxcn:ValueSetter.Visibility="Visible" />
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Right">
+                        <Storyboard>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_RightGlyph" Storyboard.TargetProperty="Visibility" dxcn:ValueSetter.Visibility="Visible" />
+                        </Storyboard>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+            <Path x:Name="PART_UpGlyph" Stretch="Fill" Fill="#FF3C3C3C" Data="F1 M 208,44.9996L 214,51L 211,51L 211,56.9977L 205,57.0023L 205,51L 202,51L 208,44.9996 Z " Width="12" Height="12" Visibility="Collapsed" cs:Name="Path_0011" />
+            <Path x:Name="PART_RightGlyph" Stretch="Fill" Fill="#FF3C3C3C" Data="F1 M 224,61L 218,67L 218,64L 212.002,64L 211.997,58L 218,58L 218,55L 224,61 Z " Width="12" Height="12" Visibility="Collapsed" cs:Name="Path_0012" />
+            <Path x:Name="PART_DownGlyph" Stretch="Fill" Fill="#FF3C3C3C" Data="F1 M 208,77L 202,70.9996L 205,70.9996L 205,65.002L 211,64.9974L 211,70.9996L 214,70.9996L 208,77 Z " Width="12" Height="12" Visibility="Collapsed" cs:Name="Path_0013" />
+            <Path x:Name="PART_LeftGlyph" Stretch="Fill" Fill="#FF3C3C3C" Data="F1 M 191.997,61L 197.998,55L 197.998,58L 203.995,58.0001L 204,64L 197.998,64L 197.998,67L 191.997,61 Z " Width="12" Height="12" Visibility="Collapsed" cs:Name="Path_0014" />
+        </Grid>
+    </ControlTemplate>
+    <ControlTemplate x:Key="{dxrt:RibbonCustomizationThemeKey ResourceKey=CustomizationSeparatorControlTemplate}" TargetType="{x:Type dxr:CustomizationSeparatorControl}">
+        <Border Background="#FF606060" BorderBrush="#3FFFFFFF" BorderThickness="0,0,0,1" Height="2" HorizontalAlignment="Stretch" cs:Name="Border_0018" />
+    </ControlTemplate>
+</ResourceDictionary>

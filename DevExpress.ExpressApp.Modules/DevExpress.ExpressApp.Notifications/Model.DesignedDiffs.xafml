@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application>
+  <BOModel>
+    <Class Name="DevExpress.ExpressApp.Notifications.NotificationsObject" ObjectCaptionFormat="{0:NotificationsCount} Reminder(s)" Caption="" />
+  </BOModel>
+  <ActionDesign>
+    <Actions>
+      <Action Id="ShowNotificationsAction" PaintStyle="CaptionAndImage" />
+      <Action Id="RefreshNotifications" Caption="Refresh" />
+    </Actions>
+  </ActionDesign>
+  <Localization>
+    <LocalizationGroup Name="Notifications" IsNewNode="True">
+      <LocalizationItem Name="ShowNotificationsActionEnabledTooltip" Value="Show Notifications" IsNewNode="True" />
+      <LocalizationItem Name="ShowNotificationsActionDisabledTooltip" Value="No Items to Show" IsNewNode="True" />
+      <LocalizationItem Name="NotificationViewCaption" Value="Reminder(s)" IsNewNode="True" />
+    </LocalizationGroup>
+  </Localization>
+  <SchemaModules>
+    <SchemaModule Name="SystemModule" Version="14.2.0.0" IsNewNode="True" />
+  </SchemaModules>
+  <Views>
+    <ListView Id="PostponeTime_LookupListView" AllowDelete="False" AllowNew="False" />
+    <DetailView Id="NotificationsObject_DetailView">
+      <Items>
+        <ActionContainerViewItem Id="Dismiss" ActionContainer="Dismiss" IsNewNode="True" />
+        <ActionContainerViewItem Id="RefreshNotifications" ActionContainer="RefreshNotifications" IsNewNode="True" />
+        <PropertyEditor Id="Postpone" Caption="Snooze time" LookupEditorMode="AllItems" />
+        <ActionContainerViewItem Id="DismissAll" ActionContainer="DismissAll" IsNewNode="True" />
+        <ActionContainerViewItem Id="Snooze" IsNewNode="True" />
+      </Items>
+      <Layout>
+        <LayoutGroup Id="Main" Removed="True" />
+        <LayoutGroup Id="MasterGroup" ShowCaption="False" IsNewNode="True">
+          <LayoutGroup Id="Main" Index="0" ShowCaption="False" RelativeSize="9" IsNewNode="True">
+            <LayoutItem Id="EmptyItem1" ShowCaption="False" ViewItem="" SizeConstraintsType="Custom" Index="0" RelativeSize="54" MinSize="10, 20" MaxSize="0, 20" IsNewNode="True" />
+            <LayoutGroup Id="LayoutGroupRefresh" ShowCaption="False" CaptionLocation="Top" TextAlignMode="AlignLocal" Direction="Horizontal" Index="1" RelativeSize="43" IsNewNode="True">
+              <LayoutItem Id="RefreshNotifications" ViewItem="RefreshNotifications" SizeConstraintsType="Default" RelativeSize="10" Index="1" IsNewNode="True" />
+              <LayoutItem Id="EmptyItem2" ShowCaption="False" ViewItem="" SizeConstraintsType="Default" Index="2" RelativeSize="50" IsNewNode="True" />
+              <LayoutItem Id="NotificationsState" ViewItem="NotificationsState" SizeConstraintsType="Default" Index="3" RelativeSize="40" IsNewNode="True" />
+            </LayoutGroup>
+            <LayoutItem Id="Notifications" ViewItem="Notifications" Index="2" RelativeSize="84" IsNewNode="True" />
+            <LayoutItem Id="EmptyItem3" ShowCaption="False" ViewItem="" SizeConstraintsType="Custom" Index="3" RelativeSize="10" MaxSize="0, 10" MinSize="0, 10" IsNewNode="True" />
+          </LayoutGroup>
+          <LayoutGroup Id="LayoutGroupPostpone" Index="1" TextAlignMode="AlignLocal" RelativeSize="21" ShowCaption="False" CaptionLocation="Top" IsNewNode="True">
+            <LayoutGroup Id="LayoutGroup1" ShowCaption="False" CaptionLocation="Top" TextAlignMode="AlignLocal" Direction="Horizontal" Index="0" RelativeSize="45" IsNewNode="True">
+              <LayoutItem Id="Postpone" ShowCaption="True" ViewItem="Postpone" Index="0" RelativeSize="40" SizeConstraintsType="Custom" MaxSize="209, 36" MinSize="209, 36" IsNewNode="True" />
+              <LayoutItem Id="EmptyItem4" ShowCaption="False" ViewItem="" SizeConstraintsType="Default" Index="1" RelativeSize="46" IsNewNode="True" />
+            </LayoutGroup>
+            <LayoutItem Id="Item4" ShowCaption="False" ViewItem="" SizeConstraintsType="Custom" Index="1" RelativeSize="54" MinSize="10, 40" MaxSize="0, 40" IsNewNode="True" />
+          </LayoutGroup>
+          <LayoutGroup Id="LayoutGroupActions" ShowCaption="False" CaptionLocation="Top" TextAlignMode="AlignLocal" Direction="Horizontal" Index="2" RelativeSize="10" IsNewNode="True">
+            <LayoutItem Id="ShowNotificationsWindow" ViewItem="ShowNotificationsWindow" Index="0" IsNewNode="True" />
+            <LayoutItem Id="Snooze" ViewItem="Snooze" SizeConstraintsType="Default" Index="1" RelativeSize="6" IsNewNode="True" />
+            <LayoutItem Id="Dismiss" ViewItem="Dismiss" SizeConstraintsType="Default" Index="2" RelativeSize="6" IsNewNode="True" />
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+  </Views>
+</Application>

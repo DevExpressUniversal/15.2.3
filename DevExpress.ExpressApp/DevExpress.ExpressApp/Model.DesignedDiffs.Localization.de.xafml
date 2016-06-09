@@ -1,0 +1,175 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application ProtectedContentText="Geschützter Inhalt">
+  <ActionDesign>
+    <Actions>
+      <Action Id="About Info" Caption="Über..." />
+      <Action Id="Cancel" Caption="Abbrechen" />
+      <Action Id="CreateDashboard" Caption="Erzeuge Übersicht" />
+      <Action Id="Delete" Caption="Löschen" ConfirmationMessage="Sie sind im Begriff die selektierten Datensätze zu löschen. Möchten Sie fortfahren?" />
+      <Action Id="Delete Item" Caption="Datensatz löschen" ConfirmationMessage="Sie sind im Begriff die selektierten Datensätze zu löschen. Möchten Sie fortsetzen?" />
+      <Action Id="Diagnostic Info" Caption="Diagnose" />
+      <Action Id="Diagnostic Info.EasyTest Control">
+        <ChoiceActionItems>
+          <ChoiceActionItem Id="EasyTest Control" Caption="EasyTest контролы" />
+        </ChoiceActionItems>
+      </Action>
+      <Action Id="Diagnostic Info.Actions Info">
+        <ChoiceActionItems>
+          <ChoiceActionItem Id="Actions Info" Caption="Aktions Info" />
+        </ChoiceActionItems>
+      </Action>
+      <Action Id="Diagnostic Info.View Info">
+        <ChoiceActionItems>
+          <ChoiceActionItem Id="View Info" Caption="Ansicht Info" />
+        </ChoiceActionItems>
+      </Action>
+      <Action Id="DialogCancel" Caption="Abbrechen" />
+      <Action Id="FullTextSearch" NullValuePrompt="Suchtext..." Caption="Filtern nach Text" ToolTip="Datensätze filtern nach Text" ShortCaption="Ausführen!" />
+      <Action Id="HideItemsFromDashboard" Caption="Aus Übersicht ausblenden" ToolTip="Ausgewählten Artikel aus Übersicht ausblenden" />
+      <Action Id="Link" Caption="Verbinden" />
+      <Action Id="ListViewShowObject" Caption="Öffnen" />
+      <Action Id="Logoff" Caption="Abmelden" />
+      <Action Id="Logon" Caption="Anmeldung" />
+      <Action Id="NavigateBack" ToolTip="Navigieren zur vorherigen Ansicht" Caption="Zurück" />
+      <Action Id="NavigateForward" ToolTip="Navigieren zur nächsten Ansicht" Caption="Vorwärts" />
+      <Action Id="New" Caption="Neu">
+        <DisableReasons>
+          <Reason Id="MasterObjectIsNew" Caption="Der editierte Datensatz ist neu." />
+        </DisableReasons>
+      </Action>
+      <Action Id="NextObject" Caption="Nächster Datensatz" />
+      <Action Id="OrganizeDashboard" Caption="Organisiere Übersicht" />
+      <Action Id="PreviousObject" Caption="Vorheriger Datensatz" />
+      <Action Id="Refresh" Caption="Aktualisieren" />
+      <Action Id="Save" Caption="Speichern" />
+      <Action Id="SaveAndClose" Caption="Speichern und Schliessen" />
+      <Action Id="SaveAndNew" Caption="Speichern und Neu" />
+      <Action Id="SetFilter" Caption="Filtern" />
+      <Action Id="ShowItemsOnDashboard" Caption="Zeige in Übersicht" ToolTip="Zeige ausgewählten Artikel in Übersicht" />
+      <Action Id="Unlink" Caption="Trennen" ConfirmationMessage="Sie sind im Begriff die selektierten Datensätze zu trennen. Möchten Sie fortfahren?" />
+    </Actions>
+    <DisableReasons>
+      <Reason Id="ByContext_RequireMultipleObjects" Caption="Benötigt mindestens einen selektierten Datensatz" />
+      <Reason Id="ByContext_RequireSingleObject" Caption="Benötigt einen einzelnen selektierten Datensatz" />
+      <Reason Id="Security" Caption="Berechtigung verweigert" />
+    </DisableReasons>
+  </ActionDesign>
+  <BOModel>
+    <Class Name="DevExpress.ExpressApp.Editors.CriteriaProvider" Caption="Kriteriumanbieter">
+      <OwnMembers>
+        <Member Name="FilteredObjectsType" Caption="Gefilterter Datensatztyp" />
+        <Member Name="FilterString" Caption="Filtertext" />
+      </OwnMembers>
+    </Class>
+    <Class Name="DevExpress.ExpressApp.SystemModule.AboutInfo" Caption="Info über">
+      <OwnMembers>
+        <Member Name="Company" Caption="Firma" />
+        <Member Name="Copyright" Caption="Urheberrecht" />
+        <Member Name="Description" Caption="Beschreibung" />
+        <Member Name="LogoImageName" Caption="Logo Bildname" />
+        <Member Name="ProductName" Caption="Produktname" />
+      </OwnMembers>
+    </Class>
+    <Class Name="DevExpress.ExpressApp.SystemModule.ActionContainerDashboardOrganizationItem" Caption="Aktion Container">
+      <OwnMembers>
+        <Member Name="ActionContainer" Caption="Aktion Container" />
+      </OwnMembers>
+    </Class>
+    <Class Name="DevExpress.ExpressApp.SystemModule.ActionContainerDescriptor" Caption="Aktion Container Beschreiber">
+      <OwnMembers>
+        <Member Name="ActionContainerId" Caption="Aktion Container Id" />
+      </OwnMembers>
+    </Class>
+    <Class Name="DevExpress.ExpressApp.SystemModule.DashboardCreationInfo" Caption="Übersicht Erstellungs Assistent">
+      <OwnMembers>
+        <Member Name="DashboardOrganizer" Caption="Ansicht Artikel" />
+        <Member Name="NavigationGroupName" Caption="Ziel Navigationsgruppe " />
+      </OwnMembers>
+    </Class>
+    <Class Name="DevExpress.ExpressApp.SystemModule.DashboardOrganizationItem" Caption="Übersicht Organisation Artikel">
+      <OwnMembers>
+        <Member Name="Item" Caption="Artikel" />
+        <Member Name="Visible" Caption="Sichtbar" />
+      </OwnMembers>
+    </Class>
+    <Class Name="DevExpress.ExpressApp.SystemModule.DashboardOrganizer" Caption="Übersicht Organisierer">
+      <OwnMembers>
+        <Member Name="ViewItems" Caption="Ansicht Artikel" />
+      </OwnMembers>
+    </Class>
+    <Class Name="DevExpress.ExpressApp.SystemModule.DashboardViewItemDescriptor" Caption="Übersicht Ansicht Artikel Beschreiber">
+      <OwnMembers>
+        <Member Name="ViewCaption" Caption="Ansicht Beschriftung" />
+        <Member Name="ViewDescription" Caption="Ansicht Beschreibung" />
+        <Member Name="ViewId" Caption="Ansicht Id" />
+      </OwnMembers>
+    </Class>
+    <Class Name="DevExpress.ExpressApp.SystemModule.DiagnosticInfoObject" Caption="Diagnose Info Datensatz">
+      <OwnMembers>
+        <Member Name="AsText" Caption="Als Text" />
+      </OwnMembers>
+    </Class>
+    <Class Name="DevExpress.ExpressApp.SystemModule.StaticImageDashboardOrganizationItem" Caption="Statisches Bild">
+      <OwnMembers>
+        <Member Name="ImageName" Caption="Bild Name" />
+        <Member Name="Preview" Caption="Vorschau" />
+      </OwnMembers>
+    </Class>
+    <Class Name="DevExpress.ExpressApp.SystemModule.StaticTextDashboardOrganizationItem" Caption="Statischer Text" />
+    <Class Name="DevExpress.ExpressApp.SystemModule.ViewDashboardOrganizationItem" Caption="Ansicht">
+      <OwnMembers>
+        <Member Name="Criteria" Caption="Kriterien" />
+        <Member Name="ObjectType" Caption="Objekt Typ" />
+        <Member Name="ViewDescriptor" Caption="Ansicht" />
+      </OwnMembers>
+    </Class>
+    <Class Name="DevExpress.ExpressApp.Updating.ModuleInfo" Caption="Modul Info" />
+    <Class Name="DevExpress.Xpo.PersistentBase" Caption="Beständige Basis" />
+    <Class Name="DevExpress.Xpo.XPBaseObject" Caption="XPBasis Objekt" />
+    <Class Name="DevExpress.Xpo.XPCustomObject" Caption="XPBenutzerdefiniertes Objekt" />
+    <Class Name="DevExpress.Xpo.XPObject" Caption="XPObjekt" />
+    <Class Name="DevExpress.Xpo.XPObjectType" Caption="XPObjekt Typ" />
+  </BOModel>
+  <Localization>
+    <LocalizationGroup Name="Captions">
+      <LocalizationItem Name="DiagnosticChildWindowAddition" Value="(Unterfenster)" />
+    </LocalizationGroup>
+    <LocalizationGroup Name="DashboardOrganizationItems">
+      <LocalizationItem Name="ActionContainer" Value="AktionContainer" />
+      <LocalizationItem Name="StaticImage" Value="Bild  " />
+    </LocalizationGroup>
+    <LocalizationGroup Name="DialogButtons">
+      <LocalizationItem Name="Abort" Value="&amp;Abbrechen" />
+      <LocalizationItem Name="Add" Value="Hinzufügen" />
+      <LocalizationItem Name="Apply" Value="Anwenden" />
+      <LocalizationItem Name="Back" Value="&lt; Zurück" />
+      <LocalizationItem Name="Cancel" Value="&amp;Abbrechen" />
+      <LocalizationItem Name="Clear" Value="L&amp;eeren" />
+      <LocalizationItem Name="Close" Value="Schliessen" />
+      <LocalizationItem Name="Find" Value="Suche" />
+      <LocalizationItem Name="Ignore" Value="&amp;Ignorieren" />
+      <LocalizationItem Name="Next" Value="Vorwärts &gt;" />
+      <LocalizationItem Name="No" Value="&amp;Nein" />
+      <LocalizationItem Name="Remove" Value="Entfernen" />
+      <LocalizationItem Name="Retry" Value="&amp;Wiederholen" />
+      <LocalizationItem Name="Yes" Value="&amp;Ja" />
+    </LocalizationGroup>
+    <LocalizationGroup Name="Enums">
+      <LocalizationGroup Name="DevExpress.ExpressApp.SystemModule.DashboardItemVisibility" Value="Sichtbare Übersicht Artikel">
+        <LocalizationItem Name="Hidden" Value="Versteckt" />
+        <LocalizationItem Name="Visible" Value="Sichtbar" />
+      </LocalizationGroup>
+    </LocalizationGroup>
+    <LocalizationGroup Name="Messages">
+      <LocalizationItem Name="User" Value="Benutzer: {0}" />
+    </LocalizationGroup>
+    <LocalizationGroup Name="Texts">
+      <LocalizationItem Name="Error" Value="Fehler" />
+      <LocalizationItem Name="NullValueText" Value="k.A." />
+      <LocalizationItem Name="Warning" Value="Warnung" />
+    </LocalizationGroup>
+  </Localization>
+  <Views>
+    <DetailView Id="AboutInfo_DetailView" Caption="Über" />
+  </Views>
+</Application>

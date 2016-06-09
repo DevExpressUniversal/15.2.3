@@ -1,0 +1,1219 @@
+TokenKind = Type;
+TokenValue = Value;
+GenLinePragmas = false;
+
+IgnoreLLWarnings = true;
+
+PARSER PreprocessorRoot
+ 
+FRAME
+-->begin
+using System;
+using System.Collections;
+using System.Collections.Specialized;
+
+#if DXCORE
+namespace DevExpress.CodeRush.StructuralParser.VB.Preprocessor
+#else
+namespace DevExpress.CodeParser.VB.Preprocessor
+#endif
+{
+	-->constants
+	
+	public partial class VBPreprocessor
+	{
+
+		-->declarations
+
+		protected void HandlePragmas()
+		{
+			-->pragmas
+		}
+		
+		-->productions
+				
+		protected void StartRule()
+		{
+			-->parseRoot
+		}
+				
+		protected void WhitespaceLinesBase()
+		{
+			WhitespaceLines();
+		}
+		
+		protected bool[,] CreateSetArray()
+		{
+			bool[,] set =
+			{
+		-->initialization
+			};
+			return set;
+		}
+		
+	} // end Parser
+		
+	public class PreprocessorErrors : ParserErrorsBase
+	{
+		protected override string GetSyntaxErrorText(int n)
+		{
+			string s;
+			switch (n)
+			{
+	-->errors
+				default:
+					s = "error " + n;
+					break;
+			}
+			return s;
+		}
+	}
+}
+$$$
+ENDFRAME
+
+TOKENNAMES
+	EOF															= EOF
+	EOL															= LineTerminator
+	INTEGERLITERAL									= IntegerLiteral
+	FLOATINGPOINTLITERAL						= FloatingPointLiteral
+	IDENTIFIER											= Identifier
+	
+	CONSTDIRECTIVE                  = ConstDirective
+	IFDIRECTIVE                     = IfDirective
+	ENDIFDIRECTIVE									= EndifDirective
+	ELSEIFDIRECTIVE                 = ElseIfDirective
+	ELSEDIRECTIVE                   = ElseDirective
+	REGION                          = Region
+	ENDREGION                       = EndRegion
+	EXTERNALSOURCEDIRECTIVE         = ExternalSourceDirective
+	ENDEXTERNALSOURCEDIRECTIVE      = EndExternalSourceDirective
+	LINECONTINUATION                = LineContinuation
+	SINGLELINECOMMENT               = SingleLineComment
+	CHARACTERLITERAL                = CharacterLiteral
+	STRINGLITERAL                   = StringLiteral
+
+	PLUSEQUAL                       = PlusEqual
+	MINUSEQUAL                      = MinusEqual
+	MULEQUAL                        = MulEqual
+	DIVEQUAL                        = DivEqual
+	BACKSLASHEQUALS                 = BackSlashEquals
+	XOREQUAL                        = XorEqual
+	ANDEQUAL                        = AndEqual
+	SHIFTLEFT                       = ShiftLeft
+	SHIFTRIGHT                      = ShiftRight
+	SHIFTRIGHTEQUAL                 = ShiftRightEqual
+	SHIFTLEFTEQUAL                  = ShiftLeftEqual
+	NOTEQUALS                       = NotEquals
+	LESSOREQUAL                     = LessOrEqual
+	GREATEROREQUAL                  = GreaterOrEqual
+
+	COMMA                           = Comma
+	CURLYBRACEOPEN                  = CurlyBraceOpen
+	CURLYBRACECLOSE                 = CurlyBraceClose
+	PARENOPEN                       = ParenOpen
+	PARENCLOSE                      = ParenClose
+	DOT                             = Dot
+	COLON                           = Colon
+	COLONEQUALS											= ColonEquals
+	PLUS                            = Plus
+	MINUS                           = Minus
+	ASTERISK                        = Asterisk
+	SLASH                           = Slash
+	BACKSLASH                       = BackSlash
+	EXCLAMATIONSYMBOL               = ExclamationSymbol
+	XORSYMBOL                       = XorSymbol
+	EQUALSSYMBOL                    = EqualsSymbol
+	GREATERTHAN                     = GreaterThan
+	LESSTHAN                        = LessThan
+	BITAND                          = BitAnd
+	SHARP                           = Sharp
+	
+	// Keywords
+	ADDHANDLER											= AddHandler
+	ADDRESSOF												= AddressOf
+	ALIAS														= Alias
+	AND															= And
+	ANDALSO													= AndAlso
+	AS															= As
+	BOOLEAN													= Boolean
+	BYREF														= ByRef
+	BYTE														= Byte
+	BYVAL														= ByVal
+	CALL														= Call
+	CASE														= Case
+	CATCH														= Catch
+	CBOOL														= CBool
+	CBYTE														= CByte
+	CCHAR														= CChar
+	CDATE														= CDate
+	CDBL														= CDbl
+	CDEC														= CDec
+	CHAR														= Char
+	CINT														= CInt
+	CLASS														= Class
+	CLNG														= CLng
+	COBJ														= CObj
+	CONST														= Const
+	CONTINUE												= Continue
+	CSBYTE													= CSByte
+	CSHORT													= CShort
+	CSNG														= CSng
+	CSTR														= CStr
+	CTYPE														= CType
+	CUINT														= CUInt
+	CULNG														= CULng
+	CUSHORT													= CUShort
+	DATE														= Date
+	DECIMAL													= Decimal
+	DECLARE													= Declare
+	DEFAULT													= Default
+	DELEGATE												= Delegate
+	DIM															= Dim
+	DIRECTCAST											= DirectCast
+	DO															= Do
+	DOUBLE													= Double
+	EACH														= Each
+	ELSE														= Else
+	ELSEIF													= ElseIf
+	ENDTOKEN												= EndToken
+	ENDIF														= EndIf
+	ENUM														= Enum
+	ERASE														= Erase
+	ERROR														= Error
+	EVENT														= Event
+	EXIT														= Exit
+	FALSE														= False
+	FINALLY													= Finally
+	FOR															= For
+	FRIEND													= Friend
+	FUNCTION												= Function
+	GET															= Get
+	GETTYPE													= GetTypeToken
+	GLOBAL													= Global
+	GOSUB														= GoSub
+	GOTO														= GoTo
+	HANDLES													= Handles
+	IFTOKEN													= IfToken
+	IMPLEMENTS											= Implements
+	IMPORTS													= Imports
+	IN															= In
+	OUT															= Out
+	INHERITS												= Inherits
+	INTEGER													= Integer
+	INTERFACE												= Interface
+	IS															= Is
+	ISNOT														= IsNot
+	ISFALSE													= IsFalse
+	ISTRUE													= IsTrue
+	LET															= Let
+	LIB															= Lib
+	LIKE														= Like
+	LONG														= Long
+	LOOP														= Loop
+	ME															= Me
+	MOD															= Mod
+	MODULE													= Module
+	MUSTINHERIT											= MustInherit
+	MUSTOVERRIDE										= MustOverride
+	MYBASE													= MyBase
+	MYCLASS													= MyClass
+	NAMESPACE												= Namespace
+	NARROWING												= Narrowing
+	NEW															= New
+	NEXT														= Next
+	NOT															= Not
+	NOTHING													= Nothing
+	NOTINHERITABLE									= NotInheritable
+	NOTOVERRIDABLE									= NotOverridable
+	OBJECT													= Object
+	OF															= Of
+	ON															= On
+	OPERATOR												= Operator
+	OPTION													= Option
+	OPTIONAL												= Optional
+	OR															= Or
+	ORELSE													= OrElse
+	OVERLOADS												= Overloads
+	OVERRIDABLE											= Overridable
+	OVERRIDES												= Overrides
+	PARAMARRAY											= ParamArray
+	PARTIAL													= Partial
+	PRIVATE													= Private
+	PROPERTY												= Property
+	PROTECTED												= Protected
+	PUBLIC													= Public
+	PRESERVE												= Preserve
+	RAISEEVENT											= RaiseEvent
+	READONLY												= ReadOnly
+	REDIM														= ReDim
+	REMOVEHANDLER										= RemoveHandler
+	RESUME													= Resume
+	RETURN													= Return
+	REM															= Rem
+	SBYTE														= SByte
+	SELECT													= Select
+	SET															= Set
+	SHADOWS													= Shadows
+	SHARED													= Shared
+	SHORT														= Short
+	SINGLE													= Single
+	STATIC													= Static
+	STEP														= Step
+	STOP														= Stop
+	STRING													= String
+	STRUCTURE												= Structure
+	SUB															= Sub
+	SYNCLOCK												= SyncLock
+	THEN														= Then
+	THROW														= Throw
+	TOTOKEN													= ToToken
+	TRUE														= True
+	TRY															= Try
+	TRYCAST													= TryCast
+	TYPEOF													= TypeOf
+	UINTEGER												= UInteger
+	ULONG														= ULong
+	USHORT													= UShort
+	USING														= Using
+	UNTIL														= Until
+	VARIANT													= Variant
+	WEND														= Wend
+	WHEN														= When
+	WHILE														= While
+	WIDENING												= Widening
+	WITH														= With
+	WITHEVENTS											= WithEvents
+	WRITEONLY												= WriteOnly
+	XOR															= Xor
+	
+	// Other tokens
+	ADD															= AddToken
+	REMOVE													= RemoveToken
+	
+	ANSI														= Ansi
+	ASSEMBLY												= Assembly
+	AUTO														= Auto
+	UNICODE													= Unicode
+	
+	EXPLICIT												= Explicit 
+	STRICT													= Strict
+	COMPARE													= Compare
+	BINARY													= Binary
+	TEXT														= Text
+	OFF															= Off
+	CUSTOM														= Custom
+	FROMTOKEN														= From	
+	WHERE								= Where
+	JOIN									= Join
+	EQUALS									= EqualsToken
+	INTO									= Into
+	ORDER									= Order
+	BY								= By
+	GROUP                    = Group
+	ASCENDING                     = Ascending
+	DESCENDING                   = Descending
+	QUESTION                     = Question
+	DISTINCT						= Distinct
+	
+	OpenEmbeddedCodeTAG    = OpenEmbeddedCodeTag 
+	CloseEmbeddedCodeTAG	=	CloseEmbeddedCodeTag
+	CLOSETAG					=	CloseTag
+	SingleLineCloseTAG    =  SingleLineCloseTag
+	CommAtSymbol    =      CommAtSymbol
+	TripleDot     =   TripleDot
+	INFER    = Infer
+	//XEN                             = XmlExpressionNode
+	XmlComStr = XmlCommentString
+	KEYTOKEN = KeyToken
+	AGGREGATE = Aggregate
+	SKIP = Skip
+	TAKE = Take
+	DOLLARSYMBOL = DollarSybol
+	//ATSYMBOL                      = AtSymbol
+	PERCENTSYMBOL = PercentSymbol
+	SINGLELINEXMLCOMMENT            = SingleLineXmlComment
+
+TOKENS
+	EOL 
+	INTEGERLITERAL
+	FLOATINGPOINTLITERAL
+	IDENTIFIER
+	CONSTDIRECTIVE
+	IFDIRECTIVE
+	ENDIFDIRECTIVE
+	ELSEIFDIRECTIVE
+	ELSEDIRECTIVE
+	REGION
+	ENDREGION
+	EXTERNALSOURCEDIRECTIVE
+	ENDEXTERNALSOURCEDIRECTIVE
+	LINECONTINUATION
+	SINGLELINECOMMENT
+	CHARACTERLITERAL
+	STRINGLITERAL
+	PLUSEQUAL
+	MINUSEQUAL
+	MULEQUAL
+	DIVEQUAL
+	BACKSLASHEQUALS
+	XOREQUAL
+	ANDEQUAL
+	SHIFTLEFT
+	SHIFTRIGHT
+	SHIFTRIGHTEQUAL
+	SHIFTLEFTEQUAL
+	NOTEQUALS
+	LESSOREQUAL
+	GREATEROREQUAL
+	COMMA
+	CURLYBRACEOPEN
+	CURLYBRACECLOSE
+	PARENOPEN
+	PARENCLOSE
+	DOT
+	COLON
+	COLONEQUALS
+	PLUS
+	MINUS
+	ASTERISK
+	SLASH
+	BACKSLASH
+	EXCLAMATIONSYMBOL
+	XORSYMBOL
+	EQUALSSYMBOL
+	GREATERTHAN
+	LESSTHAN
+	BITAND
+	SHARP
+	
+	// Keywords
+	ADDHANDLER											KEYWORD
+	ADDRESSOF												KEYWORD
+	ALIAS														KEYWORD
+	AND															KEYWORD
+	ANDALSO													KEYWORD
+	AS															KEYWORD
+	BOOLEAN													KEYWORD
+	BYREF														KEYWORD
+	BYTE														KEYWORD
+	BYVAL														KEYWORD
+	CALL														KEYWORD
+	CASE														KEYWORD
+	CATCH														KEYWORD
+	CBOOL														KEYWORD
+	CBYTE														KEYWORD
+	CCHAR														KEYWORD
+	CDATE														KEYWORD
+	CDBL														KEYWORD
+	CDEC														KEYWORD
+	CHAR														KEYWORD
+	CINT														KEYWORD
+	CLASS														KEYWORD
+	CLNG														KEYWORD
+	COBJ														KEYWORD
+	CONST														KEYWORD
+	CONTINUE												KEYWORD
+	CSBYTE													KEYWORD
+	CSHORT													KEYWORD
+	CSNG														KEYWORD
+	CSTR														KEYWORD
+	CTYPE														KEYWORD
+	CUINT														KEYWORD
+	CULNG														KEYWORD
+	CUSHORT													KEYWORD
+	DATE														KEYWORD
+	DECIMAL													KEYWORD
+	DECLARE													KEYWORD
+	DEFAULT													KEYWORD
+	DELEGATE												KEYWORD
+	DIM															KEYWORD
+	DIRECTCAST											KEYWORD
+	DO															KEYWORD
+	DOUBLE													KEYWORD
+	EACH														KEYWORD
+	ELSE														KEYWORD
+	ELSEIF													KEYWORD
+	ENDTOKEN												KEYWORD
+	ENDIF														KEYWORD
+	ENUM														KEYWORD
+	ERASE														KEYWORD
+	ERROR														KEYWORD
+	EVENT														KEYWORD
+	EXIT														KEYWORD
+	FALSE														KEYWORD
+	FINALLY													KEYWORD
+	FOR															KEYWORD
+	FRIEND													KEYWORD
+	FUNCTION												KEYWORD
+	GET															KEYWORD
+	GETTYPE													KEYWORD
+	GLOBAL													KEYWORD
+	GOSUB														KEYWORD
+	GOTO														KEYWORD
+	HANDLES													KEYWORD
+	IFTOKEN													KEYWORD
+	IMPLEMENTS											KEYWORD
+	IMPORTS													KEYWORD
+	IN															KEYWORD
+	OUT															KEYWORD
+	INHERITS												KEYWORD
+	INTEGER													KEYWORD
+	INTERFACE												KEYWORD
+	IS															KEYWORD
+	ISNOT														KEYWORD
+	ISFALSE													KEYWORD
+	ISTRUE													KEYWORD
+	LET															KEYWORD
+	LIB															KEYWORD
+	LIKE														KEYWORD
+	LONG														KEYWORD
+	LOOP														KEYWORD
+	ME															KEYWORD
+	MOD															KEYWORD
+	MODULE													KEYWORD
+	MUSTINHERIT											KEYWORD
+	MUSTOVERRIDE										KEYWORD
+	MYBASE													KEYWORD
+	MYCLASS													KEYWORD
+	NAMESPACE												KEYWORD
+	NARROWING												KEYWORD
+	NEW															KEYWORD
+	NEXT														KEYWORD
+	NOT															KEYWORD
+	NOTHING													KEYWORD
+	NOTINHERITABLE									KEYWORD
+	NOTOVERRIDABLE									KEYWORD
+	OBJECT													KEYWORD
+	OF															KEYWORD
+	ON															KEYWORD
+	OPERATOR												KEYWORD
+	OPTION													KEYWORD
+	OPTIONAL												KEYWORD
+	OR															KEYWORD
+	ORELSE													KEYWORD
+	OVERLOADS												KEYWORD
+	OVERRIDABLE											KEYWORD
+	OVERRIDES												KEYWORD
+	PARAMARRAY											KEYWORD
+	PARTIAL													KEYWORD
+	PRIVATE													KEYWORD
+	PROPERTY												KEYWORD
+	PROTECTED												KEYWORD
+	PUBLIC													KEYWORD
+	PRESERVE												KEYWORD
+	RAISEEVENT											KEYWORD
+	READONLY												KEYWORD
+	REDIM														KEYWORD
+	REMOVEHANDLER										KEYWORD
+	RESUME													KEYWORD
+	RETURN													KEYWORD
+	REM															KEYWORD
+	SBYTE														KEYWORD
+	SELECT													KEYWORD
+	SET															KEYWORD
+	SHADOWS													KEYWORD
+	SHARED													KEYWORD
+	SHORT														KEYWORD
+	SINGLE													KEYWORD
+	STATIC													KEYWORD
+	STEP														KEYWORD
+	STOP														KEYWORD
+	STRING													KEYWORD
+	STRUCTURE												KEYWORD
+	SUB															KEYWORD
+	SYNCLOCK												KEYWORD
+	THEN														KEYWORD
+	THROW														KEYWORD
+	TOTOKEN													KEYWORD
+	TRUE														KEYWORD
+	TRY															KEYWORD
+	TRYCAST													KEYWORD
+	TYPEOF													KEYWORD
+	UINTEGER												KEYWORD
+	ULONG														KEYWORD
+	USHORT													KEYWORD
+	USING														KEYWORD
+	UNTIL														KEYWORD
+	VARIANT													KEYWORD
+	WEND														KEYWORD
+	WHEN														KEYWORD
+	WHILE														KEYWORD
+	WIDENING												KEYWORD
+	WITH														KEYWORD
+	WITHEVENTS											KEYWORD
+	WRITEONLY												KEYWORD
+	XOR															KEYWORD
+	ADD															KEYWORD
+	REMOVE													KEYWORD
+	ANSI														KEYWORD
+	ASSEMBLY												KEYWORD
+	AUTO														KEYWORD
+	UNICODE													KEYWORD
+	EXPLICIT												KEYWORD
+	STRICT													KEYWORD
+	COMPARE													KEYWORD
+	BINARY													KEYWORD
+	TEXT														KEYWORD
+	OFF															KEYWORD
+	CUSTOM														KEYWORD
+	FROMTOKEN	KEYWORD
+	WHERE	KEYWORD
+	JOIN	KEYWORD
+	EQUALS	KEYWORD
+	INTO	KEYWORD
+	ORDER	KEYWORD
+	BY	KEYWORD
+	GROUP	KEYWORD
+	ASCENDING	KEYWORD
+	DESCENDING	KEYWORD
+	QUESTION	KEYWORD
+	DISTINCT    KEYWORD
+	INFER                           KEYWORD
+	KEYTOKEN                        KEYWORD
+	AGGREGATE                       KEYWORD
+	SKIP                            KEYWORD
+	TAKE                            KEYWORD
+
+	// Other tokens
+	OpenEmbeddedCodeTAG
+	CloseEmbeddedCodeTAG
+	CLOSETAG
+	SingleLineCloseTAG
+	CommAtSymbol
+	TripleDot
+	XmlComStr
+	DOLLARSYMBOL
+	PERCENTSYMBOL
+	SINGLELINEXMLCOMMENT
+
+PRODUCTIONS
+
+PreprocessorRoot
+=
+	WhitespaceLines	
+	
+	(
+		RegionGroup
+		|ConditionGroup
+		| ConstRule
+		| ExternalRule
+	)
+	StatementTerminator
+.
+
+//-----------------------------------------------------------------------------
+WhitespaceLines
+=
+	{ EOL }
+.
+
+//-----------------------------------------------------------------------------
+StatementTerminator
+=
+	{(EOL	| COLON)}
+.
+ExternalRule
+=
+	EternalSourceBegin	
+	|
+	ENDEXTERNALSOURCEDIRECTIVE
+.
+EternalSourceBegin
+=
+EXTERNALSOURCEDIRECTIVE
+PARENOPEN
+StringLiteralRule
+COMMA
+INTEGERLITERAL
+PARENCLOSE
+.
+//-----------------------------------------------------------------------------
+ConstRule
+(.
+	Object condition;
+	ConstDirective result = new ConstDirective();
+	SourceRange startRange = la.Range;
+	string name = null;
+.)
+=
+CONSTDIRECTIVE
+IDENTIFIER (. name = tToken.Value; .)
+EQUALSSYMBOL
+Expression<out condition>
+(.
+	AddConst(name, condition);
+	SourceRange rangeElement = SourceRangeUtils.GetRange(startRange, tToken.Range);
+	result.SetRange(rangeElement);
+	AddDirectiveNode(result);
+.)
+.
+
+ConditionGroup
+(.
+	bool condition;
+	SourceRange startRange = la.Range;
+	PreprocessorDirective result = null;
+.)
+=
+(
+IFDIRECTIVE ExpressionValue<out condition> [THEN]
+(.
+	ProcessIFDirectiveCondition(condition);
+  IfDirective @if = new IfDirective();
+  @if.ExpressionValue = condition;
+	result = @if;
+.)
+| ELSEIFDIRECTIVE ExpressionValue<out condition> [THEN]
+(.
+		ProcessDirectiveCondition(condition);
+    ElifDirective elif = new ElifDirective();
+    elif.ExpressionValue = condition;
+		result = elif;
+.)
+| ELSEDIRECTIVE
+(.
+	ProcessDirectiveCondition(true);
+  ElseDirective @else = new ElseDirective();
+  @else.IsSatisfied = !ConditionWasTrue;
+	result = @else;
+.)
+| ENDIFDIRECTIVE
+(.
+	result = new EndIfDirective();
+	ProcessEndIf();
+.)
+)
+(.
+	SourceRange rangeElement = SourceRangeUtils.GetRange(startRange, tToken.Range);
+	result.SetRange(rangeElement);
+	AddDirectiveNode(result);
+.)
+.
+
+RegionGroup
+=
+StartRegionRule
+|EndRegionRule
+.
+StringLiteralRule<>
+=
+STRINGLITERAL
+| CHARACTERLITERAL
+.
+
+StartRegionRule
+(.
+	RegionDirective regionDirective = new RegionDirective();
+	regionDirective.SetRange(la.Range);
+	regionDirective.SetStartTokenLength(7);
+.)
+=
+	REGION 
+	[ 
+		StringLiteralRule 
+		(.
+			string name = tToken.Value;
+			if (name != String.Empty)
+			{
+				int length = name.Length;
+				if (length >= 2)
+				{
+					name = name.Substring(1, length - 2);
+				}
+				else
+				{
+					name = String.Empty;
+				}
+				regionDirective.Name = name;
+			}
+			regionDirective.NameRange = tToken.Range;
+		.)
+	]
+	(.
+		if (SourceFile != null)
+			SourceFile.AddRegionDirective(regionDirective);
+	.)
+	StatementTerminator
+.
+EndRegionRule
+(.
+	EndRegionDirective endRegionDirective = new EndRegionDirective();
+.)
+=
+	ENDREGION [IdentifierOrKeywordOrOperator]
+	(.
+		endRegionDirective.SetRange(tToken.Range);
+		if (SourceFile != null)
+			SourceFile.AddEndRegionDirective(endRegionDirective);
+	.)
+	StatementTerminator
+.
+IdentifierOrKeywordOrOperator
+=
+	[
+		IF (VB90Parser.IsIdentifierOrKeywordOrOperator(la)) ANY
+	]
+.
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////Expressions////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+SimpleName<out Object result>
+	(.
+		result =  null;
+	.)= 
+	  IDENTIFIER
+	(.
+		result = GetConstValue(tToken.Value);
+	.)
+	.
+//////////////////////////////////////////////////
+//////////////////////////////////////////////////
+/////////////////////////////////////////////////
+Expression<out Object result>
+(.
+	result = null;
+.)
+=
+		LogicalXorOp<out result>
+		(.
+			//result = Evaluator.GetResult(result);
+		.)
+.
+
+//////////////////////////////////////////////////
+//////////////////////////////////////////////////
+/////////////////////////////////////////////////
+ExpressionValue<out bool result>
+(.
+  object @object;
+.)
+=
+
+  Expression<out @object>
+  (.
+    result = GetBool(@object);
+  .)
+
+.
+
+LogicalXorOp<out Object result>
+(.
+	result = null;
+.)
+=
+	LogicalOrOp<out result>
+	{ 
+		XOR
+		(.
+			Object right = null;
+			int opType = Tokens.Xor;
+		.)
+		LogicalOrOp<out right>
+		(.
+			result = Eval(result, right, opType);
+		.)
+	}
+.
+
+//-----------------------------------------------------------------------------
+LogicalOrOp<out Object result>
+(.
+	result = null;
+.)
+=
+	LogicalAndOp<out result>
+	{
+		(
+			OR
+			| ORELSE
+		)
+		(.
+			Object right;
+			int opType = tToken.Type;
+		.)
+		LogicalAndOp<out right>
+		(.
+			result = Eval(result, right, opType);
+		.)
+	}
+.
+
+//-----------------------------------------------------------------------------
+LogicalAndOp<out Object result>
+(.
+	result = null;
+.)
+=
+	LogicalNotOp<out result>
+	{ 
+		(
+			AND
+			| ANDALSO
+		)
+		(.
+			Object right = null;
+			int opType = tToken.Type;
+		.)
+		LogicalNotOp<out right>
+		(.
+			result = Eval(result, right, opType);
+		.)
+	}
+.
+
+//-----------------------------------------------------------------------------
+LogicalNotOp<out Object result>
+(.	
+	result = null;
+	bool isNot = false;
+.)
+=
+	{
+		NOT
+		(.
+			isNot = !isNot;
+		.)
+	}
+	RelationalOp<out result>
+	(.
+		if (isNot)
+			result = Eval(result, null, Tokens.Not);
+	.)
+.
+
+//-----------------------------------------------------------------------------
+RelationalOp<out Object result>
+(.
+	result = null;
+.)
+=
+	(
+		ShiftOp<out result>
+		{
+			(
+				NOTEQUALS
+				| EQUALSSYMBOL
+				| LESSTHAN
+				| GREATERTHAN
+				| LESSOREQUAL
+				| GREATEROREQUAL
+			)
+			(.
+				Object right = null;
+				int opType = tToken.Type;
+			.)
+			(
+				ShiftOp<out right>
+				(.
+						result = Eval(result, right, opType);
+				.)
+			)
+		}
+	)
+.
+
+//-----------------------------------------------------------------------------
+ShiftOp<out Object result>
+(.
+	result = null;
+.)
+=
+	ConcatenationOp<out result>
+	{
+		(
+			SHIFTLEFT
+			| SHIFTRIGHT
+		)
+		(.
+			Object right = null;
+			int opType = tToken.Type;
+		.)
+		ConcatenationOp<out right>
+		(.
+			result = Eval(result, right, opType);
+		.)
+	}
+.
+
+//-----------------------------------------------------------------------------
+ConcatenationOp<out Object result>
+(.	
+	result = null;
+.)
+=
+	AdditiveOp<out result>
+	{
+		BITAND
+		(.
+			Object right = null;
+			int opType = tToken.Type;
+		.)
+		AdditiveOp<out right>
+		(.
+			result = Eval(result, right, opType);
+		.)
+	}
+.
+//-----------------------------------------------------------------------------
+AdditiveOp<out Object result>
+(.
+	result = null;
+.)
+=
+	ModulusOp<out result>
+	{
+		(
+			PLUS
+			| MINUS
+		)
+		(.
+			Object right = null;
+			int opType = tToken.Type;
+		.)
+		ModulusOp<out right>
+		(.
+			result = Eval(result, right, opType);
+		.)
+	}
+.
+
+//-----------------------------------------------------------------------------
+ModulusOp<out Object result>
+(.
+	result = null;
+.)
+=
+	IntegerDivisionOp<out result>
+	{
+		MOD
+		(.
+			Object right = null;
+			int opType = tToken.Type;
+		.)
+		IntegerDivisionOp<out right>
+		(.
+			result = Eval(result, right, opType);
+		.)
+	}
+.
+//-----------------------------------------------------------------------------
+IntegerDivisionOp<out Object result>
+(.
+	result = null;
+.)
+=
+	MultiplicativeOp<out result>
+	{
+		BACKSLASH
+		(.
+			Object right = null;
+			int opType = tToken.Type;
+		.)
+		MultiplicativeOp<out right>
+		(.
+			result = Eval(result, right, opType);
+		.)
+	}
+.
+//-----------------------------------------------------------------------------
+MultiplicativeOp<out Object result>
+(.
+	result = null;
+.)
+=	
+	UnaryExpression<out result>
+	{
+		(
+			ASTERISK
+			| SLASH
+		)
+		(.
+			Object right = null;
+			int opType = tToken.Type;
+		.)
+		UnaryExpression<out right>
+		(.
+			result = Eval(result, right, opType);
+		.)
+	}
+.
+//-----------------------------------------------------------------------------
+UnaryExpression<out Object result>
+(.	
+	result = null;
+	bool isMin = false;
+.)
+=
+	{
+		(
+			PLUS
+			| MINUS(. isMin = !isMin;.)
+		)
+	}
+	ExponentiationOp<out result>
+	(.
+		if (isMin)
+			result = Eval(result, null, Tokens.Minus);
+	.)
+.
+//-----------------------------------------------------------------------------
+ExponentiationOp<out Object result>
+(.
+	result = null;
+.)
+=
+	PrimaryExpression<out result>
+	{
+		BITAND
+		(.
+			Object right = null;
+			int opType = tToken.Type;
+		.)
+		PrimaryExpression<out right>
+		(.
+			result = Eval(result, right, opType);
+		.)
+	}
+.
+ParenthesizedExpressionRule<out Object result>
+(.
+	result = null;
+.)
+=
+	PARENOPEN
+	Expression<out result>
+	PARENCLOSE
+.
+PrimaryExpression<out Object result>
+(.	
+	result = null;
+.)
+=
+	Literal <out result>
+	| SimpleName<out result>
+	| ParenthesizedExpressionRule<out result>
+	
+.
+
+Literal <out Object result>
+	(.
+		result =  GetZeroInt();
+	.)=
+		INTEGERLITERAL
+	(.
+		result = GetIntegerValue(tToken.Value);
+	.)
+	| CHARACTERLITERAL
+	(.
+		result = GetStringValueFromChar(tToken.Value);
+	.)
+	| FLOATINGPOINTLITERAL
+	(.
+		result = GetDoubleValue(tToken.Value);
+	.)
+	| STRINGLITERAL (. result = GetStringValue(tToken.Value);.)
+	| BooleanLiteral<out result>
+	| NOTHING (. result = new Nothing();.)
+	.
+	BooleanLiteral<out Object val>
+	(.
+			val = null;
+	.)
+	=
+	 TRUE
+	(.
+		val = Evaluator.GetNumberFromCondition(true);
+	.)
+	| FALSE
+	(.
+		val = Evaluator.GetNumberFromCondition(false);
+	.)
+.
+/*	PpCastExpression<out object result>
+	(.
+		result = null;
+	.)
+	=
+	(
+		DIRECTCAST 
+		| CTYPE
+		)
+		PARENOPEN ExpressionRule<out result>
+		COMMA TypeName<out type, out decl> PARENCLOSE
+		(.
+			
+		.)
+	)
+	|	CastTarget<out castTypeName, out castKeyword>
+		(.
+			SourceRange castRange = tToken.Range;
+		.)
+		PARENOPEN 
+		ExpressionRule<out result> 
+		PARENCLOSE
+		(.
+			result = new CastTargetExpression(castTypeName, castKeyword, castRange, result);
+			result.SetRange(GetRange(castRange, tToken.Range));
+		.)
+	.
+	.
+	TryCast<out Expression result>
+(.
+	result = null;
+	VBDeclarator decl = null;
+	TypeReferenceExpression type = null;	
+	SourceRange startRange = la.Range;
+.)
+=
+	TRYCAST
+	PARENOPEN ExpressionRule<out result>
+	COMMA TypeName<out type, out decl> PARENCLOSE
+	(.
+		result = CreateConditionalTypeCast(result, type);
+	.)
+	(. result.SetRange(GetRange(startRange, tToken.Range)); .)
+.
+CastTarget<out string castTypeName, out string castKeyword>
+(.
+	castTypeName = String.Empty;
+	castKeyword = String.Empty;
+.)
+=	
+	CBOOL
+	| CBYTE
+	| CCHAR
+	| CDATE
+	| CDEC
+	| CDBL
+	| CINT
+	| CLNG
+	| COBJ
+	| CSHORT
+	| CSNG
+	| CSTR
+	| CUINT
+	| CULNG
+	| CUSHORT
+	| CSBYTE
+.
+IntrinsicType<object >
+(.
+	result = null;
+.)
+=
+	(
+		BOOLEAN
+		| DATE
+		| CHAR
+		| STRING
+		| DECIMAL
+		| BYTE
+		| SHORT
+		| INTEGER
+		| LONG
+		| SINGLE
+		| DOUBLE
+		| OBJECT
+	)*/
+END PreprocessorRoot.

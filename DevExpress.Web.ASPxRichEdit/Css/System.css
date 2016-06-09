@@ -1,0 +1,756 @@
+﻿/* Bootstrap correction */
+.dxre-measurer *,
+.dxre-rulerWrapper div {
+    -moz-box-sizing: content-box;
+    -webkit-box-sizing: content-box;
+    box-sizing: content-box;
+}
+/* Bootstrap correction */
+.dxre-rulerLine {
+    width: 0;
+	z-index: 100;
+    position: absolute;
+    display: none;
+}
+.dxre-rulerWrapper {
+	cursor: default;
+    overflow: hidden;
+    position: relative;
+}
+.dxre-rulerWrapper .dxre-rulertabAlignBox,
+.dxre-rulerWrapper .dxre-rulertabAlignBox div {
+    position: absolute;
+}
+.dxre-rulerWrapper .dxre-rulertabAlignBox {
+    top: 0;
+    left: 0;
+}
+.dxre-rulerWrapper .dxre-ruler {
+	visibility: hidden;
+	overflow: hidden;
+	position: relative;
+}
+.dxre-ruler .dxre-columnHandle {
+    z-index: 1;
+    cursor: e-resize;
+}
+.dxre-ruler .dxre-leftIdentDragHandleBody {
+    box-sizing: border-box;
+}
+.dxre-ruler .dxre-columnHandle,
+.dxre-ruler .dxre-columnHandle > div {
+    position: absolute;
+}
+.dxre-ruler .dxre-columnHandleLeftPart {
+    left: 0;
+}
+.dxre-ruler .dxre-columnHandleRightPart {
+    right: 0;
+}
+.dxre-ruler .dxre-tabDragHandle,
+.dxre-ruler .dxre-firstLineIdentDragHandle,
+.dxre-ruler .dxre-rightIdentDragHandle,
+.dxre-ruler .dxre-leftIdentDragHandle {
+    position: absolute;
+    z-index: 2;
+}
+.dxre-ruler .dxre-rulerDivisions {
+	position: absolute;
+}
+.dxre-ruler .dxre-rulerDivisions > div {
+    z-index: 1;
+	position: absolute;
+	box-sizing: border-box;
+}
+.dxre-ruler .dxre-rulerMarginLeftHandlePanel,
+.dxre-ruler .dxre-rulerMarginLeftPanel {
+    left: 0;
+}
+.dxre-ruler .dxre-rulerMarginRightHandlePanel,
+.dxre-ruler .dxre-rulerMarginRightPanel {
+    right: 0;
+}
+.dxre-ruler .dxre-rulerMarginLeftHandlePanel,
+.dxre-ruler .dxre-rulerMarginRightHandlePanel {
+    z-index: 1;
+    cursor: e-resize;
+	background: url('<%=WebResource("DevExpress.Web.ASPxRichEdit.Images.1x1.gif")%>') !important;
+}
+.dxre-ruler .dxre-rulerDivisions .dxre-rulerNumberDivision > div {
+	width: 100%;
+	left: -50%;
+	text-align: center;
+	position: absolute;
+}
+.dxre-ruler .dxre-rulerMarginLeftPanel,
+.dxre-ruler .dxre-rulerMarginRightPanel,
+.dxre-ruler .dxre-rulerMarginLeftHandlePanel,
+.dxre-ruler .dxre-rulerMarginRightHandlePanel {
+	position: absolute;
+}
+.dxreControlSys {
+	width: 1000px;
+	height: 500px;
+	min-height: 250px;
+	box-sizing: border-box;
+}
+.dxTouchUI .dxreControlSys .dxm-popupMain,
+.dxTouchUI .dxre-view,
+.dxreControlSys {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.dxTouchUI .dxre-inputTarget {
+    -webkit-user-select: auto;
+    user-select: all;
+}
+
+.dxre-measurer {
+    position: absolute;
+    top: -100000px;
+    left: -100000px;
+    overflow: hidden;
+}
+
+.dxre-measurer pre {
+    position: absolute;
+	visibility: hidden;
+
+     /* for bootstrap */
+    white-space: pre!important;
+    border: none;
+    padding: 0;
+    margin: 0;
+    line-height: initial;
+    word-break: initial;
+    word-wrap: initial;
+    border-radius: 0;
+    display: initial;
+}
+
+.dxre-view {
+    position: relative;
+    overflow: auto;
+    padding: 0 10px;
+    -webkit-overflow-scrolling: touch;
+    -webkit-appearance: none;
+    -ms-touch-action: pan-y;
+    touch-action: pan-y;
+}
+
+.dxre-inputTargetContainer {
+	position: absolute;
+	overflow: hidden;
+	height: 0;
+}
+
+.dxre-inputTarget,
+.dxre-fakeInputTarget {
+	padding: 0;
+    height: 0;
+    width: 0;
+    outline: none;
+	border: none;
+    position: absolute;
+}
+.dxTouchUI .dxre-inputTarget,
+.dxTouchUI .dxre-fakeInputTarget {
+    font-size: 0px;
+    color: transparent;
+    position: fixed;
+    height: 1px;
+    width: 1px;
+}
+.dxTouchUI.dxAndroidMobilePlatform .dxre-inputTarget,
+.dxAndroidMobilePlatform .dxre-fakeInputTarget {
+    position: absolute;
+}
+.dxre-fakeInputTarget {
+    display: none;
+}
+.dxTouchUI.dxAndroidMobilePlatform .dxre-inputTarget {
+    height: 0px;
+    width: 0px;
+    font-size: inherit;
+    opacity: 0;
+}
+
+.dxre-selContainer {
+    position: absolute;
+    height: 0;
+    width: 0;
+    overflow: visible;
+    top: 0;
+    left: 0;
+}
+
+.dxre-sel-row.dxre-sel-cursor {
+    position: absolute;
+    width: 1px;
+    background: black;
+    z-index: 100;
+}
+
+.dxre-inFocus .dxre-sel-row.dxre-sel-cursor {
+    background: url('<%=WebResource("DevExpress.Web.ASPxRichEdit.Images.Cursor.gif")%>');
+}
+
+.dxTouchUI .dxre-inFocus .dxre-sel-row.dxre-sel-cursor {
+    background: url('<%=WebResource("DevExpress.Web.ASPxRichEdit.Images.CursorTouch.gif")%>');
+}
+.dxTouchUI .dxre-sel-row.dxre-sel-cursor {
+    background: #156ee4;
+}
+
+.dxre-inFocus .dxre-sel-row.dxre-sel-cursor.dxre-sel-noblink {
+    background: #000000;
+    opacity: 1;
+    z-index: 100;
+}
+
+.dxre-row {
+    white-space: nowrap;
+    overflow: hidden;
+    position: absolute;
+    font-size: 0;
+}
+
+.dxre-column {
+    position: absolute;
+    overflow: visible;
+}
+
+.dxre-box {
+    position: absolute;
+    white-space: nowrap;
+    display: inline-block;
+    z-index: 9;
+    text-decoration: inherit;
+}
+
+.dxre-boxspace {
+    display: inline-block;
+    position: absolute;
+    z-index: 10;
+    overflow: hidden;
+}
+
+.dxre-startbookmark,
+.dxre-endbookmark {
+    border: 2px solid #b9b9b9;
+    position: absolute;
+    z-index: 11;
+    box-sizing: border-box;
+}
+.dxre-startbookmark {
+    border-right: none;
+}
+.dxre-endbookmark {
+    border-left: none;
+}
+
+.dxre-fieldbg {
+    position: absolute;
+    display: inline-block;
+    z-index: 4;
+}
+
+.dxre-fieldboxlevel1 {
+    background: #cecece;
+}
+
+.dxre-fieldboxlevel2 {
+    background: #b9b9b9;
+}
+
+.dxre-fieldboxlevel3 {
+    background: #a0a0a0;
+}
+
+.dxre-hiddenbox {
+    border-bottom: 1px dotted gray;
+}
+
+.dxre-underlinedBox {
+    text-decoration: underline;
+}
+
+.dxre-box img {
+    vertical-align: bottom;
+}
+
+.dxre-box .dxre-pic {
+    cursor: move;
+}
+
+.dxre-boxbg {
+    position: absolute;
+    display: block;
+    z-index: 5;
+}
+
+.dxre-cursor-default .dxre-page {
+    cursor: default;
+}
+
+.dxre-cursor-nodrop .dxre-page {
+    cursor: no-drop;
+}
+
+.dxre-cursor-copy .dxre-page {
+    cursor: copy;
+}
+
+.dxre-cursor-nresize .dxre-page {
+    cursor: n-resize;
+}
+
+.dxre-cursor-sresize .dxre-page {
+    cursor: s-resize;
+}
+
+.dxre-cursor-wresize .dxre-page {
+    cursor: w-resize;
+}
+
+.dxre-cursor-eresize .dxre-page {
+    cursor: e-resize
+}
+
+.dxre-cursor-nwresize .dxre-page {
+    cursor: nw-resize;
+}
+
+.dxre-cursor-neresize .dxre-page {
+    cursor: ne-resize;
+}
+
+.dxre-cursor-seresize .dxre-page {
+    cursor: se-resize;
+}
+
+.dxre-cursor-swresize .dxre-page {
+    cursor: sw-resize;
+}
+
+.dxre-page {
+    background: white;
+    margin: 15px auto;
+    position: relative;
+    cursor: text;
+}
+
+.dxre-pagearea {
+    position: absolute;
+    z-index: 10;
+    overflow: visible;
+}
+.dxre-headerfooterarea {
+    opacity: 0.4;
+}
+
+.dxre-backlightmode .dxre-page {
+    opacity: 0.4;
+}
+.dxre-backlightmode .dxre-page.dxre-active .dxre-pagearea {
+    opacity: 0.4;
+}
+
+.dxre-active {
+    opacity: 1!important;
+}
+
+.dxre-pframe {
+    z-index: 4;
+    position: absolute;
+}
+
+.dxre-sel-row {
+    position: absolute;
+    z-index: 7;
+    background: #a7a7a7;
+    opacity: 0.50;
+}
+
+.dxre-sel-cursor {
+    position: absolute;
+    z-index: 7;
+    background: #000000;
+    opacity: 1;
+}
+
+.dxre-inFocus .dxre-sel-row {
+    background: #76a7fa;
+}
+
+.dxr-itemDisabled img {
+	opacity: .35;
+	filter: alpha(opacity=35);
+}
+
+.dxre-dragcaret {
+    position: absolute;
+    width: 1px;
+    border-left: 1px dotted black;
+    z-index: 20;
+}
+
+.dxre-helperFrame {
+	top: -100px;
+	left: -100px;
+	overflow: hidden;
+	position: absolute;
+	border-style: none;
+}
+
+/* ShapeResizeBox */
+.dxre-rb {
+    position: absolute;
+    z-index: 100;
+}
+.dxre-rb .dxre-rb-c,
+.dxre-rb .dxre-rb-cTouch {
+    border: 1px solid #989898;
+    position: absolute;
+    background-color: #F2FAFB;
+    z-index: 9;
+}
+.dxre-rb .dxre-rb-c {
+    width: 9px!important;
+    height: 9px;
+    margin-top: -6px;
+    margin-left: -6px;
+    border-radius: 5px;
+}
+.dxre-rb .dxre-rb-cTouch {
+	width: 15px!important;
+	height: 15px;
+	margin-top: -9px;
+    margin-left: -9px;
+    border-radius: 50%;
+}
+.dxre-rb .dxre-rb-c.ne,
+.dxre-rb .dxre-rb-c.e,
+.dxre-rb .dxre-rb-c.se {
+	margin-left: -5px;
+}
+.dxre-rb .dxre-rb-cTouch.ne,
+.dxre-rb .dxre-rb-cTouch.e,
+.dxre-rb .dxre-rb-cTouch.se {
+	margin-left: -8px;
+}
+.dxre-rb .dxre-rb-c.sw,
+.dxre-rb .dxre-rb-c.s,
+.dxre-rb .dxre-rb-c.se {
+	margin-top: -5px;
+}
+.dxre-rb .dxre-rb-cTouch.sw,
+.dxre-rb .dxre-rb-cTouch.s,
+.dxre-rb .dxre-rb-cTouch.se {
+	margin-top: -8px;
+}
+
+.dxre-rb .dxre-rb-c.n,
+.dxre-rb .dxre-rb-c.e,
+.dxre-rb .dxre-rb-c.s,
+.dxre-rb .dxre-rb-c.w,
+.dxre-rb .dxre-rb-cTouch.n,
+.dxre-rb .dxre-rb-cTouch.e,
+.dxre-rb .dxre-rb-cTouch.s,
+.dxre-rb .dxre-rb-cTouch.w {
+	border-radius: 3px
+}
+
+.dxre-rb .dxre-rb-c.nw, 
+.dxre-rb .dxre-rb-cTouch.nw {
+    left: 0;
+    top: 0;
+    cursor:nw-resize;
+}
+.dxre-rb .dxre-rb-c.ne,
+.dxre-rb .dxre-rb-cTouch.ne {
+    left: 100%;
+    top: 0;
+    cursor:ne-resize;
+}
+.dxre-rb .dxre-rb-c.se,
+.dxre-rb .dxre-rb-cTouch.se {
+    left: 100%;
+    top: 100%;
+    cursor:se-resize;
+}
+.dxre-rb .dxre-rb-c.sw,
+.dxre-rb .dxre-rb-cTouch.sw {
+    left: 0;
+    top: 100%;
+    cursor:sw-resize;
+}
+
+.dxre-rb .dxre-rb-c.n,
+.dxre-rb .dxre-rb-cTouch.n {
+    left: 50%;
+    top:0;
+    cursor:n-resize;
+}
+.dxre-rb .dxre-rb-c.e,
+.dxre-rb .dxre-rb-cTouch.e {
+    left: 100%;
+    top:50%;
+    cursor:e-resize;
+}
+.dxre-rb .dxre-rb-c.s,
+.dxre-rb .dxre-rb-cTouch.s {
+    left: 50%;
+    top:100%;
+    cursor:s-resize;
+}
+.dxre-rb .dxre-rb-c.w,
+.dxre-rb .dxre-rb-cTouch.w {
+    left: 0;
+    top:50%;
+    cursor:w-resize;
+}
+
+.dxre-headerinfo,
+.dxre-footerinfo {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 20px;
+	z-index: 10;
+}
+
+.dxre-headerinfo {
+    border-top: #b9b9b9 1px dashed;
+}
+
+.dxre-footerinfo {
+    border-bottom: #b9b9b9 1px dashed;
+}
+
+.dxre-footerinfo b, .dxre-headerinfo b {
+    border: #b9b9b9 1px solid;
+    margin: 0 5px;
+    padding: 3px 5px;
+    background: #CCCCCC;
+    display: block;
+    font-weight: normal;
+}
+.dxre-headerinfo b:last-child, .dxre-footerinfo b:last-child {
+    float: right;
+}
+.dxre-headerinfo b:first-child, .dxre-headerinfo b:first-child {
+    float: left;
+}
+
+.dxre-footerinfo .dxre-headerfooterdesc {
+    border-bottom: none;
+}
+
+.dxre-headerinfo .dxre-headerfooterdesc {
+    border-top: none;
+}
+
+/*Loupe*/
+.dxre-loupeWrapper,
+.dxre-loupe {
+    position: absolute;
+	-webkit-user-select: none;
+}
+.dxre-loupeWrapper {
+    background-color: white;
+	border-radius: 50%;
+	border: 1px solid black;
+	overflow: hidden;
+    visibility: hidden;
+    z-index: 13;
+}
+.dxre-loupe {
+    padding-left: 50%;
+    padding-top: 50%;
+}
+
+/*Dialogs Style*/
+.dxre-dialog {
+    -moz-user-select: none;
+}
+.dxreDlgColumnsEditor,
+.dxreDlgListBox {
+	overflow-y: auto;
+}
+.dxreDlgRight {
+	text-align: right;
+}
+.dxreDlgCenter {
+	text-align: center;
+}
+.dxreDlgTableWidth {
+	width: 100%;
+}
+.dxreDlgListBox > div {
+    float: left;
+    text-align: center;
+    cursor: pointer;
+    overflow: hidden;
+}
+.dxreDlgListBox .dxreDlgNumberingListPreview {
+    line-height: normal;
+    text-align: left;
+    overflow: hidden;
+    position:absolute;
+}
+
+.dxTouchUI .dxre-sel-row.dxre-sel-cursor {
+    display: none;
+}
+.dxTouchUI .dxre-inFocus .dxre-sel-row {
+    display: block;
+}
+.dxre-sel-bar {
+    z-index: 11;
+    position: absolute;
+    width: 19px;
+	height: 19px;
+    border-radius: 50%;
+    background: white;
+    visibility: hidden;
+}
+.dxre-sel-bar:after {
+    width: 13px;
+	height: 13px;
+    content: '';
+    position: absolute;
+    top: 1px;
+    left: 1px;
+    right: 1px;
+    bottom: 1px;
+    border-radius: 50%;
+    border: 2px solid #bbd3fd;
+}
+.dxre-inFocus .dxre-sel-bar {
+    visibility: visible;
+}
+
+.dxre-ruler .dxre-rulerDivisions .dxre-rulerNumberDivision {
+	font-size: 10px;
+    line-height: 10px;
+}
+.dxTouchUI .dxre-ruler .dxre-rulerDivisions .dxre-rulerNumberDivision {
+    line-height: 12px;
+}
+
+/*FormLayout Dialogs Style*/
+.dxre-dialogWrapperPanel .dxre-dialog {
+    width: 100%;
+}
+.dxre-dialogPreparing > .dxre-dialogWrapperPanel 
+{
+    overflow: hidden;
+    width: 0px;
+    height: 0px;
+    position: absolute;
+}
+.dxre-dialogLGC {
+    width: initial !important;
+}
+.dxre-dialogControlsWrapper,
+.dxre-dialog .dxre-dialogControlsWrapper > tbody > tr > td:first-child {
+    width: 100%;
+}
+.dxre-dialog .dxre-dialogControlsWrapper > tbody > tr > td:first-child {
+    text-align: right;
+}
+.dxre-dialogControlsWrapper > tbody > tr > td:first-child .dxreDlgFooterBtn {
+    margin-left: 0px;
+}
+.dxre-dialog td.dxre-dialogLGC:first-child,
+div.dxre-dialog tr:first-child > td.dxre-dialogLGC > div.dxre-dialogFirstLGB {
+    padding: 0px;
+}
+.dxre-dialog > table.dxre-dialogLG.dxflGroupSys {
+    padding: 0px !important;
+}
+.dxre-dialog td.dxre-dialogLGC {
+    padding-right: 0px;
+}
+.dxre-dialog .dxre-dialogLGB > .dxre-dialogLG tr:first-child > .dxre-dialogLGC > .dxre-dialogLI,
+.dxre-dialog .dxre-dialogLGB > .dxre-dialogLG > .dxflChildInFirstRowSys > .dxre-dialogLGC > .dxre-dialogLI,
+.dxre-dialog > .dxre-dialogLG tr:first-child > .dxre-dialogLGC > .dxre-dialogLGB > .dxre-dialogLG {
+    padding-top: 0px;
+}
+
+.dxre-dialog .dxflRadioButtonListItemSys td.dxe {
+    padding: 0px !important;
+}
+.dxre-dialogRadioNavigation {
+    padding-bottom: 10px;
+}
+.dxre-dialogRadioNavigation .dxichTextCellSys {
+    padding-right: 25px !important;
+}
+.dxre-table {
+    position: absolute;
+}
+.dxre-table-brd {
+    position: absolute;
+    z-index: 10;
+}
+.dxre-table-bg {
+    position: absolute;
+    z-index: 3;
+}
+
+/* TableBorderPreview*/
+.dxreTablePreviewContainer {
+    width: 100px;
+    height: 100px;
+    position: relative;
+}
+.dxreDlgBorderLine {
+    position: absolute;
+    background-color: white;
+}
+.dxreDlgBorderControlLine {
+    position: absolute;
+    border: 0 !important;
+}
+.dxreDlgVerticalLine {
+    height: 100%;
+    border-right: 1px dashed gray;  
+    z-index: 3;
+}
+.dxreDlgHorizontalLine {
+    width: 100%;
+    border-bottom: 1px dashed gray;
+    z-index: 4;
+}
+.dxreDlgMiddleLine {
+    top: 50%;
+    z-index: 2;
+}
+.dxreDlgBottomLine {
+    bottom:0%;
+}
+.dxreDlgCenterLine {
+    left: 50%;
+    z-index: 1;
+}
+.dxreDlgRightLine {
+    right: 0%;
+}
+.dxreDlgVerticalLine.dxreDlgBorderControlLine {
+    width: 10%;
+    z-index:5;
+}
+.dxreDlgHorizontalLine.dxreDlgBorderControlLine {
+    height: 10%;
+    z-index:5;
+}
+.dxreDlgBorderControlLine.dxreDlgMiddleLine {
+    top: 45%;
+}
+.dxreDlgBorderControlLine.dxreDlgCenterLine {
+    left: 45%;
+}

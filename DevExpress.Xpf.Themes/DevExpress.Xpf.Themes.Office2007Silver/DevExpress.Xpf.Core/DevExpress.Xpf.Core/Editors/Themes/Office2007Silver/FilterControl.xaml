@@ -1,0 +1,32 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:dxet="http://schemas.devexpress.com/winfx/2008/xaml/editors/themekeys" xmlns:dxc="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys">
+    <!--BEGIN WPF-->
+    <ResourceDictionary.MergedDictionaries>
+        <dxdst:ResourceDictionaryEx Source="/DevExpress.Xpf.Themes.Office2007Silver.v15.2;component/DevExpress.Xpf.Core/DevExpress.Xpf.Core/Editors/Themes/Office2007Generic/FilterControl.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+    <!--END WPF-->
+    <ControlTemplate x:Key="{dxet:FilterControlThemeKey ResourceKey=FilterControlBorderTemplate}" TargetType="{x:Type ContentControl}">
+        <Grid>
+            <Border Background="#FF6F7074" />
+            <Border Name="border" Background="White">
+                <Border.Margin>
+                    <Binding Path="Tag" RelativeSource="{RelativeSource TemplatedParent}">
+                        <Binding.Converter>
+                            <dxc:BoolToObjectConverter>
+                                <dxc:BoolToObjectConverter.TrueValue>
+                                    <Thickness>1,1,1,1</Thickness>
+                                </dxc:BoolToObjectConverter.TrueValue>
+                                <dxc:BoolToObjectConverter.FalseValue>
+                                    <Thickness>0,0,0,0</Thickness>
+                                </dxc:BoolToObjectConverter.FalseValue>
+                            </dxc:BoolToObjectConverter>
+                        </Binding.Converter>
+                    </Binding>
+                </Border.Margin>
+            </Border>
+            <ContentPresenter Margin="1" />
+        </Grid>
+    </ControlTemplate>
+    <ControlTemplate x:Key="{dxet:FilterControlThemeKey ResourceKey=OneLocalDateTimeTemplate}">
+        <dxc:XPFContentControl x:Name="LocalDateTimeButton" Margin="0,3,3,3" VerticalAlignment="Center" Cursor="Hand" Content="{Binding Path=LocalDateTimeFunctionLabel}" Foreground="Blue" />
+    </ControlTemplate>
+</ResourceDictionary>

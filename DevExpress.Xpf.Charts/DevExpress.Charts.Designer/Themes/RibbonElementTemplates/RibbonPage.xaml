@@ -1,0 +1,24 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+    xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
+    xmlns:dxr="http://schemas.devexpress.com/winfx/2008/xaml/ribbon"
+    xmlns:local="clr-namespace:DevExpress.Charts.Designer">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary
+            Source="{dx:ChartDesignerResource /Themes/RibbonElementTemplates/RibbonPageGroup.xaml}" />
+    </ResourceDictionary.MergedDictionaries>
+    
+    <DataTemplate
+        x:Key="ribbonPageTemplate">
+        <ContentControl>
+            <dxr:RibbonPage
+                GroupsSource="{Binding Groups}"
+                Caption="{Binding Path=Caption}"
+                GroupTemplate="{StaticResource ribbonPageGroupTemplate}"
+                IsSelected="{Binding IsSelected, Mode=TwoWay}"/>
+        </ContentControl>
+    </DataTemplate>
+    
+</ResourceDictionary>

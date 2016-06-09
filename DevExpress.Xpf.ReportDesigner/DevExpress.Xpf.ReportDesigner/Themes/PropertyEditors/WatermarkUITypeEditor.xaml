@@ -1,0 +1,211 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+            xmlns:propertygrid="clr-namespace:DevExpress.Xpf.Reports.UserDesigner.PropertyGrid"
+            xmlns:reportexplorer="clr-namespace:DevExpress.Xpf.Reports.UserDesigner.ReportExplorer"
+            xmlns:reportexplorernative="clr-namespace:DevExpress.Xpf.Reports.UserDesigner.ReportExplorer.Native"
+            xmlns:designer="clr-namespace:DevExpress.Xpf.Reports.UserDesigner"
+            xmlns:designereditors="clr-namespace:DevExpress.Xpf.Reports.UserDesigner.Editors"
+            xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+            xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+            xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+            xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
+            xmlns:dxdo="http://schemas.devexpress.com/winfx/2008/xaml/docking"
+            xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
+            xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+            xmlns:xtraprintingdrawing="clr-namespace:DevExpress.XtraPrinting.Drawing;assembly=DevExpress.Printing.v15.2.Core"
+            xmlns:office="clr-namespace:DevExpress.Office.Model;assembly=DevExpress.Office.v15.2.Core"
+            xmlns:designernative="clr-namespace:DevExpress.Xpf.Reports.UserDesigner.Native" 
+            xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
+            xmlns:local="clr-namespace:DevExpress.Xpf.Reports.UserDesigner.Editors"
+            xmlns:sys="clr-namespace:System;assembly=mscorlib"
+            mc:Ignorable="d">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/DevExpress.Xpf.ReportDesigner.v15.2;component/Themes/PropertyEditors/GroupBox.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    <Style TargetType="designereditors:WatermarkUITypeEditor">
+        <Setter Property="OpenFileDialogServiceTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <ContentControl>
+                        <dxmvvm:OpenFileDialogService />
+                    </ContentControl>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="MessageBoxServiceTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <ContentControl>
+                        <dx:DXMessageBoxService />
+                    </ContentControl>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="designereditors:WatermarkUITypeEditor">
+                    <Grid>
+                        <dxlc:LayoutControl Orientation="Horizontal">
+                            <Viewbox Stretch="Uniform" Width="220" Margin="3">
+                                <ContentPresenter Content="{Binding WatermarkPreview, RelativeSource={RelativeSource TemplatedParent}}" />
+                            </Viewbox>
+
+                            <dxlc:LayoutGroup Orientation="Vertical">
+                                <dxlc:LayoutGroup View="Tabs">
+                                    <dxlc:LayoutGroup Header="Text Watermark" Orientation="Vertical">
+                                        <dxlc:LayoutItem Label="Text" AddColonToLabel="True" LabelPosition="Left">
+                                            <dxe:ComboBoxEdit EditValue="{Binding Text, RelativeSource={RelativeSource TemplatedParent}, UpdateSourceTrigger=PropertyChanged}">
+                                                <sys:String>ASAP</sys:String>
+                                                <sys:String>SAMPLE</sys:String>
+                                                <sys:String>DRAFT</sys:String>
+                                            </dxe:ComboBoxEdit>
+                                        </dxlc:LayoutItem>
+
+                                        <dxlc:LayoutGroup Orientation="Vertical" IsEnabled="{Binding Text, RelativeSource={RelativeSource TemplatedParent}, Converter={dxmvvm:StringToBooleanConverter}}">
+                                            <dxlc:LayoutGroup Orientation="Horizontal">
+                                                <dxlc:LayoutGroup Orientation="Vertical" >
+                                                    <dxlc:LayoutItem Label="Direction" AddColonToLabel="True" LabelPosition="Left">
+                                                        <dxe:ComboBoxEdit EditValue="{Binding TextDirection, RelativeSource={RelativeSource TemplatedParent}, UpdateSourceTrigger=PropertyChanged}" IsTextEditable="False" ItemsSource="{dxe:EnumItemsSource EnumType=xtraprintingdrawing:DirectionMode}" />
+                                                    </dxlc:LayoutItem>
+                                                    <dxlc:LayoutItem Label="Font" AddColonToLabel="True" LabelPosition="Left">
+                                                        <dxe:ComboBoxEdit EditValue="{Binding TextFontFamily, RelativeSource={RelativeSource TemplatedParent}, UpdateSourceTrigger=PropertyChanged}" IsTextEditable="False" ItemsSource="{designernative:FontFamiliesCollection}">
+                                                            <dxe:ComboBoxEdit.ItemTemplate>
+                                                                <DataTemplate>
+                                                                    <TextBlock Text="{Binding}" FontFamily="{Binding}" />
+                                                                </DataTemplate>
+                                                            </dxe:ComboBoxEdit.ItemTemplate>
+                                                        </dxe:ComboBoxEdit>
+                                                    </dxlc:LayoutItem>
+                                                </dxlc:LayoutGroup>
+                                                <dxlc:LayoutGroup Orientation="Vertical" Margin="25,0,0,0">
+                                                    <dxlc:LayoutItem Label="Color" AddColonToLabel="True" LabelPosition="Left">
+                                                        <dxe:PopupColorEdit EditValue="{Binding TextForeground, RelativeSource={RelativeSource TemplatedParent}, UpdateSourceTrigger=PropertyChanged}"></dxe:PopupColorEdit>
+                                                    </dxlc:LayoutItem>
+                                                    <dxlc:LayoutItem Label="Size" AddColonToLabel="True" LabelPosition="Left" >
+                                                        <dxe:ComboBoxEdit EditValue="{Binding TextFontSize, RelativeSource={RelativeSource TemplatedParent}, UpdateSourceTrigger=PropertyChanged}">
+                                                            <dxe:ComboBoxEdit.ItemsSource>
+                                                                <office:PredefinedFontSizeCollection />
+                                                            </dxe:ComboBoxEdit.ItemsSource>
+                                                        </dxe:ComboBoxEdit>
+                                                    </dxlc:LayoutItem>
+                                                </dxlc:LayoutGroup>
+                                            </dxlc:LayoutGroup>
+
+                                            <dxlc:LayoutGroup Orientation="Horizontal" Margin="80,0,0,0">
+                                                <dxe:CheckEdit Content="Italic" EditValue="{Binding TextIsItalic, RelativeSource={RelativeSource TemplatedParent}, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                                                <dxe:CheckEdit Content="Bold" EditValue="{Binding TextIsBold, RelativeSource={RelativeSource TemplatedParent}, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                                            </dxlc:LayoutGroup>
+                                            <dxlc:LayoutItem Label="Transparency" AddColonToLabel="True" LabelPosition="Left">
+                                                <dxe:TrackBarEdit Minimum="0" Maximum="255" EditValue="{Binding Path=TextTransparency, RelativeSource={RelativeSource TemplatedParent}, UpdateSourceTrigger=PropertyChanged}" SmallStep="10" LargeStep="25" />
+                                            </dxlc:LayoutItem>
+                                        </dxlc:LayoutGroup>
+                                    </dxlc:LayoutGroup>
+                                    <dxlc:LayoutGroup Header="Picture Watermark" Orientation="Vertical">
+                                        <dxlc:LayoutGroup Orientation="Vertical">
+                                            <dxlc:LayoutItem Label="Image" AddColonToLabel="True" LabelPosition="Left">
+                                                <dxe:ButtonEdit AllowDefaultButton="False" IsTextEditable="False" FontStyle="Italic" IsReadOnly="True" EditValue="{Binding ImageFileName, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}">
+                                                    <dxe:ButtonEdit.Buttons>
+                                                        <dxe:ButtonInfo GlyphKind="Regular" Command="{Binding OpenImageCommand, RelativeSource={RelativeSource TemplatedParent}}" />
+                                                    </dxe:ButtonEdit.Buttons>
+                                                </dxe:ButtonEdit>
+                                            </dxlc:LayoutItem>
+                                            <dxlc:LayoutGroup Orientation="Vertical" IsEnabled="{Binding Image, Converter={dxmvvm:ObjectToBooleanConverter}, RelativeSource={RelativeSource TemplatedParent}}">
+                                                <dxlc:LayoutGroup Orientation="Horizontal" >
+                                                    <dxlc:LayoutItem Label="Size mode" AddColonToLabel="True" LabelPosition="Left">
+                                                        <dxe:ComboBoxEdit EditValue="{Binding ImageViewMode, RelativeSource={RelativeSource TemplatedParent}, UpdateSourceTrigger=PropertyChanged}" IsTextEditable="False" ItemsSource="{dxe:EnumItemsSource EnumType=xtraprintingdrawing:ImageViewMode}" />
+                                                    </dxlc:LayoutItem>
+                                                    <dxlc:LayoutItem HorizontalAlignment="Right" HorizontalContentAlignment="Right" Margin="10,0,0,0">
+                                                        <dxe:CheckEdit Content="Tiling" IsChecked="{Binding ImageIsTiled, RelativeSource={RelativeSource TemplatedParent}}" VerticalAlignment="Center" HorizontalAlignment="Left" />
+                                                    </dxlc:LayoutItem>
+                                                </dxlc:LayoutGroup>
+                                                <dxlc:LayoutItem Label="Horizontal alignment" AddColonToLabel="True" LabelPosition="Left">
+                                                    <dxe:ComboBoxEdit EditValue="{Binding ImageHorizontalAlignment, RelativeSource={RelativeSource TemplatedParent}, UpdateSourceTrigger=PropertyChanged}" IsTextEditable="False" ItemsSource="{designernative:WatermarkPictureHorizontalAlignment}" />
+                                                </dxlc:LayoutItem>
+                                                <dxlc:LayoutItem Label="Vertical alignment" AddColonToLabel="True" LabelPosition="Left">
+                                                    <dxe:ComboBoxEdit EditValue="{Binding ImageVerticalAlignment, RelativeSource={RelativeSource TemplatedParent}, UpdateSourceTrigger=PropertyChanged}" IsTextEditable="False" ItemsSource="{designernative:WatermarkPictureVerticalAlignment}" />
+                                                </dxlc:LayoutItem>
+                                                <dxlc:LayoutItem Label="Transparency" AddColonToLabel="True" LabelPosition="Left" >
+                                                    <dxe:TrackBarEdit Minimum="0" Maximum="255" EditValue="{Binding ImageTransparency, RelativeSource={RelativeSource TemplatedParent}, UpdateSourceTrigger=PropertyChanged}" SmallStep="10" />
+                                                </dxlc:LayoutItem>
+                                            </dxlc:LayoutGroup>
+                                        </dxlc:LayoutGroup>
+                                    </dxlc:LayoutGroup>
+                                </dxlc:LayoutGroup>
+                                <dxlc:LayoutGroup Orientation="Horizontal" VerticalAlignment="Bottom">
+                                    <dxlc:LayoutGroup Orientation="Vertical" Style="{StaticResource LayoutGroupWithStandardGroupBox}" Header="Position" HorizontalAlignment="Left">
+                                        <dxe:ListBoxEdit ShowBorder="False" ItemsSource="{Binding Positions, RelativeSource={RelativeSource TemplatedParent}}" ValueMember="Value"
+                                                                 EditValue="{Binding ShowBehind, RelativeSource={RelativeSource TemplatedParent}, UpdateSourceTrigger=PropertyChanged}">
+                                            <dxe:ListBoxEdit.StyleSettings>
+                                                <dxe:RadioListBoxEditStyleSettings />
+                                            </dxe:ListBoxEdit.StyleSettings>
+                                            <dxe:ListBoxEdit.ItemTemplateSelector>
+                                                <designereditors:BooleanTemplateSelector>
+                                                    <designereditors:BooleanTemplateSelector.TrueValueTemplate>
+                                                        <DataTemplate>
+                                                            <TextBlock Text="{Binding Text}" />
+                                                        </DataTemplate>
+                                                    </designereditors:BooleanTemplateSelector.TrueValueTemplate>
+                                                    <designereditors:BooleanTemplateSelector.FalseValueTemplate>
+                                                        <DataTemplate>
+                                                            <StackPanel Orientation="Horizontal">
+                                                                <TextBlock Text="{Binding Text}" VerticalAlignment="Center" />
+                                                                <dxe:TextEdit VerticalAlignment="Center" IsEnabled="False" IsHitTestVisible="False" Visibility="Hidden" />
+                                                            </StackPanel>
+                                                        </DataTemplate>
+                                                    </designereditors:BooleanTemplateSelector.FalseValueTemplate>
+                                                </designereditors:BooleanTemplateSelector>
+                                            </dxe:ListBoxEdit.ItemTemplateSelector>
+                                        </dxe:ListBoxEdit>
+                                    </dxlc:LayoutGroup>
+                                    <dxlc:LayoutGroup Orientation="Vertical" Style="{StaticResource LayoutGroupWithStandardGroupBox}" Header="Page Range">
+                                        <dxlc:LayoutGroup Orientation="Horizontal">
+                                            <dxlc:LayoutItem>
+                                                <dxe:ListBoxEdit ShowBorder="False" ItemsSource="{Binding PageRanges, RelativeSource={RelativeSource TemplatedParent}}" ValueMember="Value"
+                                                                 EditValue="{Binding IsPageRange, RelativeSource={RelativeSource TemplatedParent}, UpdateSourceTrigger=PropertyChanged}">
+                                                    <dxe:ListBoxEdit.StyleSettings>
+                                                        <dxe:RadioListBoxEditStyleSettings />
+                                                    </dxe:ListBoxEdit.StyleSettings>
+                                                    <dxe:ListBoxEdit.ItemTemplateSelector>
+                                                        <designereditors:BooleanTemplateSelector>
+                                                            <designereditors:BooleanTemplateSelector.FalseValueTemplate>
+                                                                <DataTemplate>
+                                                                    <TextBlock Text="{Binding Text}" />
+                                                                </DataTemplate>
+                                                            </designereditors:BooleanTemplateSelector.FalseValueTemplate>
+                                                            <designereditors:BooleanTemplateSelector.TrueValueTemplate>
+                                                                <DataTemplate>
+                                                                    <StackPanel Orientation="Horizontal">
+                                                                        <TextBlock Text="{Binding Text}" VerticalAlignment="Center" />
+                                                                        <dxe:TextEdit Margin="5,0,0,0" EditValue="{Binding PageRange, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=designereditors:WatermarkUITypeEditor}}" MaskType="RegEx" Mask="{x:Static propertygrid:ReportDesignerPropertyGridControl.PageRangeMask}" MaskUseAsDisplayFormat="True" Width="100" VerticalAlignment="Center" />
+                                                                        <TextBlock Margin="5,0,0,0" Text="For example: 1,3,5-12" VerticalAlignment="Center" />
+                                                                    </StackPanel>
+                                                                </DataTemplate>
+                                                            </designereditors:BooleanTemplateSelector.TrueValueTemplate>
+                                                        </designereditors:BooleanTemplateSelector>
+                                                    </dxe:ListBoxEdit.ItemTemplateSelector>
+                                                </dxe:ListBoxEdit>
+                                            </dxlc:LayoutItem>
+                                        </dxlc:LayoutGroup>
+                                    </dxlc:LayoutGroup>
+                                </dxlc:LayoutGroup>
+                            </dxlc:LayoutGroup>
+                        </dxlc:LayoutControl>
+                        <dx:DialogFooter>
+                            <Grid>
+                                <dx:DialogButton HorizontalAlignment="Left" Content="Clear All" Command="{Binding ClearAllCommand, RelativeSource={RelativeSource TemplatedParent}}" />
+                                <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                                    <dx:DialogButton DialogResult="OK" Command="{Binding SaveCommand, RelativeSource={RelativeSource TemplatedParent}}" />
+                                    <dx:DialogButton DialogResult="Cancel" />
+                                </StackPanel>
+                            </Grid>
+                        </dx:DialogFooter>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

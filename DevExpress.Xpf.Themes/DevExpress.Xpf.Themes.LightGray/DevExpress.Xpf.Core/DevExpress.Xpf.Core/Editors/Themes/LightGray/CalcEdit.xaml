@@ -1,0 +1,322 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:dxtEx="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys" xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors" xmlns:dxet="http://schemas.devexpress.com/winfx/2008/xaml/editors/themekeys" xmlns:dxep="http://schemas.devexpress.com/winfx/2008/xaml/editors" xmlns:dxepc="http://schemas.devexpress.com/winfx/2008/xaml/editors" xmlns:sys="clr-namespace:System;assembly=mscorlib" xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys">
+
+    <!--BEGIN WPF-->
+    <ResourceDictionary.MergedDictionaries>
+        <dxtEx:ResourceDictionaryEx Source="/DevExpress.Xpf.Themes.LightGray.v15.2;component/DevExpress.Xpf.Core/DevExpress.Xpf.Core/Editors/Themes/Generic/CalcEdit.xaml" />
+        <dxtEx:ResourceDictionaryEx Source="/DevExpress.Xpf.Themes.LightGray.v15.2;component/DevExpress.Xpf.Core/DevExpress.Xpf.Core/Editors/Themes/Generic/CalcEditDisplay.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+    <!--END WPF-->
+
+    <Style x:Key="CalculatorButtonBaseStyle" TargetType="{x:Type Button}">
+        <Setter Property="dx:FocusHelper2.Focusable" Value="False" />
+        <Setter Property="Foreground" Value="#FF5E5E5E" />
+        <Setter Property="Margin" Value="1,1,1,1" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Grid x:Name="grid">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="FocusStates">
+                                <VisualState x:Name="Focused" />
+                                <VisualState x:Name="Unfocused" />
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualStateGroup.Transitions>
+                                    <VisualTransition GeneratedDuration="00:00:00" To="Normal" />
+                                    <VisualTransition From="Normal" GeneratedDuration="00:00:00" To="MouseOver" />
+                                    <VisualTransition GeneratedDuration="00:00:00" To="MouseOver" />
+                                    <VisualTransition GeneratedDuration="00:00:00" To="Pressed" />
+                                </VisualStateGroup.Transitions>
+                                <VisualState x:Name="Normal" />
+                                <VisualState x:Name="MouseOver">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:00.0010000" Storyboard.TargetName="PART_Default" Storyboard.TargetProperty="(FrameworkElement.Margin)">
+                                            <DiscreteObjectKeyFrame KeyTime="00:00:00">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <Thickness>-1</Thickness>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:00.0010000" Storyboard.TargetName="PART_Default" Storyboard.TargetProperty="(Border.CornerRadius)">
+                                            <DiscreteObjectKeyFrame KeyTime="00:00:00">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <CornerRadius>15</CornerRadius>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Pressed">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:00.0010000" Storyboard.TargetName="PART_Default" Storyboard.TargetProperty="(UIElement.Visibility)">
+                                            <DiscreteObjectKeyFrame KeyTime="00:00:00">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <Visibility>Collapsed</Visibility>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:00.0010000" Storyboard.TargetName="PART_Pressed" Storyboard.TargetProperty="(UIElement.Visibility)">
+                                            <DiscreteObjectKeyFrame KeyTime="00:00:00">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <Visibility>Visible</Visibility>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <!--ONLY SL
+                                        <ObjectAnimationUsingKeyFrames Duration="00:00:00.0010000" Storyboard.TargetName="ContentContainer" Storyboard.TargetProperty="Foreground">
+                                            <DiscreteObjectKeyFrame KeyTime="00:00:00">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <SolidColorBrush Color="White"/>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        ONLY SL-->
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Disabled" />
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="MemoryStates">
+                                <VisualState x:Name="EmptyMemory" />
+                                <VisualState x:Name="MemoryAssigned">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Duration="00:00:00.0010000" Storyboard.TargetName="PART_Memory" Storyboard.TargetProperty="(UIElement.Visibility)">
+                                            <DiscreteObjectKeyFrame KeyTime="00:00:00">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <Visibility>Visible</Visibility>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Border x:Name="PART_Default" CornerRadius="14">
+                            <Border.Background>
+                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                    <GradientStop Color="#FFD6D6D6" Offset="0" />
+                                    <GradientStop Color="#FFC8C8C8" Offset="1" />
+                                </LinearGradientBrush>
+                            </Border.Background>
+                        </Border>
+                        <Border x:Name="PART_Pressed" CornerRadius="14" Background="#FF3C3C3C" Visibility="Collapsed">
+                            <Border CornerRadius="13" Background="#FF4C4C4C" Margin="1" />
+                        </Border>
+                        <Border x:Name="PART_Memory" CornerRadius="16" Margin="-2" Visibility="Collapsed" BorderThickness="2" BorderBrush="White">
+                            <!--<Border.Background>
+                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                    <GradientStop Color="White" Offset="0"/>
+                                    <GradientStop Color="White" Offset="1"/>
+                                </LinearGradientBrush>
+                            </Border.Background>-->
+                            <Border x:Name="border1_Copy1" CornerRadius="14" BorderBrush="#FF5C5C5C" BorderThickness="1" Background="Transparent">
+                                <!--<Border x:Name="border1" CornerRadius="13" Margin="1">
+                                    <Border.Background>
+                                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                            <GradientStop Color="#FFD6D6D6" Offset="0"/>
+                                            <GradientStop Color="#FFC8C8C8" Offset="1"/>
+                                        </LinearGradientBrush>
+                                    </Border.Background>
+                                </Border>-->
+                            </Border>
+                        </Border>
+                        <!--ONLY SL
+                        <dx:ContentContainer x:Name="ContentContainer">
+                        ONLY SL-->
+                            <ContentPresenter x:Name="contentPresenter" HorizontalAlignment="Center" VerticalAlignment="Center" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                        <!--ONLY SL
+                        </dx:ContentContainer>
+                        ONLY SL-->
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="Foreground" Value="White" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="{dxet:CalculatorThemeKey ResourceKey=ButtonOperationStyle}" TargetType="{x:Type Button}" BasedOn="{StaticResource CalculatorButtonBaseStyle}" />
+    <Style x:Key="{dxet:CalculatorThemeKey ResourceKey=ButtonCEStyle}" TargetType="{x:Type Button}" BasedOn="{StaticResource CalculatorButtonBaseStyle}" />
+    <Style x:Key="{dxet:CalculatorThemeKey ResourceKey=ButtonDigitStyle}" TargetType="{x:Type Button}">
+        <Setter Property="dx:FocusHelper2.Focusable" Value="False" />
+        <Setter Property="Foreground" Value="#FF5E5E5E" />
+        <Setter Property="Margin" Value="1,1,1,1" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Grid x:Name="grid">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="FocusStates">
+                                <VisualState x:Name="Focused" />
+                                <VisualState x:Name="Unfocused" />
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualStateGroup.Transitions>
+                                    <VisualTransition GeneratedDuration="00:00:00" To="Normal" />
+                                    <VisualTransition From="Normal" GeneratedDuration="00:00:00" To="MouseOver" />
+                                    <VisualTransition GeneratedDuration="00:00:00" To="MouseOver" />
+                                    <VisualTransition GeneratedDuration="00:00:00" To="Pressed" />
+                                </VisualStateGroup.Transitions>
+                                <VisualState x:Name="Normal" />
+                                <VisualState x:Name="MouseOver">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:00.0010000" Storyboard.TargetName="PART_Default" Storyboard.TargetProperty="(FrameworkElement.Margin)">
+                                            <DiscreteObjectKeyFrame KeyTime="00:00:00">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <Thickness>-1</Thickness>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:00.0010000" Storyboard.TargetName="PART_Default" Storyboard.TargetProperty="(Border.CornerRadius)">
+                                            <DiscreteObjectKeyFrame KeyTime="00:00:00">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <CornerRadius>15</CornerRadius>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Pressed">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:00.0010000" Storyboard.TargetName="PART_Pressed" Storyboard.TargetProperty="(UIElement.Visibility)">
+                                            <DiscreteObjectKeyFrame KeyTime="00:00:00">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <Visibility>Visible</Visibility>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:00.0010000" Storyboard.TargetName="PART_Default" Storyboard.TargetProperty="(UIElement.Visibility)">
+                                            <DiscreteObjectKeyFrame KeyTime="00:00:00">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <Visibility>Collapsed</Visibility>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <!--ONLY SL
+                                        <ObjectAnimationUsingKeyFrames Duration="00:00:00.0010000" Storyboard.TargetName="ContentContainer" Storyboard.TargetProperty="Foreground">
+                                            <DiscreteObjectKeyFrame KeyTime="00:00:00">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <SolidColorBrush Color="White"/>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        ONLY SL-->
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Disabled" />
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Border x:Name="PART_Default" CornerRadius="14">
+                            <Border.Background>
+                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                    <GradientStop Color="#FFE0E0E0" Offset="1" />
+                                    <GradientStop Color="#FFF0F0F0" />
+                                </LinearGradientBrush>
+                            </Border.Background>
+                        </Border>
+                        <Border x:Name="PART_Pressed" CornerRadius="14" Background="#FF3C3C3C" Visibility="Collapsed">
+                            <Border CornerRadius="13" Background="#FF4C4C4C" Margin="1" />
+                        </Border>
+                        <!--ONLY SL
+                        <dx:ContentContainer x:Name="ContentContainer">
+                        ONLY SL-->
+                        <ContentPresenter x:Name="contentPresenter" HorizontalAlignment="Center" VerticalAlignment="Center" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                        <!--ONLY SL
+                        </dx:ContentContainer>
+                        ONLY SL-->
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="Foreground" Value="White" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <ControlTemplate x:Key="{dxet:CalculatorThemeKey ResourceKey=DisplayTemplate}" TargetType="{x:Type ContentControl}">
+        <Grid>
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup x:Name="CommonStates">
+                    <VisualState x:Name="Normal" />
+                    <VisualState x:Name="MouseOver" />
+                    <VisualState x:Name="Pressed" />
+                    <VisualState x:Name="Disabled">
+                        <Storyboard>
+                            <ColorAnimation Duration="0" Storyboard.TargetName="border1" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="#FFEEEEEE" />
+                            <ColorAnimation Duration="0" Storyboard.TargetName="Content" Storyboard.TargetProperty="(ContentControl.Foreground).(SolidColorBrush.Color)" To="#FF444444" />
+                        </Storyboard>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Border Grid.RowSpan="2" Background="#FF707070" />
+            <Grid Margin="0,0,0,8">
+                <Border Background="#FF565656" CornerRadius="3">
+                    <Border x:Name="border1" CornerRadius="2" Background="#FFD5E8FA" Margin="1">
+                        <Border x:Name="border" CornerRadius="2,2,0,0" Height="4" VerticalAlignment="Top" Opacity="0.35">
+                            <Border.Background>
+                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                    <GradientStop Color="Black" />
+                                    <GradientStop Color="Transparent" Offset="1" />
+                                </LinearGradientBrush>
+                            </Border.Background>
+                        </Border>
+                    </Border>
+                </Border>
+                <ContentControl x:Name="Content" Margin="4" Template="{DynamicResource {dxet:CalculatorThemeKey ResourceKey=DisplayContentTemplate}}" dx:FocusHelper2.Focusable="False">
+                    <ContentControl.Foreground>
+                        <SolidColorBrush Color="#FF222222" />
+                    </ContentControl.Foreground>
+                </ContentControl>
+            </Grid>
+            <Border Background="#FF474747" CornerRadius="3,3,0,0" Height="4" Grid.Row="1">
+                <Border Background="#FF565656" CornerRadius="2,2,0,0" Margin="1,1,1,0">
+                    <Border Background="#FF5C5C5C" CornerRadius="0,0,1,1" Margin="1,1,1,0" />
+                </Border>
+            </Border>
+        </Grid>
+    </ControlTemplate>
+    <Style x:Key="{dxet:CalculatorThemeKey ResourceKey=DisplayStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="dx:FocusHelper2.Focusable" Value="False" />
+        <Setter Property="FontSize" Value="21" />
+        <Setter Property="Margin" Value="-10,-10,-10,6" />
+        <Setter Property="Template" Value="{DynamicResource {dxet:CalculatorThemeKey ResourceKey=DisplayTemplate}}" />
+    </Style>
+    <ControlTemplate x:Key="{dxet:CalculatorThemeKey ResourceKey=BorderTemplate}" TargetType="{x:Type ContentControl}">
+        <Grid>
+            <Grid.Resources>
+                <dx:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+                <dx:BoolToVisibilityInverseConverter x:Key="BoolToVisibilityInverseConverter" />
+                <dx:BoolToThicknessConverter x:Key="BoolToThicknessConverter" ThicknessTrue="18,18,18,18" ThicknessFalse="18,18,18,18" />
+            </Grid.Resources>
+            <Border Background="#FF707070" CornerRadius="4" Padding="8" Visibility="{Binding ShowBorder, Converter={StaticResource BoolToVisibilityConverter}}">
+                <Border Background="#FF474747" CornerRadius="0,0,3,3">
+                    <Border Background="#FF565656" CornerRadius="0,0,2,2" Margin="1">
+                        <Border Background="#FF5C5C5C" CornerRadius="0,0,1,1" Margin="1" />
+                    </Border>
+                </Border>
+            </Border>
+            <Border Background="#FF707070" Padding="8" Visibility="{Binding ShowBorder, Converter={StaticResource BoolToVisibilityInverseConverter}}">
+                <Border Background="#FF474747" CornerRadius="0,0,3,3">
+                    <Border Background="#FF565656" CornerRadius="0,0,2,2" Margin="1">
+                        <Border Background="#FF5C5C5C" CornerRadius="0,0,1,1" Margin="1" />
+                    </Border>
+                </Border>
+            </Border>
+            <ContentPresenter Margin="{Binding ShowBorder, Converter={StaticResource BoolToThicknessConverter}}" />
+        </Grid>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="{dxet:CalculatorThemeKey ResourceKey=PopupContentContainerTemplate}" TargetType="{x:Type ContentControl}">
+        <Grid>
+            <Border Background="#FF5C5C5C" CornerRadius="2" />
+            <ContentPresenter Margin="8" />
+        </Grid>
+    </ControlTemplate>
+
+</ResourceDictionary>

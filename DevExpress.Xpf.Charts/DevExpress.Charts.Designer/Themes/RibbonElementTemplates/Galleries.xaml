@@ -1,0 +1,312 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+    xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
+    xmlns:dxr="http://schemas.devexpress.com/winfx/2008/xaml/ribbon"
+    xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+    xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
+    xmlns:local="clr-namespace:DevExpress.Charts.Designer.Native">
+
+    <local:SelectedItemGlyphConverter x:Key="selectedItemGlyphConverter" />
+
+
+    <DataTemplate x:Key="BarSplitButtonGalleryViewModelTemplate">
+        <ContentControl>
+            <dxb:BarSplitButtonItem
+                Command="{Binding BarItem.Command}"
+                Content="{Binding BarItem.Caption}"
+                Glyph="{Binding BarItem.Glyph}"
+                LargeGlyph="{Binding BarItem.LargeGlyph}"
+                CommandParameter="{Binding BarItem.CommandParameter}"
+                IsEnabled="{Binding Path=IsEnabled}">
+                <dxb:BarSplitButtonItem.PopupControl>
+                    <dxb:PopupControlContainer                        
+                        CloseOnClick="False">
+                        <dxmvvm:Interaction.Behaviors>
+                            <local:CloseOnClickGalleryBehavior/>
+                        </dxmvvm:Interaction.Behaviors>
+                        <dxb:GalleryControl
+                            DesiredColCount="{Binding Path=InitialVisibleColCount}"
+                            DesiredRowCount="{Binding Path=InitialVisibleRowCount}"
+                            BorderBrush="Transparent">
+                            <dxb:GalleryControl.Gallery>
+                                <dxb:Gallery
+                                    ItemCheckMode="{Binding Path=ItemCheckMode}"
+                                    GroupsSource="{Binding Path=Groups}"
+                                    IsItemCaptionVisible="{Binding IsItemCaptionVisible}"
+                                    IsItemDescriptionVisible="{Binding IsItemDescriptionVisible}"
+                                    AllowToolTips="{Binding Path=AllowToolTips}"
+                                    IsGroupCaptionVisible="{Binding Path=IsGroupCaptionVisible}"
+                                    SizeMode="{Binding  Path=SizeMode}"
+                                    ItemDescriptionHorizontalAlignment="Left"
+                                    AllowFilter="False">
+                                    <dxb:Gallery.GroupTemplate>
+                                        <DataTemplate>
+                                            <ContentControl>
+                                                <dxb:GalleryItemGroup
+                                                    Caption="{Binding Path=Caption}"
+                                                    ItemsSource="{Binding Path=Items}"
+                                                    IsVisible="{Binding Path=IsVisible}">
+                                                    <dxb:GalleryItemGroup.ItemTemplate>
+                                                        <DataTemplate>
+                                                            <ContentControl>
+                                                                <dxb:GalleryItem
+                                                                    Description="{Binding Path=Command.Description}"
+                                                                    Command="{Binding Path=Command}"
+                                                                    Caption="{Binding Path=Command.Caption}"
+                                                                    Glyph="{Binding Path=LargeGlyph}"
+                                                                    CommandParameter="{Binding Path=CommandParameter}"
+                                                                    IsVisible="{Binding Path=IsVisible}">
+                                                                </dxb:GalleryItem>
+                                                            </ContentControl>
+                                                        </DataTemplate>
+                                                    </dxb:GalleryItemGroup.ItemTemplate>
+                                                </dxb:GalleryItemGroup>
+                                            </ContentControl>
+                                        </DataTemplate>
+                                    </dxb:Gallery.GroupTemplate>
+                                </dxb:Gallery>
+                            </dxb:GalleryControl.Gallery>
+                        </dxb:GalleryControl>
+                    </dxb:PopupControlContainer>
+                </dxb:BarSplitButtonItem.PopupControl>
+            </dxb:BarSplitButtonItem>
+        </ContentControl>
+    </DataTemplate>
+
+
+    <DataTemplate x:Key="BarDropDownButtonGalleryViewModelTemplate">
+        <ContentControl>
+            <dxb:BarSplitButtonItem
+                Content="{Binding Caption}"
+                ActAsDropDown="True"
+                CloseSubMenuOnClick="True"
+                RibbonStyle="{Binding RibbonStyle}"
+                IsEnabled="{Binding Path=IsEnabled}">
+                <dxb:BarSplitButtonItem.LargeGlyph>
+                    <MultiBinding
+                        Converter="{StaticResource selectedItemGlyphConverter}">
+                        <Binding
+                            RelativeSource="{RelativeSource Self}"
+                            Path="PopupControl.Content.Gallery.CheckedItems" />
+                        <Binding
+                            Path="LargeGlyph" />
+                    </MultiBinding>
+                </dxb:BarSplitButtonItem.LargeGlyph>
+                <dxb:BarSplitButtonItem.Glyph>
+                    <MultiBinding
+                        Converter="{StaticResource selectedItemGlyphConverter}">
+                        <Binding
+                            RelativeSource="{RelativeSource Self}"
+                            Path="PopupControl.Content.Gallery.CheckedItems" />
+                        <Binding
+                            Path="Glyph" />
+                    </MultiBinding>
+                </dxb:BarSplitButtonItem.Glyph>
+                <dxb:BarSplitButtonItem.PopupControl>
+                    <dxb:PopupControlContainer
+                        CloseOnClick="False">
+                        <dxmvvm:Interaction.Behaviors>
+                            <local:CloseOnClickGalleryBehavior/>
+                        </dxmvvm:Interaction.Behaviors>
+                        <dxb:GalleryControl
+                            DesiredColCount="{Binding Path=InitialVisibleColCount}"
+                            DesiredRowCount="{Binding Path=InitialVisibleRowCount}"
+                            BorderBrush="Transparent">
+                            <dxb:GalleryControl.Gallery>
+                                <dxb:Gallery
+                                    ItemCheckMode="{Binding Path=ItemCheckMode}"
+                                    GroupsSource="{Binding Path=Groups}"
+                                    IsItemCaptionVisible="{Binding Path=IsItemCaptionVisible}"
+                                    IsItemDescriptionVisible="{Binding Path=IsItemDescriptionVisible}"
+                                    AllowToolTips="{Binding Path=AllowToolTips}"
+                                    IsGroupCaptionVisible="{Binding Path=IsGroupCaptionVisible}"
+                                    SizeMode="{Binding SizeMode}"
+                                    ItemDescriptionHorizontalAlignment="Left"
+                                    AllowFilter="False">
+                                    <dxb:Gallery.GroupTemplate>
+                                        <DataTemplate>
+                                            <ContentControl>
+                                                <dxb:GalleryItemGroup
+                                                    Caption="{Binding Path=Caption}"
+                                                    ItemsSource="{Binding Path=Items}"
+                                                    IsVisible="{Binding IsVisible}">
+                                                    <dxb:GalleryItemGroup.ItemTemplate>
+                                                        <DataTemplate>
+                                                            <ContentControl>
+                                                                <dxb:GalleryItem
+                                                                    Description="{Binding Command.Description}"
+                                                                    Caption="{Binding Path=Caption}"
+                                                                    Glyph="{Binding Path=LargeGlyph}"
+                                                                    IsChecked="{Binding Path=EditValue, Mode=TwoWay}"
+                                                                    Command="{Binding Command}"
+                                                                    IsVisible="{Binding Path=IsVisible}">
+                                                                </dxb:GalleryItem>
+                                                            </ContentControl>
+                                                        </DataTemplate>
+                                                    </dxb:GalleryItemGroup.ItemTemplate>
+                                                </dxb:GalleryItemGroup>
+                                            </ContentControl>
+                                        </DataTemplate>
+                                    </dxb:Gallery.GroupTemplate>
+                                </dxb:Gallery>
+                            </dxb:GalleryControl.Gallery>
+                        </dxb:GalleryControl>
+                    </dxb:PopupControlContainer>
+                </dxb:BarSplitButtonItem.PopupControl>
+            </dxb:BarSplitButtonItem>
+        </ContentControl>
+    </DataTemplate>
+
+
+    <local:NonVisualSeriesPresentationToSeriesConverter x:Key="nonVisulalToSeriesConverter" />
+    
+    <DataTemplate x:Key="BarDropDownButtonGalleryWithComboViewModelTemplate">
+        <ContentControl>
+            <dxb:BarSplitButtonItem
+                Content="{Binding Caption}"
+                ActAsDropDown="True"
+                CloseSubMenuOnClick="True"
+                RibbonStyle="{Binding RibbonStyle}"
+                Glyph="{Binding Path=Glyph}"
+                LargeGlyph="{Binding Path=LargeGlyph}"
+                IsEnabled="{Binding Path=IsEnabled}">
+                <dxb:BarSplitButtonItem.PopupControl>
+                    <dxb:PopupControlContainer
+                        CloseOnClick="False">
+                        <dxmvvm:Interaction.Behaviors>
+                            <local:CloseOnClickGalleryBehavior/>
+                        </dxmvvm:Interaction.Behaviors>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition
+                                    Height="Auto" />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <dxe:ComboBoxEdit
+                                x:Name="combo"
+                                ItemsSource="{Binding Path=ComboBoxItems}"
+                                SelectedItem="{Binding Path=SelectedComboBoxItem, Mode=TwoWay}" />
+                            <dxb:GalleryControl
+                                Grid.Row="1"
+                                DesiredColCount="{Binding Path=InitialVisibleColCount}"
+                                DesiredRowCount="{Binding Path=InitialVisibleRowCount}"
+                                BorderBrush="Transparent">
+                                <dxb:GalleryControl.Gallery>
+                                    <dxb:Gallery
+                                        ItemCheckMode="None"
+                                        GroupsSource="{Binding Path=Groups}"
+                                        IsItemCaptionVisible="{Binding Path=IsItemCaptionVisible}"
+                                        IsItemDescriptionVisible="{Binding Path=IsItemDescriptionVisible}"
+                                        AllowToolTips="{Binding Path=AllowToolTips}"
+                                        IsGroupCaptionVisible="{Binding Path=IsGroupCaptionVisible}"
+                                        SizeMode="{Binding SizeMode}"
+                                        ItemDescriptionHorizontalAlignment="Left"
+                                        AllowFilter="False">
+                                        <dxb:Gallery.GroupTemplate>
+                                            <DataTemplate>
+                                                <ContentControl>
+                                                    <dxb:GalleryItemGroup
+                                                        Caption="{Binding Path=Caption}"
+                                                        ItemsSource="{Binding Path=Items}"
+                                                        IsVisible="{Binding IsVisible}">
+                                                        <dxb:GalleryItemGroup.ItemTemplate>
+                                                            <DataTemplate>
+                                                                <ContentControl>
+                                                                    <dxb:GalleryItem
+                                                                        Description="{Binding Command.Description}"
+                                                                        Caption="{Binding Path=Caption}"
+                                                                        Glyph="{Binding Path=LargeGlyph}"
+                                                                        Command="{Binding Path=Command}"
+                                                                        CommandParameter="{Binding Path=CommandParameter}"
+                                                                        IsVisible="{Binding Path=IsVisible}">
+                                                                    </dxb:GalleryItem>
+                                                                </ContentControl>
+                                                            </DataTemplate>
+                                                        </dxb:GalleryItemGroup.ItemTemplate>
+                                                    </dxb:GalleryItemGroup>
+                                                </ContentControl>
+                                            </DataTemplate>
+                                        </dxb:Gallery.GroupTemplate>
+                                    </dxb:Gallery>
+                                </dxb:GalleryControl.Gallery>
+                            </dxb:GalleryControl>
+                        </Grid>
+                    </dxb:PopupControlContainer>
+                </dxb:BarSplitButtonItem.PopupControl>
+            </dxb:BarSplitButtonItem>
+        </ContentControl>
+    </DataTemplate>
+
+
+    <DataTemplate x:Key="InRibbonGalleryViewModelTemplate">
+        <ContentControl>
+            <dxr:RibbonGalleryBarItem>
+                <dxr:RibbonGalleryBarItem.Gallery>
+                    <dxb:Gallery
+                        GroupsSource="{Binding Path=Groups}"
+                        ColCount="{Binding Path=ColCount}"
+                        ItemAutoHeight="True"
+                        IsItemCaptionVisible="False">
+                        <dxb:Gallery.GroupTemplate>
+                            <DataTemplate>
+                                <ContentControl>
+                                    <dxb:GalleryItemGroup
+                                        Caption="{Binding Path=Caption}"
+                                        ItemsSource="{Binding Path=Items}">
+                                        <dxb:GalleryItemGroup.ItemTemplate>
+                                            <DataTemplate>
+                                                <ContentControl>
+                                                    <dxb:GalleryItem
+                                                        Command="{Binding Path=Command}"
+                                                        Caption="{Binding Path=Caption}"
+                                                        Glyph="{Binding Path=LargeGlyph}"
+                                                        IsVisible="{Binding Path=IsVisible}">
+                                                    </dxb:GalleryItem>
+                                                </ContentControl>
+                                            </DataTemplate>
+                                        </dxb:GalleryItemGroup.ItemTemplate>
+                                    </dxb:GalleryItemGroup>
+                                </ContentControl>
+                            </DataTemplate>
+                        </dxb:Gallery.GroupTemplate>
+                    </dxb:Gallery>
+                </dxr:RibbonGalleryBarItem.Gallery>
+                <dxr:RibbonGalleryBarItem.DropDownGallery>
+                    <dxb:Gallery
+                        GroupsSource="{Binding Path=Groups}"
+                        ColCount="{Binding Path=ColCount}"
+                        RowCount="{Binding Path=DropDownGalleryRowCount}"
+                        AllowFilter="False"
+                        IsItemCaptionVisible="False">
+                        <dxb:Gallery.GroupTemplate>
+                            <DataTemplate>
+                                <ContentControl>
+                                    <dxb:GalleryItemGroup
+                                        Caption="{Binding Path=Caption}"
+                                        ItemsSource="{Binding Path=Items}"
+                                        IsVisible="{Binding Path=IsVisible}">
+                                        <dxb:GalleryItemGroup.ItemTemplate>
+                                            <DataTemplate>
+                                                <ContentControl>
+                                                    <dxb:GalleryItem
+                                                        Command="{Binding Path=Command}"
+                                                        Caption="{Binding Path=Caption}"
+                                                        Glyph="{Binding Path=LargeGlyph}"
+                                                        IsVisible="{Binding Path=IsVisible}">
+                                                    </dxb:GalleryItem>
+                                                </ContentControl>
+                                            </DataTemplate>
+                                        </dxb:GalleryItemGroup.ItemTemplate>
+                                    </dxb:GalleryItemGroup>
+                                </ContentControl>
+                            </DataTemplate>
+                        </dxb:Gallery.GroupTemplate>
+                    </dxb:Gallery>
+                </dxr:RibbonGalleryBarItem.DropDownGallery>
+            </dxr:RibbonGalleryBarItem>
+        </ContentControl>
+    </DataTemplate>
+    
+</ResourceDictionary>

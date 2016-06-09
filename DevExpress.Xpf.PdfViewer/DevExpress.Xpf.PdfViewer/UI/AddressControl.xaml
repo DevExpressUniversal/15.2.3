@@ -1,0 +1,19 @@
+﻿<UserControl x:Class="DevExpress.Xpf.PdfViewer.UI.AddressControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+             xmlns:dxpdf="clr-namespace:DevExpress.Xpf.PdfViewer"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <dxpdf:PdfViewerStringIdConverter x:Key="PdfViewerStringIdConverter" />
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <StackPanel Margin="10,10,10,0" Width="400">
+        <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource PdfViewerStringIdConverter}, ConverterParameter=MessageEnterUrlLabel}" Margin="0,0,0,5"/>
+        <dxe:TextEdit EditValue="{Binding Path=Url, Mode=TwoWay}" MaskShowPlaceHolders="False" MaskType="RegEx" Mask="(http|https)://((([0-9a-zA-Z]([0-9a-zA-Z\-]*[0-9a-zA-Z])?\.)*[a-zA-Z]([0-9a-zA-Z\-]*[0-9a-zA-Z])?)|([0-2]?\d?\d\.[0-2]?\d?\d\.[0-2]?\d?\d\.[0-2]?\d?\d))?/[/a-zA-Z0-9$\-_.+!*'(),?:@&amp;=]*" />
+    </StackPanel>
+</UserControl>

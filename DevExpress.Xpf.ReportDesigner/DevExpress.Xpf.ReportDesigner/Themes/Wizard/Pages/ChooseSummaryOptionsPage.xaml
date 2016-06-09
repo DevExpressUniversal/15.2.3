@@ -1,0 +1,71 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+                    xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
+                    xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+                    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+                    xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
+                    xmlns:dataaccessNative="clr-namespace:DevExpress.Xpf.DataAccess.Native;assembly=DevExpress.Xpf.DataAccess.v15.2"
+                    xmlns:local="clr-namespace:DevExpress.Xpf.Reports.UserDesigner.ReportWizard.Pages">
+    <DataTemplate x:Key="{x:Type local:ChooseSummaryOptionsPage}">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <dataaccessNative:WizardTitle Title="What summary functions would you like to calculate?" />
+            <dxlc:LayoutControl Grid.Row="1" Padding="0" Margin="50,20" Orientation="Vertical">
+                <dxlc:LayoutItem VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                    <Grid Grid.IsSharedSizeScope="True">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto" Name="headerRow" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto" Name="displayNameColumn" SharedSizeGroup="sharedGroup" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="1" TextAlignment="Center" Margin="0,0,0,6" Text="Sum" />
+                        <TextBlock Grid.Column="2" TextAlignment="Center" Margin="0,0,0,6" Text="Avg" />
+                        <TextBlock Grid.Column="3" TextAlignment="Center" Margin="0,0,0,6" Text="Min" />
+                        <TextBlock Grid.Column="4" TextAlignment="Center" Margin="0,0,0,6" Text="Max" />
+                        <TextBlock Grid.Column="5" TextAlignment="Center" Margin="0,0,0,6" Text="Count" />
+                        <ScrollViewer Name="scrollViewer" Grid.Row="1" Grid.ColumnSpan="6"  HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Hidden">
+                            <ItemsControl ItemsSource="{Binding SummaryOptions}"  HorizontalAlignment="Stretch">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid Margin="0,3">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="auto" SharedSizeGroup="sharedGroup" />
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="*" />
+                                            </Grid.ColumnDefinitions>
+                                            <TextBlock Text="{Binding ColumnInfo.DisplayName}" Margin="0,0,24,0" />
+                                            <dxe:CheckEdit EditValue="{Binding Options.Sum}" Grid.Column="1" HorizontalAlignment="Center" />
+                                            <dxe:CheckEdit EditValue="{Binding Options.Avg}" Grid.Column="2" HorizontalAlignment="Center"/>
+                                            <dxe:CheckEdit EditValue="{Binding Options.Min}" Grid.Column="3" HorizontalAlignment="Center"/>
+                                            <dxe:CheckEdit EditValue="{Binding Options.Max}" Grid.Column="4" HorizontalAlignment="Center"/>
+                                            <dxe:CheckEdit EditValue="{Binding Options.Count}" Grid.Column="5" HorizontalAlignment="Center" />
+                                        </Grid>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </ScrollViewer>
+                        <Border BorderBrush="{DynamicResource {dxt:BrushesThemeKey ResourceKey=PanelBorder}}" Grid.RowSpan="2" BorderThickness="0,0,1,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+                        <Border BorderBrush="{DynamicResource {dxt:BrushesThemeKey ResourceKey=PanelBorder}}" Grid.ColumnSpan="6" BorderThickness="0,0,0,1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
+                    </Grid>
+                </dxlc:LayoutItem>
+                <dxlc:LayoutItem VerticalAlignment="Bottom" HorizontalAlignment="Stretch">
+                    <dxe:CheckEdit Content="Ignore null values" EditValue="{Binding IgnoreNullValues, UpdateSourceTrigger=PropertyChanged}" />
+                </dxlc:LayoutItem>
+            </dxlc:LayoutControl>
+        </Grid>
+    </DataTemplate>
+</ResourceDictionary>

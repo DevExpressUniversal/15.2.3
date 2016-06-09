@@ -1,0 +1,179 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:dxdb="clr-namespace:DevExpress.Xpf.DemoBase"
+    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+    xmlns:ddhelpers="clr-namespace:DevExpress.DemoData.Helpers;assembly=DevExpress.DemoData.v15.2.Core"
+    xmlns:helpers="clr-namespace:DevExpress.Xpf.DemoBase.Helpers"
+    xmlns:internal="clr-namespace:DevExpress.Xpf.DemoBase.Internal"
+    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+    xmlns:sytem_windows="clr-namespace:System.Windows;assembly=PresentationFramework"
+    xmlns:interactivity="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <ddhelpers:BoolToAnyConverter x:Key="CenterOpacityConverter">
+        <ddhelpers:BoolToAnyConverter.InnerConverter>
+            <dx:ObjectToBooleanConverter />
+        </ddhelpers:BoolToAnyConverter.InnerConverter>
+        <ddhelpers:BoolToAnyConverter.FalseValue>
+            <sys:Double>0</sys:Double>
+        </ddhelpers:BoolToAnyConverter.FalseValue>
+        <ddhelpers:BoolToAnyConverter.TrueValue>
+            <sys:Double>1</sys:Double>
+        </ddhelpers:BoolToAnyConverter.TrueValue>
+    </ddhelpers:BoolToAnyConverter>
+    <dx:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+    <Style TargetType="helpers:DemoTransferControl">
+        <Setter Property="IsNextDemoRequested" Value="{Binding IsNextDemo}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="helpers:DemoTransferControl">
+                    <Grid x:Name="Root">
+                        <ContentPresenter x:Name="DemoPresenter" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="1"
+                                        Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="GoneDemoToLeftStoryboard">
+            <Setter.Value>
+                <Storyboard>
+                    <DoubleAnimation Duration="0:0:0.15" From="0" To="-200" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[1].(TranslateTransform.X)">
+                        <DoubleAnimation.EasingFunction>
+                            <ExponentialEase EasingMode="EaseIn" />
+                        </DoubleAnimation.EasingFunction>
+                    </DoubleAnimation>
+                    <DoubleAnimation Duration="0:0:0.15" From="1" To="0" Storyboard.TargetProperty="(UIElement.Opacity)">
+                        <DoubleAnimation.EasingFunction>
+                            <ExponentialEase EasingMode="EaseIn" />
+                        </DoubleAnimation.EasingFunction>
+                    </DoubleAnimation>
+                </Storyboard>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="GoneDemoToRightStoryboard">
+            <Setter.Value>
+                <Storyboard>
+                    <DoubleAnimation Duration="0:0:0.15" From="0" To="200" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[1].(TranslateTransform.X)">
+                        <DoubleAnimation.EasingFunction>
+                            <ExponentialEase EasingMode="EaseIn" />
+                        </DoubleAnimation.EasingFunction>
+                    </DoubleAnimation>
+                    <DoubleAnimation Duration="0:0:0.15" From="1" To="0" Storyboard.TargetProperty="(UIElement.Opacity)">
+                        <DoubleAnimation.EasingFunction>
+                            <ExponentialEase EasingMode="EaseIn" />
+                        </DoubleAnimation.EasingFunction>
+                    </DoubleAnimation>
+                </Storyboard>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="GoneDemoToBackStoryboard">
+            <Setter.Value>
+                <Storyboard>
+                    <DoubleAnimation Duration="0:0:0.15" From="0" To="-200" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[1].(TranslateTransform.X)">
+                        <DoubleAnimation.EasingFunction>
+                            <ExponentialEase EasingMode="EaseIn" />
+                        </DoubleAnimation.EasingFunction>
+                    </DoubleAnimation>
+                    <DoubleAnimation Duration="0:0:0.15" From="1" To="0" Storyboard.TargetProperty="(UIElement.Opacity)">
+                        <DoubleAnimation.EasingFunction>
+                            <ExponentialEase EasingMode="EaseIn" />
+                        </DoubleAnimation.EasingFunction>
+                    </DoubleAnimation>
+                </Storyboard>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="CameDemoFromLeftStoryboard">
+            <Setter.Value>
+                <Storyboard>
+                    <DoubleAnimation Duration="0:0:0.2" From="-200" To="0" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[1].(TranslateTransform.X)">
+                        <DoubleAnimation.EasingFunction>
+                            <ExponentialEase EasingMode="EaseOut" />
+                        </DoubleAnimation.EasingFunction>
+                    </DoubleAnimation>
+                    <DoubleAnimation Duration="0:0:0.2" From="0" To="1" Storyboard.TargetProperty="(UIElement.Opacity)">
+                        <DoubleAnimation.EasingFunction>
+                            <ExponentialEase EasingMode="EaseOut" />
+                        </DoubleAnimation.EasingFunction>
+                    </DoubleAnimation>
+                </Storyboard>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="CameDemoFromRightStoryboard">
+            <Setter.Value>
+                <Storyboard>
+                    <DoubleAnimation Duration="0:0:0.2" From="200" To="0" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[1].(TranslateTransform.X)">
+                        <DoubleAnimation.EasingFunction>
+                            <ExponentialEase EasingMode="EaseOut" />
+                        </DoubleAnimation.EasingFunction>
+                    </DoubleAnimation>
+                    <DoubleAnimation Duration="0:0:0.2" From="0" To="1" Storyboard.TargetProperty="(UIElement.Opacity)">
+                        <DoubleAnimation.EasingFunction>
+                            <ExponentialEase EasingMode="EaseOut" />
+                        </DoubleAnimation.EasingFunction>
+                    </DoubleAnimation>
+                </Storyboard>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="CameDemoFromBackStoryboard">
+            <Setter.Value>
+                <Storyboard>
+                    <DoubleAnimation Duration="0:0:0.2" From="200" To="0" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[1].(TranslateTransform.X)">
+                        <DoubleAnimation.EasingFunction>
+                            <ExponentialEase EasingMode="EaseOut" />
+                        </DoubleAnimation.EasingFunction>
+                    </DoubleAnimation>
+                    <DoubleAnimation Duration="0:0:0.2" From="0" To="1" Storyboard.TargetProperty="(UIElement.Opacity)">
+                        <DoubleAnimation.EasingFunction>
+                            <ExponentialEase EasingMode="EaseOut" />
+                        </DoubleAnimation.EasingFunction>
+                    </DoubleAnimation>
+                </Storyboard>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="GoneDemoToLeftFastStoryboard">
+            <Setter.Value>
+                <Storyboard>
+                    <DoubleAnimation Duration="0:0:0.01" To="-200" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[1].(TranslateTransform.X)" />
+                    <DoubleAnimation Duration="0:0:0.01" To="0" Storyboard.TargetProperty="(UIElement.Opacity)" />
+                </Storyboard>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="GoneDemoToRightFastStoryboard">
+            <Setter.Value>
+                <Storyboard>
+                    <DoubleAnimation Duration="0:0:0.01" To="200" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[1].(TranslateTransform.X)" />
+                    <DoubleAnimation Duration="0:0:0.01" To="0" Storyboard.TargetProperty="(UIElement.Opacity)" />
+                </Storyboard>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="GoneDemoToBackFastStoryboard">
+            <Setter.Value>
+                <Storyboard>
+                    <DoubleAnimation Duration="0:0:0.01" To="0" Storyboard.TargetProperty="(UIElement.Opacity)" />
+                </Storyboard>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="CameDemoFromLeftFastStoryboard">
+            <Setter.Value>
+                <Storyboard>
+                    <DoubleAnimation Duration="0:0:0.01" To="0" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[1].(TranslateTransform.X)" />
+                    <DoubleAnimation Duration="0:0:0.01" To="1" Storyboard.TargetProperty="(UIElement.Opacity)" />
+                </Storyboard>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="CameDemoFromRightFastStoryboard">
+            <Setter.Value>
+                <Storyboard>
+                    <DoubleAnimation Duration="0:0:0.01" To="0" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[1].(TranslateTransform.X)" />
+                    <DoubleAnimation Duration="0:0:0.01" To="1" Storyboard.TargetProperty="(UIElement.Opacity)" />
+                </Storyboard>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="CameDemoFromBackFastStoryboard">
+            <Setter.Value>
+                <Storyboard>
+                    <DoubleAnimation Duration="0:0:0.01" To="1" Storyboard.TargetProperty="(UIElement.Opacity)" />
+                </Storyboard>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

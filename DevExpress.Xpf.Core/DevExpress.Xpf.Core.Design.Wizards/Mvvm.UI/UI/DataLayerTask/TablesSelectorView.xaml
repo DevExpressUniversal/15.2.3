@@ -1,0 +1,159 @@
+﻿<UserControl 
+    x:Class="DevExpress.Design.Mvvm.Wizards.UI.TablesSelectorView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:ui="clr-namespace:DevExpress.Design.UI;assembly=DevExpress.Design.v15.2"
+    xmlns:dataAccessUI="clr-namespace:DevExpress.Design.DataAccess.UI" Background="White"
+    xmlns:mvvmWizardsUI="clr-namespace:DevExpress.Design.Mvvm.Wizards.UI"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+    xmlns:data="clr-namespace:DevExpress.Mvvm.UI.Native.ViewGenerator;assembly=DevExpress.Xpf.Core.v15.2"
+    mc:Ignorable="d" 
+    d:DesignHeight="500" d:DesignWidth="800"
+    >
+    <UserControl.Resources>
+        <ui:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+        <ui:BooleanToVisibilityConverter x:Key="InvertedBooleanToVisibilityConverter" Inverted ="True"/>
+        <DataTemplate x:Key="ListBoxItemTemplate">
+            <DockPanel>
+                <CheckBox Margin="0,0,8,0"
+                          IsChecked="{Binding Checked}"
+                          Style="{DynamicResource ResourceKey={ui:StandardControlsThemeKey Key=CheckBox}}"
+                          Focusable="False"
+                          />
+                <Image 
+                    Source="..\..\Images\DataBaseTable.png" Stretch="None" 
+                    Visibility="{Binding Info.IsView, Converter={StaticResource InvertedBooleanToVisibilityConverter}}"
+                    Margin="0,0,8,0"/>
+                <Image 
+                    Source="..\..\Images\DataBaseView.png" Stretch="None" 
+                    Visibility="{Binding Info.IsView, Converter={StaticResource BooleanToVisibilityConverter}}"
+                    Margin="0,0,8,0"/>                
+                <TextBlock Text="{Binding Info.Name}" 
+                           Foreground ="{StaticResource ResourceKey={ui:ThemeColorsKey Key=ColorSilver}}"
+                           VerticalAlignment="Center"
+                           FontSize ="14"
+                           />
+            </DockPanel>
+        </DataTemplate>
+        <Style TargetType="Hyperlink">
+            <Setter Property="Foreground" Value="{StaticResource ResourceKey={ui:ThemeColorsKey Key=ColorOrange}}"/>
+        </Style>
+    </UserControl.Resources>
+    <Grid VerticalAlignment="Stretch">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="0"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="4*"/>
+            <ColumnDefinition Width="12"/>
+            <ColumnDefinition Width="6*"/>
+        </Grid.ColumnDefinitions>
+        <TextBlock Grid.Row="0" 
+             Text="{Binding SelectTablesText}" TextWrapping="Wrap"
+             Style="{DynamicResource ResourceKey={ui:ControlsThemeKey Key=ListCaption}}"/>
+        <Grid Grid.Row="2">
+            <Grid
+                VerticalAlignment="Stretch"
+                Visibility="{Binding ModelHasErrors, Converter={StaticResource ResourceKey=InvertedBooleanToVisibilityConverter}}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>                    
+                </Grid.RowDefinitions>
+                <Border Grid.RowSpan="2" BorderThickness="1" BorderBrush="{StaticResource ResourceKey={ui:ThemeColorsKey Key=ColorSilverLight}}"/>
+                <DockPanel
+                    Grid.Row="0"
+                    Margin="25,10,0,0"
+                    >
+                    <CheckBox Margin="0,0,10,0"
+                        IsChecked="{Binding SelectAllState}"
+                        Style="{DynamicResource ResourceKey={ui:StandardControlsThemeKey Key=CheckBox}}"
+                        Focusable="False"
+                    />
+                    <TextBlock Margin="0,0,8,0"
+                        Text="{x:Static mvvmWizardsUI:SR_Mvvm.SelectAll}" 
+                        Foreground ="{StaticResource ResourceKey={ui:ThemeColorsKey Key=ColorSilver}}"
+                        VerticalAlignment="Center"
+                        FontSize ="14"
+                     />                    
+                </DockPanel>                
+                <ListBox 
+                    Grid.Row="1"
+                    ItemsSource="{Binding Entities}" 
+                    SelectedItem="{Binding SelectedInfo, Mode=TwoWay}" 
+                    ItemTemplate="{StaticResource ListBoxItemTemplate}"
+                    Style="{DynamicResource ResourceKey={ui:StandardControlsThemeKey Key=ListBox}}"  
+                    PreviewKeyDown="listBoxPreviewKeyDown"
+                    KeyboardNavigation.TabIndex="0"
+                    ScrollViewer.HorizontalScrollBarVisibility="Auto"					
+                    BorderThickness="0">
+                    <ListBox.Resources>
+                        <Style TargetType="ListBoxItem">
+                            <Setter Property="IsSelected" Value="{Binding IsSelected}" />
+                        </Style>
+                    </ListBox.Resources>                    
+                </ListBox>               
+            </Grid>
+            <Grid Visibility="{Binding ModelHasErrors, Converter={StaticResource ResourceKey=BooleanToVisibilityConverter}}">
+                <Grid VerticalAlignment="Center">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Padding="4" Grid.Row="0" 
+                           Foreground="#CC0000"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           TextAlignment="Center"
+                           Style="{DynamicResource {ui:ControlsThemeKey Key=InfoText}}">
+                        <Run Text="{x:Static mvvmWizardsUI:SR_Mvvm.EmptyEntityFrameworkModelText}" />                        
+                    </TextBlock>
+                    <TextBlock HorizontalAlignment="Center" Grid.Row="1"
+                           VerticalAlignment="Center" 
+                           Style="{DynamicResource {ui:ControlsThemeKey Key=InfoText}}">
+                    <Hyperlink  Foreground="Blue" Command="{Binding ShowErrorDetails}">
+                        <Run Text="Show Details"/>
+                    </Hyperlink>
+                    </TextBlock>
+                </Grid>
+            </Grid>
+        </Grid>
+        <DockPanel Grid.Column="2" Grid.Row ="2" LastChildFill="False">
+            <TextBlock DockPanel.Dock="Top" 
+                       ui:HyperlinkInlineExpression.InlineExpression="{Binding DisclaimerText}"
+                       Style="{DynamicResource {ui:ControlsThemeKey Key=InfoText}}"
+            />
+            <TextBlock DockPanel.Dock="Bottom" Margin="0,5,0,0" HorizontalAlignment="Right">
+                <Hyperlink Foreground="{DynamicResource ResourceKey={ui:ThemeColorsKey Key=ColorOrange}}"
+                    Command="{Binding NavigateToLearnMore}">
+                    <Run Text="{x:Static mvvmWizardsUI:SR_Mvvm.Wizard_LearnMore}"/>
+                </Hyperlink>
+            </TextBlock>
+            <DockPanel DockPanel.Dock="Top" Margin="0,10,0,0">
+                <CheckBox FontSize="16" 
+                          IsEnabled="{Binding SelectedInfo.CanChangeReadOnly}" 
+                          IsChecked="{Binding SelectedInfo.ReadOnly}" 
+                          Content="{x:Static mvvmWizardsUI:SR_Mvvm.DataAccessLayerWizard_ReadOnly}" 
+                          Style="{DynamicResource ResourceKey={ui:StandardControlsThemeKey Key=CheckBox}}"                          
+                          KeyboardNavigation.TabIndex="1"
+                          />
+            </DockPanel>
+            <DockPanel DockPanel.Dock="Top" Margin="0,10,0,0" Visibility="Hidden">
+                <TextBlock 
+                        Text="{x:Static mvvmWizardsUI:SR_Mvvm.DataAccessLayerWizard_PrimaryKey}" 
+                        Style="{DynamicResource ResourceKey={ui:ControlsThemeKey Key=OptionName}}"
+                        />
+                <ComboBox ItemsSource="{Binding SelectedInfo.TableKeys}"
+                        DisplayMemberPath="(data:IEdmPropertyInfo.Name)"
+                        SelectedItem="{Binding SelectedInfo.PrimaryKey}" 
+                        IsEnabled="{Binding SelectedInfo.Checked}"
+                        Style="{DynamicResource ResourceKey={ui:StandardControlsThemeKey Key=ComboBox}}"                        
+                        KeyboardNavigation.TabIndex="2"
+                        />
+            </DockPanel>
+        </DockPanel>
+    </Grid>
+</UserControl>

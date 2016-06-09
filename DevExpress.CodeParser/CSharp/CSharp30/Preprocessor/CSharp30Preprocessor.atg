@@ -1,0 +1,701 @@
+TokenKind = Type;
+TokenValue = Value;
+GenLinePragmas = false;
+
+IgnoreLLWarnings = true;
+
+PARSER PreprocessorRoot
+ 
+FRAME
+-->begin
+using System;
+using System.Text;
+using System.Collections;
+using System.Collections.Specialized;
+
+#if DXCORE
+namespace DevExpress.CodeRush.StructuralParser.CSharp.Preprocessor
+#else
+namespace DevExpress.CodeParser.CSharp.Preprocessor
+#endif
+{
+	-->constants
+	
+	public class CSharpPreprocessor : PreprocessorBase
+	{
+	public CSharpPreprocessor(CSharpScanner scanner, SourceFile rootNode)
+		: base(scanner, rootNode)
+	{
+		errors = new PreprocessorErrors();
+		set = CreateSetArray();
+		maxTokens = Tokens.MaxTokens;
+	}
+		
+	public CSharpPreprocessor(CSharpScanner scanner, FormattingParserBase parser, SourceFile rootNode)
+		: this(scanner, rootNode)
+	{
+		Parser = parser;
+    if (Parser != null && Parser.SetTokensCategory)
+      PreprocessMode = PreprocessMode.None;
+	}
+
+		-->declarations
+		protected override void Get()
+		{
+		
+			for (;;)
+			{
+				ProcessFormattingToken();
+				tToken = la;				
+				la = Scanner.Scan();				
+				if (la.Type <= Tokens.MaxTokens)
+				{
+					++errDist;
+					tToken.Next = la;
+					break;
+				}
+	-->pragmas
+				la = tToken;
+			}
+			AddTokenToCategoryCollectionIfNeeded();
+		
+		}
+		
+		-->productions
+				
+		protected override void StartRule()
+		{
+			-->parseRoot
+		}
+		
+		protected override bool[,] CreateSetArray()
+		{
+			bool[,] set =
+			{
+		-->initialization
+			};
+			return set;
+		}
+		
+	} // end PreprocessorRoot
+	public class PreprocessorErrors : ParserErrorsBase
+	{
+		protected override string GetSyntaxErrorText(int n)
+		{
+			string s;
+			switch (n)
+			{
+	-->errors
+				default:
+					s = "error " + n;
+					break;
+			}
+			return s;
+		}
+	}	
+}
+$$$
+ENDFRAME
+
+TOKENNAMES
+	EOF		= EOF
+	IDENT	= IDENT
+	INTCON	= INTCON
+	REALCON	= REALCON
+	CHARCON = CHARCON
+	STRINGCON = STRINGCON
+	ABSTRACT = ABSTRACT  
+	AS		= AS        
+	BASE	= BASE    
+	BOOL	= BOOL    
+	BREAK	= BREAK   
+	BYTE    = BYTE   
+	CASE    = CASE  
+	CATCH   = CATCH  
+	CHAR    = CHAR  
+	CHECKED = CHECKED  
+	CLASS   = CLASS  
+	CONST   = CONST  
+	CONTINUE = CONTINUE 
+	DECIMAL = DECIMAL  
+	DEFAULT = DEFAULT  
+	DELEGATE = DELEGATE  
+	DO      = DO  
+	DOUBLE	= DOUBLE    
+	ELSE	= ELSE      
+	ENUM	= ENUM      
+	EVENT	= EVENT     
+	EXPLICIT = EXPLICIT  
+	EXTERN	= EXTERN    
+	FALSE	= FALSE     
+	FINALLY	= FINALLY   
+	FIXED	= FIXED     
+	FLOAT	= FLOAT     
+	FOR		= FOR      
+	FOREACH	= FOREACH  
+	GOTO	= GOTO      
+	IFCLAUSE = IFCLAUSE  
+	IMPLICIT = IMPLICIT 
+	IN		= IN	        
+	INT		= INT       
+	INTERFACE = INTERFACE 
+	INTERNAL = INTERNAL 
+	IS		= IS        
+	LOCK	= LOCK      
+	LONG	= LONG      
+	NAMESPACE = NAMESPACE 
+	NEW		= NEW       
+	NULL	= NULL	      
+	OPERATOR = OPERATOR  
+	OUT		= OUT       
+	OVERRIDE = OVERRIDE  
+	PARAMS = PARAMS    
+	PRIVATE = PRIVATE   
+	PROTECTED = PROTECTED 
+	PUBLIC = PUBLIC    
+	READONLY = READONLY  
+	REF		= REF       
+	RETURN	= RETURN    
+	SBYTE	= SBYTE     
+	SEALED	= SEALED    
+	SHORT	= SHORT     
+	SIZEOF	= SIZEOF    
+	STACKALLOC = STACKALLOC
+	STATIC	= STATIC    
+	STRUCT	= STRUCT    
+	SWITCH	= SWITCH    
+	THIS	= THIS      
+	THROW	= THROW     
+	TRUE    = TRUE  
+	TRY		= TRY       
+	TYPEOF	= TYPEOF    
+	UINT	= UINT      
+	ULONG	= ULONG     
+	UNCHECKED = UNCHECKED 
+	UNSAFE	= UNSAFE    
+	USHORT	= USHORT    
+	USINGKW	= USINGKW   
+	VIRTUAL	= VIRTUAL   
+	VOID	= VOID      
+	VOLATILE = VOLATILE  
+	WHILE	= WHILE     
+  ARGLIST = ARGLIST
+  REFVALUE = REFVALUE
+	AND		= AND       
+	ANDASSGN = ANDASSGN	  
+	ASSGN	= ASSGN     
+  ATCOLON = ATCOLON
+  AT     = AT
+	COLON	= COLON     
+	COMMA	= COMMA     
+	DEC		= DEC       
+	DIVASSGN = DIVASSGN  
+	DOT		= DOT       
+	DBLCOLON = DBLCOLON  
+	EQ		= EQ      
+	GT		= GT        
+	GTEQ	= GTEQ      
+	INC		= INC       
+	LBRACE	= LBRACE   
+	LBRACK	= LBRACK    
+	LPAR    = LPAR 
+	LSHASSGN = LSHASSGN 
+	LT		= LT        
+	LTLT	= LTLT      
+	MINUS	= MINUS     
+	MINUSASSGN = MINUSASSGN
+	MODASSGN = MODASSGN  
+	NEQ		= NEQ       
+	NOT		= NOT       
+	ORASSGN	= ORASSGN   
+	PLUS	= PLUS      
+	PLUSASSGN = PLUSASSGN 
+	QUESTION = QUESTION  
+	RBRACE = RBRACE    
+	RBRACK = RBRACK    
+	RPAR = RPAR      
+	SCOLON = SCOLON    
+	TILDE = TILDE     
+	TIMES = TIMES     
+	TIMESASSGN = TIMESASSGN
+	XORASSGN = XORASSGN  
+
+	SINGLELINECOMMENT = SINGLELINECOMMENT
+	MULTILINECOMMENT = MULTILINECOMMENT 
+	RAZORCOMMENT = RAZORCOMMENT
+
+	DBLQUEST = DBLQUEST
+	DBLOR	= DBLOR
+	DBLAND	= DBLAND
+	OR		= OR
+	XOR		= XOR
+	LOWOREQ = LOWOREQ
+	DIV		= DIV
+	MOD		= MOD
+	POINT	= POINT
+	LAMBDA	= LAMBDA
+	DEFINE  = DEFINE
+	UNDEF	= UNDEF  
+	IFDIR   = IFDIR
+	ELIF    = ELIF
+	ELSEDIR = ELSEDIR
+	ENDIF   = ENDIF
+	LINE    = LINE
+	ERROR   = ERROR
+	WARNING = WARNING
+	REGION  = REGION
+	ENDREG  = ENDREG
+	PRAGMADIR = PRAGMADIR
+	LINETERMINATOR = LINETERMINATOR
+
+TOKENS
+	IDENT
+	INTCON 
+	REALCON 
+	CHARCON
+	STRINGCON
+	SHARPCOCODIRECTIVE
+	LINETERMINATOR
+	ABSTRACT  
+	AS        
+	BASE      
+	BOOL      
+	BREAK     
+	BYTE      
+	CASE      
+	CATCH     
+	CHAR      
+	CHECKED   
+	CLASS     
+	CONST     
+	CONTINUE  
+	DECIMAL   
+	DEFAULT   
+	DELEGATE  
+	DO        
+	DOUBLE    
+	ELSE      
+	ENUM      
+	EVENT     
+	EXPLICIT  
+	EXTERN    
+	FALSE     
+	FINALLY   
+	FIXED     
+	FLOAT     
+	FOR       
+	FOREACH   
+	GOTO      
+	IFCLAUSE  
+	IMPLICIT  
+	IN        
+	INT       
+	INTERFACE 
+	INTERNAL  
+	IS        
+	LOCK      
+	LONG      
+	NAMESPACE 
+	NEW       
+	NULL      
+	OPERATOR  
+	OUT       
+	OVERRIDE  
+	PARAMS    
+	PRIVATE   
+	PROTECTED 
+	PUBLIC    
+	READONLY  
+	REF       
+	RETURN    
+	SBYTE     
+	SEALED    
+	SHORT     
+	SIZEOF    
+	STACKALLOC
+	STATIC     
+	STRUCT    
+	SWITCH    
+	THIS      
+	THROW     
+	TRUE      
+	TRY       
+	TYPEOF    
+	UINT      
+	ULONG     
+	UNCHECKED 
+	UNSAFE    
+	USHORT    
+	USINGKW   
+	VIRTUAL   
+	VOID      
+	VOLATILE  
+	WHILE     
+  ARGLIST
+  REFVALUE
+	AND       
+	ANDASSGN  
+	ASSGN     
+  ATCOLON
+  AT
+	COLON     
+	COMMA     
+	DEC       
+	DIVASSGN  
+	DOT       
+	DBLCOLON  
+	EQ        
+	GT        
+	GTEQ      
+	INC       
+	LBRACE    
+	LBRACK    
+	LPAR      
+	LSHASSGN  
+	LT        
+	LTLT      
+	MINUS     
+	MINUSASSGN
+	MODASSGN  
+	NEQ       
+	NOT       
+	ORASSGN   
+	PLUS      
+	PLUSASSGN 
+	QUESTION  
+	RBRACE    
+	RBRACK    
+	RPAR      
+	SCOLON    
+	TILDE     
+	TIMES     
+	TIMESASSGN
+	XORASSGN  
+	POINTERTOMEMBER
+	
+	SINGLELINECOMMENT
+	MULTILINECOMMENT 
+	RAZORCOMMENT
+
+	DBLQUEST
+	DBLOR
+	DBLAND
+	OR
+	XOR
+	LOWOREQ
+	DIV
+	MOD
+	POINT
+	LAMBDA
+	
+	DEFINE  
+	UNDEF	  
+	IFDIR   
+	ELIF    
+	ELSEDIR 
+	ENDIF   
+	LINE    
+	ERROR   
+	WARNING 
+	REGION  
+	ENDREG  
+	PRAGMADIR
+
+	SINGLELINEXML
+	MULTILINEXML
+	
+	GTGT
+	RSHASSGN
+	ASPBLOCKSTART
+	ASPBLOCKEND
+	ASPCOMMENT
+	
+	PRODUCTIONS
+	
+	PreprocessorRoot =
+		PpDeclaration
+		|
+		PpConditional
+	.
+	PpDeclaration 
+	(.
+		PreprocessorDirective directive = null;
+		SourceRange range = la.Range;
+	.)
+	=
+		(
+			DEFINE IdnetifierOrKeyword
+			(.
+				string macroName = tToken.Value;
+				DefineMacro(macroName);
+				DefineDirective defDirective = new DefineDirective();
+				defDirective.Expression = macroName;
+        defDirective.Name = macroName;
+				directive = defDirective;
+			.)
+			|
+			UNDEF IdnetifierOrKeyword
+			(.
+				string macroName = tToken.Value;
+				UndefMacro(macroName);
+				UndefDirective undefDirective = new UndefDirective();
+				undefDirective.Symbol = macroName;
+				directive = undefDirective;
+			.)
+		)
+		(.
+			SetDirectiveRange(directive, range);
+			AddPreprocessorDirective(directive);
+      //RedirectFormattingElementsTail(tToken as FormattingToken);
+		.)
+	.
+	
+	PpConditional =
+		(
+			PpIfSection
+			|
+			PpElIfSection
+			|
+			PpElseSection
+			|
+			PpEndIf
+		)
+	.
+	
+	PpEndIf =
+		ENDIF
+		(.
+			EndIfDirective directive =  new EndIfDirective();
+			SetDirectiveRange(directive, tToken.Range);
+			AddPreprocessorDirective(directive);
+      ProcessNonNewLineToken(tToken as FormattingToken);
+			ProcessEndIf();
+		.)
+	.
+	
+	PpIfSection 
+	(.
+		bool result = false;
+		SourceRange range = la.Range;
+		TurnOnScannerPreprocessMode();
+    bool OldSaveFormat = Parser.SaveFormat;
+    Parser.SaveFormat = true;
+	.)
+	=
+		IFDIR
+		(.
+		  Token startExpressionToken = la;
+		.)
+		PpExpression<out result>
+		(.
+      Parser.SaveFormat = OldSaveFormat;
+			IfDirective directive =  new IfDirective();
+			directive.Expression = GetDirectiveExpression(startExpressionToken, tToken);
+      directive.ExpressionValue = result;
+			SetDirectiveRange(directive, range);
+			AddPreprocessorDirective(directive);
+		.)
+		CoditionDirectiveTail<WillSkipInIf(result)>
+		(.
+			ProcessIFDirectiveCondition(result);
+		.)
+	.
+	
+	PpElIfSection
+	(.
+		bool result = false;
+		SourceRange range = la.Range;
+		TurnOnScannerPreprocessMode();
+    bool OldSaveFormat = Parser.SaveFormat;
+    Parser.SaveFormat = true;
+	.)
+	 =
+		ELIF
+		(.
+		  Token expressionStartToken = la;
+		.)
+		PpExpression<out result>
+		(.
+      Parser.SaveFormat = OldSaveFormat;
+			ElifDirective directive =  new ElifDirective();
+			directive.Expression = GetDirectiveExpression(expressionStartToken, tToken);
+      directive.ExpressionValue = result;
+			SetDirectiveRange(directive, range);
+			AddPreprocessorDirective(directive);
+		.)
+		 CoditionDirectiveTail<WillSkip(result)>
+		(.
+			ProcessDirectiveCondition(result);
+		.)
+	.
+	
+	PpElseSection
+	(.
+    //if (!Parser.SaveFormat)
+		  TurnOnScannerPreprocessMode();
+	.)
+	=
+		ELSEDIR
+		(.
+			ElseDirective directive =  new ElseDirective();
+      directive.IsSatisfied = !ConditionWasTrue;
+			SetDirectiveRange(directive, tToken.Range);
+      bool willSkip = WillSkip(true);
+			AddPreprocessorDirective(directive);
+      //if (!willSkip)
+      //  RedirectFormattingElementsTail(tToken as FormattingToken);
+      //if (!Parser.SaveFormat)
+      //{
+		.)
+    CoditionDirectiveTail<willSkip>
+		(.
+      //}
+			ProcessDirectiveCondition(true);
+		.)
+	.
+CoditionDirectiveTail<bool willSkip>
+(.
+  ProcessSingleLineComment(la as FormattingToken);
+  TurnOffScannerPreprocessMode();
+  if (la.Type == Tokens.LINETERMINATOR)
+    AddLineTerminatorToFormattingTokens();
+  if (willSkip)
+    return;
+  ProcessLineTerminator(la as FormattingToken);
+.)
+ =
+	LINETERMINATOR
+.
+
+
+PpExpression<out bool result>
+(.
+	result = false;
+  AddFormattingTokens = false;
+.)
+=
+	PpOrExpression<out result>
+  (. AddFormattingTokens = true; .)
+.
+
+PpOrExpression<out bool result>
+(.
+	result = false;
+	bool rightPart = false;
+.)
+=
+		PpAndExpression<out result>
+		{
+			DBLOR
+			PpAndExpression<out rightPart>
+			(.
+				result = result || rightPart;
+			.)
+		}
+.
+
+PpAndExpression<out bool result>
+(.
+	result = false;
+	bool rightPart = true;
+.)
+=
+	PpEqualityExpression<out result>
+	{
+		DBLAND
+		PpEqualityExpression<out rightPart>
+		(.
+			result = result && rightPart;
+		.)
+	}
+.
+PpEqualityExpression<out bool result>
+(.
+	result = false;
+	bool rightPart = false;
+	bool isEqualOp = false;
+.)
+=
+	PpUnaryExpression<out result>
+	{
+		(
+			EQ (. isEqualOp = true;.)
+			|
+			NEQ (. isEqualOp = false; .)
+		)
+		PpUnaryExpression<out rightPart>
+		(.
+			if (isEqualOp)
+			{
+				result = result == rightPart;
+			}
+			else
+			{
+				result = result != rightPart;
+			}
+		.)
+	}
+.
+
+PpUnaryExpression<out bool result>
+(.
+	result = false;
+.)
+=
+	PpPrimaryExpression<out result>
+	|
+	NOT PpUnaryExpression<out result>
+	(. result = !result; .)
+.
+
+IdnetifierOrKeyword =
+	IDENT
+	|
+	Keyword
+.
+
+PpPrimaryExpression<out bool result> 
+(.
+	result = false;
+.)
+=
+	TRUE
+	(. result = true; .)
+	|
+	FALSE
+	(. result = false; .)
+	|
+	IdnetifierOrKeyword
+	(. result = IsDefineMacro(tToken.Value); .)
+	|
+	ExprInParens<out result>
+.
+
+ExprInParens<out bool result>
+(.
+	result = false;
+.)
+=
+	LPAR
+		PpExpression<out result>
+	RPAR
+.
+
+
+
+Keyword
+=
+	ABSTRACT | AS | BASE | BOOL | BREAK | BYTE | CASE | CATCH
+  | CHAR | CHECKED | CLASS | CONST | CONTINUE | DECIMAL | DEFAULT
+  | DELEGATE | DO | DOUBLE | ELSE | ENUM | EVENT | EXPLICIT
+  | EXTERN | FALSE | FINALLY | FIXED | FLOAT | FOR | FOREACH
+  | GOTO | IFCLAUSE | IMPLICIT | IN | INT | INTERFACE | INTERNAL | IS
+  | LOCK | LONG | NAMESPACE | NEW | NULL | OPERATOR
+  | OUT | OVERRIDE | PARAMS | PRIVATE | PROTECTED | PUBLIC
+  | READONLY | REF | RETURN | SBYTE | SEALED | SHORT | SIZEOF
+  | STACKALLOC | STATIC |  STRUCT | SWITCH | THIS | THROW
+  | TRUE | TRY | TYPEOF | UINT | ULONG | UNCHECKED | UNSAFE
+  | USHORT | USINGKW | VIRTUAL | VOID | VOLATILE | WHILE 
+.
+
+END PreprocessorRoot.

@@ -1,0 +1,727 @@
+﻿<dxr:DXRibbonWindow
+    x:Class="DevExpress.Charts.Designer.Native.ChartDesignerWindow"
+    x:Name="window"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+    xmlns:dxr="http://schemas.devexpress.com/winfx/2008/xaml/ribbon"
+    xmlns:dxc="http://schemas.devexpress.com/winfx/2008/xaml/charts"
+    xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
+    xmlns:dxdo="http://schemas.devexpress.com/winfx/2008/xaml/docking"
+    xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+    xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+    xmlns:dxpg="http://schemas.devexpress.com/winfx/2008/xaml/propertygrid"
+    xmlns:local="clr-namespace:DevExpress.Charts.Designer.Native"
+    Loaded="OnDXRibbonWindowLoaded"
+    Closing="ChartDesignerWindowClosing"
+    Title="{Binding Path=Title, Mode=OneTime}"
+    ShowInTaskbar="False"
+    Icon="Images/ChartDesigner.ico"
+    WindowStartupLocation="CenterOwner"
+    MinWidth="600"
+    MinHeight="400"
+    UseLayoutRounding="True">
+
+    <dxr:DXRibbonWindow.CommandBindings>
+        <CommandBinding
+            Command="{x:Static local:ChartDesignerWindow.DeleteElementChartCommand}"
+            Executed="CommandDeleteElement_Executed" />
+    </dxr:DXRibbonWindow.CommandBindings>
+
+    <dxr:DXRibbonWindow.InputBindings>
+        <KeyBinding
+            Key="Delete"
+            Command="{x:Static local:ChartDesignerWindow.DeleteElementChartCommand}" />
+    </dxr:DXRibbonWindow.InputBindings>
+
+    <dxr:DXRibbonWindow.Resources>
+        <local:RibbonPageCategoryTemplateSelector
+            x:Key="categoryTemplateSelector" />
+        <local:ChartTreeVisibleToOpacityConverter
+            x:Key="treeVisibleToOpacityConverter" />
+        <Style
+            x:Key="dockableLayoutPanelStyle"
+            TargetType="dxdo:LayoutPanel">
+            <Setter
+                Property="AllowClose"
+                Value="False" />
+            <Setter
+                Property="ShowCloseButton"
+                Value="False" />
+            <Setter
+                Property="AllowHide"
+                Value="False" />
+            <Setter
+                Property="ShowBorder"
+                Value="True" />
+        </Style>
+        <Style
+            x:Key="ColumnStyle"
+            TargetType="dxg:GridColumn">
+            <Setter
+                Property="FieldName"
+                Value="{Binding FieldName}" />
+        </Style>
+        <DataTemplate
+            x:Key="ChartDataEditorNumericColumnTemplate">
+            <ContentControl>
+                <dxg:GridColumn
+                    FieldName="{Binding FieldName}"
+                    Header="{Binding Header}">
+                    <dxg:GridColumn.EditSettings>
+                        <dxe:TextEditSettings
+                            MaskType="Numeric"
+                            MaskUseAsDisplayFormat="False"
+                            AllowSpinOnMouseWheel="True" />
+                    </dxg:GridColumn.EditSettings>
+                </dxg:GridColumn>
+            </ContentControl>
+        </DataTemplate>
+        <DataTemplate
+            x:Key="ChartDataEditorDateTimeColumnTemplate">
+            <ContentControl>
+                <dxg:GridColumn
+                    FieldName="{Binding FieldName}"
+                    Header="{Binding Header}">
+                    <dxg:GridColumn.EditSettings>
+                        <dxe:DateEditSettings />
+                    </dxg:GridColumn.EditSettings>
+                </dxg:GridColumn>
+            </ContentControl>
+        </DataTemplate>
+        <DataTemplate
+            x:Key="ChartDataEditorTextColumnTemplate">
+            <ContentControl>
+                <dxg:GridColumn
+                    FieldName="{Binding FieldName}"
+                    Header="{Binding Header}">
+                    <dxg:GridColumn.EditSettings>
+                        <dxe:TextEditSettings />
+                    </dxg:GridColumn.EditSettings>
+                </dxg:GridColumn>
+            </ContentControl>
+        </DataTemplate>
+        <DataTemplate
+            x:Key="ChartDataEditorBrushColumnTemplate">
+            <ContentControl>
+                <dxg:GridColumn
+                    FieldName="{Binding FieldName}"
+                    Header="{Binding Header}">
+                    <dxg:GridColumn.EditSettings>
+                        <dxpg:PopupBrushEditSettings 
+                            AllowEditBrushType="False" 
+                            PopupWidth="300" 
+                            PopupMaxWidth="300"
+                            PopupHeight="240"
+                            PopupMaxHeight="240"/>
+                    </dxg:GridColumn.EditSettings>
+                </dxg:GridColumn>
+            </ContentControl>
+        </DataTemplate>
+
+        <local:ChartDataEditorColumnTemplateSelector
+            x:Key="ChartDataEditorColumnTemplateSelector"
+            DateTimeTemplate="{StaticResource ChartDataEditorDateTimeColumnTemplate}"
+            NumericTemplate="{StaticResource ChartDataEditorNumericColumnTemplate}"
+            TextTemplate="{StaticResource ChartDataEditorTextColumnTemplate}" 
+            BrushTemplate="{StaticResource ChartDataEditorBrushColumnTemplate}"/>
+        <local:ChartTreeModelItemSelector
+            x:Key="chartTreeModelItemSelector" />
+        <local:Marker2DModelItemInitializer
+            x:Key="markerModelInitializer" />
+        <local:SeriesLabelItemInitializer
+            x:Key="seriesLabelInitializer" />
+        <local:Marker2DAnimationItemInitializer
+            x:Key="markerAnimationInitializer" />
+        <local:Bar2DAnimationItemInitializer
+            x:Key="barAnimationInitializer" />
+        <local:Area2DAnimationItemInitializer
+            x:Key="areaAnimationInitializer" />
+        <local:Line2DAnimationItemInitializer
+            x:Key="lineAnimationInitializer" />
+        <local:AreaStacked2DAnimationItemInitializer
+            x:Key="areaStackedAnimationInitializer" />
+        <local:CircularMarkerAnimationItemInitializer
+            x:Key="circularMarkerAnimationInitializer" />
+        <local:CircularAreaAnimationItemInitializer
+            x:Key="circularAreaAnimationInitializer" />
+        <local:CircularLineAnimationItemInitializer
+            x:Key="circularLineAnimationInitializer" />
+        <local:Stock2DAnimationItemInitializer
+            x:Key="stockAnimationInitializer" />
+        <local:Pie2DSeriesPointAnimationItemInitializer
+            x:Key="piePointAnimationInitializer" />
+        <local:Pie2DSeriesAnimationItemInitializer
+            x:Key="pieSeriesAnimationInitializer" />
+        <local:SeriesPointItemInitializer
+            x:Key="pointItemInitializer" />
+        <local:NavigationOptionsItemInitializer
+            x:Key="navigationOptionsInitializer" />
+        <local:XYNavigationOptionsItemInitializer
+            x:Key="xYNavigationOptionsInitializer" />
+        <local:DashStyleItemInitializer
+            x:Key="dashStyleInitializer" />
+        <local:LineStyleItemInitializer
+            x:Key="lineStyleInitializer" />
+        <local:AxisLabelItemInitializer
+            x:Key="axisLabelInitializer" />
+        <local:ConstantLineTitleItemInitializer
+            x:Key="constantLineTitleInitializer" />
+        <local:AxisRangeItemInitializer
+            x:Key="axisRangeInitializer" />
+        <local:AxisTitleItemInitializer
+            x:Key="axisTitleInitializer" />
+        <local:ResolveOverlappingOptionsItemInitializer
+            x:Key="resolveOverlappingOptionsInitializer" />
+        <local:ScrollBarOptionsItemInitializer
+            x:Key="scrollBarOptionsInitializer" />
+        <local:SeriesBorderItemInitializer
+            x:Key="seriesBorderInitializer" />
+        <local:IndicatorItemInitializer
+            x:Key="indicatorInitializer" />
+        <local:PaneItemInitializer
+            x:Key="paneInitializer" />
+        <local:AxisItemInitializer
+            x:Key="axisInitializer" />
+        <local:ChartTitleItemInitializer
+            x:Key="chartTitleInitializer" />
+        <local:ReductionStockOptionsItemInitializer
+            x:Key="reductionStockOptionsInitializer" />
+        <local:ToolTipPositionItemInitializer
+            x:Key="toolTipPositionInitializer" />
+        <local:ToolTipOptionsItemInitializer
+            x:Key="toolTipOptionsInitializer" />
+        <local:ChartToolTipControllerItemInitializer
+            x:Key="chartToolTipControllerInitializer" />
+        <local:CrosshairLabelPositionItemInitializer
+            x:Key="crosshairLabelPositionInitializer" />
+        <local:CrosshairOptionsItemInitializer
+            x:Key="crosshairOptionsInitializer" />
+        <local:CrosshairAxisLabelOptionsItemInitializer
+            x:Key="crosshairAxisLabelOptionsInitializer" />
+        <local:NumericScaleOptionsItemInitializer
+            x:Key="numericScaleOptionsinitializer"/>
+        <local:DateTimeScaleOptionsItemInitializer
+            x:Key="dateTimeScaleOptionsinitializer"/>
+        <local:ContinuousNumericScaleOptionsItemInitializer
+            x:Key="contNumericScaleOptionsinitializer"/>
+        <local:ContinuousDateTimeScaleOptionsItemInitializer
+            x:Key="contDateTimeScaleOptionsinitializer"/>
+        <local:DiagramToHintVisibilityConverter
+            x:Key="diagramToHintVisibilityConverter" />
+        <local:ChartColorizerItemInitializer
+            x:Key="chartColorizerItemInitializer" />
+        <local:ColorizerKeyItemInitializer
+            x:Key="colorizerKeyItemInitializer" />
+        <local:ColorizerPaletteItemInitializer
+            x:Key="colorizerPaletteItemInitializer" />
+    </dxr:DXRibbonWindow.Resources>
+
+    <dxb:BarManager
+        x:Name="barManager"
+        AllowGlyphTheming="True">
+        <dxb:BarManager.Items>
+            <dxb:BarButtonItem
+                Name="btnUndo"
+                Glyph="Images/BarItemImages/Undo_16.png"
+                KeyGesture="Ctrl+Z"
+                ItemClick="btnUndo_ItemClick"
+                Content="{Binding ElementName=window, Path=UndoCaption}" />
+            <dxb:BarButtonItem
+                Name="btnRedo"
+                Glyph="Images/BarItemImages/Redo_16.png"
+                KeyGesture="Ctrl+Y"
+                ItemClick="btnRedo_ItemClick"
+                Content="{Binding ElementName=window, Path=RedoCaption}" />
+        </dxb:BarManager.Items>
+
+        <DockPanel
+            x:Name="dockPanel">
+            <!-- Ribbon -->
+            <dxr:RibbonControl
+                x:Name="ribbon"
+                RibbonStyle="Office2010"
+                CategoriesSource="{Binding Path=RibbonPageCategories, Mode=OneWay}"
+                CategoryTemplateSelector="{StaticResource ResourceKey=categoryTemplateSelector}"
+                DockPanel.Dock="Top"
+                ShowApplicationButton="False"
+                ToolbarShowMode="ShowAbove"
+                AllowCustomization="False"
+                ToolbarShowCustomizationButton="False"
+                PageCategoryAlignment="Right">
+                <dxr:RibbonControl.ToolbarItemLinks>
+                    <dxb:BarItemLink
+                        BarItemName="btnUndo" />
+                    <dxb:BarItemLink
+                        BarItemName="btnRedo" />
+                </dxr:RibbonControl.ToolbarItemLinks>
+            </dxr:RibbonControl>
+
+            <dxdo:DockLayoutManager
+                x:Name="dockLayoutManager">
+                <dxdo:LayoutGroup
+                    Orientation="Vertical">
+                    <dxdo:LayoutGroup
+                        x:Name="layoutGroupForChartAndTreeAndProperties"
+                        Orientation="Horizontal">
+
+                        <!-- Chart Tree & Series Data -->
+                        <dxdo:LayoutGroup
+                            x:Name="layoutGroupForChartTree"
+                            Orientation="Vertical"
+                            ItemWidth="1.7*">
+
+                            <!-- Chart Tree -->
+                            <dxdo:LayoutPanel
+                                x:Name="layoutPanelForChartTree"
+                                Caption="{Binding Path=ChartStructureDockPanelTitle, Mode=OneTime}"
+                                Style="{StaticResource dockableLayoutPanelStyle}">
+                                <dxg:GridControl
+                                    x:Name="chartStructureTree"
+                                    AutoExpandAllGroups="True"
+                                    ItemsSource="{Binding TreeModelRoot.Children}"
+                                    FilterString="[IsItemVisibleInTree] = true"
+                                    SelectedItem="{Binding TreeModelRoot.Selection, Mode=TwoWay}"
+                                    ShowBorder="False">
+                                    <dxg:GridControl.Columns>
+                                        <dxg:GridColumn
+                                            Visible="False"
+                                            FieldName="IsItemVisibleInTree" />
+                                        <dxg:GridColumn>
+                                            <dxg:GridColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <StackPanel
+                                                        Orientation="Horizontal">
+                                                        <Image
+                                                            Stretch="UniformToFill"
+                                                            Width="16"
+                                                            Height="16"
+                                                            Source="{Binding RowData.Row.GlyphSource}"
+                                                            Opacity="{Binding RowData.Row.IsVisible, Converter={StaticResource treeVisibleToOpacityConverter}}"
+                                                            Margin="0,2,5,2" />
+                                                        <TextBlock
+                                                            Text="{Binding RowData.Row.Name}"
+                                                            VerticalAlignment="Center"
+                                                            HorizontalAlignment="Left"
+                                                            Opacity="{Binding RowData.Row.IsVisible, Converter={StaticResource treeVisibleToOpacityConverter}}" />
+                                                    </StackPanel>
+                                                </DataTemplate>
+                                            </dxg:GridColumn.CellTemplate>
+                                        </dxg:GridColumn>
+                                    </dxg:GridControl.Columns>
+                                    <dxg:GridControl.View>
+                                        <dxg:TreeListView
+                                            TreeDerivationMode="ChildNodesSelector"
+                                            ChildNodesSelector="{StaticResource chartTreeModelItemSelector}"
+                                            ShowColumnHeaders="False"
+                                            AutoWidth="True"
+                                            NavigationStyle="Row"
+                                            AutoExpandAllNodes="True"
+                                            ShowIndicator="False"
+                                            ShowVerticalLines="False"
+                                            ShowHorizontalLines="False"
+                                            ShowFilterPanelMode="Never"
+                                            FadeSelectionOnLostFocus="False">
+                                        </dxg:TreeListView>
+                                    </dxg:GridControl.View>
+                                </dxg:GridControl>
+                            </dxdo:LayoutPanel>
+
+                            <!-- Series Data -->
+                            <dxdo:LayoutPanel
+                                x:Name="layoutPanelForSeriesData"
+                                Caption="{Binding Path=SeriesDataDockPanelTitle, Mode=OneTime}"
+                                Style="{StaticResource dockableLayoutPanelStyle}">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition />
+                                        <RowDefinition
+                                            Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <Button
+                                        Content="{Binding Path=ClearSeriesDataButtonCaption, Mode=OneTime}"
+                                        Margin="-1,1,-1,-1"
+                                        Grid.Row="1"
+                                        Command="{Binding ChartModel.DataEditorModel.ClearSeriesDataCommand}"
+                                        IsEnabled="{Binding ChartModel.DataEditorModel.IsEnabled}" />
+                                    <dxg:GridControl
+                                        x:Name="gridSeriesData"
+                                        ColumnsSource="{Binding ChartModel.DataEditorModel.GridColumns}"
+                                        ItemsSource="{Binding ChartModel.DataEditorModel.GridRows}"
+                                        ColumnGeneratorStyle="{StaticResource ColumnStyle}"
+                                        ColumnGeneratorTemplateSelector="{StaticResource ChartDataEditorColumnTemplateSelector}"
+                                        SelectedItem="{Binding ChartModel.DataEditorModel.SelectedRow}"
+                                        IsEnabled="{Binding ChartModel.DataEditorModel.IsEnabled}"
+                                        AllowColumnMRUFilterList="False"
+                                        ShowBorder="False">
+                                        <dxg:GridControl.InputBindings>
+                                            <KeyBinding
+                                                Key="Delete"
+                                                Command="{Binding ChartModel.DataEditorModel.RemovePointCommand}"
+                                                CommandParameter="{Binding ChartModel.DataEditorModel.SelectedRow.SeriesPointModel}" />
+                                        </dxg:GridControl.InputBindings>
+                                        <dxg:GridControl.View>
+                                            <dxg:TableView
+                                                AutoWidth="True"
+                                                NavigationStyle="Cell"
+                                                NewItemRowPosition="Bottom"
+                                                ShowGroupPanel="False"
+                                                AllowSorting="False"
+                                                AllowColumnMoving="False"
+                                                AllowGrouping="False"
+                                                AllowColumnFiltering="False">
+                                            </dxg:TableView>
+                                        </dxg:GridControl.View>
+                                    </dxg:GridControl>
+                                </Grid>
+                            </dxdo:LayoutPanel>
+                        </dxdo:LayoutGroup>
+
+                        <!-- Chart -->
+                        <dxdo:LayoutPanel
+                            x:Name="layoutPanelForChart"
+                            ShowCaption="False"
+                            AllowFloat="False"
+                            AllowClose="False"
+                            AllowHide="False"
+                            AllowMove="False"
+                            ItemWidth="5*"
+                            MinWidth="100">
+                            <Grid>
+                                <local:DesignChartControl
+                                    x:Name="designChart"
+                                    Focusable="True"
+                                    ChartControl="{Binding Path=ChartModel.Chart}"
+                                    SelectedObject="{Binding ChartModel.SelectedObject, Mode=TwoWay}"
+                                    BorderBrush="Transparent">
+                                </local:DesignChartControl>
+                                <TextBlock
+                                    Text="{Binding Path=EmptyDiagramHint}"
+                                    TextWrapping="Wrap"
+                                    TextTrimming="WordEllipsis"
+                                    Visibility="{Binding ElementName=designChart, Path=ChartControl.Diagram, Converter={StaticResource ResourceKey=diagramToHintVisibilityConverter}}"
+                                    FontSize="35"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    TextAlignment="Center" />
+                            </Grid>
+                        </dxdo:LayoutPanel>
+
+                        <!-- Property Grid -->
+                        <dxdo:LayoutGroup
+                            x:Name="layoutGroupForProperties"
+                            ItemWidth="1.7*">
+                            <dxdo:LayoutPanel
+                                Caption="{Binding PropertiesDockPanelTitle}"
+                                Style="{StaticResource dockableLayoutPanelStyle}"
+                                ShowBorder="False">
+                                <dxpg:PropertyGridControl
+                                    x:Name="propertyGrid"
+                                    SelectedObject="{Binding ChartModel.SelectedModel.PropertyGridModel}"
+                                    ExpandCategoriesWhenSelectedObjectChanged="True"
+                                    AllowInstanceInitializer="True"
+                                    ShowCategories="True">
+                                    <dxpg:PropertyGridControl.PropertyDefinitions>
+                                        <dxpg:PropertyDefinition
+                                            Type="{x:Type dxc:Marker2DModel}"
+                                            AllowInstanceInitializer="True"
+                                            InstanceInitializer="{StaticResource markerModelInitializer}" />
+                                        <dxpg:PropertyDefinition
+                                            Type="{x:Type local:WpfChartSeriesLabelPropertyGridModel}"
+                                            AllowInstanceInitializer="True"
+                                            InstanceInitializer="{StaticResource seriesLabelInitializer}" />
+                                        <dxpg:PropertyDefinition
+                                            Type="{x:Type local:WpfChartNavigationOptionsPropertyGridModel}"
+                                            AllowInstanceInitializer="True"
+                                            InstanceInitializer="{StaticResource navigationOptionsInitializer}" />
+                                        <dxpg:PropertyDefinition
+                                            Type="{x:Type local:WpfChartXYNavigationOptionsPropertyGridModel}"
+                                            AllowInstanceInitializer="True"
+                                            InstanceInitializer="{StaticResource xYNavigationOptionsInitializer}" />
+                                        <dxpg:PropertyDefinition
+                                            Type="{x:Type dxc:Marker2DAnimationBase}"
+                                            AllowInstanceInitializer="True"
+                                            InstanceInitializer="{StaticResource markerAnimationInitializer}" />
+                                        <dxpg:PropertyDefinition
+                                            Type="{x:Type dxc:Bar2DAnimationBase}"
+                                            AllowInstanceInitializer="True"
+                                            InstanceInitializer="{StaticResource barAnimationInitializer}" />
+                                        <dxpg:PropertyDefinition
+                                            Type="{x:Type dxc:Area2DAnimationBase}"
+                                            AllowInstanceInitializer="True"
+                                            InstanceInitializer="{StaticResource areaAnimationInitializer}" />
+                                        <dxpg:PropertyDefinition
+                                            Type="{x:Type dxc:Line2DAnimationBase}"
+                                            AllowInstanceInitializer="True"
+                                            InstanceInitializer="{StaticResource lineAnimationInitializer}" />
+                                        <dxpg:PropertyDefinition
+                                            Type="{x:Type dxc:AreaStacked2DFadeInAnimation}"
+                                            AllowInstanceInitializer="True"
+                                            InstanceInitializer="{StaticResource areaStackedAnimationInitializer}" />
+                                        <dxpg:PropertyDefinition
+                                            Type="{x:Type dxc:CircularMarkerAnimationBase}"
+                                            AllowInstanceInitializer="True"
+                                            InstanceInitializer="{StaticResource circularMarkerAnimationInitializer}" />
+                                        <dxpg:PropertyDefinition
+                                            Type="{x:Type dxc:CircularAreaAnimationBase}"
+                                            AllowInstanceInitializer="True"
+                                            InstanceInitializer="{StaticResource circularAreaAnimationInitializer}" />
+                                        <dxpg:PropertyDefinition
+                                            Type="{x:Type dxc:CircularLineAnimationBase}"
+                                            AllowInstanceInitializer="True"
+                                            InstanceInitializer="{StaticResource circularLineAnimationInitializer}" />
+                                        <dxpg:PropertyDefinition
+                                            Type="{x:Type dxc:Stock2DAnimationBase}"
+                                            AllowInstanceInitializer="True"
+                                            InstanceInitializer="{StaticResource stockAnimationInitializer}" />
+                                        <dxpg:PropertyDefinition
+                                            Type="{x:Type dxc:Pie2DSeriesPointAnimationBase}"
+                                            AllowInstanceInitializer="True"
+                                            InstanceInitializer="{StaticResource piePointAnimationInitializer}" />
+                                        <dxpg:PropertyDefinition
+                                            Type="{x:Type dxc:Pie2DSeriesAnimationBase}"
+                                            AllowInstanceInitializer="True"
+                                            InstanceInitializer="{StaticResource pieSeriesAnimationInitializer}" />
+                                        <dxpg:PropertyDefinition
+                                            Type="{x:Type DashStyle}"
+                                            AllowInstanceInitializer="True"
+                                            InstanceInitializer="{StaticResource dashStyleInitializer}" />
+                                        <dxpg:PropertyDefinition
+                                            Type="{x:Type local:WpfChartLineStylePropertyGridModel}"
+                                            AllowInstanceInitializer="True"
+                                            InstanceInitializer="{StaticResource lineStyleInitializer}" />
+                                        <dxpg:PropertyDefinition
+                                            Type="{x:Type local:WpfChartAxisLabelPropertyGridModel}"
+                                            AllowInstanceInitializer="True"
+                                            InstanceInitializer="{StaticResource axisLabelInitializer}" />
+                                        <dxpg:PropertyDefinition
+                                            Type="{x:Type local:WpfChartConstantLineTitlePropertyGridModel}"
+                                            AllowInstanceInitializer="True"
+                                            InstanceInitializer="{StaticResource constantLineTitleInitializer}" />
+                                        <dxpg:PropertyDefinition
+                                            Type="{x:Type local:WpfChartAxisRangePropertyGridModel}"
+                                            AllowInstanceInitializer="True"
+                                            InstanceInitializer="{StaticResource axisRangeInitializer}" />
+                                        <dxpg:PropertyDefinition
+                                            Type="{x:Type local:WpfChartAxisTitlePropertyGridModel}"
+                                            AllowInstanceInitializer="True"
+                                            InstanceInitializer="{StaticResource axisTitleInitializer}" />
+                                        <dxpg:PropertyDefinition
+                                            Type="{x:Type local:WpfChartResolveOverlappingOptionsPropertyGridModel}"
+                                            AllowInstanceInitializer="True"
+                                            InstanceInitializer="{StaticResource resolveOverlappingOptionsInitializer}" />
+                                        <dxpg:PropertyDefinition
+                                            Type="{x:Type local:WpfChartScrollBarOptionsPropertyGridModel}"
+                                            AllowInstanceInitializer="True"
+                                            InstanceInitializer="{StaticResource scrollBarOptionsInitializer}" />
+                                        <dxpg:PropertyDefinition
+                                            Type="{x:Type local:WpfChartSeriesBorderPropertyGridModel}"
+                                            AllowInstanceInitializer="True"
+                                            InstanceInitializer="{StaticResource seriesBorderInitializer}" />
+                                        <dxpg:PropertyDefinition
+                                            Type="{x:Type local:WpfChartReductionStockOptionsPropertyGridModel}"
+                                            AllowInstanceInitializer="True"
+                                            InstanceInitializer="{StaticResource reductionStockOptionsInitializer}" />
+                                        <dxpg:PropertyDefinition
+                                            Type="{x:Type local:WpfChartToolTipPositionPropertyGridModel}"
+                                            AllowInstanceInitializer="True"
+                                            InstanceInitializer="{StaticResource toolTipPositionInitializer}" />
+                                        <dxpg:PropertyDefinition
+                                            Type="{x:Type local:WpfChartToolTipOptionsPropertyGridModel}"
+                                            AllowInstanceInitializer="True"
+                                            InstanceInitializer="{StaticResource toolTipOptionsInitializer}" />
+                                        <dxpg:PropertyDefinition
+                                            Type="{x:Type local:WpfChartToolTipControllerPropertyGridModel}"
+                                            AllowInstanceInitializer="True"
+                                            InstanceInitializer="{StaticResource chartToolTipControllerInitializer}" />
+                                        <dxpg:PropertyDefinition
+                                            Type="{x:Type local:WpfChartCrosshairLabelPositionPropertyGridModel}"
+                                            AllowInstanceInitializer="True"
+                                            InstanceInitializer="{StaticResource crosshairLabelPositionInitializer}" />
+                                        <dxpg:PropertyDefinition
+                                            Type="{x:Type local:WpfChartCrosshairOptionsPropertyGridModel}"
+                                            AllowInstanceInitializer="True"
+                                            InstanceInitializer="{StaticResource crosshairOptionsInitializer}" />
+                                        <dxpg:PropertyDefinition
+                                            Type="{x:Type local:WpfChartCrosshairAxisLabelOptionsPropertyGridModel}"
+                                            AllowInstanceInitializer="True"
+                                            InstanceInitializer="{StaticResource crosshairAxisLabelOptionsInitializer}" />
+                                        <dxpg:PropertyDefinition
+                                            Type="{x:Type local:WpfChartNumericScaleOptionsBasePropertyGridModel}"
+                                            AllowInstanceInitializer="True"
+                                            InstanceInitializer="{StaticResource numericScaleOptionsinitializer}" />
+                                        <dxpg:PropertyDefinition
+                                            Type="{x:Type local:WpfChartDateTimeScaleOptionsBasePropertyGridModel}"
+                                            AllowInstanceInitializer="True"
+                                            InstanceInitializer="{StaticResource dateTimeScaleOptionsinitializer}" />
+                                        <dxpg:PropertyDefinition
+                                            Type="{x:Type local:WpfChartContinuousNumericScaleOptionsPropertyGridModel}"
+                                            AllowInstanceInitializer="True"
+                                            InstanceInitializer="{StaticResource contNumericScaleOptionsinitializer}" />
+                                        <dxpg:PropertyDefinition
+                                            Type="{x:Type local:WpfChartContinuousDateTimeScaleOptionsPropertyGridModel}"
+                                            AllowInstanceInitializer="True"
+                                            InstanceInitializer="{StaticResource contDateTimeScaleOptionsinitializer}" />
+                                        <dxpg:PropertyDefinition
+                                            Type="{x:Type local:ChartColorizerBasePropertyGridModel}"
+                                            AllowInstanceInitializer="True"
+                                            InstanceInitializer="{StaticResource chartColorizerItemInitializer}" />
+                                        <dxpg:PropertyDefinition
+                                            Type="{x:Type dxc:Palette}"
+                                            AllowInstanceInitializer="True"
+                                            InstanceInitializer="{StaticResource colorizerPaletteItemInitializer}" />
+                                        <dxpg:PropertyDefinition
+                                            Type="{x:Type Brush}">
+                                            <dxpg:PropertyDefinition.EditSettings>
+                                                <dxpg:PopupBrushEditSettings 
+                                                    AllowEditBrushType="False" 
+                                                    PopupWidth="300" 
+                                                    PopupMaxWidth="300"
+                                                    PopupHeight="240"
+                                                    PopupMaxHeight="240"/>
+                                            </dxpg:PropertyDefinition.EditSettings>
+                                        </dxpg:PropertyDefinition>
+                                        <dxpg:PropertyDefinition
+                                            Type="{x:Type SolidColorBrush}">
+                                             <dxpg:PropertyDefinition.EditSettings>
+                                                <dxpg:PopupBrushEditSettings 
+                                                    AllowEditBrushType="False" 
+                                                    PopupWidth="300" 
+                                                    PopupMaxWidth="300"
+                                                    PopupHeight="240"
+                                                    PopupMaxHeight="240"/>
+                                            </dxpg:PropertyDefinition.EditSettings>
+                                        </dxpg:PropertyDefinition>
+                                        <dxpg:PropertyDefinition
+                                            Path="LegendTextPattern">
+                                            <dxpg:PropertyDefinition.EditSettings>
+                                                <dxe:ButtonEditSettings AllowDefaultButton="False">
+                                                    <dxe:ButtonEditSettings.Buttons>
+                                                        <dxe:ButtonInfo ClickMode="Release" GlyphKind="Regular" Click="PatternEditorButtonClick" />
+                                                    </dxe:ButtonEditSettings.Buttons>
+                                                </dxe:ButtonEditSettings>
+                                            </dxpg:PropertyDefinition.EditSettings>
+                                        </dxpg:PropertyDefinition>
+                                        <dxpg:PropertyDefinition
+                                            Path="Label.TextPattern">
+                                            <dxpg:PropertyDefinition.EditSettings>
+                                                <dxe:ButtonEditSettings AllowDefaultButton="False">
+                                                    <dxe:ButtonEditSettings.Buttons>
+                                                        <dxe:ButtonInfo ClickMode="Release" GlyphKind="Regular" Click="PatternEditorButtonClick" />
+                                                    </dxe:ButtonEditSettings.Buttons>
+                                                </dxe:ButtonEditSettings>
+                                            </dxpg:PropertyDefinition.EditSettings>
+                                        </dxpg:PropertyDefinition>
+                                        <dxpg:PropertyDefinition
+                                            Path="CrosshairOptions.GroupHeaderPattern">
+                                            <dxpg:PropertyDefinition.EditSettings>
+                                                <dxe:ButtonEditSettings AllowDefaultButton="False">
+                                                    <dxe:ButtonEditSettings.Buttons>
+                                                        <dxe:ButtonInfo ClickMode="Release" GlyphKind="Regular" Click="PatternEditorButtonClick" />
+                                                    </dxe:ButtonEditSettings.Buttons>
+                                                </dxe:ButtonEditSettings>
+                                            </dxpg:PropertyDefinition.EditSettings>
+                                        </dxpg:PropertyDefinition>
+                                        <dxpg:PropertyDefinition
+                                            Path="CrosshairLabelPattern">
+                                            <dxpg:PropertyDefinition.EditSettings>
+                                                <dxe:ButtonEditSettings AllowDefaultButton="False">
+                                                    <dxe:ButtonEditSettings.Buttons>
+                                                        <dxe:ButtonInfo ClickMode="Release" GlyphKind="Regular" Click="PatternEditorButtonClick" />
+                                                    </dxe:ButtonEditSettings.Buttons>
+                                                </dxe:ButtonEditSettings>
+                                            </dxpg:PropertyDefinition.EditSettings>
+                                        </dxpg:PropertyDefinition>
+                                        <dxpg:PropertyDefinition
+                                            Path="ToolTipSeriesPattern">
+                                            <dxpg:PropertyDefinition.EditSettings>
+                                                <dxe:ButtonEditSettings AllowDefaultButton="False">
+                                                    <dxe:ButtonEditSettings.Buttons>
+                                                        <dxe:ButtonInfo ClickMode="Release" GlyphKind="Regular" Click="PatternEditorButtonClick" />
+                                                    </dxe:ButtonEditSettings.Buttons>
+                                                </dxe:ButtonEditSettings>
+                                            </dxpg:PropertyDefinition.EditSettings>
+                                        </dxpg:PropertyDefinition>
+                                        <dxpg:PropertyDefinition
+                                            Path="ToolTipPointPattern">
+                                            <dxpg:PropertyDefinition.EditSettings>
+                                                <dxe:ButtonEditSettings AllowDefaultButton="False">
+                                                    <dxe:ButtonEditSettings.Buttons>
+                                                        <dxe:ButtonInfo ClickMode="Release" GlyphKind="Regular" Click="PatternEditorButtonClick" />
+                                                    </dxe:ButtonEditSettings.Buttons>
+                                                </dxe:ButtonEditSettings>
+                                            </dxpg:PropertyDefinition.EditSettings>
+                                        </dxpg:PropertyDefinition>
+                                        <dxpg:PropertyDefinition
+                                            Path="CrosshairAxisLabelOptions.Pattern">
+                                            <dxpg:PropertyDefinition.EditSettings>
+                                                <dxe:ButtonEditSettings AllowDefaultButton="False">
+                                                    <dxe:ButtonEditSettings.Buttons>
+                                                        <dxe:ButtonInfo ClickMode="Release" GlyphKind="Regular" Click="PatternEditorButtonClick" />
+                                                    </dxe:ButtonEditSettings.Buttons>
+                                                </dxe:ButtonEditSettings>
+                                            </dxpg:PropertyDefinition.EditSettings>
+                                        </dxpg:PropertyDefinition>
+                                        <dxpg:CollectionDefinition
+                                            Path="Points"
+                                            NewItemInitializer="{StaticResource pointItemInitializer}" />
+                                        <dxpg:CollectionDefinition
+                                            Path="Indicators"
+                                            NewItemInitializer="{StaticResource indicatorInitializer}" />
+                                        <dxpg:CollectionDefinition
+                                            Path="Panes"
+                                            NewItemInitializer="{StaticResource paneInitializer}" />
+                                        <dxpg:CollectionDefinition
+                                            Path="SecondaryAxesX"
+                                            NewItemInitializer="{StaticResource axisInitializer}" />
+                                        <dxpg:CollectionDefinition
+                                            Path="SecondaryAxesY"
+                                            NewItemInitializer="{StaticResource axisInitializer}" />
+                                        <dxpg:CollectionDefinition
+                                            Path="Titles"
+                                            NewItemInitializer="{StaticResource chartTitleInitializer}" />
+                                        <dxpg:CollectionDefinition
+                                            Path="Colorizer.Keys"
+                                            NewItemInitializer="{StaticResource colorizerKeyItemInitializer}" />
+                                    </dxpg:PropertyGridControl.PropertyDefinitions>
+                                </dxpg:PropertyGridControl>
+                            </dxdo:LayoutPanel>
+                        </dxdo:LayoutGroup>
+                    </dxdo:LayoutGroup>
+                    <dxdo:LayoutPanel
+                        ShowBorder="False"
+                        ItemHeight="25"
+                        AllowActivate="False"
+                        AllowClose="False"
+                        AllowContextMenu="False"
+                        AllowDock="False"
+                        AllowDrag="False"
+                        AllowFloat="False"
+                        AllowHide="False"
+                        AllowMaximize="False"
+                        AllowMinimize="False"
+                        AllowMove="False"
+                        AllowRename="False"
+                        AllowRestore="False"
+                        AllowSizing="False"
+                        FloatOnDoubleClick="False"
+                        ShowCaption="False">
+                        <StackPanel 
+                            HorizontalAlignment="Right"
+                            Orientation="Horizontal">
+                            <Button x:Name="btnCancel"
+                                Content="{Binding ElementName=window, Path=CancelCaption}"
+                                MinWidth="150"
+                                Margin="7,1" Click="btnCancel_Click" />
+                            <Button x:Name="btnSaveAndExit"
+                                Content="{Binding ElementName=window, Path=SaveAndExitCaption}" 
+                                MinWidth="150"
+                                Margin="7,1" Click="btnSaveAndExit_Click" />
+                        </StackPanel>
+                    </dxdo:LayoutPanel>
+                </dxdo:LayoutGroup>
+            </dxdo:DockLayoutManager>
+        </DockPanel>
+    </dxb:BarManager>
+
+</dxr:DXRibbonWindow>

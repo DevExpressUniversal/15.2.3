@@ -1,0 +1,521 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DevExpress.Xpf.Docking</RootNamespace>
+    <AssemblyName>DevExpress.Xpf.Docking.v15.2</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <WarningLevel>4</WarningLevel>
+    <SignAssembly>true</SignAssembly>
+    <ProjectGuid>{4AB2E0A3-743C-4E75-B5A0-53F242805228}</ProjectGuid>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <BaseIntermediateOutputPath>obj.Wpf</BaseIntermediateOutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\..\Bin\Framework\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;WPF;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\..\Bin\Framework\</OutputPath>
+    <DefineConstants>TRACE;WPF;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+  
+  
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>..\..\DevExpress.Key\StrongKey.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DevExpress.Printing.v15.2.Core"><HintPath>..\..\..\Bin\Framework\DevExpress.Printing.v15.2.Core.dll</HintPath><Private>False</Private></Reference>
+    <Reference Include="DevExpress.Data.v15.2"><HintPath>..\..\..\Bin\Framework\DevExpress.Data.v15.2.dll</HintPath><Private>False</Private></Reference>
+    <Reference Include="DevExpress.Xpf.Core.v15.2"><HintPath>..\..\..\Bin\Framework\DevExpress.Xpf.Core.v15.2.dll</HintPath><Private>False</Private></Reference>
+    <Reference Include="DevExpress.Xpf.Layout.v15.2.Core"><HintPath>..\..\..\Bin\Framework\DevExpress.Xpf.Layout.v15.2.Core.dll</HintPath><Private>False</Private></Reference>
+    <Reference Include="DevExpress.Mvvm.v15.2">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Bin\Framework\DevExpress.Mvvm.v15.2.dll</HintPath>
+    <Private>False</Private></Reference>
+    <Reference Include="System.Drawing"><Private>False</Private></Reference>
+    <Reference Include="System.Xaml"><Private>False</Private></Reference>
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    <Private>False</Private></Reference>
+    <Reference Include="System.Xml"><Private>False</Private></Reference>
+    <Reference Include="UIAutomationProvider">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    <Private>False</Private></Reference>
+    <Reference Include="System"><Private>False</Private></Reference>
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    <Private>False</Private></Reference>
+    <Reference Include="System.Data"><Private>False</Private></Reference>
+    <Reference Include="UIAutomationTypes"><Private>False</Private></Reference>
+    <Reference Include="WindowsBase">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    <Private>False</Private></Reference>
+    <Reference Include="PresentationCore">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    <Private>False</Private></Reference>
+    <Reference Include="PresentationFramework">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    <Private>False</Private></Reference>
+  </ItemGroup>
+  
+  <ItemGroup>
+    <Compile Include="Base\Enums.cs" />
+    <Compile Include="Base\Events.cs" />
+    <Compile Include="Base\Interfaces.cs" />
+    <Compile Include="Base\Localization.cs" />
+    <Compile Include="Base\Misc.cs" />
+    <Compile Include="Customization\ClosedItemsPanel.cs" />
+    <Compile Include="Customization\CustomizationController.cs" />
+    <Compile Include="Customization\CustomizationFormFactory.cs" />
+    <Compile Include="Customization\MenuItemContent.cs" />
+    <Compile Include="Customization\PopupMenu.cs" />
+    <Compile Include="Implementers\DockLayoutManagerExtension.cs" />
+    <Compile Include="Implementers\Logical\ContentItem.cs" />
+    <Compile Include="Implementers\Misc\DelayedActionsHelper.cs" />
+    <Compile Include="Implementers\Misc\ItemsCollection.cs" />
+    <Compile Include="Implementers\DockLayoutManagerParameters.cs" />
+    <Compile Include="Implementers\Helpers.cs" />
+    <Compile Include="Implementers\Misc\LayoutItemData.cs" />
+    <Compile Include="Implementers\Logical\psvContentElement.cs" />
+    <Compile Include="Implementers\Logical\SeparatorItem.cs" />
+    <Compile Include="Implementers\Logical\EmptySpaceItem.cs" />
+    <Compile Include="Implementers\Logical\LabelItem.cs" />
+    <Compile Include="Implementers\Logical\LayoutSplitter.cs" />
+    <Compile Include="Implementers\Misc\BindingHelper.cs" />
+    <Compile Include="Implementers\Misc\CaptionAlignHelper.cs" />
+    <Compile Include="Implementers\Misc\Appearance.cs" />
+    <Compile Include="Implementers\Misc\DependencyPropertyRegistrator.cs" />
+    <Compile Include="Implementers\Misc\Extensions.cs" />
+    <Compile Include="Implementers\Misc\InvokeHelper.cs" />
+    <Compile Include="Implementers\Misc\DockHintsState.cs" />
+    <Compile Include="Implementers\Misc\DockSituation.cs" />
+    <Compile Include="Implementers\Misc\KeyboardFocusHelper.cs" />
+    <Compile Include="Implementers\Misc\GridLengthAnimation.cs" />
+    <Compile Include="Implementers\Misc\HierarchyPropertyValue.cs" />
+    <Compile Include="Implementers\Misc\IntervalHelper.cs" />
+    <Compile Include="Implementers\Misc\LayoutItemsHelper.cs" />
+    <Compile Include="Implementers\Misc\MVVMHelper.cs" />
+    <Compile Include="Implementers\Misc\PanelPlaceHolder.cs" />
+    <Compile Include="Implementers\Misc\Rules.cs" />
+    <Compile Include="Implementers\Misc\TabHeaderInsertHelper.cs" />
+    <Compile Include="Implementers\Misc\TemplateSelectorWrapper.cs" />
+    <Compile Include="Implementers\Misc\VisibilityHelper.cs" />
+    <Compile Include="Implementers\Misc\XamlLoaderHelper.cs" />
+    <Compile Include="Implementers\UIServices\Actions\Listeners.cs" />
+    <Compile Include="Implementers\UIServices\Dragging\DragInfo.cs" />
+    <Compile Include="Implementers\UIServices\Dragging\Helpers.cs" />
+    <Compile Include="Implementers\UIServices\Dragging\Listeners.cs" />
+    <Compile Include="Images\ImageHelper.cs" />
+    <Compile Include="Implementers\DockController.cs" />
+    <Compile Include="Implementers\DockLayoutManager.cs" />
+    <Compile Include="Implementers\LayoutController.cs" />
+    <Compile Include="Implementers\Logical\AutoHideGroup.cs" />
+    <Compile Include="Implementers\Logical\BaseLayoutItem.cs" />
+    <Compile Include="Implementers\Logical\ClosedItems.cs" />
+    <Compile Include="Implementers\Logical\DocumentGroup.cs" />
+    <Compile Include="Implementers\Logical\FixedItem.cs" />
+    <Compile Include="Implementers\Logical\FloatGroup.cs" />
+    <Compile Include="Implementers\Logical\LayoutControlItem.cs" />
+    <Compile Include="Implementers\Logical\LayoutGroup.cs" />
+    <Compile Include="Implementers\Logical\LayoutPanelItem.cs" />
+    <Compile Include="Implementers\Logical\DocumentPanelItem.cs" />
+    <Compile Include="Implementers\MDIController.cs" />
+    <Compile Include="Implementers\Misc\ResizeCalculator.cs" />
+    <Compile Include="Implementers\Visual\AutoHidePane.cs" />
+    <Compile Include="Implementers\Visual\AutoHideTray.cs" />
+    <Compile Include="Implementers\Visual\BasePanePresenter.cs" />
+    <Compile Include="Implementers\Visual\BaseSplitterItem.cs" />
+    <Compile Include="Implementers\Visual\DockHints\ResizeHints.cs" />
+    <Compile Include="Implementers\Visual\DockHints\DockHintButton.cs" />
+    <Compile Include="Implementers\Visual\DockHints\DockHintElement.cs" />
+    <Compile Include="Implementers\Visual\DockHints\TabHints.cs" />
+    <Compile Include="Implementers\Visual\DockHints\DockHints.cs" />
+    <Compile Include="Implementers\Visual\EmptySpaceControl.cs" />
+    <Compile Include="Implementers\Visual\FormBorderControl.cs" />
+    <Compile Include="Implementers\Visual\LabelControl.cs" />
+    <Compile Include="Implementers\Visual\Document.cs" />
+    <Compile Include="Implementers\Visual\LayoutTabControl.cs" />
+    <Compile Include="Implementers\Visual\PlatformCompatibility\psvTreeView.cs" />
+    <Compile Include="Implementers\Visual\PlatformCompatibility\SpecializedVisuals.cs" />
+    <Compile Include="Implementers\Visual\PlatformCompatibility\Helpers.cs" />
+    <Compile Include="Implementers\Visual\PlatformCompatibility\UIElementPresenter.cs" />
+    <Compile Include="Implementers\Visual\SeparatorControl.cs" />
+    <Compile Include="Implementers\Visual\PlatformCompatibility\PlatformSpecificVisuals.cs" />
+    <Compile Include="Implementers\Visual\SplitterControl.cs" />
+    <Compile Include="Implementers\Visual\TabbedLayoutGroup.cs" />
+    <Compile Include="Implementers\Visual\Customization\ButtonsPanel.cs" />
+    <Compile Include="Implementers\Visual\CaptionControl.cs" />
+    <Compile Include="Implementers\Visual\ControlItem.cs" />
+    <Compile Include="Implementers\Visual\Converters.cs" />
+    <Compile Include="Implementers\Visual\Customization\OptionsPanel.cs" />
+    <Compile Include="Implementers\Visual\Customization\HiddenItem.cs" />
+    <Compile Include="Implementers\Visual\Customization\CustomizationControl.cs" />
+    <Compile Include="Implementers\Visual\Customization\HiddenItemsPanel.cs" />
+    <Compile Include="Implementers\Visual\Customization\LayoutElements.cs" />
+    <Compile Include="Implementers\Visual\Customization\TreeItem.cs" />
+    <Compile Include="Implementers\Visual\Customization\TreeView.cs" />
+    <Compile Include="Implementers\Visual\Customization\Views.cs" />
+    <Compile Include="Implementers\Visual\DocumentPane.cs" />
+    <Compile Include="Implementers\Visual\DropBoundsControl.cs" />
+    <Compile Include="Implementers\Visual\MDI\DocumentSelector.cs" />
+    <Compile Include="Implementers\Visual\MDI\DocumentSelectorContainer.cs" />
+    <Compile Include="Implementers\Visual\MDI\DocumentSelectorListBox.cs" />
+    <Compile Include="Implementers\Visual\MDI\DocumentSelectorPreview.cs" />
+    <Compile Include="Implementers\Visual\Specialized.cs" />
+    <Compile Include="Implementers\Visual\SplitterItem.cs" />
+    <Compile Include="Implementers\Logical\TabbedGroup.cs" />
+    <Compile Include="Implementers\Visual\DockPane.cs" />
+    <Compile Include="Implementers\Visual\FloatPane.cs" />
+    <Compile Include="Implementers\Visual\LayouItemsControl.cs" />
+    <Compile Include="Implementers\Visual\GroupPane.cs" />
+    <Compile Include="Implementers\Visual\MultiTemplateControl.cs" />
+    <Compile Include="Implementers\DockPreview.cs" />
+    <Compile Include="Implementers\Visual\TabbedPaneItems.cs" />
+    <Compile Include="Implementers\Visual\TabbedPane.cs" />
+    <Compile Include="Implementers\UIServices\Layout\Behavior.cs" />
+    <Compile Include="Implementers\UIServices\Layout\Elements.cs" />
+    <Compile Include="Implementers\UIServices\Layout\Factory.cs" />
+    <Compile Include="Implementers\UIServices\Layout\HitInfo.cs" />
+    <Compile Include="Implementers\WeakEvents.cs" />
+    <Compile Include="Platform\Adapter.cs" />
+    <Compile Include="Platform\Adorners.cs" />
+    <Compile Include="Implementers\Visual\Controls.cs" />
+    <Compile Include="Implementers\Visual\Customization\DragCursor.cs" />
+    <Compile Include="Platform\AdornerWindow.cs" />
+    <Compile Include="Platform\AutoHideWindowHost.cs" />
+    <Compile Include="Platform\FloatForms.NativeDragging.cs" />
+    <Compile Include="Platform\Shell\WindowChrome.cs" />
+    <Compile Include="Platform\Shell\WindowChromeWorker.cs" />
+    <Compile Include="Platform\Win32.cs" />
+    <Compile Include="Platform\ResizingPreviewHelper.cs" />
+    <Compile Include="Platform\FloatForms.cs" />
+    <Compile Include="Platform\Helpers.cs" />
+    <Compile Include="Implementers\UIServices\Layout\DockLayoutElement.cs" />
+    <Compile Include="Platform\EventSubscriber.cs" />
+    <Compile Include="Platform\Views.cs" />
+    <Compile Include="Platform\VisualizerAdornerHelper.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Implementers\UIServices\Selection\Listeners.cs" />
+    <Compile Include="Serialization\Events.cs" />
+    <Compile Include="Serialization\Misc.cs" />
+    <Compile Include="Serialization\SerializationController.cs" />
+    <Compile Include="Services\DockingDocumentUIService.cs" />
+    <Compile Include="Services\DockingDocumentUIServiceBase.cs" />
+    <Compile Include="Services\TabbedDocumentUIService.cs" />
+    <Compile Include="Services\ViewInjectionService.cs" />
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <Compile Include="ThemeKeys\DockElements.cs" />
+    <Compile Include="ThemeKeys\DockVisualizer.cs" />
+    <Compile Include="Implementers\UIServices\UIInteraction\Listeners.cs" />
+    <Compile Include="UIAutomation\AutomationPeers.cs" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings1.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx" />
+    <EmbeddedResource Include="LocalizationRes.resx" />
+    <EmbeddedResource Include="LocalizationRes.ru.resx" />
+    <EmbeddedResource Include="LocalizationRes.ja.resx" />
+    <EmbeddedResource Include="LocalizationRes.es.resx" />
+    <EmbeddedResource Include="LocalizationRes.de.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    
+    
+    <Page Include="Themes\DeepBlue.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\DeepBlue\AutoHidePanel.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\DeepBlue\ControlBoxElements.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\DeepBlue\ControlItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Resource Include="Themes\DeepBlue\FloatPane.WinFormsHost.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Resource>
+    <Page Include="Themes\DeepBlue\CustomizationWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\DeepBlue\DockPane.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\DeepBlue\DocumentPane.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\DeepBlue\FixedItem.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\DeepBlue\FloatPane.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\DeepBlue\LayoutItemsControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\DeepBlue\TabbedLayoutGroupPane.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\DeepBlue\TabbedPane.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\DeepBlue\VisualizerElements.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <EmbeddedResource Include="Themes\Default.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Page Include="Themes\Gray.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <Page Include="Themes\IndependentParts.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\IndependentParts\DockVisualizerElements.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\IndependentParts\Customization.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\IndependentParts\DockLayoutManagerContainers.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\IndependentParts\DockLayoutManagerElements.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\IndependentParts\CaptionControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\IndependentParts\ControlBoxControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\IndependentParts\DockLayoutManager.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\IndependentParts\GenericTemplates.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\IndependentParts\DocumentSelector.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\IndependentParts\DropBoundsControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\IndependentParts\MultiTemplateControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\DefaultAutoHidePanelCaption.png" />
+    <EmbeddedResource Include="Images\DefaultTabPageCaption.png" />
+    <EmbeddedResource Include="Images\LayoutControlItem.png" />
+    <EmbeddedResource Include="Images\LayoutGroup.png" />
+    <EmbeddedResource Include="Images\LayoutPanel.png" />
+    <EmbeddedResource Include="Images\TabbedGroup.png" />
+    <EmbeddedResource Include="Images\DocumentGroup.png" />
+    <EmbeddedResource Include="Images\DocumentPanel.png" />
+    <EmbeddedResource Include="Images\EmptySpaceItem.png" />
+    <EmbeddedResource Include="Images\Label.png" />
+    <EmbeddedResource Include="Images\Separator.png" />
+    <EmbeddedResource Include="Images\FloatGroup.png" />
+    <EmbeddedResource Include="Images\Customization.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\Splitter.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\NewHorizontalTabGroup.png" />
+    <EmbeddedResource Include="Images\NewVerticalTabGroup.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    
+    
+  </PropertyGroup>
+<ItemGroup><EmbeddedResource Include="Descriptions.resx" /></ItemGroup><ItemGroup><Compile Include="Descriptions.cs" /></ItemGroup></Project>

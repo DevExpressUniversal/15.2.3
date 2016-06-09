@@ -1,0 +1,148 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:dxret="http://schemas.devexpress.com/winfx/2008/xaml/richedit/themekeys" xmlns:dxrec="http://schemas.devexpress.com/winfx/2008/xaml/richedit/internal" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:cs="colorscheme_ignorable_uri" xmlns:sys="clr-namespace:System;assembly=mscorlib" mc:Ignorable="cs">
+    <sys:Double x:Key="{dxret:RichEditControlThemeKey ResourceKey=CommentsAreaLeftPadding}">20</sys:Double>
+    <sys:Double x:Key="{dxret:RichEditControlThemeKey ResourceKey=CommentsAreaRightPadding}">10</sys:Double>
+    <Thickness x:Key="{dxret:RichEditControlThemeKey ResourceKey=CommentContentPadding}">10,10,10,10</Thickness>
+    <Point x:Key="{dxret:RichEditControlThemeKey ResourceKey=CommentLineOffset}">0,20</Point>
+    <ControlTemplate x:Key="{dxret:RichEditControlThemeKey ResourceKey=PrintLayoutViewPageBorderControlTemplate}" TargetType="{x:Type dxrec:RichEditViewPageContentControl}">
+        <Grid>
+            <Grid x:Name="Shadow">
+                <Border Background="#7F000000" Opacity="0.05" cs:Name="Border_0001" />
+                <Border Background="#FF000000" Margin="-1" CornerRadius="12" Opacity="0.03" cs:Name="Border_2405" />
+                <Border Background="#7F000000" Margin="-2" CornerRadius="13" Opacity="0.03" cs:Name="Border_0003" />
+                <Border Background="#7F000000" Margin="-3" CornerRadius="14" Opacity="0.02" cs:Name="Border_0004" />
+                <Border Background="#7F000000" Margin="-4" CornerRadius="15" Opacity="0.02" cs:Name="Border_0005" />
+                <Border Background="#7F000000" Margin="-5" CornerRadius="16" Opacity="0.02" cs:Name="Border_0006" />
+                <Border Background="#7F000000" Margin="-6" CornerRadius="17" Opacity="0.01" cs:Name="Border_0007" />
+                <Border Background="#7F000000" Margin="-7" CornerRadius="18" Opacity="0.01" cs:Name="Border_0008" />
+                <Border Background="#7F000000" Margin="-8" CornerRadius="19" Opacity="0.01" cs:Name="Border_0009" />
+                <Border Background="#7F000000" Margin="-9" CornerRadius="20" Opacity="0.01" cs:Name="Border_0010" />
+                <Border Background="#7F000000" Margin="-10" CornerRadius="21" Opacity="0.01" cs:Name="Border_0011" />
+            </Grid>
+            <Border Background="{TemplateBinding Background}" BorderBrush="#7F7994B4" BorderThickness="1" cs:Name="Border_0012">
+                <Grid>
+                    <ContentPresenter Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" Margin="-1" SnapsToDevicePixels="True" UseLayoutRounding="True" />
+                    <Border Background="#FFFAFAFA" HorizontalAlignment="Right" Visibility="{TemplateBinding CommentsVisibility}" cs:Name="Border_0015">
+                        <dxrec:RichEditViewCommentsPresenter x:Name="CommentsArea" Width="{TemplateBinding CommentsWidth}" HorizontalAlignment="Right" Visibility="{TemplateBinding CommentsVisibility}" />
+                    </Border>
+                </Grid>
+            </Border>
+        </Grid>
+    </ControlTemplate>
+    <!--RichEditViewCommentsPresenterControlTemplate-->
+    <ControlTemplate x:Key="{dxret:RichEditControlThemeKey ResourceKey=RichEditViewCommentsPresenterControlTemplate}" TargetType="{x:Type ContentControl}">
+        <ContentPresenter SnapsToDevicePixels="True" UseLayoutRounding="True" Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" />
+    </ControlTemplate>
+    <ControlTemplate x:Key="{dxret:RichEditControlThemeKey ResourceKey=SimpleViewPageBorderControlTemplate}" TargetType="{x:Type ContentControl}">
+        <Border Background="{TemplateBinding Background}">
+            <ContentPresenter Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" SnapsToDevicePixels="True" UseLayoutRounding="True" />
+        </Border>
+    </ControlTemplate>
+    <ControlTemplate x:Key="{dxret:RichEditControlThemeKey ResourceKey=DraftViewPageBorderControlTemplate}" TargetType="{x:Type ContentControl}">
+        <Border Background="{TemplateBinding Background}">
+            <ContentPresenter Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" SnapsToDevicePixels="True" UseLayoutRounding="True" />
+        </Border>
+    </ControlTemplate>
+    <!--RichEditCommentBorderControlTemplate -->
+    <ControlTemplate x:Key="{dxret:RichEditControlThemeKey ResourceKey=RichEditCommentBorderControlTemplate}" TargetType="{x:Type ContentControl}">
+        <Grid>
+            <Border Background="#FFFFFFFF" BorderBrush="{TemplateBinding Background}" BorderThickness="1" CornerRadius="2" Margin="1" cs:Name="Border_0016">
+                <ContentPresenter Margin="-1" SnapsToDevicePixels="True" UseLayoutRounding="True" Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" />
+            </Border>
+            <Border Background="{TemplateBinding Background}" CornerRadius="2" Margin="1" Opacity="0.1" />
+        </Grid>
+    </ControlTemplate>
+    <!-- CommentMoreButtonStyle -->
+    <Style x:Key="{dxret:RichEditControlThemeKey ResourceKey=CommentMoreButtonStyle}" TargetType="{x:Type Button}">
+        <Setter Property="HorizontalAlignment" Value="Right" />
+        <Setter Property="VerticalAlignment" Value="Bottom" />
+        <Setter Property="Margin" Value="3" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Grid>
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Disabled">
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="Root" Storyboard.TargetProperty="Opacity" Duration="0" To="0" />
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Normal">
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="Root" Storyboard.TargetProperty="Opacity" Duration="0" To="0.75" />
+                                        <DoubleAnimation Storyboard.TargetName="NormalState" Storyboard.TargetProperty="Opacity" Duration="0" To="1" />
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="MouseOver">
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="HoverState" Storyboard.TargetProperty="Opacity" Duration="0" To="1" />
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Pressed">
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="PressedState" Storyboard.TargetProperty="Opacity" Duration="0" To="1" />
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Grid x:Name="Root" Width="16" Height="16">
+                            <Border x:Name="NormalState" Background="#7F000000" CornerRadius="64" Opacity="0" cs:Name="Border_0002">
+                                <Border CornerRadius="64" Margin="1">
+                                    <Border.Background>
+                                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" cs:Name="LinearGradientBrush_0715">
+                                            <GradientStop Color="#FFB3B3B3" Offset="0" cs:Name="GradientStop_0015" />
+                                            <GradientStop Color="#FF9F9F9F" Offset="1" cs:Name="GradientStop_0016" />
+                                        </LinearGradientBrush>
+                                    </Border.Background>
+                                </Border>
+                            </Border>
+                            <Border x:Name="HoverState" CornerRadius="24" Opacity="0">
+                                <Border.Background>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" cs:Name="LinearGradientBrush_0716">
+                                        <GradientStop Color="#BFD7A820" Offset="0" cs:Name="GradientStop_0017" />
+                                        <GradientStop Color="#BFB89407" Offset="1" cs:Name="GradientStop_0018" />
+                                    </LinearGradientBrush>
+                                </Border.Background>
+                                <Border CornerRadius="64" Margin="1">
+                                    <Border.Background>
+                                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" cs:Name="LinearGradientBrush_0717">
+                                            <GradientStop Color="#FFFFFAE6" Offset="0" cs:Name="GradientStop_0019" />
+                                            <GradientStop Color="#FFFFFFED" Offset="1" cs:Name="GradientStop_0020" />
+                                        </LinearGradientBrush>
+                                    </Border.Background>
+                                    <Border CornerRadius="64" Margin="1">
+                                        <Border.Background>
+                                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" cs:Name="LinearGradientBrush_0718">
+                                                <GradientStop Color="#FFFFEEA8" Offset="0" cs:Name="GradientStop_0021" />
+                                                <GradientStop Color="#FFFFFCE0" Offset="1" cs:Name="GradientStop_0022" />
+                                                <GradientStop Color="#FFFFE277" Offset="0.5" cs:Name="GradientStop_0023" />
+                                            </LinearGradientBrush>
+                                        </Border.Background>
+                                    </Border>
+                                </Border>
+                            </Border>
+                            <Border x:Name="PressedState" CornerRadius="64" Opacity="0">
+                                <Border.Background>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" cs:Name="LinearGradientBrush_0719">
+                                        <GradientStop Color="#FFC28F36" Offset="0" cs:Name="GradientStop_0024" />
+                                        <GradientStop Color="#FFC2A34C" Offset="1" cs:Name="GradientStop_0025" />
+                                    </LinearGradientBrush>
+                                </Border.Background>
+                                <Border CornerRadius="64" Margin="1">
+                                    <Border.Background>
+                                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" cs:Name="LinearGradientBrush_0720">
+                                            <GradientStop Color="#FFFFE575" Offset="0" cs:Name="GradientStop_0026" />
+                                            <GradientStop Color="#FFFFF37F" Offset="1" cs:Name="GradientStop_0027" />
+                                            <GradientStop Color="#FFFFD86C" Offset="0.5" cs:Name="GradientStop_0028" />
+                                        </LinearGradientBrush>
+                                    </Border.Background>
+                                </Border>
+                            </Border>
+                            <Path x:Name="GlyphDown" Stretch="Fill" Fill="#FF3C3C3C" Data="F1 M 209,15.9999L 201,15.9999L 205,20L 209,15.9999 Z" Width="8" Height="4" Margin="0,2,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" cs:Name="Path_0002" />
+                        </Grid>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

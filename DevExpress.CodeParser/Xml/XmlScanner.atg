@@ -1,0 +1,175 @@
+EofCode = EOF;
+TokenKind = Type;
+TokenValue = Value;
+
+SCANNER XmlScanner
+
+FRAME
+-->begin
+using System;
+using System.IO;
+using System.Collections;
+using System.Collections.Specialized;
+
+#if DXCORE
+namespace DevExpress.CodeRush.StructuralParser.Xml
+#else
+namespace DevExpress.CodeParser.Xml
+#endif
+{
+	public class XmlScanner : XmlScannerBase
+	{
+	-->declarations
+		
+		//constructors...
+		public XmlScanner(ISourceReader s)
+		{
+			Initialize(s);
+		}
+		
+		// protected methods...
+		protected override int GetUnicodeLetterIndex()
+		{
+			return UnicodeLetterIndex;
+		}
+		protected override int GetNextState(int input)
+		{
+			return start[input];
+		}
+		protected override void InitializeIgnoreTable()
+		{
+			ignore = new BitArray(charSetSize + 1);
+			ignore[' '] = true;  // blanks are always white space
+			-->initialization
+		}
+		protected override void NextChCasing()
+		{
+			-->casing1
+		}
+		protected override void AddCh()
+		{
+			base.AddCh();
+			-->casing2
+			NextCh();
+		}
+
+	-->comments
+
+		void CheckLiteral()
+		{
+			-->literals
+		}
+		protected override void NextTokenComments()
+		{
+			-->scan1
+		}
+
+    protected override void NextTokenScan(int state)
+		{
+      int recKind = noSym;
+		  int recEnd = pos;
+      int recPrevLineStart = prevLineStart;
+
+			AddCh();		
+			switch (state)
+			{
+				case -1: { t.Type = eofSym; break; } // NextCh already done
+				case 0:
+        {
+				  if (recKind != noSym)
+          {
+					  tlen = recEnd - t.StartPosition;
+            prevLineStart = recPrevLineStart;
+					  BackTrackScannerToToken();
+				  }
+				  t.Type = recKind;
+          break;
+			  }
+			  -->scan2
+			}
+		}
+		
+	} // end Scanner
+}
+$$$
+ENDFRAME
+
+CHARACTERS
+	cr															= '\r'.
+	lf															= '\n'.
+	whitespace													= ' '.
+	tab															= '\t'.
+	latinStartChar  = "qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM".
+	digit			= "0123456789".
+	latinChar		= latinStartChar + digit + "._-".
+	nameStartChar	= latinStartChar + digit + ":_" + UnicodeLetter.
+	nameChar		= nameStartChar + ".-".
+	commentChar		= ANY - "-" - ">".
+	piChar			= ANY - "?" - ">".
+	piTargetStart	= nameStartChar - "XxMmLl".
+	piTargetChar	= nameChar - "XxMmLl".
+	latinCharsAndDigits = latinStartChar + digit.
+	pubidChar		= " " + "\r" + "\n" + latinStartChar + digit +  "-( )+,./:=?;!*#@$_%".
+	pubidChar1		= pubidChar + "'".
+	pubidChar2		= pubidChar + "\"".
+	anyCharWithoutDoubleQuote = ANY - "\"".
+	anyCharWithoutQuote = ANY - "'".
+	versionChars = latinStartChar + digit + "_.:-".
+TOKENS
+	NAME = nameChar {nameChar}.
+	COMMENT = "<!--" {">" | commentChar | "-" {"-"} commentChar} "-->".
+	QUOTEDLITERAL = ("\"" {anyCharWithoutDoubleQuote} "\"") |( "'" {anyCharWithoutQuote} "'" ).
+	CHARREF = ("&#" digit {digit} ) |( "&#x" latinCharsAndDigits {latinCharsAndDigits} ).
+	
+	
+	XMLTAGOPEN = "<?xml".
+	EQUALS = "=".
+	SINGLEQUOTE = "'". 
+	VERSION = "version".
+	ENCODING = "encoding".
+	QUESTTAGOPEN = "<?".
+	QUESTTAGCLOSE = "?>".
+	STANDALONE = "standalone".
+	SYSTEM = "SYSTEM".
+	PUBLIC = "PUBLIC".
+	DOCTYPE = "<!DOCTYPE".
+	ELEMENTDECL = "<!ELEMENT".
+	TAGCLOSE = ">".
+	BRACKETOPEN = "[".
+	BRACKETCLOSE = "]".
+	EMPTY = "EMPTY".
+	ANYCONTENT = "ANY".
+	PARENOPEN = "(".
+	PARENCLOSE = ")".
+	PCDATA = "#PCDATA".
+	BITWISEOR = "|".
+	PERCENTSYMBOL = "%".
+	SEMICOLON = ";".
+	COMMA = ",".
+	QUESTION = "?".
+	STAR = "*".
+	PLUS = "+".
+	NOTATIONDECl = "<!NOTATION".
+	ATTLISTDECL = "<!ATTLIST".
+	ID = "ID".
+	CDATATOKEN = "CDATA".
+	IDREF =	"IDREF" . 
+	IDREFS = "IDREFS". 
+	ENTITY = "ENTITY". 
+	ENTITIES = "ENTITIES". 
+	NMTOKEN = "NMTOKEN". 
+	NMTOKENS = "NMTOKENS".
+	NOTATION = "NOTATION".
+	REQUIRED = "#REQUIRED". 
+	IMPLIED = "#IMPLIED". 
+	FIXED =	"#FIXED".
+	ENTITYDECL = "<!ENTITY".
+	NDATA = "NDATA".
+	TAGOPEN = "<".
+	EMPTYTAGCLOSE = "/>".
+	TAGCLOSESTART = "</".
+	AMPERSAND = "&".
+	CDATASTART = "<![CDATA[".
+	CDATAEND  = "]]>".
+IGNORE  tab + cr + lf + whitespace
+END XmlScanner.

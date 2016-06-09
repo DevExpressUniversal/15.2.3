@@ -1,0 +1,65 @@
+﻿<internal:DemoBaseControlPartView x:Class="DevExpress.Xpf.DemoBase.Internal.DemoBaseControlPagesContainerView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:ddhelpers="clr-namespace:DevExpress.DemoData.Helpers"
+    xmlns:demoparts="clr-namespace:DevExpress.DemoData.DemoParts;assembly=DevExpress.DemoData.v15.2.Core"
+    xmlns:winui="clr-namespace:DevExpress.Xpf.WindowsUI;assembly=DevExpress.Xpf.Controls.v15.2"
+    xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
+    xmlns:internal="clr-namespace:DevExpress.Xpf.DemoBase.Internal"
+    xmlns:dxdb="clr-namespace:DevExpress.Xpf.DemoBase"
+    xmlns:dbhelpers="clr-namespace:DevExpress.Xpf.DemoBase.Helpers"
+    xmlns:system="clr-namespace:System;assembly=mscorlib"
+    mc:Ignorable="d"
+    d:DesignHeight="300" d:DesignWidth="300" VerticalAlignment="Stretch" VerticalContentAlignment="Stretch">
+
+    <internal:DemoBaseControlPartView.Template>
+        <ControlTemplate TargetType="{x:Type UserControl}">
+            <dx:DXBorder BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}" SnapsToDevicePixels="True">
+                <ContentPresenter ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+            </dx:DXBorder>
+        </ControlTemplate>
+    </internal:DemoBaseControlPartView.Template>
+    
+    <Grid>
+        <Grid.Resources>
+            <dxmvvm:ObjectToObjectConverter x:Key="PageToPaddingBorderVisibility" DefaultTarget="Collapsed">
+                <dxmvvm:MapItem Source="Main" Target="Visible"/>
+            </dxmvvm:ObjectToObjectConverter>
+            <dxmvvm:ObjectToObjectConverter x:Key="PageToHeaderOffset" DefaultTarget="0">
+                <dxmvvm:MapItem Source="Modules" Target="30"/>
+                <dxmvvm:MapItem Source="Main" Target="10"/>
+            </dxmvvm:ObjectToObjectConverter>
+            <dxmvvm:ObjectToObjectConverter x:Key="PageToHeaderVisibility" DefaultTarget="Collapsed">
+                <dxmvvm:MapItem Source="Modules" Target="Visible"/>
+                <dxmvvm:MapItem Source="Main" Target="Visible"/>
+            </dxmvvm:ObjectToObjectConverter>
+        </Grid.Resources>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <ddhelpers:ViewPresenter Content="{Binding CurrentPage.View}"
+                                 CachedContent1="{Binding MainPage.View}"
+                                 ActualContentChangedCommand="{Binding RaiseActualPageChangedCommand}">
+        </ddhelpers:ViewPresenter>
+
+        <DockPanel Margin="21,30,0,0">
+            <dx:DXBorder Width="{Binding CompleteState.Page, Converter={StaticResource PageToHeaderOffset}}" DockPanel.Dock="Left"/>
+            <dx:DXBorder Width="{Binding MainPage.View.ToolbarWidth}" DockPanel.Dock="Right"
+                    Visibility="{Binding CompleteState.Page, Converter={StaticResource PageToPaddingBorderVisibility}}"/>
+            <dbhelpers:NavigationHeader HorizontalAlignment="Stretch"
+                                    VerticalAlignment="Top"
+                                    Visibility="{Binding CompleteState.Page, Converter={StaticResource PageToHeaderVisibility}}"
+                                    BackButtonVisibility="{Binding ActualShowBackButton, Converter={dxmvvm:BooleanToVisibilityConverter}}"
+                                    Category="{Binding HeaderCategory}"
+                                    Subcategory="{Binding HeaderSubcategory}"
+                                    BackCommand="{Binding BackCommand}"/>
+        </DockPanel>
+        <dx:DXBorder Background="White" Visibility="{Binding FullScreenLoadingInProgress, Converter={dxmvvm:BooleanToVisibilityConverter}}"/>
+        <dx:DXBorder Background="Transparent" Visibility="{Binding LoadingInProgress, Converter={dxmvvm:BooleanToVisibilityConverter}}"/>
+        <dxdb:DemoBaseLoadingControl LoadingInProgress="{Binding LoadingInProgress}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+    </Grid>
+</internal:DemoBaseControlPartView>

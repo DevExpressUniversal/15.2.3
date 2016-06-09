@@ -1,0 +1,98 @@
+﻿<UserControl 
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" 
+      xmlns:dxec="clr-namespace:DevExpress.Xpf.Editors.Controls;assembly=DevExpress.Xpf.Core.v15.2" 
+      xmlns:dxre="clr-namespace:DevExpress.Xpf.RichEdit"
+      xmlns:dxreui="clr-namespace:DevExpress.Xpf.RichEdit.UI"       
+      xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors" 
+      xmlns:local="clr-namespace:DevExpress.XtraRichEdit.Forms" x:Class="DevExpress.XtraRichEdit.Forms.BorderShadingFormControl"
+      dx:StyleManager.ApplyApplicationTheme="True">
+
+    <UserControl.Resources>
+        <dxre:RichEditStringIdConverter x:Key="RichEditStringIdConverter" />
+    </UserControl.Resources>
+
+    <Grid>
+        <dx:DXTabControl x:Name="tabControl" Margin="0,0,0,6" dx:StyleManager.ApplyApplicationTheme="True">
+            <dx:DXTabControl.View>
+                <dx:TabControlScrollView />
+            </dx:DXTabControl.View>
+            <dx:DXTabItem Header="{Binding Source={StaticResource RichEditStringIdConverter}, ConverterParameter=Caption_BorderShadingFormBordersTab, Converter={StaticResource RichEditStringIdConverter}}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Column="0">
+                        <Grid HorizontalAlignment="Left" Height="Auto" Margin="0,3,0,0" VerticalAlignment="Top" Width="Auto">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <TextBlock Text="{Binding Source={StaticResource RichEditStringIdConverter}, ConverterParameter=Caption_BorderShadingFormSettingsLabel, Converter={StaticResource RichEditStringIdConverter}}" Margin="3,3,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Column="0" Grid.Row="0" dx:StyleManager.ApplyApplicationTheme="True"/>
+                            <ToggleButton x:Name="btnNone" Margin="3,10,3,3" VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Column="0" Grid.Row="1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Checked="btnNone_Checked">
+                                <Image Source="../Images/BordersNone_32x32.png" Width="32" Height="32" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="1,3,1,3"/>
+                            </ToggleButton>
+                            <TextBlock Text="{Binding Source={StaticResource RichEditStringIdConverter}, ConverterParameter=Caption_BorderShadingFormNoneLabel, Converter={StaticResource RichEditStringIdConverter}}" Margin="20,20,20,0" VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Column="1" Grid.Row="1" dx:StyleManager.ApplyApplicationTheme="True"/>
+                            <ToggleButton x:Name="btnBox" Margin="3,10,3,3" VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Column="0" Grid.Row="2"  HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Checked="btnBox_Checked">
+                                <Image Source="../Images/BordersBox_32x32.png" Width="32" Height="32" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="1,3,1,3"/>
+                            </ToggleButton>
+                            <TextBlock Text="{Binding Source={StaticResource RichEditStringIdConverter}, ConverterParameter=Caption_BorderShadingFormBoxLabel, Converter={StaticResource RichEditStringIdConverter}}" Margin="20,20,20,0" VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Column="1" Grid.Row="2" dx:StyleManager.ApplyApplicationTheme="True"/>
+                            <ToggleButton x:Name="btnAll" Margin="3,10,3,3" VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Column="0" Grid.Row="3"  HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Checked="btnAll_Checked">
+                                <Image Source="../Images/BorderAll_32x32.png" Width="32" Height="32" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="1,3,1,3"/>
+                            </ToggleButton>
+                            <TextBlock Text="{Binding Source={StaticResource RichEditStringIdConverter}, ConverterParameter=Caption_BorderShadingFormAllLabel, Converter={StaticResource RichEditStringIdConverter}}" Margin="20,20,20,0" VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Column="1" Grid.Row="3" dx:StyleManager.ApplyApplicationTheme="True"/>
+                            <ToggleButton x:Name="btnGrid" Margin="3,10,0,3" VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Column="0" Grid.Row="4"  HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Checked="btnGrid_Checked">
+                                <Image Source="../Images/BordersGrid_32x32.png" Width="32" Height="32" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="1,3,1,3"/>
+                            </ToggleButton>
+                            <TextBlock Text="{Binding Source={StaticResource RichEditStringIdConverter}, ConverterParameter=Caption_BorderShadingFormGridLabel, Converter={StaticResource RichEditStringIdConverter}}" Margin="20,20,20,0" VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Column="1" Grid.Row="4" dx:StyleManager.ApplyApplicationTheme="True"/>
+                            <ToggleButton x:Name="btnCustom" Margin="3,10,0,3" VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Column="0" Grid.Row="5"  HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Checked="btnCustom_Checked">
+                                <Image Source="../Images/BordersCustom_32x32.png" Width="32" Height="32" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="1,3,1,3"/>
+                            </ToggleButton>
+                            <TextBlock Text="{Binding Source={StaticResource RichEditStringIdConverter}, ConverterParameter=Caption_BorderShadingFormCustomLabel, Converter={StaticResource RichEditStringIdConverter}}" Margin="20,20,20,0" VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Column="1" Grid.Row="5" dx:StyleManager.ApplyApplicationTheme="True"/>
+                        </Grid>
+                    </Grid>
+                    <dxec:DXSeparator Grid.Column="1" HorizontalAlignment="Left" MinHeight="340" Margin="0,0,0,3" VerticalAlignment="Top" Width="1"/>
+                    <dxreui:BorderShadingTypeLineUserControl x:Name="borderShadingTypeLineUserControl" HorizontalAlignment="Stretch" Margin="0,3,3,0" VerticalAlignment="Stretch" Grid.Column="1" dx:StyleManager.ApplyApplicationTheme="True"/>
+                    <dxec:DXSeparator Grid.Column="2" HorizontalAlignment="Left" MinHeight="340" Margin="0,0,0,3" VerticalAlignment="Top" Width="1"/>
+                    <dxreui:BorderShadingUserControl x:Name="borderUserControl" Grid.Column="2" Margin="3,3,0,0" HorizontalAlignment="Right" VerticalAlignment="Top" dx:StyleManager.ApplyApplicationTheme="True" />
+                    
+                </Grid>
+            </dx:DXTabItem>
+            <dx:DXTabItem Header="{Binding Source={StaticResource RichEditStringIdConverter}, ConverterParameter=Caption_BorderShadingFormShadingTab, Converter={StaticResource RichEditStringIdConverter}}" Margin="-4,0,4,0">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition MinWidth="341" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <StackPanel Orientation="Horizontal" Height="Auto" Margin="3,3,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Row="0" Grid.Column="0">
+                        <TextBlock Text="{Binding Source={StaticResource RichEditStringIdConverter}, ConverterParameter=Caption_BorderShadingFormFillLabel, Converter={StaticResource RichEditStringIdConverter}}" Margin="10,3,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" dx:StyleManager.ApplyApplicationTheme="True"/>
+                        <dxec:DXSeparator HorizontalAlignment="Left" Height="1" Margin="10,10,0,0" VerticalAlignment="Top" Width="200"/>
+                    </StackPanel>
+                    <dxe:ColorEdit x:Name="colorEdit" HorizontalAlignment="Left" Margin="10,30,0,0" VerticalAlignment="Top" ColorChanged="colorEdit_ColorChanged" Grid.Row="1" Grid.Column="0"/>
+                    <dxec:DXSeparator Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Top"  Margin="0,3" Width="1" Height="340"/>
+                    <dxreui:BorderShadingUserControl x:Name="shadingUserControl" Grid.Column="1" Margin="3,3,0,0" HorizontalAlignment="Right" VerticalAlignment="Top" dx:StyleManager.ApplyApplicationTheme="True"/>
+                </Grid>
+            </dx:DXTabItem>
+        </dx:DXTabControl>
+    </Grid>
+</UserControl>

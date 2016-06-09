@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application>
+  <BOModel>
+    <Class Name="DevExpress.ExpressApp.Validation.AllContextsView.ValidationResults" ImageName="BO_Validation" />
+    <Class Name="DevExpress.Persistent.Validation.RuleSetValidationResultItem" ImageName="BO_Validation" />
+    <Class Name="DevExpress.Persistent.Validation.RuleSetValidationResult" ImageName="BO_Validation" />
+  </BOModel>
+  <SchemaModules>
+    <SchemaModule Name="SystemModule" Version="13.1.6.0" IsNewNode="True" />
+  </SchemaModules>
+  <Views>
+    <DetailView Id="DisplayableValidationResultItem_DetailView" AllowEdit="False">
+      <Items>
+        <PropertyEditor Id="RuleProperties" Caption="Rule Details" />
+      </Items>
+      <Layout>
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="DisplayableValidationResultItem" ShowCaption="False">
+              <LayoutGroup Id="DisplayableValidationResultItem_col2" CaptionLocation="Default" RelativeSize="49">
+                <LayoutItem Id="RuleProperties" ViewItem="RuleProperties" Removed="True" />
+              </LayoutGroup>
+            </LayoutGroup>
+            <LayoutItem Id="RuleProperties" CaptionLocation="Top" ViewItem="RuleProperties" IsNewNode="True" />
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="ValidationResults_Error_DetailView" ClassName="DevExpress.ExpressApp.Validation.AllContextsView.ValidationResults" IsNewNode="True">
+      <Items IsNewNode="True">
+        <PropertyEditor Id="Results" PropertyName="Results" AllowEdit="False" IsNewNode="True" />
+        <PropertyEditor Id="HighlightErrors" PropertyName="HighlightErrors" IsNewNode="True" />
+        <StaticImage Id="ValidationResultsImage" ImageName="State_Validation_Invalid_48x48" SizeMode="AutoSize" IsNewNode="True" />
+        <StaticText Id="ValidationResultsText" Text="Problems were detected during data validation. Please read the information below to understand what the issues are and how you can correct them." IsNewNode="True" />
+      </Items>
+      <Layout IsNewNode="True">
+        <LayoutGroup Id="Main" Index="0" Direction="Vertical" ShowCaption="False" Caption="Main" CaptionLocation="Default" RelativeSize="100" IsNewNode="True">
+          <LayoutItem Id="Results" ShowCaption="False" Index="1" CaptionLocation="Default" RelativeSize="86" ViewItem="Results" IsNewNode="True" />
+          <LayoutItem Id="HighlightErrors" ShowCaption="False" Index="2" CaptionLocation="Default" RelativeSize="3" ViewItem="HighlightErrors" IsNewNode="True" />
+          <LayoutGroup Id="Static" Caption="Static" Direction="Horizontal" Index="0" ShowCaption="False" CaptionLocation="Default" RelativeSize="10" IsNewNode="True">
+            <LayoutItem Id="ValidationResultsImage" Index="0" ShowCaption="False" CaptionLocation="Default" RelativeSize="1" ViewItem="ValidationResultsImage" IsNewNode="True" />
+            <LayoutItem Id="ValidationResultsText" Index="1" ShowCaption="False" CaptionLocation="Default" RelativeSize="99" ViewItem="ValidationResultsText" IsNewNode="True" />
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="ValidationResults_Passed_DetailView" ClassName="DevExpress.ExpressApp.Validation.AllContextsView.ValidationResults" IsNewNode="True">
+      <Items IsNewNode="True">
+        <PropertyEditor Id="Results" PropertyName="Results" AllowEdit="False" IsNewNode="True" />
+        <StaticImage Id="ValidationResultsImage" ImageName="State_Validation_Valid_48x48" SizeMode="AutoSize" IsNewNode="True" />
+        <StaticText Id="ValidationResultsText" Text="No problems were detected." IsNewNode="True" />
+      </Items>
+      <Layout IsNewNode="True">
+        <LayoutGroup Id="Main" Index="0" Direction="Vertical" ShowCaption="False" Caption="Main" CaptionLocation="Default" RelativeSize="100" IsNewNode="True">
+          <LayoutItem Id="Results" ShowCaption="False" Index="1" CaptionLocation="Default" RelativeSize="86" ViewItem="Results" IsNewNode="True" />
+          <LayoutGroup Id="Static" Caption="Static" Direction="Horizontal" Index="0" ShowCaption="False" CaptionLocation="Default" RelativeSize="10" IsNewNode="True">
+            <LayoutItem Id="ValidationResultsImage" Index="0" ShowCaption="False" CaptionLocation="Default" RelativeSize="1" ViewItem="ValidationResultsImage" IsNewNode="True" />
+            <LayoutItem Id="ValidationResultsText" Index="1" ShowCaption="False" CaptionLocation="Default" RelativeSize="99" ViewItem="ValidationResultsText" IsNewNode="True" />
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <ListView Id="ContextValidationResult_ListView">
+      <Columns>
+        <ColumnInfo Id="Context" PropertyName="Context" SortOrder="Ascending" SortIndex="1" Index="0" />
+				<ColumnInfo Id="ContextValidationOutcome" PropertyName="ContextValidationOutcome" SortOrder="Descending" SortIndex="0" Index="1" Width="25" />
+				<ColumnInfo Id="State" Removed="True" />
+        <ColumnInfo Id="BrokenRules" PropertyName="BrokenRules" Index="2" />
+      </Columns>
+    </ListView>
+    <DetailView Id="RuleSetValidationResult_ByTarget_Error_DetailView" ClassName="DevExpress.ExpressApp.Validation.AllContextsView.ValidationResults" Caption="Validation Error" IsNewNode="True">
+      <Items IsNewNode="True">
+        <PropertyEditor Id="DisplayableValidationResultItems" PropertyName="DisplayableValidationResultItems" View="RuleSetValidationResultItem_ByTarget_ListView" IsNewNode="True" />
+        <StaticImage Id="ValidationResultsImage" ImageName="State_Validation_Invalid_48x48" SizeMode="AutoSize" IsNewNode="True" />
+        <StaticText Id="ValidationResultsText" Text="Problems were detected during data validation. Please read the information below to understand what the issues are and how you can correct them." IsNewNode="True" />
+      </Items>
+      <Layout IsNewNode="True">
+        <LayoutGroup Id="Main" Index="0" Direction="Vertical" ShowCaption="False" Caption="Main" CaptionLocation="Default" RelativeSize="100" IsNewNode="True">
+          <LayoutItem Id="DisplayableValidationResultItems" ShowCaption="False" Index="1" CaptionLocation="Default" RelativeSize="86" ViewItem="DisplayableValidationResultItems" IsNewNode="True" />
+          <LayoutGroup Id="Static" Caption="Static" Direction="Horizontal" Index="0" ShowCaption="False" CaptionLocation="Default" RelativeSize="10" IsNewNode="True">
+            <LayoutItem Id="ValidationResultsImage" Index="0" ShowCaption="False" CaptionLocation="Default" RelativeSize="1" ViewItem="ValidationResultsImage" IsNewNode="True" />
+            <LayoutItem Id="ValidationResultsText" Index="1" ShowCaption="False" CaptionLocation="Default" RelativeSize="99" ViewItem="ValidationResultsText" IsNewNode="True" />
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <ListView Id="RuleSetValidationResultItem_ByTarget_ListView" AllowEdit="False" AutoExpandAllGroups="True" IsFooterVisible="False" IsGroupPanelVisible="False" ShowAutoFilterRow="False" ClassName="DevExpress.ExpressApp.Validation.AllContextsView.DisplayableValidationResultItem" UseServerMode="False" IsNewNode="True">
+      <Columns IsNewNode="True">
+        <ColumnInfo Id="ErrorMessage" PropertyName="ErrorMessage" Caption="Description" Index="1" Width="260" IsNewNode="True" />
+        <ColumnInfo Id="TargetCaption" PropertyName="TargetCaption" Index="0" SortIndex="0" SortOrder="Ascending" Width="100" IsNewNode="True" />
+        <ColumnInfo Id="ContextCaption" PropertyName="ContextCaption" Caption="Context" Index="-1" Width="50" IsNewNode="True" />
+        <ColumnInfo Id="ContextId" PropertyName="ContextId" Caption="ContextId" Index="-1" Width="50" IsNewNode="True" />
+        <ColumnInfo Id="RuleName" PropertyName="RuleName" Index="-1" Width="50" IsNewNode="True" />
+      </Columns>
+    </ListView>
+  </Views>
+</Application>

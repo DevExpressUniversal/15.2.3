@@ -1,0 +1,88 @@
+#region Copyright (c) 2000-2015 Developer Express Inc.
+/*
+{*******************************************************************}
+{                                                                   }
+{       Developer Express .NET Component Library                    }
+{                                                                   }
+{                                                                   }
+{       Copyright (c) 2000-2015 Developer Express Inc.              }
+{       ALL RIGHTS RESERVED                                         }
+{                                                                   }
+{   The entire contents of this file is protected by U.S. and       }
+{   International Copyright Laws. Unauthorized reproduction,        }
+{   reverse-engineering, and distribution of all or any portion of  }
+{   the code contained in this file is strictly prohibited and may  }
+{   result in severe civil and criminal penalties and will be       }
+{   prosecuted to the maximum extent possible under the law.        }
+{                                                                   }
+{   RESTRICTIONS                                                    }
+{                                                                   }
+{   THIS SOURCE CODE AND ALL RESULTING INTERMEDIATE FILES           }
+{   ARE CONFIDENTIAL AND PROPRIETARY TRADE                          }
+{   SECRETS OF DEVELOPER EXPRESS INC. THE REGISTERED DEVELOPER IS   }
+{   LICENSED TO DISTRIBUTE THE PRODUCT AND ALL ACCOMPANYING .NET    }
+{   CONTROLS AS PART OF AN EXECUTABLE PROGRAM ONLY.                 }
+{                                                                   }
+{   THE SOURCE CODE CONTAINED WITHIN THIS FILE AND ALL RELATED      }
+{   FILES OR ANY PORTION OF ITS CONTENTS SHALL AT NO TIME BE        }
+{   COPIED, TRANSFERRED, SOLD, DISTRIBUTED, OR OTHERWISE MADE       }
+{   AVAILABLE TO OTHER INDIVIDUALS WITHOUT EXPRESS WRITTEN CONSENT  }
+{   AND PERMISSION FROM DEVELOPER EXPRESS INC.                      }
+{                                                                   }
+{   CONSULT THE END USER LICENSE AGREEMENT FOR INFORMATION ON       }
+{   ADDITIONAL RESTRICTIONS.                                        }
+{                                                                   }
+{*******************************************************************}
+*/
+#endregion Copyright (c) 2000-2015 Developer Express Inc.
+
+using System;
+using System.Collections.Generic;
+using System.Text;
+using System.ComponentModel;
+using DevExpress.Utils.Serializing;
+using DevExpress.Data;
+namespace DevExpress.XtraPrinting {
+	public class XpsExportOptions : PageByPageExportOptionsBase {
+		XpsCompressionOption compression;
+		XpsDocumentOptions documentOptions = new XpsDocumentOptions();
+		protected internal override bool IsMultiplePaged {
+			get { return true; }
+		}
+		[
+#if !SL
+	DevExpressPrintingCoreLocalizedDescription("XpsExportOptionsCompression"),
+#endif
+		DXDisplayName(typeof(ResFinder), "DevExpress.XtraPrinting.XpsExportOptions.Compression"),
+		DefaultValue(XpsCompressionOption.Normal),
+		XtraSerializableProperty,
+		]
+		public XpsCompressionOption Compression { get { return compression; } set { compression = value; } }
+		[
+#if !SL
+	DevExpressPrintingCoreLocalizedDescription("XpsExportOptionsDocumentOptions"),
+#endif
+		DXDisplayName(typeof(ResFinder), "DevExpress.XtraPrinting.XpsExportOptions.DocumentOptions"),
+		DesignerSerializationVisibility(DesignerSerializationVisibility.Content),
+		XtraSerializableProperty(XtraSerializationVisibility.Content),
+		]
+		public XpsDocumentOptions DocumentOptions { get { return documentOptions; } set { documentOptions = value; } }
+		protected internal override ExportOptionsBase CloneOptions() {
+			XpsExportOptions options = new XpsExportOptions();
+			options.Assign(this);
+			return options;
+		}
+		public override void Assign(ExportOptionsBase source) {
+			base.Assign(source);
+			Compression = ((XpsExportOptions)source).Compression;
+			XpsExportOptions xpsSource = (XpsExportOptions)source;
+			documentOptions.Assign(xpsSource.documentOptions);
+		}
+		bool ShouldSerializeDocumentOptions() {
+			return documentOptions.ShouldSerialize();
+		}
+		protected internal override bool ShouldSerialize() {
+			return compression != XpsCompressionOption.Normal || ShouldSerializeDocumentOptions() || base.ShouldSerialize();
+		}
+	}
+}

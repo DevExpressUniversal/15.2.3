@@ -1,0 +1,496 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <ProjectType>Local</ProjectType>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{6A98488D-9C54-41AA-9978-FA53103E4F2A}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ApplicationIcon />
+    <AssemblyKeyContainerName />
+    <AssemblyName>DevExpress.XtraScheduler.v15.2.Core</AssemblyName>
+    <AssemblyOriginatorKeyFile>..\..\DevExpress.Key\StrongKey.snk</AssemblyOriginatorKeyFile>
+    <DefaultClientScript>JScript</DefaultClientScript>
+    <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
+    <DefaultTargetSchema>IE50</DefaultTargetSchema>
+    <DelaySign>false</DelaySign>
+    <OutputType>Library</OutputType>
+    <RootNamespace>DevExpress.XtraScheduler</RootNamespace>
+    <StartupObject />
+    <FileUpgradeFlags />
+    <UpgradeBackupLocation />
+    <SignAssembly>true</SignAssembly>
+    <OldToolsVersion>2.0</OldToolsVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>..\..\..\Bin\Framework\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile />
+    <DefineConstants>TRACE;DEBUG;DXWhidbey;CODE_ANALYSIS</DefineConstants>
+    <DocumentationFile />
+    <DebugSymbols>true</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <Optimize>false</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>full</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>..\..\..\Bin\Framework\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile />
+    <DefineConstants>TRACE;DXWhidbey</DefineConstants>
+    <DocumentationFile />
+    <DebugSymbols>false</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <Optimize>true</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>none</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  
+  
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    
+    
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Appointment.cs" />
+    <Compile Include="AppointmentChangeHelper.cs" />
+    <Compile Include="AppointmentContentCalculator.cs" />
+    <Compile Include="AppointmentDependenciesProcessor.cs" />
+    <Compile Include="AppointmentDependencySelectionController.cs" />
+    <Compile Include="AppointmentDependencyViewInfo.cs" />
+    <Compile Include="AppointmentFormController.cs" />
+    <Compile Include="AppointmentInternals.cs" />
+    <Compile Include="AppointmentOperationHelper.cs" />
+    <Compile Include="AppointmentSelectionController.cs" />
+    <Compile Include="AppointmentSplitter.cs" />
+    <Compile Include="AppointmentsProcessor.cs" />
+    <Compile Include="AppointmentTree\AppointmentTree.cs" />
+    <Compile Include="AppointmentTree\AppointmentTreeController.cs" />
+    <Compile Include="AppointmentTree\AppointmentTreeEnumerator.cs" />
+    <Compile Include="AppointmentTree\AppointmentTreeVisitor.cs" />
+    <Compile Include="AppointmentViewInfo.cs" />
+    <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="BaseCellTypes.cs" />
+    <Compile Include="BaseTypes.cs" />
+    <Compile Include="ChangeActionsCalculator.cs" />
+    <Compile Include="ColorSchema.cs" />
+    <Compile Include="Commands.cs" />
+    <Compile Include="Commands\AppointmentDragCommand.cs" />
+    <Compile Include="Commands\ChangeAppointmentLabelUICommand.cs" />
+    <Compile Include="Commands\ChangeAppointmentReminderUICommand.cs" />
+    <Compile Include="Commands\ChangeAppointmentStatusUICommand.cs" />
+    <Compile Include="Commands\ChangeTimelineScaleWidthUICommand.cs" />
+    <Compile Include="Commands\DeleteAppointmentUICommand.cs" />
+    <Compile Include="Commands\EditAppointmentCommand.cs" />
+    <Compile Include="Commands\EditAppointmentUICommand.cs" />
+    <Compile Include="Commands\OpenScheduleCommand.cs" />
+    <Compile Include="Commands\SaveScheduleCommand.cs" />
+    <Compile Include="Commands\SchedulerToolsCommandGroupCommand.cs" />
+    <Compile Include="Commands\SnapToCellsUICommand.cs" />
+    <Compile Include="Commands\SwitchCellsAutoHeightCommand.cs" />
+    <Compile Include="Commands\SwitchCompressWeekendCommand.cs" />
+    <Compile Include="Commands\PrintPageSetup.cs" />
+    <Compile Include="Commands\PrintCommand.cs" />
+    <Compile Include="Commands\DayViewVerticalSelectionCommands.cs" />
+    <Compile Include="Commands\EditAppointmentViaInplaceEditorCommand.cs" />
+    <Compile Include="Commands\GoToDateCommand.cs" />
+    <Compile Include="Commands\PrintPreviewCommand.cs" />
+    <Compile Include="Commands\ShowWorkTimeOnly.cs" />
+    <Compile Include="Commands\SwitchGroupTypeCommands.cs" />
+    <Compile Include="Commands\SwitchTimeScalesCommands.cs" />
+    <Compile Include="Commands\SwitchToDetailedView.cs" />
+    <Compile Include="Commands\SwitchToFullWeekViewCommand.cs" />
+    <Compile Include="Commands\ToggleRecurrenceCommand.cs" />
+    <Compile Include="Commands\ToolsAppointmentCommandGroupCommand.cs" />
+    <Compile Include="Commands\WorkWeekViewVerticalSelectionCommands.cs" />
+    <Compile Include="ConflictsCalculator.cs" />
+    <Compile Include="Data.cs" />
+    <Compile Include="DateNavigatorController.cs" />
+    <Compile Include="DXCollection.cs" />
+    <Compile Include="EventArgs.cs" />
+    <Compile Include="Exchange.cs" />
+    <Compile Include="Filter.cs" />
+    <Compile Include="GanttView\IInternalAppointmentDependency.cs" />
+    <Compile Include="iCalendarExchange\Events\CustomizeConvertedTimeZoneHandler.cs" />
+    <Compile Include="iCalendarExchange\IWritable.cs" />
+    <Compile Include="iCalendarExchange\Events\TimeZoneCustomizationEventArgs.cs" />
+    <Compile Include="IViewAsyncSupport.cs" />
+    <Compile Include="Options\SchedulerScrollBarVisibility.cs" />
+    <Compile Include="OutlookExchange\PropertyModificationTracker.cs" />
+    
+    <Compile Include="Reporting\BrushProvider.cs" />
+    <Compile Include="SchedulerCancellationToken.cs" />
+    <Compile Include="Reminders\IInternalReminder.cs" />
+    <Compile Include="Reminders\IInternalReminderBase.cs" />
+    <Compile Include="Reminders\IReminder.cs" />
+    <Compile Include="Reminders\IReminderBase.cs" />
+    <Compile Include="SchedulerCompatibility.cs" />
+    <Compile Include="SchedulerControlCompatibility.cs" />
+    
+    
+    
+    
+    <Compile Include="Storage\IAppointmentDependencyStorage.cs" />
+    <Compile Include="Storage\IInternalAppointmentDependencyStorage.cs" />
+    <Compile Include="Storage\IInternalPersistentObjectStorage.cs" />
+    <Compile Include="Storage\IInternalSchedulerStorageBase.cs" />
+    <Compile Include="Storage\IPersistentObjectStorageProvider.cs" />
+    <Compile Include="Storage\ISchedulerStorageBase.cs" />
+    <Compile Include="Storage\StorageExtension.cs" />
+    
+    
+    <Compile Include="ViewInfoThreadManager.cs" />
+    <Compile Include="TimeZone\IANAToTimeZoneIdConverter.cs" />
+    <Compile Include="TimeZone\TimeZone.cs" />
+    <Compile Include="TimeZone\TimeZoneEngine.cs" />
+    <Compile Include="TimeZone\TimeZoneHelper.cs" />
+    <Compile Include="TimeZone\TimeZoneIdValidator.cs" />
+    <Compile Include="ViewFullWeek.cs" />
+    <Compile Include="GanttView\AppointmentDependency.cs" />
+    <Compile Include="GanttView\AppointmentDependencyCollection.cs" />
+    <Compile Include="GanttView\DependencyStorage.cs" />
+    <Compile Include="GanttView\GanttView.cs" />
+    <Compile Include="iCalendarExchange\Alarm.cs" />
+    <Compile Include="iCalendarExchange\BaseTypes.cs" />
+    <Compile Include="iCalendarExchange\CalendarBaseProperties.cs" />
+    <Compile Include="iCalendarExchange\CalendarComponents.cs" />
+    <Compile Include="iCalendarExchange\CalendarObjectFactory.cs" />
+    <Compile Include="iCalendarExchange\CalendarObjects.cs" />
+    <Compile Include="iCalendarExchange\ContentLine.cs" />
+    <Compile Include="iCalendarExchange\Event.cs" />
+    <Compile Include="iCalendarExchange\EventArgs.cs" />
+    <Compile Include="iCalendarExchange\iCalendarExchange.cs" />
+    <Compile Include="iCalendarExchange\iCalendarUtils.cs" />
+    <Compile Include="iCalendarExchange\Parameters.cs" />
+    <Compile Include="iCalendarExchange\Parser.cs" />
+    <Compile Include="iCalendarExchange\RecurrenceRule.cs" />
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <Compile Include="iCalendarExchange\TimeZone.cs" />
+    <Compile Include="InnerSchedulerControl.cs" />
+    <Compile Include="InplaceEditController.cs" />
+    <Compile Include="KeyboardHandler.cs" />
+    <Compile Include="Localization.cs" />
+    <Compile Include="Mappings.cs" />
+    <Compile Include="MappingsAutoPicker.cs" />
+    <Compile Include="MenuBuilder.cs" />
+    <Compile Include="MouseHandler.cs" />
+    <Compile Include="OccurrenceCalculator.cs" />
+    <Compile Include="Operations.cs" />
+    <Compile Include="Options.cs" />
+    <Compile Include="OutlookExchange\EventArgs.cs" />
+    <Compile Include="OutlookExchange\ExchangeManager.cs" />
+    <Compile Include="OutlookExchange\Interop.cs" />
+    <Compile Include="OutlookExchange\OutlookExchange.cs" />
+    <Compile Include="OutlookExchange\OutlookUtils.cs" />
+    
+    
+    
+    
+    <Compile Include="Processors.cs" />
+    <Compile Include="RangeControl\DataItemThumbnail.cs" />
+    <Compile Include="RangeControl\RangeControlClientDataProvider.cs" />
+    <Compile Include="RangeControl\RangeControlClientOptions.cs" />
+    <Compile Include="RangeControl\ScaleBasedRangeControlController.cs" />
+    <Compile Include="RangeControl\SchedulerInnerControlClientDataProvider.cs" />
+    <Compile Include="RangeControl\SchedulerStorageBaseClientDataProvider.cs" />
+    <Compile Include="RangeControl\Utils.cs" />
+    <Compile Include="Recurrence.cs" />
+    <Compile Include="Reminders.cs" />
+    <Compile Include="Reporting\Bricks\BrushBrick.cs" />
+    <Compile Include="Reporting\DataProviders.cs" />
+    <Compile Include="Reporting\EventArgs.cs" />
+    <Compile Include="Reporting\ISchedulerReport.cs" />
+    <Compile Include="Reporting\ReportingOptions.cs" />
+    <Compile Include="Reporting\SchedulerPrintAdapter.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reporting\SchedulerPrintAdapterProperties.cs" />
+    <Compile Include="ResourceFilterController.cs" />
+    <Compile Include="ResourceHierarchyHelper.cs" />
+    <Compile Include="Resources.cs" />
+    <Compile Include="ResourcesProcessor.cs" />
+    <Compile Include="SchedulerCommandId.cs" />
+    <Compile Include="SchedulerCommandFactoryService.cs" />
+    <Compile Include="SchedulerControlChangeManager.cs" />
+    <Compile Include="SchedulerStorage.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Selection.cs" />
+    <Compile Include="SelectionCommands.cs" />
+    <Compile Include="Services.cs" />
+    <Compile Include="Services\FileOperationService.cs" />
+    <Compile Include="Services\SchedulerPrintService.cs" />
+    <Compile Include="Services\KeyboardHandlerService.cs" />
+    <Compile Include="Services\SchedulerStateService.cs" />
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <Compile Include="TimeInterval.cs" />
+    <Compile Include="TimeRuler.cs" />
+    <Compile Include="TimeScale.cs" />
+    <Compile Include="TimeScaleFormatter.cs" />
+    <Compile Include="TimeSlot.cs" />
+    <Compile Include="Tools.cs" />
+    <Compile Include="TypeConverters.cs" />
+    <Compile Include="UserInterfaceObject.cs" />
+    <Compile Include="Utils.cs" />
+    
+    
+    
+    
+    <Compile Include="vCalendarExchange\vCalendarConsts.cs" />
+    <Compile Include="vCalendarExchange\vCalendarConvert.cs" />
+    <Compile Include="vCalendarExchange\vCalendarEncoding.cs" />
+    <Compile Include="vCalendarExchange\vCalendarExchange.cs" />
+    <Compile Include="vCalendarExchange\vCalendarTypes.cs" />
+    <Compile Include="vCalendarExchange\vRecurrenceConvert.cs" />
+    <Compile Include="vCalendarExchange\vRecurrenceTypes.cs" />
+    <Compile Include="ViewBase.cs" />
+    <Compile Include="ViewDay.cs" />
+    
+    <Compile Include="ViewMonth.cs" />
+    <Compile Include="ViewTimeline.cs" />
+    <Compile Include="ViewWeek.cs" />
+    <Compile Include="ViewWorkWeek.cs" />
+    <Compile Include="VisuallyContinuousCellsInfo.cs" />
+    <Compile Include="WorkDays.cs" />
+    <Compile Include="XmlSerialization.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="DevExpress.Data.v15.2">
+      <SpecificVersion>False</SpecificVersion>
+    <HintPath>..\..\..\Bin\Framework\DevExpress.Data.v15.2.dll</HintPath><Private>False</Private></Reference>
+    <Reference Include="DevExpress.Printing.v15.2.Core">
+      <SpecificVersion>False</SpecificVersion>
+    <HintPath>..\..\..\Bin\Framework\DevExpress.Printing.v15.2.Core.dll</HintPath><Private>False</Private></Reference>
+    
+    <Reference Include="System"><Private>False</Private></Reference>
+    <Reference Include="System.Core"><Private>False</Private></Reference>
+    <Reference Include="System.Data"><Private>False</Private></Reference>
+    <Reference Include="System.Drawing"><Private>False</Private></Reference>
+    <Reference Include="System.Windows.Forms"><Private>False</Private></Reference>
+    <Reference Include="System.XML"><Private>False</Private></Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="LocalizationRes.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LocalizationRes.ru.resx" />
+    <EmbeddedResource Include="LocalizationRes.ja.resx" />
+    <EmbeddedResource Include="LocalizationRes.es.resx" />
+    <EmbeddedResource Include="LocalizationRes.de.resx" />
+    <EmbeddedResource Include="SchedulerStorage.resx">
+      <DependentUpon>SchedulerStorage.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\DayView_16x16.png" />
+    <EmbeddedResource Include="Images\DayView_32x32.png" />
+    <EmbeddedResource Include="Images\MonthView_16x16.png" />
+    <EmbeddedResource Include="Images\MonthView_32x32.png" />
+    <EmbeddedResource Include="Images\TimelineView_16x16.png" />
+    <EmbeddedResource Include="Images\TimelineView_32x32.png" />
+    <EmbeddedResource Include="Images\Back_16x16.png" />
+    <EmbeddedResource Include="Images\Back_32x32.png" />
+    <EmbeddedResource Include="Images\Forward_16x16.png" />
+    <EmbeddedResource Include="Images\Forward_32x32.png" />
+    <EmbeddedResource Include="Images\Delete_16x16.png" />
+    <EmbeddedResource Include="Images\Delete_32x32.png" />
+    <EmbeddedResource Include="Images\Today_16x16.png" />
+    <EmbeddedResource Include="Images\Today_32x32.png" />
+    <EmbeddedResource Include="Images\Appointment_16x16.png" />
+    <EmbeddedResource Include="Images\GoToDate_16x16.png" />
+    <EmbeddedResource Include="Images\RecurringAppointment_16x16.png" />
+    <EmbeddedResource Include="Images\WeekView_16x16.png" />
+    <EmbeddedResource Include="Images\WeekView_32x32.png" />
+    <EmbeddedResource Include="Images\ZoomIn_16x16.png" />
+    <EmbeddedResource Include="Images\ZoomIn_32x32.png" />
+    <EmbeddedResource Include="Images\ZoomOut_16x16.png" />
+    <EmbeddedResource Include="Images\ZoomOut_32x32.png" />
+    <EmbeddedResource Include="Images\WorkWeekView_16x16.png" />
+    <EmbeddedResource Include="Images\WorkWeekView_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\GanttView_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\GanttView_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\GroupByDate_16x16.png" />
+    <EmbeddedResource Include="Images\GroupByDate_32x32.png" />
+    <EmbeddedResource Include="Images\GroupByNone_16x16.png" />
+    <EmbeddedResource Include="Images\GroupByNone_32x32.png" />
+    <EmbeddedResource Include="Images\GroupByResource_16x16.png" />
+    <EmbeddedResource Include="Images\GroupByResource_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\Appointment_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\RecurringAppointment_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\Preview_16x16.png" />
+    <EmbeddedResource Include="Images\Preview_32x32.png" />
+    <EmbeddedResource Include="Images\Print_16x16.png" />
+    <EmbeddedResource Include="Images\Print_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\PageSetup_16x16.png" />
+    <EmbeddedResource Include="Images\PageSetup_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\SwitchTimeScalesTo_16x16.png" />
+    <EmbeddedResource Include="Images\SwitchTimeScalesTo_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\ShowWorkTimeOnly_16x16.png" />
+    <EmbeddedResource Include="Images\ShowWorkTimeOnly_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\CompressWeekend_16x16.png" />
+    <EmbeddedResource Include="Images\CompressWeekend_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\CellsAutoHeight_16x16.png" />
+    <EmbeddedResource Include="Images\CellsAutoHeight_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\Open_16x16.png" />
+    <EmbeddedResource Include="Images\Open_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\ToggleRecurrence_16x16.png" />
+    <EmbeddedResource Include="Images\ToggleRecurrence_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\OpenSchedule_16x16.png" />
+    <EmbeddedResource Include="Images\OpenSchedule_32x32.png" />
+    <EmbeddedResource Include="Images\SaveSchedule_16x16.png" />
+    <EmbeddedResource Include="Images\SaveSchedule_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\SnapToCells_16x16.png" />
+    <EmbeddedResource Include="Images\SnapToCells_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\ChangeLabel_16x16.png" />
+    <EmbeddedResource Include="Images\ChangeLabel_32x32.png" />
+    <EmbeddedResource Include="Images\ChangeStatus_16x16.png" />
+    <EmbeddedResource Include="Images\ChangeStatus_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\GoToDate_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\FullWeekView_16x16.png" />
+    <EmbeddedResource Include="Images\FullWeekView_32x32.png" />
+  </ItemGroup>
+<ItemGroup><EmbeddedResource Include="Descriptions.resx" /></ItemGroup><ItemGroup><Compile Include="Descriptions.cs" /></ItemGroup></Project>

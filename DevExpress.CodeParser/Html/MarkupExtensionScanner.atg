@@ -1,0 +1,102 @@
+EofCode = EOF;
+TokenKind = Type;
+TokenValue = Value;
+
+SCANNER MarkupExtensionScanner
+
+FRAME
+-->begin
+using System;
+using System.IO;
+using System.Collections;
+using System.Collections.Specialized;
+
+#if DXCORE
+namespace DevExpress.CodeRush.StructuralParser.Xaml
+#else
+namespace DevExpress.CodeParser.Xaml
+#endif
+{
+  partial class MarkupExtensionScanner
+  {
+    -->declarations
+    protected override void InitializeIgnoreTable()
+    {
+      ignore = new BitArray(charSetSize + 1);
+      ignore[' '] = true;  // blanks are always white space
+      -->initialization
+    }
+    protected override void NextChCasing()
+    {
+      -->casing1
+    }
+    protected override void AddCh()
+    {
+      base.AddCh();
+      -->casing2
+      NextCh();
+    }
+    -->comments
+    void CheckLiteral()
+    {
+      -->literals
+    }
+    protected override void NextTokenComments()
+    {
+      -->scan1
+    }
+
+    protected override void NextTokenScan(int state)
+    {
+      int recKind = noSym;
+      int recEnd = pos;
+      int recPrevLineStart = prevLineStart;
+      AddCh();
+      switch (state)
+      {
+        case -1: { t.Type = eofSym; break; } // NextCh already done
+        case 0:
+        if (recKind != noSym)
+        {
+          tlen = recEnd - t.StartPosition;
+          prevLineStart = recPrevLineStart;
+          BackTrackScannerToToken();
+        }
+        t.Type = recKind;
+        break;
+        -->scan2
+      }
+    }
+  } // end Scanner
+}
+$$$
+ENDFRAME
+
+CHARACTERS
+  cr                 = '\r'.
+  lf                 = '\n'.
+  newLine            = cr + lf.
+  whitespace         = ' '.
+  tab                = '\t'.
+  digit			= "0123456789".
+  startLetter        = '@' + 'A' .. 'Z' + 'a' .. 'z' + '_' + '\u00aa' + '\u00b5' + '\u00ba' + '\u00c0' .. '\u00d6' + '\u00d8' .. '\u00f6' + '\u00f8' .. '\u00ff' + UnicodeLetter.
+  partLetter         = '0' .. '9' + startLetter.
+  stringChar = ANY - '"' -  "'" - newLine.
+  pathChar = ANY - cr - lf - '}'.
+
+TOKENS
+  DOT = ".".
+  COMMA = ",".
+  COLON = ":".
+  EQUALS = "=".
+  OPENBRACE = "{".
+  CLOSEBRACE = "}".
+  IDENTIFIER = startLetter {partLetter}.
+  OPENBRACKET = "[".
+  CLOSEBRACKET = "]".
+  STRINGLITERAL = ("\"" | "'") {stringChar} ("\"" | "'").
+  INTEGERLITERAL = digit {digit}.
+  PATH = "/" {pathChar}.
+
+IGNORE  tab + cr + lf + whitespace + '\u00a0'
+END MarkupExtensionScanner.

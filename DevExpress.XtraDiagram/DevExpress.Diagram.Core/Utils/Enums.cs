@@ -1,0 +1,124 @@
+﻿#region Copyright (c) 2000-2015 Developer Express Inc.
+/*
+{*******************************************************************}
+{                                                                   }
+{       Developer Express .NET Component Library                    }
+{                                                                   }
+{                                                                   }
+{       Copyright (c) 2000-2015 Developer Express Inc.              }
+{       ALL RIGHTS RESERVED                                         }
+{                                                                   }
+{   The entire contents of this file is protected by U.S. and       }
+{   International Copyright Laws. Unauthorized reproduction,        }
+{   reverse-engineering, and distribution of all or any portion of  }
+{   the code contained in this file is strictly prohibited and may  }
+{   result in severe civil and criminal penalties and will be       }
+{   prosecuted to the maximum extent possible under the law.        }
+{                                                                   }
+{   RESTRICTIONS                                                    }
+{                                                                   }
+{   THIS SOURCE CODE AND ALL RESULTING INTERMEDIATE FILES           }
+{   ARE CONFIDENTIAL AND PROPRIETARY TRADE                          }
+{   SECRETS OF DEVELOPER EXPRESS INC. THE REGISTERED DEVELOPER IS   }
+{   LICENSED TO DISTRIBUTE THE PRODUCT AND ALL ACCOMPANYING .NET    }
+{   CONTROLS AS PART OF AN EXECUTABLE PROGRAM ONLY.                 }
+{                                                                   }
+{   THE SOURCE CODE CONTAINED WITHIN THIS FILE AND ALL RELATED      }
+{   FILES OR ANY PORTION OF ITS CONTENTS SHALL AT NO TIME BE        }
+{   COPIED, TRANSFERRED, SOLD, DISTRIBUTED, OR OTHERWISE MADE       }
+{   AVAILABLE TO OTHER INDIVIDUALS WITHOUT EXPRESS WRITTEN CONSENT  }
+{   AND PERMISSION FROM DEVELOPER EXPRESS INC.                      }
+{                                                                   }
+{   CONSULT THE END USER LICENSE AGREEMENT FOR INFORMATION ON       }
+{   ADDITIONAL RESTRICTIONS.                                        }
+{                                                                   }
+{*******************************************************************}
+*/
+#endregion Copyright (c) 2000-2015 Developer Express Inc.
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+namespace DevExpress.Diagram.Core {
+	public enum Direction {
+		Left,
+		Up,
+		Right,
+		Down,
+	}
+	[Flags]
+	public enum ResizeMode {
+		None = 0,
+		Left = 1 << 0,
+		Top = 1 << 1,
+		Right = 1 << 2,
+		Bottom = 1 << 3,
+		TopLeft = Top | Left,
+		TopRight = Top | Right,
+		BottomLeft = Bottom | Left,
+		BottomRight = Bottom | Right,
+	}
+	public enum Side {
+		Near, Center, Far
+	}
+	[Flags]
+	public enum Sides {
+		None = 0,
+		Left = 1 << 0,
+		Top = 1 << 1,
+		Right = 1 << 2,
+		Bottom = 1 << 3,
+		All = Left | Top | Right | Bottom,
+	}
+	public enum ResizingMode {
+		Live,
+		Preview
+	}
+	public enum CanvasSizeMode {
+		None,
+		AutoSize,
+	}
+	[Flags]
+	public enum AllowedMoveEffects {
+		None = 0,
+		Move = 1,
+		Copy = 2,
+	}
+	public enum MoveEffect {
+		Move,
+		Copy,
+	}
+	public static class AllowedMoveEffectsExtensions {
+		public static bool CanMove(this AllowedMoveEffects allowedEffects) {
+			return allowedEffects.HasFlag(AllowedMoveEffects.Move);
+		}
+		public static bool CanCopy(this AllowedMoveEffects allowedEffects) {
+			return allowedEffects.HasFlag(AllowedMoveEffects.Copy);
+		}
+		public static DiagramCursor GetCursor(this MoveEffect? moveEffect) {
+			if(moveEffect == MoveEffect.Copy)
+				return DiagramCursor.Copy;
+			if(moveEffect == MoveEffect.Move)
+				return DiagramCursor.Move;
+			return DiagramCursor.Default;
+		}
+	}
+	public enum DiagramMenuPlacement {
+		Mouse, PrimarySelection
+	}
+	public enum ConnectorPointType {
+		Begin, End
+	}
+	public static class ConnectorPointTypeExtensions {
+		public static ConnectorPointType Opposite(this ConnectorPointType pointType) {
+			return pointType == ConnectorPointType.Begin ? ConnectorPointType.End : ConnectorPointType.Begin;
+		}
+		public static T First<T>(this ConnectorPointType pointType, IEnumerable<T> source) {
+			return pointType == ConnectorPointType.Begin ? source.First() : source.Last();
+		}
+		public static T Last<T>(this ConnectorPointType pointType, IEnumerable<T> source) {
+			return pointType == ConnectorPointType.Begin ? source.Last() : source.First();
+		}
+	}
+}

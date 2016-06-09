@@ -1,0 +1,47 @@
+﻿<UserControl x:Class="DevExpress.Xpf.Spreadsheet.Forms.ProtectedRangeManagerControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+             xmlns:dxsps="clr-namespace:DevExpress.Xpf.Spreadsheet" 
+             mc:Ignorable="d" Width="425"
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <dxsps:SpreadsheetControlStringIdConverter x:Key="stringIdConverter" />
+    </UserControl.Resources>
+    <Grid Margin="10,10,12,0" FocusManager.FocusedElement="{Binding ElementName=grid}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+        <TextBlock Grid.ColumnSpan="2" VerticalAlignment="Center" Margin="0,6,0,6" Text="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_ProtectedRangeManagerFormDescription, Converter={StaticResource stringIdConverter}}" />
+        <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="1">
+            <Button x:Name="btnNew" MinWidth="60" Click="btnNew_Click" Margin="0,0,0,6" Content="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_ProtectedRangeManagerFormNew, Converter={StaticResource stringIdConverter}}" />
+            <Button x:Name="btnModify" MinWidth="60" Click="btnModify_Click" Margin="0,0,0,6" IsEnabled="{Binding IsCurrentRangeValid}" Content="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_ProtectedRangeManagerFormModify, Converter={StaticResource stringIdConverter}}" />
+            <Button x:Name="btnDelete" MinWidth="60" Click="btnDelete_Click" Margin="0,0,0,6" IsEnabled="{Binding IsCurrentRangeValid}" Content="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_ProtectedRangeManagerFormDelete, Converter={StaticResource stringIdConverter}}" />
+        </StackPanel>
+        <ListView x:Name="grid" Grid.Row="1" MinHeight="300" Margin="0,0,12,0" ItemsSource="{Binding ProtectedRangesDataSource}" SelectedIndex="{Binding CurrentRangeIndex}" MouseDoubleClick="grid_MouseDoubleClick" KeyDown="grid_KeyDown">
+            <ListView.View>
+                <GridView AllowsColumnReorder="False">
+                    <GridViewColumn DisplayMemberBinding="{Binding Title}" Header="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_ProtectedRangeManagerFormColumnTitle, Converter={StaticResource stringIdConverter}}" />
+                    <GridViewColumn DisplayMemberBinding="{Binding Reference}" Header="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_ProtectedRangeManagerFormColumnReference, Converter={StaticResource stringIdConverter}}" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <TextBlock Grid.Row="2" Grid.ColumnSpan="2" VerticalAlignment="Center" Margin="0,6,0,6" IsEnabled="{Binding IsCurrentRangeValid}" Text="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_ProtectedRangeManagerFormPermissionsDescription, Converter={StaticResource stringIdConverter}}" />
+        <Grid Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="btnPermissions" Click="btnPermissions_Click" IsEnabled="{Binding IsCurrentRangeValid}" Content="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_ProtectedRangeManagerFormPermissions, Converter={StaticResource stringIdConverter}}" />
+        </Grid>
+    </Grid>
+</UserControl>

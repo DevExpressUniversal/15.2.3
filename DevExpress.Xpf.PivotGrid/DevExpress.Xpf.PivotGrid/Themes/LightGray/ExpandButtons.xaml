@@ -1,0 +1,32 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:dxpg="http://schemas.devexpress.com/winfx/2008/xaml/pivotgrid" xmlns:dxpgi="http://schemas.devexpress.com/winfx/2008/xaml/pivotgrid/internal" xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys" xmlns:dxcn="clr-namespace:DevExpress.Xpf.Core.Native;assembly=DevExpress.Xpf.Core.v15.2">
+
+    <dx:BooleanToVisibilityConverter x:Key="boolToVisibilityConverter" />
+    <dx:BooleanToVisibilityConverter x:Key="invertBoolToVisibilityConverter" Invert="True"/>
+
+    <ControlTemplate x:Key="{dxpgi:ScrollableAreaThemeKey ResourceKey=ExpandButtonTemplate}" TargetType="{x:Type dx:ToggleStateButton}">
+        <Border x:Name="border" Width="9" Height="9" CornerRadius="2,2,2,2" Padding="1,1,1,1" Background="{DynamicResource {dxpgi:AppearanceThemeKey ResourceKey=ExpandButtonBackground}}">
+            <Border CornerRadius="1,1,1,1" Background="{DynamicResource {dxpgi:AppearanceThemeKey ResourceKey=ExpandButtonInnerBackground}}">
+                <Grid Width="5" Height="5">
+                    <Rectangle Stretch="Fill" Fill="{DynamicResource {dxpgi:AppearanceThemeKey ResourceKey=ExpandButtonColor}}" HorizontalAlignment="Center" Margin="0,0,0,0" 
+                               VerticalAlignment="Center" Width="5" Height="1" x:Name="rectangle" 
+                               Visibility="{Binding IsChecked, Converter={StaticResource boolToVisibilityConverter}, RelativeSource={RelativeSource TemplatedParent}}" />
+                    <Path Stretch="Fill" Fill="{DynamicResource {dxpgi:AppearanceThemeKey ResourceKey=ExpandButtonColor}}"
+                          Data="F1 M 1256,774L 1257,774L 1257,776L 1259,776L 1259,777L 1257,777L 1257,779L 1256,779L 1256,777L 1254,777L 1254,776L 1256,776L 1256,774 Z " 
+                          HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center" Width="5" Height="5" 
+                          Visibility="{Binding IsChecked, Converter={StaticResource invertBoolToVisibilityConverter}, RelativeSource={RelativeSource TemplatedParent}}" x:Name="path" />
+                </Grid>
+            </Border>
+        </Border>
+    </ControlTemplate>
+    
+    <Style x:Key="{dxpgi:ScrollableAreaThemeKey ResourceKey=ExpandButtonStyle}" TargetType="{x:Type dx:ToggleStateButton}">
+        <Setter Property="Focusable" Value="false" />
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="Width" Value="11" />
+        <Setter Property="Height" Value="11" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="Template" Value="{DynamicResource {dxpgi:ScrollableAreaThemeKey ResourceKey=ExpandButtonTemplate}}" />
+    </Style>
+</ResourceDictionary>

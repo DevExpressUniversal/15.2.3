@@ -1,0 +1,113 @@
+#region Copyright (c) 2000-2015 Developer Express Inc.
+/*
+{*******************************************************************}
+{                                                                   }
+{       Developer Express .NET Component Library                    }
+{                                                                   }
+{                                                                   }
+{       Copyright (c) 2000-2015 Developer Express Inc.              }
+{       ALL RIGHTS RESERVED                                         }
+{                                                                   }
+{   The entire contents of this file is protected by U.S. and       }
+{   International Copyright Laws. Unauthorized reproduction,        }
+{   reverse-engineering, and distribution of all or any portion of  }
+{   the code contained in this file is strictly prohibited and may  }
+{   result in severe civil and criminal penalties and will be       }
+{   prosecuted to the maximum extent possible under the law.        }
+{                                                                   }
+{   RESTRICTIONS                                                    }
+{                                                                   }
+{   THIS SOURCE CODE AND ALL RESULTING INTERMEDIATE FILES           }
+{   ARE CONFIDENTIAL AND PROPRIETARY TRADE                          }
+{   SECRETS OF DEVELOPER EXPRESS INC. THE REGISTERED DEVELOPER IS   }
+{   LICENSED TO DISTRIBUTE THE PRODUCT AND ALL ACCOMPANYING .NET    }
+{   CONTROLS AS PART OF AN EXECUTABLE PROGRAM ONLY.                 }
+{                                                                   }
+{   THE SOURCE CODE CONTAINED WITHIN THIS FILE AND ALL RELATED      }
+{   FILES OR ANY PORTION OF ITS CONTENTS SHALL AT NO TIME BE        }
+{   COPIED, TRANSFERRED, SOLD, DISTRIBUTED, OR OTHERWISE MADE       }
+{   AVAILABLE TO OTHER INDIVIDUALS WITHOUT EXPRESS WRITTEN CONSENT  }
+{   AND PERMISSION FROM DEVELOPER EXPRESS INC.                      }
+{                                                                   }
+{   CONSULT THE END USER LICENSE AGREEMENT FOR INFORMATION ON       }
+{   ADDITIONAL RESTRICTIONS.                                        }
+{                                                                   }
+{*******************************************************************}
+*/
+#endregion Copyright (c) 2000-2015 Developer Express Inc.
+
+using System;
+using System.ComponentModel;
+#if DXCORE
+namespace DevExpress.CodeRush.StructuralParser
+#else
+namespace DevExpress.CodeParser
+#endif
+{
+  public static class PathUtils
+  {
+	public static string GetLocalPath(string uri)
+	{
+	  if (uri == null || uri.Length == 0)
+		return String.Empty;
+	  Uri lUri = new Uri(uri);
+	  return String.Concat(lUri.LocalPath, lUri.Fragment);
+	}
+	public static string AddDirSeparatorIfNeed(string path)
+	{
+	  string separatorStr = new string(System.IO.Path.DirectorySeparatorChar, 1);
+	  if (path.EndsWith(separatorStr))
+		return path;
+	  return path + separatorStr;
+	}
+  }
+	public abstract class PathElement : LanguageElement
+	{
+		string _FilePath;
+	string _LocalPath;	
+		#region CloneDataFrom
+		protected override void CloneDataFrom(BaseElement source, ElementCloneOptions options)
+		{			
+			if (source == null)
+				return;
+			base.CloneDataFrom(source, options);
+			if (!(source is PathElement))
+				return;
+			PathElement lSource = (PathElement)source;
+			_FilePath = lSource._FilePath;
+		}
+		#endregion
+		[EditorBrowsable(EditorBrowsableState.Never)]
+		public void SetFilePath(string newPath)
+		{
+			_FilePath = newPath;
+	  _LocalPath = null;
+		}
+		public string FilePath
+		{
+			get
+			{
+				return _FilePath;
+			}
+		}
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public string LocalPath
+	{
+	  get
+	  {
+		if (_LocalPath == null)
+		  _LocalPath = PathUtils.GetLocalPath(FilePath);
+		return _LocalPath;
+	  }
+	}
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	[Obsolete("Use LocalPath")]
+	public string LocaPath
+	{
+	  get
+	  {
+		return LocalPath;
+	  }
+	}
+	}
+}

@@ -1,0 +1,67 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+                    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+                    xmlns:dx="clr-namespace:DevExpress.Xpf.Core"
+                    xmlns:dxc="clr-namespace:DevExpress.Xpf.Core.ConditionalFormatting"
+                    xmlns:dxe="clr-namespace:DevExpress.Xpf.Editors"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+                    xmlns:dxgcfm="clr-namespace:DevExpress.Xpf.Core.ConditionalFormattingManager">
+    <dxgcfm:EnumNameConverter UseLocalizer="True" x:Key="enumNameConverterLocalized"/>
+    <DataTemplate x:Key="ImageTemplate">
+        <dx:DXImage Source="{Binding}" Stretch="None" HorizontalAlignment="Center" Margin="1"/>
+    </DataTemplate>
+    <DataTemplate x:Key="IconsTemplate">
+        <ItemsControl ItemsSource="{Binding Icons}" ItemTemplate="{StaticResource ImageTemplate}">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" />
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+        </ItemsControl>
+    </DataTemplate>
+    <SolidColorBrush x:Key="PreviewBorderBrush" Color="#FF646464"/>
+    <Style x:Key="ManagerContainer" TargetType="{x:Type dxgcfm:ManagerContainerBase}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <ContentPresenter x:Name="PART_Container"/>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style TargetType="{x:Type dxgcfm:GridContainer}" BasedOn="{StaticResource ManagerContainer}"/>
+    <Style TargetType="{x:Type dxgcfm:FormatPreviewContainer}" BasedOn="{StaticResource ManagerContainer}"/>
+    <Style x:Key="SelectorStyle" TargetType="{x:Type dxe:ButtonEdit}">
+        <Setter Property="Width" Value="130"/>
+        <Setter Property="Margin" Value="0,0,10,0"/>
+        <Setter Property="IsTextEditable" Value="False"/>
+    </Style>
+    <Style x:Key="TitleTextStyle" TargetType="{x:Type TextBlock}">
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="Margin" Value="0,0,2,5"/>
+        <Setter Property="VerticalAlignment" Value="Bottom"/>
+    </Style>
+    <Style x:Key="DescriptionTextStyle" TargetType="{x:Type TextBlock}">
+        <Setter Property="Margin" Value="0,0,0,2"/>
+    </Style>
+    <Style x:Key="NumericEditStyle" TargetType="{x:Type dxe:TextEdit}">
+        <Setter Property="MaskType" Value="Numeric"/>
+        <Setter Property="Mask" Value="d"/>
+        <Setter Property="MaskUseAsDisplayFormat" Value="True"/>
+        <Setter Property="Width" Value="100"/>
+    </Style>
+    <Style x:Key="GroupStyle" TargetType="{x:Type GroupBox}">
+        <Setter Property="Margin" Value="2"/>
+    </Style>
+    <Style x:Key="DialogStyleBase" TargetType="{x:Type dx:DXWindow}">
+        <Setter Property="ShowInTaskbar" Value="False"/>
+        <Setter Property="WindowStyle" Value="ToolWindow"/>
+        <Setter Property="ShowIcon" Value="False"/>
+        <Setter Property="UseLayoutRounding" Value="True"/>
+    </Style>
+    <Style x:Key="ButtonDialogStyle" TargetType="{x:Type dx:DXWindow}" BasedOn="{StaticResource DialogStyleBase}">
+        <Setter Property="Width" Value="600"/>
+        <Setter Property="Height" Value="450"/>
+    </Style>
+</ResourceDictionary>

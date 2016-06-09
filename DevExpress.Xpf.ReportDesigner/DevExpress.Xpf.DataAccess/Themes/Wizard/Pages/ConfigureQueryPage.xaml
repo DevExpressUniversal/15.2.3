@@ -1,0 +1,74 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+            xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
+            xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+            xmlns:dxco="http://schemas.devexpress.com/winfx/2008/xaml/controls"
+            xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+            xmlns:editors="clr-namespace:DevExpress.Xpf.DataAccess.Editors"
+            xmlns:local="clr-namespace:DevExpress.Xpf.DataAccess.DataSourceWizard"
+            xmlns:localization="clr-namespace:DevExpress.Xpf.DataAccess.Localization"
+            xmlns:localnative="clr-namespace:DevExpress.Xpf.DataAccess.Native">
+
+    <dxmvvm:BooleanToObjectConverter x:Key="BooleanToTitleConverter" TrueValue="{localization:DataAccessUIStringId StringId=StoredProcControl_Caption}" FalseValue="{localization:DataAccessUIStringId StringId=QueryControl_SqlString}" />
+    
+    <DataTemplate x:Key="{x:Type local:ConfigureQueryPage}">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <localnative:WizardTitle Title="{localization:DataAccessUIStringId StringId=WizardPageConfigureQuery}" />
+            <Grid Grid.Row="1" Margin="50,20">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <dxe:ListBoxEdit
+                            ShowBorder="False"
+                            ItemsSource="{Binding Options}"
+                            ValueMember="Value"
+                            EditValue="{Binding UseStoredProcedure, UpdateSourceTrigger=PropertyChanged}"
+                            StyleSettings="{editors:RadioListBoxEditStyleSettingsEx}">
+                    <dxe:ListBoxEdit.ItemContainerStyle>
+                        <Style TargetType="dxe:ListBoxEditItem">
+                            <Setter Property="IsEnabled" Value="{Binding Properties.Value}" />
+                        </Style>
+                    </dxe:ListBoxEdit.ItemContainerStyle>
+                </dxe:ListBoxEdit>
+                <Grid Grid.Row="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="{Binding UseStoredProcedure, Converter={StaticResource BooleanToTitleConverter}}" Margin="0,15,0,2" />
+                    <dxe:TextEdit
+                                Grid.Row="1"
+                                IsReadOnly="{Binding AllowCustomSql, Converter={dxmvvm:BooleanNegationConverter}}"
+                                VerticalContentAlignment="Top"
+                                EditValue="{Binding CustomSqlString, UpdateSourceTrigger=PropertyChanged}"
+                                Visibility="{Binding UseStoredProcedure, Converter={dxmvvm:BooleanToVisibilityConverter Inverse=True}}"
+                                FontFamily="Courier New, Lucida Console"
+                                AcceptsReturn="True"
+                                AcceptsTab="True"
+                    />
+                    <dxe:ListBoxEdit
+                                Grid.Row="1"
+                                ItemsSource="{Binding StoredProcedures}"
+                                SelectedIndex="{Binding SelectedStoredProcedureIndex}"
+                                Visibility="{Binding UseStoredProcedure, Converter={dxmvvm:BooleanToVisibilityConverter}}"
+                    />
+                </Grid>
+            </Grid>
+            <dx:DialogFooter>
+                <Grid>
+                    <dxco:WizardButton Content="{localization:DataAccessUIStringId StringId=Button_QueryBuilder}" HorizontalAlignment="Left" Command="{Binding RunQueryBuilderCommand}" IsEnabled="{Binding UseStoredProcedure, Converter={dxmvvm:BooleanNegationConverter}}" />
+                    <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                        <dxco:WizardButton Content="{localization:DataAccessUIStringId StringId=Button_Previous}" dxco:Wizard.IsButtonBack="True" />
+                        <dxco:WizardButton Content="{localization:DataAccessUIStringId StringId=Button_Next}" dxco:Wizard.IsButtonNext="True" />
+                        <dxco:WizardButton Content="{localization:DataAccessUIStringId StringId=Button_Finish}" dxco:Wizard.IsButtonFinish="True" />
+                    </StackPanel>
+                </Grid>
+            </dx:DialogFooter>
+        </Grid>
+    </DataTemplate>
+</ResourceDictionary>

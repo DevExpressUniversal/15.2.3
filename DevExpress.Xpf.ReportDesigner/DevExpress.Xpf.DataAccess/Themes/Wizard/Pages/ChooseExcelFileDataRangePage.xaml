@@ -1,0 +1,27 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+                    xmlns:local="clr-namespace:DevExpress.Xpf.DataAccess.DataSourceWizard"
+                    xmlns:localization="clr-namespace:DevExpress.Xpf.DataAccess.Localization"
+                    xmlns:localnative="clr-namespace:DevExpress.Xpf.DataAccess.Native">
+
+    <DataTemplate x:Key="{x:Type local:ChooseExcelFileDataRangePage}">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <localnative:WizardTitle Title="{localization:DataAccessUIStringId StringId=WizardPageChooseExcelFileDataRange}" />
+            <dxe:ListBoxEdit Grid.Row="1" ItemsSource="{Binding Items}" SelectedItem="{Binding SelectedItem, UpdateSourceTrigger=PropertyChanged}" Margin="50,20">
+                <dxe:ListBoxEdit.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="{Binding ItemType, Converter={local:ImageNameToSourceConverter Folder=ExcelItemTypes}}" />
+                            <TextBlock Text="{Binding ItemName}" />
+                        </StackPanel>
+                    </DataTemplate>
+                </dxe:ListBoxEdit.ItemTemplate>
+            </dxe:ListBoxEdit>
+        </Grid>
+    </DataTemplate>
+</ResourceDictionary>

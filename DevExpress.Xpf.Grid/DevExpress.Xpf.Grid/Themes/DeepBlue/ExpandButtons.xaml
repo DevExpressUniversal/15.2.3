@@ -1,0 +1,91 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+    xmlns:dxg="clr-namespace:DevExpress.Xpf.Grid"
+    xmlns:dxgt="clr-namespace:DevExpress.Xpf.Grid.Themes">
+    <dx:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    <dx:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverterInverted" Invert="True" />
+    <ControlTemplate x:Key="{dxgt:GroupRowThemeKey ResourceKey=ExpandButtonTemplate}" TargetType="{x:Type dx:ToggleStateButton}">
+		<Grid Width="13" Height="13" HorizontalAlignment="Stretch" x:Name="collapse" VerticalAlignment="Stretch" Opacity="1">
+			<Border HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="Auto" Height="Auto" Opacity="1" CornerRadius="3,3,3,3">
+				<Border.Background>
+					<LinearGradientBrush EndPoint="0.5,1.002" StartPoint="0.5,-0.002" SpreadMethod="Pad">
+						<GradientStop Color="#3E4C6EB3" Offset="0" />
+						<GradientStop Color="#80EDF4FF" Offset="1" />
+						<GradientStop Color="#3F7098DC" Offset="0.215" />
+					</LinearGradientBrush>
+				</Border.Background>
+			</Border>
+			<Border x:Name="border" Width="11" Height="11" Background="#FF274C88" CornerRadius="2,2,2,2" Padding="1,1,1,1">
+				<Border CornerRadius="1,1,1,1">
+					<Border.Background>
+						<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+							<GradientStop Color="#FF2E66B7" Offset="0" />
+							<GradientStop Color="#FF9FC3F8" Offset="1" />
+							<GradientStop Color="#FF4A6FBF" Offset="0.524" />
+						</LinearGradientBrush>
+					</Border.Background>
+					<Border Margin="0,0,0,5" CornerRadius="1,1,1,1">
+						<Border.Background>
+							<LinearGradientBrush EndPoint="0.5,-0.002" StartPoint="0.5,1.002">
+								<GradientStop Color="#FF6085CC" Offset="0" />
+								<GradientStop Color="#FF7FA7E0" Offset="0.885" />
+								<GradientStop Color="#FFBBD8FF" Offset="1" />
+							</LinearGradientBrush>
+						</Border.Background>
+					</Border>
+				</Border>
+			</Border>
+			<Grid Margin="3,3,3,3">
+                <Rectangle Margin="1,2,1,4" Width="5" Height="1" Fill="#FF274C88" Stroke="{x:Null}" Opacity="0.5" />
+                <Rectangle x:Name="Plus1" Margin="3,0,3,2" Width="1" Height="5" Fill="#FF274C88" Stroke="{x:Null}" Opacity="0.5" />
+                <Rectangle Margin="0,2,0,2" Width="5" Height="1" Fill="#FFFFFFFF" Stroke="{x:Null}" />
+                <Rectangle x:Name="Plus2" Margin="2,0,2,0" Width="1" Height="5" Fill="#FFFFFFFF" Stroke="{x:Null}" />
+			</Grid>
+		</Grid>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsChecked" Value="True">
+                <Setter Property="Visibility" Value="Collapsed" TargetName="Plus1" />
+                <Setter Property="Visibility" Value="Collapsed" TargetName="Plus2" />
+            </Trigger>
+        </ControlTemplate.Triggers>
+	</ControlTemplate>
+    <Style TargetType="{x:Type dxg:BackgroundBorderControl}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type dxg:BackgroundBorderControl}">
+                    <Border Background="White" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <ControlTemplate x:Key="{dxgt:GroupRowThemeKey ResourceKey=ExpandDetailButtonTemplate}" TargetType="{x:Type dx:ToggleStateButton}">
+        <Grid Background="Transparent" dx:FrameworkElementHelper.IsVisible="{Binding Path=(dxg:GridDetailExpandButtonContainer.IsDetailButtonVisible), RelativeSource={RelativeSource TemplatedParent}}">
+            <Border Background="Transparent" BorderBrush="White" BorderThickness="0,0,0,1" Margin="0,0,1,0" Visibility="{Binding IsChecked, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+            <Grid>
+                <Path Stretch="Fill" Height="9" Width="9"
+                  Visibility="{Binding IsChecked, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BooleanToVisibilityConverterInverted}}"
+                  Fill="#FF062B63" Data="F1 M 130.5,85C 132.985,85 135,87.0146 135,89.4999C 135,91.9852 132.985,93.9999 130.5,93.9999C 128.015,93.9999 126,91.9852 126,89.4999C 126,87.0146 128.015,85 130.5,85 Z M 128,89.9999L 130,89.9999L 130,91.9999L 131,91.9999L 131,89.9999L 133,89.9999L 133,88.9999L 131,88.9999L 131,86.9999L 130,86.9999L 130,88.9999L 128,88.9999L 128,89.9999 Z "/>
+                <Path Stretch="Fill" Height="9" Width="9"
+                  Visibility="{Binding IsChecked, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BooleanToVisibilityConverter}}"
+                  Fill="#FF062B63" Data="F1 M 141.5,85C 143.985,85 146,87.0146 146,89.4999C 146,91.9852 143.985,93.9999 141.5,93.9999C 139.015,93.9999 137,91.9852 137,89.4999C 137,87.0146 139.015,85 141.5,85 Z M 139,88.9999L 139,89.9999L 144,89.9999L 144,88.9999L 139,88.9999 Z "/>
+            </Grid>
+        </Grid>
+    </ControlTemplate>
+    <Style x:Key="{dxgt:GroupRowThemeKey ResourceKey=ExpandButtonStyle}" TargetType="{x:Type dx:ToggleStateButton}">
+		<Setter Property="Focusable" Value="false" />
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="Width" Value="13" />
+        <Setter Property="Height" Value="13" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="Template" Value="{DynamicResource {dxgt:GroupRowThemeKey ResourceKey=ExpandButtonTemplate}}" />            
+    </Style>
+    <Style TargetType="{x:Type dxg:GridToggleStateButton}">
+        <Setter Property="Focusable" Value="false" />
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="Template" Value="{DynamicResource {dxgt:GroupRowThemeKey ResourceKey=ExpandDetailButtonTemplate}}" />
+    </Style>
+</ResourceDictionary>

@@ -1,0 +1,281 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+                    xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+                    xmlns:local="clr-namespace:DevExpress.Xpf.Controls">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/DevExpress.Xpf.Controls.v15.2;component/Themes/MediaManager/MediaSliderControl.xaml" />
+        <ResourceDictionary Source="/DevExpress.Xpf.Controls.v15.2;component/Themes/MediaManager/PlayListControl.xaml" />
+        <ResourceDictionary Source="/DevExpress.Xpf.Controls.v15.2;component/Themes/MediaManager/Controls.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+    <!--MediaManager-->
+    <Style TargetType="local:MediaManager">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:MediaManager">
+                    <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock x:Name="PART_InformationText" Text="{TemplateBinding Information}" Grid.Column="1" Grid.Row="1" FontSize="20" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            <ContentPresenter x:Name="PART_MediaElementContentPresenter" Content="{TemplateBinding MediaElement}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Grid.RowSpan="3" />
+                            <ContentPresenter x:Name="PART_LeftPanelContentPresenter" Content="{TemplateBinding LeftPanel}" Grid.Row="1" Grid.Column="0" />
+                            <ContentPresenter x:Name="PART_TopPanelContentPresenter" Content="{TemplateBinding TopPanel}" HorizontalAlignment="Stretch" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" />
+                            <ContentPresenter x:Name="PART_RightPanelContentPresenter" Content="{TemplateBinding RightPanel}" Grid.Row="1" Grid.Column="2" />
+                            <ContentPresenter x:Name="PART_BottomPanelContentPresenter" Content="{TemplateBinding BottomPanel}" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" />
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!--BEGIN WPF-->
+    <LinearGradientBrush x:Key="NormalBrush" StartPoint="0,0" EndPoint="0,1">
+        <GradientBrush.GradientStops>
+            <GradientStopCollection>
+                <GradientStop Color="#FFF" Offset="0.0" />
+                <GradientStop Color="#CCC" Offset="1.0" />
+            </GradientStopCollection>
+        </GradientBrush.GradientStops>
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="HorizontalNormalBrush" StartPoint="0,0" EndPoint="1,0">
+        <GradientBrush.GradientStops>
+            <GradientStopCollection>
+                <GradientStop Color="#FFF" Offset="0.0" />
+                <GradientStop Color="#CCC" Offset="1.0" />
+            </GradientStopCollection>
+        </GradientBrush.GradientStops>
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="LightBrush" StartPoint="0,0" EndPoint="0,1">
+        <GradientBrush.GradientStops>
+            <GradientStopCollection>
+                <GradientStop Color="#FFF" Offset="0.0" />
+                <GradientStop Color="#EEE" Offset="1.0" />
+            </GradientStopCollection>
+        </GradientBrush.GradientStops>
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="HorizontalLightBrush" StartPoint="0,0" EndPoint="1,0">
+        <GradientBrush.GradientStops>
+            <GradientStopCollection>
+                <GradientStop Color="#FFF" Offset="0.0" />
+                <GradientStop Color="#EEE" Offset="1.0" />
+            </GradientStopCollection>
+        </GradientBrush.GradientStops>
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="DarkBrush" StartPoint="0,0" EndPoint="0,1">
+        <GradientBrush.GradientStops>
+            <GradientStopCollection>
+                <GradientStop Color="#FFF" Offset="0.0" />
+                <GradientStop Color="#AAA" Offset="1.0" />
+            </GradientStopCollection>
+        </GradientBrush.GradientStops>
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="PressedBrush" StartPoint="0,0" EndPoint="0,1">
+        <GradientBrush.GradientStops>
+            <GradientStopCollection>
+                <GradientStop Color="#BBB" Offset="0.0" />
+                <GradientStop Color="#EEE" Offset="0.1" />
+                <GradientStop Color="#EEE" Offset="0.9" />
+                <GradientStop Color="#FFF" Offset="1.0" />
+            </GradientStopCollection>
+        </GradientBrush.GradientStops>
+    </LinearGradientBrush>
+    <SolidColorBrush x:Key="DisabledForegroundBrush" Color="#888" />
+    <SolidColorBrush x:Key="DisabledBackgroundBrush" Color="#EEE" />
+    <SolidColorBrush x:Key="WindowBackgroundBrush" Color="#FFF" />
+    <SolidColorBrush x:Key="SelectedBackgroundBrush" Color="#DDD" />
+    <!-- Border Brushes -->
+    <LinearGradientBrush x:Key="NormalBorderBrush" StartPoint="0,0" EndPoint="0,1">
+        <GradientBrush.GradientStops>
+            <GradientStopCollection>
+                <GradientStop Color="#CCC" Offset="0.0" />
+                <GradientStop Color="#444" Offset="1.0" />
+            </GradientStopCollection>
+        </GradientBrush.GradientStops>
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="HorizontalNormalBorderBrush" StartPoint="0,0" EndPoint="1,0">
+        <GradientBrush.GradientStops>
+            <GradientStopCollection>
+                <GradientStop Color="#CCC" Offset="0.0" />
+                <GradientStop Color="#444" Offset="1.0" />
+            </GradientStopCollection>
+        </GradientBrush.GradientStops>
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="DefaultedBorderBrush" StartPoint="0,0" EndPoint="0,1">
+        <GradientBrush.GradientStops>
+            <GradientStopCollection>
+                <GradientStop Color="#777" Offset="0.0" />
+                <GradientStop Color="#000" Offset="1.0" />
+            </GradientStopCollection>
+        </GradientBrush.GradientStops>
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="PressedBorderBrush" StartPoint="0,0" EndPoint="0,1">
+        <GradientBrush.GradientStops>
+            <GradientStopCollection>
+                <GradientStop Color="#444" Offset="0.0" />
+                <GradientStop Color="#888" Offset="1.0" />
+            </GradientStopCollection>
+        </GradientBrush.GradientStops>
+    </LinearGradientBrush>
+    <SolidColorBrush x:Key="DisabledBorderBrush" Color="#AAA" />
+    <SolidColorBrush x:Key="SolidBorderBrush" Color="#888" />
+    <SolidColorBrush x:Key="LightBorderBrush" Color="#AAA" />
+    <!-- Miscellaneous Brushes -->
+    <SolidColorBrush x:Key="GlyphBrush" Color="#444" />
+    <SolidColorBrush x:Key="LightColorBrush" Color="#DDD" />
+    <Style x:Key="SliderButtonStyle" TargetType="{x:Type RepeatButton}">
+        <Setter Property="SnapsToDevicePixels" Value="true" />
+        <Setter Property="OverridesDefaultStyle" Value="true" />
+        <Setter Property="IsTabStop" Value="false" />
+        <Setter Property="Focusable" Value="false" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type RepeatButton}">
+                    <Border Background="Transparent" />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="SliderThumbStyle" TargetType="{x:Type Thumb}">
+        <Setter Property="SnapsToDevicePixels" Value="true" />
+        <!--<Setter Property="OverridesDefaultStyle" Value="true"/>-->
+        <Setter Property="Height" Value="14" />
+        <Setter Property="Width" Value="14" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Thumb}">
+                    <Ellipse Name="Ellipse" Fill="{StaticResource NormalBrush}" Stroke="{StaticResource NormalBorderBrush}" StrokeThickness="1" />
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="Ellipse" Property="Fill" Value="{StaticResource DarkBrush}" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter TargetName="Ellipse" Property="Fill" Value="{StaticResource DisabledBackgroundBrush}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!--END WPF-->
+    <!--BalanceMediaSlider-->
+    <Style TargetType="local:BalanceMediaSlider">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:BalanceMediaSlider">
+                    <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                        <Grid Width="{TemplateBinding Width}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="L" Foreground="White" FontSize="16" />
+                            <!--BEGIN WPF-->
+                            <Grid Grid.Column="1" VerticalAlignment="Center" Margin="5,0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" MinHeight="{TemplateBinding Slider.MinHeight}" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <TickBar Name="TopTick" SnapsToDevicePixels="True" Placement="Top" Fill="{StaticResource GlyphBrush}" Height="4" Visibility="Collapsed" />
+                                <Border Name="TrackBackground" Margin="0" CornerRadius="2" Height="4" Grid.Row="1" Background="{StaticResource LightBrush}"
+                                         BorderBrush="{StaticResource NormalBorderBrush}" BorderThickness="1" />
+                                <Track Grid.Row="1" Name="PART_Track">
+                                    <Track.DecreaseRepeatButton>
+                                        <RepeatButton Style="{StaticResource SliderButtonStyle}" Command="Slider.DecreaseLarge" />
+                                    </Track.DecreaseRepeatButton>
+                                    <Track.Thumb>
+                                        <Thumb Style="{StaticResource SliderThumbStyle}" />
+                                    </Track.Thumb>
+                                    <Track.IncreaseRepeatButton>
+                                        <RepeatButton Style="{StaticResource SliderButtonStyle}" Command="Slider.IncreaseLarge" />
+                                    </Track.IncreaseRepeatButton>
+                                </Track>
+                                <TickBar Name="BottomTick" SnapsToDevicePixels="True" Grid.Row="2" Fill="{TemplateBinding Foreground}" Placement="Bottom" Height="4" Visibility="Collapsed" />
+                            </Grid>
+                            <!--END WPF-->
+                            <!--ONLY SL <Slider x:Name="PART_Track" Grid.Column="1" Minimum="{TemplateBinding Minimum}" Value="{Binding Path=Value, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"  Maximum="{TemplateBinding Maximum}"/> ONLY SL-->
+                            <TextBlock Text="R" Foreground="White" FontSize="16" Grid.Column="2" />
+                        </Grid>
+                    </Border>
+                    <!--BEGIN WPF-->
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="TickPlacement" Value="TopLeft">
+                            <Setter TargetName="TopTick" Property="Visibility" Value="Visible" />
+                        </Trigger>
+                        <Trigger Property="TickPlacement" Value="BottomRight">
+                            <Setter TargetName="BottomTick" Property="Visibility" Value="Visible" />
+                        </Trigger>
+                        <Trigger Property="TickPlacement" Value="Both">
+                            <Setter TargetName="TopTick" Property="Visibility" Value="Visible" />
+                            <Setter TargetName="BottomTick" Property="Visibility" Value="Visible" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                    <!--END WPF-->
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!--HorizontalControlPanel-->
+    <Style TargetType="local:HorizontalControlPanel">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:HorizontalControlPanel">
+                    <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <local:MediaSliderControl ChaptersDisplayType="{TemplateBinding ChaptersDisplayType}" ChaptersVisibility="{TemplateBinding ChaptersVisibility}" />
+                            <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
+                                <local:PreviousMediaButton Margin="2,1" Content="Previous" />
+                                <local:PlayPauseControl Content="Play" Margin="2,1" />
+                                <local:StopMediaButton Content="Stop" Margin="2,1" />
+                                <local:NextMediaButton Margin="2,1" Content="Next" />
+                                <local:IsMutedControl Margin="2,1" />
+                                <local:VolumeMediaSlider Width="100" Margin="2,1" />
+                                <local:BalanceMediaSlider Width="120" Margin="2,1" />
+                                <local:PositionInfoButton Margin="2,1" />
+                                <local:FullscreenControl Content="Fullscreen" Margin="2,1" />
+                                <local:PlayListInPopupMediaButton Content="Playlist" Margin="2,1" />
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!--VerticalControlPanel-->
+    <Style TargetType="local:VerticalControlPanel">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:VerticalControlPanel">
+                    <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                        <StackPanel Orientation="Vertical" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
+                            <local:PreviousMediaButton Margin="2,1" Content="Previous" />
+                            <local:PlayPauseControl Content="Play" Margin="2,1" />
+                            <local:StopMediaButton Content="Stop" Margin="2,1" />
+                            <local:NextMediaButton Margin="2,1" Content="Next" />
+                            <local:IsMutedControl Margin="2,1" HorizontalAlignment="Center" />
+                            <local:VolumeMediaSlider Width="100" Margin="2,1" HorizontalAlignment="Center" />
+                            <local:BalanceMediaSlider Width="120" Margin="2,1" HorizontalAlignment="Center" />
+                            <local:PositionInfoButton Margin="2,1" />
+                            <local:FullscreenControl Content="Fullscreen" Margin="2,1" />
+                        </StackPanel>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

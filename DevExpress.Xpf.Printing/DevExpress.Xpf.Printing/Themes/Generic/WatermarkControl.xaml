@@ -1,0 +1,241 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+					xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+					xmlns:dxc="http://schemas.devexpress.com/winfx/2008/xaml/core"
+					xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+					xmlns:native="clr-namespace:DevExpress.Xpf.Printing.Native"
+					xmlns:local="clr-namespace:DevExpress.Xpf.Printing"
+					xmlns:sys="clr-namespace:System;assembly=mscorlib"
+					xmlns:dxpt="clr-namespace:DevExpress.Xpf.Printing.Themes" >
+
+	<ControlTemplate x:Key="watermarkControlTemplate">
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <native:PageBorderControl Grid.Column="0" 
+                                      Width="{DynamicResource {dxpt:PrintingThemeKey ResourceKey=WatermarkPreviewWidth}}"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Center"
+                        BorderBrush="Black"
+                        BorderThickness="1">
+                <Viewbox Stretch="Uniform">
+                    <ContentPresenter Name="WatermarkPreview" Content="{Binding WatermarkPreview}"/>
+                </Viewbox>
+            </native:PageBorderControl>
+
+            <StackPanel Name="mainPanel" Grid.Column="1" Margin="12,0,0,0">
+                <dxc:DXTabControl Name="watermarkTabControl" TabContentCacheMode="CacheAllTabs" HorizontalContentAlignment="Stretch" HorizontalAlignment="Stretch">
+                    <dxc:DXTabItem x:Name="textTabItem" Header="{local:PrintingStringId StringId=TextWatermarkTitle}">
+                        <Grid x:Name="textGrid" >
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="auto"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="{local:PrintingStringId StringId=WatermarkText}" 
+                                       Margin="{DynamicResource {dxpt:PrintingThemeKey ResourceKey=WatermarkTextBlockMargin}}"
+                                       VerticalAlignment="Center"/>
+                            <dxe:ComboBoxEdit Grid.Column="1" Grid.ColumnSpan="2" EditValue="{Binding Mode=TwoWay, Path=Text, UpdateSourceTrigger=PropertyChanged}"
+                        				ItemsSource="{Binding TextStandardValues}"
+                        				AcceptsReturn="False"
+                        				TextWrapping="NoWrap"
+                                        Margin="{DynamicResource {dxpt:PrintingThemeKey ResourceKey=WatermarkEditorMargin}}" />
+                            <TextBlock Grid.Row="1" Text="{local:PrintingStringId StringId=WatermarkTextDirection}" 
+                                       Margin="{DynamicResource {dxpt:PrintingThemeKey ResourceKey=WatermarkTextBlockMargin}}"
+                                       VerticalAlignment="Center"/>
+                            <dxe:ComboBoxEdit Grid.Row="1" Grid.Column="1" EditValue="{Binding Mode=TwoWay, Path=TextDirectionMode, UpdateSourceTrigger=PropertyChanged}"
+                        				ItemsSource="{Binding TextDirectionModeStandardValues}"
+                        				IsEnabled="{Binding TextIsNotEmpty}"
+                        				DisplayMember="Text"
+                        				IsTextEditable="False"
+                                        Margin="{DynamicResource {dxpt:PrintingThemeKey ResourceKey=WatermarkEditorMargin}}" />
+                            <TextBlock Grid.Row="2" Text="{local:PrintingStringId StringId=WatermarkFontName}" 
+                                       Margin="{DynamicResource {dxpt:PrintingThemeKey ResourceKey=WatermarkTextBlockMargin}}"
+                                       VerticalAlignment="Center" />
+                            <dxe:ComboBoxEdit Grid.Row="2" Grid.Column="1" EditValue="{Binding Mode=TwoWay, Path=FontName, UpdateSourceTrigger=PropertyChanged}" 
+                        				ItemsSource="{Binding FontNameStandardValues}"
+                        				IsEnabled="{Binding TextIsNotEmpty}"
+                        				IsTextEditable="False" 
+                                        Margin="{DynamicResource {dxpt:PrintingThemeKey ResourceKey=WatermarkEditorMargin}}" />
+                            <dxe:CheckEdit Grid.Row="2" Grid.Column="3" Content="{local:PrintingStringId StringId=WatermarkFontBold}"
+                        				EditValue="{Binding IsTextBold, Mode=TwoWay}"
+                        				Margin="{DynamicResource {dxpt:PrintingThemeKey ResourceKey=WatermarkCheckEditMargin}}"
+                        				IsEnabled="{Binding TextIsNotEmpty}"/>
+                            <TextBlock Grid.Row="3" 
+                                       Text="{local:PrintingStringId StringId=WatermarkFontSize}" 
+                                       Margin="{DynamicResource {dxpt:PrintingThemeKey ResourceKey=WatermarkTextBlockMargin}}"
+                                       VerticalAlignment="Center"/>
+                            <Grid Grid.Row="3" Grid.Column="1">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="90"/>
+                                    <ColumnDefinition Width="auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <dxe:ComboBoxEdit EditValue="{Binding Mode=TwoWay, Path=FontSize, UpdateSourceTrigger=PropertyChanged}"
+                                    Margin="{DynamicResource {dxpt:PrintingThemeKey ResourceKey=WatermarkEditorMargin}}"
+                        			ItemsSource="{Binding FontSizeStandardValues}"
+                        			IsEnabled="{Binding TextIsNotEmpty}"
+                        			IsTextEditable="True"
+                        			Mask="Numeric" 
+                        			/>
+                                <TextBlock Text="{local:PrintingStringId StringId=WatermarkTextColor}" 
+                                           Margin="{DynamicResource {dxpt:PrintingThemeKey ResourceKey=WatermarkTextBlockMargin}}" 
+                                           Padding="18,0,0,0"
+                                           Grid.Column="1" VerticalAlignment="Center"/>
+                                <dxe:PopupColorEdit Grid.Column="2" EditValue="{Binding Mode=TwoWay, Path=TextColor, UpdateSourceTrigger=PropertyChanged}" 
+                        				IsEnabled="{Binding TextIsNotEmpty}"
+                                        Margin="{DynamicResource {dxpt:PrintingThemeKey ResourceKey=WatermarkEditorMargin}}" />
+
+                            </Grid>
+                            <dxe:CheckEdit Content="{local:PrintingStringId StringId=WatermarkFontItalic}" 
+                                        Grid.Column="2" Grid.Row="3"
+                        				IsEnabled="{Binding TextIsNotEmpty}"
+                        				EditValue="{Binding IsTextItalic, Mode=TwoWay}"
+                                        VerticalAlignment="Center"
+                                        Margin="{DynamicResource {dxpt:PrintingThemeKey ResourceKey=WatermarkCheckEditMargin}}" />
+                            <TextBlock Grid.Row="4" 
+                                       Text="{local:PrintingStringId StringId=WatermarkTransparency}" 
+                                       Margin="{DynamicResource {dxpt:PrintingThemeKey ResourceKey=WatermarkTextBlockMargin}}"
+                                       VerticalAlignment="Center" />
+                            <dxe:TrackBarEdit 
+                                Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" 
+                                Minimum="{Binding MinTextTransparency}"
+                                EditValue="{Binding Path=TextTransparency, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                Maximum="{Binding MaxTextTransparency}"
+                                SmallStep="{Binding TextTransparencyStep}"
+                                IsEnabled="{Binding TextIsNotEmpty}"
+                                LargeStep="{Binding TextTransparencyLargeStep}"/>
+                        </Grid>
+                    </dxc:DXTabItem>
+                    <dxc:DXTabItem x:Name="pictureTabItem" Header="{local:PrintingStringId StringId=PictureWatermarkTitle}">
+                        <Grid Width="{Binding ElementName=textGrid, Path=ActualWidth}" Name="pictureGrid">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="{local:PrintingStringId StringId=WatermarkLoadImage}" VerticalAlignment="Center" 
+                                       Margin="{DynamicResource {dxpt:PrintingThemeKey ResourceKey=WatermarkTextBlockMargin}}"/>
+                            <dxe:ButtonEdit Grid.Column="1" Grid.ColumnSpan="2" EditValue="{Binding PictureFileName}"
+                        				IsTextEditable="False"
+                        				AllowDefaultButton="False"
+                        				FontStyle="Italic"
+                        				Foreground="LightGray" VerticalAlignment="Center"
+                                        Margin="{DynamicResource {dxpt:PrintingThemeKey ResourceKey=WatermarkEditorMargin}}" >
+                                <dxe:ButtonInfo x:Name="regular" GlyphKind="Regular" Command="{Binding LoadImageCommand}"/>
+                            </dxe:ButtonEdit>
+                            <TextBlock Grid.Row="1" Text="{local:PrintingStringId StringId=WatermarkImageSizeMode}" VerticalAlignment="Center" 
+                                       Margin="{DynamicResource {dxpt:PrintingThemeKey ResourceKey=WatermarkTextBlockMargin}}" />
+                            <dxe:ComboBoxEdit Grid.Row="1" Grid.Column="1" EditValue="{Binding Mode=TwoWay, Path=PictureViewMode, UpdateSourceTrigger=PropertyChanged}"
+                        				ItemsSource="{Binding PictureViewModeStandardValues}" 
+                        				DisplayMember="Text" 
+                        				IsTextEditable="False" 
+                        				IsEnabled="{Binding IsPictureLoaded}" 
+                                        Margin="{DynamicResource {dxpt:PrintingThemeKey ResourceKey=WatermarkEditorMargin}}" />
+                            <dxe:CheckEdit Grid.Row="1" Grid.Column="2" EditValue="{Binding IsPictureTiled, Mode=TwoWay}" 
+                                           HorizontalAlignment="Left" VerticalAlignment="Center"
+                        				Content="{local:PrintingStringId StringId=WatermarkImageTiling}"
+                        				IsEnabled="{Binding IsPictureLoaded}" 
+                                        Margin="{DynamicResource {dxpt:PrintingThemeKey ResourceKey=WatermarkCheckEditMargin}}" />
+                            <TextBlock Grid.Row="2" 
+                                       Text="{local:PrintingStringId StringId=WatermarkImageHorizontalAlignment}" 
+                                       Margin="{DynamicResource {dxpt:PrintingThemeKey ResourceKey=WatermarkTextBlockMargin}}"/>
+                            <dxe:ComboBoxEdit Grid.Row="2" Grid.Column="1" EditValue="{Binding Mode=TwoWay, Path=PictureHorizontalAlignment, UpdateSourceTrigger=PropertyChanged}" 
+                        				ItemsSource="{Binding PictureHorizontalAlignmentStandardValues}"
+                        				DisplayMember="Text"
+                        				IsTextEditable="False"
+                        				IsEnabled="{Binding IsPictureLoaded}"
+                                        Margin="{DynamicResource {dxpt:PrintingThemeKey ResourceKey=WatermarkEditorMargin}}" />
+                            <TextBlock  Grid.Row="3" 
+                                        Text="{local:PrintingStringId StringId=WatermarkImageVerticalAlignment}"
+                                        Margin="{DynamicResource {dxpt:PrintingThemeKey ResourceKey=WatermarkTextBlockMargin}}"/>
+                            <dxe:ComboBoxEdit  Grid.Row="3" Grid.Column="1" EditValue="{Binding Mode=TwoWay, Path=PictureVerticalAlignment, UpdateSourceTrigger=PropertyChanged}" 
+                        				ItemsSource="{Binding PictureVerticalAlignmentStandardValues}"
+                        				DisplayMember="Text"
+                        				IsTextEditable="False"
+                        				IsEnabled="{Binding IsPictureLoaded}" 
+                                        Margin="{DynamicResource {dxpt:PrintingThemeKey ResourceKey=WatermarkEditorMargin}}" />
+                            <TextBlock Grid.Row="4" Text="{local:PrintingStringId StringId=WatermarkTransparency}"
+                                        Margin="{DynamicResource {dxpt:PrintingThemeKey ResourceKey=WatermarkTextBlockMargin}}"
+                                        VerticalAlignment="Center"/>
+                            <dxe:TrackBarEdit  Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" EditValue="{Binding Path=PictureTransparency, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                        Minimum="{Binding MinPictureTransparency}"
+                                        Maximum="{Binding MaxPictureTransparency}"
+                                        SmallStep="{Binding PictureTransparencyStep}"
+                                        LargeStep="{Binding PictureTransparencyLargeStep}"
+                                        IsEnabled="{Binding IsPictureLoaded}"/>
+                        </Grid>
+                    </dxc:DXTabItem>
+                </dxc:DXTabControl>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.Resources>
+                        <dxc:BoolInverseConverter x:Key="boolInverseConverter" />
+                    </Grid.Resources>
+                    <dxc:GroupFrame Header="{local:PrintingStringId StringId=WatermarkPosition}" dxc:DXDockPanel.Dock="Left" Margin="0, 12, 0, 0" Padding="14,12">
+                        <StackPanel>
+                            <RadioButton Content="{local:PrintingStringId StringId=WatermarkPositionInFront}"
+                                         IsChecked="{Binding ShowBehind, Converter={StaticResource boolInverseConverter}, Mode=TwoWay}"
+                                         VerticalAlignment="Center"
+                                         Margin="{DynamicResource {dxpt:PrintingThemeKey ResourceKey=WatermarkTextBlockMargin}}"/>
+                            <RadioButton Content="{local:PrintingStringId StringId=WatermarkPositionBehind}"
+                                         Margin="{DynamicResource {dxpt:PrintingThemeKey ResourceKey=WatermarkEditorMargin}}"
+                                         VerticalAlignment="Center"
+                                         IsChecked="{Binding ShowBehind, Mode=TwoWay}"/>
+                        </StackPanel>
+                    </dxc:GroupFrame>
+                    <dxc:GroupFrame Grid.Column="1" Header="{local:PrintingStringId StringId=WatermarkPageRange}" Margin="12, 12, 0, 0" Padding="14,12">
+                        <StackPanel>
+                            <RadioButton Content="{local:PrintingStringId StringId=WatermarkPageRangeAllPages}"
+                                                dxc:DXDockPanel.Dock="Left"
+                                                Margin="{DynamicResource {dxpt:PrintingThemeKey ResourceKey=WatermarkTextBlockMargin}}"
+                                                VerticalAlignment="Center"
+                                                IsChecked="{Binding IsPageRange, Converter={StaticResource boolInverseConverter}, Mode=TwoWay}"/>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="auto" />
+                                    <ColumnDefinition Width="130" />
+                                    <ColumnDefinition Width="auto" />
+                                </Grid.ColumnDefinitions>
+                                <RadioButton Content="{local:PrintingStringId StringId=WatermarkPageRangePages}"
+                                             dxc:DXDockPanel.Dock="Left"
+                                             VerticalAlignment="Center"
+                                             Margin="{DynamicResource {dxpt:PrintingThemeKey ResourceKey=WatermarkTextBlockMargin}}"
+                                             IsChecked="{Binding IsPageRange, Mode=TwoWay}"/>
+                                <dxe:TextEdit EditValue="{Binding Mode=TwoWay, Path=PageRange, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" ValidateOnTextInput="False" ValidateOnEnterKeyPressed="True"
+                                            VerticalAlignment="Center" MaskType="RegEx" Mask="(\d+(-\d+)?)(,(\d+(-\d+)?))*" MaskShowPlaceHolders="False" />
+                                <TextBlock Text="{local:PrintingStringId StringId=WatermarkPageRangeHint}" 
+                                           Padding="18,0,0,0"
+                                           VerticalAlignment="Center" Grid.Column="2"/>
+                            </Grid>
+                        </StackPanel>
+                    </dxc:GroupFrame>
+                </Grid>
+            </StackPanel>
+        </Grid>
+    </ControlTemplate>
+
+	<Style TargetType="native:WatermarkControl">
+		<Setter Property="Template" Value="{StaticResource watermarkControlTemplate}"></Setter>
+	</Style>
+
+</ResourceDictionary>

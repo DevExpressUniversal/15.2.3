@@ -1,0 +1,474 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:dxsch="clr-namespace:DevExpress.Xpf.Scheduler"
+                    xmlns:dxschd="clr-namespace:DevExpress.Xpf.Scheduler.Drawing"
+                    xmlns:dxscht="clr-namespace:DevExpress.Xpf.Scheduler.ThemeKeys"
+                    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+                    xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys">
+
+    <dxschd:ElementPositionVerticalWeekHeaderConverter x:Key="elementPositionVerticalWeekHeaderConverter" />
+    <dxschd:ColorResourcesConverter x:Key="colorResourcesConverter" />
+
+
+    <!-- Vertical Header-->
+    <ControlTemplate x:Key="{dxscht:SchedulerViewThemeKey ResourceKey=VerticalHeaderNormalTemplate}" TargetType="{x:Type dxschd:VerticalHeaderControl}">
+        <Border>
+            <dxschd:SchedulerColorConvertControl x:Name="clrConvCtrl" ControlBrush="{TemplateBinding ResourceColor}" DisableResourceColor="{TemplateBinding DisableResourceColor}" SnapsToDevicePixels="True" Visibility="Visible">
+                <dxschd:SchedulerColorConvertControl.BaseColors>
+                    <dxschd:ColorCollection>
+                        <dxschd:ColorDefinition Value="#FF193B74" Name="ColorDefinition_NormalGradientStop1"/>
+                        <dxschd:ColorDefinition Value="#FF7499CE" Name="ColorDefinition_NormalGradientStop2"/>
+                        <dxschd:ColorDefinition Value="#FF244985" Name="ColorDefinition_NormalGradientStop3"/>
+                        <dxschd:ColorDefinition Value="#FF2C5494" Name="ColorDefinition_NormalGlareStop1"/>
+                        <dxschd:ColorDefinition Value="#FF6086BE" Name="ColorDefinition_NormalGlareStop2"/>
+                        <dxschd:ColorDefinition Value="#FFA2C5F4" Name="ColorDefinition_NormalGlareStop3"/>
+                        <dxschd:ColorDefinition Value="#FF3A629F" Name="ColorDefinition_NormalGlareStop4"/>
+                        <dxschd:ColorDefinition Value="#FF193B74" Name="ColorDefinition_HotGradientStop1"/>
+                        <dxschd:ColorDefinition Value="#FF9AD5F6" Name="ColorDefinition_HotGradientStop2"/>
+                        <dxschd:ColorDefinition Value="#FF2C5597" Name="ColorDefinition_HotGradientStop3"/>
+                        <dxschd:ColorDefinition Value="#FF3863A7" Name="ColorDefinition_HotGlareStop1"/>
+                        <dxschd:ColorDefinition Value="#FF7CABDA" Name="ColorDefinition_HotGlareStop2"/>
+                        <dxschd:ColorDefinition Value="#FFC2DBFD" Name="ColorDefinition_HotGlareStop3"/>
+                        <dxschd:ColorDefinition Value="#FF4F78B5" Name="ColorDefinition_HotGlareStop4"/>
+                        <dxschd:ColorDefinition Value="#FF193B74" Name="ColorDefinition_PressedGradientStop1"/>
+                        <dxschd:ColorDefinition Value="#FF2C5597" Name="ColorDefinition_PressedGradientStop2"/>
+                        <dxschd:ColorDefinition Value="#FF2C5494" Name="ColorDefinition_PressedGlareStop1"/>
+                        <dxschd:ColorDefinition Value="#FF2C4B8E" Name="ColorDefinition_PressedGlareStop2"/>
+                        <dxschd:ColorDefinition Value="#FF416CAB" Name="ColorDefinition_PressedGlareStop3"/>
+                        <dxschd:ColorDefinition Value="#FF062B63" Name="ColorDefinition_HeadersVerticalLineBrush"/>
+                    </dxschd:ColorCollection>
+                </dxschd:SchedulerColorConvertControl.BaseColors>
+
+                <dx:XPFContentControl x:Name="HeaderContent" Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" SnapsToDevicePixels="True" UseLayoutRounding="True" dxschd:SchedulerItemsControl.ElementPosition="{Binding Path=(dxschd:SchedulerItemsControl.ElementPosition), RelativeSource={RelativeSource TemplatedParent}}">
+                    <ContentControl.Resources>
+                        <LinearGradientBrush x:Key="{dxscht:SchedulerViewThemeKey ResourceKey=HeaderNormalGradient}" EndPoint="1,0.5" StartPoint="0,0.5">
+                            <GradientStop Color="{Binding ElementName=clrConvCtrl, Path=Container, Converter={StaticResource colorResourcesConverter}, ConverterParameter=ColorDefinition_NormalGradientStop1}" Offset="0"/>
+                            <GradientStop Color="{Binding ElementName=clrConvCtrl, Path=Container, Converter={StaticResource colorResourcesConverter}, ConverterParameter=ColorDefinition_NormalGradientStop2}" Offset="1"/>
+                            <GradientStop Color="{Binding ElementName=clrConvCtrl, Path=Container, Converter={StaticResource colorResourcesConverter}, ConverterParameter=ColorDefinition_NormalGradientStop3}" Offset="0.529"/>
+                        </LinearGradientBrush>
+                        <LinearGradientBrush x:Key="{dxscht:SchedulerViewThemeKey ResourceKey=HeaderNormalGlare}" EndPoint="-0.002,0.5" StartPoint="1.002,0.5">
+                            <GradientStop Color="{Binding ElementName=clrConvCtrl, Path=Container, Converter={StaticResource colorResourcesConverter}, ConverterParameter=ColorDefinition_NormalGlareStop1}" Offset="0"/>
+                            <GradientStop Color="{Binding ElementName=clrConvCtrl, Path=Container, Converter={StaticResource colorResourcesConverter}, ConverterParameter=ColorDefinition_NormalGlareStop2}" Offset="0.885"/>
+                            <GradientStop Color="{Binding ElementName=clrConvCtrl, Path=Container, Converter={StaticResource colorResourcesConverter}, ConverterParameter=ColorDefinition_NormalGlareStop3}" Offset="1"/>
+                            <GradientStop Color="{Binding ElementName=clrConvCtrl, Path=Container, Converter={StaticResource colorResourcesConverter}, ConverterParameter=ColorDefinition_NormalGlareStop4}" Offset="0.317"/>
+                        </LinearGradientBrush>
+                        <LinearGradientBrush x:Key="{dxscht:SchedulerViewThemeKey ResourceKey=HeaderHotGradient}" EndPoint="1,0.5" StartPoint="0,0.5">
+                            <GradientStop Color="{Binding ElementName=clrConvCtrl, Path=Container, Converter={StaticResource colorResourcesConverter}, ConverterParameter=ColorDefinition_HotGradientStop1}" Offset="0"/>
+                            <GradientStop Color="{Binding ElementName=clrConvCtrl, Path=Container, Converter={StaticResource colorResourcesConverter}, ConverterParameter=ColorDefinition_HotGradientStop2}" Offset="1"/>
+                            <GradientStop Color="{Binding ElementName=clrConvCtrl, Path=Container, Converter={StaticResource colorResourcesConverter}, ConverterParameter=ColorDefinition_HotGradientStop3}" Offset="0.529"/>
+                        </LinearGradientBrush>
+                        <LinearGradientBrush x:Key="{dxscht:SchedulerViewThemeKey ResourceKey=HeaderHotGlare}" EndPoint="-0.002,0.5" StartPoint="1.002,0.5">
+                            <GradientStop Color="{Binding ElementName=clrConvCtrl, Path=Container, Converter={StaticResource colorResourcesConverter}, ConverterParameter=ColorDefinition_HotGlareStop1}" Offset="0"/>
+                            <GradientStop Color="{Binding ElementName=clrConvCtrl, Path=Container, Converter={StaticResource colorResourcesConverter}, ConverterParameter=ColorDefinition_HotGlareStop2}" Offset="0.885"/>
+                            <GradientStop Color="{Binding ElementName=clrConvCtrl, Path=Container, Converter={StaticResource colorResourcesConverter}, ConverterParameter=ColorDefinition_HotGlareStop3}" Offset="1"/>
+                            <GradientStop Color="{Binding ElementName=clrConvCtrl, Path=Container, Converter={StaticResource colorResourcesConverter}, ConverterParameter=ColorDefinition_HotGlareStop4}" Offset="0.317"/>
+                        </LinearGradientBrush>
+                        <LinearGradientBrush x:Key="{dxscht:SchedulerViewThemeKey ResourceKey=HeaderPressedGradient}" EndPoint="1,0.5" StartPoint="0,0.5">
+                            <GradientStop Color="{Binding ElementName=clrConvCtrl, Path=Container, Converter={StaticResource colorResourcesConverter}, ConverterParameter=ColorDefinition_PressedGradientStop1}" Offset="0"/>
+                            <GradientStop Color="{Binding ElementName=clrConvCtrl, Path=Container, Converter={StaticResource colorResourcesConverter}, ConverterParameter=ColorDefinition_PressedGradientStop2}" Offset="1"/>
+                        </LinearGradientBrush>
+                        <LinearGradientBrush x:Key="{dxscht:SchedulerViewThemeKey ResourceKey=HeaderPressedGlare}" EndPoint="-0.002,0.5" StartPoint="1.002,0.5">
+                            <GradientStop Color="{Binding ElementName=clrConvCtrl, Path=Container, Converter={StaticResource colorResourcesConverter}, ConverterParameter=ColorDefinition_PressedGlareStop1}" Offset="0"/>
+                            <GradientStop Color="{Binding ElementName=clrConvCtrl, Path=Container, Converter={StaticResource colorResourcesConverter}, ConverterParameter=ColorDefinition_PressedGlareStop2}" Offset="1"/>
+                            <GradientStop Color="{Binding ElementName=clrConvCtrl, Path=Container, Converter={StaticResource colorResourcesConverter}, ConverterParameter=ColorDefinition_PressedGlareStop3}" Offset="0.837"/>
+                        </LinearGradientBrush>
+                        <SolidColorBrush x:Key="{dxscht:SchedulerViewThemeKey ResourceKey=VerticalLineBrush}" Color="{Binding ElementName=clrConvCtrl, Path=Container, Converter={StaticResource colorResourcesConverter}, ConverterParameter=ColorDefinition_HeadersVerticalLineBrush}"/>
+                    </ContentControl.Resources>
+                    <ContentControl.Template>
+                        <ControlTemplate TargetType="{x:Type ContentControl}">
+                            <dxschd:HeaderBorder x:Name="border1" Grid.ColumnSpan="2" Background="{DynamicResource {dxscht:SchedulerViewThemeKey ResourceKey=VerticalLineBrush}}" DefaultCornerRadius="3,3,3,3" DefaultPadding="1" SnapsToDevicePixels="True" ElementPosition="{Binding Path=(dxschd:SchedulerItemsControl.ElementPosition), RelativeSource={RelativeSource TemplatedParent}}" >
+                                <Grid Width="Auto" Height="Auto" SnapsToDevicePixels="True" UseLayoutRounding="False">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="0.5*"/>
+                                        <ColumnDefinition Width="0.5*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <dxschd:HeaderBorder SnapsToDevicePixels="True" UseLayoutRounding="True" Width="Auto" Height="Auto" Grid.ColumnSpan="2" DefaultCornerRadius="2,2,2,2" x:Name="border1_1" Background="{DynamicResource {dxscht:SchedulerViewThemeKey ResourceKey=HeaderNormalGradient}}" ElementPosition="{Binding Path=(dxschd:SchedulerItemsControl.ElementPosition), RelativeSource={RelativeSource TemplatedParent}}" />
+                                    <dxschd:VerticalHeaderGlareBorder SnapsToDevicePixels="True" UseLayoutRounding="True" Grid.Column="0" DefaultPadding="0,0,0,1" DefaultCornerRadius="2,5,5,2" x:Name="border1_2" Background="{DynamicResource {dxscht:SchedulerViewThemeKey ResourceKey=HeaderNormalGlare}}" ElementPosition="{Binding Path=(dxschd:SchedulerItemsControl.ElementPosition), RelativeSource={RelativeSource TemplatedParent}}" />
+
+                                    <Rectangle x:Name="leftGlare" HorizontalAlignment="Right" Margin="0,0,0,0" Width="1" Stroke="{x:Null}" StrokeThickness="0" Grid.ColumnSpan="2" SnapsToDevicePixels="True" >
+                                        <Rectangle.Fill>
+                                            <LinearGradientBrush EndPoint="0,0.5" StartPoint="1,0.5" >
+                                                <GradientStop Color="#00C0DAFB" Offset="0"/>
+                                                <GradientStop Color="#57CDE2FF" Offset="1"/>
+                                            </LinearGradientBrush>
+                                        </Rectangle.Fill>
+                                    </Rectangle>
+                                    <Border Grid.ColumnSpan="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" SnapsToDevicePixels="True" >
+                                        <ContentPresenter Margin="4"/>
+                                    </Border>
+                                </Grid>
+                            </dxschd:HeaderBorder>
+                        </ControlTemplate>
+
+                    </ContentControl.Template>
+                </dx:XPFContentControl>
+            </dxschd:SchedulerColorConvertControl>
+        </Border>
+    </ControlTemplate>
+
+    <!--Normal Header-->
+    <ControlTemplate x:Key="{dxscht:SchedulerViewThemeKey ResourceKey=HeaderNormalTemplate}" TargetType="{x:Type dxschd:HeaderControl}">
+        <Border>
+            <dxschd:SchedulerColorConvertControl x:Name="clrConvCtrl" ControlBrush="{TemplateBinding ResourceColor}" DisableResourceColor="{TemplateBinding DisableResourceColor}" SnapsToDevicePixels="True" Visibility="Visible">
+                <dxschd:SchedulerColorConvertControl.BaseColors>
+                    <dxschd:ColorCollection>
+                        <dxschd:ColorDefinition Value="#FF193B74" Name="ColorDefinition_NormalGradientStop1"/>
+                        <dxschd:ColorDefinition Value="#FF7499CE" Name="ColorDefinition_NormalGradientStop2"/>
+                        <dxschd:ColorDefinition Value="#FF244985" Name="ColorDefinition_NormalGradientStop3"/>
+                        <dxschd:ColorDefinition Value="#FF2C5494" Name="ColorDefinition_NormalGlareStop1"/>
+                        <dxschd:ColorDefinition Value="#FF6086BE" Name="ColorDefinition_NormalGlareStop2"/>
+                        <dxschd:ColorDefinition Value="#FFA2C5F4" Name="ColorDefinition_NormalGlareStop3"/>
+                        <dxschd:ColorDefinition Value="#FF3A629F" Name="ColorDefinition_NormalGlareStop4"/>
+                        <dxschd:ColorDefinition Value="#FF193B74" Name="ColorDefinition_HotGradientStop1"/>
+                        <dxschd:ColorDefinition Value="#FF9AD5F6" Name="ColorDefinition_HotGradientStop2"/>
+                        <dxschd:ColorDefinition Value="#FF2C5597" Name="ColorDefinition_HotGradientStop3"/>
+                        <dxschd:ColorDefinition Value="#FF3863A7" Name="ColorDefinition_HotGlareStop1"/>
+                        <dxschd:ColorDefinition Value="#FF7CABDA" Name="ColorDefinition_HotGlareStop2"/>
+                        <dxschd:ColorDefinition Value="#FFC2DBFD" Name="ColorDefinition_HotGlareStop3"/>
+                        <dxschd:ColorDefinition Value="#FF4F78B5" Name="ColorDefinition_HotGlareStop4"/>
+                        <dxschd:ColorDefinition Value="#FF193B74" Name="ColorDefinition_PressedGradientStop1"/>
+                        <dxschd:ColorDefinition Value="#FF2C5597" Name="ColorDefinition_PressedGradientStop2"/>
+                        <dxschd:ColorDefinition Value="#FF2C5494" Name="ColorDefinition_PressedGlareStop1"/>
+                        <dxschd:ColorDefinition Value="#FF2C4B8E" Name="ColorDefinition_PressedGlareStop2"/>
+                        <dxschd:ColorDefinition Value="#FF416CAB" Name="ColorDefinition_PressedGlareStop3"/>
+                        <dxschd:ColorDefinition Value="#FF062B63" Name="ColorDefinition_HeadersVerticalLineBrush"/>
+                    </dxschd:ColorCollection>
+                </dxschd:SchedulerColorConvertControl.BaseColors>
+                <dx:XPFContentControl x:Name="HeaderContent" Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" SnapsToDevicePixels="True" UseLayoutRounding="True" dxschd:SchedulerItemsControl.ElementPosition="{Binding Path=(dxschd:SchedulerItemsControl.ElementPosition), RelativeSource={RelativeSource TemplatedParent}}">
+                    <ContentControl.Resources>
+                        <LinearGradientBrush x:Key="{dxscht:SchedulerViewThemeKey ResourceKey=HeaderNormalGradient}" EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="{Binding ElementName=clrConvCtrl, Path=Container, Converter={StaticResource colorResourcesConverter}, ConverterParameter=ColorDefinition_NormalGradientStop1}" Offset="0"/>
+                            <GradientStop Color="{Binding ElementName=clrConvCtrl, Path=Container, Converter={StaticResource colorResourcesConverter}, ConverterParameter=ColorDefinition_NormalGradientStop2}" Offset="1"/>
+                            <GradientStop Color="{Binding ElementName=clrConvCtrl, Path=Container, Converter={StaticResource colorResourcesConverter}, ConverterParameter=ColorDefinition_NormalGradientStop3}" Offset="0.529"/>
+                        </LinearGradientBrush>
+                        <LinearGradientBrush x:Key="{dxscht:SchedulerViewThemeKey ResourceKey=HeaderNormalGlare}" EndPoint="0.5,-0.002" StartPoint="0.5,1.002">
+                            <GradientStop Color="{Binding ElementName=clrConvCtrl, Path=Container, Converter={StaticResource colorResourcesConverter}, ConverterParameter=ColorDefinition_NormalGlareStop1}" Offset="0"/>
+                            <GradientStop Color="{Binding ElementName=clrConvCtrl, Path=Container, Converter={StaticResource colorResourcesConverter}, ConverterParameter=ColorDefinition_NormalGlareStop2}" Offset="0.885"/>
+                            <GradientStop Color="{Binding ElementName=clrConvCtrl, Path=Container, Converter={StaticResource colorResourcesConverter}, ConverterParameter=ColorDefinition_NormalGlareStop3}" Offset="1"/>
+                            <GradientStop Color="{Binding ElementName=clrConvCtrl, Path=Container, Converter={StaticResource colorResourcesConverter}, ConverterParameter=ColorDefinition_NormalGlareStop4}" Offset="0.317"/>
+                        </LinearGradientBrush>
+                        <LinearGradientBrush x:Key="{dxscht:SchedulerViewThemeKey ResourceKey=HeaderHotGradient}" EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="{Binding ElementName=clrConvCtrl, Path=Container, Converter={StaticResource colorResourcesConverter}, ConverterParameter=ColorDefinition_HotGradientStop1}" Offset="0"/>
+                            <GradientStop Color="{Binding ElementName=clrConvCtrl, Path=Container, Converter={StaticResource colorResourcesConverter}, ConverterParameter=ColorDefinition_HotGradientStop2}" Offset="1"/>
+                            <GradientStop Color="{Binding ElementName=clrConvCtrl, Path=Container, Converter={StaticResource colorResourcesConverter}, ConverterParameter=ColorDefinition_HotGradientStop3}" Offset="0.529"/>
+                        </LinearGradientBrush>
+                        <LinearGradientBrush x:Key="{dxscht:SchedulerViewThemeKey ResourceKey=HeaderHotGlare}" EndPoint="0.5,-0.002" StartPoint="0.5,1.002">
+                            <GradientStop Color="{Binding ElementName=clrConvCtrl, Path=Container, Converter={StaticResource colorResourcesConverter}, ConverterParameter=ColorDefinition_HotGlareStop1}" Offset="0"/>
+                            <GradientStop Color="{Binding ElementName=clrConvCtrl, Path=Container, Converter={StaticResource colorResourcesConverter}, ConverterParameter=ColorDefinition_HotGlareStop2}" Offset="0.885"/>
+                            <GradientStop Color="{Binding ElementName=clrConvCtrl, Path=Container, Converter={StaticResource colorResourcesConverter}, ConverterParameter=ColorDefinition_HotGlareStop3}" Offset="1"/>
+                            <GradientStop Color="{Binding ElementName=clrConvCtrl, Path=Container, Converter={StaticResource colorResourcesConverter}, ConverterParameter=ColorDefinition_HotGlareStop4}" Offset="0.317"/>
+                        </LinearGradientBrush>
+                        <LinearGradientBrush x:Key="{dxscht:SchedulerViewThemeKey ResourceKey=HeaderPressedGradient}" EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="{Binding ElementName=clrConvCtrl, Path=Container, Converter={StaticResource colorResourcesConverter}, ConverterParameter=ColorDefinition_PressedGradientStop1}" Offset="0"/>
+                            <GradientStop Color="{Binding ElementName=clrConvCtrl, Path=Container, Converter={StaticResource colorResourcesConverter}, ConverterParameter=ColorDefinition_PressedGradientStop2}" Offset="1"/>
+                        </LinearGradientBrush>
+                        <LinearGradientBrush x:Key="{dxscht:SchedulerViewThemeKey ResourceKey=HeaderPressedGlare}" EndPoint="0.5,-0.002" StartPoint="0.5,1.002">
+                            <GradientStop Color="{Binding ElementName=clrConvCtrl, Path=Container, Converter={StaticResource colorResourcesConverter}, ConverterParameter=ColorDefinition_PressedGlareStop1}" Offset="0"/>
+                            <GradientStop Color="{Binding ElementName=clrConvCtrl, Path=Container, Converter={StaticResource colorResourcesConverter}, ConverterParameter=ColorDefinition_PressedGlareStop2}" Offset="1"/>
+                            <GradientStop Color="{Binding ElementName=clrConvCtrl, Path=Container, Converter={StaticResource colorResourcesConverter}, ConverterParameter=ColorDefinition_PressedGlareStop3}" Offset="0.837"/>
+                        </LinearGradientBrush>
+                        <SolidColorBrush x:Key="{dxscht:SchedulerViewThemeKey ResourceKey=VerticalLineBrush}" Color="{Binding ElementName=clrConvCtrl, Path=Container, Converter={StaticResource colorResourcesConverter}, ConverterParameter=ColorDefinition_HeadersVerticalLineBrush}"/>
+                    </ContentControl.Resources>
+                    <ContentControl.Template>
+                        <ControlTemplate TargetType="{x:Type ContentControl}">
+                            <dxschd:HeaderBorder x:Name="border1" Grid.RowSpan="2" Background="{DynamicResource {dxscht:SchedulerViewThemeKey ResourceKey=VerticalLineBrush}}" DefaultCornerRadius="3,3,3,3" DefaultPadding="1" SnapsToDevicePixels="True" ElementPosition="{Binding Path=(dxschd:SchedulerItemsControl.ElementPosition), RelativeSource={RelativeSource TemplatedParent}}" >
+                                <Grid Width="Auto" Height="Auto" SnapsToDevicePixels="True" UseLayoutRounding="False">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="0.5*"/>
+                                        <RowDefinition Height="0.5*"/>
+                                    </Grid.RowDefinitions>
+                                    <dxschd:HeaderBorder SnapsToDevicePixels="True" UseLayoutRounding="True" Width="Auto" Height="Auto" Grid.RowSpan="2" DefaultCornerRadius="2,2,2,2" x:Name="border1_1" Background="{DynamicResource {dxscht:SchedulerViewThemeKey ResourceKey=HeaderNormalGradient}}" ElementPosition="{Binding Path=(dxschd:SchedulerItemsControl.ElementPosition), RelativeSource={RelativeSource TemplatedParent}}" />
+                                    <dxschd:HeaderGlareBorder SnapsToDevicePixels="True" UseLayoutRounding="True" Grid.Row="0" DefaultPadding="0,0,0,1" DefaultCornerRadius="2,2,5,5" x:Name="border1_2" Background="{DynamicResource {dxscht:SchedulerViewThemeKey ResourceKey=HeaderNormalGlare}}" ElementPosition="{Binding Path=(dxschd:SchedulerItemsControl.ElementPosition), RelativeSource={RelativeSource TemplatedParent}}" />
+
+                                    <Rectangle x:Name="leftGlare" HorizontalAlignment="{Binding Path=(dxschd:HeaderControl.GlareAlignment), RelativeSource={RelativeSource Mode=TemplatedParent}}" Margin="0,0,0,0" Width="1" Stroke="{x:Null}" StrokeThickness="0" Grid.RowSpan="2" SnapsToDevicePixels="True" >
+                                        <Rectangle.Fill>
+                                            <LinearGradientBrush EndPoint="0.5,0" StartPoint="0.5,1">
+                                                <GradientStop Color="#00C0DAFB" Offset="0"/>
+                                                <GradientStop Color="#57CDE2FF" Offset="1"/>
+                                            </LinearGradientBrush>
+                                        </Rectangle.Fill>
+                                    </Rectangle>
+                                    <Border Grid.RowSpan="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" SnapsToDevicePixels="True" >
+                                        <ContentPresenter Margin="4"/>
+                                    </Border>
+                                </Grid>
+                            </dxschd:HeaderBorder>
+                        </ControlTemplate>
+                    </ContentControl.Template>
+                </dx:XPFContentControl>
+            </dxschd:SchedulerColorConvertControl>
+        </Border>
+    </ControlTemplate>
+
+    <!--Alternate Header-->
+    <ControlTemplate x:Key="{dxscht:SchedulerViewThemeKey ResourceKey=HeaderAlternateTemplate}" TargetType="{x:Type dxschd:HeaderControl}">
+        <Border>
+            <dxschd:SchedulerColorConvertControl x:Name="clrConvCtrl" ControlBrush="{TemplateBinding ResourceColor}" DisableResourceColor="{TemplateBinding DisableResourceColor}"  SnapsToDevicePixels="True" Visibility="Visible">
+                <dxschd:SchedulerColorConvertControl.BaseColors>
+                    <dxschd:ColorCollection>
+                        <dxschd:ColorDefinition Value="#FF142D63" Name="ColorDefinition_NormalGradientStop1"/>
+                        <dxschd:ColorDefinition Value="#FF4E75B7" Name="ColorDefinition_NormalGradientStop2"/>
+                        <dxschd:ColorDefinition Value="#FF142D63" Name="ColorDefinition_NormalGradientStop3"/>
+                        <dxschd:ColorDefinition Value="#FF1A3775" Name="ColorDefinition_NormalGlareStop1"/>
+                        <dxschd:ColorDefinition Value="#FF4369AC" Name="ColorDefinition_NormalGlareStop2"/>
+                        <dxschd:ColorDefinition Value="#FF6991D4" Name="ColorDefinition_NormalGlareStop3"/>
+                        <dxschd:ColorDefinition Value="#FF22417F" Name="ColorDefinition_NormalGlareStop4"/>
+                        <dxschd:ColorDefinition Value="#FF193B74" Name="ColorDefinition_HotGradientStop1"/>
+                        <dxschd:ColorDefinition Value="#FF9AD5F6" Name="ColorDefinition_HotGradientStop2"/>
+                        <dxschd:ColorDefinition Value="#FF2C5597" Name="ColorDefinition_HotGradientStop3"/>
+                        <dxschd:ColorDefinition Value="#FF3863A7" Name="ColorDefinition_HotGlareStop1"/>
+                        <dxschd:ColorDefinition Value="#FF7CABDA" Name="ColorDefinition_HotGlareStop2"/>
+                        <dxschd:ColorDefinition Value="#FFC2DBFD" Name="ColorDefinition_HotGlareStop3"/>
+                        <dxschd:ColorDefinition Value="#FF4F78B5" Name="ColorDefinition_HotGlareStop4"/>
+                        <dxschd:ColorDefinition Value="#FF193B74" Name="ColorDefinition_PressedGradientStop1"/>
+                        <dxschd:ColorDefinition Value="#FF2C5597" Name="ColorDefinition_PressedGradientStop2"/>
+                        <dxschd:ColorDefinition Value="#FF2C5494" Name="ColorDefinition_PressedGlareStop1"/>
+                        <dxschd:ColorDefinition Value="#FF2C4B8E" Name="ColorDefinition_PressedGlareStop2"/>
+                        <dxschd:ColorDefinition Value="#FF416CAB" Name="ColorDefinition_PressedGlareStop3"/>
+                        <dxschd:ColorDefinition Value="#FF062B63" Name="ColorDefinition_HeadersVerticalLineBrush"/>
+                    </dxschd:ColorCollection>
+                </dxschd:SchedulerColorConvertControl.BaseColors>
+                <dx:XPFContentControl x:Name="HeaderContent" Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" SnapsToDevicePixels="True" UseLayoutRounding="True" dxschd:SchedulerItemsControl.ElementPosition="{Binding Path=(dxschd:SchedulerItemsControl.ElementPosition), RelativeSource={RelativeSource TemplatedParent}}">
+                    <ContentControl.Resources>
+                        <LinearGradientBrush x:Key="{dxscht:SchedulerViewThemeKey ResourceKey=HeaderNormalGradient}" EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="{Binding ElementName=clrConvCtrl, Path=Container, Converter={StaticResource colorResourcesConverter}, ConverterParameter=ColorDefinition_NormalGradientStop1}" Offset="0"/>
+                            <GradientStop Color="{Binding ElementName=clrConvCtrl, Path=Container, Converter={StaticResource colorResourcesConverter}, ConverterParameter=ColorDefinition_NormalGradientStop2}" Offset="1"/>
+                            <GradientStop Color="{Binding ElementName=clrConvCtrl, Path=Container, Converter={StaticResource colorResourcesConverter}, ConverterParameter=ColorDefinition_NormalGradientStop3}" Offset="0.529"/>
+                        </LinearGradientBrush>
+                        <LinearGradientBrush x:Key="{dxscht:SchedulerViewThemeKey ResourceKey=HeaderNormalGlare}" EndPoint="0.5,-0.002" StartPoint="0.5,1.002">
+                            <GradientStop Color="{Binding ElementName=clrConvCtrl, Path=Container, Converter={StaticResource colorResourcesConverter}, ConverterParameter=ColorDefinition_NormalGlareStop1}" Offset="0"/>
+                            <GradientStop Color="{Binding ElementName=clrConvCtrl, Path=Container, Converter={StaticResource colorResourcesConverter}, ConverterParameter=ColorDefinition_NormalGlareStop2}" Offset="0.885"/>
+                            <GradientStop Color="{Binding ElementName=clrConvCtrl, Path=Container, Converter={StaticResource colorResourcesConverter}, ConverterParameter=ColorDefinition_NormalGlareStop3}" Offset="1"/>
+                            <GradientStop Color="{Binding ElementName=clrConvCtrl, Path=Container, Converter={StaticResource colorResourcesConverter}, ConverterParameter=ColorDefinition_NormalGlareStop4}" Offset="0.317"/>
+                        </LinearGradientBrush>
+                        <LinearGradientBrush x:Key="{dxscht:SchedulerViewThemeKey ResourceKey=HeaderHotGradient}" EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="{Binding ElementName=clrConvCtrl, Path=Container, Converter={StaticResource colorResourcesConverter}, ConverterParameter=ColorDefinition_HotGradientStop1}" Offset="0"/>
+                            <GradientStop Color="{Binding ElementName=clrConvCtrl, Path=Container, Converter={StaticResource colorResourcesConverter}, ConverterParameter=ColorDefinition_HotGradientStop2}" Offset="1"/>
+                            <GradientStop Color="{Binding ElementName=clrConvCtrl, Path=Container, Converter={StaticResource colorResourcesConverter}, ConverterParameter=ColorDefinition_HotGradientStop3}" Offset="0.529"/>
+                        </LinearGradientBrush>
+                        <LinearGradientBrush x:Key="{dxscht:SchedulerViewThemeKey ResourceKey=HeaderHotGlare}" EndPoint="0.5,-0.002" StartPoint="0.5,1.002">
+                            <GradientStop Color="{Binding ElementName=clrConvCtrl, Path=Container, Converter={StaticResource colorResourcesConverter}, ConverterParameter=ColorDefinition_HotGlareStop1}" Offset="0"/>
+                            <GradientStop Color="{Binding ElementName=clrConvCtrl, Path=Container, Converter={StaticResource colorResourcesConverter}, ConverterParameter=ColorDefinition_HotGlareStop2}" Offset="0.885"/>
+                            <GradientStop Color="{Binding ElementName=clrConvCtrl, Path=Container, Converter={StaticResource colorResourcesConverter}, ConverterParameter=ColorDefinition_HotGlareStop3}" Offset="1"/>
+                            <GradientStop Color="{Binding ElementName=clrConvCtrl, Path=Container, Converter={StaticResource colorResourcesConverter}, ConverterParameter=ColorDefinition_HotGlareStop4}" Offset="0.317"/>
+                        </LinearGradientBrush>
+                        <LinearGradientBrush x:Key="{dxscht:SchedulerViewThemeKey ResourceKey=HeaderPressedGradient}" EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="{Binding ElementName=clrConvCtrl, Path=Container, Converter={StaticResource colorResourcesConverter}, ConverterParameter=ColorDefinition_PressedGradientStop1}" Offset="0"/>
+                            <GradientStop Color="{Binding ElementName=clrConvCtrl, Path=Container, Converter={StaticResource colorResourcesConverter}, ConverterParameter=ColorDefinition_PressedGradientStop2}" Offset="1"/>
+                        </LinearGradientBrush>
+                        <LinearGradientBrush x:Key="{dxscht:SchedulerViewThemeKey ResourceKey=HeaderPressedGlare}" EndPoint="0.5,-0.002" StartPoint="0.5,1.002">
+                            <GradientStop Color="{Binding ElementName=clrConvCtrl, Path=Container, Converter={StaticResource colorResourcesConverter}, ConverterParameter=ColorDefinition_PressedGlareStop1}" Offset="0"/>
+                            <GradientStop Color="{Binding ElementName=clrConvCtrl, Path=Container, Converter={StaticResource colorResourcesConverter}, ConverterParameter=ColorDefinition_PressedGlareStop2}" Offset="1"/>
+                            <GradientStop Color="{Binding ElementName=clrConvCtrl, Path=Container, Converter={StaticResource colorResourcesConverter}, ConverterParameter=ColorDefinition_PressedGlareStop3}" Offset="0.837"/>
+                        </LinearGradientBrush>
+                        <SolidColorBrush x:Key="{dxscht:SchedulerViewThemeKey ResourceKey=VerticalLineBrush}" Color="{Binding ElementName=clrConvCtrl, Path=Container, Converter={StaticResource colorResourcesConverter}, ConverterParameter=ColorDefinition_HeadersVerticalLineBrush}"/>
+                    </ContentControl.Resources>
+                    <ContentControl.Template>
+                        <ControlTemplate TargetType="{x:Type ContentControl}">
+                            <dxschd:HeaderBorder x:Name="border1" Grid.RowSpan="2" Background="{DynamicResource {dxscht:SchedulerViewThemeKey ResourceKey=VerticalLineBrush}}" DefaultCornerRadius="3,3,3,3" DefaultPadding="1" SnapsToDevicePixels="True" ElementPosition="{Binding Path=(dxschd:SchedulerItemsControl.ElementPosition), RelativeSource={RelativeSource TemplatedParent}}" >
+                                <Grid Width="Auto" Height="Auto" SnapsToDevicePixels="True" UseLayoutRounding="False">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="0.5*"/>
+                                        <RowDefinition Height="0.5*"/>
+                                    </Grid.RowDefinitions>
+                                    <dxschd:HeaderBorder SnapsToDevicePixels="True" UseLayoutRounding="True" Width="Auto" Height="Auto" Grid.RowSpan="2" DefaultCornerRadius="2,2,2,2" x:Name="border1_1" Background="{DynamicResource {dxscht:SchedulerViewThemeKey ResourceKey=HeaderNormalGradient}}" ElementPosition="{Binding Path=(dxschd:SchedulerItemsControl.ElementPosition), RelativeSource={RelativeSource TemplatedParent}}" />
+                                    <dxschd:HeaderGlareBorder SnapsToDevicePixels="True" UseLayoutRounding="True" Grid.Row="0" DefaultPadding="0,0,0,1" DefaultCornerRadius="2,2,5,5" x:Name="border1_2" Background="{DynamicResource {dxscht:SchedulerViewThemeKey ResourceKey=HeaderNormalGlare}}" ElementPosition="{Binding Path=(dxschd:SchedulerItemsControl.ElementPosition), RelativeSource={RelativeSource TemplatedParent}}" />
+
+                                    <Rectangle x:Name="leftGlare" HorizontalAlignment="{Binding Path=(dxschd:HeaderControl.GlareAlignment), RelativeSource={RelativeSource Mode=TemplatedParent}}" Margin="0,0,0,0" Width="1" Stroke="{x:Null}" StrokeThickness="0" Grid.RowSpan="2" SnapsToDevicePixels="True" >
+                                        <Rectangle.Fill>
+                                            <LinearGradientBrush EndPoint="0.5,0" StartPoint="0.5,1">
+                                                <GradientStop Color="#00C0DAFB" Offset="0"/>
+                                                <GradientStop Color="#57CDE2FF" Offset="1"/>
+                                            </LinearGradientBrush>
+                                        </Rectangle.Fill>
+                                    </Rectangle>
+                                    <Border Grid.RowSpan="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" SnapsToDevicePixels="True" >
+                                        <ContentPresenter Margin="4"/>
+                                    </Border>
+                                </Grid>
+                            </dxschd:HeaderBorder>
+                        </ControlTemplate>
+                    </ContentControl.Template>
+                </dx:XPFContentControl>
+            </dxschd:SchedulerColorConvertControl>
+        </Border>
+    </ControlTemplate>
+    
+    <Style TargetType="{x:Type dxschd:HeaderControl}">
+        <Setter Property="NormalTemplate" Value="{DynamicResource {dxscht:SchedulerViewThemeKey ResourceKey=HeaderNormalTemplate}}"/>
+        <Setter Property="AlternateTemplate" Value="{DynamicResource {dxscht:SchedulerViewThemeKey ResourceKey=HeaderAlternateTemplate}}"/>
+    </Style>
+
+    <Style TargetType="{x:Type dxschd:VerticalHeaderControl}">
+        <Setter Property="NormalTemplate" Value="{DynamicResource {dxscht:SchedulerViewThemeKey ResourceKey=VerticalHeaderNormalTemplate}}"/>
+        <Setter Property="AlternateTemplate" Value="{DynamicResource {dxscht:SchedulerViewThemeKey ResourceKey=VerticalHeaderNormalTemplate}}"/>
+    </Style>
+
+
+
+    <!--Normal CellHeader-->
+    <ControlTemplate x:Key="{dxscht:WeekViewThemeKey ResourceKey=CellHeaderNormalTemplate}" TargetType="{x:Type Control}">
+        <Grid Background="Transparent" >
+            <dxschd:MonthViewDayHeaderControl x:Name="MonthViewDayHeaderControl" Margin="5,0,5,0"
+                                                     Date="{Binding IntervalStart}" DateFormats="{Binding DateFormats}"                                                            
+                                                     HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
+                                                     SnapsToDevicePixels="True">
+                <TextBlock SnapsToDevicePixels="True" Opacity="0.5" 
+                                   HorizontalAlignment="Right" Foreground="Black"/>
+            </dxschd:MonthViewDayHeaderControl>
+        </Grid>
+    </ControlTemplate>
+
+    <!--Alternate CellHeader-->
+    <ControlTemplate x:Key="{dxscht:WeekViewThemeKey ResourceKey=CellHeaderAlternateTemplate}" TargetType="{x:Type Control}">
+        <Grid Background="#26244984" >
+            <dxschd:MonthViewDayHeaderControl x:Name="MonthViewDayHeaderControl" Margin="5,0,5,0"
+                                                     Date="{Binding IntervalStart}" DateFormats="{Binding DateFormats}"                                                            
+                                                     HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
+                                                     SnapsToDevicePixels="True">
+                <TextBlock SnapsToDevicePixels="True" Opacity="0.5" 
+                                   HorizontalAlignment="Right" Foreground="Black" />
+            </dxschd:MonthViewDayHeaderControl>
+        </Grid>
+    </ControlTemplate>
+
+
+    <!--Normal WeekCell-->
+    <ControlTemplate x:Key="{dxscht:WeekViewThemeKey ResourceKey=WeekCellNormalTemplate}" TargetType="{x:Type dxschd:VisualDateCell}">
+        <Grid SnapsToDevicePixels="True" UseLayoutRounding="True">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <dxschd:MultiColorBorder Grid.Row="0" Grid.RowSpan="2" DefaultBorderThickness="1,0,1,1" 
+                                                ElementPosition="{Binding Path=(dxschd:SchedulerItemsControl.ElementPosition), RelativeSource={RelativeSource TemplatedParent}}"
+                                                OuterBorderBrush="{DynamicResource {dxscht:SchedulerControlThemeKey ResourceKey=DefaultBorderBrush}}" InnerBorderBrush="{TemplateBinding BorderBrush}" Background="{TemplateBinding Background}"/>
+            <dxschd:CellContent
+                                x:Name="PART_CONTENT"
+                                Background="Transparent" Grid.Row="1"                                
+                                dxsch:SchedulerControl.HitTestType="Cell"
+                                IsHitTestVisible="True"  
+                                ElementPosition="{Binding Path=(dxschd:SchedulerItemsControl.ElementPosition), RelativeSource={RelativeSource TemplatedParent}}"/>
+
+            <dxschd:VisualDateCellHeader
+                                IsAlternate="{Binding Content.IsAlternate, RelativeSource={RelativeSource TemplatedParent}}"
+                                Content="{TemplateBinding Content}"                                
+                                dxsch:SchedulerControl.HitTestType="DayHeader"
+                                Style="{Binding Path=Content.View.HorizontalWeekDateHeaderStyle, RelativeSource={RelativeSource TemplatedParent}}"
+                                dxschd:SchedulerItemsControl.ElementPosition="{Binding Path=(dxschd:SchedulerItemsControl.ElementPosition), RelativeSource={RelativeSource TemplatedParent}}"
+                                />
+        </Grid>
+    </ControlTemplate>
+
+    <!--Alternate  WeekCell-->
+    <ControlTemplate x:Key="{dxscht:WeekViewThemeKey ResourceKey=WeekCellAlternateTemplate}" TargetType="{x:Type dxschd:VisualDateCell}">
+        <Grid SnapsToDevicePixels="True" UseLayoutRounding="True">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <dxschd:MultiColorBorder Grid.Row="0" Grid.RowSpan="2" DefaultBorderThickness="1,0,1,1" 
+                                                ElementPosition="{Binding Path=(dxschd:SchedulerItemsControl.ElementPosition), RelativeSource={RelativeSource TemplatedParent}}"
+                                                OuterBorderBrush="{DynamicResource {dxscht:SchedulerControlThemeKey ResourceKey=DefaultBorderBrush}}" InnerBorderBrush="{TemplateBinding BorderBrush}" Background="{TemplateBinding Background}"/>
+            <dxschd:CellContent
+                                x:Name="PART_CONTENT"
+                                Background="#26244984" Grid.Row="1"                                
+                                dxsch:SchedulerControl.HitTestType="Cell"
+                                IsHitTestVisible="True"  
+                                ElementPosition="{Binding Path=(dxschd:SchedulerItemsControl.ElementPosition), RelativeSource={RelativeSource TemplatedParent}}"/>
+            <dxschd:VisualDateCellHeader
+                                IsAlternate="{Binding Content.IsAlternate, RelativeSource={RelativeSource TemplatedParent}}"
+                                Content="{TemplateBinding Content}"                                
+                                dxsch:SchedulerControl.HitTestType="DayHeader"
+                                Style="{Binding Path=Content.View.HorizontalWeekDateHeaderStyle, RelativeSource={RelativeSource TemplatedParent}}"
+                                dxschd:SchedulerItemsControl.ElementPosition="{Binding Path=(dxschd:SchedulerItemsControl.ElementPosition), RelativeSource={RelativeSource TemplatedParent}}"
+                                />
+        </Grid>
+    </ControlTemplate>
+
+    <!--Normal VerticalWeekCell-->
+    <ControlTemplate x:Key="{dxscht:WeekViewThemeKey ResourceKey=VerticalWeekCellNormalTemplate}" TargetType="{x:Type dxschd:VisualDateCell}">
+        <Grid SnapsToDevicePixels="True" UseLayoutRounding="True">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <!--<dxschd:CellBorder Grid.Row="0" Grid.RowSpan="2" DefaultBorderThickness="1" DefaultMargin="1,0,0,0" BorderBrush="{TemplateBinding BorderBrush}" ElementPosition="{Binding Path=(dxschd:SchedulerItemsControl.ElementPosition), RelativeSource={RelativeSource TemplatedParent}}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True" UseLayoutRounding="True"/>-->
+            <dxschd:MultiColorBorder Grid.Row="0" Grid.RowSpan="2" DefaultBorderThickness="1,0,1,1" 
+                                                ElementPosition="{Binding Path=(dxschd:SchedulerItemsControl.ElementPosition), RelativeSource={RelativeSource TemplatedParent}}"
+                                                OuterBorderBrush="{DynamicResource {dxscht:SchedulerControlThemeKey ResourceKey=DefaultBorderBrush}}" InnerBorderBrush="{TemplateBinding BorderBrush}" Background="{TemplateBinding Background}"/>
+            <dxschd:CellContent
+                            x:Name="PART_CONTENT"
+                            Background="Transparent" Grid.Row="1"                                
+                            dxsch:SchedulerControl.HitTestType="Cell"
+                            IsHitTestVisible="True" ElementPosition="{Binding Path=(dxschd:SchedulerItemsControl.ElementPosition), RelativeSource={RelativeSource TemplatedParent}}"/>
+            <dxschd:VisualDateCellHeader
+                            IsAlternate="{Binding Content.IsAlternate, RelativeSource={RelativeSource TemplatedParent}}"
+                            Content="{TemplateBinding Content}"                                
+                            dxsch:SchedulerControl.HitTestType="DayHeader"
+                            Style="{Binding Path=Content.View.VerticalWeekDateHeaderStyle, RelativeSource={RelativeSource TemplatedParent}}"
+                            dxschd:SchedulerItemsControl.ElementPosition="{Binding Path=(dxschd:SchedulerItemsControl.ElementPosition), RelativeSource={RelativeSource TemplatedParent}}"
+                            />
+        </Grid>
+    </ControlTemplate>
+
+
+    <!--Alternate VerticalWeekCell-->
+    <ControlTemplate x:Key="{dxscht:WeekViewThemeKey ResourceKey=VerticalWeekCellAlternateTemplate}" TargetType="{x:Type dxschd:VisualDateCell}">
+        <Grid SnapsToDevicePixels="True" UseLayoutRounding="True">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <!--<dxschd:CellBorder Grid.Row="0" Grid.RowSpan="2" DefaultBorderThickness="1" DefaultMargin="1,0,0,0" BorderBrush="{TemplateBinding BorderBrush}" ElementPosition="{Binding Path=(dxschd:SchedulerItemsControl.ElementPosition), RelativeSource={RelativeSource TemplatedParent}}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True" UseLayoutRounding="True"/>-->
+            <dxschd:MultiColorBorder Grid.Row="0" Grid.RowSpan="2" DefaultBorderThickness="1,0,1,1" 
+                                                ElementPosition="{Binding Path=(dxschd:SchedulerItemsControl.ElementPosition), RelativeSource={RelativeSource TemplatedParent}}"
+                                                OuterBorderBrush="{DynamicResource {dxscht:SchedulerControlThemeKey ResourceKey=DefaultBorderBrush}}" InnerBorderBrush="{TemplateBinding BorderBrush}" Background="{TemplateBinding Background}"/>
+            <dxschd:CellContent
+                            x:Name="PART_CONTENT"
+                            Background="Transparent" Grid.Row="1"                                
+                            dxsch:SchedulerControl.HitTestType="Cell"
+                            IsHitTestVisible="True" ElementPosition="{Binding Path=(dxschd:SchedulerItemsControl.ElementPosition), RelativeSource={RelativeSource TemplatedParent}}"/>
+            <dxschd:VisualDateCellHeader
+                            IsAlternate="{Binding Content.IsAlternate, RelativeSource={RelativeSource TemplatedParent}}"
+                            Content="{TemplateBinding Content}"                                
+                            dxsch:SchedulerControl.HitTestType="DayHeader"
+                            Style="{Binding Path=Content.View.VerticalWeekDateHeaderStyle, RelativeSource={RelativeSource TemplatedParent}}"
+                            dxschd:SchedulerItemsControl.ElementPosition="{Binding Path=(dxschd:SchedulerItemsControl.ElementPosition), RelativeSource={RelativeSource TemplatedParent}}"
+                            />
+        </Grid>
+    </ControlTemplate>
+
+
+    <!--Normal VerticalCellHeader-->
+    <ControlTemplate x:Key="{dxscht:WeekViewThemeKey ResourceKey=VerticalCellHeaderNormalTemplate}" TargetType="{x:Type dxschd:VisualDateCellHeader}">
+        <Grid Background="Transparent">
+            <dxschd:HeaderControl
+                            HorizontalAlignment="Stretch" 
+                            HorizontalContentAlignment="Right"
+                            IsAlternate="{Binding IsAlternate}"
+                            ResourceColor="{Binding Content.Brushes.ResourceHeader, RelativeSource={RelativeSource TemplatedParent}}"     
+                            Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}"
+                            dxschd:SchedulerItemsControl.ElementPosition="{Binding Path=(dxschd:SchedulerItemsControl.ElementPosition), RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource elementPositionVerticalWeekHeaderConverter}}"
+                            />
+        </Grid>
+    </ControlTemplate>
+
+    <!--Alternate VerticalCellHeader-->
+    <ControlTemplate x:Key="{dxscht:WeekViewThemeKey ResourceKey=VerticalCellHeaderAlternateTemplate}" TargetType="{x:Type dxschd:VisualDateCellHeader}">
+        <Grid Background="Transparent">
+            <dxschd:HeaderControl
+                            HorizontalAlignment="Stretch" 
+                            HorizontalContentAlignment="Right"
+                            IsAlternate="{Binding IsAlternate}"
+                            ResourceColor="{Binding Content.Brushes.ResourceHeader, RelativeSource={RelativeSource TemplatedParent}}"     
+                            Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}"
+                            dxschd:SchedulerItemsControl.ElementPosition="{Binding Path=(dxschd:SchedulerItemsControl.ElementPosition), RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource elementPositionVerticalWeekHeaderConverter}}"
+                            />
+        </Grid>
+    </ControlTemplate>
+
+
+</ResourceDictionary>

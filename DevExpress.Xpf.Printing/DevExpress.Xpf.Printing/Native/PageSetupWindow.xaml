@@ -1,0 +1,127 @@
+﻿<dxc:DXDialog x:Class="DevExpress.Xpf.Printing.Native.PageSetupWindow"
+              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+              xmlns:dxc="http://schemas.devexpress.com/winfx/2008/xaml/core"
+              xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+              xmlns:local="clr-namespace:DevExpress.Xpf.Printing"
+              xmlns:native="clr-namespace:DevExpress.Xpf.Printing.Native"
+              Title="{local:PrintingStringId StringId=PageSetupWindowTitle}"
+              Width="430">
+
+    <dxc:DXWindow.WindowStyle>
+        ToolWindow
+    </dxc:DXWindow.WindowStyle>
+    <dxc:DXDialog.ResizeMode>
+        NoResize
+    </dxc:DXDialog.ResizeMode>
+    <dxc:DXDialog.SizeToContent>
+        Height
+    </dxc:DXDialog.SizeToContent>
+    <dxc:DXDialog.ShowInTaskbar>
+        False
+    </dxc:DXDialog.ShowInTaskbar>
+
+    <dxc:DXDialog.Resources>
+        <native:PaperKindToDisplayNameConverter x:Key="paperKindToDisplayNameConverter"/>
+
+        <Style x:Key="marginValueEditStyle" TargetType="dxe:TextEdit">
+            <Setter Property="ValidateOnTextInput" Value="False"/>
+            <Setter Property="ValidateOnEnterKeyPressed" Value="True"/>
+            <Setter Property="MaskType" Value="Numeric"/>
+            <Setter Property="Mask" Value="f"/>
+        </Style>
+    </dxc:DXDialog.Resources>
+
+    <StackPanel Orientation="Vertical" x:Name="LayoutRoot">
+        <StackPanel Margin="12">
+            <dxc:GroupFrame Header="{local:PrintingStringId StringId=PageSetupPaperCaption}" Margin="0,0,0,12">
+                <dxc:GroupFrame.Content>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition MinWidth="100" Width="Auto"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Grid.Column="0" Grid.Row="0" 
+                                   Text="{local:PrintingStringId StringId=PageSetupPaperSize}" 
+                                   VerticalAlignment="Center" Margin="0,0,0,12"/>
+
+                        <dxe:ComboBoxEdit Grid.Column="1" Grid.Row="0" 
+                                          ItemsSource="{Binding PaperKinds, Converter={StaticResource paperKindToDisplayNameConverter}}"
+                                          EditValue="{Binding PaperKind, Mode=TwoWay}"
+                                          DisplayMember="DisplayName" ValueMember="PaperKind"
+                                          IsTextEditable="False" Margin="0,0,0,12"/>
+
+                        <TextBlock Grid.Column="0" Grid.Row="1" Text="{local:PrintingStringId StringId=PageSetupOrientationCaption}" VerticalAlignment="Center"/>
+
+                        <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Horizontal">
+                            <RadioButton GroupName="PageOrientation" Content="{local:PrintingStringId StringId=PageSetupOrientationPortrait}" IsChecked="True" Margin="0,0,12,0"/>
+                            <RadioButton GroupName="PageOrientation" Content="{local:PrintingStringId StringId=PageSetupOrientationLandscape}" IsChecked="{Binding Landscape, Mode=TwoWay}"/>
+                        </StackPanel>
+                    </Grid>
+                </dxc:GroupFrame.Content>
+            </dxc:GroupFrame>
+
+            <dxc:GroupFrame Header="{Binding MarginsDisplayedText}">
+                <dxc:GroupFrame.Content>
+                    <Grid Margin="0,0,0,-4">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+
+                        <Grid Grid.Column="0" Grid.Row="0" Margin="0,0,6,4">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition MinWidth="100"/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Grid.Column="0" Text="{local:PrintingStringId StringId=PageSetupMarginsLeft}" VerticalAlignment="Center"/>
+                            <dxe:TextEdit Grid.Column="1" EditValue="{Binding LeftMargin, Mode=TwoWay}" Style="{StaticResource marginValueEditStyle}"/>
+                        </Grid>
+
+                        <Grid Grid.Column="1" Grid.Row="0" Margin="6,0,0,4">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition MinWidth="100"/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Grid.Column="0" Text="{local:PrintingStringId StringId=PageSetupMarginsRight}" VerticalAlignment="Center"/>
+                            <dxe:TextEdit Grid.Column="1" EditValue="{Binding RightMargin, Mode=TwoWay}" Style="{StaticResource marginValueEditStyle}"/>
+                        </Grid>
+
+                        <Grid Grid.Column="0" Grid.Row="1" Margin="0,0,6,4">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition MinWidth="100"/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Grid.Column="0" Text="{local:PrintingStringId StringId=PageSetupMarginsTop}" VerticalAlignment="Center"/>
+                            <dxe:TextEdit Grid.Column="1" EditValue="{Binding TopMargin, Mode=TwoWay}" Style="{StaticResource marginValueEditStyle}"/>
+                        </Grid>
+
+                        <Grid Grid.Column="1" Grid.Row="1" Margin="6,0,0,4">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition MinWidth="100"/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Grid.Column="0" Text="{local:PrintingStringId StringId=PageSetupMarginsBottom}" VerticalAlignment="Center"/>
+                            <dxe:TextEdit Grid.Column="1" EditValue="{Binding BottomMargin, Mode=TwoWay}" Style="{StaticResource marginValueEditStyle}"/>
+                        </Grid>
+                    </Grid>
+                </dxc:GroupFrame.Content>
+            </dxc:GroupFrame>
+        </StackPanel>
+    </StackPanel>
+</dxc:DXDialog>

@@ -1,0 +1,158 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{8A552D72-6D28-4D0B-BABC-5A3DDC36F6E0}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DevExpress.Sparkline</RootNamespace>
+    <AssemblyName>DevExpress.Sparkline.v15.2.Core</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>..\..\DevExpress.Key\StrongKey.snk</AssemblyOriginatorKeyFile>
+    <OldToolsVersion>3.5</OldToolsVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\..\Bin\Framework\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\..\Bin\Framework\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  
+  <ItemGroup>
+    <Reference Include="DevExpress.Data.v15.2">
+      <Name>DevExpress.Data.v15.2</Name>
+      <Private>False</Private>
+    <HintPath>..\..\..\Bin\Framework\DevExpress.Data.v15.2.dll</HintPath></Reference>
+    
+    <Reference Include="System"><Private>False</Private></Reference>
+    <Reference Include="System.Data"><Private>False</Private></Reference>
+    <Reference Include="System.Drawing"><Private>False</Private></Reference>
+    <Reference Include="System.Windows.Forms"><Private>False</Private></Reference>
+    <Reference Include="System.XML"><Private>False</Private></Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Appearance.cs" />
+    <Compile Include="Data\Ranges.cs" />
+    <Compile Include="Painters\PainterFactory.cs" />
+    <Compile Include="RangeControlClient\BindingSource.cs" />
+    <Compile Include="RangeControlClient\ChartCoreClient.cs" />
+    <Compile Include="RangeControlClient\Interfaces.cs" />
+    <Compile Include="SparklineSettings.cs" />
+    <Compile Include="Data\Common.cs" />
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <Compile Include="Utils\Comparers.cs" />
+    <Compile Include="Data\SparklineDataWrapper.cs" />
+    <Compile Include="Localization.cs" />
+    <Compile Include="Mappings\BarSparklineMapping.cs" />
+    <Compile Include="Mappings\SparklineMappingBase.cs" />
+    <Compile Include="Mappings\LineSparklineMapping.cs" />
+    <Compile Include="Mappings\WinLossSparklineMapping.cs" />
+    <Compile Include="Painters\AreaSparklinePainter.cs" />
+    <Compile Include="Painters\BarSparklinePainter.cs" />
+    <Compile Include="Painters\BaseSparklinePainter.cs" />
+    <Compile Include="Painters\LineSparklinePainter.cs" />
+    <Compile Include="Painters\WinLossSparklinePainter.cs" />
+    <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="SparklineDrawingCache.cs" />
+    <Compile Include="Data\SparklineDataProvider.cs" />
+    <Compile Include="Data\SparklinePoint.cs" />
+    
+    
+    
+    
+    
+    
+    
+    <Compile Include="Utils\Utils.cs" />
+    <Compile Include="Views\AreaSparklineView.cs" />
+    <Compile Include="Views\BarSparklineViewBase.cs" />
+    <Compile Include="Views\BarSparklineView.cs" />
+    <Compile Include="Views\Common.cs" />
+    <Compile Include="Views\WinLossSparklineView.cs" />
+    <Compile Include="Views\SparklineViewBase.cs" />
+    <Compile Include="Views\LineSparklineView.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="LocalizationRes.resx" />
+    <EmbeddedResource Include="LocalizationRes.ru.resx" />
+    <EmbeddedResource Include="LocalizationRes.ja.resx" />
+    <EmbeddedResource Include="LocalizationRes.es.resx" />
+    <EmbeddedResource Include="LocalizationRes.de.resx" />
+    <EmbeddedResource Include="PropertyNamesRes.resx" />
+    <EmbeddedResource Include="PropertyNamesRes.ru.resx" />
+    <EmbeddedResource Include="PropertyNamesRes.ja.resx" />
+    <EmbeddedResource Include="PropertyNamesRes.es.resx" />
+    <EmbeddedResource Include="PropertyNamesRes.de.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
+  </ItemGroup>
+  <ItemGroup>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <PropertyGroup>
+    
+  </PropertyGroup>
+<ItemGroup><EmbeddedResource Include="Descriptions.resx" /></ItemGroup><ItemGroup><Compile Include="Descriptions.cs" /></ItemGroup></Project>

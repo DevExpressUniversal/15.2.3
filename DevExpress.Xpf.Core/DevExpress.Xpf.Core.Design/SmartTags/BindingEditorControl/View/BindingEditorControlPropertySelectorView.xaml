@@ -1,0 +1,67 @@
+﻿<UserControl x:Class="DevExpress.Xpf.Core.Design.SmartTags.BindingEditorControlPropertySelectorView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+        xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+        xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+        xmlns:utils="clr-namespace:DevExpress.Xpf.Core.Design.CoreUtils"
+        xmlns:local="clr-namespace:DevExpress.Xpf.Core.Design.SmartTags"
+        mc:Ignorable="d" 
+        d:DesignHeight="300" d:DesignWidth="300">
+
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <local:DesignTimeTreeViewResources/>
+            </ResourceDictionary.MergedDictionaries>
+            <Style TargetType="ListBoxItem" />
+            <Style TargetType="ListBox" />
+            <Style TargetType="GroupItem" />
+            <utils:ItemToEnumerableConverter x:Key="ItemToEnumerableConverter" />
+            <dx:BoolToObjectConverter TrueValue="SemiBold" FalseValue="Normal" x:Key="BoolToFontWeightConverter" />
+            <dx:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+            <dx:BoolToVisibilityInverseConverter x:Key="BoolToVisibilityInverseConverter" />
+
+            <Style x:Key="PropertyTreeViewItemStyle" BasedOn="{StaticResource DesignTimeTreeViewItemStyle}" TargetType="local:DesignTimeTreeViewItem">
+                <Setter Property="Visibility" Value="{Binding Path=IsVisible, Converter={StaticResource BoolToVisibilityConverter}}" />
+                <Setter Property="ShowExpander" Value="{Binding Path=HasVisibleChildren}" />
+                <Setter Property="IsExpanded" Value="{Binding Path=IsExpanded, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                <Setter Property="IsSelected" Value="{Binding IsSelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                <Setter Property="CanBeSelected" Value="{Binding Path=CanBeSelected}" />
+                <Setter Property="MouseDoubleClickCommand" Value="{Binding Path=SelectAndDoneCommand}" />
+            </Style>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <dxe:TextEdit x:Name="searchBox" NullText="Type to search..." EditValue="{Binding Path=FilterText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,3" />
+        <local:DesignTimeTreeView Grid.Row="1" 
+                                  ItemsSource="{Binding Path=RootTreeNodeViewModel, Converter={StaticResource ItemToEnumerableConverter}}" 
+                                  ItemContainerStyle="{StaticResource PropertyTreeViewItemStyle}">
+            <local:DesignTimeTreeView.ItemTemplate>
+                <HierarchicalDataTemplate ItemsSource="{Binding Path=Children}">
+                    <Grid>
+                        <Grid.Resources>
+                            <Style TargetType="ToolTip">
+                                <Setter Property="FontWeight" Value="Normal"/>
+                            </Style>
+                        </Grid.Resources>
+                        <local:WrapHighlightTextBlock FontWeight="{Binding Path=Highlighted, Converter={StaticResource BoolToFontWeightConverter}}"
+                                   Text="{Binding Path=PropertyName}" Margin="1" Visibility="{Binding IsClass, Converter={StaticResource BoolToVisibilityInverseConverter}}"
+                                   ToolTip="{Binding PropertyNameToolTip}" ToolTipService.InitialShowDelay="100" ToolTipService.BetweenShowDelay="100"
+                                   SearchText="{Binding Path=SearchText}"/>
+
+                        <TextBlock Text="{Binding Path=PropertyType}" Margin="1" Opacity="0.8"
+                                   ToolTip="{Binding Path=PropertyTypeToolTip}" ToolTipService.InitialShowDelay="100" ToolTipService.BetweenShowDelay="100"
+                                   Visibility="{Binding IsClass, Converter={StaticResource BoolToVisibilityConverter}}"/>
+                    </Grid>
+                </HierarchicalDataTemplate>
+            </local:DesignTimeTreeView.ItemTemplate>
+        </local:DesignTimeTreeView>
+    </Grid>
+</UserControl>

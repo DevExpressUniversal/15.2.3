@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application>
+	<ActionDesign>
+		<Actions>
+			<Action Id="EditReportController.Edit" Caption="Редактировать" />
+			<Action Id="ExecuteReport" Caption="Выполнить отчет" />
+			<Action Id="PreviewReport" Caption="Предварительный просмотр" />
+			<Action Id="ShowReportDesigner" Caption="Показать дизайнер отчетов" />
+		</Actions>
+	</ActionDesign>
+	<BOModel>
+		<Class Name="DevExpress.ExpressApp.Reports.Win.NewReportParams" Caption="Параметры нового отчета" />
+		<Class Name="DevExpress.ExpressApp.Reports.Win.NewXafReportWizardParameters" Caption="Параметры мастера нового отчета">
+			<OwnMembers>
+				<Member Name="DataType" Caption="Тип данных" />
+				<Member Name="ReportName" Caption="Название отчета" />
+				<Member Name="ReportType" Caption="Тип отчета" />
+			</OwnMembers>
+		</Class>
+	</BOModel>
+	<Localization>
+		<LocalizationGroup Name="Captions">
+			<LocalizationItem Name="AllFiles" Value="Все файлы" />
+			<LocalizationItem Name="ExportLayout" Value="Экспорт разметки в файл..." />
+			<LocalizationItem Name="ImportLayout" Value="Импорт разметки из файла..." />
+			<LocalizationItem Name="ReportDesignerError" Value="Ошибка" />
+			<LocalizationItem Name="ReportDesignerWarning" Value="Предупреждение" />
+			<LocalizationItem Name="ReportFiles" Value="Файлы отчета" />
+		</LocalizationGroup>
+		<LocalizationGroup Name="Enums">
+			<LocalizationGroup Name="DevExpress.ExpressApp.Reports.Win.ReportType" Value="Тип отчета">
+				<LocalizationItem Name="Label" Value="Этикетка" />
+				<LocalizationItem Name="Standard" Value="Стандартный" />
+			</LocalizationGroup>
+		</LocalizationGroup>
+		<LocalizationGroup Name="Messages">
+			<LocalizationItem Name="ReportPreviewFilter" Value="Установленный фильтр использует запрашиваемые поля и не может быть использован в дизайнере.\r\nВ дизайнере будет использован автоматически полученный вариант фильтра.\r\nВы можете изменить этот фильтр для дизайнера самостоятельно, установив свойство FilterForDesignPreview." />
+			<LocalizationItem Name="WrongReportPreviewFilter" Value="Фильтры с запрашиваемыми полями не могут быть использованы для свойства FilterForDesignPreview." />
+		</LocalizationGroup>
+	</Localization>
+	<Views>
+		<DetailView Id="NewXafReportWizardParameters_DetailView" Caption="Мастер нового отчета">
+			<Items>
+				<StaticText Id="ReportText" Text="Чтобы создать новый отчет, введите имя в поле ниже и выберите основной тип данных для отчета из списка." />
+			</Items>
+			<Layout>
+				<LayoutGroup Id="Main">
+					<LayoutGroup Id="Static" Caption="Статичный(11)">
+						<LayoutGroup Id="NewReportParams" Caption="Параметры нового отчета">
+							<LayoutGroup Id="SimpleEditors" Caption="Простые редакторы" />
+						</LayoutGroup>
+					</LayoutGroup>
+				</LayoutGroup>
+			</Layout>
+		</DetailView>
+	</Views>
+</Application>

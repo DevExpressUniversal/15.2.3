@@ -1,0 +1,517 @@
+﻿<#@ template language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="DevExpress.Design.Mvvm" #>
+<#@ import namespace="DevExpress.Xpf.Core.Design.Wizards.Mvvm.EntityFramework" #>
+<#@ import namespace="DevExpress.Xpf.Core.Design.Wizards.Mvvm" #>
+<#@ import namespace="DevExpress.Xpf.Core.Design.Wizards.Mvvm.ViewModelData" #>
+<#@ import namespace="DevExpress.Xpf.Core.Native" #>
+<#
+	T4TemplateInfo templateInfo = this.GetTemplateInfo();
+	DocumentManagerViewModelInfo viewModelData = templateInfo.Properties["IViewModelInfo"] as DocumentManagerViewModelInfo;
+	UIType uiType = (UIType)templateInfo.Properties["UIType"];
+    string viewName = templateInfo.Properties["ViewName"].ToString();    
+    string localNamespace = templateInfo.Properties["Namespace"].ToString();
+	string viewFullName = localNamespace +"." + viewName;
+	string mvvmContextFullName = viewModelData.Namespace+"."+viewModelData.Name;
+	string bindingSourceName = Char.ToLowerInvariant(viewName[0]) + viewName.Substring(1) + "BindingSource";
+	bool IsVisualBasic = (bool)templateInfo.Properties["IsVisualBasic"];
+	bool CreateSubItemForTableAndView = viewModelData.Tables.Count() > 0 && viewModelData.Views.Count() > 0; 
+#>
+<#
+if(!IsVisualBasic){
+#>
+namespace <#=viewFullName#> {
+    partial class <#=viewName#> {
+        /// <summary> 
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary> 
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing) {
+            if(disposing && (components != null)) {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+		 #region Component Designer generated code
+
+        /// <summary> 
+        /// Required method for Designer support - do not modify 
+        /// the contents of this method with the code editor.
+        /// </summary>
+		private void InitializeComponent() {
+			this.components = new System.ComponentModel.Container();
+			this.documentManager = new DevExpress.XtraBars.Docking2010.DocumentManager();
+            this.tabbedView = new DevExpress.XtraBars.Docking2010.Views.Tabbed.TabbedView();
+			this.mvvmContext = new DevExpress.Utils.MVVM.MVVMContext(this.components);
+			this.ribbonControl = new DevExpress.XtraBars.Ribbon.RibbonControl();
+			this.ribbonPage = new DevExpress.XtraBars.Ribbon.RibbonPage();
+            this.ribbonPageGroup = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+			this.ribbonStatusBar = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
+			this.ribbonPageGroupNavigation = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+			this.barSubItemNavigation = new DevExpress.XtraBars.BarSubItem();
+			this.skinRibbonGalleryBarItem = new DevExpress.XtraBars.SkinRibbonGalleryBarItem();
+			this.officeNavigationBar = new DevExpress.XtraBars.Navigation.OfficeNavigationBar();
+            this.navigationFrame = new DevExpress.XtraBars.Navigation.NavigationFrame();
+			<#if(CreateSubItemForTableAndView){#>
+			this.barSubItemTables = new DevExpress.XtraBars.BarSubItem();
+			this.barSubItemViews = new DevExpress.XtraBars.BarSubItem();
+			<#}#>
+			<#foreach(var item in viewModelData.Tables){
+					string nameForItem = "navigationBarItem" + item.ViewName;
+					string nameForRibbonItem = "barButtonItem" + item.ViewName;
+				#>
+			this.<#=nameForItem#> = new DevExpress.XtraBars.Navigation.NavigationBarItem();
+			this.<#=nameForRibbonItem#> = new DevExpress.XtraBars.BarButtonItem();
+			<#}	#>
+			<#foreach(var item in viewModelData.Views){
+					string nameForItem = "navigationBarItem" + item.ViewName;
+					string nameForRibbonItem = "barButtonItem" + item.ViewName;
+			#>
+			this.<#=nameForItem#> = new DevExpress.XtraBars.Navigation.NavigationBarItem(); 
+			this.<#=nameForRibbonItem#> = new DevExpress.XtraBars.BarButtonItem();
+			<#}	#>
+            ((System.ComponentModel.ISupportInitialize)(this.mvvmContext)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.officeNavigationBar)).BeginInit();
+            this.SuspendLayout();
+			// 
+            // ribbonControl
+            // 
+            this.ribbonControl.ExpandCollapseItem.Id = 0;
+            this.ribbonControl.MaxItemId = 14;
+            this.ribbonControl.Name = "ribbonControl";
+			this.ribbonControl.Items.AddRange(new DevExpress.XtraBars.BarItem[] {this.skinRibbonGalleryBarItem, this.barSubItemNavigation <#if(CreateSubItemForTableAndView){#>,this.barSubItemTables,this.barSubItemViews<#}#>});
+			this.ribbonControl.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
+            this.ribbonPage});
+            this.ribbonControl.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonControlStyle.Office2013;
+            this.ribbonControl.ShowApplicationButton = DevExpress.Utils.DefaultBoolean.False;
+			this.ribbonControl.MdiMergeStyle = DevExpress.XtraBars.Ribbon.RibbonMdiMergeStyle.Always;
+            this.ribbonControl.ToolbarLocation = DevExpress.XtraBars.Ribbon.RibbonQuickAccessToolbarLocation.Hidden;
+			this.ribbonControl.StatusBar = this.ribbonStatusBar;
+            // 
+            // ribbonPage
+            // 
+            this.ribbonPage.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
+			this.ribbonPageGroupNavigation,
+            this.ribbonPageGroup});
+			this.ribbonPage.MergeOrder = -1;
+            this.ribbonPage.Name = "ribbonPage";
+            this.ribbonPage.Text = "View";
+			// 
+            // ribbonPageGroupNavigation
+            // 
+            this.ribbonPageGroupNavigation.ItemLinks.Add(this.barSubItemNavigation);
+            this.ribbonPageGroupNavigation.Name = "ribbonPageGroupNavigation";
+            this.ribbonPageGroupNavigation.Text = "Module";
+			 // 
+            // barSubItemNavigation
+            // 
+            this.barSubItemNavigation.Caption = "Navigation";
+            this.barSubItemNavigation.ImageUri.Uri = "NavigationBar";
+            this.barSubItemNavigation.Name = "barSubItemNavigation";
+			<#if(CreateSubItemForTableAndView){#>
+			// 
+            // barSubItemTables
+            // 
+            this.barSubItemTables.Caption = "Tables";
+            this.barSubItemTables.Name = "barSubItemTables";
+			// 
+            // barSubItemViews
+            // 
+            this.barSubItemViews.Caption = "Views";
+            this.barSubItemViews.Name = "barSubItemViews";
+			this.barSubItemNavigation.LinksPersistInfo.Add(new DevExpress.XtraBars.LinkPersistInfo(this.barSubItemTables));
+			this.barSubItemNavigation.LinksPersistInfo.Add(new DevExpress.XtraBars.LinkPersistInfo(this.barSubItemViews));
+			<#}#>
+            // 
+            // ribbonPageGroup
+            // 
+            this.ribbonPageGroup.AllowTextClipping = false;
+			this.ribbonPageGroup.ItemLinks.Add(this.skinRibbonGalleryBarItem);
+            this.ribbonPageGroup.Name = "ribbonPageGroup";
+            this.ribbonPageGroup.ShowCaptionButton = false;
+            this.ribbonPageGroup.Text = "Appearance";
+			// 
+            // ribbonStatusBar
+            // 
+			this.ribbonStatusBar.Name = "ribbonStatusBar";
+            this.ribbonStatusBar.Ribbon = this.ribbonControl;
+			// 
+            // officeNavigationBar
+            //
+			this.officeNavigationBar.Dock = System.Windows.Forms.DockStyle.Bottom; 
+            this.officeNavigationBar.Items.AddRange(new DevExpress.XtraBars.Navigation.NavigationBarItem[] {
+            <#foreach(var item in viewModelData.Tables){
+				string nameForItem = "navigationBarItem" + item.ViewName;
+			#>
+			this.<#=nameForItem#>,
+			<#}	#>
+			<#foreach(var item in viewModelData.Views){
+				string nameForItem = "navigationBarItem" + item.ViewName;
+			#>
+			this.<#=nameForItem#>,
+			<#}	#>			
+			});
+            this.officeNavigationBar.Name = "officeNavigationBar";
+            this.officeNavigationBar.Text = "officeNavigationBar";
+			<#foreach(var item in viewModelData.Tables){
+				string nameForItem = "navigationBarItem" + item.ViewName;
+				string nameForRibbonItem = "barButtonItem" + item.ViewName;
+			#>
+			// 
+            // <#=nameForItem#>
+            // 
+			this.<#=nameForItem#>.Name = "<#=nameForItem#>";
+            this.<#=nameForItem#>.Text = "<#=item.Caption#>";
+			// 
+            // <#=nameForRibbonItem#>
+            // 
+			this.<#=nameForRibbonItem#>.Name = "<#=nameForRibbonItem#>";
+            this.<#=nameForRibbonItem#>.Caption = "<#=item.Caption#>";
+				<#if(CreateSubItemForTableAndView){#>
+			this.barSubItemTables.LinksPersistInfo.Add(new DevExpress.XtraBars.LinkPersistInfo(this.<#=nameForRibbonItem#>));
+				<#}	#>
+				<#if(!CreateSubItemForTableAndView){#>
+			this.barSubItemNavigation.LinksPersistInfo.Add(new DevExpress.XtraBars.LinkPersistInfo(this.<#=nameForRibbonItem#>));
+				<#}	#>	
+			<#}	#>
+			<#foreach(var item in viewModelData.Views){
+				string nameForItem = "navigationBarItem" + item.ViewName;
+				string nameForRibbonItem = "barButtonItem" + item.ViewName;
+			#>
+			// 
+            // <#=nameForItem#>
+            // 
+			this.<#=nameForItem#>.Name = "<#=nameForItem#>";
+            this.<#=nameForItem#>.Text = "<#=item.Caption#>";
+			// 
+            // <#=nameForRibbonItem#>
+            // 
+			this.<#=nameForRibbonItem#>.Name = "<#=nameForRibbonItem#>";
+            this.<#=nameForRibbonItem#>.Caption = "<#=item.Caption#>";
+			<#if(CreateSubItemForTableAndView){#>
+			this.barSubItemViews.LinksPersistInfo.Add(new DevExpress.XtraBars.LinkPersistInfo(this.<#=nameForRibbonItem#>));
+			<#}#>
+			<#if(!CreateSubItemForTableAndView){#>
+			this.barSubItemNavigation.LinksPersistInfo.Add(new DevExpress.XtraBars.LinkPersistInfo(this.<#=nameForRibbonItem#>));
+			<#}	#>
+			<#}	#>	
+			// 
+            // mvvmContext
+            // 
+            this.mvvmContext.ContainerControl = this;
+            this.mvvmContext.ViewModelType = typeof(<#=mvvmContextFullName#>);
+			 // 
+            // navigationFrame
+            // 
+            this.navigationFrame.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.navigationFrame.Name = "navigationFrame";
+            this.navigationFrame.RibbonAndBarsMergeStyle = DevExpress.XtraBars.Docking2010.Views.RibbonAndBarsMergeStyle.Always;
+            this.navigationFrame.Text = "navigationFrame";
+			// 
+            // <#=viewName#>
+            // 
+			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.Controls.Add(this.navigationFrame);
+            this.Controls.Add(this.officeNavigationBar);
+            this.Controls.Add(this.ribbonStatusBar);
+            this.Controls.Add(this.ribbonControl);
+			this.Size = new System.Drawing.Size(1024, 768);
+            this.Name = "<#=viewName#>";
+            ((System.ComponentModel.ISupportInitialize)(this.mvvmContext)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.officeNavigationBar)).EndInit();
+            this.ResumeLayout(false);
+            this.PerformLayout();
+		}
+		
+        #endregion
+
+		private DevExpress.XtraBars.Docking2010.DocumentManager documentManager;
+        private DevExpress.XtraBars.Docking2010.Views.Tabbed.TabbedView tabbedView;
+		private DevExpress.Utils.MVVM.MVVMContext mvvmContext;
+		private DevExpress.XtraBars.Ribbon.RibbonControl ribbonControl;
+		private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPage;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup;
+		private DevExpress.XtraBars.Ribbon.RibbonStatusBar ribbonStatusBar;
+		private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroupNavigation;
+		private DevExpress.XtraBars.BarSubItem barSubItemNavigation;
+		private DevExpress.XtraBars.SkinRibbonGalleryBarItem skinRibbonGalleryBarItem;
+		private DevExpress.XtraBars.Navigation.OfficeNavigationBar officeNavigationBar;
+        private DevExpress.XtraBars.Navigation.NavigationFrame navigationFrame; 
+		<#if(CreateSubItemForTableAndView){#>
+		private DevExpress.XtraBars.BarSubItem barSubItemTables;
+		private DevExpress.XtraBars.BarSubItem barSubItemViews;
+		<#}#>
+		<#foreach(var item in viewModelData.Tables){
+				string nameForItem = "navigationBarItem" + item.ViewName;
+				string nameForRibbonItem = "barButtonItem" + item.ViewName;
+			#>
+		private DevExpress.XtraBars.Navigation.NavigationBarItem <#=nameForItem#>;
+		private DevExpress.XtraBars.BarButtonItem  <#=nameForRibbonItem#>;
+		<#}	#>
+		<#foreach(var item in viewModelData.Views){
+				string nameForItem = "navigationBarItem" + item.ViewName;
+				string nameForRibbonItem = "barButtonItem" + item.ViewName;
+			#>
+		private DevExpress.XtraBars.Navigation.NavigationBarItem <#=nameForItem#>;
+		private DevExpress.XtraBars.BarButtonItem  <#=nameForRibbonItem#>;
+		<#}	#>
+	}
+}
+<#
+}
+if(IsVisualBasic){
+#>
+Namespace Global.<#=viewFullName#>
+	Partial Public Class <#=viewName#>
+		''' <summary> 
+		''' Required designer variable.
+		''' </summary>
+		Private components As System.ComponentModel.IContainer = Nothing
+
+		''' <summary> 
+		''' Clean up any resources being used.
+		''' </summary>
+		''' <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+		Protected Overrides Sub Dispose(ByVal disposing As Boolean)
+			If disposing AndAlso (components IsNot Nothing) Then
+				components.Dispose()
+			End If
+			MyBase.Dispose(disposing)
+		End Sub
+		#Region "Component Designer generated code"
+
+		''' <summary> 
+		''' Required method for Designer support - do not modify 
+		''' the contents of this method with the code editor.
+		''' </summary>
+		Private Sub InitializeComponent()
+			Me.components = New System.ComponentModel.Container()
+			Me.documentManager = New DevExpress.XtraBars.Docking2010.DocumentManager()
+			Me.tabbedView = New DevExpress.XtraBars.Docking2010.Views.Tabbed.TabbedView()
+			Me.mvvmContext = New DevExpress.Utils.MVVM.MVVMContext(Me.components)
+			Me.ribbonControl = New DevExpress.XtraBars.Ribbon.RibbonControl()
+			Me.ribbonPage = New DevExpress.XtraBars.Ribbon.RibbonPage()
+			Me.ribbonPageGroup = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
+			Me.ribbonStatusBar = New DevExpress.XtraBars.Ribbon.RibbonStatusBar()
+			Me.ribbonPageGroupNavigation = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
+			Me.barSubItemNavigation = New DevExpress.XtraBars.BarSubItem()
+			Me.skinRibbonGalleryBarItem = New DevExpress.XtraBars.SkinRibbonGalleryBarItem()
+			Me.officeNavigationBar = New DevExpress.XtraBars.Navigation.OfficeNavigationBar()
+			Me.navigationFrame = New DevExpress.XtraBars.Navigation.NavigationFrame()
+			<#if(CreateSubItemForTableAndView){#>
+			Me.barSubItemTables = New DevExpress.XtraBars.BarSubItem()
+			Me.barSubItemViews = New DevExpress.XtraBars.BarSubItem()
+			<#}#>
+			<#foreach(var item in viewModelData.Tables){
+					string nameForItem = "navigationBarItem" + item.ViewName;
+					string nameForRibbonItem = "barButtonItem" + item.ViewName;
+				#>
+			Me.<#=nameForItem#> = New DevExpress.XtraBars.Navigation.NavigationBarItem()
+			Me.<#=nameForRibbonItem#> = New DevExpress.XtraBars.BarButtonItem()
+			<#}	#>
+			<#foreach(var item in viewModelData.Views){
+					string nameForItem = "navigationBarItem" + item.ViewName;
+					string nameForRibbonItem = "barButtonItem" + item.ViewName;
+			#>
+			Me.<#=nameForItem#> = New DevExpress.XtraBars.Navigation.NavigationBarItem()
+			Me.<#=nameForRibbonItem#> = New DevExpress.XtraBars.BarButtonItem()
+			<#}	#>
+			CType(Me.mvvmContext, System.ComponentModel.ISupportInitialize).BeginInit()
+			CType(Me.ribbonControl, System.ComponentModel.ISupportInitialize).BeginInit()
+			CType(Me.officeNavigationBar, System.ComponentModel.ISupportInitialize).BeginInit()
+			Me.SuspendLayout()
+			' 
+			' ribbonControl
+			' 
+			Me.ribbonControl.ExpandCollapseItem.Id = 0
+			Me.ribbonControl.MaxItemId = 14
+			Me.ribbonControl.Name = "ribbonControl"
+			Me.ribbonControl.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.skinRibbonGalleryBarItem, Me.barSubItemNavigation<#if(CreateSubItemForTableAndView){	#>,Me.barSubItemTables,Me.barSubItemViews<#}#>})
+			Me.ribbonControl.Pages.AddRange(New DevExpress.XtraBars.Ribbon.RibbonPage() {Me.ribbonPage})
+			Me.ribbonControl.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonControlStyle.Office2013
+			Me.ribbonControl.ShowApplicationButton = DevExpress.Utils.DefaultBoolean.False
+			Me.ribbonControl.MdiMergeStyle = DevExpress.XtraBars.Ribbon.RibbonMdiMergeStyle.Always
+			Me.ribbonControl.ToolbarLocation = DevExpress.XtraBars.Ribbon.RibbonQuickAccessToolbarLocation.Hidden
+			Me.ribbonControl.StatusBar = Me.ribbonStatusBar
+			' 
+			' ribbonPage
+			' 
+			Me.ribbonPage.Groups.AddRange(New DevExpress.XtraBars.Ribbon.RibbonPageGroup() { Me.ribbonPageGroupNavigation, Me.ribbonPageGroup})
+			Me.ribbonPage.MergeOrder = -1
+			Me.ribbonPage.Name = "ribbonPage"
+			Me.ribbonPage.Text = "View"
+			' 
+			' ribbonPageGroupNavigation
+			' 
+			Me.ribbonPageGroupNavigation.ItemLinks.Add(Me.barSubItemNavigation)
+			Me.ribbonPageGroupNavigation.Name = "ribbonPageGroupNavigation"
+			Me.ribbonPageGroupNavigation.Text = "Module"
+			' 
+			' barSubItemNavigation
+			' 
+			Me.barSubItemNavigation.Caption = "Navigation"
+			Me.barSubItemNavigation.ImageUri.Uri = "NavigationBar"
+			Me.barSubItemNavigation.Name = "barSubItemNavigation"
+			<#if(CreateSubItemForTableAndView){#>
+			' 
+			' barSubItemTables
+			' 
+			Me.barSubItemTables.Caption = "Tables"
+			Me.barSubItemTables.Name = "barSubItemTables"
+			' 
+			' barSubItemViews
+			' 
+			Me.barSubItemViews.Caption = "Views"
+			Me.barSubItemViews.Name = "barSubItemViews"
+			Me.barSubItemNavigation.LinksPersistInfo.Add(New DevExpress.XtraBars.LinkPersistInfo(Me.barSubItemTables))
+			Me.barSubItemNavigation.LinksPersistInfo.Add(New DevExpress.XtraBars.LinkPersistInfo(Me.barSubItemViews))
+			<#}#>
+			' 
+			' ribbonPageGroup
+			' 
+			Me.ribbonPageGroup.AllowTextClipping = False
+			Me.ribbonPageGroup.ItemLinks.Add(Me.skinRibbonGalleryBarItem)
+			Me.ribbonPageGroup.Name = "ribbonPageGroup"
+			Me.ribbonPageGroup.ShowCaptionButton = False
+			Me.ribbonPageGroup.Text = "Appearance"
+			' 
+			' ribbonStatusBar
+			' 
+			Me.ribbonStatusBar.Name = "ribbonStatusBar"
+			Me.ribbonStatusBar.Ribbon = Me.ribbonControl
+			' 
+			' officeNavigationBar
+			'
+			Me.officeNavigationBar.Dock = System.Windows.Forms.DockStyle.Bottom
+            <#foreach(var item in viewModelData.Tables){
+				string nameForItem = "navigationBarItem" + item.ViewName;
+			#>
+			Me.officeNavigationBar.Items.Add(Me.<#=nameForItem#>)
+			<#}	#>
+			<#foreach(var item in viewModelData.Views){
+				string nameForItem = "navigationBarItem" + item.ViewName;
+			#>
+			Me.officeNavigationBar.Items.Add(Me.<#=nameForItem#>)
+			<#}#>
+			Me.officeNavigationBar.Name = "officeNavigationBar"
+			Me.officeNavigationBar.Text = "officeNavigationBar"
+			<#foreach(var item in viewModelData.Tables){
+				string nameForItem = "navigationBarItem" + item.ViewName;
+				string nameForRibbonItem = "barButtonItem" + item.ViewName;
+			#>
+			' 
+            ' <#=nameForItem#>
+            ' 
+			Me.<#=nameForItem#>.Name = "<#=nameForItem#>"
+            Me.<#=nameForItem#>.Text = "<#=item.Caption#>"
+			' 
+            ' <#=nameForRibbonItem#>
+            ' 
+			Me.<#=nameForRibbonItem#>.Name = "<#=nameForRibbonItem#>"
+            Me.<#=nameForRibbonItem#>.Caption = "<#=item.Caption#>"
+				<#if(CreateSubItemForTableAndView){#>
+			Me.barSubItemTables.LinksPersistInfo.Add(New DevExpress.XtraBars.LinkPersistInfo(Me.<#=nameForRibbonItem#>))
+				<#}	#>
+				<#if(!CreateSubItemForTableAndView){#>
+			Me.barSubItemNavigation.LinksPersistInfo.Add(New DevExpress.XtraBars.LinkPersistInfo(Me.<#=nameForRibbonItem#>))
+				<#}	#>	
+			<#}	#>
+			<#foreach(var item in viewModelData.Views){
+				string nameForItem = "navigationBarItem" + item.ViewName;
+				string nameForRibbonItem = "barButtonItem" + item.ViewName;
+			#>
+			' 
+            ' <#=nameForItem#>
+            ' 
+			Me.<#=nameForItem#>.Name = "<#=nameForItem#>"
+            Me.<#=nameForItem#>.Text = "<#=item.Caption#>"
+			' 
+            ' <#=nameForRibbonItem#>
+            ' 
+			Me.<#=nameForRibbonItem#>.Name = "<#=nameForRibbonItem#>"
+            Me.<#=nameForRibbonItem#>.Caption = "<#=item.Caption#>"
+				<#if(CreateSubItemForTableAndView){#>
+			Me.barSubItemViews.LinksPersistInfo.Add(New DevExpress.XtraBars.LinkPersistInfo(Me.<#=nameForRibbonItem#>))
+				<#}	#>
+				<#if(!CreateSubItemForTableAndView){#>
+			Me.barSubItemNavigation.LinksPersistInfo.Add(New DevExpress.XtraBars.LinkPersistInfo(Me.<#=nameForRibbonItem#>))
+				<#}	#>	
+			<#}	#>
+			' 
+			' mvvmContext
+			' 
+			Me.mvvmContext.ContainerControl = Me
+			Me.mvvmContext.ViewModelType = GetType(Global.<#=mvvmContextFullName#>)
+			' 
+			' navigationFrame
+			' 
+			Me.navigationFrame.Dock = System.Windows.Forms.DockStyle.Fill
+			Me.navigationFrame.Name = "navigationFrame"
+			Me.navigationFrame.RibbonAndBarsMergeStyle = DevExpress.XtraBars.Docking2010.Views.RibbonAndBarsMergeStyle.Always
+			Me.navigationFrame.Text = "navigationFrame"
+			' 
+            ' <#=viewName#>
+            '
+			Me.AutoScaleDimensions = New System.Drawing.SizeF(6F, 13F)
+			Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+			Me.Controls.Add(Me.navigationFrame)
+			Me.Controls.Add(Me.officeNavigationBar)
+			Me.Controls.Add(Me.ribbonStatusBar)
+			Me.Controls.Add(Me.ribbonControl)
+			Me.Size = New System.Drawing.Size(1024, 768) 
+			Me.Name = "<#=viewName#>"
+			CType(Me.mvvmContext, System.ComponentModel.ISupportInitialize).EndInit()
+			CType(Me.ribbonControl, System.ComponentModel.ISupportInitialize).EndInit()
+			CType(Me.officeNavigationBar, System.ComponentModel.ISupportInitialize).EndInit()
+			Me.ResumeLayout(False)
+			Me.PerformLayout()
+		End Sub
+
+		#End Region
+
+		Private documentManager As DevExpress.XtraBars.Docking2010.DocumentManager
+		Private tabbedView As DevExpress.XtraBars.Docking2010.Views.Tabbed.TabbedView
+		Private mvvmContext As DevExpress.Utils.MVVM.MVVMContext
+		Private ribbonControl As DevExpress.XtraBars.Ribbon.RibbonControl
+		Private ribbonPage As DevExpress.XtraBars.Ribbon.RibbonPage
+		Private ribbonPageGroup As DevExpress.XtraBars.Ribbon.RibbonPageGroup
+		Private ribbonStatusBar As DevExpress.XtraBars.Ribbon.RibbonStatusBar
+		Private ribbonPageGroupNavigation As DevExpress.XtraBars.Ribbon.RibbonPageGroup
+		Private barSubItemNavigation As DevExpress.XtraBars.BarSubItem
+		Private skinRibbonGalleryBarItem As DevExpress.XtraBars.SkinRibbonGalleryBarItem
+		Private officeNavigationBar As DevExpress.XtraBars.Navigation.OfficeNavigationBar
+		Private navigationFrame As DevExpress.XtraBars.Navigation.NavigationFrame
+		<#if(CreateSubItemForTableAndView){#>
+		Private barSubItemTables As DevExpress.XtraBars.BarSubItem
+		Private barSubItemViews As DevExpress.XtraBars.BarSubItem
+		<#}#>
+		<#foreach(var item in viewModelData.Tables){
+				string nameForItem = "navigationBarItem" + item.ViewName;
+				string nameForRibbonItem = "barButtonItem" + item.ViewName;
+			#>
+		Private <#=nameForItem#> As DevExpress.XtraBars.Navigation.NavigationBarItem
+		Private  <#=nameForRibbonItem#> As DevExpress.XtraBars.BarButtonItem
+		<#}	#>
+		<#foreach(var item in viewModelData.Views){
+				string nameForItem = "navigationBarItem" + item.ViewName;
+				string nameForRibbonItem = "barButtonItem" + item.ViewName;
+			#>
+		Private <#=nameForItem#> As DevExpress.XtraBars.Navigation.NavigationBarItem
+		Private  <#=nameForRibbonItem#> As DevExpress.XtraBars.BarButtonItem
+		<#}	#>
+	End Class
+End Namespace
+<#
+}
+#>

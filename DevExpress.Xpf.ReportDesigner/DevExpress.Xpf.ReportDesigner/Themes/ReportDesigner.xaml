@@ -1,0 +1,85 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+            xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
+            xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+            xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+            xmlns:dxi="http://schemas.devexpress.com/winfx/2008/xaml/core/internal"
+            xmlns:dxp="http://schemas.devexpress.com/winfx/2008/xaml/printing"
+            xmlns:dxdo="http://schemas.devexpress.com/winfx/2008/xaml/docking"
+            xmlns:designernative="clr-namespace:DevExpress.Xpf.Reports.UserDesigner.Native"
+            xmlns:designer="clr-namespace:DevExpress.Xpf.Reports.UserDesigner"
+            xmlns:designerthemes="clr-namespace:DevExpress.Xpf.Reports.UserDesigner.Themes"
+            xmlns:toolbox="clr-namespace:DevExpress.Xpf.Reports.UserDesigner.Toolbox"
+            xmlns:reportexplorer="clr-namespace:DevExpress.Xpf.Reports.UserDesigner.ReportExplorer"
+            xmlns:fieldlist="clr-namespace:DevExpress.Xpf.Reports.UserDesigner.FieldList"
+            xmlns:propertygrid="clr-namespace:DevExpress.Xpf.Reports.UserDesigner.PropertyGrid"
+            xmlns:xrdiagram="clr-namespace:DevExpress.Xpf.Reports.UserDesigner.XRDiagram"
+            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/DevExpress.Xpf.ReportDesigner.v15.2;component/Themes/ReportDesignerBase.xaml" />
+        <ResourceDictionary Source="/DevExpress.Xpf.ReportDesigner.v15.2;component/Themes/RibbonTemplate.xaml" />
+        <ResourceDictionary Source="/DevExpress.Xpf.ReportDesigner.v15.2;component/Themes/RibbonStatusBarTemplate.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    <DataTemplate x:Key="{designerthemes:ReportDesignerThemeKey ResourceKey=DesignerPaneTemplate}">
+        <ContentControl IsTabStop="False" Focusable="False" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Content="{Binding Document.Diagram}" />
+    </DataTemplate>
+    <DataTemplate x:Key="{designerthemes:ReportDesignerThemeKey ResourceKey=PreviewTemplate}">
+        <dxp:DocumentPreviewControl RequestDocumentCreation="False"  DocumentSource="{Binding Document.PreviewReport}" CommandBarStyle="None" designernative:ReportDesignerPreview.Document="{Binding Document}" />
+    </DataTemplate>
+    <DataTemplate x:Key="{designerthemes:ReportDesignerThemeKey ResourceKey=ScriptEditorTemplate}">
+        <dxe:TextEdit
+                    EditValue="{Binding Path=Document.ReportModel.ScriptsSource, UpdateSourceTrigger=PropertyChanged}"
+                    FontFamily="Courier New, Lucida Console"
+                    VerticalContentAlignment="Top"
+                    AcceptsReturn="True"
+                    AcceptsTab="True">
+            <dxe:TextEdit.BorderTemplate>
+                <ControlTemplate TargetType="{x:Type ContentControl}">
+                    <Border BorderThickness="0" BorderBrush="Transparent" CornerRadius="0">
+                        <ContentPresenter />
+                    </Border>
+                </ControlTemplate>
+            </dxe:TextEdit.BorderTemplate>
+        </dxe:TextEdit>
+    </DataTemplate>
+    <DataTemplate x:Key="{designerthemes:ReportDesignerThemeKey ResourceKey=DocumentTemplate}">
+        <Grid>
+            <Grid.Resources>
+                <designer:ReportDesignerDocumentViewKind x:Key="ReportDesignerDocumentViewKind_Designer">Designer</designer:ReportDesignerDocumentViewKind>
+                <designer:ReportDesignerDocumentViewKind x:Key="ReportDesignerDocumentViewKind_ScriptEditor">ScriptEditor</designer:ReportDesignerDocumentViewKind>
+                <designer:ReportDesignerDocumentViewKind x:Key="ReportDesignerDocumentViewKind_Preview">Preview</designer:ReportDesignerDocumentViewKind>
+            </Grid.Resources>
+
+            <ContentControl HorizontalAlignment="Stretch" VerticalContentAlignment="Stretch" Content="{Binding}"
+                        ContentTemplate="{Binding Path=(designer:ReportDesigner.Designer).DesignerPaneTemplate, RelativeSource={RelativeSource Self}}"
+                        Visibility="{Binding Path=Document.ViewKind, Converter={designernative:ViewKindToVisibilityConverter}, ConverterParameter={StaticResource ReportDesignerDocumentViewKind_Designer}}"
+            />
+            <ContentControl HorizontalAlignment="Stretch" VerticalContentAlignment="Stretch" Content="{Binding}"
+                        ContentTemplate="{Binding Path=(designer:ReportDesigner.Designer).ScriptEditorTemplate, RelativeSource={RelativeSource Self}}"
+                        Visibility="{Binding Path=Document.ViewKind, Converter={designernative:ViewKindToVisibilityConverter}, ConverterParameter={StaticResource ReportDesignerDocumentViewKind_ScriptEditor}}"
+            />
+            <ContentControl HorizontalAlignment="Stretch" VerticalContentAlignment="Stretch" Content="{Binding}"
+                        ContentTemplate="{Binding Path=(designer:ReportDesigner.Designer).PreviewTemplate, RelativeSource={RelativeSource Self}}"
+                        Visibility="{Binding Path=Document.ViewKind, Converter={designernative:ViewKindToVisibilityConverter}, ConverterParameter={StaticResource ReportDesignerDocumentViewKind_Preview}}"
+            />
+        </Grid>
+    </DataTemplate>
+
+    <Style TargetType="designer:ReportDesigner" BasedOn="{StaticResource {x:Type designer:ReportDesignerBase}}">
+        <Setter Property="RibbonTemplate" Value="{DynamicResource {designerthemes:ReportDesignerThemeKey ResourceKey=RibbonTemplate}}" />
+        <Setter Property="RibbonStatusBarTemplate" Value="{DynamicResource {designerthemes:ReportDesignerThemeKey ResourceKey=RibbonStatusBarTemplate}}" />
+        <Setter Property="DocumentTemplate" Value="{DynamicResource {designerthemes:ReportDesignerThemeKey ResourceKey=DocumentTemplate}}" />
+        <Setter Property="DesignerPaneTemplate" Value="{DynamicResource {designerthemes:ReportDesignerThemeKey ResourceKey=DesignerPaneTemplate}}" />
+        <Setter Property="PreviewTemplate" Value="{DynamicResource {designerthemes:ReportDesignerThemeKey ResourceKey=PreviewTemplate}}" />
+        <Setter Property="ScriptEditorTemplate" Value="{DynamicResource {designerthemes:ReportDesignerThemeKey ResourceKey=ScriptEditorTemplate}}" />
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="designer:ReportDesigner">
+                    <Border x:Name="ViewContainer" />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

@@ -1,0 +1,913 @@
+TokenKind = Type;
+TokenValue = Value;
+GenLinePragmas = false;
+
+PARSER Parser
+ 
+FRAME
+-->begin
+using System;
+using System.Text;
+using System.Collections;
+using System.Collections.Specialized;
+
+#if DXCORE
+namespace DevExpress.CodeRush.StructuralParser.Xml
+#else
+namespace DevExpress.CodeParser.Xml
+#endif
+{
+	-->constants
+	
+	public class NewXmlParser : XmlParserBase
+	{
+		-->declarations
+		
+		//constructors...
+		public NewXmlParser() 
+		{							
+			parserErrors = new XmlParserErrors();		
+			set = CreateSetArray();
+			maxTokens = Tokens.MaxTokens;
+		}
+		
+		// private methods...
+		protected override void HandlePragmas()
+		{
+			-->pragmas
+		}			
+		
+		-->productions
+		
+		void Parse()
+		{
+			la = new Token();
+			la.Value = "";
+      XmlScanner.ShouldCheckForXmlText = true;
+			Get();
+	-->parseRoot
+			Expect(0);
+			if (Context != null)
+				Context.SetRange(GetRange(Context, tToken));
+			CloseContext();
+		}
+		
+		protected override LanguageElement Parse(string code, int startLine, int startColumn)
+		{
+			ISourceReader stringReader = new SourceStringReader(code, startLine, startColumn);
+			return Parse(stringReader);
+		}
+		
+		protected override LanguageElement DoParse(ParserContext parserContext, ISourceReader reader)
+		{
+			LanguageElement context = parserContext.Context;
+			if (context == null)
+				return null;
+			SetRootNode(context);
+			if (context is SourceFile)
+				((SourceFile)context).SetDocument(parserContext.Document);
+				
+			return Parse(reader);
+		}
+		public LanguageElement Parse(ISourceReader reader)
+		{
+			try
+			{
+				scanner = new XmlScanner(reader);
+				if (!(RootNode is SourceFile))
+					OpenContext(GetSourceFile("dsf"));
+				Parse();
+				return RootNode;
+			}
+			finally
+			{
+				CleanUpParser();
+			}
+		}
+		protected override bool[,] CreateSetArray()
+		{
+			bool[,] set =
+			{
+	-->initialization
+			};
+			return set;
+		}
+	} // end Parser
+
+
+	public class XmlParserErrors : ParserErrorsBase
+	{
+		protected override string GetSyntaxErrorText(int n)
+		{
+			string s;
+			switch (n)
+			{
+	-->errors
+				default:
+					s = "error " + n;
+					break;
+			}
+			return s;
+		}
+	}
+}
+$$$
+ENDFRAME
+
+TOKENNAMES
+	EOF		= EOF
+	NAME	= NAME
+	COMMENT = COMMENT
+	PICHARS = PICHARS
+	PITARGET = PITARGET
+	
+	
+	SYSTEMLITERAL = SYSTEMLITERAL
+	PUBIDLITERAL = PUBIDLITERAL
+	CDATA = CDATA
+	CHARREF = CHARREF
+	
+	XMLTAGOPEN = XMLTAGOPEN
+	EQUALS = EQUALSTOKEN
+	SINGLEQUOTE = SINGLEQUOTE
+	VERSION = VERSION
+	ENCODING = ENCODING
+	QUESTTAGOPEN = QUESTTAGOPEN
+	QUESTTAGCLOSE = QUESTTAGCLOSE
+	STANDALONE = STANDALONE
+	SYSTEM = SYSTEM
+	PUBLIC = PUBLIC
+	DOCTYPE = DOCTYPE
+	TAGCLOSE = TAGCLOSE
+	BRACKETOPEN = BRACKETOPEN
+	BRACKETCLOSE = BRACKETCLOSE
+	ELEMENTDECL = ELEMENTDECL
+	EMPTY = EMPTY
+	ANYCONTENT = ANYCONTENT
+	PARENOPEN = PARENOPEN
+	PARENCLOSE = PARENCLOSE
+	PARENCLOSESTAR =PARENCLOSESTAR
+	PCDATA = PCDATA 
+	BITWISEOR = BITWISEOR
+	PERCENTSYMBOL = PERCENTSYMBOL
+	SEMICOLON = SEMICOLON
+	COMMA = COMMA
+	QUESTION = QUESTION
+	STAR = STAR
+	PLUS = PLUS
+	NOTATIONDECl = NOTATIONDECl
+	ATTLISTDECL = ATTLISTDECL
+	IDTOKEN = IDTOKEN
+	CDATATOKEN = CDATATOKEN
+	IDREF =	IDREF 
+	IDREFS = IDREFS
+	ENTITY = ENTITY 
+	ENTITIES = ENTITIES
+	NMTOKEN = NMTOKEN
+	NMTOKENS = NMTOKENS
+	NOTATION = NOTATION
+	REQUIRED = REQUIRED 
+	IMPLIED = IMPLIED 
+	FIXED =	FIXED
+	ENTITYDECL = ENTITYDECL
+	NDATA = NDATA
+	TAGOPEN = TAGOPEN
+	EMPTYTAGCLOSE = EMPTYTAGCLOSE
+	TAGCLOSESTART = TAGCLOSESTART
+	AMPERSAND = AMPERSAND
+	CDATASTART = CDATASTART
+	CDATAEND  = CDATAEND
+TOKENS
+
+	NAME
+	COMMENT
+	QUOTEDLITERAL
+	CHARREF
+
+	
+	XMLTAGOPEN
+	EQUALS
+	SINGLEQUOTE
+	VERSION
+	ENCODING
+	QUESTTAGOPEN
+	QUESTTAGCLOSE
+	STANDALONE
+	SYSTEM
+	PUBLIC
+	DOCTYPE
+	ELEMENTDECL
+	TAGCLOSE
+	BRACKETOPEN
+	BRACKETCLOSE
+	EMPTY
+	ANYCONTENT
+	PARENOPEN
+	PARENCLOSE
+	PCDATA
+	BITWISEOR
+	PERCENTSYMBOL
+	SEMICOLON
+	COMMA
+	QUESTION
+	STAR
+	PLUS
+	NOTATIONDECl
+	ATTLISTDECL
+	IDTOKEN
+	CDATATOKEN
+	IDREF
+	IDREFS
+	ENTITY
+	ENTITIES
+	NMTOKEN
+	NMTOKENS
+	NOTATION
+	REQUIRED
+	IMPLIED
+	FIXED
+	ENTITYDECL
+	NDATA
+	TAGOPEN
+	EMPTYTAGCLOSE
+	TAGCLOSESTART
+	AMPERSAND
+	CDATASTART
+	CDATAEND
+	
+	CDATA
+	PICHARS
+	
+//////////////////////////////////GRAMMAR//////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////
+	
+PRODUCTIONS
+
+///////ROOT/////////////
+
+Parser = 
+	[Text<true>](.XmlScanner.ShouldCheckForXmlText = false;.)Prolog (Element | Text<true>)(.XmlScanner.ShouldCheckForXmlText = false;.){(Element | Text<true>)(.XmlScanner.ShouldCheckForXmlText = false;.)}[CDATA] 
+  {(.XmlScanner.ShouldCheckForXmlText = true;.)(Element | Text<true>)(.XmlScanner.ShouldCheckForXmlText = false;.)[CDATA]|Misc }
+.
+
+Prolog = 
+	[XMLDecl] {Misc}  [DocTypeDecl] {Misc}
+.
+
+XMLDecl
+(.
+	XmlDecl xmlDecl = new XmlDecl();
+	AddNode(xmlDecl);
+	xmlDecl.SetRange(la.Range);
+.) = 
+	XMLTAGOPEN VersionInfo<xmlDecl> [EncodingDecl<xmlDecl>] [SDDecl<xmlDecl>] QUESTTAGCLOSE
+	(.
+		xmlDecl.SetRange(GetRange(xmlDecl, tToken));
+	.)
+.
+
+VersionInfo<XmlDecl xmlDecl> = 
+	 VERSION EQUALS QUOTEDLITERAL (.xmlDecl.Version = tToken.Value;.) 
+.
+
+EncodingDecl<XmlDecl xmlDecl> = 
+	ENCODING EQUALS QUOTEDLITERAL (.xmlDecl.Encoding = tToken.Value;.)
+.
+SDDecl<XmlDecl xmlDecl> = 
+	STANDALONE EQUALS QUOTEDLITERAL(.xmlDecl.StandAlone = tToken.Value;.)
+.
+
+DocTypeDecl
+(.
+	XmlDocTypeDecl docTypeDecl = new XmlDocTypeDecl();
+	AddNode(docTypeDecl);
+	docTypeDecl.SetRange(la.Range);
+	NewExternalIDLink extID = null;
+.) = 
+	DOCTYPE  Name 
+		(.
+			docTypeDecl.Name = tToken.Value;
+		.) 
+		[ExternalID<out extID> 
+		(. 
+			if (extID != null) docTypeDecl.AddDetailNode(extID);
+		.)]  
+		[BRACKETOPEN IntSubset<docTypeDecl> BRACKETCLOSE] TAGCLOSE
+		(.
+			docTypeDecl.SetRange(GetRange(docTypeDecl, tToken));
+		.)
+.
+IntSubset<XmlDocTypeDecl docTypeDecl> = 
+	{ MarkupDecl<docTypeDecl> | DeclSep}
+.
+
+MarkupDecl<XmlDocTypeDecl docTypeDecl>
+(.
+	XmlElementDecl elementDecl = null;
+	XmlNotationDecl notationDecl = null;
+	XmlAttributeListDeclaration attListDecl = null;
+	XmlEntityDecl entityDecl = null;
+	XmlProcessingInstruction processingInstruction = null;
+.) = 
+		ElementDecl<out elementDecl> 
+		(.
+			if (docTypeDecl != null && elementDecl != null)
+				docTypeDecl.AddNode(elementDecl);
+		.)
+	|	AttlistDecl <out attListDecl>
+		(.
+			if (docTypeDecl != null && attListDecl != null)
+				docTypeDecl.AddNode(attListDecl);
+		.)
+	|	EntityDecl<out entityDecl>
+		(.
+			if (docTypeDecl != null && entityDecl != null)
+				docTypeDecl.AddNode(entityDecl);
+		.) 
+	|	NotationDecl <out notationDecl>
+		(.
+			if (docTypeDecl != null && notationDecl != null)
+				docTypeDecl.AddNode(notationDecl);
+		.)
+	|	PI<out  processingInstruction, false> 
+		(.
+			if (docTypeDecl != null && processingInstruction != null)
+				docTypeDecl.AddNode(processingInstruction);
+		.)
+	|	Comment
+.
+DeclSep
+(.
+	XmlNameReference nameRef;
+.) = 
+	PEReference<out nameRef>
+	(.
+		if (nameRef != null)
+			AddNode(nameRef);
+	.)
+.
+ElementDecl<out XmlElementDecl elementDecl>
+(.
+	elementDecl = new XmlElementDecl();
+	elementDecl.SetRange(la.Range);
+	XmlBaseContentSpec contentSpec = null;
+.) = 
+	ELEMENTDECL  Name 
+		(.
+			elementDecl.Name = tToken.Value;
+		.)  
+	ContentSpec<out contentSpec>
+		(.
+			if (contentSpec != null)
+				elementDecl.AddDetailNode(contentSpec);
+		.) 
+	TAGCLOSE
+	(.
+		elementDecl.SetRange(GetRange(elementDecl, tToken));
+	.)
+.
+ContentSpec<out XmlBaseContentSpec contentSpec>
+(.
+	contentSpec = null;
+	XmlMixedContentSpec mixedContent = null;
+	XmlChildrenContentSpec childContent = null;
+	Token startToken = la;
+.) = 
+		EMPTY 
+		(.
+			contentSpec = new XmlEmptyContentSpec();	
+		.)
+	|	ANYCONTENT 
+		(.
+			contentSpec = new XmlAnyContentSpec();	
+		.)
+	|	PARENOPEN
+		(
+				Mixed<out mixedContent> 
+				(.
+					contentSpec = mixedContent;
+				.)
+			|	Children<out childContent>
+				(.
+					contentSpec = childContent;
+				.)
+		)
+		(.
+			if (contentSpec != null)
+				contentSpec.SetRange(GetRange(startToken, tToken));
+		.)
+
+.
+
+Mixed<out XmlMixedContentSpec contentSpec>
+(.
+	contentSpec = new XmlMixedContentSpec();
+	XmlNameReference nameRef;
+.) = 
+	  PCDATA {BITWISEOR 
+			(
+				Name
+				(.
+					XmlName name = new XmlName();
+					name.Name = tToken.Value;
+					contentSpec.Names.Add(name);
+					contentSpec.AddDetailNode(name);
+				.) 
+			|	PEReference<out nameRef>
+				(.
+					if (nameRef != null)
+					{
+						contentSpec.Names.Add(nameRef);
+						contentSpec.AddDetailNode(nameRef);
+					}
+				.)
+			)} (PARENCLOSE [STAR])
+.
+
+Children<out XmlChildrenContentSpec children>
+(.
+	XmlContentParticle contentParticle = null;
+	children = new XmlChildrenContentSpec();
+	RepeatCount repCount = RepeatCount.Once;
+.) =
+
+	( 
+	  CpSequence<out contentParticle> 
+		[	QUESTION(.repCount = RepeatCount.ZeroOrOnce;.) 
+		|	STAR(.repCount = RepeatCount.ZeroOrMore;.) 
+		|	PLUS(.repCount = RepeatCount.OnceOrMore;.)]
+	)
+(.
+	if (contentParticle != null)
+	{
+		contentParticle.RepeatCount = repCount;
+		children.Source = contentParticle;
+		children.AddDetailNode(contentParticle);
+	}
+.)
+.
+
+Cp<out XmlContentParticle contentParticle>
+(.
+	XmlNameReference nameRef = null;
+	contentParticle = null;
+	RepeatCount repCount = RepeatCount.Once;
+	Token startToken = la;
+.) = 
+
+	(		Name 
+			(.
+				XmlName name = new XmlName();
+				name.Name = tToken.Value;
+				contentParticle = new XmlNamedContentParticle();
+				(contentParticle as XmlNamedContentParticle).ParticleName = name;
+				contentParticle.AddDetailNode(name);
+			.)
+		|	PEReference<out nameRef> 
+			(.
+				if (nameRef != null)
+				{
+					contentParticle = new XmlNamedContentParticle();
+					(contentParticle as XmlNamedContentParticle).ParticleName = nameRef;
+					contentParticle.AddDetailNode(nameRef);
+				}
+			.)
+		|	PARENOPEN CpSequence<out contentParticle> 
+	) 
+		[	QUESTION(.repCount = RepeatCount.ZeroOrOnce;.) 
+		|	STAR(.repCount = RepeatCount.ZeroOrMore;.) 
+		|	PLUS(.repCount = RepeatCount.OnceOrMore;.)
+	]
+	(.
+		if (contentParticle != null)
+		{
+			contentParticle.RepeatCount = repCount;
+			contentParticle.SetRange(GetRange(startToken, tToken));
+		}
+	.)
+
+	
+.
+
+CpSequence <out XmlContentParticle choiceCP>
+(.
+	choiceCP = null;
+	XmlContentParticle currentCP = null;
+	XmlSequencedContentParticle result = null;
+.) = 
+	(Cp<out currentCP> 
+	{	(
+			BITWISEOR
+			(.
+				if (result == null)
+				{
+					result = new XmlChoiceContentParticle();
+					if (currentCP != null)
+					{
+						result.Particles.Add(currentCP);
+						result.AddDetailNode(currentCP);
+					}
+				}
+			.) 
+		|	COMMA
+			(.
+				if (result == null)
+				{
+					result = new XmlSequenceContentParticle();
+					if (currentCP != null)
+					{
+						result.Particles.Add(currentCP);
+						result.AddDetailNode(currentCP);
+					}
+				}
+			.)
+		)
+		 Cp<out currentCP>
+	(.
+		if (currentCP != null)
+		{
+			result.Particles.Add(currentCP);
+			result.AddDetailNode(currentCP);
+		}
+	.)
+	} PARENCLOSE
+	)
+	(.
+		choiceCP = result;
+	.)
+.
+
+NotationDecl<out XmlNotationDecl notationDecl>
+(.
+	NewExternalIDLink extID = null;
+	notationDecl = new XmlNotationDecl();
+	notationDecl.SetRange(la.Range);
+.) = 
+	NOTATIONDECl Name (.notationDecl.Name = tToken.Value;.)  
+		ExternalID<out extID> 
+		(.
+			if (extID != null) 
+			{
+				notationDecl.NotationLink = extID; 
+				notationDecl.AddDetailNode(extID);
+			}
+		.)  TAGCLOSE
+	(.
+		notationDecl.SetRange(GetRange(notationDecl, tToken));
+	.)
+.
+
+AttlistDecl<out XmlAttributeListDeclaration result>
+(.
+	result = new XmlAttributeListDeclaration();
+	XmlAttributeDeclaration attrDecl = null;
+	result.SetRange(la.Range);
+.) = 
+	ATTLISTDECL  Name (.result.Name = tToken.Value; .) 
+		{
+			AttDef<out attrDecl>
+			(.
+				if (attrDecl != null)
+				{
+					result.AddNode(attrDecl);
+					result.AttributesDecl.Add(attrDecl);
+				}
+			.)
+		}  
+	TAGCLOSE
+	(.
+		result.SetRange(GetRange(result, tToken));
+	.)
+.
+
+AttDef<out XmlAttributeDeclaration attrDecl>
+(.
+	attrDecl = new XmlAttributeDeclaration();
+	attrDecl.SetRange(la.Range);
+.) = 
+	Name(.attrDecl.Name = tToken.Value;.)  AttType<attrDecl>  DefaultDecl<attrDecl>
+	(.
+		attrDecl.SetRange(GetRange(attrDecl, tToken));
+	.)
+.
+
+AttType<XmlAttributeDeclaration attrDecl> = 
+		TokenizedType<attrDecl> 
+	|	Enumeration<attrDecl>
+.
+TokenizedType<XmlAttributeDeclaration attrDecl> = 
+		IDTOKEN
+		(.
+			attrDecl.AttributeType = AttributeType.Id;
+		.)
+	|	CDATATOKEN
+		(.
+			attrDecl.AttributeType = AttributeType.CData;
+		.)
+	|	IDREF  
+		(.
+			attrDecl.AttributeType = AttributeType.IdRef;
+		.)
+	|	IDREFS  
+		(.
+			attrDecl.AttributeType = AttributeType.IdRefs;
+		.)	
+	|	ENTITY 
+		(.
+			attrDecl.AttributeType = AttributeType.Entity;
+		.)
+	|	ENTITIES 
+		(.
+			attrDecl.AttributeType = AttributeType.Entities;
+		.)
+	|	NMTOKEN  
+		(.
+			attrDecl.AttributeType = AttributeType.NmToken;
+		.)
+	|	NMTOKENS
+		(.
+			attrDecl.AttributeType = AttributeType.NmTokens;
+		.)
+.
+Enumeration<XmlAttributeDeclaration attrDecl>
+(.
+	attrDecl.AttributeType = AttributeType.Enumeration;
+.) = 
+	[NOTATION(.attrDecl.AttributeType = AttributeType.Notation;.)] 
+		PARENOPEN Name(.attrDecl.EnumerationMembers.Add(tToken.Value);.) 
+		{BITWISEOR Name(.attrDecl.EnumerationMembers.Add(tToken.Value);.) 
+		} PARENCLOSE
+.
+
+
+DefaultDecl<XmlAttributeDeclaration attrDecl> = 
+		REQUIRED 
+		(.attrDecl.DefaultAttributeValueType = DefaultAttributeValueType.Required;.)
+	|	IMPLIED 
+		(.attrDecl.DefaultAttributeValueType = DefaultAttributeValueType.Implied;.)
+	|	[FIXED]  QUOTEDLITERAL
+		(.
+			attrDecl.DefaultAttributeValueType = DefaultAttributeValueType.Fixed;
+			attrDecl.DefaultAttributeValue = tToken.Value;
+		.)
+.
+
+EntityDecl<out XmlEntityDecl entityDecl>
+(.
+	entityDecl = new XmlEntityDecl();
+	entityDecl.SetRange(la.Range);
+.) = 
+		ENTITYDECL [PERCENTSYMBOL(.entityDecl.IsParameterEntity = true;.)]  
+		Name(.entityDecl.Name = tToken.Value;.)  EntityDef<entityDecl>  TAGCLOSE
+		(.
+			entityDecl.SetRange(GetRange(entityDecl, tToken));
+		.)
+.
+
+EntityDef<XmlEntityDecl entityDecl>
+(.
+	NewExternalIDLink extID = null;
+.) = 
+		QUOTEDLITERAL
+		(.
+			if (entityDecl != null)
+				entityDecl.ImmediateValue = tToken.Value;
+		.)
+	|   ExternalID<out extID>
+		(.
+			if (entityDecl != null && extID != null)
+			{
+				entityDecl.ExternalLinkValue = extID;
+				entityDecl.AddDetailNode(extID);
+			}
+		.) 
+		[NDATA 
+			Name
+			(.
+				if (entityDecl != null)
+					entityDecl.NDataValue = tToken.Value;
+			.)
+		]
+	
+.
+
+PI<out XmlProcessingInstruction processingInstruction, bool checkForText>
+(.
+	processingInstruction = new XmlProcessingInstruction();
+	XmlScanner.ShouldCheckForXmlText = false;
+	processingInstruction.SetRange(la.Range);
+.) = 
+	QUESTTAGOPEN (.XmlScanner.ShouldReturnPIChars = true;.)Name(.processingInstruction.Name = tToken.Value;.) 
+	PICHARS(.processingInstruction.InstructionText = tToken.Value;.)(.XmlScanner.ShouldCheckForXmlText = checkForText;.) QUESTTAGCLOSE
+	(.
+		processingInstruction.SetRange(GetRange(processingInstruction, tToken));
+	.)
+.
+
+
+
+ExternalID<out NewExternalIDLink extID>
+(.
+	extID = null;
+	Token startToken = la;
+.) = 
+(
+		SYSTEM QUOTEDLITERAL 
+		(.
+			NewExternalIDSystemLink result = new NewExternalIDSystemLink();
+			result.SystemURI = tToken.Value;
+			extID = result;
+		.)
+	|	PUBLIC
+		(.
+			NewExternalIDPublicLink result = new NewExternalIDPublicLink();
+			extID = result;
+		.)
+		 QUOTEDLITERAL (.result.PublicID = tToken.Value;.)   [QUOTEDLITERAL (.result.SystemURI = tToken.Value;.)]
+)
+(.
+	if (extID != null)
+		extID.SetRange(GetRange(startToken, tToken));
+.)
+.
+PEReference<out XmlNameReference nameRef>
+(.
+	nameRef = new XmlNameReference();
+	nameRef.SetRange(la.Range);
+.) = 
+	PERCENTSYMBOL Name (. nameRef.Name = tToken.Value; .) SEMICOLON
+	(.
+		nameRef.SetRange(GetRange(nameRef, tToken));
+	.)
+.
+
+Misc
+(.
+	XmlProcessingInstruction processingInstruction = null;
+.) = 
+		Comment 
+	|	PI<out processingInstruction, true>
+		(.
+			if (processingInstruction != null)
+				AddNode(processingInstruction);
+		.)
+.
+CDSect
+(.
+	XmlCharacterData cData = new XmlCharacterData();
+	AddNode(cData);
+	XmlScanner.ShouldCheckForXmlText = false;
+	cData.SetRange(la.Range);
+.) = 
+	(.XmlScanner.ShouldReturnCharDataToken = true;.)CDATASTART CDATA(. cData.Name = tToken.Value;XmlScanner.ShouldCheckForXmlText = true; .)  CDATAEND
+	(.
+		cData.SetRange(GetRange(cData, tToken));
+	.)
+.
+Element
+(.
+	XmlScanner.ShouldCheckForXmlText = false;
+	XmlAttribute attribute = null;
+	XmlElement xmlElement = new XmlElement();
+	OpenContext(xmlElement);
+	xmlElement.SetRange(la.Range);
+.) = 
+	(
+		TAGOPEN Name(.xmlElement.Name = tToken.Value;.) 
+			{Attribute<out attribute>
+			(.
+				if (attribute != null)
+					xmlElement.AddDetailNode(attribute);
+					
+			.)}(.XmlScanner.ShouldCheckForXmlText = true;.)
+      (
+        TAGCLOSE
+        | EMPTYTAGCLOSE
+        (.
+          CloseContext();
+          xmlElement.HasCloseTag = false;
+          xmlElement.SetRange(GetRange(xmlElement, tToken));
+          return;
+        .)
+      )
+				{Content}
+				(.
+					XmlScanner.ShouldCheckForXmlText = false; 
+					if (la.Type != Tokens.TAGCLOSESTART)
+						XmlScanner.ShouldCheckForXmlText = true;
+				.) [TAGCLOSESTART Name (.XmlScanner.ShouldCheckForXmlText = true;.)TAGCLOSE]
+	)
+	(.
+		xmlElement.SetRange(GetRange(xmlElement, tToken));
+		CloseContext();
+	.)		
+.
+
+Attribute<out XmlAttribute attribute> 
+(.
+	attribute = new XmlAttribute();
+	attribute.SetRange(la.Range);
+.) =
+	Name
+	(.
+		attribute.Name = tToken.Value;
+		attribute.SetNameRange(tToken.Range);
+	.) EQUALS 
+	QUOTEDLITERAL
+	(.
+		if (tToken.Value != null && tToken.Value.Length > 0)
+		{
+			int startPos = 0;
+			int endPos = tToken.Value.Length;
+			if (tToken.Value[0] == '"' || tToken.Value[0] == '\'')
+				startPos = 1;
+			if (tToken.Value[tToken.Value.Length -1] == '"' || tToken.Value[tToken.Value.Length -1] == '\'')
+				endPos = tToken.Value.Length -1;
+			attribute.Value = tToken.Value.Substring(startPos, endPos - startPos);	
+		}
+		attribute.SetValueRange(new SourceRange(tToken.Range.Start.Line, tToken.Range.Start.Offset + 1, tToken.Range.End.Line, tToken.Range.End.Offset - 1));
+		attribute.SetRange(GetRange(attribute, tToken));
+	.)
+.
+Text<bool useTrim> = 
+(.XmlScanner.ShouldCheckForXmlText = false;.)CDATA 
+		(.
+      string text = tToken.Value;
+      if (useTrim)
+        text = text.Trim(' ', '\r', '\n');
+      if (String.IsNullOrEmpty(text))
+        return;
+      if (la.Type == Tokens.EOF && text == "*/")
+        return;
+			XmlText xmlText = new XmlText();
+			xmlText.Name = tToken.Value;
+			xmlText.Text = tToken.Value;
+			AddNode(xmlText);
+			xmlText.SetRange(tToken.Range);
+			
+		.)
+.
+Content
+(.
+	 XmlProcessingInstruction processingInstruction = null;
+.) = 
+		Element
+	|	Reference 
+	|	CDSect 
+	|	PI<out processingInstruction, true>
+		(.
+			if (processingInstruction != null)
+				AddNode(processingInstruction);
+		.)
+	|	Comment
+	|	Text<false>
+.
+
+Comment
+(.
+	XmlScanner.ShouldCheckForXmlText = false;
+	Comment comment = new Comment();
+	comment.CommentType = CommentType.MultiLine;
+	AddNode(comment);
+.) =
+	(.XmlScanner.ShouldCheckForXmlText = true;.) COMMENT(.comment.SetRange(tToken.Range);comment.Name = tToken.Value;.)
+.
+
+Reference
+(.
+	XmlScanner.ShouldCheckForXmlText = false;
+.) = 
+		AMPERSAND(.XmlReference xmlReference = new XmlReference();AddNode(xmlReference);xmlReference.SetRange(tToken.Range);.) Name 
+		(.
+			xmlReference.SetRange(GetRange(xmlReference, la));
+			xmlReference.Name = tToken.Value;
+			XmlScanner.ShouldCheckForXmlText = true;
+		.) SEMICOLON
+	|	 CHARREF
+		(.
+			XmlCharReference xmlCharReference = new XmlCharReference();
+			AddNode(xmlCharReference);
+			xmlCharReference.SetRange(GetRange(tToken, la));
+			xmlCharReference.Name = tToken.Value;
+			XmlScanner.ShouldCheckForXmlText = true;
+		.) SEMICOLON
+.
+Name = 
+		NAME
+	|	VERSION
+	|	ENCODING
+	|	SYSTEM
+	|	PUBLIC
+	|	EMPTY
+	|	ANYCONTENT
+	|	CDATATOKEN
+	|	IDREF
+	|	IDREFS
+	|	ENTITY
+	|	ENTITIES
+	|	NMTOKEN
+	|	NMTOKENS
+	|	NOTATION
+	|	NDATA
+	.
+END Parser.

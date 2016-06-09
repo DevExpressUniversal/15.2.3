@@ -1,0 +1,1517 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{37A5D28B-7CD4-4FD1-8D76-160A9DEB6B28}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DevExpress.Web.ASPxSpreadsheet</RootNamespace>
+    <AssemblyName>DevExpress.Web.ASPxSpreadsheet.v15.2</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\Bin\Framework\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\Bin\Framework\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  
+  
+  
+  <ItemGroup>
+    <Reference Include="DevExpress.Data.v15.2">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+    <HintPath>..\..\Bin\Framework\DevExpress.Data.v15.2.dll</HintPath></Reference>
+    <Reference Include="DevExpress.Printing.v15.2.Core">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Bin\Framework\DevExpress.Printing.v15.2.Core.dll</HintPath>
+    <Private>False</Private></Reference>
+    <Reference Include="DevExpress.RichEdit.v15.2.Core"><HintPath>..\..\Bin\Framework\DevExpress.RichEdit.v15.2.Core.dll</HintPath><Private>False</Private></Reference>
+    <Reference Include="DevExpress.Web.v15.2">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+    <HintPath>..\..\Bin\Framework\DevExpress.Web.v15.2.dll</HintPath></Reference>
+    <Reference Include="DevExpress.Office.v15.2.Core">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+    <HintPath>..\..\Bin\Framework\DevExpress.Office.v15.2.Core.dll</HintPath></Reference>
+    <Reference Include="DevExpress.Spreadsheet.v15.2.Core">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+    <HintPath>..\..\Bin\Framework\DevExpress.Spreadsheet.v15.2.Core.dll</HintPath></Reference>
+    <Reference Include="DevExpress.Charts.v15.2.Core">
+      <Name>DevExpress.Charts.v15.2.Core</Name>
+      <Private>False</Private>
+    <HintPath>..\..\Bin\Framework\DevExpress.Charts.v15.2.Core.dll</HintPath></Reference>
+    <Reference Include="DevExpress.XtraCharts.v15.2">
+      <Name>DevExpress.XtraCharts.v15.2</Name>
+      <Private>False</Private>
+    <HintPath>..\..\Bin\Framework\DevExpress.XtraCharts.v15.2.dll</HintPath></Reference>
+    
+    <Reference Include="System"><Private>False</Private></Reference>
+    <Reference Include="System.configuration"><Private>False</Private></Reference>
+    <Reference Include="System.Core"><Private>False</Private></Reference>
+    <Reference Include="System.Design"><Private>False</Private></Reference>
+    <Reference Include="System.Drawing"><Private>False</Private></Reference>
+    <Reference Include="System.Web"><Private>False</Private></Reference>
+    <Reference Include="System.Web.Extensions"><Private>False</Private></Reference>
+    <Reference Include="System.Windows.Forms"><Private>False</Private></Reference>
+    <Reference Include="System.Xml.Linq"><Private>False</Private></Reference>
+    <Reference Include="System.Data.DataSetExtensions"><Private>False</Private></Reference>
+    <Reference Include="Microsoft.CSharp"><Private>False</Private></Reference>
+    <Reference Include="System.Data"><Private>False</Private></Reference>
+    <Reference Include="System.Xml"><Private>False</Private></Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ASPxSpreadsheet.cs" />
+    <Compile Include="ClientSideEvents.cs" />
+    <Compile Include="Core\ChartControllerFactoryService.cs" />
+    <Compile Include="Dialogs.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\ChartDataDialog.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\ChartLayoutDialog.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\ChartStyleDialog.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\ChartTitleDialog.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\ChartTypeDialog.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\ColumnWidthDialog.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\CustomDataFilterDialog.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\DataValidationDialog.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\DefaultColumnWidthDialog.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\DataFilterSimpleDialog.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\FindAndReplaceDialog.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\HorizontalAxisTitleDialog.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\HyperlinkDialog.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\ImageDialog.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\MoveOrCopySheetDialog.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\OpenFileDialog.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\PageSetupDialog.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\RenameSheetDialog.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\RowHeightDialog.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\SaveAsFileDialog.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\SelectFolderDialog.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\DataFilterTop10Dialog.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\TableDataDialog.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\TableStyleDialog.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\UnhideSheetDialog.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\ValidationConfirmDialog.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\VerticalAxisTitleDialog.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Helpers\ChartHelper.cs" />
+    <Compile Include="Helpers\ClipboardHelper.cs" />
+    <Compile Include="Helpers\CommandHelper.cs" />
+    <Compile Include="Helpers\DialogHelper.cs" />
+    <Compile Include="Helpers\DownloadHelper.cs" />
+    <Compile Include="Helpers\PopupMenuHelper.cs" />
+    <Compile Include="Helpers\TableHelper.cs" />
+    <Compile Include="Images.cs" />
+    <Compile Include="JSONTypes.cs" />
+    <Compile Include="LicenseProvider.cs" />
+    <Compile Include="Localization.cs" />
+    <Compile Include="ObsoleteDialogsProperties.cs" />
+    <Compile Include="RenderHelper.cs" />
+    <Compile Include="Ribbon\ChartDesignContextTab\DataGroupCommands.cs" />
+    <Compile Include="Ribbon\ChartDesignContextTab\TypeGroupCommands.cs" />
+    <Compile Include="Ribbon\ChartLayoutContextTab\AxesGroupCommands.cs" />
+    <Compile Include="Ribbon\ChartLayoutContextTab\LabelsGroupCommands.cs" />
+    <Compile Include="Ribbon\DataTab\DataToolsGroupCommands.cs" />
+    <Compile Include="Ribbon\DataTab\SortAndFilterGroupCommands.cs" />
+    <Compile Include="Ribbon\HomeTab\StylesGroupCommands.cs" />
+    <Compile Include="Ribbon\InsertTab\TableGroupCommands.cs" />
+    <Compile Include="Ribbon\SRContextTabCategories.cs" />
+    <Compile Include="Ribbon\TableContextTab\PropertiesGroupCommands.cs" />
+    <Compile Include="Ribbon\TableContextTab\TableStyleGroupCommands.cs" />
+    <Compile Include="Ribbon\TableContextTab\TableStyleOptionsGroupCommands.cs" />
+    <Compile Include="Ribbon\TableContextTab\ToolsGroupCommands.cs" />
+    <Compile Include="Ribbon\ViewTab\ViewGroupCommands.cs" />
+    <Compile Include="Ribbon\FormulasTab\CalculationGroupCommands.cs" />
+    <Compile Include="Ribbon\HomeTab\UndoGroupCommands.cs" />
+    <Compile Include="Ribbon\PageSetupTab\ArrangeGroupCommands.cs" />
+    <Compile Include="Ribbon\PageSetupTab\PageSetupGroupCommands.cs" />
+    <Compile Include="Ribbon\PageSetupTab\PrintGroupCommands.cs" />
+    <Compile Include="Ribbon\PageSetupTab\ShowGroupCommands.cs" />
+    <Compile Include="Ribbon\SPCommandInfo.cs" />
+    <Compile Include="Ribbon\FileTab\CommonGroupCommands.cs" />
+    <Compile Include="Ribbon\FormulasTab\FunctionLibraryGroupCommands.cs" />
+    <Compile Include="Ribbon\HomeTab\AligmentGroupCommands.cs" />
+    <Compile Include="Ribbon\HomeTab\CellsGroupCommands.cs" />
+    <Compile Include="Ribbon\HomeTab\ClipboardGroupCommands.cs" />
+    <Compile Include="Ribbon\HomeTab\EditingGroupCommands.cs" />
+    <Compile Include="Ribbon\HomeTab\FontGroupCommands.cs" />
+    <Compile Include="Ribbon\HomeTab\NumberGroupCommands.cs" />
+    <Compile Include="Ribbon\InsertTab\ChartsGroupCommands.cs" />
+    <Compile Include="Ribbon\InsertTab\IllustrationsGroupCommands.cs" />
+    <Compile Include="Ribbon\InsertTab\LinksGroupCommands.cs" />
+    <Compile Include="Ribbon\SPRibbonGroups.cs" />
+    <Compile Include="Ribbon\SPRibbonTabCollection.cs" />
+    <Compile Include="Ribbon\SPRibbonTabs.cs" />
+    <Compile Include="Ribbon\SPRibbon.cs" />
+    <Compile Include="Ribbon\SPRibbonCommandBase.cs" />
+    <Compile Include="Ribbon\ViewTab\WindowGroupCommands.cs" />
+    <Compile Include="Settings.cs" />
+    <Compile Include="Styles.cs" />
+    <Compile Include="TabControl.cs" />
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <Compile Include="Core\WebSpreadsheetControl.cs" />
+    <Compile Include="SpreadsheetWorkSession.cs" />
+    <Compile Include="Controls.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Commands.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="LocalizationRes.resx">
+      <LastGenOutput>LocalizationRes.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LocalizationRes.ru.resx" />
+    <EmbeddedResource Include="LocalizationRes.ja.resx" />
+    <EmbeddedResource Include="LocalizationRes.es.resx" />
+    <EmbeddedResource Include="LocalizationRes.de.resx" />
+    <EmbeddedResource Include="Scripts\FunctionsListBox.js" />
+    <EmbeddedResource Include="Scripts\Spreadsheet.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Css\System.css" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Scripts\ScrollHelper.js" />
+    <EmbeddedResource Include="Scripts\TileHelper.js" />
+    <EmbeddedResource Include="Scripts\TileMatrix.js" />
+    <EmbeddedResource Include="Scripts\Commands.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\TouchResize.png" />
+    <EmbeddedResource Include="Images\Loading.gif" />
+    <EmbeddedResource Include="Scripts\TabControl.js" />
+    <EmbeddedResource Include="Scripts\FileManager.js" />
+    <EmbeddedResource Include="ASPxSpreadsheet.bmp" />
+    <EmbeddedResource Include="Scripts\FolderManager.js" />
+    <EmbeddedResource Include="Css\default.css" />
+    <EmbeddedResource Include="Scripts\Dialogs.js" />
+    <EmbeddedResource Include="Scripts\RibbonManager.js" />
+    <EmbeddedResource Include="Scripts\KeyboardManager.js" />
+    
+    
+    
+    
+    
+    <EmbeddedResource Include="Images\sprite.png" />
+    <EmbeddedResource Include="Css\sprite.css" />
+    <EmbeddedResource Include="Scripts\GridResizingHelper.js" />
+    <EmbeddedResource Include="Scripts\Editing.js" />
+    <EmbeddedResource Include="Scripts\Selection.js" />
+    <EmbeddedResource Include="Scripts\PopupMenuHelper.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.0">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.4.5">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 4.5</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    
+    
+    
+    
+    
+    
+  </ItemGroup>
+  <ItemGroup>
+    
+    
+    
+    
+    
+    
+  </ItemGroup>
+  <ItemGroup>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Scripts\FormulaParser.js" />
+  </ItemGroup>
+  <ItemGroup>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Scripts\UploadControl.js" />
+    <EmbeddedResource Include="Scripts\FileManagerUploadControl.js" />
+    <EmbeddedResource Include="Scripts\SelectionHelper.js" />
+    <EmbeddedResource Include="Scripts\StateController.js" />
+    <EmbeddedResource Include="Scripts\DynamicSelection.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Css\ISprite.css" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\ISprite.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Scripts\InputController.js" />
+  </ItemGroup>
+  <ItemGroup>
+    
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Css\GISprite.css" />
+    <EmbeddedResource Include="Css\GWISprite.css" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\GISprite.png" />
+    <EmbeddedResource Include="Images\GWISprite.png" />
+  </ItemGroup>
+  <ItemGroup>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  </ItemGroup>
+  <ItemGroup>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  </ItemGroup>
+  <ItemGroup>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  </ItemGroup>
+  <ItemGroup>
+    
+    
+    
+    
+    
+    <EmbeddedResource Include="Scripts\StringResources\Config.js" />
+    <EmbeddedResource Include="Scripts\StringResources\Localization.js" />
+    <EmbeddedResource Include="Scripts\StringResources\Localization_ar.js" />
+    <EmbeddedResource Include="Scripts\StringResources\Localization_bg.js" />
+    <EmbeddedResource Include="Scripts\StringResources\Localization_ca.js" />
+    <EmbeddedResource Include="Scripts\StringResources\Localization_cs.js" />
+    <EmbeddedResource Include="Scripts\StringResources\Localization_da.js" />
+    <EmbeddedResource Include="Scripts\StringResources\Localization_de-CH.js" />
+    <EmbeddedResource Include="Scripts\StringResources\Localization_de.js" />
+    <EmbeddedResource Include="Scripts\StringResources\Localization_el.js" />
+    <EmbeddedResource Include="Scripts\StringResources\Localization_es.js" />
+    <EmbeddedResource Include="Scripts\StringResources\Localization_fa.js" />
+    <EmbeddedResource Include="Scripts\StringResources\Localization_fi.js" />
+    <EmbeddedResource Include="Scripts\StringResources\Localization_fr.js" />
+    <EmbeddedResource Include="Scripts\StringResources\Localization_he.js" />
+    <EmbeddedResource Include="Scripts\StringResources\Localization_hr.js" />
+    <EmbeddedResource Include="Scripts\StringResources\Localization_hu.js" />
+    <EmbeddedResource Include="Scripts\StringResources\Localization_hy.js" />
+    <EmbeddedResource Include="Scripts\StringResources\Localization_is.js" />
+    <EmbeddedResource Include="Scripts\StringResources\Localization_it.js" />
+    <EmbeddedResource Include="Scripts\StringResources\Localization_ja.js" />
+    <EmbeddedResource Include="Scripts\StringResources\Localization_ko.js" />
+    <EmbeddedResource Include="Scripts\StringResources\Localization_lt.js" />
+    <EmbeddedResource Include="Scripts\StringResources\Localization_lv.js" />
+    <EmbeddedResource Include="Scripts\StringResources\Localization_mk.js" />
+    <EmbeddedResource Include="Scripts\StringResources\Localization_nl.js" />
+    <EmbeddedResource Include="Scripts\StringResources\Localization_no.js" />
+    <EmbeddedResource Include="Scripts\StringResources\Localization_pl.js" />
+    <EmbeddedResource Include="Scripts\StringResources\Localization_pt-BR.js" />
+    <EmbeddedResource Include="Scripts\StringResources\Localization_pt.js" />
+    <EmbeddedResource Include="Scripts\StringResources\Localization_ro.js" />
+    <EmbeddedResource Include="Scripts\StringResources\Localization_ru.js" />
+    <EmbeddedResource Include="Scripts\StringResources\Localization_sk.js" />
+    <EmbeddedResource Include="Scripts\StringResources\Localization_sl.js" />
+    <EmbeddedResource Include="Scripts\StringResources\Localization_sr-Cyrl-CS.js" />
+    <EmbeddedResource Include="Scripts\StringResources\Localization_sr-Latn-BA.js" />
+    <EmbeddedResource Include="Scripts\StringResources\Localization_sr-Latn-CS.js" />
+    <EmbeddedResource Include="Scripts\StringResources\Localization_sv.js" />
+    <EmbeddedResource Include="Scripts\StringResources\Localization_ta.js" />
+    <EmbeddedResource Include="Scripts\StringResources\Localization_tr.js" />
+    <EmbeddedResource Include="Scripts\StringResources\Localization_uk.js" />
+    <EmbeddedResource Include="Scripts\StringResources\Localization_vi.js" />
+    <EmbeddedResource Include="Scripts\StringResources\Localization_zh-CN.js" />
+    <EmbeddedResource Include="Scripts\StringResources\Localization_zh-Hans.js" />
+    <EmbeddedResource Include="Scripts\StringResources\Localization_zh-Hant.js" />
+    <EmbeddedResource Include="Scripts\StringResources\Localization_zh-TW.js" />
+    <EmbeddedResource Include="Images\CellsGrid.png" />
+    <EmbeddedResource Include="Scripts\PaneView.js" />
+    <EmbeddedResource Include="Scripts\RenderProvider.js" />
+    <EmbeddedResource Include="Scripts\Validation.js" />
+    
+    <EmbeddedResource Include="Scripts\FormulaIntelliSenseManager.js" />
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <EmbeddedResource Include="Scripts\PaneManager.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Scripts\StringResources\Functions.js" />
+    <EmbeddedResource Include="Scripts\StringResources\Functions_ar.js" />
+    <EmbeddedResource Include="Scripts\StringResources\Functions_bg.js" />
+    <EmbeddedResource Include="Scripts\StringResources\Functions_ca.js" />
+    <EmbeddedResource Include="Scripts\StringResources\Functions_cs.js" />
+    <EmbeddedResource Include="Scripts\StringResources\Functions_da.js" />
+    <EmbeddedResource Include="Scripts\StringResources\Functions_de-CH.js" />
+    <EmbeddedResource Include="Scripts\StringResources\Functions_de.js" />
+    <EmbeddedResource Include="Scripts\StringResources\Functions_el.js" />
+    <EmbeddedResource Include="Scripts\StringResources\Functions_es.js" />
+    <EmbeddedResource Include="Scripts\StringResources\Functions_et.js" />
+    <EmbeddedResource Include="Scripts\StringResources\Functions_fa.js" />
+    <EmbeddedResource Include="Scripts\StringResources\Functions_fi.js" />
+    <EmbeddedResource Include="Scripts\StringResources\Functions_fr.js" />
+    <EmbeddedResource Include="Scripts\StringResources\Functions_he.js" />
+    <EmbeddedResource Include="Scripts\StringResources\Functions_hi.js" />
+    <EmbeddedResource Include="Scripts\StringResources\Functions_hr.js" />
+    <EmbeddedResource Include="Scripts\StringResources\Functions_hu.js" />
+    <EmbeddedResource Include="Scripts\StringResources\Functions_hy.js" />
+    <EmbeddedResource Include="Scripts\StringResources\Functions_id.js" />
+    <EmbeddedResource Include="Scripts\StringResources\Functions_is.js" />
+    <EmbeddedResource Include="Scripts\StringResources\Functions_it.js" />
+    <EmbeddedResource Include="Scripts\StringResources\Functions_ja.js" />
+    <EmbeddedResource Include="Scripts\StringResources\Functions_kk.js" />
+    <EmbeddedResource Include="Scripts\StringResources\Functions_ko.js" />
+    <EmbeddedResource Include="Scripts\StringResources\Functions_lt.js" />
+    <EmbeddedResource Include="Scripts\StringResources\Functions_lv.js" />
+    <EmbeddedResource Include="Scripts\StringResources\Functions_mk.js" />
+    <EmbeddedResource Include="Scripts\StringResources\Functions_ms.js" />
+    <EmbeddedResource Include="Scripts\StringResources\Functions_nl.js" />
+    <EmbeddedResource Include="Scripts\StringResources\Functions_no.js" />
+    <EmbeddedResource Include="Scripts\StringResources\Functions_pl.js" />
+    <EmbeddedResource Include="Scripts\StringResources\Functions_pt-BR.js" />
+    <EmbeddedResource Include="Scripts\StringResources\Functions_pt.js" />
+    <EmbeddedResource Include="Scripts\StringResources\Functions_ro.js" />
+    <EmbeddedResource Include="Scripts\StringResources\Functions_ru.js" />
+    <EmbeddedResource Include="Scripts\StringResources\Functions_sk.js" />
+    <EmbeddedResource Include="Scripts\StringResources\Functions_sl.js" />
+    <EmbeddedResource Include="Scripts\StringResources\Functions_sr-Cyrl-CS.js" />
+    <EmbeddedResource Include="Scripts\StringResources\Functions_sr-Latn-BA.js" />
+    <EmbeddedResource Include="Scripts\StringResources\Functions_sr-Latn-CS.js" />
+    <EmbeddedResource Include="Scripts\StringResources\Functions_sv.js" />
+    <EmbeddedResource Include="Scripts\StringResources\Functions_ta.js" />
+    <EmbeddedResource Include="Scripts\StringResources\Functions_th.js" />
+    <EmbeddedResource Include="Scripts\StringResources\Functions_tr.js" />
+    <EmbeddedResource Include="Scripts\StringResources\Functions_uk.js" />
+    <EmbeddedResource Include="Scripts\StringResources\Functions_vi.js" />
+    <EmbeddedResource Include="Scripts\StringResources\Functions_zh-CN.js" />
+    <EmbeddedResource Include="Scripts\StringResources\Functions_zh-Hans.js" />
+    <EmbeddedResource Include="Scripts\StringResources\Functions_zh-Hant.js" />
+    <EmbeddedResource Include="Scripts\StringResources\Functions_zh-TW.js" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+<ItemGroup><EmbeddedResource Include="Descriptions.resx" /></ItemGroup><ItemGroup><Compile Include="Descriptions.cs" /></ItemGroup></Project>

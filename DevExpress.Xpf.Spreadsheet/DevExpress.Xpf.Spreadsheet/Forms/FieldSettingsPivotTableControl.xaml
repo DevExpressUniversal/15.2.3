@@ -1,0 +1,165 @@
+﻿<UserControl x:Class="DevExpress.Xpf.Spreadsheet.Forms.FieldSettingsPivotTableControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+             xmlns:dxsps="clr-namespace:DevExpress.Xpf.Spreadsheet" 
+             xmlns:dxc="http://schemas.devexpress.com/winfx/2008/xaml/core"
+             mc:Ignorable="d" Height="380" Width="450"
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <dxsps:SpreadsheetControlStringIdConverter x:Key="stringIdConverter" />
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Margin="0,3,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="75"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Margin="10,0,0,0" Text="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_FieldAndDataFieldSettingsPivotTableSourceName, Converter={StaticResource stringIdConverter}}" 
+                       HorizontalAlignment="Left" 
+                       VerticalAlignment="Center"/>
+            <TextBlock Grid.Column="1" Margin="5,0,0,0" Text="{Binding SourceName, Mode=OneWay}" 
+                       HorizontalAlignment="Left" 
+                       VerticalAlignment="Center"/>
+        </Grid>
+        <Grid Grid.Row="1" Margin="0,3,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="200"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Margin="10,0,0,0" Text="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_FieldAndDataFieldSettingsPivotTableCustomName, Converter={StaticResource stringIdConverter}}" 
+                       HorizontalAlignment="Left" 
+                       VerticalAlignment="Center"/>
+            <dxe:TextEdit Grid.Column="1" 
+                          Margin="5,3,0,0"
+                          Text="{Binding CustomName, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"/>
+        </Grid>
+        <dxc:DXTabControl Margin="5,5" Grid.Row="2" x:Name="tabControl" MinHeight="250">
+            <dxc:DXTabControl.Items>
+                <dxc:DXTabItem x:Name="tabSubtotalsAndFilters" Header="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_FieldSettingsPivotTableTabSubtotalsAndFilters, Converter={StaticResource stringIdConverter}}" HorizontalAlignment="Left" Width="115">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="110"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Grid.Row="0" Text="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_FieldSettingsPivotTableSubtotals, Converter={StaticResource stringIdConverter}}" 
+                                    HorizontalAlignment="Left" 
+                                    VerticalAlignment="Center" 
+                                    FontWeight="Bold"/>
+                        <Separator Grid.Row="1" VerticalAlignment="Center"/>
+                        <RadioButton Grid.Row="2" 
+                                    Margin="0,3,0,0" 
+                                    Content="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_FieldSettingsPivotTableSubtotalAutomatic, Converter={StaticResource stringIdConverter}}" 
+                                    IsChecked="{Binding Path=IsAutomaticSubtotal, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        <RadioButton Grid.Row="3" 
+                                    Margin="0,3,0,0" 
+                                    Content="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_FieldSettingsPivotTableSubtotalNone, Converter={StaticResource stringIdConverter}}" 
+                                    IsChecked="{Binding Path=IsNoneSubtotal, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        <RadioButton Grid.Row="4" 
+                                    Margin="0,3,0,0" 
+                                    Content="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_FieldSettingsPivotTableSubtotalCustom, Converter={StaticResource stringIdConverter}}" 
+                                    IsChecked="{Binding Path=IsCustomSubtotal, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        <TextBlock Margin="20,3,0,0" Grid.Row="5" Text="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_FieldSettingsPivotTableSelectSubtotalFunctions, Converter={StaticResource stringIdConverter}}" 
+                                    HorizontalAlignment="Left" 
+                                    VerticalAlignment="Center"/>
+                        <dxe:ListBoxEdit x:Name="lbFunctions"
+                                    Grid.Row="6" 
+                                    HorizontalAlignment="Left" 
+                                    VerticalAlignment="Top"
+                                    Height="90"
+                                    Width="275"
+                                    Margin="20,3,0,0"
+                                    ItemsSource="{Binding FunctionList}"
+                                    IsEnabled="{Binding IsSubtotalFunctionListEnabled, Mode=OneWay}" 
+                                    SelectionMode="Multiple"/>
+                        <TextBlock Margin="0,3,0,0" Grid.Row="7" Text="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_FieldSettingsPivotTableFilter, Converter={StaticResource stringIdConverter}}" 
+                                    HorizontalAlignment="Left" 
+                                    VerticalAlignment="Center" 
+                                    FontWeight="Bold"/>
+                        <Separator Grid.Row="8" VerticalAlignment="Center"/>
+                        <dxe:CheckEdit Grid.Row="9" 
+                                    Margin="0,3,0,0" 
+                                    Content="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_FieldSettingsPivotTableNewItemsManualFilter, Converter={StaticResource stringIdConverter}}" 
+                                    EditValue="{Binding IncludeNewItemsInFilter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                    </Grid>
+                </dxc:DXTabItem>
+                <dxc:DXTabItem x:Name="tabLayoutAndPrint" Header="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_FieldSettingsPivotTableTabLayoutAndPrint, Converter={StaticResource stringIdConverter}}">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="40"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Grid.Row="0" Text="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_FieldSettingsPivotTableLayout, Converter={StaticResource stringIdConverter}}" 
+                                    HorizontalAlignment="Left" 
+                                    VerticalAlignment="Center" 
+                                    FontWeight="Bold"/>
+                        <Separator Grid.Row="1" VerticalAlignment="Center"/>
+                        <RadioButton Grid.Row="2" 
+                                    Margin="0,3,0,0" 
+                                    Content="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_FieldSettingsPivotTableItemLabelsOutlineForm, Converter={StaticResource stringIdConverter}}"
+                                    IsChecked="{Binding Path=Outline, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/> 
+                        <dxe:CheckEdit Grid.Row="3" 
+                                    Margin="20,3,0,0" 
+                                    Content="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_FieldSettingsPivotTableCompactForm, Converter={StaticResource stringIdConverter}}"
+                                    EditValue="{Binding Compact, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        <dxe:CheckEdit Grid.Row="4" 
+                                    Margin="20,3,0,0" 
+                                    Content="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_FieldSettingsPivotTableSubtotalTop, Converter={StaticResource stringIdConverter}}"
+                                    EditValue="{Binding SubtotalTop, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        <RadioButton Grid.Row="5" 
+                                    Margin="0,3,0,0" 
+                                    Content="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_FieldSettingsPivotTableItemLabelsTabularForm, Converter={StaticResource stringIdConverter}}"
+                                    IsChecked="{Binding Path=Tabular, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        <dxe:CheckEdit Grid.Row="6" 
+                                    Margin="0,3,0,0" 
+                                    Content="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_FieldSettingsPivotTableRepeatItemLabels, Converter={StaticResource stringIdConverter}}"
+                                    EditValue="{Binding FillDownLabels, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        <dxe:CheckEdit Grid.Row="7" 
+                                    Margin="0,3,0,0" 
+                                    Content="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_FieldSettingsPivotTableInsertBlankLine, Converter={StaticResource stringIdConverter}}"
+                                    EditValue="{Binding InsertBlankRow, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        <dxe:CheckEdit Grid.Row="8" 
+                                    VerticalAlignment="Top"
+                                    Margin="0,3,0,0" 
+                                    Content="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_FieldSettingsPivotTableShowItemsWithNoData, Converter={StaticResource stringIdConverter}}"
+                                    EditValue="{Binding ShowItemsWithNoData, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        <TextBlock Grid.Row="9" Text="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_FieldSettingsPivotTablePrint, Converter={StaticResource stringIdConverter}}" 
+                                    HorizontalAlignment="Left" 
+                                    VerticalAlignment="Center" 
+                                    FontWeight="Bold"/>
+                        <Separator Grid.Row="10" VerticalAlignment="Center"/>
+                        <dxe:CheckEdit Grid.Row="11" 
+                                    Margin="0,3,0,0" 
+                                    Content="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_FieldSettingsPivotTableInsertPageBreak, Converter={StaticResource stringIdConverter}}"
+                                    EditValue="{Binding InsertPageBreak, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                    </Grid>
+                </dxc:DXTabItem>
+            </dxc:DXTabControl.Items>
+        </dxc:DXTabControl>
+    </Grid>
+</UserControl>

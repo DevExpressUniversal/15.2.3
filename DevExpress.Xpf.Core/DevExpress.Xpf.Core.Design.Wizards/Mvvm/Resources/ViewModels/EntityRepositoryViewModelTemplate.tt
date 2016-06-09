@@ -1,0 +1,48 @@
+﻿<#@ template language="C#" #>
+<#@ import namespace="System" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="DevExpress.Design.Mvvm" #>
+<#@ import namespace="DevExpress.Entity.Model" #>
+<#@ import namespace="DevExpress.Xpf.Core.Design.Wizards.Mvvm.EntityFramework" #>
+<#@ import namespace="DevExpress.Xpf.Core.Design.Wizards.Mvvm" #>
+<#
+	T4TemplateInfo templateInfo = this.GetTemplateInfo();
+    string viewModelName = templateInfo.Properties["ViewModelName"].ToString();
+    string unitOfWorkFactoryType = templateInfo.Properties["IUnitOfWorkFactoryType"].ToString();
+    string iEntityRepositoryType = templateInfo.Properties["IEntityRepositoryType"].ToString();
+    string createEntityRepositoryMethod = templateInfo.Properties["CreateEntityRepositoryMethod"].ToString();
+
+    EntitySetData entityData = templateInfo.Properties["EntitySetData"] as EntitySetData;
+    List<string> usingList = templateInfo.UsingList;
+    IDataModel dataModel = templateInfo.Properties["DataModel"] as IDataModel;
+#>
+using System;
+using System.Linq;
+using DevExpress.Mvvm.POCO;
+<#this.PasteUsingList(this.GetTemplateInfo().UsingList, false);#>
+
+namespace <#=this.GetNamespace()#> {
+    /// <summary>
+    /// Represents the <#=createEntityRepositoryMethod#> collection view model.
+    /// </summary>
+    public partial class <#=viewModelName#> : <#if(entityData.ReadOnly){#>ReadOnlyCollectionViewModel<<#=entityData.Type#>, I<#=dataModel.DbContainer.Name#>UnitOfWork><#}else{#><#this.ExecuteCollectionViewModelHook(TemplatesCodeGen.STR_CollectionViewModelHook_CollectionViewModelBaseClassPrefix);#>CollectionViewModel<<#=entityData.Type#>,<#this.ExecuteCollectionViewModelHook(TemplatesCodeGen.STR_CollectionViewModelHook_GenerateProjectionType);#> <#=entityData.PrimaryKeyType#>, I<#=dataModel.DbContainer.Name#>UnitOfWork><#}#> {
+
+        /// <summary>
+        /// Creates a new instance of <#=viewModelName#> as a POCO view model.
+        /// </summary>
+        /// <param name="unitOfWorkFactory">A factory used to create a unit of work instance.</param>
+        public static <#=viewModelName#> Create(IUnitOfWorkFactory<I<#=dataModel.DbContainer.Name#>UnitOfWork> unitOfWorkFactory = null) {
+            return ViewModelSource.Create(() => new <#=viewModelName#>(unitOfWorkFactory));
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <#=viewModelName#> class.
+        /// This constructor is declared protected to avoid undesired instantiation of the <#=viewModelName#> type without the POCO proxy factory.
+        /// </summary>
+        /// <param name="unitOfWorkFactory">A factory used to create a unit of work instance.</param>
+        protected <#=viewModelName#>(IUnitOfWorkFactory<I<#=dataModel.DbContainer.Name#>UnitOfWork> unitOfWorkFactory = null)
+            : base(unitOfWorkFactory ?? UnitOfWorkSource.GetUnitOfWorkFactory(), x => x.<#=createEntityRepositoryMethod#><#this.ExecuteCollectionViewModelHook(TemplatesCodeGen.STR_CollectionViewModelHook_GenerateIncludes);#>) {
+        }
+    }
+}

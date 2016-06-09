@@ -1,0 +1,20 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:system="clr-namespace:System;assembly=mscorlib"
+    xmlns:collections="clr-namespace:System.Collections;assembly=mscorlib"
+    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+    xmlns:dxwui="clr-namespace:DevExpress.Xpf.WindowsUI"
+    xmlns:dxwuit="clr-namespace:DevExpress.Xpf.WindowsUI.ThemeKeys"
+    xmlns:dxwuii="clr-namespace:DevExpress.Xpf.WindowsUI.Internal"
+    xmlns:dxwuin="clr-namespace:DevExpress.Xpf.WindowsUI.Navigation">
+    <ControlTemplate TargetType="{x:Type dxwui:NavigationPage}" x:Key="NavigationPageDefaultTemplate">
+        <Grid x:Name="PART_Grid" Background="{TemplateBinding Background}">
+            <ContentPresenter/>
+            <ContentPresenter Content="{TemplateBinding TopAppBar}" VerticalAlignment="Top"/>
+            <ContentPresenter Content="{TemplateBinding BottomAppBar}" VerticalAlignment="Bottom"/>
+        </Grid>
+    </ControlTemplate>
+    <Style TargetType="{x:Type dxwui:NavigationPage}">
+        <Setter Property="Template" Value="{StaticResource NavigationPageDefaultTemplate}"/>
+    </Style>
+</ResourceDictionary>

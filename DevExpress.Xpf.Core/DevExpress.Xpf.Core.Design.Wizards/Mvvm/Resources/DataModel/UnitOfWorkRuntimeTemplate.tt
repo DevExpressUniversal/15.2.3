@@ -1,0 +1,41 @@
+﻿<#@ template language="C#" #>
+<#@ import namespace="System" #>
+<#@ import namespace="DevExpress.Entity.Model" #>
+<#@ import namespace="DevExpress.Xpf.Core.Design.Wizards.Mvvm.EntityFramework" #>
+<#@ import namespace="DevExpress.Xpf.Core.Design.Wizards.Mvvm" #>
+<#
+    T4TemplateInfo templateInfo = this.GetTemplateInfo();
+	var usingList = templateInfo.UsingList;
+	this.PasteUsingList(usingList);
+    EntityModelData entityModel = templateInfo.Properties["EntityModelData"] as EntityModelData;
+    bool isWcf = entityModel.ContainerType == DbContainerType.WCF;
+#>
+
+namespace <#=this.GetNamespace()#> {
+<#this.PasteAliasList(usingList, entityModel.FullName);#>
+    /// <summary>
+    /// A <#=entityModel.Name#>UnitOfWork instance that represents the run-time implementation of the I<#=entityModel.Name#>UnitOfWork interface.
+    /// </summary>
+    public class <#=entityModel.Name#>UnitOfWork : DbUnitOfWork<<#=entityModel.Name#>>, I<#=entityModel.Name#>UnitOfWork {
+
+        public <#=entityModel.Name#>UnitOfWork(Func<<#=entityModel.Name#>> contextFactory)
+            : base(contextFactory) {
+        }
+<#
+    if(entityModel != null)
+        foreach(EntitySetData entity in entityModel.Entities) {
+			templateInfo.Properties["Entity"] = entity;
+            string entityName = TemplatingUtils.FirstCharToLowerCase(entity.Name);
+			string repositoryConstructor = string.Format("Get{0}Repository(x => x.{1}{2}",
+				entity.ReadOnly ? "ReadOnly" : "",
+				isWcf ? entity.Name : string.Format("Set<{0}>()", entity.Type),
+				entity.ReadOnly ? "" : (", " + entity.GetPrimaryKeyConstructor())
+			);
+#>
+
+        I<#if(entity.ReadOnly){#>ReadOnly<#}#>Repository<<#=entity.Type#><#if(!entity.ReadOnly){#>, <#=entity.PrimaryKeyType#><#}#>> I<#=entityModel.Name#>UnitOfWork.<#=entity.Name#> {
+            get { return <#=repositoryConstructor#><#this.ExecuteUnitOfWorkHook(TemplatesCodeGen.STR_UnitOfWorkHooks_GetRepositoryAdditionalArguments);#>); }
+        }
+<#}#>
+    }
+}

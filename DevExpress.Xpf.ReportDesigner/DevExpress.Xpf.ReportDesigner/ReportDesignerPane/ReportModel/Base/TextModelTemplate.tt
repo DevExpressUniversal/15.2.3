@@ -1,0 +1,47 @@
+﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ output extension=".cs" #>
+using System;
+using System.Windows.Media;
+using DevExpress.Xpf.Reports.UserDesigner.Native;
+using DevExpress.Xpf.Reports.UserDesigner.XRDiagram;
+using DevExpress.XtraReports.UI;
+
+namespace DevExpress.Xpf.Reports.UserDesigner.ReportModel {
+<#foreach(string modelNameAndParameters in new string[] { "//", "Container/TItemModel/\r\n        where TItemModel : XRControlModelBase" }) {#>
+<#
+    string modelName = modelNameAndParameters.Split('/')[0];
+	string baseName = string.IsNullOrEmpty(modelName) ? "Control" : modelName;
+	string parameters = modelNameAndParameters.Split('/')[1];
+	string parameterTypes = modelNameAndParameters.Split('/')[2];
+	string commaParameters = string.IsNullOrEmpty(parameters) ? string.Empty : ", " + parameters;
+	string parametersComma = string.IsNullOrEmpty(parameters) ? string.Empty : parameters +  ", ";
+	string genericParameters = string.IsNullOrEmpty(parameters) ? string.Empty : "<" + parameters + ">";
+#>
+    public class XR<#=modelName#>TextModelBase<TXRControl<#=commaParameters#>, TDiagramItem> : XR<#=baseName#>ModelBase<TXRControl<#=commaParameters#>, TDiagramItem>
+        where TXRControl : XRControl<#=parameterTypes#>
+        where TDiagramItem : XRDiagram<#=modelName#>TextItem, new() {
+
+        protected internal XR<#=modelName#>TextModelBase(XRControlModelFactory.ISource<TXRControl> source, ImageSource icon)
+            : base(source, icon) {
+            Text = CreateTextPropertyModel();
+        }
+        protected virtual XRPropertyModel<string> CreateTextPropertyModel() {
+            return CreateXRPropertyModel(() => XRObject.Text, () => XRObject.Text, text => Tracker.Set(XRObject, x => x.Text, text));
+        }
+
+        public XRPropertyModel<string> Text { get; private set; }
+
+        protected override void AttachDiagramItem() {
+            base.AttachDiagramItem();
+            BindDiagramItem(XRDiagramTextItem.TextAlignmentProperty, () => FontProperties.TextHorizontalAlignment, FontProperties);
+            BindDiagramItem(XRDiagramTextItem.TextDecorationsProperty, () => FontProperties.TextDecorations, FontProperties);
+            BindDiagramItem(XRDiagramTextItem.VerticalContentAlignmentProperty, () => FontProperties.VerticalContentAlignment, FontProperties);
+            BindDiagramItem(XRDiagramTextItem.TextProperty, () => Text.Value, Text);
+        }
+    }
+<#}#>
+}

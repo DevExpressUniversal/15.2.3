@@ -1,0 +1,61 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+    xmlns:dxg="clr-namespace:DevExpress.Xpf.Grid"        
+    xmlns:dxgt="clr-namespace:DevExpress.Xpf.Grid.Themes">
+
+    <ControlTemplate x:Key="{dxgt:TotalSummaryThemeKey ResourceKey=TotalSummaryControlTemplate}">
+        <Border Background="#00FFFFFF">
+            <Grid Margin="{TemplateBinding Padding}" x:Name="rootGrid">
+                <!--BEGIN WPF-->
+                <Grid.Visibility>
+                    <Binding Path="Column.HasTotalSummaries">
+                        <Binding.Converter>
+                            <dx:BoolToObjectConverter TrueValue="Visible" FalseValue="Hidden" />
+                        </Binding.Converter>
+                    </Binding>
+                </Grid.Visibility>
+                <!--END WPF-->
+                <!--ONLY SL
+                <Grid.Opacity>
+                    <Binding Path="Column.HasTotalSummaries">
+                        <Binding.Converter>
+                            <dx:BoolToObjectConverter TrueValue="1" FalseValue="0"/>
+                        </Binding.Converter>
+                    </Binding>
+                </Grid.Opacity>
+                ONLY SL-->
+                <Border Margin="1,1,2,1" VerticalAlignment="Stretch" Height="Auto" CornerRadius="3,3,3,3" Padding="1,1,1,1">
+                    <Border.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#FF486CA1" Offset="0" />
+                            <GradientStop Color="#FF8AA8D2" Offset="1" />
+                            <GradientStop Color="#FF6588BD" Offset="0.058" />
+                        </LinearGradientBrush>
+                    </Border.Background>
+                    <Border CornerRadius="2,2,2,2">
+                        <Border.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="#FFD1E1ED" Offset="0" />
+                                <GradientStop Color="#FFFFFFFF" Offset="1" />
+                                <GradientStop Color="#FFE9F1F6" Offset="0.255" />
+                            </LinearGradientBrush>
+                        </Border.Background>
+                        <dxg:TotalSummaryContentPresenter DataContext="{Binding Path=DataContext, RelativeSource={RelativeSource TemplatedParent}}"
+                            Style="{Binding Path=Column.ActualTotalSummaryContentStyle}"
+						    Content="{Binding }"
+						    ContentTemplateSelector="{Binding Path=Column.View.ActualTotalSummaryItemTemplateSelector}" 
+                        />
+                    </Border>
+                </Border>
+            </Grid>
+        </Border>
+    </ControlTemplate>
+	<Style x:Key="{dxgt:TotalSummaryThemeKey ResourceKey=TotalSummaryContentStyle}" TargetType="{x:Type dx:DataContentPresenter}">
+        <Setter Property="HorizontalAlignment" Value="{Binding Path=Column.ActualHorizontalContentAlignment}" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+		<Setter Property="TextElement.Foreground" Value="#FF262933" />
+		<Setter Property="Margin" Value="4,3,4,3" />
+	</Style>
+</ResourceDictionary>
+	

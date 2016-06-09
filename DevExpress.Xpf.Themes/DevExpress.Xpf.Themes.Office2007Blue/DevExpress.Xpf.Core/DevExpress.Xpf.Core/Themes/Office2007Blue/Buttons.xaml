@@ -1,0 +1,125 @@
+﻿<ResourceDictionary 
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+    
+    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+    xmlns:dxcn="http://schemas.devexpress.com/winfx/2008/xaml/core/internal"
+    xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys">
+
+    <SolidColorBrush x:Key="Button.Border.Normal.Background">#FF7793B9</SolidColorBrush>
+    <LinearGradientBrush x:Key="Button.Border2.Normal.Background" EndPoint="0.5,1" StartPoint="0.5,0">
+        <GradientStop Color="#FFF9FCFF " Offset="0" />
+        <GradientStop Color="#FFF4F8FF " Offset="1" />
+        <GradientStop Color="#FFF6FAFF " Offset="0.5" />
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="Button.Border1.Normal.Background" EndPoint="0.5,1" StartPoint="0.5,0">
+        <GradientStop Color="#FFF4F9FF " Offset="0" />
+        <GradientStop Color="#FFEBF3FD " Offset="1" />
+        <GradientStop Color="#FFE9F1FC " Offset="0.5" />
+        <GradientStop Color="#FFD2E1F4 " Offset="0.5" />
+    </LinearGradientBrush>
+
+    <SolidColorBrush x:Key="Button.Border.Hover.Background">#FFC1A965</SolidColorBrush>
+    <LinearGradientBrush x:Key="Button.Border2.Hover.Background" EndPoint="0.5,1" StartPoint="0.5,0">
+        <GradientStop Color="#FFFFFEFB " Offset="0" />
+        <GradientStop Color="#FFFFF5D7 " Offset="1" />
+        <GradientStop Color="#FFFFF6DC " Offset="0.5" />
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="Button.Border1.Hover.Background" EndPoint="0.5,1" StartPoint="0.5,0">
+        <GradientStop Color="#FFFFFBE5 " Offset="0" />
+        <GradientStop Color="#FFFCEBB7 " Offset="1" />
+        <GradientStop Color="#FFFADF8F " Offset="0.5" />
+        <GradientStop Color="#FFF4C233 " Offset="0.5" />
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="Button.Border.Pressed.Background" EndPoint="0.5,1" StartPoint="0.5,0">
+        <GradientStop Color="#FF7B6645 " Offset="0" />
+        <GradientStop Color="#FFA78E66 " Offset="1" />
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="Button.Border2.Pressed.Background" EndPoint="0.5,1" StartPoint="0.5,0">
+        <GradientStop Color="#FFC18C5D " Offset="0" />
+        <GradientStop Color="#FFFFC14C " Offset="1" />
+        <GradientStop Color="#FFFFAB49 " Offset="0.5" />
+        <GradientStop Color="#FFFF8F08 " Offset="0.5" />
+        <GradientStop Color="#FFFCB06A " Offset="0.1" />
+    </LinearGradientBrush>
+    <SolidColorBrush x:Key="Button.NullBrush">#00000000</SolidColorBrush>
+
+
+    <LinearGradientBrush x:Key="Button.Border2.Checked.Background" EndPoint="0.5,1" StartPoint="0.5,0">
+        <GradientStop Color="#FFAABED2 " Offset="0" />
+        <GradientStop Color="#FFD2DEEE " Offset="1" />
+        <GradientStop Color="#FFC2D3E8 " Offset="0.5" />
+        <GradientStop Color="#FFACC3E0 " Offset="0.5" />
+        <GradientStop Color="#FFD4E0F0 " Offset="0.1" />
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="Button.Border.Checked.Background" EndPoint="0.5,1" StartPoint="0.5,0">
+        <GradientStop Color="#FF6985AB " Offset="0" />
+        <GradientStop Color="#FF7793B9 " Offset="1" />
+    </LinearGradientBrush>
+
+    <Visibility x:Key="Visible">Visible</Visibility>
+    <Visibility x:Key="Collapsed">Collapsed</Visibility>
+
+    <SolidColorBrush x:Key="{dxdst:DropDownButtonThemeKey ResourceKey=Foreground}" Color="#FF000000"/>
+    <SolidColorBrush x:Key="{dxdst:DropDownButtonThemeKey ResourceKey=ArrowForeground}" Color="#FF000000"/>
+    <SolidColorBrush x:Key="{dxdst:DropDownButtonThemeKey ResourceKey=PressedForeground}" Color="#FF000000"/>
+    <SolidColorBrush x:Key="{dxdst:DropDownButtonThemeKey ResourceKey=ArrowPressedForeground}" Color="#FF000000"/>
+    <SolidColorBrush x:Key="{dxdst:DropDownButtonThemeKey ResourceKey=MouseOverForeground}" Color="#FF000000"/>
+    <SolidColorBrush x:Key="{dxdst:DropDownButtonThemeKey ResourceKey=ArrowMouseOverForeground}" Color="#FF000000"/>
+
+    <dxcn:RenderTemplate x:Key="{dxdst:DropDownButtonThemeKey ResourceKey=BorderTemplate}">
+        <dxcn:RenderPanel>
+            <dxcn:RenderBorder Name="Focused" Margin="-2" Visibility="Hidden" Background="#59FFC200" CornerRadius="3" />
+            <dxcn:RenderBorder Name="border" Background="{StaticResource Button.Border.Normal.Background}" CornerRadius="2" Padding="1">
+                <dxcn:RenderPanel>
+                    <dxcn:RenderBorder Name="border2" CornerRadius="1" Padding="1" Background="{StaticResource Button.Border2.Normal.Background}">
+                        <dxcn:RenderBorder Name="border1" Background="{StaticResource Button.Border1.Normal.Background}"/>
+                    </dxcn:RenderBorder>
+                </dxcn:RenderPanel>
+            </dxcn:RenderBorder>
+        </dxcn:RenderPanel>
+        <dxcn:RenderTemplate.Triggers>
+            <dxcn:RenderStateGroup Name="VisualStates">
+                <dxcn:RenderStateTrigger Name="Normal"/>
+
+                <dxcn:RenderStateTrigger Name="MouseOver">
+                    <dxcn:RenderSetter Property="Background" TargetName="border" Value="{StaticResource Button.Border.Hover.Background}" />
+                    <dxcn:RenderSetter Property="Background" TargetName="border1" Value="{StaticResource Button.Border1.Hover.Background}" />
+                    <dxcn:RenderSetter Property="Background" TargetName="border2" Value="{StaticResource Button.Border2.Hover.Background}" />
+                </dxcn:RenderStateTrigger>
+
+                <dxcn:RenderStateTrigger Name="Pressed">
+                    <dxcn:RenderSetter Property="Background" TargetName="border" Value="{StaticResource Button.Border.Pressed.Background}" />
+                    <dxcn:RenderSetter Property="Background" TargetName="border1" Value="{StaticResource Button.NullBrush}" />
+                    <dxcn:RenderSetter Property="Background" TargetName="border2" Value="{StaticResource Button.Border2.Pressed.Background}" />
+                </dxcn:RenderStateTrigger>
+            </dxcn:RenderStateGroup>
+            <dxcn:RenderStateGroup Name="PlacementStates">
+                <dxcn:RenderStateTrigger Name="Default"/>
+                <dxcn:RenderStateTrigger Name="Left">
+                    <dxcn:RenderSetter Property="CornerRadius" TargetName="Focused" Value="3,0,0,3"/>
+                    <dxcn:RenderSetter Property="CornerRadius" TargetName="border" Value="2,0,0,2"/>
+                    <dxcn:RenderSetter Property="CornerRadius" TargetName="border2" Value="1,0,0,1"/>
+                    <dxcn:RenderSetter Property="Padding" TargetName="border" Value="1,1,0,1"/>
+                </dxcn:RenderStateTrigger>
+                <dxcn:RenderStateTrigger Name="Right">
+                    <dxcn:RenderSetter Property="CornerRadius" TargetName="Focused" Value="0,3,3,0"/>
+                    <dxcn:RenderSetter Property="CornerRadius" TargetName="border" Value="0,2,2,0"/>
+                    <dxcn:RenderSetter Property="CornerRadius" TargetName="border2" Value="0,1,1,0"/>
+                </dxcn:RenderStateTrigger>
+                <dxcn:RenderStateTrigger Name="Top">
+                    <dxcn:RenderSetter Property="CornerRadius" TargetName="Focused" Value="3,3,0,0"/>
+                    <dxcn:RenderSetter Property="CornerRadius" TargetName="border" Value="2,2,0,0"/>
+                    <dxcn:RenderSetter Property="CornerRadius" TargetName="border2" Value="1,1,0,0"/>
+                    <dxcn:RenderSetter Property="Padding" TargetName="border" Value="1,1,1,0"/>
+                </dxcn:RenderStateTrigger>
+                <dxcn:RenderStateTrigger Name="Bottom">
+                    <dxcn:RenderSetter Property="CornerRadius" TargetName="Focused" Value="0,0,3,3"/>
+                    <dxcn:RenderSetter Property="CornerRadius" TargetName="border" Value="0,0,2,2"/>
+                    <dxcn:RenderSetter Property="CornerRadius" TargetName="border2" Value="0,0,1,1"/>
+                </dxcn:RenderStateTrigger>
+            </dxcn:RenderStateGroup>
+        </dxcn:RenderTemplate.Triggers>
+    </dxcn:RenderTemplate>
+</ResourceDictionary>

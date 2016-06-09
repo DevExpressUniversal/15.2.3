@@ -1,0 +1,134 @@
+﻿<ResourceDictionary  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+            xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+            xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+            xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
+            xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+            xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
+            xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
+            xmlns:dxpg="http://schemas.devexpress.com/winfx/2008/xaml/propertygrid"
+            xmlns:printing="clr-namespace:DevExpress.XtraPrinting;assembly=DevExpress.Printing.v15.2.Core"
+            xmlns:dxdiag="clr-namespace:DevExpress.Xpf.Diagram;assembly=DevExpress.Xpf.Diagram.v15.2"
+            xmlns:designernative="clr-namespace:DevExpress.Xpf.Reports.UserDesigner.Native"
+            xmlns:dxdacollectioneditors="clr-namespace:DevExpress.Xpf.DataAccess.Editors.CollectionUITypeEditors;assembly=DevExpress.Xpf.DataAccess.v15.2"
+            xmlns:designernativemetadata="clr-namespace:DevExpress.Xpf.Reports.UserDesigner.Native.Metadata"
+            xmlns:designereditors="clr-namespace:DevExpress.Xpf.Reports.UserDesigner.Editors">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/DevExpress.Xpf.Diagram.v15.2;component/Behaviors/CollectionUITypeEditors/Themes/SingleSelectionCollectionEditor.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    <Style TargetType="designereditors:FormattingRulesUITypeEditor" BasedOn="{StaticResource {x:Type dxdiag:SingleSelectionCollectionEditor}}">
+        <Setter Property="ItemsControlHeaderTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <TextBlock Text="Rules available in a report:" Margin="5" />
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+
+        <Setter Property="ItemsListTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <dxe:ListBoxEdit ItemsSource="{Binding Path=(dxdiag:CollectionEditorBase.Editor).FormattingRuleSheet, RelativeSource={RelativeSource Self}}" 
+                                         EditValue="{Binding Path=(dxdiag:CollectionEditorBase.Editor).SelectedFormattingRuleSheetItem, RelativeSource={RelativeSource Self}, UpdateSourceTrigger=PropertyChanged}" 
+                                         SelectionMode="Single"
+                                         DisplayMember="Name">
+                    </dxe:ListBoxEdit>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+
+        <Setter Property="ActionButtonsTemplate" Value="{x:Null}" />
+        
+        <!--<Setter Property="ActionButtonsTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <Button Content="Edit Rule Sheet..." Padding="0,5" Margin="0,5" >
+                        <dxmvvm:Interaction.Behaviors>
+                            <dxe:DialogServiceEditorBehavior Commands="{dxe:UICommandContainerGenerator Buttons=OKCancel}" 
+                                                             Value="{Binding Path=AssociatedObject.(dxdiag:CollectionEditorBase.Editor).ReportModel.PropertiesModel.FormattingRuleSheet, RelativeSource={RelativeSource Self}, Mode=OneWay}" 
+                                                             Content="{Binding Path=AssociatedObject.(dxdiag:CollectionEditorBase.Editor).ReportModel, RelativeSource={RelativeSource Self}}">
+                                
+                                <dxe:DialogServiceEditorBehavior.DialogServiceTemplate>
+                                    <DataTemplate>
+                                        <ContentControl>
+                                            <dxdiag:CollectionDialogService >
+                                                <dxdiag:CollectionDialogService.DialogStyle>
+                                                    <Style TargetType="dx:DXDialogWindow">
+                                                        <Setter Property="UseLayoutRounding" Value="True" />
+                                                        <Setter Property="Width" Value="600" />
+                                                        <Setter Property="Height" Value="350" />
+                                                        <Setter Property="MinWidth" Value="420" />
+                                                        <Setter Property="MinHeight" Value="240" />
+                                                    </Style>
+                                                </dxdiag:CollectionDialogService.DialogStyle>
+                                                <dxdiag:CollectionDialogService.ViewTemplate>
+                                                    <DataTemplate>
+                                                        <designereditors:FormattingRuleSheetUITypeEditor EditValue="{Binding Value}" ReportModel="{Binding Content}" />
+                                                    </DataTemplate>
+                                                </dxdiag:CollectionDialogService.ViewTemplate>
+                                            </dxdiag:CollectionDialogService>
+                                        </ContentControl>
+                                    </DataTemplate>
+                                </dxe:DialogServiceEditorBehavior.DialogServiceTemplate>
+                            </dxe:DialogServiceEditorBehavior>
+                        </dxmvvm:Interaction.Behaviors>
+                    </Button>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>-->
+
+        <Setter Property="NavigationPanelTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <StackPanel Orientation="Vertical">
+                        <Button Command="{Binding Path=(dxdiag:CollectionEditorBase.Editor).MoveRightCommand, RelativeSource={RelativeSource Self}}" Margin="4,0,4,4">
+                            <Image Source="{dx:DXImage Image=Next_16x16.png}" Style="{StaticResource ImageOpacityTrigger}" />
+                        </Button>
+                        <Button Command="{Binding Path=(dxdiag:CollectionEditorBase.Editor).MoveAllRightCommand, RelativeSource={RelativeSource Self}}" Margin="4,0,4,4">
+                            <Image Source="{dx:DXImage Image=DoubleNext_16x16.png}" Style="{StaticResource ImageOpacityTrigger}" />
+                        </Button>
+                        <Button Command="{Binding Path=(dxdiag:CollectionEditorBase.Editor).MoveLeftCommand, RelativeSource={RelativeSource Self}}" Margin="4,0,4,4">
+                            <Image Source="{dx:DXImage Image=Prev_16x16.png}" Style="{StaticResource ImageOpacityTrigger}" />
+                        </Button>
+                        <Button Command="{Binding Path=(dxdiag:CollectionEditorBase.Editor).MoveAllLeftCommand, RelativeSource={RelativeSource Self}}" Margin="4,0,4,10">
+                            <Image Source="{dx:DXImage Image=DoublePrev_16x16.png}" Style="{StaticResource ImageOpacityTrigger}" />
+                        </Button>
+                        <Button Command="{Binding Path=(dxdiag:CollectionEditorBase.Editor).MoveUpCommand, RelativeSource={RelativeSource Self}}" Margin="4,0,4,4">
+                            <Image Source="{dx:DXImage Image=MoveUp_16x16.png}" Style="{StaticResource ImageOpacityTrigger}" />
+                        </Button>
+                        <Button Command="{Binding Path=(dxdiag:CollectionEditorBase.Editor).MoveDownCommand, RelativeSource={RelativeSource Self}}" Margin="4,0">
+                            <Image Source="{dx:DXImage Image=MoveDown_16x16.png}" Style="{StaticResource ImageOpacityTrigger}" />
+                        </Button>
+                    </StackPanel>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+
+        <Setter Property="ItemDetailedDescriptionTemplateWrapper">
+            <Setter.Value>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <TextBlock Text="Rules applied to a control:" Margin="5" />
+                        <dxe:ListBoxEdit Grid.Row="1"
+                                         ItemsSource="{Binding Path=(dxdiag:CollectionEditorBase.Editor).EditValue, RelativeSource={RelativeSource Self}}"  
+                                         EditValue="{Binding Path=(dxdiag:CollectionEditorBase.Editor).SelectedItem, RelativeSource={RelativeSource Self}}" 
+                                         SelectionMode="Single"/>
+                    </Grid>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="ItemTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Name}" />
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

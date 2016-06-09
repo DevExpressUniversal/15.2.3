@@ -1,0 +1,170 @@
+﻿<UserControl x:Class="DevExpress.Xpf.Spreadsheet.Forms.FormatCellsFontControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+             xmlns:dxspsi="clr-namespace:DevExpress.Xpf.Spreadsheet.Internal"
+             xmlns:dxsps="clr-namespace:DevExpress.Xpf.Spreadsheet" 
+             xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+             xmlns:dxspsmodel="clr-namespace:DevExpress.XtraSpreadsheet.Model;assembly=DevExpress.Spreadsheet.v15.2.Core"
+             mc:Ignorable="d" 
+             d:DesignHeight="320" d:DesignWidth="600">
+    <UserControl.Resources>
+        <dxspsi:StringToFontFamilyConveter x:Key="StringToFontFamilyConveter"/>
+        <dxspsi:StringToFontStyleConveter x:Key="StringToFontStyleConveter"/>
+        <dxspsi:StringToFontWeightConveter x:Key="StringToFontWeightConveter"/>
+        <dxspsi:SystemColorToMediaColor x:Key="SystemColorToMediaColor"/>
+        <dxspsi:ColorToBrushConverter x:Key="ColorToBrushConverter"/>
+        <dxspsi:UnderlineTypeToTextDecorationsConverter x:Key="UnderlineTypeToTextDecorationsConverter"/>
+        <dxspsi:CheckStateToBoolConverter x:Key="CheckStateToBoolConverter"/>
+        <dxsps:SpreadsheetControlStringIdConverter x:Key="stringIdConverter" />
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="225"/>
+                <ColumnDefinition Width="135"/>
+                <!--<ColumnDefinition Width="100"/>-->
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="118"/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_FormatCellsFormFontFamily, Converter={StaticResource stringIdConverter}}"
+                   HorizontalAlignment="Left"/>
+                <Grid Grid.Row="1" Margin="0,3,0,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <dxe:ComboBoxEdit ItemsSource="{Binding FontNames}" SelectedItem="{Binding FontName, Mode=TwoWay}" PopupHeight="0" 
+                                      ImmediatePopup="False" ShowEditorButtons="False" IsPopupOpen="False" AutoComplete="True" IsSynchronizedWithCurrentItem="True"/>
+                    <!--<dxe:TextEdit Text="{Binding FontName, Mode=TwoWay}"/>-->
+                    <dxe:ListBoxEdit Grid.Row="1" ItemsSource="{Binding FontNames}" SelectedItem="{Binding FontName, Mode=TwoWay}">
+                        <dxe:ListBoxEdit.ItemsPanel>
+                            <ItemsPanelTemplate >
+                                <StackPanel/>
+                            </ItemsPanelTemplate >
+                        </dxe:ListBoxEdit.ItemsPanel>
+                    </dxe:ListBoxEdit>
+                </Grid>
+            </Grid>
+            <Grid Grid.Column="1" Margin="5,0,0,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="118"/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_FormatCellsFormFontStyle, Converter={StaticResource stringIdConverter}}"
+                   HorizontalAlignment="Left"/>
+                <Grid Grid.Row="1" Margin="0,3,0,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <dxe:ComboBoxEdit ItemsSource="{Binding FontStyles}" SelectedItem="{Binding FontStyle, Mode=TwoWay}" PopupHeight="0" 
+                                      ImmediatePopup="False" ShowEditorButtons="False" IsPopupOpen="False" AutoComplete="True" IsSynchronizedWithCurrentItem="True"/>
+                    <dxe:ListBoxEdit Grid.Row="1" SelectedItem="{Binding FontStyle, Mode=TwoWay}" ItemsSource="{Binding FontStyles}" />
+                </Grid>
+            </Grid>
+            <Grid Grid.Column="2" Margin="5,0,0,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="118"/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_FormatCellsFormFontSize, Converter={StaticResource stringIdConverter}}"
+                   HorizontalAlignment="Left"/>
+                <Grid Grid.Row="1" Margin="0,3,0,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <dxe:ComboBoxEdit ItemsSource="{Binding FontSizes}" SelectedItem="{Binding Size, Mode=TwoWay}" PopupHeight="0" 
+                                      ImmediatePopup="False" ShowEditorButtons="False" IsPopupOpen="False" AutoComplete="True" IsSynchronizedWithCurrentItem="True"/>
+                    <dxe:ListBoxEdit Grid.Row="1" SelectedItem="{Binding Size, Mode=TwoWay}" ItemsSource="{Binding FontSizes}"/>
+                </Grid>
+            </Grid>
+        </Grid>
+        <Grid Margin="0,3,0,0" Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="225"/>
+                <ColumnDefinition Width="135"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Column="0" Margin="5,0,0,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_FormatCellsFormFontUnderline, Converter={StaticResource stringIdConverter}}"
+                   HorizontalAlignment="Left"/>
+                    <dxe:ComboBoxEdit Grid.Row="1" 
+                                  Margin="0,3,0,0" 
+                                  ItemsSource="{Binding Underlines}"
+                                  SelectedItem="{Binding Underline, Mode=TwoWay}" />
+                </Grid>
+            </Grid>
+            <Grid Grid.Column="1" Margin="5,0,0,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_FormatCellsFormFontColor, Converter={StaticResource stringIdConverter}}"
+                   HorizontalAlignment="Left"/>
+                <dxe:PopupColorEdit x:Name="ceFontColor" Grid.Row="1" Margin="0,3,0,0" EditValue="{Binding ColorFont, Converter={StaticResource SystemColorToMediaColor}, Mode=TwoWay}"/>
+            </Grid>
+        </Grid>
+        <Grid Margin="0,3,0,0" Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="225"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <GroupBox Grid.Row="0" 
+                Header="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_FormatCellsFormFontEffects, Converter={StaticResource stringIdConverter}}">
+                <StackPanel Orientation="Vertical">
+                    <dxe:CheckEdit Content="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_FormatCellsFormFontStrikethrough, Converter={StaticResource stringIdConverter}}"
+                                   Margin="0,3,0,0" 
+                                   IsChecked="{Binding StrikeThrough, Converter={StaticResource CheckStateToBoolConverter}, Mode=TwoWay}" />
+                    <dxe:CheckEdit x:Name="super"
+                                   Content="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_FormatCellsFormFontSuperscript, Converter={StaticResource stringIdConverter}}"
+                                   Checked="super_Checked"  
+                                   Margin="0,3,0,0" 
+                                   IsChecked="{Binding Superscript, Converter={StaticResource CheckStateToBoolConverter}, Mode=TwoWay}"/>
+                    <dxe:CheckEdit x:Name="sub" 
+                                   Content="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_FormatCellsFormFontSubscript, Converter={StaticResource stringIdConverter}}"
+                                   Checked="sub_Checked" 
+                                   Margin="0,3,0,0" 
+                                   IsChecked="{Binding Subscript, Mode=TwoWay}"/>
+                </StackPanel>
+            </GroupBox>
+            <GroupBox Grid.Column="1"
+                Header="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_FormatCellsFormFontPreview, Converter={StaticResource stringIdConverter}}"
+                Margin="5,0,0,0" Height="90">
+                <TextBox IsReadOnly="True" Background="White" VerticalContentAlignment="Center" TextAlignment="Center" Focusable="False"
+                 Text="{Binding Mode=OneTime, Source={StaticResource stringIdConverter}, ConverterParameter=Caption_FormatCellsFormFontSample, Converter={StaticResource stringIdConverter}}"
+                 FontSize="{Binding Size}" FontStyle="{Binding FontStyle, Converter={StaticResource StringToFontStyleConveter}}"
+                         FontWeight="{Binding FontStyle, Converter={StaticResource StringToFontWeightConveter}}"
+                         Foreground="{Binding Color, ElementName=ceFontColor, Converter={StaticResource ColorToBrushConverter}}"
+                         FontFamily="{Binding FontName, Converter={StaticResource StringToFontFamilyConveter}}"
+                         TextDecorations="{Binding Underline, Converter={StaticResource UnderlineTypeToTextDecorationsConverter}}"/>
+            </GroupBox>
+        </Grid>
+        <TextBlock Grid.Row="3"
+                   Margin="-2,15,0,0"
+                   TextWrapping="Wrap"
+                   Text="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_FormatCellsFormFontDescription, Converter={StaticResource stringIdConverter}}"/>
+    </Grid>
+</UserControl>

@@ -1,0 +1,34 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:dxschdui="clr-namespace:DevExpress.Xpf.Scheduler.UI"
+    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+    xmlns:dxschd="clr-namespace:DevExpress.Xpf.Scheduler.Drawing"
+    xmlns:dxscht="clr-namespace:DevExpress.Xpf.Scheduler.ThemeKeys">
+
+    <!--MonthViewMonthVerticalTemplate-->
+    <DataTemplate x:Key="{dxscht:MonthViewThemeKey ResourceKey=MonthVerticalTemplate}">
+        <Grid>
+            <dxschd:SchedulerItemsControl
+            HorizontalContentAlignment="Stretch"
+            VerticalContentAlignment="Stretch" 
+            ItemsSource="{Binding SimpleIntervals}"
+            ItemTemplate="{DynamicResource {dxscht:MonthViewThemeKey ResourceKey=MonthViewWeekTemplate}}" dxschd:SchedulerItemsControl.ElementPosition="{Binding Path=(dxschd:SchedulerItemsControl.ElementPosition), RelativeSource={RelativeSource TemplatedParent}}"
+                x:Name="weeks">
+                <dxschd:SchedulerItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <dxschd:PixelSnappedUniformGrid Orientation="Vertical" dxschd:SchedulerItemsControl.ElementPosition="{Binding Path=(dxschd:SchedulerItemsControl.ElementPosition), ElementName=weeks}" />
+                    </ItemsPanelTemplate>
+                </dxschd:SchedulerItemsControl.ItemsPanel>
+            </dxschd:SchedulerItemsControl>
+            <!--<ContentPresenter
+                dxschd:SchedulerItemsControl.ElementPosition="{Binding Path=(dxschd:SchedulerItemsControl.ElementPosition), RelativeSource={RelativeSource TemplatedParent}}"
+                ContentTemplate="{DynamicResource {dxscht:SchedulerViewThemeKey ResourceKey=NavigationButtonsPair}}"
+                Content="{Binding}"
+                Margin="-1,0,0,0"
+                />-->
+            
+        </Grid>
+    </DataTemplate>
+
+</ResourceDictionary>

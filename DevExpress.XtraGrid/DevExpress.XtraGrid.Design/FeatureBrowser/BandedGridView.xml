@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FeatureItems SourceType="BandedGridView">
+	<FeatureItem ID="Layout_Columns_EndUser_Banded" Category="Layout_Columns" ReferenceId="EndUser_ColumnLayout_Banded" Name="End-user Actions">
+	<SupportedComponents BandedGridView="True"></SupportedComponents>
+	</FeatureItem>	
+	<FeatureItem ID="Layout_Columns_CustomizationForm_Banded" Category="Layout_Columns" ReferenceId="VE_CustomizationForm_Banded" Name="Customization Form">
+	<SupportedComponents BandedGridView="True"></SupportedComponents>
+	</FeatureItem>
+	<FeatureItem ID="Layout_Bands" Name="Band Layout" Category="Layout_Main" ExpandAll="False" SelectedPropertyOnStart="BandPanelRowHeight">
+		<Properties>
+			<Item Name="BandPanelRowHeight"></Item>
+			<Item Name="MinBandPanelRowCount"></Item>
+		</Properties>	
+		<Pages>
+			<Bands>
+				<Properties>
+					<Item Name="AutoFillDown"></Item>
+					<Item Name="Caption"></Item>
+					<Item Name="RowCount"></Item>
+					<Item Name="Width"></Item>
+				</Properties>
+			</Bands>
+		</Pages>
+		<Description>
+			You can customize the layout of bands DIRECTLY IN THE [{goto:Bands}Band Designer]. Drag and resize bands to do thi. The main settings that affect the size of bands are:
+		</Description>
+	</FeatureItem>	
+	<FeatureItem ID="Layout_Bands_CustomizationForm_Banded" Category="Layout_Bands" ReferenceId="VE_CustomizationForm_Banded" Name="Customization Form">
+	</FeatureItem>
+	<FeatureItem ID="Layout_Bands_EndUser" Category="Layout_Bands" ReferenceId="EndUser_BandLayout" Name="End-user Actions">
+	</FeatureItem>
+
+	<FeatureItem ID="Layout_FixedBands" Name="Fixed Bands" Category="Layout_Main" ExpandAll="False" SelectedPropertyOnStart="OptionsView.ColumnAutoWidth">
+        <Properties>
+			<Item Name="OptionsView.ColumnAutoWidth"></Item>
+			<Item Name="Appearance.FixedLine"></Item>
+			<Item Name="FixedLineWidth"></Item>
+		</Properties>
+        <ExpandedPropertiesOnStart>
+			<ExpandedItem Name="OptionsView"></ExpandedItem>
+			<ExpandedItem Name="Appearance"></ExpandedItem>
+		</ExpandedPropertiesOnStart>
+		<Pages>
+			<Bands>
+				<Properties>
+					<Item Name="Fixed"></Item>
+					<Item Name="Width"></Item>
+				</Properties>
+			</Bands>
+		</Pages>
+		<Description>
+			Fixed bands are anchored to the left or right of a view and are not affected by horizontal scrolling. 
+			
+			Allow horizontal scrolling:
+			[{(OptionsView.ColumnAutoWidth=True)}OptionsView.ColumnAutoWidth], [{goto:Bands,Width}Band.Width] property. (You can change the width of bands DIRECTLY IN THE PREVIEW WINDOW).
+			
+			Anchor a band:
+			[{goto:Bands,Fixed}Band.Fixed] property.
+			
+			Separator appearance:
+			[FixedLineWidth], [Appearance.FixedLine] properties.
+		</Description>
+	</FeatureItem>	
+
+	<FeatureItem ID="EndUser_ColumnLayout_Banded" Name="Column Layout" Category="EndUser_Main" ExpandAll="True" SelectedPropertyOnStart="OptionsCustomization.AllowColumnMoving" SampleSetupClass="">
+        <Properties>
+			<Item Name="OptionsCustomization.AllowColumnMoving"></Item>
+			<Item Name="OptionsCustomization.AllowColumnResizing"></Item>
+			<Item Name="OptionsCustomization.AllowChangeColumnParent"></Item>
+			<Item Name="BestFitMaxRowCount"></Item>
+			<Item Name="OptionsMenu.EnableColumnMenu"></Item>
+			<Item Name="ColumnChanged"></Item>
+			<Item Name="ColumnWidthChanged"></Item>
+		</Properties>
+		<Pages>
+			<Columns>
+				<Properties>
+					<Item Name="OptionsColumn.AllowMove"></Item>		
+					<Item Name="OptionsColumn.AllowSize"></Item>		
+					<Item Name="MinWidth"></Item>		
+					<Item Name="OptionsColumn.FixedWidth"></Item>		
+				</Properties>
+			</Columns>
+		</Pages>
+		<Description>
+			Allow moving columns: 
+			[{(OptionsCustomization.AllowColumnMoving=False)}OptionsCustomization.AllowColumnMoving] [{goto:Columns,OptionsColumn.AllowMove}Column.OptionsColumn.AllowMove], [OptionsCustomization.AllowChangeColumnParent] properties.
+			
+			Allow resizing columns: 
+			[{(OptionsCustomization.AllowColumnResizing=False)}OptionsCustomization.AllowColumnResizing] [{goto:Columns,OptionsColumn.AllowSize}Column.OptionsColumn.AllowSize] properties.
+			
+			Width: 
+			[{goto:Columns,MinWidth}Column.MinWidth,] [{goto:Columns,OptionsColumn.FixedWidth}Column.OptionsColumn.FixedWidth] properties.
+
+			Best Fit feature: 
+			[BestFitMaxRowCount] property.
+			
+			Column customization menu: 
+			[{(OptionsMenu.EnableColumnMenu=False)}OptionsMenu.EnableColumnMenu] option.
+			
+			Column layout changes notifications: 
+			[{ColumnChanged}ColumnChanged], [ColumnWidthChanged] events.
+		</Description>
+	</FeatureItem>
+	<FeatureItem ID="EndUser_BandLayout" Name="Band Layout" Category="EndUser_Main" SelectedPropertyOnStart="BandPanelRowHeight">
+		<Properties>
+			<Item Name="OptionsCustomization.AllowChangeBandParent"></Item>
+			<Item Name="BandPanelRowHeight"></Item>
+			<Item Name="BandWidthChanged"></Item>
+		</Properties>	
+		<Pages>
+			<Bands>
+				<Properties>
+					<Item Name="MinWidth"></Item>
+					<Item Name="OptionsBand.AllowHotTrack"></Item>
+					<Item Name="OptionsBand.AllowPress"></Item>
+					<Item Name="OptionsBand.AllowMove"></Item>
+					<Item Name="OptionsBand.AllowSize"></Item>
+					<Item Name="OptionsBand.FixedWidth"></Item>
+				</Properties>
+			</Bands>
+		</Pages>
+		<Description>
+			Band reordering:
+			[OptionsCustomization.AllowChangeBandParent], [{goto:Bands,OptionsBand.AllowMove}Band.OptionsBand.AllowMove] properties.
+			
+			Band width customization:
+			[{goto:Bands,OptionsBand.AllowSize}Band.OptionsBand.AllowSize], [{goto:Bands,MinWidth}Band.MinWidth], [{goto:Bands,OptionsBand.FixedWidth}Band.OptionsBand.FixedWidth] properties.
+			
+			Band width changed notification:
+			[BandWidthChanged] event.
+			
+			Band states:
+			[{goto:Bands,OptionsBand.AllowHotTrack}Band.OptionsBand.AllowHotTrack], [{goto:Bands,OptionsBand.AllowPress}Band.OptionsBand.AllowPress] options.
+		</Description>
+	</FeatureItem>	
+
+	<FeatureItem ID="VE_BandHeaders" Name="Band Headers" Category="VE_Main" SelectedPropertyOnStart="OptionsView.ShowBands">	
+		<Properties>
+			<Item Name="OptionsView.ShowBands"></Item>
+			<Item Name="Appearance.BandPanel"></Item>
+			<Item Name="Appearance.BandPanelBackground"></Item>
+			<Item Name="BandPanelRowHeight"></Item>
+			<Item Name="Images"></Item>
+			<Item Name="OptionsHint.ShowBandHeaderHints"></Item>
+		</Properties>
+		<ExpandedPropertiesOnStart>
+			<ExpandedItem Name="OptionsView"></ExpandedItem>
+			<ExpandedItem Name="Appearance"></ExpandedItem>
+		</ExpandedPropertiesOnStart>
+		<Pages>
+			<Bands>
+				<Properties>
+					<Item Name="AppearanceHeader"></Item>
+					<Item Name="AutoFillDown"></Item>
+					<Item Name="Caption"></Item>
+					<Item Name="ImageAlignment"></Item>
+					<Item Name="ImageIndex"></Item>
+					<Item Name="RowCount"></Item>
+					<Item Name="ToolTip"></Item>
+					<Item Name="OptionsBand.ShowCaption"></Item>
+				</Properties>
+			</Bands>
+		</Pages>
+		<Description>
+			Visibility:
+			[{(OptionsView.ShowBands=False)}OptionsView.ShowBands] property.
+			
+			Appearance:
+			[Appearance.BandPanel], [{goto:Bands,AppearanceHeader}Band.AppearanceHeader], [Appearance.BandPanelBackground] properties.
+			
+			Size:
+			[BandPanelRowHeight], [{goto:Bands,RowCount}Band.RowCount], [{goto:Bands,AutoFillDown}Band.AutoFillDown] properties.
+			
+			Caption:
+			[{goto:Bands,Caption}Band.Caption], [{goto:Bands,OptionsBand.ShowCaption}Band.OptionsBand.ShowCaption] properties.
+			
+			Image:
+			[Images], [{goto:Bands,ImageIndex}Band.ImageIndex], [{goto:Bands,ImageAlignment}Band.ImageAlignment] properties.
+			
+			Tooltips:
+			[{(OptionsHint.ShowBandHeaderHints=False)}OptionsHint.ShowBandHeaderHints], [{goto:Bands,ToolTip}Band.ToolTip] properties.
+		</Description>
+	</FeatureItem>
+	<FeatureItem ID="VE_CustomizationForm_Banded" Name="Customization Form" Category="VE_Main" ShowColumns="True" ShowBands="True" ExpandAll="False" SelectedPropertyOnStart="OptionsCustomization.ShowBandsInCustomizationForm" SampleSetupClass="">	
+		<Properties>
+			<Item Name="ShowCustomizationForm"></Item>
+			<Item Name="HideCustomizationForm"></Item>
+			<Item Name="OptionsMenu.EnableColumnMenu"></Item>
+			<Item Name="OptionsCustomization.ShowBandsInCustomizationForm"></Item>
+		</Properties>
+		<Pages>
+			<Columns>
+				<Properties>
+					<Item Name="OptionsColumn.ShowInCustomizationForm"></Item>
+					<Item Name="Visible"></Item>
+					<Item Name="CustomizationCaption"></Item>
+				</Properties>
+			</Columns>
+			<Bands>
+				<Properties>
+					<Item Name="OptionsBand.ShowInCustomizationForm"></Item>
+					<Item Name="Visible"></Item>
+					<Item Name="CustomizationCaption"></Item>
+				</Properties>
+			</Bands>
+		</Pages>
+		<Description>
+			Available via context menu: 
+			[{(OptionsMenu.EnableColumnMenu=False)}OptionsMenu.EnableColumnMenu] option.
+			
+			Content (hidden columns): 
+			[{goto:Columns,Visible}Column.Visible], [{goto:Columns,OptionsColumn.ShowInCustomizationForm}Column.OptionsColumn.ShowInCustomizationForm] properties.
+			
+			Content (hidden bands):
+			[{(OptionsCustomization.ShowBandsInCustomizationForm=False)}OptionsCustomization.ShowBandsInCustomizationForm], [{goto:Bands,Visible}Band.Visible], [{goto:Bands,OptionsBand.ShowInCustomizationForm}Band.OptionsBand.ShowInCustomizationForm] properties.
+			
+			Column caption when in customization form:
+			[{goto:Columns,CustomizationCaption}Column.CustomizationCaption] property.
+
+			Band caption when in customization form:
+			[{goto:Bands,CustomizationCaption}Band.CustomizationCaption] property.
+
+
+			Before customization form is displayed: 
+			[ShowCustomizationForm] event.
+			
+			Hide notification: 
+			[HideCustomizationForm].
+		</Description>
+	</FeatureItem>
+
+	<FeatureItem ID="Appearance_ViewAppearance_Banded" Name="View Appearance" Category="Appearance_Main" SelectedPropertyOnStart="PaintStyleName">	
+		<Properties>
+			<Item Name="Appearance"></Item>
+			<Item Name="OptionsView.EnableAppearanceEvenRow"></Item>
+			<Item Name="OptionsView.EnableAppearanceOddRow"></Item>
+			<Item Name="OptionsSelection.EnableAppearanceFocusedRow"></Item>
+			<Item Name="OptionsSelection.EnableAppearanceFocusedCell"></Item>
+			<Item Name="CustomDrawBandHeader"></Item>
+			<Item Name="CustomDrawCell"></Item>
+			<Item Name="CustomDrawColumnHeader"></Item>
+			<Item Name="CustomDrawEmptyForeground"></Item>
+			<Item Name="CustomDrawFilterPanel"></Item>
+			<Item Name="CustomDrawFooter"></Item>
+			<Item Name="CustomDrawFooterCell"></Item>
+			<Item Name="CustomDrawGroupPanel"></Item>
+			<Item Name="CustomDrawGroupRow"></Item>
+			<Item Name="CustomDrawRowFooter"></Item>
+			<Item Name="CustomDrawRowFooterCell"></Item>
+			<Item Name="CustomDrawRowIndicator"></Item>
+			<Item Name="CustomDrawRowPreview"></Item>
+			<Item Name="GroupLevelStyle"></Item>
+			<Item Name="RowCellDefaultAlignment"></Item>
+			<Item Name="RowCellStyle"></Item>
+			<Item Name="RowStyle"></Item>
+			<Item Name="CustomDrawRowPreview"></Item>
+			<Item Name="CustomDrawRowPreview"></Item>
+			<Item Name="PaintStyleName"></Item>
+		</Properties>
+		<Description>
+			This page provides access to all the settings available for customizing the appearance of this view. You can also access the appearance settings which relate to a particular visual element. See the [{gotoFeature:VE_Main}Visual Elements] section for this purpose.
+		</Description>
+	</FeatureItem>
+	
+	<FeatureItem ID="VE_Column_Banded" Name="Column" Category="VE_Main" SelectedPropertyOnStart="" SampleSetupClass="">
+        <Pages>
+			<Columns>
+				<Properties>
+					<Item Name="Visible"></Item>
+					<Item Name="Width"></Item>
+					<Item Name="MinWidth"></Item>
+					<Item Name="AppearanceCell"></Item>
+					<Item Name="OptionsColumn.FixedWidth"></Item>
+					<Item Name="DisplayFormat"></Item>
+				</Properties>
+				<ExpandedPropertiesOnStart>
+					<ExpandedItem Name="DisplayFormat"></ExpandedItem>
+				</ExpandedPropertiesOnStart>
+			</Columns>
+		</Pages>
+		<Description>
+			The main features that control the order, size and appearance of columns are:
+			
+			Visibility: 
+			[{goto:Columns,Visible}Column.Visible].
+			
+			Size: 
+			[{goto:Columns,Width}Column.Width], [{goto:Columns,MinWidth}Column.MinWidth], [{goto:Columns,OptionsColumn.FixedWidth}Column.OptionsColumn.FixedWidth] properties.
+			
+			Appearance of cells: 
+			[{goto:Columns,AppearanceCell}AppearanceCell] property.
+			
+			Formatting of cells' texts: 
+			[{goto:Columns,DisplayFormat}Column.DisplayFormat] property.
+					
+			Related features: [{gotoFeature:VE_Cells}cells], [{gotoFeature:VE_ColumnHeaders}column headers], [{gotoFeature:Layout_Columns}column layout].
+		</Description>
+	</FeatureItem>
+</FeatureItems>

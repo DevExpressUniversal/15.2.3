@@ -1,0 +1,724 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{9C1A1A0C-921F-4765-8916-C30DDC68B54F}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DevExpress.Snap</RootNamespace>
+    <AssemblyName>DevExpress.Snap.v15.2.Core</AssemblyName>
+    <AssemblyOriginatorKeyFile>..\..\DevExpress.Key\StrongKey.snk</AssemblyOriginatorKeyFile>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\..\Bin\Framework\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;CODE_ANALYSIS</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\..\Bin\Framework\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DevExpress.Charts.v15.2.Core"><HintPath>..\..\..\Bin\Framework\DevExpress.Charts.v15.2.Core.dll</HintPath><Private>False</Private></Reference>
+    <Reference Include="DevExpress.Data.v15.2"><HintPath>..\..\..\Bin\Framework\DevExpress.Data.v15.2.dll</HintPath><Private>False</Private></Reference>
+    <Reference Include="DevExpress.DataAccess.v15.2">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Bin\Framework\DevExpress.DataAccess.v15.2.dll</HintPath>
+    <Private>False</Private></Reference>
+    <Reference Include="DevExpress.Printing.v15.2.Core"><HintPath>..\..\..\Bin\Framework\DevExpress.Printing.v15.2.Core.dll</HintPath><Private>False</Private></Reference>
+    <Reference Include="DevExpress.Office.v15.2.Core"><HintPath>..\..\..\Bin\Framework\DevExpress.Office.v15.2.Core.dll</HintPath><Private>False</Private></Reference>
+    <Reference Include="DevExpress.RichEdit.v15.2.Core"><HintPath>..\..\..\Bin\Framework\DevExpress.RichEdit.v15.2.Core.dll</HintPath><Private>False</Private></Reference>
+    <Reference Include="DevExpress.Sparkline.v15.2.Core">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Bin\Framework\DevExpress.Sparkline.v15.2.Core.dll</HintPath>
+    <Private>False</Private></Reference>
+    <Reference Include="DevExpress.Xpo.v15.2">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Bin\Framework\DevExpress.Xpo.v15.2.dll</HintPath>
+    <Private>False</Private></Reference>
+    <Reference Include="DevExpress.XtraCharts.v15.2">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Bin\Framework\DevExpress.XtraCharts.v15.2.dll</HintPath>
+    <Private>False</Private></Reference>
+    
+    <Reference Include="System"><Private>False</Private></Reference>
+    <Reference Include="System.Core"><Private>False</Private></Reference>
+    <Reference Include="System.Drawing"><Private>False</Private></Reference>
+    <Reference Include="System.Windows.Forms"><Private>False</Private></Reference>
+    <Reference Include="System.Data"><Private>False</Private></Reference>
+    <Reference Include="System.Xml"><Private>False</Private></Reference>
+    <Reference Include="System.Xml.Linq"><Private>False</Private></Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ActionListDesignerAttribute.cs" />
+    <Compile Include="ActionListsAttribute.cs" />
+    <Compile Include="API\CalculatedField.cs" />
+    <Compile Include="API\CalculatedFieldCollection.cs" />
+    <Compile Include="API\DataSourceInfo.cs" />
+    <Compile Include="API\DataSourceInfoCollection.cs" />
+    <Compile Include="API\Native\SnapNativeSubDocument.cs" />
+    <Compile Include="API\Native\SnapSection.cs" />
+    <Compile Include="API\SnapHyperlink.cs" />
+    <Compile Include="API\SnapSubDocument.cs" />
+    <Compile Include="Commands\RemoveDataSourceCommand.cs" />
+    <Compile Include="Commands\SnapInsertTableOfContentsCommand.cs" />
+    <Compile Include="Native\Services\DataConnectionParametersService.cs" />
+    <Compile Include="Native\Services\DataSourceNameCreationService.cs" />
+    <Compile Include="Options\SnapMailMergeOptions.cs" />
+    <Compile Include="API\SnapBarCode.cs" />
+    <Compile Include="API\SnapCheckBox.cs" />
+    <Compile Include="API\SnapDocument.cs" />
+    <Compile Include="API\SnapDocumentFormat.cs" />
+    <Compile Include="API\IDataSourceOwner.cs" />
+    <Compile Include="API\Internal\InternalAPI.cs" />
+    <Compile Include="API\Native\SnapNativeDocument.cs" />
+    <Compile Include="API\Parameter.cs" />
+    <Compile Include="API\ParameterCollection.cs" />
+    <Compile Include="API\SnapEntity.cs" />
+    <Compile Include="API\SnapImage.cs" />
+    <Compile Include="API\SnapList.cs" />
+    <Compile Include="API\SnapListFilters.cs" />
+    <Compile Include="API\SnapListGroupInfo.cs" />
+    <Compile Include="API\SnapListGroupParam.cs" />
+    <Compile Include="API\SnapListGroups.cs" />
+    <Compile Include="API\SnapListSorting.cs" />
+    <Compile Include="API\SnapSparkline.cs" />
+    <Compile Include="API\SnapText.cs" />
+    <Compile Include="API\Themes.cs" />
+    <Compile Include="Commands\ChangeEditorRowLimitCommand.cs" />
+    <Compile Include="Commands\ChangeMailMergeCurrentRecordCommand.cs" />
+    <Compile Include="Commands\ChangeMailMergeDataSourceCommand.cs" />
+    <Compile Include="Commands\ChangeTableCellStyleCommand.cs" />
+    <Compile Include="Commands\ChangeThemeCommand.cs" />
+    <Compile Include="Commands\FinishAndMergeCommand.cs" />
+    <Compile Include="Commands\LoadThemeCommand.cs" />
+    <Compile Include="Commands\MailMergeCommandBase.cs" />
+    <Compile Include="Commands\MailMergeEditFieldCommandBase.cs" />
+    <Compile Include="Commands\MailMergeFiltersCommand.cs" />
+    <Compile Include="Commands\MailMergeSortingCommand.cs" />
+    <Compile Include="Commands\NewDataSourceCommand.cs" />
+    <Compile Include="Commands\PieceTableInsertSparklineAtLogPositionCommand.cs" />
+    <Compile Include="Commands\SaveThemeCommand.cs" />
+    <Compile Include="Commands\ShowCustomSortFormCommand.cs" />
+    <Compile Include="Commands\CreateFieldForTemplate.cs" />
+    <Compile Include="Commands\DeleteBackCommand.cs" />
+    <Compile Include="Commands\DeleteCommand.cs" />
+    <Compile Include="Commands\DeleteListCommand.cs" />
+    <Compile Include="Commands\DragCopyContentCommand.cs" />
+    <Compile Include="Commands\ExportDocumentCommand.cs" />
+    <Compile Include="Commands\InsertTableColumnCommand.cs" />
+    <Compile Include="Commands\ShowReportStructureEditorFormCommand.cs" />
+    <Compile Include="Commands\SnapMailMergeCommandBase.cs" />
+    <Compile Include="Commands\SnapMultiCommand.cs" />
+    <Compile Include="Commands\SnapPrintCommand.cs" />
+    <Compile Include="Commands\SnapPrintPreviewCommand.cs" />
+    <Compile Include="Commands\SnapQuickPrintCommand.cs" />
+    <Compile Include="Commands\SnapSelectUpperLevelObject.cs" />
+    <Compile Include="Commands\FilterFieldPlaceHolderCommand.cs" />
+    <Compile Include="Commands\GroupFieldsCollectionCommand.cs" />
+    <Compile Include="Commands\HighlightActiveElementCommand.cs" />
+    <Compile Include="Commands\InsertDataRowSeparatorCommand.cs" />
+    <Compile Include="Commands\InsertDataRowSeparatorCommandInternal.cs" />
+    <Compile Include="Commands\InsertGroupSeparatorCommand.cs" />
+    <Compile Include="Commands\InsertSeparatorCommand.cs" />
+    <Compile Include="Commands\SnapShowTableStyleFormCommand.cs" />
+    <Compile Include="Commands\SummaryCommands.cs" />
+    <Compile Include="Commands\ToggleTableFixedColumnWidthCommand.cs" />
+    <Compile Include="EventArgs.cs" />
+    <Compile Include="Export\PdfExporter.cs" />
+    <Compile Include="Fields\SNIndex.cs" />
+    <Compile Include="Fields\SNHyperlinkField.cs" />
+    <Compile Include="Fields\SNMergeFieldBase.cs" />
+    <Compile Include="Fields\SNSparklineField.cs" />
+    <Compile Include="Fields\StringDataContainer.cs" />
+    <Compile Include="Forms\CustomSortFormController.cs" />
+    <Compile Include="Forms\MailMergeExportRangeFormController.cs" />
+    <Compile Include="Forms\MailMergeSortingFormController.cs" />
+    <Compile Include="Forms\ReportStructureEditorFormController.cs" />
+    <Compile Include="Forms\SortingFormControllerBase.cs" />
+    <Compile Include="Forms\TableCellStyleFormController.cs" />
+    <Compile Include="History\DataSourceHistory.cs" />
+    <Compile Include="History\SparklineHistory.cs" />
+    <Compile Include="Import\DataSourceDestination.cs" />
+    <Compile Include="Import\DestinationChart.cs" />
+    <Compile Include="Import\DestinationDataContainerRun.cs" />
+    <Compile Include="Import\DestinationSnapMailMergeOptions.cs" />
+    <Compile Include="Import\DestinationSparkline.cs" />
+    <Compile Include="Import\DestinationTheme.cs" />
+    <Compile Include="Import\SNParagraphDestination.cs" />
+    <Compile Include="Import\SNRunDestination.cs" />
+    <Compile Include="Import\FieldContextsDestionation.cs" />
+    <Compile Include="Native\BoxHotZonePainter.cs" />
+    <Compile Include="Native\ChartBox.cs" />
+    <Compile Include="Native\ChartBoxInfoPanelViewInfo.cs" />
+    <Compile Include="Native\ChartBoxPainter.cs" />
+    <Compile Include="Native\ChartContainer.cs" />
+    <Compile Include="Native\ChartRun.cs" />
+    <Compile Include="Commands\ChangeSelectionIntervalCommand.cs" />
+    <Compile Include="Commands\ChangeTableRowHeightCommand.cs" />
+    <Compile Include="Commands\CopySelectionCommand.cs" />
+    <Compile Include="Commands\DeleteTableColumnsCommand.cs" />
+    <Compile Include="Commands\DeleteTableRowsCommand.cs" />
+    <Compile Include="Commands\InsertTableRowCommand.cs" />
+    <Compile Include="Commands\InsertToolboxItemsCommands.cs" />
+    <Compile Include="Commands\ConvertToParagraphsCommand.cs" />
+    <Compile Include="Commands\EditFieldCommand.cs" />
+    <Compile Include="Commands\FilterListCommand.cs" />
+    <Compile Include="Commands\FilterFieldCommand.cs" />
+    <Compile Include="Commands\SnapMenuItemSimpleCommand.cs" />
+    <Compile Include="Commands\SnapCommandId.cs" />
+    <Compile Include="Commands\SnapPasteDataObjectCoreCommand.cs" />
+    <Compile Include="Commands\SnapPieceTableDeleteTextCommand.cs" />
+    <Compile Include="Commands\GroupByFieldCommand.cs" />
+    <Compile Include="Commands\InsertHeaderFooterCommands.cs" />
+    <Compile Include="Commands\MergeTableCellsCommand.cs" />
+    <Compile Include="Commands\PasteDataInfoTemplateCommand.cs" />
+    <Compile Include="Commands\PasteSnxCommand.cs" />
+    <Compile Include="Commands\RunChartDesignerCommand.cs" />
+    <Compile Include="Commands\SelectWholeListGroupCommand.cs" />
+    <Compile Include="Commands\PropertiesCommand.cs" />
+    <Compile Include="Commands\SplitTableCellsCommand.cs" />
+    <Compile Include="Commands\TableCommandsHelper.cs" />
+    <Compile Include="CustomRunObjects.cs" />
+    <Compile Include="Native\Data\DataMemberInfo.cs" />
+    <Compile Include="Native\Data\SNDataInfo.cs" />
+    <Compile Include="Native\IDataSourceDispatcher.cs" />
+    <Compile Include="Native\LayoutUI\DropFieldChartHotZone.cs" />
+    <Compile Include="Native\LayoutUI\DropFieldRoundHotZone.cs" />
+    <Compile Include="Native\LayoutUI\DropFieldSparklineHotZone.cs" />
+    <Compile Include="Native\LayoutUI\SnapHotZonePainter.cs" />
+    <Compile Include="Native\NativeMailMergeSorting.cs" />
+    <Compile Include="Native\Options\SnapMailMergeExportOptions.cs" />
+    <Compile Include="Native\Options\SnapMailMergeVisualOptions.cs" />
+    <Compile Include="Native\Services\ChartService.cs" />
+    <Compile Include="Native\Services\IDataSourceAccessorService.cs" />
+    <Compile Include="Native\SnapFieldUpdater.cs" />
+    <Compile Include="Native\SnapMailMergeHelper.cs" />
+    <Compile Include="Native\SNChart.cs" />
+    <Compile Include="Native\SNSparklineHelper.cs" />
+    <Compile Include="Native\SparklineBox.cs" />
+    <Compile Include="Native\SparklineBoxHotZonePainter.cs" />
+    <Compile Include="Native\SparklineInserter.cs" />
+    <Compile Include="Native\SparklineRun.cs" />
+    <Compile Include="Native\Theme.cs" />
+    <Compile Include="Options\ISnapControlOptions.cs" />
+    <Compile Include="Options\SnxDocumentSaveOptions.cs" />
+    <Compile Include="Services\DataAccessService.cs" />
+    <Compile Include="Services\ISnapProgressIndicationService.cs" />
+    <Compile Include="Native\SelectionHelper.cs" />
+    <Compile Include="Services\SnapMailMergeDataService.cs" />
+    <Compile Include="Services\SnapMailMergeDataSourceCollectionProvider.cs" />
+    <Compile Include="SnapDocumentServer.cs" />
+    <Compile Include="SnapLocalizerGenerator.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SnapLocalizerGenerator.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Export\DocumentExporter.cs" />
+    <Compile Include="Export\SnapExporter.cs" />
+    <Compile Include="Fields\SNChartField.cs" />
+    <Compile Include="Fields\SNListField.cs" />
+    <Compile Include="Fields\DisplayObjectField.cs" />
+    <Compile Include="Fields\SNText.cs" />
+    <Compile Include="Fields\SNBarCodeField.cs" />
+    <Compile Include="Fields\SNCheckBoxField.cs" />
+    <Compile Include="Fields\SNImageField.cs" />
+    <Compile Include="Fields\InsertFieldController.cs" />
+    <Compile Include="Fields\SizeAndScaleFieldController.cs" />
+    <Compile Include="Native\ChartInserter.cs" />
+    <Compile Include="History\ChartHistory.cs" />
+    <Compile Include="Native\ChartSeriesDataBindingList.cs" />
+    <Compile Include="Native\ChartWrappers.cs" />
+    <Compile Include="Native\DataContextService.cs" />
+    <Compile Include="Native\SnapParagraphFinalFormatter.cs" />
+    <Compile Include="Native\SnapBookmarksHelper.cs" />
+    <Compile Include="Native\SnapDriver.cs" />
+    <Compile Include="Native\SnapObjectModelController.cs" />
+    <Compile Include="Native\FieldChanger.cs" />
+    <Compile Include="Native\FilteredValuesHelper.cs" />
+    <Compile Include="Native\GroupField.cs" />
+    <Compile Include="Native\IDataSourceInfoContainer.cs" />
+    <Compile Include="Native\ISnapInnerControlOwner.cs" />
+    <Compile Include="Native\MouseHandler\DefaultMouseHandlerState.cs" />
+    <Compile Include="Native\MouseHandler\DragExternalContentMouseHandlerState.cs" />
+    <Compile Include="Native\MouseHandler\SnapRectangularObjectResizeState.cs" />
+    <Compile Include="Native\NameHelper.cs" />
+    <Compile Include="Native\ParsedInfoProvider.cs" />
+    <Compile Include="Native\Printing\SnapPrinter.cs" />
+    <Compile Include="Native\SNChartHelper.cs" />
+    <Compile Include="Commands\PieceTableInsertChartAtLogPositionCommand.cs" />
+    <Compile Include="Native\Printing\SnapPrintingDocumentExporter.cs" />
+    <Compile Include="Native\Services\DataSourceCollectorService.cs" />
+    <Compile Include="Native\Services\IChartService.cs" />
+    <Compile Include="Native\Services\IExportService.cs" />
+    <Compile Include="Native\Services\IMessageBoxService.cs" />
+    <Compile Include="Native\Services\ISelectedFieldService.cs" />
+    <Compile Include="Native\Services\ITableViewInfoControllerService.cs" />
+    <Compile Include="Native\Services\IThemeService.cs" />
+    <Compile Include="Native\Services\SelectedFieldService.cs" />
+    <Compile Include="Native\StreamSerializeHelper.cs" />
+    <Compile Include="Native\Templates\RowTemplateUpdater.cs" />
+    <Compile Include="ISnapControl.cs" />
+    <Compile Include="Import\DestinationCustomRun.cs" />
+    <Compile Include="Import\DestinationDataSettings.cs" />
+    <Compile Include="Import\DestinationDocumentVersion.cs" />
+    <Compile Include="Import\DestinationSnapBookmark.cs" />
+    <Compile Include="Import\DestinationTemplateInterval.cs" />
+    <Compile Include="Import\DocumentFormatUtils.cs" />
+    <Compile Include="Import\DocumentImporter.cs" />
+    <Compile Include="Import\SnapImporter.cs" />
+    <Compile Include="Localization.cs" />
+    <Compile Include="Native\CommandsCreationStrategy.cs" />
+    <Compile Include="Native\Data\FieldContextController.cs" />
+    <Compile Include="Native\Data\SnapDataContext.cs" />
+    <Compile Include="Native\Data\SnapFieldDataSource.cs" />
+    <Compile Include="Native\Data\GroupFieldInfo.cs" />
+    <Compile Include="Native\Data\Implementations\DataAccessService.cs" />
+    <Compile Include="Native\Data\Implementations\DataBrowserInfo.cs" />
+    <Compile Include="Native\Data\Implementations\DataEnumeratorCreator.cs" />
+    <Compile Include="Native\Data\Implementations\DataSourceDisplayNameProvider.cs" />
+    <Compile Include="Native\Data\Implementations\Enumerators\DataBrowserEnumerator.cs" />
+    <Compile Include="Native\Data\Implementations\Enumerators\DataBrowserEnumeratorBase.cs" />
+    <Compile Include="Native\Data\Implementations\Enumerators\DataEnumeratorWithEmptyItem.cs" />
+    <Compile Include="Native\Data\Implementations\Enumerators\HierarchicalDataEnumerator.cs" />
+    <Compile Include="Native\Data\Implementations\Enumerators\HierarchicalEnumerator.cs" />
+    <Compile Include="Native\Data\Implementations\Enumerators\IEnumeratorWithState.cs" />
+    <Compile Include="Native\Data\Implementations\Enumerators\InnerHierarchicalDataEnumerator.cs" />
+    <Compile Include="Native\Data\Implementations\Enumerators\SingleValueDataEnumerator.cs" />
+    <Compile Include="Native\Data\Implementations\FieldContexts\ProxyFieldContext.cs" />
+    <Compile Include="Native\Data\Implementations\FieldDataAccessService.cs" />
+    <Compile Include="Native\Data\Implementations\FieldDataContextOwnerFinder.cs" />
+    <Compile Include="Native\Data\Implementations\FieldContextService.cs" />
+    <Compile Include="Native\Data\Implementations\FieldContexts\EmptyFieldContext.cs" />
+    <Compile Include="Native\Data\Implementations\FieldContexts\FieldContextBase.cs" />
+    <Compile Include="Native\Data\Implementations\FieldContexts\HierarchicalRelatedFieldContext.cs" />
+    <Compile Include="Native\Data\Implementations\FieldContexts\RelatedFieldContext.cs" />
+    <Compile Include="Native\Data\Implementations\FieldContexts\RelatedFieldContextBase.cs" />
+    <Compile Include="Native\Data\Implementations\FieldContexts\RootFieldContext.cs" />
+    <Compile Include="Native\Data\Implementations\FieldPathService\FieldPathService.cs" />
+    <Compile Include="Native\Data\Implementations\FieldPathService\Parser.cs" />
+    <Compile Include="Native\Data\Implementations\FieldPathService\PathToken.cs" />
+    <Compile Include="Native\Data\Implementations\FieldPathService\StringScanner.cs" />
+    <Compile Include="Native\Data\Implementations\FilterStringAccessService.cs" />
+    <Compile Include="Native\Data\Implementations\SnapFieldDataService.cs" />
+    <Compile Include="Native\Data\Implementations\GroupController.cs" />
+    <Compile Include="Native\Data\Infos\FieldDataMemberInfo.cs" />
+    <Compile Include="Native\Data\Infos\FieldDataSourceInfo.cs" />
+    <Compile Include="Native\Data\Infos\FieldDataValueDescriptor.cs" />
+    <Compile Include="Native\Data\Infos\FieldPathInfo.cs" />
+    <Compile Include="Native\Data\Infos\FilterProperties.cs" />
+    <Compile Include="Native\Data\Infos\GroupProperties.cs" />
+    <Compile Include="Native\Data\Interfaces\IDataAccessService.cs" />
+    <Compile Include="Native\Data\Interfaces\IDataEnumerator.cs" />
+    <Compile Include="Native\Data\Interfaces\IDataSourceDisplayNameProvider.cs" />
+    <Compile Include="Native\Data\Interfaces\IFieldDataAccessService.cs" />
+    <Compile Include="Native\Data\Interfaces\IFieldContext.cs" />
+    <Compile Include="Native\Data\Interfaces\IFieldContextOwner.cs" />
+    <Compile Include="Native\Data\Interfaces\IFieldContextService.cs" />
+    <Compile Include="Native\Data\Interfaces\IFieldPathService.cs" />
+    <Compile Include="Native\Data\Interfaces\IFilterStringAccessService.cs" />
+    <Compile Include="Native\Data\Interfaces\IGroupController.cs" />
+    <Compile Include="Native\Data\Interfaces\IUpdateFieldService.cs" />
+    <Compile Include="Native\DesignBindingHelper.cs" />
+    <Compile Include="Native\SnapCaretPosition.cs" />
+    <Compile Include="Native\SnapPieceTableModifiers.cs" />
+    <Compile Include="Native\SnapSelectionInfo.cs" />
+    <Compile Include="Native\EnteredBookmarkInfo.cs" />
+    <Compile Include="Native\FieldsHelper.cs" />
+    <Compile Include="Native\SnapBookmark.cs" />
+    <Compile Include="Native\SnapBookmarkCollection.cs" />
+    <Compile Include="Native\SnapBookmarkController.cs" />
+    <Compile Include="Native\SnapCopyManager.cs" />
+    <Compile Include="Native\SnapDocumentModel.cs" />
+    <Compile Include="Commands\SnapDocumentModelCopyCommand.cs" />
+    <Compile Include="Native\SnapDocumentModelCopyOptions.cs" />
+    <Compile Include="Native\SnapFieldCalculatorService.cs" />
+    <Compile Include="Native\SnapInnerControl.cs" />
+    <Compile Include="Native\SnapMouseCursorCalculator.cs" />
+    <Compile Include="Native\SnapNumberingListCountersCalculator.cs" />
+    <Compile Include="Native\SnapNumberingListIndexCalculator.cs" />
+    <Compile Include="Native\SnapPieceTable.cs" />
+    <Compile Include="Native\SnapTemplateInterval.cs" />
+    <Compile Include="Native\SNBarCodeHelper.cs" />
+    <Compile Include="Fields\TemplatedFieldBase.cs" />
+    <Compile Include="Native\GroupInverval.cs" />
+    <Compile Include="Native\LayoutUI\IActiveUIElement.cs" />
+    <Compile Include="Native\LayoutUI\IActiveUIElementViewInfo.cs" />
+    <Compile Include="Native\InnerSnapDocumentServer.cs" />
+    <Compile Include="Commands\InsertHeaderFooterCommandInternal.cs" />
+    <Compile Include="Native\MathUtils.cs" />
+    <Compile Include="Native\MouseHandler\HierarchicalController.cs" />
+    <Compile Include="Native\MouseHandler\MouseHandler.cs" />
+    <Compile Include="Native\Operations\SnapBookmarkCopyOperation.cs" />
+    <Compile Include="Native\Operations\SnapCopyBookmarksOperation.cs" />
+    <Compile Include="Native\Operations\SnapCopySectionOperation.cs" />
+    <Compile Include="Native\Operations\SnapDeleteContentOperation.cs" />
+    <Compile Include="Options\SnapFieldOptions.cs" />
+    <Compile Include="Native\Services\CustomRunBoxLayoutExporterService.cs" />
+    <Compile Include="Native\Services\SnapCommandFactoryService.cs" />
+    <Compile Include="Native\Services\SnapDocumentExportManagerService.cs" />
+    <Compile Include="Native\Services\SnapDocumentImportManagerService.cs" />
+    <Compile Include="Native\Services\IDropFieldsService.cs" />
+    <Compile Include="Native\StyleHelper.cs" />
+    <Compile Include="Commands\DeleteTableCellsCommand.cs" />
+    <Compile Include="Native\Templates\TemplateBuilder.cs" />
+    <Compile Include="Native\Templates\TemplateController.cs" />
+    <Compile Include="Native\Templates\TemplateWriter.cs" />
+    <Compile Include="Native\Utils.cs" />
+    <Compile Include="ResFinder.cs" />
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <Compile Include="History\SaveEnteredBookmarksHistoryItem.cs" />
+    <Compile Include="History\RestoreSelectionHistoryItem.cs" />
+    <Compile Include="History\SnapBookmarkDeletedHistoryItem.cs" />
+    <Compile Include="History\SnapDocumentHistory.cs" />
+    <Compile Include="History\InsertSnapBookmarkHistoryItem.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Commands\SortFieldCommands.cs" />
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <Compile Include="Commands\ToggleFieldHighlightingCommand.cs" />
+    <Compile Include="UI\Template\TemplateDecoratorInfo.cs" />
+    <Compile Include="UI\Template\TemplateDecoratorItems.cs" />
+    <Compile Include="UI\Template\TemplateDecoratorsInfoCalculator.cs" />
+    <Compile Include="UI\Template\TemplateDecoratorViewInfoCalculator.cs" />
+    <Compile Include="Utils.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\GroupBy_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\GroupBy_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    
+    
+    <EmbeddedResource Include="LocalizationRes.resx">
+      <DependentUpon>SnapLocalizerGenerator.tt</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LocalizationRes.ru.resx"><DependentUpon>SnapLocalizerGenerator.tt</DependentUpon></EmbeddedResource>
+    <EmbeddedResource Include="LocalizationRes.ja.resx"><DependentUpon>SnapLocalizerGenerator.tt</DependentUpon></EmbeddedResource>
+    <EmbeddedResource Include="LocalizationRes.es.resx"><DependentUpon>SnapLocalizerGenerator.tt</DependentUpon></EmbeddedResource>
+    <EmbeddedResource Include="LocalizationRes.de.resx"><DependentUpon>SnapLocalizerGenerator.tt</DependentUpon></EmbeddedResource>
+    
+    <EmbeddedResource Include="Themes\ContrastYellow.snt" />
+    <EmbeddedResource Include="Themes\ContrastCyan.snt" />
+    <EmbeddedResource Include="Themes\ContrastOrange.snt" />
+    <EmbeddedResource Include="Themes\MildCyan.snt" />
+    <EmbeddedResource Include="Themes\MildBrown.snt" />
+    <EmbeddedResource Include="Themes\ContrastRed.snt" />
+    <EmbeddedResource Include="Themes\MildViolet.snt" />
+    <EmbeddedResource Include="Themes\Casual.snt" />
+    <EmbeddedResource Include="Themes\ContrastSalmon.snt" />
+    <EmbeddedResource Include="Themes\DodgerBlue.snt" />
+    <EmbeddedResource Include="Themes\MildBlue.snt" />
+    <EmbeddedResource Include="Themes\SoftLilac.snt" />
+    <EmbeddedResource Include="Themes\FormalBlue.snt" />
+    
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\Filter_16x16.png" />
+    <EmbeddedResource Include="Images\Filter_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\Properties_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\SortAsc_16x16.png" />
+    <EmbeddedResource Include="Images\SortAsc_32x32.png" />
+    <EmbeddedResource Include="Images\SortDesc_16x16.png" />
+    <EmbeddedResource Include="Images\SortDesc_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\Properties_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\Footer_16x16.png" />
+    <EmbeddedResource Include="Images\Footer_32x32.png" />
+    <EmbeddedResource Include="Images\Header_16x16.png" />
+    <EmbeddedResource Include="Images\Header_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\Barcode_16x16.png" />
+    <EmbeddedResource Include="Images\Barcode_32x32.png" />
+    <EmbeddedResource Include="Images\CheckBox_16x16.png" />
+    <EmbeddedResource Include="Images\CheckBox_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\ConvertToParagraphs_16x16.png" />
+    <EmbeddedResource Include="Images\ConvertToParagraphs_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\Chart_16x16.png" />
+    <EmbeddedResource Include="Images\Chart_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\InsertPageBreak_16x16.png" />
+    <EmbeddedResource Include="Images\InsertPageBreak_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\InsertSectionBreakContinuous_16x16.png" />
+    <EmbeddedResource Include="Images\InsertSectionBreakContinuous_32x32.png" />
+    <EmbeddedResource Include="Images\InsertSectionBreakEvenPage_16x16.png" />
+    <EmbeddedResource Include="Images\InsertSectionBreakEvenPage_32x32.png" />
+    <EmbeddedResource Include="Images\InsertSectionBreakNextPage_16x16.png" />
+    <EmbeddedResource Include="Images\InsertSectionBreakNextPage_32x32.png" />
+    <EmbeddedResource Include="Images\InsertSectionBreakOddPage_16x16.png" />
+    <EmbeddedResource Include="Images\InsertSectionBreakOddPage_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\themeBlue.png" />
+    <EmbeddedResource Include="Images\themeGrey.png" />
+    <EmbeddedResource Include="Images\themeRed.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\InsertFooter_16x16.png" />
+    <EmbeddedResource Include="Images\InsertFooter_32x32.png" />
+    <EmbeddedResource Include="Images\InsertHeader_16x16.png" />
+    <EmbeddedResource Include="Images\InsertHeader_32x32.png" />
+    <EmbeddedResource Include="Images\RemoveFooter_16x16.png" />
+    <EmbeddedResource Include="Images\RemoveFooter_32x32.png" />
+    <EmbeddedResource Include="Images\RemoveHeader_16x16.png" />
+    <EmbeddedResource Include="Images\RemoveHeader_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\ToggleFieldHighlighting_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\ToggleFieldHighlighting_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\EmptyParagraphSeparator_16x16.png" />
+    <EmbeddedResource Include="Images\EmptyParagraphSeparator_32x32.png" />
+    <EmbeddedResource Include="Images\EmptyTableRowSeparator_16x16.png" />
+    <EmbeddedResource Include="Images\EmptyTableRowSeparator_32x32.png" />
+    <EmbeddedResource Include="Images\None_16x16.png" />
+    <EmbeddedResource Include="Images\None_32x32.png" />
+    <EmbeddedResource Include="Images\Separator_16x16.png" />
+    <EmbeddedResource Include="Images\Separator_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\InsertSNListDragCaretHint.png" />
+    <EmbeddedResource Include="Images\InsertSNTextDragCaretHint.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\Summary_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\Summary_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\RemoveGroupHeader_16x16.png" />
+    <EmbeddedResource Include="Images\RemoveGroupHeader_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\RemoveGroupFooter_16x16.png" />
+    <EmbeddedResource Include="Images\RemoveGroupFooter_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\InsertGroupFooter_16x16.png" />
+    <EmbeddedResource Include="Images\InsertGroupFooter_32x32.png" />
+    <EmbeddedResource Include="Images\InsertGroupHeader_16x16.png" />
+    <EmbeddedResource Include="Images\InsertGroupHeader_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\GroupFooter_16x16.png" />
+    <EmbeddedResource Include="Images\GroupFooter_32x32.png" />
+    <EmbeddedResource Include="Images\GroupHeader_16x16.png" />
+    <EmbeddedResource Include="Images\GroupHeader_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\HighlightActiveElement_16x16.png" />
+    <EmbeddedResource Include="Images\HighlightActiveElement_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\GroupFieldsCollection_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\GroupFieldsCollection_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\Group_16x16.png" />
+    <EmbeddedResource Include="Images\List_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\DeleteList_16x16.png" />
+    <EmbeddedResource Include="Images\DeleteList_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\SeparatorPageBreakList_16x16.png" />
+    <EmbeddedResource Include="Images\SeparatorPageBreakList_32x32.png" />
+    <EmbeddedResource Include="Images\EmptyParagraphSeparatorList_16x16.png" />
+    <EmbeddedResource Include="Images\EmptyParagraphSeparatorList_32x32.png" />
+    <EmbeddedResource Include="Images\EmptyTableRowSeparatorList_16x16.png" />
+    <EmbeddedResource Include="Images\EmptyTableRowSeparatorList_32x32.png" />
+    <EmbeddedResource Include="Images\SectionBreaksList_EvenPage_16x16.png" />
+    <EmbeddedResource Include="Images\SectionBreaksList_EvenPage_32x32.png" />
+    <EmbeddedResource Include="Images\SectionBreaksList_NextPage_16x16.png" />
+    <EmbeddedResource Include="Images\SectionBreaksList_NextPage_32x32.png" />
+    <EmbeddedResource Include="Images\SectionBreaksList_OddPage_16x16.png" />
+    <EmbeddedResource Include="Images\SectionBreaksList_OddPage_32x32.png" />
+    <EmbeddedResource Include="Images\SeparatorListNone_16x16.png" />
+    <EmbeddedResource Include="Images\SeparatorListNone_32x32.png" />
+    <EmbeddedResource Include="Images\SeparatorList_16x16.png" />
+    <EmbeddedResource Include="Images\SeparatorList_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\InsertMasterDetailDragCaretHint.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\Export_16x16.png" />
+    <EmbeddedResource Include="Images\Export_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\ArrangeGroups_16x16.png" />
+    <EmbeddedResource Include="Images\ArrangeGroups_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\NewDataSource_16x16.png" />
+    <EmbeddedResource Include="Images\NewDataSource_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\CustomSort_16x16.png" />
+    <EmbeddedResource Include="Images\CustomSort_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\ClearTableCellStyle_16x16.png" />
+    <EmbeddedResource Include="Images\ClearTableCellStyle_32x32.png" />
+    <EmbeddedResource Include="Images\ModifyTableCellStyle_16x16.png" />
+    <EmbeddedResource Include="Images\ModifyTableCellStyle_32x32.png" />
+    <EmbeddedResource Include="Images\NewTableCellStyle_16x16.png" />
+    <EmbeddedResource Include="Images\NewTableCellStyle_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\PLACEHOLDER_16x16.png" />
+    <EmbeddedResource Include="Images\PLACEHOLDER_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\Sparkline_16x16.png" />
+    <EmbeddedResource Include="Images\Sparkline_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\LoadTheme_16x16.png" />
+    <EmbeddedResource Include="Images\LoadTheme_32x32.png" />
+    <EmbeddedResource Include="Images\SaveCurrentTheme_16x16.png" />
+    <EmbeddedResource Include="Images\SaveCurrentTheme_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\Datasource_16x16.png" />
+    <EmbeddedResource Include="Images\Datasource_32x32.png" />
+    <EmbeddedResource Include="Images\Sort_16x16.png" />
+    <EmbeddedResource Include="Images\Sort_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\QuickFilter_16x16.png" />
+    <EmbeddedResource Include="Images\QuickFilter_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\Preview_16x16.png" />
+    <EmbeddedResource Include="Images\Preview_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\PrintDialog_16x16.png" />
+    <EmbeddedResource Include="Images\PrintDialog_32x32.png" />
+    <EmbeddedResource Include="Images\Print_16x16.png" />
+    <EmbeddedResource Include="Images\Print_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\FinishMerge_16x16.png" />
+    <EmbeddedResource Include="Images\FinishMerge_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\Index_16x16.png" />
+    <EmbeddedResource Include="Images\Index_32x32.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+<ItemGroup><EmbeddedResource Include="Descriptions.resx" /></ItemGroup><ItemGroup><Compile Include="Descriptions.cs" /></ItemGroup></Project>

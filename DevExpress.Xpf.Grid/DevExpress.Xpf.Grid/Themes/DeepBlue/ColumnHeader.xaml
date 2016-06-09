@@ -1,0 +1,268 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+    xmlns:dxgcore="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+	xmlns:dxg="clr-namespace:DevExpress.Xpf.Grid"
+    xmlns:dxght="clr-namespace:DevExpress.Xpf.Grid.HitTest"                    
+	xmlns:sys="clr-namespace:System;assembly=mscorlib"
+    xmlns:dxgt="clr-namespace:DevExpress.Xpf.Grid.Themes"
+	xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+    xmlns:dxcn="clr-namespace:DevExpress.Xpf.Core.Native;assembly=DevExpress.Xpf.Core.v15.2"
+    xmlns:PresentationOptions="http://schemas.microsoft.com/winfx/2006/xaml/presentation/options"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="PresentationOptions">
+    <SolidColorBrush x:Key="{dxgt:GridColumnHeaderThemeKey ResourceKey=HeadersVerticalLineBrush}" Color="#FF062B63" />
+    <SolidColorBrush x:Key="{dxgt:GridColumnHeaderThemeKey ResourceKey=HeaderCaptionForeground}" Color="#FFD0EBFF" />
+    <SolidColorBrush x:Key="{dxgt:GridColumnHeaderThemeKey ResourceKey=GroupHeaderCaptionForeground}" Color="#FFD0EBFF" />
+    <dx:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    <dx:EnumToVisibilityConverter x:Key="EnumToVisibilityConverter" />
+    <dxg:GridColumnToGridColumnDataConverter x:Key="GridColumnToGridColumnDataConverter" />
+    <ControlTemplate x:Key="{dxgt:GridColumnHeaderThemeKey ResourceKey=SortArrowUpTemplate}">
+        <StackPanel VerticalAlignment="Center">
+            <Border Name="SortBySummaryIndicator" Width="9" Height="2" Margin="0,0,0,1" BorderThickness="0,1,0,0" Background="#FFB1CFE2" BorderBrush="#70062B63" Visibility="{Binding IsSortedBySummary, Converter={StaticResource BooleanToVisibilityConverter}}" />
+            <Grid Width="11" Height="5">
+                <Path Stretch="Fill" Fill="#FF062B63" Data="F1 M 289,312L 293.889,307L 295.111,307L 300,312L 299,312L 290,312L 289,312 Z " />
+                <Path Stretch="Fill" Data="F1 M 290,312L 294,308L 295,308L 299,312L 290,312 Z " Margin="1,1,1,0">
+                    <Path.Fill>
+                        <LinearGradientBrush EndPoint="0.5,1.01" StartPoint="0.5,-0.01">
+                            <GradientStop Color="#FFB1CFE2" Offset="0" />
+                            <GradientStop Color="#FFDEF1F7" Offset="1" />
+                        </LinearGradientBrush>
+                    </Path.Fill>
+                </Path>
+            </Grid>
+        </StackPanel>
+    </ControlTemplate>
+
+    <Style x:Key="{dxgt:GridColumnHeaderThemeKey ResourceKey=SortArrowUpStyle}" TargetType="{x:Type Control}">
+        <Setter Property="Width" Value="12" />
+        <Setter Property="Margin" Value="2,0,-1,1" />
+        <Setter Property="HorizontalAlignment" Value="Right" />
+    </Style>
+
+    <ControlTemplate x:Key="{dxgt:GridColumnHeaderThemeKey ResourceKey=SortArrowDownTemplate}">
+        <StackPanel VerticalAlignment="Center">
+            <Grid Width="11" Height="5">
+                <Path Stretch="Fill" Data="F1 M 278,308L 282,312L 283,312L 287,308L 278,308 Z " Margin="1,1,1,0">
+                    <Path.Fill>
+                        <LinearGradientBrush EndPoint="0.5,1.01" StartPoint="0.5,-0.01">
+                            <GradientStop Color="#FFB1CFE2" Offset="0" />
+                            <GradientStop Color="#FFDEF1F7" Offset="1" />
+                        </LinearGradientBrush>
+                    </Path.Fill>
+                </Path>
+                <Rectangle Width="11" Stretch="Fill" Fill="#FF062B63" VerticalAlignment="Top" Height="1" />
+            </Grid>
+            <Border Name="SortBySummaryIndicator" Width="9" Height="2" Margin="0,1,0,0" BorderThickness="0,1,0,0" Background="#FFB1CFE2" BorderBrush="#70062B63" Visibility="{Binding IsSortedBySummary, Converter={StaticResource BooleanToVisibilityConverter}}" />
+        </StackPanel>
+    </ControlTemplate>
+
+    <Style x:Key="{dxgt:GridColumnHeaderThemeKey ResourceKey=SortArrowDownStyle}" TargetType="{x:Type Control}">
+        <Setter Property="Width" Value="12" />
+        <Setter Property="Margin" Value="2,0,-1,0" />
+        <Setter Property="HorizontalAlignment" Value="Right" />
+    </Style>
+    <sys:Double x:Key="{dxgt:GridColumnHeaderThemeKey ResourceKey=SortIndicatorWidth}">12</sys:Double>
+    <Thickness x:Key="{dxgt:GridColumnHeaderThemeKey ResourceKey=SortIndicatorUpMargin}">4,0,-1,1</Thickness>
+    <Thickness x:Key="{dxgt:GridColumnHeaderThemeKey ResourceKey=SortIndicatorDownMargin}">4,0,-1,0</Thickness>
+
+    <Style x:Key="{dxgt:GridColumnHeaderThemeKey ResourceKey=HeaderCustomizationAreaStyle}" TargetType="{x:Type ContentPresenter}">
+    </Style>
+
+    <Style x:Key="{dxgt:GridColumnHeaderThemeKey ResourceKey=CaptionToArrowIndentBorderStyle}" TargetType="{x:Type Border}">
+        <Setter Property="Width" Value="15" />
+    </Style>
+
+
+   
+    <LinearGradientBrush x:Key="glareBrush" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Color="#57CDE2FF" Offset="0" />
+        <GradientStop Color="#00C0DAFB" Offset="1" />
+    </LinearGradientBrush>
+
+    <Thickness x:Key="{dxgt:GridColumnHeaderThemeKey ResourceKey=ContentMargin}">4,4,4,6</Thickness>
+    <Thickness x:Key="{dxgt:GridColumnHeaderThemeKey ResourceKey=CheckBoxSelectorMargin}">-4,-4,-4,-6</Thickness>
+    
+    <SolidColorBrush x:Key="{dxgt:GridColumnHeaderThemeKey ResourceKey=BorderBrush}" Color="#FF062B63" PresentationOptions:Freeze="True"/>
+    <LinearGradientBrush x:Key="{dxgt:GridColumnHeaderThemeKey ResourceKey=Background}" StartPoint="0,0" EndPoint="0,1" PresentationOptions:Freeze="True">
+        <GradientStop Color="#FFA2C5F4" Offset="0"/>
+        <GradientStop Color="#FF6086BE" Offset="0.05" />
+        <GradientStop Color="#FF3A629F" Offset="0.35" />
+        <GradientStop Color="#FF2C5494" Offset="0.46" />
+        <GradientStop Color="#FF244985" Offset="0.46" />
+        <GradientStop Color="#FF7499CE" Offset="1" />
+    </LinearGradientBrush>
+    <LinearGradientBrush  x:Key="{dxgt:GridColumnHeaderThemeKey ResourceKey=BackgroundMouseOver}" StartPoint="0,0" EndPoint="0,1" PresentationOptions:Freeze="True">
+        <GradientStop Color="#FFC2DBFD" Offset="0"/>
+        <GradientStop Color="#FF7CABDA" Offset="0.05"/>
+        <GradientStop Color="#FF4F78B5" Offset="0.35"/>
+        <GradientStop Color="#FF3863A7" Offset="0.46"/>
+        <GradientStop Color="#FF2C5597" Offset="0.46"/>
+        <GradientStop Color="#FF9AD5F6" Offset="1" />
+    </LinearGradientBrush>
+    <LinearGradientBrush  x:Key="{dxgt:GridColumnHeaderThemeKey ResourceKey=BackgroundPressed}" StartPoint="0,0" EndPoint="0,1" PresentationOptions:Freeze="True">
+        <GradientStop Color="#FF2C4B8E" Offset="0" />
+        <GradientStop Color="#FF416CAB" Offset="0.07"/>
+        <GradientStop Color="#FF2C5494" Offset="0.46" />
+        <GradientStop Color="#FF224784" Offset="0.46" />
+        <GradientStop Color="#FF2C5597" Offset="1" />
+    </LinearGradientBrush>    
+    
+   
+    <ControlTemplate x:Key="{dxgt:GridColumnHeaderThemeKey ResourceKey=ControlTemplate}" TargetType="{x:Type dxgcore:GridColumnHeaderBase}">
+        <dxgcore:ColumnHeaderDockPanel x:Name="PART_LayoutPanel"  ContentMargin="{StaticResource {dxgt:GridColumnHeaderThemeKey ResourceKey=ContentMargin}}">
+            <Border x:Name="PART_Border" BorderThickness="0,1,1,1" BorderBrush="{Binding BorderBrush, RelativeSource={RelativeSource TemplatedParent}}" Background="{Binding Background, RelativeSource={RelativeSource TemplatedParent}}" />
+            <Border Background="{StaticResource glareBrush}" Width="1" Margin="0,1" HorizontalAlignment="Left"/>
+        </dxgcore:ColumnHeaderDockPanel>
+        <ControlTemplate.Triggers>
+            <Trigger Property="ColumnPosition" Value="Standalone">
+                <Setter Property="BorderThickness" Value="1" TargetName="PART_Border"/>
+                <Setter Property="CornerRadius" Value="3" TargetName="PART_Border"/>
+            </Trigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="ColumnPosition" Value="Right"/>
+                    <Condition Property="HasTopElement" Value="False"/>
+                </MultiTrigger.Conditions>
+                <Setter Property="BorderThickness" Value="1" TargetName="PART_Border"/>
+                <Setter Property="CornerRadius" Value="0,3,0,0" TargetName="PART_Border"/>
+            </MultiTrigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="ColumnPosition" Value="Left"/>
+                    <Condition Property="HasTopElement" Value="False"/>
+                    <Condition Property="HasRightSibling" Value="True"/>
+                </MultiTrigger.Conditions>
+                <Setter Property="BorderThickness" Value="1" TargetName="PART_Border"/>
+                <Setter Property="CornerRadius" Value="3,0,0,0" TargetName="PART_Border"/>
+            </MultiTrigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="ColumnPosition" Value="Left"/>
+                    <Condition Property="HasTopElement" Value="False"/>
+                    <Condition Property="HasRightSibling" Value="False"/>
+                </MultiTrigger.Conditions>
+                <Setter Property="BorderThickness" Value="1,1,0,1" TargetName="PART_Border"/>
+                <Setter Property="CornerRadius" Value="3,0,0,0" TargetName="PART_Border"/>
+            </MultiTrigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="ColumnPosition" Value="Right"/>
+                    <Condition Property="HasTopElement" Value="True"/>
+                </MultiTrigger.Conditions>
+                <Setter Property="BorderThickness" Value="1,0,1,1" TargetName="PART_Border"/>
+            </MultiTrigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="ColumnPosition" Value="Left"/>
+                    <Condition Property="HasTopElement" Value="True"/>
+                    <Condition Property="HasRightSibling" Value="True"/>
+                </MultiTrigger.Conditions>
+                <Setter Property="BorderThickness" Value="1,0,1,1" TargetName="PART_Border"/>
+            </MultiTrigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="ColumnPosition" Value="Left"/>
+                    <Condition Property="HasTopElement" Value="True"/>
+                    <Condition Property="HasRightSibling" Value="False"/>
+                </MultiTrigger.Conditions>
+                <Setter Property="BorderThickness" Value="1,0,0,1" TargetName="PART_Border"/>
+            </MultiTrigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="ColumnPosition" Value="Middle"/>
+                    <Condition Property="HasRightSibling" Value="False"/>
+                    <Condition Property="HasTopElement" Value="False"/>
+                </MultiTrigger.Conditions>
+                <Setter Property="BorderThickness" Value="0,1,0,1" TargetName="PART_Border"/>
+            </MultiTrigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="ColumnPosition" Value="Middle"/>
+                    <Condition Property="HasRightSibling" Value="False"/>
+                    <Condition Property="HasTopElement" Value="True"/>
+                </MultiTrigger.Conditions>
+                <Setter Property="BorderThickness" Value="0,0,0,1" TargetName="PART_Border"/>
+            </MultiTrigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="ColumnPosition" Value="Middle"/>
+                    <Condition Property="HasRightSibling" Value="True"/>
+                    <Condition Property="HasTopElement" Value="False"/>
+                </MultiTrigger.Conditions>
+                <Setter Property="BorderThickness" Value="0,1,1,1" TargetName="PART_Border"/>
+            </MultiTrigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="ColumnPosition" Value="Middle"/>
+                    <Condition Property="HasRightSibling" Value="True"/>
+                    <Condition Property="HasTopElement" Value="True"/>
+                </MultiTrigger.Conditions>
+                <Setter Property="BorderThickness" Value="0,0,1,1" TargetName="PART_Border"/>
+            </MultiTrigger>
+            <Trigger Property="dxgcore:ColumnBase.HeaderPresenterType" Value="GroupPanel">
+                <Setter Property="Margin" Value="2,0,2,0" TargetName="PART_Border"/>
+                <Setter Property="ContentMargin" Value="7,4,7,6" TargetName="PART_LayoutPanel"/>
+                <Setter Property="Margin" TargetName="PART_LayoutPanel">
+                    <Setter.Value>
+                        <Binding Path="(dxg:GridColumn.GroupIndex)">
+                            <Binding.Converter>
+                                <dxg:GroupPanelPaddingConverter Offset="5"/>
+                            </Binding.Converter>
+                        </Binding>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="VerticalAlignment" Value="Top" TargetName="PART_LayoutPanel"/>
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+    <ControlTemplate x:Key="{dxgt:GridColumnHeaderThemeKey ResourceKey=ColumnFilterTemplate}" TargetType="{x:Type ToggleButton}">
+        <Border Width="16" Height="16" VerticalAlignment="Top" Background="#00FF0000" x:Name="border" Margin="0,-3,0,0">
+            <Grid Width="10" Height="12" x:Name="grid">
+                <Grid Opacity="0.35">
+                    <Path Stretch="Fill" Fill="#FF062B63" Data="F1 M 396,283.833C 396,282.821 393.762,282 391,282C 388.239,282 386,282.821 386,283.833C 386,284.049 386,284 386,285C 386,286 389,289 389,289L 389,294L 393,292L 393,289C 393,289 396,286 396,285C 396,284 396,284.049 396,283.833 Z M 391,283.222C 392.381,283.222 393.5,283.496 393.5,283.833" Width="10" Height="12" Opacity="0.35" x:Name="path1" />
+                    <Path Stretch="Fill" Fill="#FFCBE2FF" Data="F1 M 395,284.5C 395,283.671 393.209,283 391,283C 388.791,283 387,283.671 387,284.5C 387,284.676 387.096,284.843 387.245,285L 387.232,285L 390,288L 390,292L 392,291L 392,288L 394.772,285L 394.755,285C 394.904,284.843 395,284.676 395,284.5 Z M 391,285C 389.896,285 389,284.776 389,284.5C 389,284.224 389.896,284 391,284C 392.104,284 393,284.224 393,284.5C 393,284.776 392.104,285 391,285 Z " Margin="1,1,1,2" Width="8" Height="9" x:Name="path" />
+                </Grid>
+                <Grid Visibility="{Binding IsMouseOver, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <Path Stretch="Fill" Fill="#FF062B63" Opacity="0.5" Data="F1 M 396,283.833C 396,282.821 393.762,282 391,282C 388.239,282 386,282.821 386,283.833C 386,284.049 386,284 386,285C 386,286 389,289 389,289L 389,294L 393,292L 393,289C 393,289 396,286 396,285C 396,284 396,284.049 396,283.833 Z M 391,283.222C 392.381,283.222 393.5,283.496 393.5,283.833" Width="10" Height="12" />
+                    <Path Stretch="Fill" Fill="#FFFFFFFF" Data="F1 M 395,284.5C 395,283.671 393.209,283 391,283C 388.791,283 387,283.671 387,284.5C 387,284.676 387.096,284.843 387.245,285L 387.232,285L 390,288L 390,292L 392,291L 392,288L 394.772,285L 394.755,285C 394.904,284.843 395,284.676 395,284.5 Z M 391,285C 389.896,285 389,284.776 389,284.5C 389,284.224 389.896,284 391,284C 392.104,284 393,284.224 393,284.5C 393,284.776 392.104,285 391,285 Z " Margin="1,1,1,2" Width="8" Height="9" />
+                </Grid>
+                <Grid Visibility="{Binding IsPressed, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <Path Stretch="Fill" Fill="#FF062B63" Opacity="0.5" Data="F1 M 396,283.833C 396,282.821 393.762,282 391,282C 388.239,282 386,282.821 386,283.833C 386,284.049 386,284 386,285C 386,286 389,289 389,289L 389,294L 393,292L 393,289C 393,289 396,286 396,285C 396,284 396,284.049 396,283.833 Z M 391,283.222C 392.381,283.222 393.5,283.496 393.5,283.833" Width="10" Height="12" />
+                    <Path Stretch="Fill" Fill="#FFA9C9F2" Data="F1 M 395,284.5C 395,283.671 393.209,283 391,283C 388.791,283 387,283.671 387,284.5C 387,284.676 387.096,284.843 387.245,285L 387.232,285L 390,288L 390,292L 392,291L 392,288L 394.772,285L 394.755,285C 394.904,284.843 395,284.676 395,284.5 Z M 391,285C 389.896,285 389,284.776 389,284.5C 389,284.224 389.896,284 391,284C 392.104,284 393,284.224 393,284.5C 393,284.776 392.104,285 391,285 Z " Margin="1,1,1,2" Width="8" Height="9" />
+                </Grid>
+                <Grid Visibility="{Binding IsChecked, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <Path Stretch="Fill" Fill="#FF062B63" Opacity="0.5" Data="F1 M 396,283.833C 396,282.821 393.762,282 391,282C 388.239,282 386,282.821 386,283.833C 386,284.049 386,284 386,285C 386,286 389,289 389,289L 389,294L 393,292L 393,289C 393,289 396,286 396,285C 396,284 396,284.049 396,283.833 Z M 391,283.222C 392.381,283.222 393.5,283.496 393.5,283.833" Width="10" Height="12" />
+                    <Path Stretch="Fill" Fill="#FFA9C9F2" Data="F1 M 395,284.5C 395,283.671 393.209,283 391,283C 388.791,283 387,283.671 387,284.5C 387,284.676 387.096,284.843 387.245,285L 387.232,285L 390,288L 390,292L 392,291L 392,288L 394.772,285L 394.755,285C 394.904,284.843 395,284.676 395,284.5 Z M 391,285C 389.896,285 389,284.776 389,284.5C 389,284.224 389.896,284 391,284C 392.104,284 393,284.224 393,284.5C 393,284.776 392.104,285 391,285 Z " Margin="1,1,1,2" Width="8" Height="9" />
+                </Grid>
+            </Grid>
+        </Border>
+    </ControlTemplate>
+
+    <Style x:Key="{dxgt:GridColumnHeaderThemeKey ResourceKey=DateFilterStyle}" TargetType="{x:Type CheckBox}">
+        <Setter Property="Margin" Value="7 0 0 7"/>
+    </Style>
+    <ControlTemplate x:Key="{dxgt:GridColumnHeaderThemeKey ResourceKey=CalendarFilterControlTemplate}" TargetType="dxg:CalendarFilterControl">
+        <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 5">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <StackPanel x:Name="PART_UpperFiltersPanel"/>
+
+            <dxe:DateNavigator x:Name="PART_DateNavigator"
+                                           RowCount="1"
+                                           ColumnCount="1"
+                                           IsMultiSelect="True"
+                                           ShowTodayButton="False"
+                                           Margin="17 5 17 7"
+                                           Grid.Row="1"/>
+
+            <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Auto">
+                <StackPanel x:Name="PART_BottomFiltersPanel"/>
+            </ScrollViewer>
+        </Grid>
+    </ControlTemplate>
+</ResourceDictionary>

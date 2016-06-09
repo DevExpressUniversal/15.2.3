@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application>
+  <ActionDesign>
+    <ActionToContainerMapping>
+      <ActionContainer Id="PopupActions">
+        <ActionLink ActionId="PreviewReport" Index="2" />
+      </ActionContainer>
+    </ActionToContainerMapping>
+  </ActionDesign>
+  <Views>
+    <ListView Id="NewXafReportWizardParameters_ListView" Removed="True" />
+    <ListView Id="NewXafReportWizardParameters_LookupListView" Removed="True" />
+    <DetailView Id="NewXafReportWizardParameters_DetailView" Caption="New Report Wizard" ImageName="BO_Report">
+      <Items>
+        <StaticImage Id="ReportImage" ImageName="WizStart" SizeMode="AutoSize" IsNewNode="True" />
+        <StaticText Id="ReportText" Text="To create a new report, please enter a name in the field below and select the primary data type of the report from the list." IsNewNode="True" />
+      </Items>
+      <Layout>
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors" Removed="True" />
+          <LayoutGroup Id="Static" Direction="Vertical" RelativeSize="100" Caption="Static(11)" IsNewNode="True">
+            <LayoutGroup Id="NewReportParams" ShowCaption="False" Caption="New Report Params" TextAlignMode="AlignLocal" Direction="Horizontal" Index="0" RelativeSize="100" IsNewNode="True">
+              <LayoutItem Id="ReportImage" ShowCaption="False" Index="0" RelativeSize="26" ViewItem="ReportImage" IsNewNode="True" />
+              <LayoutGroup Id="SimpleEditors" ShowCaption="False" Caption="Simple Editors" Direction="Vertical" Index="1" RelativeSize="73" IsNewNode="True">
+                <LayoutItem Id="DataType" Index="2" RelativeSize="7" ViewItem="DataType" IsNewNode="True" />
+                <LayoutItem Id="ReportName" Index="1" RelativeSize="7" ViewItem="ReportName" IsNewNode="True" />
+                <LayoutItem Id="ReportText" ShowCaption="False" Index="0" RelativeSize="11" ViewItem="ReportText" IsNewNode="True" />
+                <LayoutItem Id="ReportType" Index="3" RelativeSize="74" ViewItem="ReportType" IsNewNode="True" />
+              </LayoutGroup>
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+  </Views>
+  <Localization>
+    <LocalizationGroup Name="Captions">
+      <LocalizationItem Name="ReportDesignerWarning" Value="Warning" IsNewNode="True" />
+      <LocalizationItem Name="ReportDesignerError" Value="Error" IsNewNode="True" />
+      <LocalizationItem Name="ExportLayout" Value="Export layout to file..." IsNewNode="True" />
+      <LocalizationItem Name="ImportLayout" Value="Import layout from file..." IsNewNode="True" />
+      <LocalizationItem Name="ReportFiles" Value="Report Files" IsNewNode="True" />
+      <LocalizationItem Name="AllFiles" Value="All Files" IsNewNode="True" />
+    </LocalizationGroup>
+    <LocalizationGroup Name="Messages">
+      <LocalizationItem Name="ReportPreviewFilter" Value="The Filter you have set cannot be used as a design time filter because it uses queryable fields.\r\nAn automatic variation of the filter will be created for design time use,\r\nand you can modify this filter yourself by setting the FilterForDesignPreview property." IsNewNode="True" />
+      <LocalizationItem Name="WrongReportPreviewFilter" Value="Filters with queryable fields cannot be used for the FilterForDesignPreview property." IsNewNode="True" />
+    </LocalizationGroup>
+  </Localization>
+  <SchemaModules>
+    <SchemaModule Name="SystemModule" Version="13.1.6.0" IsNewNode="True" />
+    <SchemaModule Name="SystemWindowsFormsModule" Version="13.1.1.0" IsNewNode="True" />
+  </SchemaModules>
+</Application>

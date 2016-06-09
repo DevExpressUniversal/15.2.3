@@ -1,0 +1,15 @@
+﻿<#@ template language="C#" #>
+<#@ import namespace="System" #>
+<#@ import namespace="DevExpress.Xpf.Core.Design.Wizards.Mvvm" #>
+<#
+    string viewModelName = this.GetTemplateInfo().Properties["ViewModelName"].ToString();
+#>
+using System;
+using System.Linq;
+using System.Collections.Generic;
+using DevExpress.Mvvm;
+
+namespace <#=this.GetNamespace()#> {
+    public class <#=viewModelName#> : ViewModelBase {
+    }
+}

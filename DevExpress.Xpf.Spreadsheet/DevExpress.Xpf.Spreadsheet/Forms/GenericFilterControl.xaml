@@ -1,0 +1,92 @@
+﻿<UserControl x:Class="DevExpress.Xpf.Spreadsheet.Forms.GenericFilterControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+             xmlns:dxsps="clr-namespace:DevExpress.Xpf.Spreadsheet" 
+             xmlns:dxspsi="clr-namespace:DevExpress.Xpf.Spreadsheet.Internal"
+             mc:Ignorable="d" Width="360"
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <dxsps:SpreadsheetControlStringIdConverter x:Key="stringIdConverter" />
+        <dxspsi:NoneToNullFilterOperatorConverter x:Key="filterOperatorConverter" />
+        <dxspsi:IsDateTimeToVisibilityConverter x:Key="isDateTimeToVisibilityConverter" />
+    </UserControl.Resources>
+    <Grid Margin="5,5">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0" Text="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_GenericFilterFormShowRows, Converter={StaticResource stringIdConverter}}" HorizontalAlignment="Left"/>
+        <Grid Grid.Row="1" Margin="20,5,0,0" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="40"/>
+            </Grid.ColumnDefinitions>
+            <dxe:ComboBoxEdit Grid.Column="0" 
+                              Margin="0,3,0,0"  
+                              ItemsSource="{Binding FilterOperatorDataSource}"
+                              EditValue="{Binding FilterOperator, Mode=TwoWay, Converter={StaticResource filterOperatorConverter}}" 
+                              IsTextEditable="False" />
+            <dxe:ComboBoxEdit Grid.Column="1" 
+                              x:Name="cbFilterValue"
+                              Margin="10,3,0,0"  
+                              ItemsSource="{Binding UniqueFilterValues}"
+                              EditValue="{Binding FilterValue, Mode=TwoWay}"/>
+            <dxe:DateEdit Grid.Column="2" 
+                          x:Name="deDateFilterValue"
+                          StyleSettings="{Binding ElementName='e'}"
+                          Margin="10,0,10,0"
+                          Visibility="{Binding IsDateTimeFilter, Mode=OneWay, Converter={StaticResource isDateTimeToVisibilityConverter}}"
+                          ShowText="False"
+                          EditValueChanged="OnEditValueChanged"/>
+            <dxe:DateEditCalendarStyleSettings x:Name="e"/>
+        </Grid>
+        <Grid Grid.Row="2" Margin="20,5,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <RadioButton Grid.Column="0"
+                         Margin="20,0,0,0" 
+                         GroupName="group" 
+                         Content="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_GenericFilterFormOperationAnd, Converter={StaticResource stringIdConverter}}"
+                         IsChecked="{Binding OperatorAnd, ConverterParameter=0, Mode=TwoWay}" />
+            <RadioButton Grid.Column="1"
+                         Margin="10,0,0,0" 
+                         GroupName="group" 
+                         Content="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_GenericFilterFormOperationOr, Converter={StaticResource stringIdConverter}}"/>
+        </Grid>
+        <Grid Grid.Row="3" Margin="20,5,0,0" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="40"/>
+            </Grid.ColumnDefinitions>
+            <dxe:ComboBoxEdit Grid.Column="0" 
+                              Margin="0,3,0,0" 
+                              ItemsSource="{Binding FilterOperatorDataSource}"
+                              EditValue="{Binding SecondaryFilterOperator, Mode=TwoWay, Converter={StaticResource filterOperatorConverter}}" 
+                              IsTextEditable="False" />
+            <dxe:ComboBoxEdit Grid.Column="1"
+                              x:Name="cbSecondaryFilterValue"
+                              Margin="10,3,0,0"  
+                              ItemsSource="{Binding UniqueFilterValues}"
+                              EditValue="{Binding SecondaryFilterValue, Mode=TwoWay }"/>
+            <dxe:DateEdit Grid.Column="2" 
+                          x:Name="deSecondaryDateFilterValue"
+                          Margin="10,0,10,0"
+                          Visibility="{Binding IsDateTimeFilter, Mode=OneWay, Converter={StaticResource isDateTimeToVisibilityConverter}}" 
+                          ShowText="False" 
+                          EditValueChanged="OnSecondaryEditValueChanged"/>
+        </Grid>
+                <TextBlock Grid.Row="4" Margin="0,15,0,0" Text="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_GenericFilterFormDescriptionSingleCharacter, Converter={StaticResource stringIdConverter}}" HorizontalAlignment="Left"/>
+                <TextBlock Grid.Row="5" Text="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_GenericFilterFormDescriptionSeriesCharacters, Converter={StaticResource stringIdConverter}}" HorizontalAlignment="Left"/>
+    </Grid>
+</UserControl>

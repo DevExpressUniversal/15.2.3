@@ -1,0 +1,155 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>10.0</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{7044250D-FE75-49BD-8E64-A6B2865942B1}</ProjectGuid>
+    <ProjectTypeGuids>{32f31d43-81cc-4c15-9de6-3fc5453562b6};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DevExpress.Workflow.Activities</RootNamespace>
+    <AssemblyName>DevExpress.Workflow.Activities.v15.2</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>..\..\DevExpress.Key\StrongKey.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\..\Bin\Framework\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\..\Bin\Framework\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  
+  <ItemGroup>
+    <Reference Include="DevExpress.Persistent.Base.v15.2">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Bin\Framework\DevExpress.Persistent.Base.v15.2.dll</HintPath>
+    <Private>False</Private></Reference>
+    <Reference Include="DevExpress.Printing.v15.2.Core">
+      <HintPath>..\..\..\Bin\Framework\DevExpress.Printing.v15.2.Core.dll</HintPath>
+    <Private>False</Private></Reference>
+    <Reference Include="DevExpress.Data.v15.2">
+      <HintPath>..\..\..\Bin\Framework\DevExpress.Data.v15.2.dll</HintPath>
+    <Private>False</Private></Reference>
+    <Reference Include="DevExpress.ExpressApp.v15.2">
+      <HintPath>..\..\..\Bin\Framework\DevExpress.ExpressApp.v15.2.dll</HintPath>
+    <Private>False</Private></Reference>
+    <Reference Include="DevExpress.Utils.v15.2">
+      <HintPath>..\..\..\Bin\Framework\DevExpress.Utils.v15.2.dll</HintPath>
+    <Private>False</Private></Reference>
+    <Reference Include="Microsoft.CSharp"><Private>False</Private></Reference>
+    
+    <Reference Include="System"><Private>False</Private></Reference>
+    <Reference Include="System.Activities"><Private>False</Private></Reference>
+    <Reference Include="System.Activities.DurableInstancing"><Private>False</Private></Reference>
+    <Reference Include="System.configuration"><Private>False</Private></Reference>
+    <Reference Include="System.Core"><Private>False</Private></Reference>
+    <Reference Include="System.Data"><Private>False</Private></Reference>
+    <Reference Include="System.Drawing"><Private>False</Private></Reference>
+    <Reference Include="System.Runtime.DurableInstancing"><Private>False</Private></Reference>
+    <Reference Include="System.Runtime.Serialization"><Private>False</Private></Reference>
+    <Reference Include="System.ServiceModel"><Private>False</Private></Reference>
+    <Reference Include="System.ServiceModel.Activities"><Private>False</Private></Reference>
+    <Reference Include="System.Xaml"><Private>False</Private></Reference>
+    <Reference Include="System.Xml"><Private>False</Private></Reference>
+    <Reference Include="System.Xml.Linq"><Private>False</Private></Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AssemblyVersionInfo.cs">
+      
+    </Compile>
+    <Compile Include="CreationEndpoint\CreationEndpoint.cs" />
+    <Compile Include="CreationEndpoint\CreationEndpointElement.cs" />
+    <Compile Include="Store\WorkflowStoreCompletedAsyncResult.cs" />
+    <Compile Include="Store\WorkflowInstanceStore.cs" />
+    <Compile Include="Store\WorkflowInstanceStoreBehavior.cs" />
+    <Compile Include="Store\WorkflowInstanceStoreElement.cs" />
+    <Compile Include="Utils\TypeToStringConverter.cs" />
+    <Compile Include="WorkflowHost.cs" />
+    <Compile Include="WorkflowHostManager.cs" />
+    <Compile Include="ObjectSpaceActivities\CreateObject.cs" />
+    <Compile Include="ObjectSpaceActivities\FindObjects.cs" />
+    <Compile Include="ObjectSpaceActivities\GetObjectKey.cs" />
+    <Compile Include="TransactionalActivities\TransactionalGetObjectKey.cs" />
+    <Compile Include="UserActivity.cs" />
+    <Compile Include="ObjectSpaceActivities\CommitChanges.cs" />
+    <Compile Include="TransactionalActivities\TransactionalCreateObject.cs" />
+    <Compile Include="ObjectSpaceActivities\CreateObjectSpace.cs" />
+    <Compile Include="ObjectSpaceActivities\DeleteObject.cs" />
+    <Compile Include="TransactionalActivities\TransactionalFindObjects.cs" />
+    <Compile Include="NoPersistScope.cs" />
+    <Compile Include="ObjectSpaceActivityBase.cs" />
+    <Compile Include="TransactionalActivities\ObjectSpaceTransactionScope.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ObjectSpaceActivities\Rollback.cs" />
+    <Compile Include="TransactionalActivities\TransactionalCommitChanges.cs" />
+    <Compile Include="TransactionalActivities\TransactionalDeleteObject.cs" />
+    <Compile Include="TransactionalActivities\TransactionalRollback.cs" />
+    <Compile Include="TransactionalActivities\TransactionalGetObjectSpace.cs" />
+    <Compile Include="TransactionalActivities\TransactionalObjectSpaceActivityBase.cs" />
+    <Compile Include="Utils\ConsoleTrackingParticipant.cs" />
+    <Compile Include="Utils\ConstraintHelper.cs" />
+    <Compile Include="Utils\TrackingParticipantBase.cs" />
+    <Compile Include="Utils\TrackingParticipantHelper.cs" />
+    <Compile Include="Utils\VisualTrackingParticipant.cs" />
+    <Compile Include="Utils\WorkflowNamespace.cs" />
+    <Compile Include="Utils\XpoTrackingParticipant.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\TransactionalCommitChanges.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\CreateObjectSpace.bmp" />
+    <EmbeddedResource Include="Images\DeleteObject.bmp" />
+    <EmbeddedResource Include="Images\NoPersistScope.bmp" />
+    <EmbeddedResource Include="Images\Rollback.bmp" />
+    <EmbeddedResource Include="Images\TransactionalCreateObject.bmp" />
+    <EmbeddedResource Include="Images\TransactionalDeleteObject.bmp" />
+    <EmbeddedResource Include="Images\TransactionalFindObjectByCriteria.bmp" />
+    <EmbeddedResource Include="Images\TransactionalGetObjectByKey.bmp" />
+    <EmbeddedResource Include="Images\TransactionalGetObjectSpace.bmp" />
+    <EmbeddedResource Include="Images\TransactionalRollback.bmp" />
+    <EmbeddedResource Include="Images\UserActivity.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\CommitChanges.bmp" />
+    <EmbeddedResource Include="Images\ObjectSpaceTransactionScope.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\CreateObject.bmp" />
+    <EmbeddedResource Include="Images\FindObjectByCriteria.bmp" />
+    <EmbeddedResource Include="Images\FindObjectsByCriteria.bmp" />
+    <EmbeddedResource Include="Images\GetObjectByKey.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\GetObjectKey.bmp" />
+    <EmbeddedResource Include="Images\TransactionalGetObjectKey.bmp" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

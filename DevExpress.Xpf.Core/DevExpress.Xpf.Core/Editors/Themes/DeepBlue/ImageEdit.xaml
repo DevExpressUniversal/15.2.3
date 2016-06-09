@@ -1,0 +1,125 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:dxtEx="clr-namespace:DevExpress.Xpf.Utils.Themes"
+                    xmlns:dx="clr-namespace:DevExpress.Xpf.Core"
+                    xmlns:dxe="clr-namespace:DevExpress.Xpf.Editors"
+                    xmlns:dxb="clr-namespace:DevExpress.Xpf.Bars"
+                    xmlns:dxet="clr-namespace:DevExpress.Xpf.Editors.Themes">
+    <!--BEGIN WPF-->
+    <ResourceDictionary.MergedDictionaries>
+        <dxtEx:ResourceDictionaryEx Source="{dx:EditorsResource Themes/Generic/ImageEdit.xaml}" />
+    </ResourceDictionary.MergedDictionaries>
+    <!--END WPF-->
+    <SolidColorBrush x:Key="{dxet:ImageEditThemeKey ResourceKey=ImageBackgroundBrush}" Color="White" />
+    <ControlTemplate x:Key="{dxet:CameraControlThemeKey ResourceKey=BorderTemplate}" TargetType="{x:Type ContentControl}">
+        <Grid x:Name="RootElement">
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup x:Name="InternalFocusStates">
+                    <VisualState x:Name="InternalFocused">
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetName="FocusElement" Storyboard.TargetProperty="Opacity" Duration="0" To="0.35"/>
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="InternalUnfocused"/>
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+            <Border x:Name="FocusElement" Margin="-2" Opacity="0" Background="#FF4882d8" CornerRadius="4"/>
+            <Border BorderBrush="#ff4a6aa6" BorderThickness="1" Background="{DynamicResource {dxet:ImageEditThemeKey ResourceKey=ImageBackgroundBrush}}" Padding="4">
+                <ContentPresenter />
+            </Border>
+        </Grid>
+    </ControlTemplate>
+    <ControlTemplate x:Key="{dxet:ImageEditThemeKey ResourceKey=BorderTemplate}" TargetType="{x:Type ContentControl}">
+        <Grid x:Name="RootElement">
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup x:Name="InternalFocusStates">
+                    <VisualState x:Name="InternalFocused">
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetName="FocusElement" Storyboard.TargetProperty="Opacity" Duration="0" To="0.35"/>
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="InternalUnfocused"/>
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+            <Border x:Name="FocusElement" Margin="-2" Opacity="0" Background="#FF4882d8" CornerRadius="4"/>
+            <Border BorderBrush="#ff4a6aa6" BorderThickness="1" Background="{DynamicResource {dxet:ImageEditThemeKey ResourceKey=ImageBackgroundBrush}}" Padding="4">
+                <ContentPresenter />
+            </Border>
+        </Grid>
+    </ControlTemplate>
+    <ControlTemplate x:Key="{dxet:ImageEditThemeKey ResourceKey=ToolButtonTemplate}" TargetType="{x:Type dxe:ImageEditToolButton}">
+        <Grid>
+            <Grid Margin="0,1,0,1">
+                <Border Name="hover"   Background="#3FFFFFFF" CornerRadius="1" Opacity="0" />
+                <Border Name="pressed" Background="#3FFFFFFF" CornerRadius="1" Opacity="0" />
+            </Grid>
+            <Border Name="border" Background="{TemplateBinding Background}" Margin="2,0,2,0">
+                <StackPanel Orientation="Horizontal" Margin="{TemplateBinding Padding}">
+                    <Image Source="{TemplateBinding ImageSource}" Stretch="None" />
+                    <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                        VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                </StackPanel>
+            </Border>
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup x:Name="CommonStates">
+                    <VisualState x:Name="Normal"/>
+                    <VisualState x:Name="MouseOver">
+                        <Storyboard>
+                            <DoubleAnimation Duration="0" Storyboard.TargetName="hover" Storyboard.TargetProperty="Opacity" To="1"/>
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Pressed">
+                        <Storyboard>
+                            <DoubleAnimation Duration="0" Storyboard.TargetName="pressed" Storyboard.TargetProperty="Opacity" To="1"/>
+                            <DoubleAnimation Duration="0" Storyboard.TargetName="border" Storyboard.TargetProperty="Opacity" To="0.35"/>
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Disabled">
+                        <Storyboard>
+                            <DoubleAnimation Duration="0" Storyboard.TargetName="border" Storyboard.TargetProperty="Opacity" To=".3"/>
+                        </Storyboard>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+        </Grid>
+    </ControlTemplate>
+    <ControlTemplate x:Key="{dxet:ImageEditThemeKey ResourceKey=MenuPopupTemplate}" TargetType="{x:Type ContentControl}">
+        <Grid Height="24">
+            <Border Background="#BF000000" Opacity="0.75" CornerRadius="12" />
+            <ContentPresenter Margin="12,0,12,0" />
+        </Grid>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="{dxet:PopupImageEditThemeKey ResourceKey=DisplayTemplate}">
+        <Grid Margin="3" x:Name="PART_Editor" Background="Transparent" dx:FocusHelper2.Focusable="True">
+            <Image x:Name="PART_Icon" Stretch="None" dx:FocusHelper2.Focusable="False" Source="{Binding Source=DevExpress.Xpf.Core.Editors.Images.ImageEdit.inactive.png, Converter={StaticResource EmbeddedResourceImageConverter}}">
+                <!--BEGIN WPF-->
+                <RenderOptions.BitmapScalingMode>
+                    NearestNeighbor
+                </RenderOptions.BitmapScalingMode>
+                <!--END WPF-->
+            </Image>
+        </Grid>
+        <ControlTemplate.Triggers>
+            <DataTrigger Binding="{Binding Path=(dxe:BaseEdit.OwnerEdit).HasImage, RelativeSource={RelativeSource Self}}" Value="True">
+                <Setter Property="Source" TargetName="PART_Icon" Value="{Binding Source=DevExpress.Xpf.Core.Editors.Images.ImageEdit.active.png, Converter={StaticResource EmbeddedResourceImageConverter}}" />
+            </DataTrigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+    <ControlTemplate x:Key="{dxet:ImageEditThemeKey ResourceKey=EmptyContentTemplate}">
+        <Grid x:Name="empty_image">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.25*" />
+                <RowDefinition Height="0.5*" />
+                <RowDefinition Height="0.25*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.25*" />
+                <ColumnDefinition Width="0.5*" />
+                <ColumnDefinition Width="0.25*" />
+            </Grid.ColumnDefinitions>
+            <Border Grid.ColumnSpan="3" Grid.RowSpan="3" Background="#FFF7F7F7" BorderBrush="#FFE0E0E0" BorderThickness="1" />
+            <Path Stretch="Uniform" Fill="#FFE0E0E0" Data="F1 M 546,395C 551,394 554,404 564,403C 574,402 576,384 596,390C 597.058,390.317 598,390.895 598,392L 598,411C 598,412.105 597.104,413 596,413L 546,413C 544.895,413 544,412.105 544,411L 544,398C 544,396.895 544.917,395.217 546,395 Z M 560,379C 563.866,379 567,382.134 567,386C 567,389.866 563.866,393 560,393C 556.134,393 553,389.866 553,386C 553,382.134 556.134,379 560,379 Z M 543,370L 599,370C 601.209,370 603,371.791 603,374L 603,414C 603,416.209 601.209,418 599,418L 543,418C 540.791,418 539,416.209 539,414L 539,374C 539,371.791 540.791,370 543,370 Z M 545,374C 543.895,374 543,374.896 543,376L 543,412C 543,413.105 543.895,414 545,414L 597,414C 598.104,414 599,413.105 599,412L 599,376C 599,374.896 598.104,374 597,374L 545,374 Z " UseLayoutRounding="False" Margin="3" Grid.Column="1" Grid.Row="1" />
+        </Grid>
+    </ControlTemplate>
+</ResourceDictionary>
+

@@ -1,0 +1,118 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" 
+    xmlns:dxgcore="http://schemas.devexpress.com/winfx/2008/xaml/grid" 
+	xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+	xmlns:dxe1="clr-namespace:DevExpress.Xpf.Editors.Filtering;assembly=DevExpress.Xpf.Core.v15.2"
+	xmlns:dxg="clr-namespace:DevExpress.Xpf.Grid"
+    xmlns:dxgt="clr-namespace:DevExpress.Xpf.Grid.Themes"
+    xmlns:dxght="clr-namespace:DevExpress.Xpf.Grid.HitTest"                    
+    xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
+	xmlns:sys="clr-namespace:System;assembly=mscorlib">
+
+    <ControlTemplate x:Key="DefaultWaitIndicator" TargetType="{x:Type ProgressBar}">
+        <Grid>
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup x:Name="CommonStates">
+                    <VisualState x:Name="Determinate" />
+                    <VisualState x:Name="Indeterminate">
+                        <Storyboard RepeatBehavior="Forever">
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Fill).(Brush.RelativeTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)" Storyboard.TargetName="path">
+                                <EasingDoubleKeyFrame KeyTime="0" Value="0" />
+                                <EasingDoubleKeyFrame KeyTime="00:00:01" Value="360" />
+                            </DoubleAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+
+            <Path x:Name="path" Stretch="Fill" StrokeThickness="1" StrokeLineJoin="Round" Stroke="{x:Null}" Data="F1 M 94.5,284C 94.7762,284 95,284.224 95,284.5L 95,287.5C 95,287.776 94.7762,288 94.5,288C 94.2239,288 94,287.776 94,287.5L 94,284.5C 94,284.224 94.2239,284 94.5,284 Z M 96.1919,283.341C 96.3952,283.154 96.7115,283.167 96.8984,283.37L 98.9287,285.579C 99.1156,285.782 99.1023,286.099 98.899,286.286C 98.6957,286.472 98.3794,286.459 98.1925,286.256L 96.1622,284.047C 95.9753,283.844 95.9886,283.528 96.1919,283.341 Z M 94.5,275C 94.7761,275 95,275.224 95,275.5L 95,278.5C 95,278.776 94.7761,279 94.5,279C 94.2238,279 94,278.776 94,278.5L 94,275.5C 94,275.224 94.2238,275 94.5,275 Z M 90.101,276.715C 90.3043,276.528 90.6206,276.541 90.8075,276.745L 92.8378,278.953C 93.0247,279.157 93.0114,279.473 92.8081,279.66C 92.6048,279.847 92.2885,279.833 92.1016,279.63L 90.0713,277.421C 89.8844,277.218 89.8978,276.902 90.101,276.715 Z M 92,281.513C 92,281.789 91.7762,282.013 91.5,282.013L 88.5,282.013C 88.2238,282.013 88,281.789 88,281.513C 88,281.236 88.2238,281.013 88.5,281.013L 91.5,281.013C 91.7762,281.013 92,281.236 92,281.513 Z M 92.668,283.201C 92.8549,283.405 92.8416,283.721 92.6383,283.908L 90.4297,285.938C 90.2264,286.125 89.9101,286.112 89.7232,285.908C 89.5363,285.705 89.5496,285.389 89.7529,285.202L 91.9615,283.171C 92.1648,282.985 92.4811,282.998 92.668,283.201 Z M 101,281.45C 101,281.698 100.799,281.9 100.55,281.9L 97.45,281.9C 97.2015,281.9 97,281.698 97,281.45C 97,281.201 97.2015,281 97.45,281L 100.55,281C 100.799,281 101,281.201 101,281.45 Z M 99.2514,277.064C 99.4195,277.247 99.4076,277.532 99.2246,277.7L 96.9424,279.798C 96.7595,279.966 96.4748,279.954 96.3066,279.771C 96.1384,279.588 96.1504,279.304 96.3333,279.135L 98.6155,277.037C 98.7985,276.869 99.0832,276.881 99.2514,277.064 Z " VerticalAlignment="Stretch" Fill="{TemplateBinding Background}">
+            </Path>
+        </Grid>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="{dxgt:GridControlThemeKey ResourceKey=DefaultWaitIndicatorTemplate}">
+        <Grid x:Name="root" Visibility="Collapsed" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup x:Name="Visibility">
+                    <VisualState x:Name="Visible">
+                        <Storyboard>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="root" Storyboard.TargetProperty="Visibility">
+                                <DiscreteObjectKeyFrame KeyTime="0:0:0.1">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <Visibility>Visible</Visibility>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="progressBar" Storyboard.TargetProperty="IsIndeterminate">
+                                <DiscreteObjectKeyFrame KeyTime="0:0:0.1">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <sys:Boolean>True</sys:Boolean>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Collapsed">
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetName="root" Storyboard.TargetProperty="Opacity" From="1" To="0" BeginTime="0:0:0.1" Duration="0:0:0.1" />
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="root" Storyboard.TargetProperty="Visibility">
+                                <DiscreteObjectKeyFrame KeyTime="0:0:0.2">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <Visibility>Collapsed</Visibility>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="progressBar" Storyboard.TargetProperty="IsIndeterminate">
+                                <DiscreteObjectKeyFrame KeyTime="0:0:0.1">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <sys:Boolean>False</sys:Boolean>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+            <ProgressBar x:Name="progressBar" Width="16" Template="{StaticResource DefaultWaitIndicator}" IsIndeterminate="True" HorizontalAlignment="Center" VerticalAlignment="Center" Height="16" BorderBrush="{x:Null}" Foreground="{x:Null}" MinWidth="4" MinHeight="4">
+                <ProgressBar.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <LinearGradientBrush.RelativeTransform>
+                            <TransformGroup>
+                                <ScaleTransform CenterY="0.5" CenterX="0.5" />
+                                <SkewTransform CenterY="0.5" CenterX="0.5" />
+                                <RotateTransform CenterY="0.5" CenterX="0.5" />
+                                <TranslateTransform />
+                            </TransformGroup>
+                        </LinearGradientBrush.RelativeTransform>
+                        <GradientStop Color="#FFFFFFFF" Offset="0.25" />
+                        <GradientStop Color="#19FFFFFF" Offset="0.6" />
+                        <GradientStop Color="#19FFFFFF" Offset="1" />
+                        <GradientStop Color="#FFFFFFFF" />
+                    </LinearGradientBrush>
+                </ProgressBar.Background>
+            </ProgressBar>
+        </Grid>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="{dxgt:GridColumnHeaderThemeKey ResourceKey=IndicatorColumnHeaderTemplate}">
+        <Border BorderBrush="White" BorderThickness="0,0,1,0">
+            <ContentControl Margin="0,0,1,7" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
+                <ContentControl.Visibility>
+                    <Binding Path="(dxg:GridControl.CurrentView).WaitIndicatorType" RelativeSource="{RelativeSource TemplatedParent}">
+                        <Binding.Converter>
+                            <dx:EnumToObjectConverter DefaultValue="Collapsed">
+                                <dx:EnumToObjectConverter.Values>
+                                    <dx:EnumObjectProvider x:Key="Default" Value="Visible" />
+                                </dx:EnumToObjectConverter.Values>
+                            </dx:EnumToObjectConverter>
+                        </Binding.Converter>
+                    </Binding>
+                </ContentControl.Visibility>
+                <dx:WaitIndicator DeferedVisibility="{Binding Path=(dxg:GridControl.CurrentView).IsWaitIndicatorVisible, RelativeSource={RelativeSource TemplatedParent}}"
+                                           Template="{DynamicResource {dxgt:GridControlThemeKey ResourceKey=DefaultWaitIndicatorTemplate}}" />
+            </ContentControl>
+        </Border>
+    </ControlTemplate>
+
+</ResourceDictionary>

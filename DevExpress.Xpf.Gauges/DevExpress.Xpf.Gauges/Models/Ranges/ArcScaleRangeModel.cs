@@ -1,0 +1,72 @@
+﻿#region Copyright (c) 2000-2015 Developer Express Inc.
+/*
+{*******************************************************************}
+{                                                                   }
+{       Developer Express .NET Component Library                    }
+{                                                                   }
+{                                                                   }
+{       Copyright (c) 2000-2015 Developer Express Inc.              }
+{       ALL RIGHTS RESERVED                                         }
+{                                                                   }
+{   The entire contents of this file is protected by U.S. and       }
+{   International Copyright Laws. Unauthorized reproduction,        }
+{   reverse-engineering, and distribution of all or any portion of  }
+{   the code contained in this file is strictly prohibited and may  }
+{   result in severe civil and criminal penalties and will be       }
+{   prosecuted to the maximum extent possible under the law.        }
+{                                                                   }
+{   RESTRICTIONS                                                    }
+{                                                                   }
+{   THIS SOURCE CODE AND ALL RESULTING INTERMEDIATE FILES           }
+{   ARE CONFIDENTIAL AND PROPRIETARY TRADE                          }
+{   SECRETS OF DEVELOPER EXPRESS INC. THE REGISTERED DEVELOPER IS   }
+{   LICENSED TO DISTRIBUTE THE PRODUCT AND ALL ACCOMPANYING .NET    }
+{   CONTROLS AS PART OF AN EXECUTABLE PROGRAM ONLY.                 }
+{                                                                   }
+{   THE SOURCE CODE CONTAINED WITHIN THIS FILE AND ALL RELATED      }
+{   FILES OR ANY PORTION OF ITS CONTENTS SHALL AT NO TIME BE        }
+{   COPIED, TRANSFERRED, SOLD, DISTRIBUTED, OR OTHERWISE MADE       }
+{   AVAILABLE TO OTHER INDIVIDUALS WITHOUT EXPRESS WRITTEN CONSENT  }
+{   AND PERMISSION FROM DEVELOPER EXPRESS INC.                      }
+{                                                                   }
+{   CONSULT THE END USER LICENSE AGREEMENT FOR INFORMATION ON       }
+{   ADDITIONAL RESTRICTIONS.                                        }
+{                                                                   }
+{*******************************************************************}
+*/
+#endregion Copyright (c) 2000-2015 Developer Express Inc.
+
+using System.ComponentModel;
+using System.Windows;
+using DevExpress.Xpf.Utils;
+namespace DevExpress.Xpf.Gauges {
+	public class ArcScaleRangeModel : ModelBase {
+		public static readonly DependencyProperty PresentationProperty = DependencyPropertyManager.Register("Presentation",
+			typeof(ArcScaleRangePresentation), typeof(ArcScaleRangeModel), new PropertyMetadata(null, NotifyPropertyChanged));
+		public static readonly DependencyProperty OptionsProperty = DependencyPropertyManager.Register("Options",
+			typeof(RangeOptions), typeof(ArcScaleRangeModel), new PropertyMetadata(null, NotifyPropertyChanged));
+		[
+		Browsable(false),
+		EditorBrowsable(EditorBrowsableState.Never),
+		DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)
+		]
+		public ArcScaleRangePresentation Presentation {
+			get { return (ArcScaleRangePresentation)GetValue(PresentationProperty); }
+			set { SetValue(PresentationProperty, value); }
+		}
+		[
+		Browsable(false),
+		EditorBrowsable(EditorBrowsableState.Never),
+		DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)
+		]
+		public RangeOptions Options {
+			get { return (RangeOptions)GetValue(OptionsProperty); }
+			set { SetValue(OptionsProperty, value); }
+		}
+		protected override GaugeDependencyObject CreateObject() {
+			return new ArcScaleRangeModel();
+		}
+	}
+	public class ArcScaleRangeModelCollection : ModelCollection<ArcScaleRangeModel> {
+	}
+}

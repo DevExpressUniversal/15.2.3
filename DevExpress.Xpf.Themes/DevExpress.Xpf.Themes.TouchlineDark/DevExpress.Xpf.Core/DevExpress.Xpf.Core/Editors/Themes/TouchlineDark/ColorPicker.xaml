@@ -1,0 +1,31 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+                    xmlns:dxei="http://schemas.devexpress.com/winfx/2008/xaml/editors/internal" 
+                    xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors" xmlns:dxet="http://schemas.devexpress.com/winfx/2008/xaml/editors/themekeys" xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys">
+    <!--BEGIN WPF-->
+    <ResourceDictionary.MergedDictionaries>
+        <dxdst:ResourceDictionaryEx Source="/DevExpress.Xpf.Themes.TouchlineDark.v15.2;component/DevExpress.Xpf.Core/DevExpress.Xpf.Core/Editors/Themes/Generic/ColorPicker.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    <ControlTemplate x:Key="{dxet:ColorPickerThemeKey ResourceKey=PipetButtonTemplate}" TargetType="{x:Type Button}">
+        <Grid x:Name="Root" Background="Transparent" >
+            <Path x:Name="Path" Stretch="Fill" Fill="#FF999999" Data="F1 M 24.5,0C 25.8807,0 27,1.11929 27,2.5C 27,3.88071 25.8807,5 24.5,5C 24.1973,5 23.9071,4.9462 23.6386,4.84763C 23.8347,5.18697 24,5.59348 24,6C 24,7 23,7 23,7L 20,4C 20,4 20,3 21,3C 21.4065,3 21.813,3.16525 22.1524,3.36141C 22.0538,3.09286 22,2.80271 22,2.5C 22,1.11929 23.1193,0 24.5,0 Z M 12,16C 12,16 11,16 11,15C 11,14 13,13 13,13L 13.0643,12.9357L 13,12.5C 13,11.839 13.4064,11.1999 14,11L 20,5L 22,7L 16,13C 15.7941,13.5827 15.1532,14 14.5,14L 14.0643,13.9357L 14,14C 14,14 13,16 12,16 Z M 14,12L 15,13L 21,7L 20,6L 14,12 Z " Width="26" Height="26" />
+        </Grid>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter TargetName="Path" Property="Fill" Value="#FFF78A09" />
+            </Trigger>
+            <Trigger Property="IsPressed" Value="True">
+                <Setter TargetName="Path" Property="Fill" Value="#FFF78A09" />
+            </Trigger>
+            <Trigger Property="IsFocused" Value="True">
+                <Setter TargetName="Path" Property="Fill" Value="#FFF78A09" />
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter TargetName="Root" Property="Opacity" Value="0.35" />
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+    <!--END WPF-->
+</ResourceDictionary>

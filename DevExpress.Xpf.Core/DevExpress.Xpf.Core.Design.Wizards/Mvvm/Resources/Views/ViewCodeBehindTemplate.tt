@@ -1,0 +1,20 @@
+﻿<#@ template language="C#" #>
+<#@ import namespace="System" #>
+<#@ import namespace="DevExpress.Xpf.Core.Design.Wizards.Mvvm.EntityFramework" #>
+<#@ import namespace="DevExpress.Xpf.Core.Design.Wizards.Mvvm" #>
+<#
+	T4TemplateInfo templateInfo = this.GetTemplateInfo();
+    string viewName = templateInfo.Properties["ViewName"].ToString();
+#>
+using System;
+using System.Linq;
+using System.Windows.Controls;
+using System.Collections.Generic;
+
+namespace <#=this.GetNamespace()#>{
+    public partial class <#=viewName#> : UserControl {
+        public <#=viewName#>() {
+            InitializeComponent();
+        }
+    }
+}

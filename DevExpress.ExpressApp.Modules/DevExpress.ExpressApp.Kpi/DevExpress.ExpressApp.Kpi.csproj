@@ -1,0 +1,207 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{DD874996-2890-4A41-9403-050F4BAC242F}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DevExpress.ExpressApp.Kpi</RootNamespace>
+    <AssemblyName>DevExpress.ExpressApp.Kpi.v15.2</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>..\..\DevExpress.Key\StrongKey.snk</AssemblyOriginatorKeyFile>
+    <FileAlignment>512</FileAlignment>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation />
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\..\Bin\Framework\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;Debug;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\..\Bin\Framework\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  
+  
+  
+  <ItemGroup>
+    <Reference Include="DevExpress.Data.v15.2">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Bin\Framework\DevExpress.Data.v15.2.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DevExpress.Xpo.v15.2">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Bin\Framework\DevExpress.Xpo.v15.2.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    
+    <Reference Include="System"><Private>False</Private></Reference>
+    <Reference Include="System.Drawing"><Private>False</Private></Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AssemblyVersionInfo.cs">
+      
+    </Compile>
+    <Compile Include="AutoRefreshKpiController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="KpiDefinitionViewController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Extended\KpiDefinitionEx.cs">
+    </Compile>
+    <Compile Include="Extended\KpiInstanceEx.cs">
+    </Compile>
+    <Compile Include="Extended\ShowKpiExChartController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="KpiChartDataSource.cs" />
+    <Compile Include="KpiDashboardOrganizationItem.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="KpiDefinitionPreviewController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="KpiGaugeDataSource.cs" />
+    
+    
+    
+    
+    
+    
+    <Compile Include="XPO\BaseObject.cs" />
+    <Compile Include="DateRange.cs" />
+    <Compile Include="DateRangeRepository.cs" />
+    <Compile Include="DC\DCKpiDefinition.cs" />
+    <Compile Include="DC\DCKpiHistoryItem.cs" />
+    <Compile Include="DrilldownController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ForceRefreshKpiController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="DC\DCKpiInstance.cs" />
+    <Compile Include="IKpiDefinition.cs" />
+    <Compile Include="IKpiHistoryItem.cs" />
+    <Compile Include="IKpiInstance.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="DC\DCKpiScorecard.cs" />
+    <Compile Include="XPO\KpiDefinition.cs" />
+    <Compile Include="XPO\KpiInstance.cs" />
+    <Compile Include="XPO\KpiHistoryItem.cs" />
+    <Compile Include="XPO\KpiScorecard.cs">
+    </Compile>
+    <Compile Include="Module.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Module.Designer.cs">
+      <DependentUpon>Module.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="DateTimeHelper.cs" />
+    <Compile Include="RefreshKpiController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ShowKpiAsChartController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    
+    
+    
+    
+    
+    
+    
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Model.DesignedDiffs.xafml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Model.DesignedDiffs.Localization.ru.xafml" />
+    <EmbeddedResource Include="Model.DesignedDiffs.Localization.ja.xafml" />
+    <EmbeddedResource Include="Model.DesignedDiffs.Localization.de.xafml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Module.resx">
+      <DependentUpon>Module.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="DevExpress.ExpressApp.Xpo.v15.2"><Name>DevExpress.ExpressApp.Xpo.v15.2</Name><HintPath>..\..\..\Bin\Framework\DevExpress.ExpressApp.Xpo.v15.2.dll</HintPath></Reference>
+    <Reference Include="DevExpress.ExpressApp.v15.2"><Name>DevExpress.ExpressApp.v15.2</Name><HintPath>..\..\..\Bin\Framework\DevExpress.ExpressApp.v15.2.dll</HintPath></Reference>
+    <Reference Include="DevExpress.Persistent.Base.v15.2"><Name>DevExpress.Persistent.Base.v15.2</Name><HintPath>..\..\..\Bin\Framework\DevExpress.Persistent.Base.v15.2.dll</HintPath></Reference>
+    <Reference Include="DevExpress.ExpressApp.Chart.v15.2"><Name>DevExpress.ExpressApp.Chart.v15.2</Name><HintPath>..\..\..\Bin\Framework\DevExpress.ExpressApp.Chart.v15.2.dll</HintPath></Reference>
+    <Reference Include="DevExpress.ExpressApp.ConditionalAppearance.v15.2"><Name>DevExpress.ExpressApp.ConditionalAppearance.v15.2</Name><HintPath>..\..\..\Bin\Framework\DevExpress.ExpressApp.ConditionalAppearance.v15.2.dll</HintPath></Reference>
+    <Reference Include="DevExpress.ExpressApp.Validation.v15.2"><Name>DevExpress.ExpressApp.Validation.v15.2</Name><HintPath>..\..\..\Bin\Framework\DevExpress.ExpressApp.Validation.v15.2.dll</HintPath></Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\Action_Refresh_KPI.png" />
+    <EmbeddedResource Include="Images\Action_Refresh_KPI_32x32.png" />
+    <EmbeddedResource Include="Images\Action_Show_Chart.png" />
+    <EmbeddedResource Include="Images\Action_Show_Chart_32x32.png" />
+    <EmbeddedResource Include="Images\BO_KPI_Definition.png" />
+    <EmbeddedResource Include="Images\BO_KPI_Definition_32x32.png" />
+    <EmbeddedResource Include="Images\BO_KPI_Scorecard.png" />
+    <EmbeddedResource Include="Images\BO_KPI_Scorecard_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Toolbox_Module_KPI.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+<ItemGroup><EmbeddedResource Include="Descriptions.resx" /></ItemGroup><ItemGroup><Compile Include="Descriptions.cs" /></ItemGroup></Project>

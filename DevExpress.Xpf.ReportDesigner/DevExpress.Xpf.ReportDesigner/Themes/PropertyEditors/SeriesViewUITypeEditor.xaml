@@ -1,0 +1,48 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+            xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+            xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+            xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
+            xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+            xmlns:dxpg="http://schemas.devexpress.com/winfx/2008/xaml/propertygrid"
+            xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
+            xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
+            xmlns:printing="clr-namespace:DevExpress.XtraPrinting;assembly=DevExpress.Printing.v15.2.Core"
+            xmlns:designernative="clr-namespace:DevExpress.Xpf.Reports.UserDesigner.Native"
+            xmlns:designereditors="clr-namespace:DevExpress.Xpf.Reports.UserDesigner.Editors">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/DevExpress.Xpf.ReportDesigner.v15.2;component/Themes/PropertyEditors/GroupBox.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    <Style TargetType="designereditors:SeriesViewUITypeEditor">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="designereditors:SeriesViewUITypeEditor">
+                    <dxe:ListBoxEdit Grid.IsSharedSizeScope="True" ItemsSource="{Binding SeriesViews, RelativeSource={RelativeSource TemplatedParent}}" EditValue="{Binding EditValue, RelativeSource={RelativeSource TemplatedParent}}" ValueMember="SeriesViewType" ScrollViewer.HorizontalScrollBarVisibility="Disabled" MaxWidth="700">
+                        <dxe:ListBoxEdit.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" SharedSizeGroup="Column" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" SharedSizeGroup="Text" />
+                                    </Grid.RowDefinitions>
+                                    <Image Source="{Binding Image}" Width="Auto" Height="Auto" />
+                                    <TextBlock Grid.Row="1" Text="{Binding Name}" TextAlignment="Center" MaxWidth="70" TextWrapping="Wrap" />
+                                </Grid>
+                            </DataTemplate>
+                        </dxe:ListBoxEdit.ItemTemplate>
+                        <dxe:ListBoxEdit.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel />
+                            </ItemsPanelTemplate>
+                        </dxe:ListBoxEdit.ItemsPanel>
+                    </dxe:ListBoxEdit>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

@@ -1,0 +1,39 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:dxd="clr-namespace:DevExpress.Design.SmartTags;assembly=DevExpress.Design.v15.2"
+    xmlns:dxgd="clr-namespace:DevExpress.Xpf.Grid.Design;assembly=DevExpress.Xpf.Grid.v15.2.Design"
+    xmlns:PropertyEditing="clr-namespace:Microsoft.Windows.Design.PropertyEditing;assembly=Microsoft.Windows.Design.Interaction">
+    <DataTemplate x:Key="GridDialogPropertyValueEditorTemplate">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <dxd:TextBoxDesigTimeDecorator>
+                <TextBox Grid.Column="0" Text="{Binding StringValue}" />
+            </dxd:TextBoxDesigTimeDecorator>
+            <PropertyEditing:EditModeSwitchButton Grid.Column="1" x:Name="SwitchButton" Visibility="Collapsed"/>
+            <Button x:Name="InvokeEditorButton" Content="..." Margin="4,0,0,0" Grid.Column="1" Command="{x:Static PropertyEditing:PropertyValueEditorCommands.ShowDialogEditor}"/>
+        </Grid>
+        <!--check VS design time in all versions supported if you ever decide to change this template-->
+        <DataTemplate.Triggers>
+            <Trigger Property="Content" Value="..." SourceName="SwitchButton">
+                <Setter Property="Visibility" Value="Visible" TargetName="SwitchButton"/>
+                <Setter Property="Visibility" Value="Collapsed" TargetName="InvokeEditorButton"/>
+            </Trigger>
+        </DataTemplate.Triggers>
+    </DataTemplate>
+    <DataTemplate x:Key="ColumnFieldNameEditorTemplate">
+        <dxgd:FieldNameComboBoxDesigTimeDecorator>
+            <ComboBox IsEditable="True" Text="{Binding StringValue, UpdateSourceTrigger=LostFocus}" />
+        </dxgd:FieldNameComboBoxDesigTimeDecorator>
+    </DataTemplate>
+    <!--BEGIN WPF-->
+    <DataTemplate x:Key="ConditionFormatNameEditorTemplate">
+        <dxgd:ConditionFormatNameComboBoxDesigTimeDecorator>
+            <ComboBox IsEditable="True" Text="{Binding StringValue, UpdateSourceTrigger=LostFocus}" />
+        </dxgd:ConditionFormatNameComboBoxDesigTimeDecorator>
+    </DataTemplate>
+    <!--END WPF-->
+</ResourceDictionary>

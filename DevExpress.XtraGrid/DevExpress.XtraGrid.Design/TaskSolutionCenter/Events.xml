@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Events  SourceType="ColumnView">
+	<Event Id="CustomUnboundColumnData" Name="CustomUnboundColumnData event handler creation." EventName="CustomUnboundColumnData">
+        <Languages>
+			<EventItem Name="VB">
+				'If e.IsGetData  Then
+				'	e.Value = "My Value"
+				'EndIf
+				'If e.IsSetData
+				'	myValueStore = e.Value
+				'EndIf
+				If e.IsGetData Then
+					e.Value = "My value"
+				EndIf
+			</EventItem>
+			<EventItem Name="CSharp">
+				//if(e.IsGetData) 
+				//	e.Value = "MyValue";
+				//if(e.IsSetData)
+				//	myValueStore = e.Value;
+				if(e.IsGetData)
+					e.Value = "My value";
+			</EventItem>
+		</Languages>
+		<Description>
+			You have to write the code to get and set value from/to unbound column.
+		</Description>
+	</Event>
+</Events>

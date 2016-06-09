@@ -1,0 +1,378 @@
+﻿<p:ResourceDictionary
+    xmlns="clr-namespace:DevExpress.Diagram.Core.Shapes"
+    xmlns:p="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+    xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
+    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+
+    <ShapeTemplate x:Key="{ShapeKey Back}" DefaultSize="32,32" Columns="*;*" Rows="H/4;*;H/4" IsQuick="True" UseBackgroundAsForeground="True">
+        <Start X="0" Y="1.5" />
+        <Line X="1" Y ="0" />
+        <Line X="1" Y ="1" />
+        <Line X="2" Y ="1" />
+        <Line X="2" Y ="2" />
+        <Line X="1" Y ="2" />
+        <Line X="1" Y ="3" />
+    </ShapeTemplate>
+
+    <ShapeTemplate x:Key="{ShapeKey Forward}" DefaultSize="32,32" Columns="*;*" Rows="H/4;*;H/4" IsQuick="True" UseBackgroundAsForeground="True">
+        <Start X="0" Y="1" />
+        <Line X="1" Y ="1" />
+        <Line X="1" Y ="0" />
+        <Line X="2" Y ="1.5" />
+        <Line X="1" Y ="3" />
+        <Line X="1" Y ="2" />
+        <Line X="0" Y ="2" />
+    </ShapeTemplate>
+
+    <ShapeTemplate x:Key="{ShapeKey Expand}" DefaultSize="32,32" Columns="*;*" Rows="*;*" IsQuick="True" UseBackgroundAsForeground="True">
+        <Start X="0" Y="0" />
+        <Line X="0.4" Y ="0" />
+        <Line X="1.1" Y ="1" />
+        <Line X="0.4" Y ="2" />
+        <Line X="0" Y ="2" />
+        <Line X="0.7" Y ="1" />
+        <Start X="0.9" Y="0" />
+        <Line X="1.3" Y ="0" />
+        <Line X="2" Y ="1" />
+        <Line X="1.3" Y ="2" />
+        <Line X="0.9" Y ="2" />
+        <Line X="1.6" Y ="1" />
+    </ShapeTemplate>
+
+    <ShapeTemplate x:Key="{ShapeKey Collapse}" DefaultSize="32,32" Columns="*;*" Rows="*;*" IsQuick="True" UseBackgroundAsForeground="True">
+        <Start X="2" Y="0" />
+        <Line X="1.6" Y ="0" />
+        <Line X="0.9" Y ="1" />
+        <Line X="1.6" Y ="2" />
+        <Line X="2" Y ="2" />
+        <Line X="1.3" Y ="1" />
+        <Start X="1.1" Y="0" />
+        <Line X="0.7" Y ="0" />
+        <Line X="0" Y ="1" />
+        <Line X="0.7" Y ="2" />
+        <Line X="1.1" Y ="2" />
+        <Line X="0.4" Y ="1" />
+    </ShapeTemplate>
+
+    <ShapeTemplate x:Key="{ShapeKey Add}" DefaultSize="32,32" Columns="*;W/4;*" Rows="*;H/4;*" IsQuick="True" UseBackgroundAsForeground="True">
+        <Start X="1" Y="0" />
+        <Line X="2" Y ="0" />
+        <Line X="2" Y ="1" />
+        <Line X="3" Y ="1" />
+        <Line X="3" Y ="2" />
+        <Line X="2" Y ="2" />
+        <Line X="2" Y ="3" />
+        <Line X="1" Y ="3" />
+        <Line X="1" Y ="2" />
+        <Line X="0" Y ="2" />
+        <Line X="0" Y ="1" />
+        <Line X="1" Y ="1" />
+    </ShapeTemplate>
+
+    <ShapeTemplate x:Key="{ShapeKey Remove}" DefaultSize="32,32" Columns="*;*" Rows="*;*" IsQuick="True" UseBackgroundAsForeground="True">
+        <Start X="0" Y="0.3" />
+        <Line X="0.3" Y ="0" />
+        <Line X="1" Y="0.7" />
+        <Line X="1.7" Y="0" />
+        <Line X="2" Y="0.3" />
+        <Line X="1.3" Y="1" />
+        <Line X="2" Y="1.7" />
+        <Line X ="1.7" Y="2"/>
+        <Line X="1" Y="1.3" />
+        <Line X="0.3" Y="2" />
+        <Line X="0" Y="1.7" />
+        <Line X="0.7" Y="1" />
+    </ShapeTemplate>
+
+    <ShapeTemplate x:Key="{ShapeKey ZoomIn}" DefaultSize="32,32" Columns="*;W/3" Rows="*;H/3" UseBackgroundAsForeground="True">
+        <Start X="0.5" Y="0"  Kind="None"/>
+        <Arc X="1" Y="0.5" Direction="Clockwise" />
+        <Arc X="0.5" Y="1" Direction="Clockwise" />
+        <Arc X="0" Y="0.5" Direction="Clockwise" />
+        <Arc X="0.5" Y="0" Direction="Clockwise" />
+        <Start X="0.86" Y="0.86"  Kind="None"/>
+        <Line X="2" Y="2"/>
+
+        <Start X="0.5" Y="0.2" Kind="None"/>
+        <Line X="0.5" Y="0.8" />
+
+        <Start X="0.2" Y="0.5" Kind="None"/>
+        <Line X="0.8" Y="0.5" />
+    </ShapeTemplate>
+
+    <ShapeTemplate x:Key="{ShapeKey ZoomOut}" DefaultSize="32,32" Columns="*;W/3" Rows="*;H/3" UseBackgroundAsForeground="True">
+        <Start X="0.5" Y="0"  Kind="None"/>
+        <Arc X="1" Y="0.5" Direction="Clockwise" />
+        <Arc X="0.5" Y="1" Direction="Clockwise" />
+        <Arc X="0" Y="0.5" Direction="Clockwise" />
+        <Arc X="0.5" Y="0" Direction="Clockwise" />
+        <Start X="0.86" Y="0.86"  Kind="None"/>
+        <Line X="2" Y="2"/>
+
+        <Start X="0.2" Y="0.5" Kind="None"/>
+        <Line X="0.8" Y="0.5" />
+    </ShapeTemplate>
+
+    <ShapeTemplate x:Key="{ShapeKey Lock}" DefaultSize="30,30" Columns="*;(H+W)/11;(H+W)/11;(H+W)/11;*" Rows="(H+W)/11;(H+W)/19;*;*;*;*" UseBackgroundAsForeground="True">
+
+        <Start X="0.2" Y="3" Kind="Closed" />
+        <Line X="4.8" Y ="3" />
+        <Arc X="5" Y="3.2" Direction="Clockwise" />
+        <Line X="5" Y="5.8"/>
+        <Arc X="4.8" Y="6" Direction="Clockwise" />
+        <Line X="0.1" Y="6" />
+        <Arc X="0" Y="5.8" Direction="Clockwise" />
+        <Line X="0" Y="3.2" />
+        <Arc X="0.2" Y="3" Direction="Clockwise" />
+
+        <Start X="2.5" Y="3.5" Kind="Closed" />
+        <Arc X="3" Y="4" Direction="Clockwise" />
+        <Arc X="2.5" Y="4.5" Direction="Clockwise" />
+        <Line X="2.8" Y="5.5" />
+        <Line X="2.3" Y="5.5" />
+        <Line X="2.5" Y="4.5" />
+        <Arc X="2" Y="4" Direction="Clockwise"/>
+        <Arc X="2.5" Y="3.5" Direction="Clockwise"/>
+
+        <Start X="1" Y="3" Kind="None" />
+        <Line X="1" Y="2" />
+        <Arc X="2.5" Y="0" Direction="Clockwise" />
+        <Arc X="4" Y="2" Direction="Clockwise" />
+        <Line X="4" Y="3" />
+
+        <Start X="2" Y="3" Kind="None" />
+        <Line X="2" Y="1.7" />
+        <Arc X="2.5" Y="1" Direction="Clockwise" />
+        <Arc X="3" Y="1.7" Direction="Clockwise" />
+        <Line X="3" Y="3" />
+
+
+    </ShapeTemplate>
+
+    <ShapeTemplate x:Key="{ShapeKey Permission}" DefaultSize="32,32" Columns="*" Rows="*" UseBackgroundAsForeground="True">
+        <Start X="0.5" Y="0"  Kind="None"/>
+        <Arc X="1" Y="0.5" Direction="Clockwise" />
+        <Arc X="0.5" Y="1" Direction="Clockwise" />
+        <Arc X="0" Y="0.5" Direction="Clockwise" />
+        <Arc X="0.5" Y="0" Direction="Clockwise" />
+
+        <Start X="0.2" Y="0.5" Kind="None"/>
+        <Line X="0.8" Y="0.5" />
+    </ShapeTemplate>
+
+    <ShapeTemplate x:Key="{ShapeKey Sort}" DefaultSize="32,32" Columns="*;*" Rows="*;H/6;*" UseBackgroundAsForeground="True">
+        <Start X="1.5" Y="0"  Kind="Closed"/>
+        <Line X="1.5" Y="2.7" />
+        <Line X="1.3" Y="2.7" />
+        <Line X="1.5" Y="3" />
+        <Line X="1.7" Y="2.7" />
+        <Line X="1.5" Y="2.7" />
+
+        <Start X="0.5" Y="0" Kind="None" />
+        <Line X="0.1" Y="1" />
+        <Start X="0.5" Y="0" Kind="None" />
+        <Line X="0.9" Y="1" />
+        <Start X="0.3" Y="0.6" Kind="None" />
+        <Line X="0.7" Y="0.6" />
+
+        <Start X="0.1" Y="2" Kind="None"/>
+        <Line X="0.9" Y="2" />
+        <Line X="0.1" Y="3" />
+        <Line X="0.9" Y="3" />
+
+    </ShapeTemplate>
+
+    <ShapeTemplate x:Key="{ShapeKey Filter}" DefaultSize="32,32" Columns="*;*;*" Rows="H/10;H/10;H/5;*" UseBackgroundAsForeground="True">
+        <Start X="0" Y="1" Kind="Closed"/>
+        <Arc X="1.5" Y="0" Direction="Clockwise" />
+        <Arc X="3" Y="1" Direction="Clockwise" />
+        <Arc X="1.5" Y="2" Direction="Clockwise" />
+        <Arc X="0" Y="1" Direction="Clockwise" />
+        <Start X="0" Y="1" Kind="None" />
+        <Line X="1.3" Y="3" />
+        <Line X="1.3" Y="4" />
+        <Line X="1.7" Y="4" />
+        <Line X="1.7" Y="3" />
+        <Line X="3" Y="1" />
+    </ShapeTemplate>
+
+    <ShapeTemplate x:Key="{ShapeKey Tools}" DefaultSize="32,32" Columns="*;*" Rows="*;*" UseBackgroundAsForeground="True">
+        <Start X="1" Y="0.8" Kind="Closed"/>
+        <Line X="1.9" Y ="1.7" />
+        <Arc X="1.7" Y="1.9" Direction="Clockwise" />
+        <Line X="0.8" Y ="1" />
+        <Arc X="0.1" Y="0.3" Direction="Clockwise" Size="CreateSize(W / 4, H / 3)"/>
+        <Line X="0.4" Y="0.7" />
+        <Line X="0.7" Y="0.7" />
+        <Line X="0.7" Y="0.4" />
+        <Line X="0.3" Y="0.1" />
+        <Arc X="1" Y="0.8" Direction="Clockwise" Size="CreateSize(W / 3, H / 4)" />
+    </ShapeTemplate>
+
+    <ShapeTemplate x:Key="{ShapeKey Properties}" DefaultSize="30,30" Columns="*;*" Rows="*;*" UseBackgroundAsForeground="True">
+        <Start X="1" Y="0" Kind="Closed" />
+        <Line X="1.9" Y ="0" />
+        <Arc X="2" Y="0.1" Direction="Clockwise" />
+        <Line X="2" Y="1" />
+        <Line X="0.9" Y ="2" />
+        <Line X="0" Y ="0.9" />
+
+        <Start X="1.6" Y="0.3" Kind="None" />
+        <Arc X="1.7" Y="0.2" Direction="Clockwise" />
+        <Arc X="1.8" Y="0.3" Direction="Clockwise" />
+        <Arc X="1.7" Y="0.4" Direction="Clockwise" />
+        <Arc X="1.6" Y="0.3" Direction="Clockwise" />
+
+        <Start X="1" Y="0.3" Kind="None" />
+        <Line X="1.6" Y="1" />
+
+        <Start X="0.7" Y="0.6" Kind="None" />
+        <Line X="1.3" Y="1.3" />
+
+        <Start X="0.3" Y="0.9" Kind="None" />
+        <Line X="1" Y="1.7" />
+    </ShapeTemplate>
+
+    <ShapeTemplate x:Key="{ShapeKey Calendar}" DefaultSize="32,32" Columns="*" Rows="*" UseBackgroundAsForeground="True">
+        <Start X="0" Y="0" Kind="Closed" />
+        <Line X="1" Y="0" />
+        <Line X="1" Y="1" />
+        <Line X="0" Y="1" />
+
+        <Start X="0" Y="0.2" Kind="None" />
+        <Line X="1" Y="0.2" />
+        <Start X="0" Y="0.4" Kind="None" />
+        <Line X="1" Y="0.4" />
+        <Start X="0" Y="0.6" Kind="None" />
+        <Line X="1" Y="0.6" />
+        <Start X="0" Y="0.8" Kind="None" />
+        <Line X="1" Y="0.8" />
+
+        <Start X="0.2" Y="0.2" Kind="None" />
+        <Line X="0.2" Y="1" />
+        <Start X="0.4" Y="0.2" Kind="None" />
+        <Line X="0.4" Y="1" />
+        <Start X="0.6" Y="0.2" Kind="None" />
+        <Line X="0.6" Y="1" />
+        <Start X="0.8" Y="0.2" Kind="None" />
+        <Line X="0.8" Y="1" />
+
+        <Start X="0.2" Y="0" Kind="None" />
+        <Line X="0.2" Y="0.1" />
+        <Start X="0.4" Y="0" Kind="None" />
+        <Line X="0.4" Y="0.1" />
+        <Start X="0.6" Y="0" Kind="None" />
+        <Line X="0.6" Y="0.1" />
+        <Start X="0.8" Y="0" Kind="None" />
+        <Line X="0.8" Y="0.1" />
+
+        <!--<Start X="0.6" Y="0.4" Kind="ClosedFilled" />
+        <Line X="0.8" Y="0.4" />
+        <Line X="0.8" Y="0.6" />
+        <Line X="0.6" Y="0.6" />-->
+
+    </ShapeTemplate>
+
+    <ShapeTemplate x:Key="{ShapeKey Document}" DefaultSize="32,32" Columns="*" Rows="*" UseBackgroundAsForeground="True">
+        <Start X="0" Y="0" Kind="Closed" />
+        <Line X="0.7" Y="0" />
+        <Line X="1" Y="0.3" />
+        <Line X="1" Y="1" />
+        <Line X="0" Y="1" />
+
+        <Start X="0.7" Y="0" Kind="None" />
+        <Line X="0.7" Y="0.3" />
+        <Line X="1" Y="0.3"/>
+
+        <Start X="0.2" Y="0.2" Kind="None" />
+        <Line X="0.5" Y="0.2" />
+
+        <Start X="0.2" Y="0.4" Kind="None" />
+        <Line X="0.8" Y="0.4" />
+
+        <Start X="0.2" Y="0.6" Kind="None" />
+        <Line X="0.8" Y="0.6" />
+
+        <Start X="0.2" Y="0.8" Kind="None" />
+        <Line X="0.8" Y="0.8" />
+    </ShapeTemplate>
+
+    <ShapeTemplate x:Key="{ShapeKey Database}" DefaultSize="30,30" Columns="*" Rows="*" UseBackgroundAsForeground="True">
+        <Start X="0" Y="0.1" Kind="Closed"/>
+        <Arc X="0.5" Y="0" Direction="Clockwise" />
+        <Arc X="1" Y="0.1" Direction="Clockwise" />
+        <Line X="1" Y="0.9" />
+        <Arc X="0.5" Y="1" Direction="Clockwise" />
+        <Arc X="0" Y="0.9" Direction="Clockwise" />
+        <Line X="0" Y="0.1" />
+        <Start X="0" Y="0.1" Kind="None" />
+        <Arc X="0.5" Y="0.2" Direction="Counterclockwise" />
+        <Arc X="1" Y="0.1" Direction="Counterclockwise" />
+    </ShapeTemplate>
+
+    <ShapeTemplate x:Key="{ShapeKey HardDrive}" DefaultSize="32,32" Columns="*;*" Rows="*;*" UseBackgroundAsForeground="True">
+        <Start X="0" Y="1" Kind="Closed"/>
+        <Line X="2" Y ="1" />
+        <Line X="2" Y ="2" />
+        <Line X="0" Y ="2" />
+
+        <Start X="0.3" Y="1.4" Kind="None" />
+        <Line X="1.5" Y="1.4" />
+
+        <Start X="0.3" Y="1.6" Kind="None" />
+        <Line X="1.5" Y="1.6" />
+
+        <Start X="1.7" Y="1.5" Kind="Closed" />
+        <Line X="1.8" Y="1.5" />
+        <Line X="1.8" Y="1.6" />
+        <Line X="1.7" Y="1.6" />
+
+        <Start X="0" Y="1" Kind="None" />
+        <Line X="0.5" Y="0" />
+        <Line X="1.5" Y="0" />
+        <Line X="2" Y="1" />
+
+    </ShapeTemplate>
+
+    <ShapeTemplate x:Key="{ShapeKey Network}" DefaultSize="32,32" Columns="*;(H+W)/19;*;*;(H+W)/19;*;*;(H+W)/19;*" Rows="(H+W)/19;*;*;*;*;*;(H+W)/19;(H+W)/19;(H+W)/38;(H+W)/19;(H+W)/38" UseBackgroundAsForeground="True">
+        <Start X="2" Y="0"  Kind="Closed"/>
+        <Line X="7" Y="0" />
+        <Arc X="8" Y="1" Direction="Clockwise" />
+        <Line X="8" Y="6" />
+        <Arc X="7" Y="7" Direction="Clockwise" />
+        <Line X="2" Y="7" />
+        <Arc X="1" Y="6" Direction="Clockwise"/>
+        <Line X="1" Y="1" />
+        <Arc X="2" Y="0" Direction="Clockwise" />
+
+        <Start X="2" Y="1" Kind="Closed" />
+        <Line X="7" Y="1" />
+        <Line X="7" Y="6" />
+        <Line X="2" Y="6" />
+
+        <Start X ="4" Y="7" Kind="None" />
+        <Line X="4" Y="8" />
+
+        <Start X="5" Y="7" Kind="None" />
+        <Line X="5" Y="8" />
+
+        <Start X="3" Y="8" Kind="Closed" />
+        <Line X="6" Y="8" />
+        <Line X="6" Y="11" />
+        <Line X="3" Y="11" />
+
+        <Start X="6" Y="9" Kind="Closed" />
+        <Line X="9" Y="9" />
+        <Line X="9" Y="10" />
+        <Line X="6" Y="10" />
+
+        <Start X="3" Y="9" Kind="Closed" />
+        <Line X="0" Y="9" />
+        <Line X="0" Y="10" />
+        <Line X="3" Y="10" />
+
+    </ShapeTemplate>
+
+</p:ResourceDictionary>

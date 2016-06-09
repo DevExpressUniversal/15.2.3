@@ -1,0 +1,29 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:dxschdui="clr-namespace:DevExpress.Xpf.Scheduler.UI"
+    xmlns:dxscht="clr-namespace:DevExpress.Xpf.Scheduler.ThemeKeys"
+    xmlns:dxschd="clr-namespace:DevExpress.Xpf.Scheduler.Drawing"
+    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core">
+
+    <!--WeekViewMonthTemplate-->
+    <DataTemplate x:Key="{dxscht:WeekViewThemeKey ResourceKey=WeekViewMonthTemplate}">
+        <Grid SnapsToDevicePixels="True">
+            <dxschd:SchedulerItemsControl
+                x:Name="intervals"
+                dxschd:SchedulerItemsControl.ElementPosition="{Binding Path=(dxschd:SchedulerItemsControl.ElementPosition), RelativeSource={RelativeSource TemplatedParent}}"
+                HorizontalContentAlignment="Stretch"
+                VerticalContentAlignment="Stretch"
+                ItemsSource="{Binding SimpleIntervals}"
+                ItemTemplate="{DynamicResource {dxscht:WeekViewThemeKey ResourceKey=WeekViewVerticalWeekTemplate}}"                
+                >
+                <dxschd:SchedulerItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <dxschd:PixelSnappedUniformGrid SnapsToDevicePixels="True" Orientation="Vertical" dxschd:SchedulerItemsControl.ElementPosition="{Binding Path=(dxschd:SchedulerItemsControl.ElementPosition), ElementName=intervals}" />
+                    </ItemsPanelTemplate>
+                </dxschd:SchedulerItemsControl.ItemsPanel>
+            </dxschd:SchedulerItemsControl>
+        </Grid>
+    </DataTemplate>
+
+</ResourceDictionary>

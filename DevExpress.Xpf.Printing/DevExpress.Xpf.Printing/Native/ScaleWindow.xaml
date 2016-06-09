@@ -1,0 +1,119 @@
+﻿<dxc:DXDialog x:Class="DevExpress.Xpf.Printing.Native.ScaleWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:dxc="http://schemas.devexpress.com/winfx/2008/xaml/core"
+    xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+    xmlns:native="clr-namespace:DevExpress.Xpf.Printing.Native"
+    xmlns:local="clr-namespace:DevExpress.Xpf.Printing">
+
+    <dxc:DXDialog.Resources>
+        <native:ScaleModeToBooleanConverter x:Key="scaleModeToBooleanConverter"/>
+        <native:ScaleModeToVisibilityConverter x:Key="scaleModeToVisibilityConverter"/>
+    </dxc:DXDialog.Resources>
+    <dxc:DXWindow.WindowStyle>
+        ToolWindow
+    </dxc:DXWindow.WindowStyle>
+
+    <dxc:DXDialog.ResizeMode>
+        NoResize
+    </dxc:DXDialog.ResizeMode>
+
+    <dxc:DXDialog.SizeToContent>
+        WidthAndHeight
+    </dxc:DXDialog.SizeToContent>
+
+    <dxc:DXDialog.ShowInTaskbar>
+        False
+    </dxc:DXDialog.ShowInTaskbar>
+
+    <dxc:DXDialog.WindowStartupLocation>
+        CenterOwner
+    </dxc:DXDialog.WindowStartupLocation>
+    <dxc:DXDialog.Title>
+        <local:PrintingStringIdExtension StringId="Scaling"/>
+    </dxc:DXDialog.Title>
+
+    <Grid x:Name="LayoutRoot" Margin="26,16,26,6">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <RadioButton Grid.Column="0" 
+                     Grid.Row="0" 
+                     GroupName="gnScaling" 
+                     IsChecked="True"
+                     Margin="6,6,6,3" 
+                     VerticalAlignment="Center">
+
+            <TextBlock Text="{local:PrintingStringId StringId=Scaling_Adjust_Start_Label}"
+                       VerticalAlignment="Center"/>
+        </RadioButton>
+
+        <RadioButton Grid.Column="0" 
+                     Grid.Row="1" 
+                     GroupName="gnScaling"
+                     IsChecked="{Binding ScaleMode, Mode=TwoWay, Converter={StaticResource scaleModeToBooleanConverter},ConverterParameter=FitToPageWidth}"
+                     Margin="6,3,6,6" 
+                     VerticalAlignment="Center">
+
+            <TextBlock Text="{local:PrintingStringId StringId=Scaling_Fit_Start_Label}" 
+                       VerticalAlignment="Center"/>
+        </RadioButton>
+
+        <Grid Grid.Column="1" Grid.RowSpan="2" Margin="6" VerticalAlignment="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <dxe:ComboBoxEdit x:Name="cmbBxScaleFactor"
+                              Grid.Column="0"
+                              MinWidth="70"
+                              AllowNullInput="False"
+                              DisplayFormatString="#'%'"
+                              Visibility="{Binding ScaleMode, Converter={StaticResource scaleModeToVisibilityConverter},ConverterParameter=AdjustToPercent}"
+                              ItemsSource="{Binding ScaleFactorValues}"
+                              EditValue="{Binding Path=ScaleFactor, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                              Validate="cmbBxScaleFactor_Validate">
+
+                <dxe:ComboBoxEdit.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock>
+                            <TextBlock.Text>
+                                <Binding StringFormat="# '%'"/>
+                            </TextBlock.Text>
+                        </TextBlock>
+                    </DataTemplate>
+                </dxe:ComboBoxEdit.ItemTemplate>
+            </dxe:ComboBoxEdit>
+
+            <dxe:ComboBoxEdit x:Name="cmbBxPagesToFit" 
+                              Grid.Column="0"
+                              MinWidth="70"
+                              AllowNullInput="False"
+                              ItemsSource="{Binding PagesToFitValues}"
+                              EditValue="{Binding Path=PagesToFit, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                              Visibility="{Binding ScaleMode, Converter={StaticResource scaleModeToVisibilityConverter}, ConverterParameter=FitToPageWidth}"
+                              Validate="cmbBxPagesToFit_Validate"/>
+
+            <TextBlock Grid.Column="1"
+                       Margin="6,0,0,0" 
+                       MinWidth="72"
+                       Text="{local:PrintingStringId StringId=Scaling_Adjust_End_Label}"
+                       VerticalAlignment="Center" 
+                       Visibility="{Binding ScaleMode, Converter={StaticResource scaleModeToVisibilityConverter}, ConverterParameter=AdjustToPercent}" HorizontalAlignment="Left" />
+
+            <TextBlock Grid.Column="1"
+                       Margin="6,0,0,0"   
+                       MinWidth="72"
+                       Text="{local:PrintingStringId StringId=Scaling_Fit_End_Label}"
+                       VerticalAlignment="Center" 
+                       Visibility="{Binding ScaleMode, Converter={StaticResource scaleModeToVisibilityConverter}, ConverterParameter=FitToPageWidth}" HorizontalAlignment="Left" />
+        </Grid>
+    </Grid>
+</dxc:DXDialog>

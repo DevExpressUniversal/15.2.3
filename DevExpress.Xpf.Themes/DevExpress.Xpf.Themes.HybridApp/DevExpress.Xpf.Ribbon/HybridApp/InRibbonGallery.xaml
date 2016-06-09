@@ -1,0 +1,207 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars" xmlns:dxr="http://schemas.devexpress.com/winfx/2008/xaml/ribbon" xmlns:dxrt="http://schemas.devexpress.com/winfx/2008/xaml/ribbon/themekeys" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:cs="colorscheme_ignorable_uri" mc:Ignorable="cs">
+    <ControlTemplate x:Key="{dxrt:InRibbonGalleryThemeKey ResourceKey=GalleryBackgroundTemplate}" TargetType="{x:Type ContentControl}">
+        <Border Background="#FFFFFFFF" Margin="1"  >
+            <ContentPresenter />
+        </Border>
+    </ControlTemplate>
+    <ControlTemplate x:Key="{dxrt:InRibbonGalleryThemeKey ResourceKey=GalleryGroupsBackgroundTemplate}" TargetType="{x:Type ContentControl}">
+        <ContentPresenter Margin="1" />
+    </ControlTemplate>
+    <ControlTemplate x:Key="{dxrt:InRibbonGalleryThemeKey ResourceKey=GalleryItemBorderTemplate}" TargetType="{x:Type dxb:ItemBorderControl}">
+        <Grid Background="Transparent" SnapsToDevicePixels="True"  >
+            <Grid x:Name="HoverState" Opacity="0">
+                <Border Background="#FFE0E5F2"   />
+            </Grid>
+            <Grid x:Name="PressedState" Opacity="0">
+                <Border Background="#FFE3E3E3"   />
+            </Grid>
+            <Grid x:Name="CheckedState" Opacity="0">
+                <Border Background="#FFB1D6F0"   />
+            </Grid>
+            <ContentPresenter />
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup x:Name="State">
+                    <VisualState x:Name="Normal" />
+                    <VisualState x:Name="Hover">
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="HoverState" Duration="0" To="1" />
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Pressed" />
+                    <VisualState x:Name="Checked">
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="CheckedState" Duration="0" To="1" />
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="HoverChecked">
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="PressedState" Duration="0" To="1" />
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Focused">
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="PressedState" Duration="0" To="1" />
+                        </Storyboard>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+        </Grid>
+    </ControlTemplate>
+    <ControlTemplate x:Key="{dxrt:InRibbonGalleryThemeKey ResourceKey=GalleryItemGlyphBorderTemplate}" TargetType="{x:Type dxb:ItemBorderControl}">
+        <Border Name="Root" BorderBrush="#00000000"  >
+            <ContentPresenter />
+        </Border>
+        <ControlTemplate.Triggers>
+            <Trigger Property="State" Value="Checked">
+                <Setter TargetName="Root" Property="BorderBrush" Value="#FF2F51A5"   />
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+    <ControlTemplate x:Key="{dxrt:InRibbonGalleryThemeKey ResourceKey=UpButtonTemplate}" TargetType="{x:Type Button}">
+        <Grid Background="#00000000" Width="14" SnapsToDevicePixels="True"  >
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup x:Name="CommonStates">
+                    <VisualState x:Name="Normal">
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="DefaultState" Duration="0" To="1" />
+                            <ColorAnimation Storyboard.TargetProperty="(Path.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="Glyph" Duration="0" To="#FF191919"   />
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="MouseOver">
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="HoverState" Duration="0" To="1" />
+                            <ColorAnimation Storyboard.TargetProperty="(Path.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="Glyph" Duration="0" To="#FF191919"   />
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Pressed">
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="PressedState" Duration="0" To="1" />
+                            <ColorAnimation Storyboard.TargetProperty="(Path.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="Glyph" Duration="0" To="#FF000000"   />
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Disabled">
+                        <Storyboard>
+                            <ColorAnimation Storyboard.TargetProperty="(Path.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="Glyph" Duration="0" To="#7F191919"   />
+                        </Storyboard>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+            <Border x:Name="DefaultState" Background="#FFFFFFFF" BorderBrush="#FFC3C3C3" BorderThickness="0,1,1,0"   />
+            <Border x:Name="HoverState" Background="#FFE0E5F2" BorderBrush="#FFE3E3E3" BorderThickness="0,1,1,0" Opacity="0"   />
+            <Border x:Name="PressedState" Background="#FFE3E3E3" BorderBrush="#FFE3E3E3" BorderThickness="0,1,1,0" Opacity="0"   />
+            <Path x:Name="Glyph" Stretch="Fill" Fill="#FF191919" Data="F1 M 682,174L 683,174L 686,174L 686,173L 685,173L 685,172L 684,172L 684,171L 683,171L 683,170L 682,170L 682,171L 681,171L 681,172L 680,172L 680,173L 679,173L 679,174L 682,174 Z " Width="7" Height="4" Margin="0,1,1,0"   />
+        </Grid>
+    </ControlTemplate>
+    <ControlTemplate x:Key="{dxrt:InRibbonGalleryThemeKey ResourceKey=DownButtonTemplate}" TargetType="{x:Type Button}">
+        <Grid Background="#00000000" Width="14" SnapsToDevicePixels="True"  >
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup x:Name="CommonStates">
+                    <VisualState x:Name="Normal">
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="DefaultState" Duration="0" To="1" />
+                            <ColorAnimation Storyboard.TargetProperty="(Path.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="Glyph" Duration="0" To="#FF191919"   />
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="MouseOver">
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="HoverState" Duration="0" To="1" />
+                            <ColorAnimation Storyboard.TargetProperty="(Path.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="Glyph" Duration="0" To="#FF191919"   />
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Pressed">
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="PressedState" Duration="0" To="1" />
+                            <ColorAnimation Storyboard.TargetProperty="(Path.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="Glyph" Duration="0" To="#FF000000"   />
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Disabled">
+                        <Storyboard>
+                            <ColorAnimation Storyboard.TargetProperty="(Path.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="Glyph" Duration="0" To="#7F191919"   />
+                        </Storyboard>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+            <Border x:Name="DefaultState" Background="#FFFFFFFF" BorderBrush="#FFC3C3C3" BorderThickness="0,1,1,0"   />
+            <Border x:Name="HoverState" Background="#FFE0E5F2" BorderBrush="#FFE3E3E3" BorderThickness="0,1,1,0" Opacity="0"   />
+            <Border x:Name="PressedState" Background="#FFE3E3E3" BorderBrush="#FFE3E3E3" BorderThickness="0,1,1,0" Opacity="0"   />
+            <Path x:Name="Glyph" Stretch="Fill" Fill="#FF191919" Data="F1 M 673,170L 674,170L 677,170L 677,171L 676,171L 676,172L 675,172L 675,173L 674,173L 674,174L 673,174L 673,173L 672,173L 672,172L 671,172L 671,171L 670,171L 670,170L 673,170 Z " Margin="0,1,1,0" Width="7" Height="4" SnapsToDevicePixels="True"   />
+        </Grid>
+    </ControlTemplate>
+    <ControlTemplate x:Key="{dxrt:InRibbonGalleryThemeKey ResourceKey=DropDownButtonTemplate}" TargetType="{x:Type dxr:RibbonCheckedBorderControl}">
+        <Grid Background="#FFEAEAEA" Width="14" SnapsToDevicePixels="True"  >
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup x:Name="CommonStates">
+                    <VisualState x:Name="Normal">
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="DefaultState" Duration="0" To="1" />
+                            <ColorAnimation Storyboard.TargetProperty="(Path.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="Glyph" Duration="0" To="#FF191919"   />
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="MouseOver">
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="HoverState" Duration="0" To="1" />
+                            <ColorAnimation Storyboard.TargetProperty="(Path.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="Glyph" Duration="0" To="#FF191919"   />
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Pressed">
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="PressedState" Duration="0" To="1" />
+                            <ColorAnimation Storyboard.TargetProperty="(Path.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="Glyph" Duration="0" To="#FF000000"   />
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Disabled">
+                        <Storyboard>
+                            <ColorAnimation Storyboard.TargetProperty="(Path.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="Glyph" Duration="0" To="#7F191919"   />
+                        </Storyboard>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+            <Border x:Name="DefaultState" Background="#FFFFFFFF" BorderBrush="#FFC3C3C3" BorderThickness="0,1,1,1"   />
+            <Border x:Name="HoverState" Background="#FFE0E5F2" BorderBrush="#FFE3E3E3" BorderThickness="0,1,1,1" Opacity="0"   />
+            <Border x:Name="PressedState" Background="#FFE3E3E3" BorderBrush="#FFE3E3E3" BorderThickness="0,1,1,1" Opacity="0"   />
+            <Path x:Name="Glyph" Stretch="Fill" Fill="#FF191919" Data="F1 M 676,166L 676,167L 675,167L 675,168L 674,168L 674,169L 673,169L 673,168L 672,168L 672,167L 671,167L 671,166L 670,166L 670,165L 677,165L 677,166L 676,166 Z M 670,163L 677,163L 677,164L 670,164L 670,163 Z " Width="7" Height="6" Margin="0,0,1,0"   />
+        </Grid>
+    </ControlTemplate>
+    <!--BEGIN WPF-->
+    <ControlTemplate x:Key="{dxrt:InRibbonGalleryThemeKey ResourceKey=DropDownButtonTemplateTouch}" TargetType="{x:Type dxr:RibbonCheckedBorderControl}">
+        <Grid Background="#FFEAEAEA" Width="28" SnapsToDevicePixels="True"  >
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup x:Name="CommonStates">
+                    <VisualState x:Name="Normal">
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="DefaultState" Duration="0" To="1" />
+                            <ColorAnimation Storyboard.TargetProperty="(Path.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="Glyph" Duration="0" To="#FF191919"   />
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="MouseOver">
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="HoverState" Duration="0" To="1" />
+                            <ColorAnimation Storyboard.TargetProperty="(Path.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="Glyph" Duration="0" To="#FF191919"   />
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Pressed">
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="PressedState" Duration="0" To="1" />
+                            <ColorAnimation Storyboard.TargetProperty="(Path.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="Glyph" Duration="0" To="#FF000000"   />
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Disabled">
+                        <Storyboard>
+                            <ColorAnimation Storyboard.TargetProperty="(Path.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="Glyph" Duration="0" To="#7F191919"   />
+                        </Storyboard>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+            <Border x:Name="DefaultState" Background="#FFFFFFFF" BorderBrush="#FFC3C3C3" BorderThickness="0,1,1,1"   />
+            <Border x:Name="HoverState" Background="#FFE0E5F2" BorderBrush="#FFE3E3E3" BorderThickness="0,1,1,1" Opacity="0"   />
+            <Border x:Name="PressedState" Background="#FFE3E3E3" BorderBrush="#FFE3E3E3" BorderThickness="0,1,1,1" Opacity="0"   />
+            <Path x:Name="Glyph" Stretch="Fill" Fill="#FF191919" Data="F1 M 676,166L 676,167L 675,167L 675,168L 674,168L 674,169L 673,169L 673,168L 672,168L 672,167L 671,167L 671,166L 670,166L 670,165L 677,165L 677,166L 676,166 Z M 670,163L 677,163L 677,164L 670,164L 670,163 Z " Width="7" Height="6" Margin="0,0,1,0"   />
+        </Grid>
+    </ControlTemplate>
+    <!--END WPF-->
+    <ControlTemplate x:Key="{dxrt:InRibbonGalleryThemeKey ResourceKey=BorderTemplate}" TargetType="{x:Type ContentControl}">
+        <Grid Background="#FFC3C3C3"  >
+            <ContentPresenter />
+        </Grid>
+    </ControlTemplate>
+</ResourceDictionary>

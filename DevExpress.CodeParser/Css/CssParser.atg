@@ -1,0 +1,864 @@
+TokenKind = Type;
+TokenValue = Value;
+GenLinePragmas = false;
+
+PARSER Parser
+ 
+FRAME
+-->begin
+using System;
+using System.Collections;
+using System.Collections.Specialized;
+
+#if DXCORE
+namespace DevExpress.CodeRush.StructuralParser.Css
+#else
+namespace DevExpress.CodeParser.Css
+#endif
+{
+	using Xml;
+
+	-->constants
+
+	partial class CssParser
+	{
+		-->declarations
+		
+		// protected methods...
+		protected override void HandlePragmas()
+		{
+			-->pragmas
+		}
+
+		-->productions
+		
+		void Parse()
+		{
+			la = new Token();
+			la.Value = "";
+			Get();
+      -->parseRoot
+      if (SetTokensCategory)
+		    while (la != null && la.Type != 0)
+		      Get();
+      Expect(0);
+		}
+		
+		// protected overriden methods...
+		protected override bool[,] CreateSetArray()
+		{
+			bool[,] set =
+			{
+      -->initialization
+			};
+			return set;
+		}
+	} // end Parser
+
+	public class CssParserErrors : ParserErrorsBase
+	{
+		protected override string GetSyntaxErrorText(int n)
+		{
+			string s;
+			switch (n)
+			{
+        -->errors
+				default:
+					s = "error " + n;
+					break;
+			}
+			return s;
+		}
+	}
+}
+$$$
+ENDFRAME
+
+TOKENNAMES
+	EOF		= EOF
+  AT = AT
+	CDO = CDO
+	CDC = CDC
+	STRING = STRING
+	SEMICOLON = SEMICOLON
+	URI = URI
+	COMMA = COMMA
+	CURLYOPEN = CURLYOPEN
+	CURLYCLOSE = CURLYCLOSE
+	IDENT = IDENT
+	COLON = COLON
+	SLASH = SLASH
+	PLUS = PLUS
+	GREATER = GREATER
+	MINUS = MINUS
+  TILDE = TILDE
+	HASH = HASH
+	DOT = DOT
+	STAR = STAR
+	BRACKETOPEN = BRACKETOPEN
+	EQUALSIGN = EQUALSIGN
+	INCLUDES = INCLUDES
+	DASHMATCH = DASHMATCH
+	BEGINSWITH = BEGINSWITH
+	ENDSWITH = ENDSWITH
+	CONTAINS = CONTAINS
+	BRACKETCLOSE = BRACKETCLOSE
+	FUNCTION = FUNCTION
+  PARENOPEN = PARENOPEN
+	PARENCLOSE = PARENCLOSE
+  IMPORTANTSYM = IMPORTANTSYM
+  NOT = NOT
+  ONLY = ONLY
+  AND = AND
+	NUMBER = NUMBER
+	PERCENTAGE = PERCENTAGE
+	LENGTH = LENGTH
+	EMS = EMS
+	EXS = EXS
+	ANGLE = ANGLE
+	TIME = TIME
+	FREQ = FREQ
+	SINGLELINECOMMENT = SINGLELINECOMMENT
+	MULTILINECOMMENT = MULTILINECOMMENT
+TOKENS
+  AT
+	CDO
+	CDC
+	STRING
+	SEMICOLON
+	URI
+	COMMA
+	CURLYOPEN
+	CURLYCLOSE
+	IDENT
+	COLON
+	SLASH
+	PLUS
+	GREATER
+	MINUS
+  TILDE
+	HASH
+	DOT
+	STAR
+	BRACKETOPEN
+	EQUALSIGN
+	INCLUDES
+	DASHMATCH
+  BEGINSWITH
+  ENDSWITH
+  CONTAINS
+	BRACKETCLOSE
+	FUNCTION
+  PARENOPEN
+	PARENCLOSE
+  IMPORTANTSYM
+  NOT
+  ONLY
+  AND
+	NUMBER
+	PERCENTAGE
+	LENGTH
+	EMS
+	EXS
+	ANGLE
+	TIME
+	FREQ
+	SINGLELINECOMMENT
+	MULTILINECOMMENT
+//////////////////////////////////GRAMMAR//////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////
+	
+PRODUCTIONS
+
+///////ROOT/////////////
+
+Parser
+(.
+  CssStyleSheet styleSheet = new CssStyleSheet();
+  styleSheet.SetRange(la.Range);
+  OpenContext(styleSheet);
+.) =
+[IF (IsSpecialName("charset"))
+
+  AT IDENT (. SetKeywordTokenCategory(tToken); .)
+  (.
+    CssCharsetDeclaration charsetDecl = new CssCharsetDeclaration(); 
+    charsetDecl.SetRange(tToken.Range);
+    charsetDecl.Charset = la.Value;
+    charsetDecl.Name = la.Value;
+    charsetDecl.NameRange = la.Range;
+ .) 
+  STRING SEMICOLON 
+  (.
+    charsetDecl.SetRange(GetRange(charsetDecl, tToken));
+    AddNode(charsetDecl);
+  .)
+]
+{HtmlCommentTags}
+{
+  IF (IsSpecialName("import")) Import
+  {HtmlCommentTags }
+}
+{
+  (
+    (
+      AT
+      (
+        (.if(IsSpecialNameWithoutAt("font-face"))
+          {
+        .)
+            FontFace
+        (.
+          }
+        .)
+
+        (.if(IsSpecialNameWithoutAt("media"))
+          {
+        .)
+            Media
+        (.
+          }
+        .)
+
+        (.if(IsSpecialNameWithoutAt("page"))
+          {
+        .)
+            Page
+        (.
+          }
+        .)
+
+       // [IF(IsSpecialNameWithoutAt("font-face")) FontFace]
+       // | [IF(IsSpecialNameWithoutAt("media")) Media]
+       // | [IF(IsSpecialNameWithoutAt("page")) Page]
+      )
+    )
+    | RuleSet
+  )
+  {HtmlCommentTags }
+}
+(.
+  CloseContext();
+  styleSheet.SetRange(GetRange(styleSheet, tToken));
+.)
+.
+
+IdentifierList<StringCollection stringCollection>
+=
+  IDENT
+  (.
+    if(stringCollection != null)
+      stringCollection.Add(tToken.Value);
+  .)
+  {
+    COMMA IDENT
+    (.
+      if(stringCollection != null)
+        stringCollection.Add(tToken.Value);
+    .)
+  }
+  .
+HtmlCommentTags 
+(.
+  CssCommentTag commentTag = new CssCommentTag();
+  commentTag.Name = la.Value;
+  commentTag.SetRange(la.Range);
+  AddNode(commentTag);
+.) =
+  CDO
+  (.
+    commentTag.Kind = CommentTagKind.Open;
+  .)
+  | CDC
+  (.
+    commentTag.Kind = CommentTagKind.Close;
+  .)
+.
+
+MediaQueryList<out CssMediaQueryCollection result> =
+(.
+  result = new CssMediaQueryCollection();
+  CssMediaQuery query;
+.)
+  MediaQuery<out query> (. result.Add(query); .) { COMMA MediaQuery<out query> (. result.Add(query); .) }
+.
+
+MediaQuery<out CssMediaQuery result> =
+(.
+  result = new CssMediaQuery();
+  result.SetRange(la.Range);
+  CssMediaExpression expr;
+.)
+  (
+    (
+      [
+        ONLY (. result.Prefix = CssMediaQueryPrefix.Only; .)
+        | NOT (. result.Prefix = CssMediaQueryPrefix.Not; .)
+      ]
+      IDENT
+      (.
+        result.Name = tToken.Value;
+        result.NameRange = tToken.Range;
+      .)
+    )
+    | MediaExpr<out expr> (. result.AddExpression(expr); .)
+  )
+  { AND MediaExpr<out expr> (. result.AddExpression(expr); .) }
+  (.
+    result.SetRange(GetRange(result.Range, tToken.Range));
+  .)
+.
+
+MediaExpr<out CssMediaExpression result> =
+(.
+  result = new CssMediaExpression();
+  result.SetRange(la.Range);
+  CssTerm term;
+.)
+  PARENOPEN
+  (.
+    result.Name = la.Value;
+    result.NameRange = la.Range;
+  .)
+  IDENT
+  [COLON Term<out term> (. result.Expression = term; .) ]
+  PARENCLOSE (. result.SetRange(GetRange(result.Range, tToken.Range)); .)
+.
+
+FontFace =
+  AT (. SetKeywordTokenCategory(la); .) RuleSet
+.
+
+Import
+(.
+  CssImportDirective importDirective = new CssImportDirective();
+  AddNode(importDirective);
+  importDirective.SetRange(la.Range);
+  CssMediaQueryCollection queris;
+.) =
+AT IDENT (. SetKeywordTokenCategory(tToken); .)
+(STRING|URI) (. importDirective.Source = tToken.Value; .)
+MediaQueryList<out queris> (. importDirective.SetQueries(queris); .)
+[IdentifierList<importDirective.SupportedMediaTypes>] 
+SEMICOLON  (. importDirective.SetRange(GetRange(importDirective, tToken)); .)
+.
+
+Media
+(.
+  CssMediaDirective mediaDirective = new CssMediaDirective();
+  mediaDirective.SetRange(tToken.Range);
+  OpenContext(mediaDirective);
+  CssMediaQueryCollection queris;
+.) =
+IDENT (. SetKeywordTokenCategory(tToken); .)
+MediaQueryList<out queris>
+(. mediaDirective.SetQueries(queris); .)
+CURLYOPEN  {RuleSet} CURLYCLOSE
+(.
+  mediaDirective.SetRange(GetRange(mediaDirective, tToken));
+  CloseContext();
+.)
+.
+
+Page
+(.
+  CssPropertyDeclaration propertyDecl = null;
+  CssPageStyle page = new CssPageStyle();
+  page.SetRange(tToken.Range);
+  AddNode(page);
+.) =
+IDENT (. SetKeywordTokenCategory(tToken); .)
+[COLON IDENT (. page.Name = tToken.Value; .)]
+CURLYOPEN 
+Declaration<out propertyDecl>[SEMICOLON]
+(.
+  if (propertyDecl != null)
+  {
+    page.Properties.Add(propertyDecl);
+    page.AddNode(propertyDecl);
+    if (tToken.Type == Tokens.SEMICOLON)
+      propertyDecl.SetRange(GetRange(propertyDecl, tToken));
+  }
+.)
+{
+  Declaration<out propertyDecl> [SEMICOLON]
+  (.
+    if (propertyDecl != null)
+    {
+      page.Properties.Add(propertyDecl);
+      page.AddNode(propertyDecl);
+      if (tToken.Type == Tokens.SEMICOLON)
+      {
+        propertyDecl.SetRange(GetRange(propertyDecl, tToken));
+      }
+    } 
+  .)
+}
+CURLYCLOSE (. page.SetRange(GetRange(page, tToken)); .)
+.
+
+Combinator<out CssSelectorType combinatorType>
+(.
+  combinatorType = CssSelectorType.Name;
+.) =
+PLUS
+(.
+  combinatorType = CssSelectorType.CombinedSibling;
+  SetCategoryIfNeeded(TokenCategory.CssSelector);
+.)
+| GREATER
+(.
+  combinatorType = CssSelectorType.CombinedChild;
+  SetCategoryIfNeeded(TokenCategory.CssSelector);
+.)
+| TILDE
+(.
+  combinatorType = CssSelectorType.CombinedGeneralSibling;
+  SetCategoryIfNeeded(TokenCategory.CssSelector);
+.)
+.
+
+RuleSet
+(.
+  CssStyleRule rule = new CssStyleRule();
+  OpenContext(rule);
+  if (tToken.Type == Tokens.AT)
+    rule.SetRange(tToken.Range);
+  else
+    rule.SetRange(la.Range);
+  CssSelector currentSelector = null;
+  CssPropertyDeclaration propertyDecl = null;
+.) =
+(
+  Selector<out currentSelector>
+  (.
+    if (currentSelector != null)
+    {
+      rule.Selectors.Add(currentSelector);
+      rule.AddNode(currentSelector);
+    }
+  .)
+  {
+    COMMA  Selector <out currentSelector>
+    (.
+      if (currentSelector != null)
+      {
+        rule.Selectors.Add(currentSelector);
+        rule.AddNode(currentSelector);
+      }
+    .) 
+  } 
+  CURLYOPEN (. rule.SetBlockStart(tToken.Range); .)
+  [ Declaration<out propertyDecl> [SEMICOLON]//TODO <Osy 21.07.2006> It is unnecessary here.
+  (.
+    if (propertyDecl != null)
+    {
+      rule.Properties.Add(propertyDecl);
+      rule.AddNode(propertyDecl);
+      if (tToken.Type == Tokens.SEMICOLON)
+        propertyDecl.SetRange(GetRange(propertyDecl, tToken));
+    }
+  .)
+  {
+    (Declaration<out propertyDecl> [SEMICOLON])
+    (.
+      if (propertyDecl != null)
+      {
+        rule.Properties.Add(propertyDecl);
+        rule.AddNode(propertyDecl);
+        if (tToken.Type == Tokens.SEMICOLON)
+        {
+          propertyDecl.SetRange(GetRange(propertyDecl, tToken));
+        }
+      }
+    .)
+  }] 
+  CURLYCLOSE (. rule.SetBlockEnd(tToken.Range); .)
+)
+(.
+  CloseContext();
+  rule.SetRange(GetRange(rule, tToken));
+.)
+.
+
+Selector<out CssSelector selector>
+(.
+  CssSelector currentSelector = null;
+  CssSelectorType combinatorType = CssSelectorType.Name;
+  CssSelector firstSelector = null;
+  selector = null;
+.) =
+(
+  SimpleSelector<out firstSelector> (. currentSelector = firstSelector; .)
+  {
+    Combinator<out combinatorType> SimpleSelector<out selector>
+    (.
+      if (currentSelector != null && selector != null)
+      {
+        selector.SelectorType = combinatorType;
+        ConnectSelectors(currentSelector, selector);	
+      }
+      currentSelector = selector;
+      if (firstSelector != null)
+        firstSelector.SetRange(GetRange(firstSelector, currentSelector));
+    .)
+  }
+)
+(. selector = firstSelector; .)
+.
+
+SimpleSelector<out CssSelector selector>
+(.
+  selector = new CssSelector();
+  CssSelector currentSelector = null;
+  if (tToken.Type == Tokens.AT)
+    selector.SetRange(tToken.Range);
+  else
+    selector.SetRange(la.Range);
+  CssAttributeSelector attrSelector = null;
+  CssPseudoSelector pseudoSelector = null;
+  CssSelector firstSelector = null;
+.) =
+{
+  (ElementName)
+  (.
+    selector = new CssSelector();
+    selector.Name = tToken.Value;
+    selector.NameRange = tToken.Range;
+    selector.SetRange(tToken.Range);
+    ConnectSelectors(currentSelector, selector);
+    SetCategoryIfNeeded(TokenCategory.CssSelector);
+    if (firstSelector == null)
+      firstSelector = selector;
+    currentSelector = selector;
+  .)
+  | HASH
+    (.
+      selector = new CssSelector();
+      selector.SetRange(tToken.Range);
+      selector.SelectorType = CssSelectorType.Hash;
+      SetCategoryIfNeeded(TokenCategory.CssSelector);
+      if (tToken.Value.Length > 1)
+      {
+        selector.Name = tToken.Value.Substring(1);
+        SourceRange hashRange = tToken.Range;
+        selector.NameRange = new SourceRange(hashRange.Top.Line, hashRange.Top.Offset + 1, hashRange.End.Line, hashRange.End.Offset);
+      }
+      ConnectSelectors(currentSelector, selector);
+      if (firstSelector == null)
+        firstSelector = selector;
+      currentSelector = selector;
+    .)
+  | Class<out selector>
+    (.
+      ConnectSelectors(currentSelector, selector);
+      if (firstSelector == null)
+        firstSelector = selector;
+      currentSelector = selector;
+    .)
+  | Attrib<out attrSelector>
+    (.
+      ConnectSelectors(currentSelector, attrSelector);
+      if (firstSelector == null)
+        firstSelector = selector;
+      currentSelector = attrSelector;
+    .)
+  | Pseudo<out pseudoSelector>
+    (.
+      ConnectSelectors(currentSelector, pseudoSelector);
+      if (firstSelector == null)
+        firstSelector = selector;
+      currentSelector = pseudoSelector;
+    .)
+}
+(. selector = firstSelector;  .)
+.
+
+Class<out CssSelector selector>
+(.
+  selector = new CssSelector();
+  selector.SelectorType = CssSelectorType.Class;
+.) =
+DOT
+(.
+  SetCategoryIfNeeded(TokenCategory.CssSelector);
+  selector.SetRange(GetRange(tToken, la));
+  selector.Name = la.Value;
+  selector.NameRange = la.Range;
+.)
+IDENT (. SetCategoryIfNeeded(TokenCategory.CssSelector); .)
+.
+
+ElementName =
+IDENT | STAR [IDENT]
+.
+
+Attrib<out CssAttributeSelector attrSelector>
+(.
+  attrSelector = new CssAttributeSelector();
+  attrSelector.SetRange(la.Range);
+.) =
+BRACKETOPEN  
+(. SetCategoryIfNeeded(TokenCategory.CssSelector); .)
+IDENT
+(.
+  attrSelector.Name = tToken.Value; attrSelector.NameRange = tToken.Range;
+  SetCategoryIfNeeded(TokenCategory.CssSelector);
+.)
+[
+  (
+    EQUALSIGN (. attrSelector.EqualityType = AttributeSelectorEqualityType.ExactMatch; .)
+    | INCLUDES (. attrSelector.EqualityType = AttributeSelectorEqualityType.SpaceSeparatedMatch; .)
+    | DASHMATCH (. attrSelector.EqualityType = AttributeSelectorEqualityType.HyphenSeparatedMatch; .)
+    | BEGINSWITH (. attrSelector.EqualityType = AttributeSelectorEqualityType.BeginsWith; .)
+    | ENDSWITH (. attrSelector.EqualityType = AttributeSelectorEqualityType.EndsWith; .)
+    | CONTAINS (. attrSelector.EqualityType = AttributeSelectorEqualityType.Contains; .)
+  )
+  ( IDENT | STRING)
+  (.
+    attrSelector.Value = tToken.Value;
+    SetCategoryIfNeeded(TokenCategory.CssSelector);
+  .)
+]
+BRACKETCLOSE
+(.
+  SetCategoryIfNeeded(TokenCategory.CssSelector);
+  attrSelector.SetRange(GetRange(attrSelector, tToken));
+.)
+.
+
+Pseudo<out CssPseudoSelector pseudoSelector>
+(.
+  Token startToken = la;
+  pseudoSelector = null;
+.) =
+COLON (. SetCategoryIfNeeded(TokenCategory.CssSelector); .)
+( 
+  IDENT 
+  (.
+    pseudoSelector = new CssPseudoSelector();
+    pseudoSelector.Name = tToken.Value;
+    pseudoSelector.NameRange = tToken.Range;
+    pseudoSelector.PseudoClassType = GetPseudoClassType(tToken.Value);
+    SetCategoryIfNeeded(TokenCategory.CssSelector);
+  .)
+  | FUNCTION
+    (.
+      SetCategoryIfNeeded(TokenCategory.CssSelector);
+      pseudoSelector = new CssPseudoFunctionSelector();
+      pseudoSelector.Name = tToken.Value.Substring(0, tToken.Value.Length - 1);
+      SourceRange hashRange = tToken.Range;
+      pseudoSelector.NameRange = new SourceRange(hashRange.Top.Line, hashRange.Top.Offset, hashRange.End.Line, hashRange.End.Offset - 1);
+      pseudoSelector.PseudoClassType = GetPseudoClassType(pseudoSelector.Name);
+    .)
+  [
+    [DOT (. SetCategoryIfNeeded(TokenCategory.CssSelector); .) ] IDENT [(PLUS | MINUS) NUMBER]
+    (.
+      (pseudoSelector as CssPseudoFunctionSelector).Param = tToken.Value;
+      SetCategoryIfNeeded(TokenCategory.CssSelector);
+    .)
+    | NUMBER [IDENT [(PLUS | MINUS) NUMBER]]
+    | (PLUS | MINUS) (
+                       NUMBER [IDENT [(PLUS | MINUS) NUMBER]]
+                       | IDENT [(PLUS | MINUS) NUMBER]
+                     )
+  ]
+  PARENCLOSE 
+  (. SetCategoryIfNeeded(TokenCategory.CssSelector); .)
+)
+(.
+  if (pseudoSelector != null)
+    pseudoSelector.SetRange(GetRange(startToken, tToken));
+.)
+.
+
+Declaration<out CssPropertyDeclaration propertyDecl>
+(.
+  propertyDecl = new CssPropertyDeclaration();
+  CssTermCollection terms = null;
+  propertyDecl.SetRange(la.Range);
+  propertyDecl.Name = la.Value;
+  propertyDecl.NameRange = la.Range;
+.) =
+ElementName (. SetCategoryIfNeeded(TokenCategory.CssPropertyName); .)
+(
+  COLON
+  | EQUALSIGN
+  (.
+    propertyDecl.IsEqual = true;
+  .)
+)
+Expr<out terms>
+[ IMPORTANTSYM (.propertyDecl.IsImportant = true;.) IDENT ]
+(.
+  propertyDecl.SetRange(GetRange(propertyDecl, tToken));
+  if (terms != null && terms.Count > 0)
+  {
+    for (int i = 0; i < terms.Count; i++)
+    {
+      propertyDecl.Values.Add(terms[i]);
+      propertyDecl.AddDetailNode(terms[i]);
+    }
+  }
+.)
+.
+
+Expr<out CssTermCollection terms>
+(.
+  CssTerm term = null;
+  terms = new CssTermCollection();
+  ExpressionDelimiter currentDelimiter = ExpressionDelimiter.None;
+.) =
+Term<out term>
+(.
+  if (term != null)
+  {
+    term.Delimiter = ExpressionDelimiter.None;
+    terms.Add(term);
+  }
+.)
+{
+  (. currentDelimiter = ExpressionDelimiter.Whitespace; .)
+  [
+    (
+      SLASH (. currentDelimiter = ExpressionDelimiter.Slash; .)
+      | COMMA (. currentDelimiter = ExpressionDelimiter.Comma; .)
+      | EQUALSIGN (. currentDelimiter = ExpressionDelimiter.Equals; .)
+    )
+  (. SetCategoryIfNeeded(TokenCategory.CssPropertyValue); .)
+  ]
+  Term<out term>
+  (.
+    if (term != null)
+    {
+      term.Delimiter = currentDelimiter;
+      terms.Add(term);
+    }
+  .)
+}
+.
+
+Term <out CssTerm result>
+(.
+  result = null;
+  PrecedingSign sign = PrecedingSign.None;
+  CssMeasureUnit unit = CssMeasureUnit.None;
+  CssFunctionReference functionReference = null;
+  Object value = null;
+.) =
+[MINUS(.sign = PrecedingSign.Minus;.) | PLUS (.sign = PrecedingSign.Plus;.) ]
+(
+  NUMBER
+  (.
+    result = new CssNumberLiteral();
+    result.Name = tToken.Value;
+    result.SetRange(tToken.Range);
+    int len = tToken.Value.Length;
+    if (tToken.Value[len - 1] == '%')
+    {
+      (result as CssMeasuredNumber).Unit = CssMeasureUnit.Percent;
+      len--;
+    }
+    (result as CssNumberLiteral).Value = GetValueFromString(tToken.Value, tToken.Value.Length);
+  .)
+  | PERCENTAGE
+  (.
+    result = new CssPercentLiteral();
+    result.Name = tToken.Value;
+    result.SetRange(tToken.Range);
+    (result as CssMeasuredNumber).Value = GetValueFromString(tToken.Value, tToken.Value.Length - 1);
+  .)
+  |
+    (
+      (LENGTH  | EMS  | EXS) (. result = new CssLengthLiteral(); .)
+      | ANGLE (. result = new CssAngleLiteral(); .)
+      | TIME (. result = new CssTimeLiteral(); .)
+      | FREQ (. result = new CssFrequencyLiteral(); .)
+    )
+    (.
+      result.Name = tToken.Value;
+      result.SetRange(tToken.Range);
+      GetMeasuredLiteralValue(tToken.Value, out value, out unit);
+      (result as CssMeasuredNumber).Value = value;
+      (result as CssMeasuredNumber).Unit = unit;
+    .)
+)
+(.
+  if (result != null)
+  result.Sign = sign;
+.)
+| STRING
+(.
+  result = new CssStringLiteral();
+  result.Name = tToken.Value;
+  (result as CssStringLiteral).Value = tToken.Value;
+  result.SetRange(tToken.Range);
+.)
+| [DOT (. SetCategoryIfNeeded(TokenCategory.CssPropertyValue); .) ] IDENT
+(.
+  result = new CssIdentifierReference();
+  result.Name = tToken.Value;
+  result.SetRange(tToken.Range);
+.)
+{
+  (DOT | COLON)(. SetCategoryIfNeeded(TokenCategory.CssPropertyValue); .)
+  (
+    IDENT
+    (.
+      SetCategoryIfNeeded(TokenCategory.CssPropertyValue);
+      CssIdentifierReference newReference = new CssIdentifierReference();
+      newReference.Name = tToken.Value;
+      newReference.SetRange(GetRange(result, tToken));
+      newReference.AddDetailNode(result);
+      result = newReference;
+    .)
+    | Function<out functionReference>
+      (.
+        functionReference.AddDetailNode(result);
+        result = functionReference;
+      .)
+  )
+}
+| URI
+  (.
+    result = new CssURIReference();
+    result.Name = tToken.Value;
+    result.SetRange(tToken.Range);
+    (result as CssURIReference).URI = tToken.Value;
+  .)
+  | HASH
+    (.
+      result = new CssColorReference();
+      result.Name = tToken.Value;
+      result.SetRange(tToken.Range);
+    .)
+  | Function<out functionReference> (. result = functionReference; .)
+.
+
+Function<out CssFunctionReference functionReference>
+(.
+  functionReference = new CssFunctionReference() ;
+  functionReference.SetRange(la.Range);
+  CssTermCollection terms = null;
+.) =
+FUNCTION
+(.
+  functionReference.Name = tToken.Value.Substring(0, tToken.Value.Length - 1);
+  SetCategoryIfNeeded(TokenCategory.CssPropertyValue);
+.)
+Expr<out terms> PARENCLOSE
+(.
+  SetCategoryIfNeeded(TokenCategory.CssPropertyValue);
+  functionReference.SetRange(GetRange(functionReference, tToken));
+  if (terms != null && terms.Count > 0)
+  {
+    for (int  i = 0; i < terms.Count; i++)
+    {
+      functionReference.Parameters.Add(terms[i]);
+      functionReference.AddDetailNode(terms[i]);
+    }
+  }
+.)
+.
+
+END Parser.

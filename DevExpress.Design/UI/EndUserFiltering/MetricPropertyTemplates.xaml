@@ -1,0 +1,86 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:ui="clr-namespace:DevExpress.Design.UI"
+    xmlns:eufUI="clr-namespace:DevExpress.Design.Filtering.UI"
+    >
+    <DataTemplate x:Key="MetricPropertyCaptionTemplate">
+        <Border 
+            BorderThickness="1" BorderBrush="{StaticResource ResourceKey={ui:ThemeColorsKey Key=ColorSilverLight}}">
+            <TextBlock Text="{Binding Metric.Caption}" 
+                           Style="{DynamicResource ResourceKey={ui:ControlsThemeKey Key=Value}}"
+                           />
+        </Border>
+    </DataTemplate>
+    <DataTemplate x:Key="MetricPropertyEditorTypeTemplate">
+        <Border 
+            BorderThickness="1" BorderBrush="{StaticResource ResourceKey={ui:ThemeColorsKey Key=ColorSilverLight}}">
+            <eufUI:MetricEditorTypeContainer Source="{Binding EditorType}" Content="{Binding Metric}"/>
+        </Border>
+    </DataTemplate>
+    <DataTemplate x:Key="MetricPropertyDescriptionTemplate">
+        <Border 
+            BorderThickness="1" BorderBrush="{StaticResource ResourceKey={ui:ThemeColorsKey Key=ColorSilverLight}}">
+            <TextBlock ui:HyperlinkInlineExpression.InlineExpression="{Binding Metric.Description}" 
+                           Style="{DynamicResource ResourceKey={ui:ControlsThemeKey Key=Value}}"
+                           />
+        </Border>
+    </DataTemplate>
+
+    <ui:BooleanToVisibilityConverter x:Key="PromptVisibilityConverter"/>
+    <DataTemplate x:Key="EditableMetricPropertyCaptionTemplate">
+        <Grid>
+            <TextBox x:Name="textBox"  Text="{Binding Value, UpdateSourceTrigger=PropertyChanged}" 
+                           Style="{DynamicResource ResourceKey={ui:StandardControlsThemeKey Key=TextBox}}"
+                           />
+            <TextBlock VerticalAlignment="Center" Margin="7,1" IsHitTestVisible="False"
+				            Text="{eufUI:FilteringModelConfiguratorLocalizerStringId ID=CaptionMetricPropertyPrompt}"  
+				            Foreground="{StaticResource ResourceKey={ui:ThemeColorsKey Key=ColorSilverDark}}"
+	                       	Visibility="{Binding ElementName=textBox, Path=Text.IsEmpty, Converter={StaticResource PromptVisibilityConverter}}" />
+        </Grid>
+    </DataTemplate>
+    <DataTemplate x:Key="EditableMetricPropertyEditorTypeTemplate">
+        <ComboBox ItemsSource="{Binding EditorType.PossibleValues}" 
+                      SelectedItem="{Binding EditorType.CurrentValue}" 
+                      Style="{DynamicResource ResourceKey={ui:StandardControlsThemeKey Key=ComboBox}}"
+                      />
+    </DataTemplate>
+    <DataTemplate x:Key="EditableMetricPropertyDescriptionTemplate">
+        <Grid>
+            <TextBox x:Name="textBox"  Text="{Binding Value, UpdateSourceTrigger=PropertyChanged}" 
+                           Style="{DynamicResource ResourceKey={ui:StandardControlsThemeKey Key=TextBox}}"
+                           />
+            <TextBlock VerticalAlignment="Center" Margin="7,1" IsHitTestVisible="False"
+				            Text="{eufUI:FilteringModelConfiguratorLocalizerStringId ID=DescriptionMetricPropertyPrompt}"  
+				            Foreground="{StaticResource ResourceKey={ui:ThemeColorsKey Key=ColorSilverDark}}"
+	                       	Visibility="{Binding ElementName=textBox, Path=Text.IsEmpty, Converter={StaticResource PromptVisibilityConverter}}" />
+        </Grid>
+    </DataTemplate>
+
+
+    <ControlTemplate x:Key="ValidationTemplate">
+        <Grid>
+            <Border BorderBrush="Red" BorderThickness="2" Opacity="0.35" />
+            <AdornedElementPlaceholder />
+        </Grid>
+    </ControlTemplate>
+
+    <DataTemplate x:Key="MetricPropertyTypesTemplate">
+        <ui:AutoCompleteComboBox 
+            DisplayMemberPath="TypeName"
+            Style="{DynamicResource ResourceKey={ui:ControlsThemeKey Key=AutoCompleteComboBox}}"
+                  ItemsSource="{Binding Types}"
+                  ui:AutoCompleteComboBox.NullTextPrompt="{eufUI:FilteringModelConfiguratorLocalizerStringId ID=ModelTypePrompt}"               
+                  IsSynchronizedWithCurrentItem="True" 
+                  Validation.ErrorTemplate="{StaticResource ValidationTemplate}">
+            <ui:AutoCompleteComboBox.SelectedItem>
+                <Binding Path="ModelType" UpdateSourceTrigger="PropertyChanged"  Mode="TwoWay">
+                    <Binding.ValidationRules>
+                        <DataErrorValidationRule />
+                        <ExceptionValidationRule />
+                    </Binding.ValidationRules>
+                </Binding>
+            </ui:AutoCompleteComboBox.SelectedItem>
+        </ui:AutoCompleteComboBox>
+    </DataTemplate>
+</ResourceDictionary>

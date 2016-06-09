@@ -1,0 +1,279 @@
+﻿<UserControl x:Class="DevExpress.Xpf.Core.ConditionalFormattingManager.ValueBasedView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:dx="clr-namespace:DevExpress.Xpf.Core"
+             xmlns:dxc="clr-namespace:DevExpress.Xpf.Core.ConditionalFormatting"
+             xmlns:dxe="clr-namespace:DevExpress.Xpf.Editors"
+             xmlns:dxmvvm="clr-namespace:DevExpress.Mvvm.UI"
+             xmlns:dxmvvmi="clr-namespace:DevExpress.Mvvm.UI.Interactivity"
+             xmlns:dxmvvminternal="clr-namespace:DevExpress.Mvvm.UI.Interactivity.Internal"
+             xmlns:dxgcfm="clr-namespace:DevExpress.Xpf.Core.ConditionalFormattingManager"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="{dx:UtilsResource Core/ConditionalFormatting/Manager/Views/ManagerResources.xaml}"/>
+            </ResourceDictionary.MergedDictionaries>
+            <dx:EnumToBoolConverter x:Key="enumToBoolConverter"/>
+            <dxmvvm:BooleanToVisibilityConverter x:Key="booleanToVisibilityConverter" HiddenInsteadOfCollapsed="True"/>
+            <dxmvvm:BooleanNegationConverter x:Key="booleanNegationConverter"/>
+            <dxgcfm:EnumNameConverter x:Key="enumNameConverter"/>
+            <Style x:Key="FieldEditorStyle" TargetType="{x:Type ContentPresenter}">
+                <Setter Property="ContentTemplate">
+                    <Setter.Value>
+                        <DataTemplate>
+                            <dxe:ComboBoxEdit ItemsSource="{Binding FieldNames}" EditValue="{Binding FieldName, UpdateSourceTrigger=PropertyChanged}" ValueMember="FieldName" DisplayMember="Caption" Style="{StaticResource SelectorStyle}"/>
+                        </DataTemplate>
+                    </Setter.Value>
+                </Setter>
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding FieldMode}" Value="Expression">
+                        <Setter Property="ContentTemplate">
+                            <Setter.Value>
+                                <DataTemplate>
+                                    <dxe:ButtonEdit AllowDefaultButton="False" EditValue="{Binding Path=Expression, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Width="130" Margin="0,0,10,0">
+                                        <dxmvvmi:Interaction.Behaviors>
+                                            <dx:DialogService DialogWindowStartupLocation="CenterOwner" dxmvvminternal:InteractionHelper.BehaviorInDesignMode="AsWellAsNotInDesignMode" DialogStyle="{StaticResource ButtonDialogStyle}">
+                                                <dx:DialogService.ViewTemplate>
+                                                    <DataTemplate>
+                                                        <dxgcfm:FormatExpressionEditorControl CurrentColumnInfo="{Binding ColumnInfo}" BindableExpression="{Binding Expression, Mode=OneWayToSource}"/>
+                                                    </DataTemplate>
+                                                </dx:DialogService.ViewTemplate>
+                                            </dx:DialogService>
+                                            <dx:DXMessageBoxService dxmvvminternal:InteractionHelper.BehaviorInDesignMode="AsWellAsNotInDesignMode"/>
+                                        </dxmvvmi:Interaction.Behaviors>
+                                        <dxe:ButtonEdit.Buttons>
+                                            <dxe:ButtonInfo GlyphKind="Regular" Command="{Binding Path=ShowCustomConditionEditorCommand}" IsDefaultButton="True"/>
+                                        </dxe:ButtonEdit.Buttons>
+                                    </dxe:ButtonEdit>
+                                </DataTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+            <Style x:Key="MinMaxNumericEditor" TargetType="{x:Type dxe:TextEdit}" BasedOn="{StaticResource NumericEditStyle}">
+                <Setter Property="AllowNullInput" Value="True"/>
+                <Setter Property="NullText" Value="{dxc:DataControlStringId ConditionalFormatting_Manager_Auto}"/>
+                <Setter Property="Margin" Value="0,0,10,3"/>
+                <Setter Property="Width" Value="130"/>
+            </Style>
+            <Style x:Key="MinMaxDateEditor" TargetType="{x:Type dxe:DateEdit}">
+                <Setter Property="AllowNullInput" Value="True"/>
+                <Setter Property="NullText" Value="{dxc:DataControlStringId ConditionalFormatting_Manager_Auto}"/>
+                <Setter Property="Margin" Value="0,0,10,3"/>
+                <Setter Property="Width" Value="130"/>
+            </Style>
+            <Style x:Key="MinEditorStyle" TargetType="{x:Type ContentPresenter}">
+                <Setter Property="ContentTemplate">
+                    <Setter.Value>
+                        <DataTemplate>
+                            <dxe:TextEdit EditValue="{Binding MinValue, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource MinMaxNumericEditor}"/>
+                        </DataTemplate>
+                    </Setter.Value>
+                </Setter>
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding ConditionValueType}" Value="DateTime">
+                        <Setter Property="ContentTemplate">
+                            <Setter.Value>
+                                <DataTemplate>
+                                    <dxe:DateEdit EditValue="{Binding MinValue, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource MinMaxDateEditor}"/>
+                                </DataTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+            <Style x:Key="MaxEditorStyle" TargetType="{x:Type ContentPresenter}">
+                <Setter Property="ContentTemplate">
+                    <Setter.Value>
+                        <DataTemplate>
+                            <dxe:TextEdit EditValue="{Binding MaxValue, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource MinMaxNumericEditor}"/>
+                        </DataTemplate>
+                    </Setter.Value>
+                </Setter>
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding ConditionValueType}" Value="DateTime">
+                        <Setter Property="ContentTemplate">
+                            <Setter.Value>
+                                <DataTemplate>
+                                    <dxe:DateEdit EditValue="{Binding MaxValue, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource MinMaxDateEditor}"/>
+                                </DataTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+            <Style x:Key="ValueCaptionStyle" TargetType="{x:Type TextBlock}">
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="HorizontalAlignment" Value="Left"/>
+                <Setter Property="Margin" Value="0,0,5,0"/>
+                <Setter Property="MinWidth">
+                    <Setter.Value>
+                        <Binding RelativeSource="{RelativeSource Self}">
+                            <Binding.Converter>
+                                <dxgcfm:TouchValueConverter NormalValue="70" TouchValue="104"/>
+                            </Binding.Converter>
+                        </Binding>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <DataTemplate DataType="{x:Type dxgcfm:ColorScaleViewModel}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="{dxc:DataControlStringId ConditionalFormatting_Manager_Minimum}" Style="{StaticResource DescriptionTextStyle}" Grid.Column="1"/>
+                    <TextBlock Text="{dxc:DataControlStringId ConditionalFormatting_Manager_Midpoint}" Style="{StaticResource DescriptionTextStyle}" Visibility="{Binding AllowColorMiddle, Converter={StaticResource booleanToVisibilityConverter}}" Grid.Column="2"/>
+                    <TextBlock Text="{dxc:DataControlStringId ConditionalFormatting_Manager_Maximum}" Style="{StaticResource DescriptionTextStyle}" Grid.Column="3"/>
+                    <TextBlock Text="{dxc:DataControlStringId ConditionalFormatting_Manager_FormatColor}" Grid.Row="1"/>
+                    <dxe:PopupColorEdit Style="{StaticResource SelectorStyle}" EditValue="{Binding ColorMin, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" Grid.Column="1"/>
+                    <dxe:PopupColorEdit Style="{StaticResource SelectorStyle}" EditValue="{Binding ColorMiddle, UpdateSourceTrigger=PropertyChanged}"  Visibility="{Binding AllowColorMiddle, Converter={StaticResource booleanToVisibilityConverter}}" Grid.Row="1" Grid.Column="2"/>
+                    <dxe:PopupColorEdit Style="{StaticResource SelectorStyle}" EditValue="{Binding ColorMax, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" Grid.Column="3"/>
+                    <TextBlock Text="{dxc:DataControlStringId ConditionalFormatting_Manager_Preview}" Style="{StaticResource TitleTextStyle}" Grid.Row="2"/>
+                    <Border BorderBrush="{StaticResource PreviewBorderBrush}" Background="White" BorderThickness="1" Padding="2" Margin="5,10,10,0" Height="25" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3">
+                        <dxgcfm:FormatPreviewContainer Format="{Binding PreviewFormat}"/>
+                    </Border>
+                </Grid>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type dxgcfm:DataBarViewModel}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="{dxc:DataControlStringId ConditionalFormatting_Manager_DataBarPositive}" Style="{StaticResource TitleTextStyle}" Grid.ColumnSpan="4"/>
+                    <TextBlock Text="{dxc:DataControlStringId ConditionalFormatting_Manager_DataBarFill}"  Style="{StaticResource DescriptionTextStyle}" Grid.Row="1"/>
+                    <TextBlock Text="{dxc:DataControlStringId ConditionalFormatting_Manager_DataBarColor}"  Style="{StaticResource DescriptionTextStyle}" Grid.Row="1" Grid.Column="1" />
+                    <TextBlock Text="{dxc:DataControlStringId ConditionalFormatting_Manager_DataBarBorder}"  Style="{StaticResource DescriptionTextStyle}" Grid.Row="1" Grid.Column="2" />
+                    <TextBlock Text="{dxc:DataControlStringId ConditionalFormatting_Manager_DataBarColor}"  Style="{StaticResource DescriptionTextStyle}" Grid.Row="1" Grid.Column="3" />
+                    <dxe:ComboBoxEdit EditValue="{Binding FillMode, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{dxe:EnumItemsSource EnumType=dxgcfm:DataBarFillMode, NameConverter={StaticResource enumNameConverterLocalized}}" Style="{StaticResource SelectorStyle}" Grid.Row="2"/>
+                    <dxe:PopupColorEdit EditValue="{Binding ColorFill, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource SelectorStyle}" Grid.Row="2" Grid.Column="1"/>
+                    <dxe:ComboBoxEdit EditValue="{Binding BorderMode, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{dxe:EnumItemsSource EnumType=dxgcfm:DataBarBorderMode, NameConverter={StaticResource enumNameConverterLocalized}}" Style="{StaticResource SelectorStyle}" Grid.Row="2" Grid.Column="2"/>
+                    <dxe:PopupColorEdit EditValue="{Binding ColorBorder, UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding Path=BorderMode, Converter={StaticResource enumToBoolConverter}, ConverterParameter=Border}" Style="{StaticResource SelectorStyle}" Grid.Row="2" Grid.Column="3"/>
+                    <TextBlock Text="{dxc:DataControlStringId ConditionalFormatting_Manager_DataBarNegative}" Style="{StaticResource TitleTextStyle}" Margin="0,10,0,0" Grid.Row="3" Grid.ColumnSpan="4"/>
+                    <dxe:CheckEdit IsChecked="{Binding UseDefaultNegativeBar}" Content="{dxc:DataControlStringId ConditionalFormatting_Manager_ApplySameAppearance}" Margin="0,5,0,5" Grid.Row="4" Grid.ColumnSpan="4"/>
+                    <dxe:ComboBoxEdit EditValue="{Binding FillModeNegative, UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding UseDefaultNegativeBar, Converter={StaticResource booleanNegationConverter}}" ItemsSource="{dxe:EnumItemsSource EnumType=dxgcfm:DataBarFillMode, NameConverter={StaticResource enumNameConverterLocalized}}" Style="{StaticResource SelectorStyle}" Grid.Row="5"/>
+                    <dxe:PopupColorEdit EditValue="{Binding ColorFillNegative, UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding UseDefaultNegativeBar, Converter={StaticResource booleanNegationConverter}}" Style="{StaticResource SelectorStyle}" Grid.Row="5" Grid.Column="1"/>
+                    <dxe:ComboBoxEdit EditValue="{Binding BorderModeNegative, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{dxe:EnumItemsSource EnumType=dxgcfm:DataBarBorderMode, NameConverter={StaticResource enumNameConverterLocalized}}" IsEnabled="{Binding UseDefaultNegativeBar, Converter={StaticResource booleanNegationConverter}}" Style="{StaticResource SelectorStyle}" Grid.Row="5" Grid.Column="2"/>
+                    <dxe:PopupColorEdit EditValue="{Binding ColorBorderNegative, UpdateSourceTrigger=PropertyChanged}" Grid.Row="5" Grid.Column="3">
+                        <dxe:PopupColorEdit.Style>
+                            <Style TargetType="dxe:PopupColorEdit" BasedOn="{StaticResource SelectorStyle}">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding UseDefaultNegativeBar}" Value="True">
+                                        <Setter Property="IsEnabled" Value="False"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding BorderModeNegative}" Value="NoBorder">
+                                        <Setter Property="IsEnabled" Value="False"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </dxe:PopupColorEdit.Style>
+                    </dxe:PopupColorEdit>
+                    <TextBlock Text="{dxc:DataControlStringId ConditionalFormatting_Manager_Preview}" Style="{StaticResource TitleTextStyle}" HorizontalAlignment="Right" Grid.Row="6" Grid.Column="2"/>
+                    <Border BorderBrush="{StaticResource PreviewBorderBrush}" Background="White" BorderThickness="1" Padding="2" Margin="5,10,10,0" Height="25" Grid.Row="6" Grid.Column="3">
+                        <dxgcfm:FormatPreviewContainer Format="{Binding PreviewFormat}"/>
+                    </Border>
+                </Grid>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type dxgcfm:IconItemViewModel}">
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
+                    <dxe:ComboBoxEdit EditValue="{Binding Icon, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding Icons}" ApplyItemTemplateToSelectedItem="True" ItemTemplate="{StaticResource ImageTemplate}" HorizontalContentAlignment="Center" Style="{StaticResource SelectorStyle}" Width="90"/>
+                    <TextBlock Text="{Binding Description}" Width="135" Margin="2,0"/>
+                    <StackPanel Orientation="Horizontal" Visibility="{Binding Path=HasBottomLimit, Converter={StaticResource booleanToVisibilityConverter}}">
+                        <dxe:ComboBoxEdit EditValue="{Binding ComparisonType, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{dxe:EnumItemsSource NameConverter={StaticResource enumNameConverter}, EnumType=dxgcfm:IconComparisonType}" Style="{StaticResource SelectorStyle}" Width="50"/>
+                        <dxe:TextEdit EditValue="{Binding Threshold}" Style="{StaticResource NumericEditStyle}" Mask="f"/>
+                    </StackPanel>
+                </StackPanel>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type dxgcfm:IconViewModel}">
+                <StackPanel Orientation="Vertical">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="{dxc:DataControlStringId ConditionalFormatting_Manager_IconSetStyle}" Style="{StaticResource ValueCaptionStyle}"/>
+                        <dxe:ComboBoxEdit ApplyItemTemplateToSelectedItem="True" EditValue="{Binding FormatStyle, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding FormatStyles}" ItemTemplate="{StaticResource IconsTemplate}" Style="{StaticResource SelectorStyle}" Grid.Column="1"/>
+                        <Button Content="{dxc:DataControlStringId ConditionalFormatting_Manager_ReverseButtonDescription}" Command="{Binding ReverseIconsCommand}" HorizontalAlignment="Left" Grid.Column="2" />
+                        <TextBlock Text="{dxc:DataControlStringId ConditionalFormatting_Manager_IconSetValueType}" Style="{StaticResource ValueCaptionStyle}" Grid.Row="1"/>
+                        <dxe:ComboBoxEdit EditValue="{Binding ValueType, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{dxe:EnumItemsSource EnumType=dxgcfm:IconValueType, NameConverter={StaticResource enumNameConverterLocalized}}" Style="{StaticResource SelectorStyle}" Grid.Row="1" Grid.Column="1" Margin="0,5,10,0" />
+                    </Grid>
+                    <TextBlock Text="{dxc:DataControlStringId ConditionalFormatting_Manager_IconSetRulesTitle}" Margin="0,10,0,10"/>
+                    <ItemsControl ItemsSource="{Binding Path=ElementsViewModels}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel Orientation="Vertical" />
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                    </ItemsControl>
+                </StackPanel>
+            </DataTemplate>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <TextBlock Text="{dxc:DataControlStringId ConditionalFormatting_Manager_ValueBasedTitle}" Style="{StaticResource TitleTextStyle}"/>
+        <Grid Grid.Row="1" Margin="0,0,0,10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <TextBlock Text="{dxc:DataControlStringId ConditionalFormatting_Manager_ValueBasedStyle}" Style="{StaticResource ValueCaptionStyle}"/>
+            <dxe:ComboBoxEdit EditValue="{Binding SelectedViewModel, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding ViewModels}" DisplayMember="Description" Style="{StaticResource SelectorStyle}" Margin="0,0,10,3" Grid.Column="1"/>
+            <TextBlock Text="{dxc:DataControlStringId ConditionalFormatting_Manager_MinValue}" Margin="0,0,5,0" Grid.Column="3"/>
+            <ContentPresenter Content="{Binding Path=SelectedViewModel}" Style="{StaticResource MinEditorStyle}" Grid.Column="4"/>
+            <TextBlock Text="{dxc:DataControlStringId ConditionalFormatting_Manager_ValueBasedType}" Style="{StaticResource ValueCaptionStyle}" Grid.Row="1"/>
+            <dxe:ComboBoxEdit EditValue="{Binding Path=SelectedViewModel.FieldMode, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{dxe:EnumItemsSource EnumType=dxgcfm:FieldEditorMode, NameConverter={StaticResource enumNameConverterLocalized}}" Style="{StaticResource SelectorStyle}" Margin="0,0,10,3" Grid.Row="1" Grid.Column="1"/>
+            <TextBlock Text="{dxc:DataControlStringId ConditionalFormatting_Manager_MaxValue}" Margin="0,0,5,0" Grid.Row="1" Grid.Column="3"/>
+            <ContentPresenter Content="{Binding Path=SelectedViewModel}" Style="{StaticResource MaxEditorStyle}" Grid.Row="1" Grid.Column="4"/>
+            <TextBlock Text="{dxc:DataControlStringId ConditionalFormatting_Manager_ValueBasedExpression}" Style="{StaticResource ValueCaptionStyle}" Grid.Row="2"/>
+            <ContentPresenter Content="{Binding Path=SelectedViewModel}" Style="{StaticResource FieldEditorStyle}" Grid.Row="2" Grid.Column="1"/>
+            <TextBlock Text="{dxc:DataControlStringId ConditionalFormatting_Manager_MinMaxValueType}" Margin="0,0,5,0" Grid.Row="2" Grid.Column="3"/>
+            <dxe:ListBoxEdit EditValue="{Binding SelectedViewModel.ConditionValueType, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{dxe:EnumItemsSource EnumType=dxgcfm:DataValueType, NameConverter={StaticResource enumNameConverterLocalized}}" StyleSettings="{dxe:RadioListBoxEditStyleSettings}" Width="130" Margin="0,0,10,3" Grid.Row="2" Grid.RowSpan="2" Grid.Column="4"/>
+        </Grid>
+        <ContentPresenter Grid.Row="2" Content="{Binding SelectedViewModel}"/>
+    </Grid>
+</UserControl>

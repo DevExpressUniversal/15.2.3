@@ -1,0 +1,204 @@
+EofCode = EOF;
+TokenKind = Type;
+TokenValue = Value;
+
+SCANNER HtmlScanner
+
+FRAME
+-->begin
+using System;
+using System.IO;
+using System.Collections;
+using System.Collections.Specialized;
+
+#if DXCORE
+namespace DevExpress.CodeRush.StructuralParser.Html
+#else
+namespace DevExpress.CodeParser.Html
+#endif
+{
+	using Xml;
+
+	public class HtmlScanner : HtmlScannerBase
+	{	
+	-->declarations
+		
+		//constructors...
+		public HtmlScanner(ISourceReader s) : this(s, false)
+		{
+			
+		}
+
+    public HtmlScanner(ISourceReader s, bool isRazor)
+		{
+      IsRazor = isRazor;
+			Initialize(s);
+		}
+		
+		// protected methods...
+		protected override int GetUnicodeLetterIndex()
+		{
+			return UnicodeLetterIndex;
+		}
+		protected override int GetNextState(int input)
+		{
+			return start[input];
+		}
+		protected override void InitializeIgnoreTable()
+		{
+			ignore = new BitArray(charSetSize + 1);
+			ignore[' '] = true;  // blanks are always white space
+			-->initialization
+		}			
+		protected override void NextChCasing()
+		{
+			-->casing1
+		}
+		protected override void AddCh()
+		{
+			base.AddCh();
+			-->casing2
+			NextCh();
+		}
+
+	-->comments
+
+		void CheckLiteral()
+		{
+			-->literals
+		}
+		protected override void NextTokenComments()
+		{
+			-->scan1
+		}
+
+    protected override void NextTokenScan(int state)
+		{
+      int recKind = noSym;
+		  int recEnd = pos;
+      int recPrevLineStart = prevLineStart;
+
+			AddCh();		
+			switch (state)
+			{
+				case -1: { t.Type = eofSym; break; } // NextCh already done
+				case 0:
+        {
+				  if (recKind != noSym)
+          {
+					  tlen = recEnd - t.StartPosition;
+            prevLineStart = recPrevLineStart;
+					  BackTrackScannerToToken();
+				  }
+				  t.Type = recKind;
+          break;
+			  }
+			  -->scan2
+			}
+		}
+		
+	} // end Scanner
+}
+$$$
+ENDFRAME
+
+CHARACTERS
+	cr															= '\r'.
+	lf															= '\n'.
+	whitespace													= ' '.
+	tab															= '\t'.
+	latinStartChar  = "qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM".
+	digit			= "0123456789".
+	latinChar		= latinStartChar + digit + "._-".
+	nameStartChar	= latinStartChar + digit + ":_" + UnicodeLetter.
+	nameChar		= nameStartChar + ".-".
+	commentChar		= ANY - "-" - ">".
+	serverCommentChar = ANY - "-" - ">" - "%".
+	piChar			= ANY - "?" - ">".
+	piTargetStart	= nameStartChar - "XxMmLl".
+	piTargetChar	= nameChar - "XxMmLl".
+	latinCharsAndDigits = latinStartChar + digit.
+	pubidChar		= ANY - "'" - "\"".
+	pubidChar1		= pubidChar + "'".
+	pubidChar2		= pubidChar + "\"".
+	anyCharWithoutDoubleQuote = ANY - "\"".
+	anyCharWithoutQuote = ANY - "'".
+	anyCodeEmbedChar = ANY - "%>".
+	versionChars = latinStartChar + digit + "_.:-".
+TOKENS
+	NAME = nameChar {nameChar}.
+	COMMENT1 = "<!--" {">" |  commentChar | "-" {"-"} commentChar} "-" {"-"} ">".
+	SERVERCOMMENT = "<%--" {">" | serverCommentChar | "-" {"-"} serverCommentChar | {"-"} "%" serverCommentChar | serverCommentChar "%"} "--%>".
+	/*QUOTEDLITERAL = ("\"" ({pubidChar1}|
+						("<%" 
+							{
+								(
+									anyCodeEmbedChar|("%" {anyCodeEmbedChar})
+								)
+							} 
+						"%>")
+						) 
+					"\"") 
+					|( "'" ({pubidChar2}
+					|("<%" {
+								(
+									anyCodeEmbedChar|("%" {anyCodeEmbedChar})
+								)
+							}  "%>")) "'" ).*/
+	CHARREF = ("&#" digit {digit} ) |( "&#x" latinCharsAndDigits {latinCharsAndDigits} ).
+	
+		
+	EQUALS = "=".
+	SINGLEQUOTE = "'".	
+  DOUBLEQUOTE = "\"".
+	QUESTTAGOPEN = "<?".
+	QUESTTAGCLOSE = "?>".
+	
+	ASPSCRIPTTAGSTART = "<%".
+	ASPSCRIPTTAGCLOSE = "%>".
+	ASPDIRECTIVETAGSTART =  "<%@".
+
+	SYSTEM = "SYSTEM". 
+	PUBLIC = "PUBLIC".
+	DECL = "<!".
+	DOCTYPE = "DOCTYPE".
+	ELEMENTDECL = "ELEMENT".
+	TAGCLOSE = ">".
+	BRACKETOPEN = "[".
+	BRACKETCLOSE = "]".
+	EMPTY = "EMPTY".
+	ANYCONTENT = "ANY".
+	PARENOPEN = "(".
+	PARENCLOSE = ")".
+	PCDATA = "#PCDATA".
+	BITWISEOR = "|".
+	PERCENTSYMBOL = "%".
+	SEMICOLON = ";".
+	COMMA = ",".
+	QUESTION = "?".
+	STAR = "*".
+	PLUS = "+".
+	//NOTATIONDECl = "NOTATION".
+	ATTLISTDECL = "ATTLIST".
+	ID = "ID".
+	CDATATOKEN = "CDATA".
+	IDREF =	"IDREF" . 
+	IDREFS = "IDREFS". 
+	ENTITY = "ENTITY". 
+	ENTITIES = "ENTITIES". 
+	NMTOKEN = "NMTOKEN". 
+	NMTOKENS = "NMTOKENS".
+	NOTATION = "NOTATION".
+	REQUIRED = "#REQUIRED". 
+	IMPLIED = "#IMPLIED". 
+	FIXED =	"#FIXED".
+	//ENTITYDECL = "ENTITY".
+	NDATA = "NDATA".
+	TAGOPEN = "<".
+	EMPTYTAGCLOSE = "/>".
+	TAGCLOSESTART = "</".
+	AMPERSAND = "&".
+	CDATASTART = "<![CDATA[".
+	CDATAEND  = "]]>".
+IGNORE  tab + cr + lf + whitespace + '\u00a0'
+END HtmlScanner.

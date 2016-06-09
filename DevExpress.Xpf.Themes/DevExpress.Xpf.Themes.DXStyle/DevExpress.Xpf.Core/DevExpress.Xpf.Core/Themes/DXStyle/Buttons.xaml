@@ -1,0 +1,72 @@
+<ResourceDictionary 
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+    xmlns:dxcn="http://schemas.devexpress.com/winfx/2008/xaml/core/internal" 
+    xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys">
+
+    <ResourceDictionary.MergedDictionaries>
+        <dxdst:ResourceDictionaryEx Source="/DevExpress.Xpf.Themes.DXStyle.v15.2;component/DevExpress.Xpf.Core/DevExpress.Xpf.Core/Themes/StandardControls/Brushes.xaml" />
+        <dxdst:ResourceDictionaryEx Source="/DevExpress.Xpf.Themes.DXStyle.v15.2;component/DevExpress.Xpf.Core/DevExpress.Xpf.Core/Themes/StandardControls/SharedResources.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    <Visibility x:Key="Visible">Visible</Visibility>
+    <Visibility x:Key="Collapsed">Collapsed</Visibility>
+
+    <SolidColorBrush x:Key="{dxdst:DropDownButtonThemeKey ResourceKey=Foreground}" Color="#FF000000"/>
+    <SolidColorBrush x:Key="{dxdst:DropDownButtonThemeKey ResourceKey=ArrowForeground}" Color="#FF000000"/>
+    <SolidColorBrush x:Key="{dxdst:DropDownButtonThemeKey ResourceKey=PressedForeground}" Color="#FF000000"/>
+    <SolidColorBrush x:Key="{dxdst:DropDownButtonThemeKey ResourceKey=ArrowPressedForeground}" Color="#FF000000"/>
+    <SolidColorBrush x:Key="{dxdst:DropDownButtonThemeKey ResourceKey=MouseOverForeground}" Color="#FF000000"/>
+    <SolidColorBrush x:Key="{dxdst:DropDownButtonThemeKey ResourceKey=ArrowMouseOverForeground}" Color="#FF000000"/>
+
+    <dxcn:RenderTemplate x:Key="{dxdst:DropDownButtonThemeKey ResourceKey=BorderTemplate}">
+        <dxcn:RenderPanel>
+            <dxcn:RenderBorder Name="Border" Background="{StaticResource Button.DefaultState.Border2}" BorderBrush="{StaticResource Button.DefaultState.Border1}" BorderThickness="1" CornerRadius="2" Padding="1">
+                <dxcn:RenderBorder Name="InnerBorder" Background="{StaticResource Button.DefaultState.Border3}" CornerRadius="1"/>
+            </dxcn:RenderBorder>
+            <dxcn:RenderBorder Name="FocusBorder" BorderBrush="#406699FF" BorderThickness="3" Visibility="Collapsed" CornerRadius="2" Margin="-1"/>            
+        </dxcn:RenderPanel>
+        <dxcn:RenderTemplate.Triggers>
+            <dxcn:RenderStateGroup Name="VisualStates">
+                <dxcn:RenderStateTrigger Name="Normal"/>
+                
+                <dxcn:RenderStateTrigger Name="MouseOver">
+                    <dxcn:RenderSetter Property="BorderBrush" TargetName="Border" Value="{StaticResource Button.HoverState.Border1}" />
+                    <dxcn:RenderSetter Property="Background" TargetName="Border" Value="{StaticResource Button.HoverState.Border2}" />
+                    <dxcn:RenderSetter Property="Background" TargetName="InnerBorder" Value="{StaticResource Button.HoverState.Border3}" />
+                </dxcn:RenderStateTrigger>
+
+                <dxcn:RenderStateTrigger Name="Pressed">
+                    <dxcn:RenderSetter Property="BorderBrush" TargetName="Border" Value="{StaticResource Button.PressedState.Border1}" />
+                    <dxcn:RenderSetter Property="Background" TargetName="Border" Value="{StaticResource Button.PressedState.Border2}" />
+                    <dxcn:RenderSetter Property="Background" TargetName="InnerBorder" Value="{StaticResource Button.PressedState.Border3}" />
+                </dxcn:RenderStateTrigger>
+            </dxcn:RenderStateGroup>
+            <dxcn:RenderStateGroup Name="PlacementStates">
+                <dxcn:RenderStateTrigger Name="Default"/>
+                <dxcn:RenderStateTrigger Name="Left">
+                    <dxcn:RenderSetter Property="CornerRadius" TargetName="Border" Value="2,0,0,2"/>
+                    <dxcn:RenderSetter Property="CornerRadius" TargetName="InnerBorder" Value="1,0,0,1"/>
+                    <dxcn:RenderSetter Property="CornerRadius" TargetName="FocusBorder" Value="2,0,0,2"/>                   
+                    <dxcn:RenderSetter Property="BorderThickness" TargetName="Border" Value="1,1,0,1"/>
+                </dxcn:RenderStateTrigger>
+                <dxcn:RenderStateTrigger Name="Right">
+                    <dxcn:RenderSetter Property="CornerRadius" TargetName="Border" Value="0,2,2,0"/>
+                    <dxcn:RenderSetter Property="CornerRadius" TargetName="InnerBorder" Value="0,1,1,0"/>
+                    <dxcn:RenderSetter Property="CornerRadius" TargetName="FocusBorder" Value="0,2,2,0"/>
+                </dxcn:RenderStateTrigger>
+                <dxcn:RenderStateTrigger Name="Top">
+                    <dxcn:RenderSetter Property="CornerRadius" TargetName="Border" Value="2,2,0,0"/>
+                    <dxcn:RenderSetter Property="CornerRadius" TargetName="InnerBorder" Value="1,1,0,0"/>
+                    <dxcn:RenderSetter Property="CornerRadius" TargetName="FocusBorder" Value="2,2,0,0"/>  
+                    <dxcn:RenderSetter Property="BorderThickness" TargetName="Border" Value="1,1,1,0"/>
+                </dxcn:RenderStateTrigger>
+                <dxcn:RenderStateTrigger Name="Bottom">
+                    <dxcn:RenderSetter Property="CornerRadius" TargetName="Border" Value="0,0,2,2"/>
+                    <dxcn:RenderSetter Property="CornerRadius" TargetName="InnerBorder" Value="0,0,1,1"/>
+                    <dxcn:RenderSetter Property="CornerRadius" TargetName="FocusBorder" Value="0,0,2,2"/>
+                </dxcn:RenderStateTrigger>
+            </dxcn:RenderStateGroup>
+        </dxcn:RenderTemplate.Triggers>
+    </dxcn:RenderTemplate>
+</ResourceDictionary>

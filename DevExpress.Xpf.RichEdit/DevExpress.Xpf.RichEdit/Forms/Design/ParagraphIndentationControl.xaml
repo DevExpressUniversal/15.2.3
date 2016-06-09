@@ -1,0 +1,33 @@
+﻿<UserControl x:Class="DevExpress.Xpf.RichEdit.UI.ParagraphIndentationControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+             xmlns:dxre="clr-namespace:DevExpress.Xpf.RichEdit"
+             xmlns:dxreui="clr-namespace:DevExpress.Xpf.RichEdit.UI" dx:StyleManager.ApplyApplicationTheme="True">
+
+    <UserControl.Resources>
+        <dxre:RichEditStringIdConverter x:Key="RichEditStringIdConverter" />
+    </UserControl.Resources>
+    <Grid x:Name="LayoutRoot">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" MinWidth="100" />
+            <ColumnDefinition MinWidth="130" />
+            <ColumnDefinition Width="0.1*" MinWidth="15" />
+            <ColumnDefinition MinWidth="130" />
+            <ColumnDefinition Width="0.1*" MinWidth="15" />
+            <ColumnDefinition MinWidth="130" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <TextBlock Margin="0,3,3,3" VerticalAlignment="Center" x:Name="lblLeft" Text="{Binding Source={StaticResource RichEditStringIdConverter}, ConverterParameter=Caption_ParagraphIndentationLeftLabel, Converter={StaticResource RichEditStringIdConverter}}" />
+        <TextBlock Grid.Row="1" Margin="0,3,3,3" VerticalAlignment="Center" x:Name="lblRight" Text="{Binding Source={StaticResource RichEditStringIdConverter}, ConverterParameter=Caption_ParagraphIndentationRightLabel, Converter={StaticResource RichEditStringIdConverter}}" />
+        <TextBlock Grid.Column="3" Margin="0,3,3,3" VerticalAlignment="Center" x:Name="lblSpecial" Text="{Binding Source={StaticResource RichEditStringIdConverter}, ConverterParameter=Caption_ParagraphIndentationSpecialLabel, Converter={StaticResource RichEditStringIdConverter}}" />
+        <TextBlock Grid.Column="5" Margin="0,3,3,3" VerticalAlignment="Center" x:Name="lblBy" Text="{Binding Source={StaticResource RichEditStringIdConverter}, ConverterParameter=Caption_ParagraphIndentationByLabel, Converter={StaticResource RichEditStringIdConverter}}" />
+        <dxreui:RichTextIndentEdit Grid.Column="1" Margin="0,3,3,3" VerticalAlignment="Center" x:Name="spnLeftIndent" AutomationProperties.AutomationId="ParagraphLeftIndent" AutomationProperties.Name="ParagraphLeftIndent" />
+        <dxreui:RichTextIndentEdit Grid.Column="1" Grid.Row="1" Margin="0,3,3,3" VerticalAlignment="Center" x:Name="spnRightIndent" AutomationProperties.AutomationId="ParagraphRightIndent" AutomationProperties.Name="ParagraphRightIndent"/>
+        <dxreui:FirstLineIndentTypeEdit Grid.Column="3" Grid.Row="1" Margin="0,3,3,3" VerticalAlignment="Center" x:Name="edtFirstLineIndent" AutomationProperties.AutomationId="ParagraphFirstLineIndentType" AutomationProperties.Name="ParagraphFirstLineIndentType" />
+        <dxreui:RichTextIndentEdit Grid.Column="5" Grid.Row="1" Margin="0,3,3,3" VerticalAlignment="Center" x:Name="spnSpecial" AutomationProperties.AutomationId="ParagraphFirstLineIndent" AutomationProperties.Name="ParagraphFirstLineIndentType" />
+    </Grid>
+</UserControl>

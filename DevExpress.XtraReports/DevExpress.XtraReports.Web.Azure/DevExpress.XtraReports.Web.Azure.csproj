@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="12.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{7B8ABE8E-1143-497B-94B6-42F181B651CF}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DevExpress.XtraReports.Web</RootNamespace>
+    <AssemblyName>DevExpress.XtraReports.v15.2.Web.Azure</AssemblyName>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>..\..\DevExpress.Key\StrongKey.snk</AssemblyOriginatorKeyFile>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>..\..\..\Bin\Framework\</OutputPath>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <DebugSymbols>true</DebugSymbols>
+    <Optimize>false</Optimize>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>full</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\..\Bin\Framework\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  
+  
+  
+  <ItemGroup>
+    <Reference Include="DevExpress.Data.v15.2">
+      <SpecificVersion>False</SpecificVersion>
+    <HintPath>..\..\..\Bin\Framework\DevExpress.Data.v15.2.dll</HintPath><Private>False</Private></Reference>
+    <Reference Include="DevExpress.Printing.v15.2.Core">
+      <SpecificVersion>False</SpecificVersion>
+    <HintPath>..\..\..\Bin\Framework\DevExpress.Printing.v15.2.Core.dll</HintPath><Private>False</Private></Reference>
+    <Reference Include="DevExpress.Utils.v15.2, Version=15.2.0.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    <Private>False</Private></Reference>
+    <Reference Include="DevExpress.Web.v15.2">
+      <SpecificVersion>False</SpecificVersion>
+    <HintPath>..\..\..\Bin\Framework\DevExpress.Web.v15.2.dll</HintPath><Private>False</Private></Reference>
+    <Reference Include="DevExpress.XtraReports.v15.2">
+      <SpecificVersion>False</SpecificVersion>
+    <HintPath>..\..\..\Bin\Framework\DevExpress.XtraReports.v15.2.dll</HintPath><Private>False</Private></Reference>
+    <Reference Include="DevExpress.XtraReports.v15.2.Web">
+      <SpecificVersion>False</SpecificVersion>
+    <HintPath>..\..\..\Bin\Framework\DevExpress.XtraReports.v15.2.Web.dll</HintPath><Private>False</Private></Reference>
+    <Reference Include="Microsoft.ServiceBus, Version=2.7.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    <Private>False</Private></Reference>
+    <Reference Include="Microsoft.WindowsAzure.Storage, Version=6.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    <Private>False</Private></Reference>
+    
+    <Reference Include="System"><Private>False</Private></Reference>
+    <Reference Include="System.Core"><Private>False</Private></Reference>
+    <Reference Include="System.Drawing"><Private>False</Private></Reference>
+    <Reference Include="System.Runtime.Serialization"><Private>False</Private></Reference>
+    <Reference Include="System.Web"><Private>False</Private></Reference>
+    <Reference Include="System.Xml.Linq"><Private>False</Private></Reference>
+    <Reference Include="System.Data.DataSetExtensions"><Private>False</Private></Reference>
+    <Reference Include="System.Data"><Private>False</Private></Reference>
+    <Reference Include="System.Xml"><Private>False</Private></Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    
+    
+    
+    <Compile Include="WebDocumentViewer\AzureBlobStorageService.cs" />
+    <Compile Include="WebDocumentViewer\AzureCommunicationService.cs" />
+    <Compile Include="WebDocumentViewer\AzureConnectionStringProvider.cs" />
+    <Compile Include="WebDocumentViewer\AzureDocumentBuilder.cs" />
+    <Compile Include="WebDocumentViewer\AzureDocumentManagementService.cs" />
+    <Compile Include="WebDocumentViewer\AzureDocumentStorage.cs" />
+    <Compile Include="WebDocumentViewer\AzureEntityStorageManager.cs" />
+    <Compile Include="WebDocumentViewer\AzureFileStorageManager.cs" />
+    <Compile Include="WebDocumentViewer\AzurePreviewWritableDocument.cs" />
+    <Compile Include="WebDocumentViewer\AzureReportManagementService.cs" />
+    <Compile Include="WebDocumentViewer\AzureServiceTableProvider.cs" />
+    <Compile Include="WebDocumentViewer\AzureStorageAccountProvider.cs" />
+    <Compile Include="WebDocumentViewer\AzureThreadingTimerStoragesCleaner.cs" />
+    <Compile Include="WebDocumentViewer\AzureWebDocumentViewerContainer.cs" />
+    <Compile Include="WebDocumentViewer\Native\DocumentTableEntity.cs" />
+    <Compile Include="WebDocumentViewer\GeneratedDocumentInfo.cs" />
+    <Compile Include="WebDocumentViewer\IAzureBlobStorageService.cs" />
+    <Compile Include="WebDocumentViewer\IAzureCommunicationService.cs" />
+    <Compile Include="WebDocumentViewer\IAzureEntityStorageManager.cs" />
+    <Compile Include="WebDocumentViewer\IAzureFileStorageManager.cs" />
+    <Compile Include="WebDocumentViewer\IAzureServiceTableProvider.cs" />
+    <Compile Include="WebDocumentViewer\IAzureStorageAccountProvider.cs" />
+    <Compile Include="WebDocumentViewer\IServiceBusItemsProvider.cs" />
+    <Compile Include="WebDocumentViewer\Native\ReportTableEntity.cs" />
+    <Compile Include="WebDocumentViewer\ServiceBusItemsProvider.cs" />
+    <Compile Include="WebDocumentViewer\Native\ServiceConstants.cs" />
+    <Compile Include="WebDocumentViewer\Native\TypedAction.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+</Project>

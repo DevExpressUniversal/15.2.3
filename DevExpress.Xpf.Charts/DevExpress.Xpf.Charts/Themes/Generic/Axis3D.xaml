@@ -1,0 +1,26 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:dxt="clr-namespace:DevExpress.Xpf.Charts.Themes"    
+                    xmlns:local="clr-namespace:DevExpress.Xpf.Charts">
+
+    <Style x:Key="Axis3DStyle" TargetType="{x:Type local:Axis3D}">
+        <Setter Property="MinorCount" Value="4" />
+        <Setter Property="InterlacedBrush" Value="{DynamicResource {dxt:ChartBrushesThemeKey ResourceKey=Axis3DInterlacedBrush}}" />
+        <Setter Property="GridLinesBrush" Value="{DynamicResource {dxt:ChartBrushesThemeKey ResourceKey=GridLineBrush}}" />
+        <Setter Property="GridLinesMinorBrush" Value="{DynamicResource {dxt:ChartBrushesThemeKey ResourceKey=MinorGridLineBrush}}" />
+    </Style>
+
+    <Style TargetType="{x:Type local:AxisX3D}" BasedOn="{StaticResource Axis3DStyle}">
+        <Setter Property="Interlaced" Value="false" />
+    </Style>
+
+    <Style TargetType="{x:Type local:AxisY3D}" BasedOn="{StaticResource Axis3DStyle}">
+        <Setter Property="Interlaced" Value="true" />
+        <Setter Property="GridLinesVisible" Value="True" />
+        <Setter Property="GridLinesLineStyle">
+            <Setter.Value>
+                <local:LineStyle Thickness="3" />
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

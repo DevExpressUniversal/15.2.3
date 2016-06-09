@@ -1,0 +1,119 @@
+﻿<#@ template language="C#" #>
+<#@ import namespace="System" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.Diagnostics" #>
+<#@ import namespace="System.IO" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Xml" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="DevExpress.Xpf.Core.Design.Wizards.Mvvm.EntityFramework" #>
+<#@ import namespace="DevExpress.Xpf.Core.Design.Wizards.Mvvm" #>
+<#@ import namespace="DevExpress.Xpf.Core.Design.Wizards.Mvvm.ViewModelData" #>
+<#@ import namespace="DevExpress.Xpf.Core.Native" #>
+<#
+	T4TemplateInfo templateInfo = this.GetTemplateInfo();
+	DocumentManagerViewModelInfo viewModelData = templateInfo.Properties["IViewModelInfo"] as DocumentManagerViewModelInfo;
+    string viewName = templateInfo.Properties["ViewName"].ToString();    
+    string localNamespace = templateInfo.Properties["Namespace"].ToString();
+	string viewFullName = localNamespace +"." + viewName;
+
+    XamlNamespaces xamlNamespaces = templateInfo.Properties["XamlNamespaces"] as XamlNamespaces;
+	string viewModelPrefix = templateInfo.Properties["viewModelPrefix"].ToString();
+#>
+<UserControl x:Class="<#=viewFullName#>"
+<#
+    PasteXamlNamespaces(xamlNamespaces);
+#>
+	xmlns:pfdata="clr-namespace:System.Windows.Data;assembly=PresentationFramework"
+    mc:Ignorable="<#=xamlNamespaces.GetPrefix(XamlNamespaces.xmlns_blend)#>"
+    d:DesignHeight="600" d:DesignWidth="800" UseLayoutRounding="True" DataContext="{dxmvvm:ViewModelSource <#=viewModelPrefix#>:<#=viewModelData.Name#>}">
+	    <dxmvvm:Interaction.Behaviors>
+<#if(viewModelData.Tables.Any()) {#>
+			<dxmvvm:EventToCommand EventName="Initialized" Command="{Binding OnLoadedCommand}" CommandParameter="{Binding DefaultModule}" />
+<#}#>
+			<dxmvvm:CurrentWindowService ClosingCommand="{Binding OnClosingCommand}" />
+            <#this.ExecuteDocumentManagerViewHook(TemplatesCodeGen.STR_DocumentManagerViewHook_GenerateAdditionalBehaviors);#>
+		</dxmvvm:Interaction.Behaviors>
+    <Grid>
+            <DockPanel>
+                <dxr:RibbonControl RibbonStyle="Office2010" DockPanel.Dock="Top" AllowCustomization="False">
+                    <#this.ExecuteDocumentManagerViewHook(TemplatesCodeGen.STR_DocumentManagerViewHook_GenerateRibbonPageHeaderItems);#>
+                    <dxr:RibbonControl.ToolbarItems>
+                        <dxb:BarButtonItem Content="Save All" Command="{Binding SaveAllCommand}" LargeGlyph="{dx:DXImage Image=SaveAll_32x32.png}" Glyph="{dx:DXImage Image=SaveAll_16x16.png}" />
+                    </dxr:RibbonControl.ToolbarItems>
+                    <dxr:RibbonDefaultPageCategory Caption="defaultCategory">
+                        <dxr:RibbonPage Caption="View" MergeOrder="1000">
+                            <dxr:RibbonPageGroup Caption="Appearance">
+                                <dxr:RibbonGalleryBarItem>
+                                    <dxmvvm:Interaction.Behaviors>
+                                        <dxr:RibbonGalleryItemThemeSelectorBehavior/>
+                                    </dxmvvm:Interaction.Behaviors>
+                                </dxr:RibbonGalleryBarItem>
+                            </dxr:RibbonPageGroup>
+                        </dxr:RibbonPage>
+                    </dxr:RibbonDefaultPageCategory>
+                </dxr:RibbonControl>
+                <dxr:RibbonStatusBarControl DockPanel.Dock="Bottom"/>
+                <Grid Background="Transparent">
+				    <dxmvvm:Interaction.Behaviors>
+						<dxmvvm:LayoutSerializationService Name="RootLayoutSerializationService" />
+						<dxmvvm:CurrentWindowSerializationBehavior />
+					</dxmvvm:Interaction.Behaviors>
+                    <dxdo:DockLayoutManager MDIMergeStyle="WhenChildActivated">
+                        <dxdo:LayoutGroup Caption="LayoutRoot">
+                            <dxdo:LayoutPanel Caption="Navigation" ItemWidth="0.5*" MaxWidth="300">
+								<dxdo:LayoutPanel.Resources>
+									<CollectionViewSource x:Key="ItemsSource" Source="{Binding Modules}">
+										<CollectionViewSource.GroupDescriptions>
+											<pfdata:PropertyGroupDescription PropertyName="ModuleGroup" />
+										</CollectionViewSource.GroupDescriptions>
+									</CollectionViewSource>
+								</dxdo:LayoutPanel.Resources>
+                                <dxn:NavBarControl ItemsSource="{Binding Groups, Source={StaticResource ItemsSource}}" SelectedItem="{Binding SelectedModule}">
+									<dxn:NavBarControl.Resources>
+	                                    <DataTemplate x:Key="ItemTemplate">
+											<ContentControl>
+												<dxn:NavBarItem Content="{Binding ModuleTitle}" />
+                                            </ContentControl>
+                                        </DataTemplate>
+									</dxn:NavBarControl.Resources>
+                                    <dxn:NavBarControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <ContentControl>
+                                                <dxn:NavBarGroup Header="{Binding}" ItemTemplate="{StaticResource ItemTemplate}" />
+                                            </ContentControl>
+                                        </DataTemplate>
+                                    </dxn:NavBarControl.ItemTemplate>
+                                    <dxn:NavBarControl.View>
+                                        <dxn:NavigationPaneView IsExpandButtonVisible="False"/>
+                                    </dxn:NavBarControl.View>
+                                </dxn:NavBarControl>
+                            </dxdo:LayoutPanel>
+                            <dxdo:DocumentGroup x:Name="documentGroup">
+							    <dxmvvm:Interaction.Behaviors>
+									<dxdo:TabbedDocumentUIService />
+								</dxmvvm:Interaction.Behaviors>
+							</dxdo:DocumentGroup>
+                        </dxdo:LayoutGroup>
+                    </dxdo:DockLayoutManager>
+                </Grid>
+            </DockPanel>
+    </Grid>
+</UserControl>
+<#+
+void PasteXamlNamespaces(XamlNamespaces xamlNamespaces) {
+	string[] toAdd = new string[]{
+		XmlNamespaceConstants.RibbonNamespaceDefinition,
+		XmlNamespaceConstants.EditorsNamespaceDefinition,
+		XmlNamespaceConstants.LayoutControlNamespaceDefinition,
+		XmlNamespaceConstants.BarsNamespaceDefinition,
+		XmlNamespaceConstants.UtilsNamespaceDefinition,
+		XmlNamespaceConstants.GridNamespaceDefinition,
+		XmlNamespaceConstants.MvvmNamespaceDefinition,
+		XmlNamespaceConstants.DockingNamespaceDefinition,
+		XmlNamespaceConstants.NavBarNamespaceDefinition
+	};
+	xamlNamespaces.AddDevExpressXamlNamespaces(toAdd);
+	this.WriteLine(xamlNamespaces.GetXaml());
+}
+#>

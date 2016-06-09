@@ -1,0 +1,92 @@
+﻿<UserControl 
+    x:Class="DevExpress.Design.DataAccess.UI.DataAccessTechnologyConfigurator"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:ui="clr-namespace:DevExpress.Design.UI"
+    xmlns:dataAccessUI="clr-namespace:DevExpress.Design.DataAccess.UI"
+    >
+    <UserControl.Resources>
+        <ui:BooleanToVisibilityConverter x:Key="NoItemsVisibilityConverter" Inverted="True"/>
+        <ui:BooleanToVisibilityConverter x:Key="ItemsVisibilityConverter"/>
+        <ui:BooleanToVisibilityConverter x:Key="HasItemsVisibilityConverter" Inverted="True"/>
+        <Style TargetType="Hyperlink">
+            <Setter Property="Foreground" Value="{StaticResource ResourceKey={ui:ThemeColorsKey Key=ColorOrange}}"/>
+        </Style>
+    </UserControl.Resources>
+    <Grid VerticalAlignment="Stretch">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="4*"/>
+            <ColumnDefinition Width="12"/>
+            <ColumnDefinition Width="6*"/>
+        </Grid.ColumnDefinitions>
+        <TextBlock Grid.Row="0" 
+                  Style="{DynamicResource ResourceKey={ui:ControlsThemeKey Key=ListCaption}}"
+                  Text="{dataAccessUI:DataAccessLocalizerStringId ID=TechnologiesCaption}" />
+        <ListView x:Name="technologyListDataSelector" Grid.Row="1" 
+                  Style="{DynamicResource ResourceKey={ui:StandardControlsThemeKey Key=ListBox}}"
+                  ItemsSource="{Binding TechnologyNames}" DisplayMemberPath="Name"
+                  SelectedItem="{Binding SelectedTechnologyName, Mode=TwoWay}" 
+		  ui:ListViewDoubleClickBehavior.Command="{Binding ItemDoubleClickCommand}"
+                  />
+        <Grid Grid.Column="2" Grid.Row="1"
+              Visibility="{Binding CanCreateItems, Converter={StaticResource NoItemsVisibilityConverter}}" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="12"/>
+                <RowDefinition Height="120"/>
+            </Grid.RowDefinitions>
+            <Border BorderThickness="1" BorderBrush="{StaticResource ResourceKey={ui:ThemeColorsKey Key=ColorSilverLight}}" >
+                <TextBlock Text="{dataAccessUI:DataAccessLocalizerStringId ID=NextToProceedText}"  
+                           Style="{DynamicResource ResourceKey={ui:ControlsThemeKey Key=ListAnnotation}}"
+                           />
+            </Border>
+            <Border Grid.Row="2" BorderThickness="1" BorderBrush="{StaticResource ResourceKey={ui:ThemeColorsKey Key=ColorSilverLight}}">
+                <TextBlock ui:HyperlinkInlineExpression.InlineExpression="{Binding SelectedTechnologyName.Description}" 
+                           Style="{DynamicResource ResourceKey={ui:ControlsThemeKey Key=Description}}"
+                           />
+            </Border>
+        </Grid>
+        <TextBlock Grid.Column="2" Grid.Row="0"
+                  Style="{DynamicResource ResourceKey={ui:ControlsThemeKey Key=ListCaption}}"
+                  Text="{dataAccessUI:DataAccessLocalizerStringId ID=SourcesCaption}"
+                  Visibility="{Binding CanCreateItems, Converter={StaticResource ItemsVisibilityConverter}}" 
+                  />
+
+        <Grid Grid.Column="2" Grid.Row="1"
+                  Visibility="{Binding CanCreateItems, Converter={StaticResource ItemsVisibilityConverter}}" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="12"/>
+                <RowDefinition Height="120"/>
+            </Grid.RowDefinitions>
+            <ListView x:Name="dataSourceListView" Grid.Row="0"  
+                  Style="{DynamicResource ResourceKey={ui:StandardControlsThemeKey Key=ListBox}}"
+                  ItemsSource="{Binding Items}"
+                  SelectedItem="{Binding SelectedItem, Mode=TwoWay}" 
+                  DisplayMemberPath="Name"
+		  ui:ListViewDoubleClickBehavior.Command="{Binding ItemDoubleClickCommand}"
+                  />
+            <TextBlock Grid.Row="0"  
+                  Visibility="{Binding HasItems, Converter={StaticResource HasItemsVisibilityConverter}}" 
+                  Text="{dataAccessUI:DataAccessLocalizerStringId ID=NoSourcesAvailableText}"
+                  Style="{DynamicResource ResourceKey={ui:ControlsThemeKey Key=ListAnnotation}}"
+                  />
+            <Button Grid.Row="0" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" 
+                  VerticalAlignment="Bottom" Padding="20,5" Height="30" Margin="5,10" 
+                  Style="{DynamicResource ResourceKey={ui:ControlsThemeKey Key=NewDataSourceButton}}"
+                  Command="{Binding NewItemCommand}"
+                  CommandParameter ="{Binding SelectedTechnologyName}"
+                  Content="{dataAccessUI:DataAccessLocalizerStringId ID=NewSourceCaption}"
+                  />
+            <Border Grid.Row="2" BorderThickness="1" BorderBrush="{StaticResource ResourceKey={ui:ThemeColorsKey Key=ColorSilverLight}}">
+                <TextBlock ui:HyperlinkInlineExpression.InlineExpression="{Binding SelectedTechnologyName.Description}" 
+                           Style="{DynamicResource ResourceKey={ui:ControlsThemeKey Key=Description}}"
+                           />
+            </Border>
+        </Grid>
+    </Grid>
+</UserControl>

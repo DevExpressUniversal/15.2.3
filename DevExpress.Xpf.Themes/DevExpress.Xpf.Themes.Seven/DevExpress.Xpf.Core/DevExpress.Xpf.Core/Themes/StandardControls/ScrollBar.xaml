@@ -1,0 +1,729 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys">
+
+    <ResourceDictionary.MergedDictionaries>
+        <dxdst:ResourceDictionaryEx Source="/DevExpress.Xpf.Themes.Seven.v15.2;component/DevExpress.Xpf.Core/DevExpress.Xpf.Core/Themes/StandardControls/Brushes.xaml" />
+        <dxdst:ResourceDictionaryEx Source="/DevExpress.Xpf.Themes.Seven.v15.2;component/DevExpress.Xpf.Core/DevExpress.Xpf.Core/Themes/StandardControls/SharedResources.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    <Style x:Key="HorizontalScrollBarPageButtonStyle" TargetType="{x:Type RepeatButton}">
+        <Setter Property="OverridesDefaultStyle" Value="True" />
+        <Setter Property="IsTabStop" Value="False" />
+        <Setter Property="Focusable" Value="False" />
+        <Setter Property="MinHeight" Value="0" />
+        <Setter Property="MinWidth" Value="0" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type RepeatButton}">
+                    <Rectangle x:Name="PageButtonBackground" Fill="Transparent" />
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="Fill" Value="{StaticResource ScrollBar.Horizontal.PageButton.Background}" TargetName="PageButtonBackground" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="VerticalScrollBarPageButtonStyle" TargetType="{x:Type RepeatButton}">
+        <Setter Property="OverridesDefaultStyle" Value="True" />
+        <Setter Property="IsTabStop" Value="False" />
+        <Setter Property="Focusable" Value="False" />
+        <Setter Property="MinWidth" Value="0" />
+        <Setter Property="MinHeight" Value="0" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type RepeatButton}">
+                    <Rectangle x:Name="PageButtonBackground" Fill="Transparent" />
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="Fill" Value="{StaticResource ScrollBar.Vertical.PageButton.Background}" TargetName="PageButtonBackground" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="ScrollBarHorizontalButtonStyle" TargetType="{x:Type RepeatButton}">
+        <Setter Property="OverridesDefaultStyle" Value="True" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Foreground" Value="Transparent" />
+        <Setter Property="BorderBrush" Value="Transparent" />
+        <Setter Property="BorderThickness" Value="2" />
+        <Setter Property="MinWidth" Value="0" />
+        <Setter Property="MinHeight" Value="0" />
+        <Setter Property="IsTabStop" Value="False" />
+        <Setter Property="Focusable" Value="False" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type RepeatButton}">
+                    <ControlTemplate.Resources>
+                        <Storyboard x:Key="StoryboardHover.Enter">
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity" Storyboard.TargetName="HoverState">
+                                <EasingDoubleKeyFrame KeyTime="0:0:0.10" Value="1" />
+                            </DoubleAnimationUsingKeyFrames>
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity" Storyboard.TargetName="DefaultState">
+                                <DiscreteDoubleKeyFrame KeyTime="0:0:0.10" Value="0" />
+                            </DoubleAnimationUsingKeyFrames>
+                        </Storyboard>
+                        <Storyboard x:Key="StoryboardHover.Exit">
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity" Storyboard.TargetName="HoverState">
+                                <EasingDoubleKeyFrame KeyTime="0:0:0.30" Value="0" />
+                            </DoubleAnimationUsingKeyFrames>
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity" Storyboard.TargetName="DefaultState">
+                                <DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="1" />
+                            </DoubleAnimationUsingKeyFrames>
+                        </Storyboard>
+                        <Storyboard x:Key="StoryboardPressed.Enter">
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity" Storyboard.TargetName="PressedState">
+                                <EasingDoubleKeyFrame KeyTime="0:0:0.05" Value="1" />
+                            </DoubleAnimationUsingKeyFrames>
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity" Storyboard.TargetName="HoverState">
+                                <DiscreteDoubleKeyFrame KeyTime="0:0:0.05" Value="0" />
+                            </DoubleAnimationUsingKeyFrames>
+                        </Storyboard>
+                        <Storyboard x:Key="StoryboardPressed.Exit">
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity" Storyboard.TargetName="PressedState">
+                                <EasingDoubleKeyFrame KeyTime="0:0:0.30" Value="0" />
+                            </DoubleAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </ControlTemplate.Resources>
+                    <Grid x:Name="Root" SnapsToDevicePixels="True">
+                        <Border x:Name="Shadow" Background="#FF000000" CornerRadius="2" Margin="1,1,-1,-1" Opacity="0.10" />
+                        <Grid x:Name="DefaultState">
+                            <Border Background="{StaticResource ScrollBar.Horizontal.DefaultState.Border1}" CornerRadius="2" Padding="1">
+                                <Border Background="{StaticResource ScrollBar.Horizontal.DefaultState.Border2}" CornerRadius="1" Padding="1">
+                                    <Border Background="{StaticResource ScrollBar.Horizontal.DefaultState.Border3}" CornerRadius="0" />
+                                </Border>
+                            </Border>
+                        </Grid>
+                        <Grid x:Name="HoverState" Opacity="0">
+                            <Border Background="{StaticResource ScrollBar.Horizontal.HoverState.Border1}" CornerRadius="2" Padding="1">
+                                <Border Background="{StaticResource ScrollBar.Horizontal.HoverState.Border2}" CornerRadius="1" Padding="1">
+                                    <Border Background="{StaticResource ScrollBar.Horizontal.HoverState.Border3}" CornerRadius="0" />
+                                </Border>
+                            </Border>
+                        </Grid>
+                        <Grid x:Name="PressedState" Opacity="0">
+                            <Border Background="{StaticResource ScrollBar.Horizontal.DraggingState.Border1}" CornerRadius="2" Padding="1">
+                                <Border Background="{StaticResource ScrollBar.Horizontal.DraggingState.Border2}" CornerRadius="1" Padding="1">
+                                    <Border Background="{StaticResource ScrollBar.Horizontal.DraggingState.Border3}" CornerRadius="0" />
+                                </Border>
+                            </Border>
+                        </Grid>
+                        <Grid Width="5" Height="9" HorizontalAlignment="Center" VerticalAlignment="Center" SnapsToDevicePixels="True">
+                            <Path x:Name="BackPath" Fill="{StaticResource ScrollBar.DefaultState.Path.BorderBrush}" Data="{Binding Content, RelativeSource={RelativeSource TemplatedParent}}" Margin="-1" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            <Path x:Name="Path" Fill="{StaticResource ScrollBar.DefaultState.Path.Background}" Data="{Binding Content, RelativeSource={RelativeSource TemplatedParent}}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Grid>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Trigger.EnterActions>
+                                <!--<RemoveStoryboard BeginStoryboardName="StoryboardHoverExit_BeginStoryboard" />-->
+                                <BeginStoryboard x:Name="StoryboardHoverEnter_BeginStoryboard" Storyboard="{StaticResource StoryboardHover.Enter}" />
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <!--<RemoveStoryboard BeginStoryboardName="StoryboardHoverEnter_BeginStoryboard" />-->
+                                <BeginStoryboard x:Name="StoryboardHoverExit_BeginStoryboard" Storyboard="{StaticResource StoryboardHover.Exit}" />
+                            </Trigger.ExitActions>
+                            <Setter TargetName="Path" Property="Fill" Value="{StaticResource ScrollBar.HoverState.Path.Background}" />
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Trigger.EnterActions>
+                                <!--RemoveStoryboard <BeginStoryboardName="StoryboardPressedExit_BeginStoryboard" />-->
+                                <BeginStoryboard x:Name="StoryboardPressedEnter_BeginStoryboard" Storyboard="{StaticResource StoryboardPressed.Enter}" />
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <!--<RemoveStoryboard <BeginStoryboardName="StoryboardPressedEnter_BeginStoryboard" />-->
+                                <BeginStoryboard x:Name="StoryboardPressedExit_BeginStoryboard" Storyboard="{StaticResource StoryboardPressed.Exit}" />
+                            </Trigger.ExitActions>
+                            <Setter TargetName="Path" Property="Fill" Value="{StaticResource ScrollBar.HoverState.Path.Background}" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="DefaultState" Property="Opacity" Value="0" />
+                            <Setter TargetName="HoverState" Property="Opacity" Value="0" />
+                            <Setter TargetName="PressedState" Property="Opacity" Value="0" />
+                            <Setter TargetName="Root" Property="Opacity" Value="0.5" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="ScrollBarVerticalButtonStyle" TargetType="{x:Type RepeatButton}">
+        <Setter Property="OverridesDefaultStyle" Value="True" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Foreground" Value="Transparent" />
+        <Setter Property="BorderBrush" Value="Transparent" />
+        <Setter Property="BorderThickness" Value="2" />
+        <Setter Property="MinWidth" Value="0" />
+        <Setter Property="MinHeight" Value="0" />
+        <Setter Property="IsTabStop" Value="False" />
+        <Setter Property="Focusable" Value="False" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type RepeatButton}">
+                    <ControlTemplate.Resources>
+                        <Storyboard x:Key="StoryboardHover.Enter">
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity" Storyboard.TargetName="HoverState">
+                                <EasingDoubleKeyFrame KeyTime="0:0:0.10" Value="1" />
+                            </DoubleAnimationUsingKeyFrames>
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity" Storyboard.TargetName="DefaultState">
+                                <DiscreteDoubleKeyFrame KeyTime="0:0:0.10" Value="0" />
+                            </DoubleAnimationUsingKeyFrames>
+                        </Storyboard>
+                        <Storyboard x:Key="StoryboardHover.Exit">
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity" Storyboard.TargetName="HoverState">
+                                <EasingDoubleKeyFrame KeyTime="0:0:0.30" Value="0" />
+                            </DoubleAnimationUsingKeyFrames>
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity" Storyboard.TargetName="DefaultState">
+                                <DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="1" />
+                            </DoubleAnimationUsingKeyFrames>
+                        </Storyboard>
+                        <Storyboard x:Key="StoryboardPressed.Enter">
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity" Storyboard.TargetName="PressedState">
+                                <EasingDoubleKeyFrame KeyTime="0:0:0.05" Value="1" />
+                            </DoubleAnimationUsingKeyFrames>
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity" Storyboard.TargetName="HoverState">
+                                <DiscreteDoubleKeyFrame KeyTime="0:0:0.05" Value="0" />
+                            </DoubleAnimationUsingKeyFrames>
+                        </Storyboard>
+                        <Storyboard x:Key="StoryboardPressed.Exit">
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity" Storyboard.TargetName="PressedState">
+                                <EasingDoubleKeyFrame KeyTime="0:0:0.30" Value="0" />
+                            </DoubleAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </ControlTemplate.Resources>
+                    <Grid x:Name="Root" SnapsToDevicePixels="True">
+                        <Border x:Name="Shadow" Background="#FF000000" CornerRadius="2" Margin="1,1,-1,-1" Opacity="0.10" />
+                        <Grid x:Name="DefaultState">
+                            <Border Background="{StaticResource ScrollBar.Vertical.DefaultState.Border1}" CornerRadius="2" Padding="1">
+                                <Border Background="{StaticResource ScrollBar.Vertical.DefaultState.Border2}" CornerRadius="1" Padding="1">
+                                    <Border Background="{StaticResource ScrollBar.Vertical.DefaultState.Border3}" CornerRadius="0" />
+                                </Border>
+                            </Border>
+                        </Grid>
+                        <Grid x:Name="HoverState" Opacity="0">
+                            <Border Background="{StaticResource ScrollBar.Vertical.HoverState.Border1}" CornerRadius="2" Padding="1">
+                                <Border Background="{StaticResource ScrollBar.Vertical.HoverState.Border2}" CornerRadius="1" Padding="1">
+                                    <Border Background="{StaticResource ScrollBar.Vertical.HoverState.Border3}" CornerRadius="0" />
+                                </Border>
+                            </Border>
+                        </Grid>
+                        <Grid x:Name="PressedState" Opacity="0">
+                            <Border Background="{StaticResource ScrollBar.Vertical.DraggingState.Border1}" CornerRadius="2" Padding="1">
+                                <Border Background="{StaticResource ScrollBar.Vertical.DraggingState.Border2}" CornerRadius="1" Padding="1">
+                                    <Border Background="{StaticResource ScrollBar.Vertical.DraggingState.Border3}" CornerRadius="0" />
+                                </Border>
+                            </Border>
+                        </Grid>
+                        <Grid Width="9" Height="5" HorizontalAlignment="Center" VerticalAlignment="Center" SnapsToDevicePixels="True">
+                            <Path x:Name="BackPath" Fill="{StaticResource ScrollBar.DefaultState.Path.BorderBrush}" Data="{Binding Content, RelativeSource={RelativeSource TemplatedParent}}" Margin="-1" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            <Path x:Name="Path" Fill="{StaticResource ScrollBar.DefaultState.Path.Background}" Data="{Binding Content, RelativeSource={RelativeSource TemplatedParent}}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Grid>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Trigger.EnterActions>
+                                <!--<RemoveStoryboard BeginStoryboardName="StoryboardHoverExit_BeginStoryboard" />-->
+                                <BeginStoryboard x:Name="StoryboardHoverEnter_BeginStoryboard" Storyboard="{StaticResource StoryboardHover.Enter}" />
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <!--<RemoveStoryboard BeginStoryboardName="StoryboardHoverEnter_BeginStoryboard" />-->
+                                <BeginStoryboard x:Name="StoryboardHoverExit_BeginStoryboard" Storyboard="{StaticResource StoryboardHover.Exit}" />
+                            </Trigger.ExitActions>
+                            <Setter TargetName="Path" Property="Fill" Value="{StaticResource ScrollBar.HoverState.Path.Background}" />
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Trigger.EnterActions>
+                                <!--<RemoveStoryboard BeginStoryboardName="StoryboardPressedExit_BeginStoryboard" />-->
+                                <BeginStoryboard x:Name="StoryboardPressedEnter_BeginStoryboard" Storyboard="{StaticResource StoryboardPressed.Enter}" />
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <!--<RemoveStoryboard BeginStoryboardName="StoryboardPressedEnter_BeginStoryboard" />-->
+                                <BeginStoryboard x:Name="StoryboardPressedExit_BeginStoryboard" Storyboard="{StaticResource StoryboardPressed.Exit}" />
+                            </Trigger.ExitActions>
+                            <Setter TargetName="Path" Property="Fill" Value="{StaticResource ScrollBar.HoverState.Path.Background}" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="DefaultState" Property="Opacity" Value="0" />
+                            <Setter TargetName="HoverState" Property="Opacity" Value="0" />
+                            <Setter TargetName="PressedState" Property="Opacity" Value="0" />
+                            <Setter TargetName="Root" Property="Opacity" Value="0.5" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="ScrollBarThumbHorizontal" TargetType="{x:Type Thumb}">
+        <Setter Property="MinWidth" Value="4" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Thumb}">
+                    <ControlTemplate.Resources>
+                        <Storyboard x:Key="StoryboardHover.Enter">
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity" Storyboard.TargetName="HoverState">
+                                <EasingDoubleKeyFrame KeyTime="0:0:0.10" Value="1" />
+                            </DoubleAnimationUsingKeyFrames>
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity" Storyboard.TargetName="DefaultState">
+                                <DiscreteDoubleKeyFrame KeyTime="0:0:0.10" Value="0" />
+                            </DoubleAnimationUsingKeyFrames>
+                        </Storyboard>
+                        <Storyboard x:Key="StoryboardHover.Exit">
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity" Storyboard.TargetName="HoverState">
+                                <EasingDoubleKeyFrame KeyTime="0:0:0.30" Value="0" />
+                            </DoubleAnimationUsingKeyFrames>
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity" Storyboard.TargetName="DefaultState">
+                                <DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="1" />
+                            </DoubleAnimationUsingKeyFrames>
+                        </Storyboard>
+                        <Storyboard x:Key="StoryboardDragging.Enter">
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity" Storyboard.TargetName="DraggingState">
+                                <EasingDoubleKeyFrame KeyTime="0:0:0.05" Value="1" />
+                            </DoubleAnimationUsingKeyFrames>
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity" Storyboard.TargetName="HoverState">
+                                <DiscreteDoubleKeyFrame KeyTime="0:0:0.05" Value="0" />
+                            </DoubleAnimationUsingKeyFrames>
+                        </Storyboard>
+                        <Storyboard x:Key="StoryboardDragging.Exit">
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity" Storyboard.TargetName="DraggingState">
+                                <EasingDoubleKeyFrame KeyTime="0:0:0.30" Value="0" />
+                            </DoubleAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </ControlTemplate.Resources>
+                    <Grid x:Name="Root" SnapsToDevicePixels="True">
+                        <Border x:Name="Shadow" Background="#FF000000" CornerRadius="2" Margin="1,1,-1,-1" Opacity="0.10" />
+                        <Grid x:Name="DefaultState">
+                            <Border Background="{StaticResource ScrollBar.Horizontal.DefaultState.Border1}" CornerRadius="2" Padding="1">
+                                <Border Background="{StaticResource ScrollBar.Horizontal.DefaultState.Border2}" CornerRadius="1" Padding="1">
+                                    <Border Background="{StaticResource ScrollBar.Horizontal.DefaultState.Border3}" CornerRadius="0">
+                                        <dx:MinSizeArranger MinChildWidth="12">
+                                            <Grid Height="9" Width="10" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                                <Rectangle x:Name="BackPath" Stretch="Fill" Fill="{StaticResource ScrollBar.DefaultState.Path.BorderBrush}" />
+                                                <Rectangle x:Name="Path1" Stretch="Fill" Fill="{StaticResource ScrollBar.DefaultState.Path.Background}" Margin="1,1,0,1" Width="2" HorizontalAlignment="Left" />
+                                                <Rectangle x:Name="Path2" Stretch="Fill" Fill="{StaticResource ScrollBar.DefaultState.Path.Background}" Margin="4,1" />
+                                                <Rectangle x:Name="Path3" Stretch="Fill" Fill="{StaticResource ScrollBar.DefaultState.Path.Background}" Margin="0,1,1,1" Width="2" HorizontalAlignment="Right" />
+                                            </Grid>
+                                        </dx:MinSizeArranger>
+                                    </Border>
+                                </Border>
+                            </Border>
+                        </Grid>
+                        <Grid x:Name="HoverState" Opacity="0">
+                            <Border Background="{StaticResource ScrollBar.Horizontal.HoverState.Border1}" CornerRadius="2" Padding="1">
+                                <Border Background="{StaticResource ScrollBar.Horizontal.HoverState.Border2}" CornerRadius="1" Padding="1">
+                                    <Border Background="{StaticResource ScrollBar.Horizontal.HoverState.Border3}" CornerRadius="0">
+                                        <dx:MinSizeArranger MinChildWidth="12">
+                                            <Grid Height="9" Width="10" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                                <Rectangle Fill="{StaticResource ScrollBar.HoverState.Path.BorderBrush}" Stretch="Fill" />
+                                                <Rectangle Fill="{StaticResource ScrollBar.HoverState.Path.Background}" Stretch="Fill" Margin="1,1,0,1" Width="2" HorizontalAlignment="Left" />
+                                                <Rectangle Fill="{StaticResource ScrollBar.HoverState.Path.Background}" Stretch="Fill" Margin="4,1" />
+                                                <Rectangle Fill="{StaticResource ScrollBar.HoverState.Path.Background}" Stretch="Fill" Margin="0,1,1,1" Width="2" HorizontalAlignment="Right" />
+                                            </Grid>
+                                        </dx:MinSizeArranger>
+                                    </Border>
+                                </Border>
+                            </Border>
+                        </Grid>
+                        <Grid x:Name="DraggingState" Opacity="0">
+                            <Border Background="{StaticResource ScrollBar.Horizontal.DraggingState.Border1}" CornerRadius="2" Padding="1">
+                                <Border Background="{StaticResource ScrollBar.Horizontal.DraggingState.Border2}" CornerRadius="1" Padding="1">
+                                    <Border Background="{StaticResource ScrollBar.Horizontal.DraggingState.Border3}" CornerRadius="0">
+                                        <dx:MinSizeArranger MinChildWidth="12">
+                                            <Grid Height="9" Width="10" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                                <Rectangle Fill="{StaticResource ScrollBar.DraggingState.Path.BorderBrush}" Stretch="Fill" />
+                                                <Rectangle Fill="{StaticResource ScrollBar.DraggingState.Path.Background}" Stretch="Fill" Margin="1,1,0,1" Width="2" HorizontalAlignment="Left" />
+                                                <Rectangle Fill="{StaticResource ScrollBar.DraggingState.Path.Background}" Stretch="Fill" Margin="4,1" />
+                                                <Rectangle Fill="{StaticResource ScrollBar.DraggingState.Path.Background}" Stretch="Fill" Margin="0,1,1,1" Width="2" HorizontalAlignment="Right" />
+                                            </Grid>
+                                        </dx:MinSizeArranger>
+                                    </Border>
+                                </Border>
+                            </Border>
+                        </Grid>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Trigger.EnterActions>
+                                <!--RemoveStoryboard BeginStoryboardName="StoryboardHoverExit_BeginStoryboard" />-->
+                                <BeginStoryboard x:Name="StoryboardHoverEnter_BeginStoryboard" Storyboard="{StaticResource StoryboardHover.Enter}" />
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <!--RemoveStoryboard BeginStoryboardName="StoryboardHoverEnter_BeginStoryboard" />-->
+                                <BeginStoryboard x:Name="StoryboardHoverExit_BeginStoryboard" Storyboard="{StaticResource StoryboardHover.Exit}" />
+                            </Trigger.ExitActions>
+                        </Trigger>
+                        <Trigger Property="IsDragging" Value="True">
+                            <Trigger.EnterActions>
+                                <!--RemoveStoryboard BeginStoryboardName="StoryboardDraggingExit_BeginStoryboard" />-->
+                                <BeginStoryboard x:Name="StoryboardDraggingEnter_BeginStoryboard" Storyboard="{StaticResource StoryboardDragging.Enter}" />
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <!--RemoveStoryboard BeginStoryboardName="StoryboardDraggingEnter_BeginStoryboard" />-->
+                                <BeginStoryboard x:Name="StoryboardDraggingExit_BeginStoryboard" Storyboard="{StaticResource StoryboardDragging.Exit}" />
+                            </Trigger.ExitActions>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="Root" Property="Opacity" Value="0" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="ScrollBarThumbVertical" TargetType="{x:Type Thumb}">
+        <Setter Property="MinHeight" Value="4" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Thumb}">
+                    <ControlTemplate.Resources>
+                        <Storyboard x:Key="StoryboardHover.Enter">
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity" Storyboard.TargetName="HoverState">
+                                <EasingDoubleKeyFrame KeyTime="0:0:0.10" Value="1" />
+                            </DoubleAnimationUsingKeyFrames>
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity" Storyboard.TargetName="DefaultState">
+                                <DiscreteDoubleKeyFrame KeyTime="0:0:0.10" Value="0" />
+                            </DoubleAnimationUsingKeyFrames>
+                        </Storyboard>
+                        <Storyboard x:Key="StoryboardHover.Exit">
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity" Storyboard.TargetName="HoverState">
+                                <EasingDoubleKeyFrame KeyTime="0:0:0.30" Value="0" />
+                            </DoubleAnimationUsingKeyFrames>
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity" Storyboard.TargetName="DefaultState">
+                                <DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="1" />
+                            </DoubleAnimationUsingKeyFrames>
+                        </Storyboard>
+                        <Storyboard x:Key="StoryboardDragging.Enter">
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity" Storyboard.TargetName="DraggingState">
+                                <EasingDoubleKeyFrame KeyTime="0:0:0.05" Value="1" />
+                            </DoubleAnimationUsingKeyFrames>
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity" Storyboard.TargetName="HoverState">
+                                <DiscreteDoubleKeyFrame KeyTime="0:0:0.05" Value="0" />
+                            </DoubleAnimationUsingKeyFrames>
+                        </Storyboard>
+                        <Storyboard x:Key="StoryboardDragging.Exit">
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity" Storyboard.TargetName="DraggingState">
+                                <EasingDoubleKeyFrame KeyTime="0:0:0.30" Value="0" />
+                            </DoubleAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </ControlTemplate.Resources>
+                    <Grid x:Name="Root" SnapsToDevicePixels="True">
+                        <Border x:Name="Shadow" Background="#FF000000" CornerRadius="2" Margin="1,1,-1,-1" Opacity="0.10" />
+                        <Grid>
+                            <Grid x:Name="DefaultState">
+                                <Border Background="{StaticResource ScrollBar.Vertical.DefaultState.Border1}" CornerRadius="2" Padding="1">
+                                    <Border Background="{StaticResource ScrollBar.Vertical.DefaultState.Border2}" CornerRadius="1" Padding="1">
+                                        <Border Background="{StaticResource ScrollBar.Vertical.DefaultState.Border3}" CornerRadius="0">
+                                            <dx:MinSizeArranger MinChildHeight="12">
+                                                <Grid Height="10" Width="9" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                                    <Rectangle Stretch="Fill" Fill="{StaticResource ScrollBar.DefaultState.Path.BorderBrush}" />
+                                                    <Rectangle Stretch="Fill" Fill="{StaticResource ScrollBar.DefaultState.Path.Background}" Margin="1" Height="2" VerticalAlignment="Top" />
+                                                    <Rectangle Stretch="Fill" Fill="{StaticResource ScrollBar.DefaultState.Path.Background}" Margin="1,4" />
+                                                    <Rectangle Stretch="Fill" Fill="{StaticResource ScrollBar.DefaultState.Path.Background}" Margin="1" Height="2" VerticalAlignment="Bottom" />
+                                                </Grid>
+                                            </dx:MinSizeArranger>
+                                        </Border>
+                                    </Border>
+                                </Border>
+                            </Grid>
+                            <Grid x:Name="HoverState" Opacity="0">
+                                <Border Background="{StaticResource ScrollBar.Vertical.HoverState.Border1}" CornerRadius="2" Padding="1">
+                                    <Border Background="{StaticResource ScrollBar.Vertical.HoverState.Border2}" CornerRadius="1" Padding="1">
+                                        <Border Background="{StaticResource ScrollBar.Vertical.HoverState.Border3}" CornerRadius="0">
+                                            <dx:MinSizeArranger MinChildHeight="12">
+                                                <Grid Height="10" Width="9" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                                    <Rectangle Stretch="Fill" Fill="{StaticResource ScrollBar.HoverState.Path.BorderBrush}" />
+                                                    <Rectangle Stretch="Fill" Fill="{StaticResource ScrollBar.HoverState.Path.Background}" Margin="1" Height="2" VerticalAlignment="Top" />
+                                                    <Rectangle Stretch="Fill" Fill="{StaticResource ScrollBar.HoverState.Path.Background}" Margin="1,4" />
+                                                    <Rectangle Stretch="Fill" Fill="{StaticResource ScrollBar.HoverState.Path.Background}" Margin="1" Height="2" VerticalAlignment="Bottom" />
+                                                </Grid>
+                                            </dx:MinSizeArranger>
+                                        </Border>
+                                    </Border>
+                                </Border>
+                            </Grid>
+                            <Grid x:Name="DraggingState" Opacity="0">
+                                <Border Background="{StaticResource ScrollBar.Vertical.DraggingState.Border1}" CornerRadius="2" Padding="1">
+                                    <Border Background="{StaticResource ScrollBar.Vertical.DraggingState.Border2}" CornerRadius="1" Padding="1">
+                                        <Border Background="{StaticResource ScrollBar.Vertical.DraggingState.Border3}" CornerRadius="0">
+                                            <dx:MinSizeArranger MinChildHeight="12">
+                                                <Grid Height="10" Width="9" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                                    <Rectangle Stretch="Fill" Fill="{StaticResource ScrollBar.DraggingState.Path.BorderBrush}" />
+                                                    <Rectangle Stretch="Fill" Fill="{StaticResource ScrollBar.DraggingState.Path.Background}" Margin="1" Height="2" VerticalAlignment="Top" />
+                                                    <Rectangle Stretch="Fill" Fill="{StaticResource ScrollBar.DraggingState.Path.Background}" Margin="1,4" />
+                                                    <Rectangle Stretch="Fill" Fill="{StaticResource ScrollBar.DraggingState.Path.Background}" Margin="1" Height="2" VerticalAlignment="Bottom" />
+                                                </Grid>
+                                            </dx:MinSizeArranger>
+                                        </Border>
+                                    </Border>
+                                </Border>
+                            </Grid>
+                        </Grid>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Trigger.EnterActions>
+                                <!--<RemoveStoryboard BeginStoryboardName="StoryboardHoverExit_BeginStoryboard" />-->
+                                <BeginStoryboard x:Name="StoryboardHoverEnter_BeginStoryboard" Storyboard="{StaticResource StoryboardHover.Enter}" />
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <!--<RemoveStoryboard BeginStoryboardName="StoryboardHoverEnter_BeginStoryboard" />-->
+                                <BeginStoryboard x:Name="StoryboardHoverExit_BeginStoryboard" Storyboard="{StaticResource StoryboardHover.Exit}" />
+                            </Trigger.ExitActions>
+                        </Trigger>
+                        <Trigger Property="IsDragging" Value="True">
+                            <Trigger.EnterActions>
+                                <!--<RemoveStoryboard BeginStoryboardName="StoryboardDraggingExit_BeginStoryboard" />-->
+                                <BeginStoryboard x:Name="StoryboardDraggingEnter_BeginStoryboard" Storyboard="{StaticResource StoryboardDragging.Enter}" />
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <!--<RemoveStoryboard BeginStoryboardName="StoryboardDraggingEnter_BeginStoryboard" />-->
+                                <BeginStoryboard x:Name="StoryboardDraggingExit_BeginStoryboard" Storyboard="{StaticResource StoryboardDragging.Exit}" />
+                            </Trigger.ExitActions>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="Root" Property="Opacity" Value="0" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="{dxdst:ScrollBarThemeKey ResourceKey=ScrollingCornerStyle}" TargetType="{x:Type Border}">
+        <Setter Property="Background" Value="#FFF0F0F0 " />
+    </Style>
+
+    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=System.Windows.Controls.Primitives.ScrollBar}" TargetType="{x:Type ScrollBar}">
+        <!--BEGIN WPF-->
+        <Setter Property="dx:ScrollBarExtensions.ListeningScrollBarThumbDragDelta" Value="True"/>
+        <Setter Property="dx:ScrollBarExtensions.ScrollViewerMouseMoved" Value="{Binding Path=(dx:ScrollBarExtensions.ScrollViewerMouseMoved), RelativeSource={RelativeSource TemplatedParent}}"/>
+        <Setter Property="dx:ScrollBarExtensions.ScrollViewerSizeChanged" Value="{Binding Path=(dx:ScrollBarExtensions.ScrollViewerSizeChanged), RelativeSource={RelativeSource TemplatedParent}}"/>
+        <Setter Property="dx:ScrollBarExtensions.IsTouchScrollBarMode">
+            <Setter.Value>
+                <Binding Path="(dx:ScrollBarExtensions.ScrollBarMode)" RelativeSource="{RelativeSource Self}">
+                    <Binding.Converter>
+                        <dx:EnumToObjectConverter DefaultValue="True">
+                            <dx:EnumToObjectConverter.Values>
+                                <dx:EnumObjectProvider x:Key="Standard" Value="False"/>
+                            </dx:EnumToObjectConverter.Values>
+                        </dx:EnumToObjectConverter>
+                    </Binding.Converter>
+                </Binding>
+            </Setter.Value>
+        </Setter>
+        <!--END WPF-->
+        <Setter Property="Background" Value="{StaticResource ScrollBar.Vertical.Background}" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="Width" Value="17" />
+        <Setter Property="MinWidth" Value="13" />
+        <Setter Property="Stylus.IsPressAndHoldEnabled" Value="False" />
+        <Setter Property="Stylus.IsFlicksEnabled" Value="False" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ScrollBar}">
+                    <ControlTemplate.Resources>
+                        <Storyboard x:Key="StoryboardHover.Enter">
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity" Storyboard.TargetName="RepeatButtonUp">
+                                <EasingDoubleKeyFrame KeyTime="0:0:0.10" Value="1" />
+                            </DoubleAnimationUsingKeyFrames>
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity" Storyboard.TargetName="RepeatButtonDown">
+                                <EasingDoubleKeyFrame KeyTime="0:0:0.10" Value="1" />
+                            </DoubleAnimationUsingKeyFrames>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Visibility" Storyboard.TargetName="UpArrow">
+                                <DiscreteObjectKeyFrame KeyTime="0:0:0.10" Value="{x:Static Visibility.Collapsed}" />
+                            </ObjectAnimationUsingKeyFrames>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Visibility" Storyboard.TargetName="DownArrow">
+                                <DiscreteObjectKeyFrame KeyTime="0:0:0.10" Value="{x:Static Visibility.Collapsed}" />
+                            </ObjectAnimationUsingKeyFrames>
+                        </Storyboard>
+                        <Storyboard x:Key="StoryboardHover.Exit">
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity" Storyboard.TargetName="RepeatButtonUp">
+                                <EasingDoubleKeyFrame KeyTime="0:0:0.30" Value="0" />
+                            </DoubleAnimationUsingKeyFrames>
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity" Storyboard.TargetName="RepeatButtonDown">
+                                <EasingDoubleKeyFrame KeyTime="0:0:0.30" Value="0" />
+                            </DoubleAnimationUsingKeyFrames>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Visibility" Storyboard.TargetName="UpArrow">
+                                <DiscreteObjectKeyFrame KeyTime="0:0:0" Value="{x:Static Visibility.Visible}" />
+                            </ObjectAnimationUsingKeyFrames>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Visibility" Storyboard.TargetName="DownArrow">
+                                <DiscreteObjectKeyFrame KeyTime="0:0:0" Value="{x:Static Visibility.Visible}" />
+                            </ObjectAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </ControlTemplate.Resources>
+                    <Grid Background="{TemplateBinding Background}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition MaxHeight="{DynamicResource {x:Static SystemParameters.VerticalScrollBarButtonHeightKey}}" />
+                            <RowDefinition Height="0.00001*" />
+                            <RowDefinition MaxHeight="{DynamicResource {x:Static SystemParameters.VerticalScrollBarButtonHeightKey}}" />
+                        </Grid.RowDefinitions>
+                        <Grid Margin="1" Grid.Row="0">
+                            <RepeatButton x:Name="RepeatButtonUp" Command="{x:Static ScrollBar.LineUpCommand}" Content="{StaticResource UpArrowGeometry}" Style="{StaticResource ScrollBarVerticalButtonStyle}" Opacity="0" />
+                            <Grid x:Name="UpArrow" Width="9" Height="5" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0" SnapsToDevicePixels="True">
+                                <Path Fill="{StaticResource ScrollBar.DefaultState.Path.BorderBrush}" Data="{StaticResource UpArrowGeometry}" Margin="-1" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                <Path Fill="{StaticResource ScrollBar.DefaultState.Path.Background}" Data="{StaticResource UpArrowGeometry}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </Grid>
+                        </Grid>
+                        <Track x:Name="PART_Track" Grid.Row="1" IsDirectionReversed="True">
+                            <Track.DecreaseRepeatButton>
+                                <RepeatButton Command="{x:Static ScrollBar.PageUpCommand}" Style="{StaticResource VerticalScrollBarPageButtonStyle}" />
+                            </Track.DecreaseRepeatButton>
+                            <Track.IncreaseRepeatButton>
+                                <RepeatButton Command="{x:Static ScrollBar.PageDownCommand}" Style="{StaticResource VerticalScrollBarPageButtonStyle}" />
+                            </Track.IncreaseRepeatButton>
+                            <Track.Thumb>
+                                <Thumb Style="{StaticResource ScrollBarThumbVertical}" Margin="1,0" />
+                            </Track.Thumb>
+                        </Track>
+                        <Grid Margin="1" Grid.Row="2">
+                            <RepeatButton x:Name="RepeatButtonDown" Command="{x:Static ScrollBar.LineDownCommand}" Content="{StaticResource DownArrowGeometry}" Style="{StaticResource ScrollBarVerticalButtonStyle}" Opacity="0" />
+                            <Grid x:Name="DownArrow" Width="9" Height="5" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="2" SnapsToDevicePixels="True">
+                                <Path Data="{StaticResource DownArrowGeometry}" Margin="-1" HorizontalAlignment="Center" VerticalAlignment="Center" Fill="{StaticResource ScrollBar.DefaultState.Path.BorderBrush}" />
+                                <Path Fill="{StaticResource ScrollBar.DefaultState.Path.Background}" Data="{StaticResource DownArrowGeometry}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </Grid>
+                        </Grid>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Trigger.EnterActions>
+                                <!--<RemoveStoryboard BeginStoryboardName="StoryboardHoverExit_BeginStoryboard" />-->
+                                <BeginStoryboard x:Name="StoryboardHoverEnter_BeginStoryboard" Storyboard="{StaticResource StoryboardHover.Enter}" />
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <!--<RemoveStoryboard BeginStoryboardName="StoryboardHoverEnter_BeginStoryboard" />-->
+                                <BeginStoryboard x:Name="StoryboardHoverExit_BeginStoryboard" Storyboard="{StaticResource StoryboardHover.Exit}" />
+                            </Trigger.ExitActions>
+                            <Setter TargetName="UpArrow" Property="Visibility" Value="Collapsed" />
+                            <Setter TargetName="DownArrow" Property="Visibility" Value="Collapsed" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="Orientation" Value="Vertical"/>
+                    <Condition Property="dx:ScrollBarExtensions.IsTouchScrollBarMode" Value="True"/>
+                </MultiTrigger.Conditions>
+                <MultiTrigger.Setters>
+                    <Setter Property="Width" Value="16" />
+                    <Setter Property="MinWidth" Value="16" />
+                    <Setter Property="Template" Value="{DynamicResource {dxdst:ScrollBarThemeKey ResourceKey=ScrollBarVertTouchTemplate}}"/>
+                </MultiTrigger.Setters>
+            </MultiTrigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="Orientation" Value="Horizontal"/>
+                    <Condition Property="dx:ScrollBarExtensions.IsTouchScrollBarMode" Value="True"/>
+                </MultiTrigger.Conditions>
+                <MultiTrigger.Setters>
+                    <Setter Property="Background" Value="{StaticResource ScrollBar.Horizontal.Background}" />
+                    <Setter Property="Width" Value="Auto" />
+                    <Setter Property="MinWidth" Value="0" />
+                    <Setter Property="Height" Value="16" />
+                    <Setter Property="MinHeight" Value="16" />
+                    <Setter Property="Template" Value="{DynamicResource {dxdst:ScrollBarThemeKey ResourceKey=ScrollBarHorzTouchTemplate}}"/>
+                </MultiTrigger.Setters>
+            </MultiTrigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="Orientation" Value="Horizontal"/>
+                    <Condition Property="dx:ScrollBarExtensions.IsTouchScrollBarMode" Value="False"/>
+                </MultiTrigger.Conditions>
+                <MultiTrigger.Setters>
+                    <Setter Property="Background" Value="{StaticResource ScrollBar.Horizontal.Background}" />
+                    <Setter Property="Width" Value="Auto" />
+                    <Setter Property="MinWidth" Value="0" />
+                    <Setter Property="Height" Value="17" />
+                    <Setter Property="MinHeight" Value="13" />
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type ScrollBar}">
+                                <ControlTemplate.Resources>
+                                    <Storyboard x:Key="StoryboardHover.Enter">
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity" Storyboard.TargetName="RepeatButtonLeft">
+                                            <EasingDoubleKeyFrame KeyTime="0:0:0.10" Value="1" />
+                                        </DoubleAnimationUsingKeyFrames>
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity" Storyboard.TargetName="RepeatButtonRight">
+                                            <EasingDoubleKeyFrame KeyTime="0:0:0.10" Value="1" />
+                                        </DoubleAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Visibility" Storyboard.TargetName="LeftArrow">
+                                            <DiscreteObjectKeyFrame KeyTime="0:0:0.10" Value="{x:Static Visibility.Collapsed}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Visibility" Storyboard.TargetName="RightArrow">
+                                            <DiscreteObjectKeyFrame KeyTime="0:0:0.10" Value="{x:Static Visibility.Collapsed}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                    <Storyboard x:Key="StoryboardHover.Exit">
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity" Storyboard.TargetName="RepeatButtonLeft">
+                                            <EasingDoubleKeyFrame KeyTime="0:0:0.30" Value="0" />
+                                        </DoubleAnimationUsingKeyFrames>
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity" Storyboard.TargetName="RepeatButtonRight">
+                                            <EasingDoubleKeyFrame KeyTime="0:0:0.30" Value="0" />
+                                        </DoubleAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Visibility" Storyboard.TargetName="LeftArrow">
+                                            <DiscreteObjectKeyFrame KeyTime="0:0:0.10" Value="{x:Static Visibility.Visible}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Visibility" Storyboard.TargetName="RightArrow">
+                                            <DiscreteObjectKeyFrame KeyTime="0:0:0.10" Value="{x:Static Visibility.Visible}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </ControlTemplate.Resources>
+                                <Grid Background="{TemplateBinding Background}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition MaxWidth="{DynamicResource {x:Static SystemParameters.HorizontalScrollBarButtonWidthKey}}" />
+                                        <ColumnDefinition Width="0.00001*" />
+                                        <ColumnDefinition MaxWidth="{DynamicResource {x:Static SystemParameters.HorizontalScrollBarButtonWidthKey}}" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid Margin="1" Grid.Column="0">
+                                        <RepeatButton x:Name="RepeatButtonLeft" Command="{x:Static ScrollBar.LineLeftCommand}" Content="{StaticResource LeftArrowGeometry}" Style="{StaticResource ScrollBarHorizontalButtonStyle}" Opacity="0" />
+                                        <Grid x:Name="LeftArrow" Width="5" Height="9" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" SnapsToDevicePixels="True">
+                                            <Path Fill="{StaticResource ScrollBar.DefaultState.Path.BorderBrush}" Data="{StaticResource LeftArrowGeometry}" Margin="-1" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                            <Path Fill="{StaticResource ScrollBar.DefaultState.Path.Background}" Data="{StaticResource LeftArrowGeometry}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                        </Grid>
+                                    </Grid>
+                                    <Track Grid.Column="1" x:Name="PART_Track">
+                                        <Track.DecreaseRepeatButton>
+                                            <RepeatButton Command="{x:Static ScrollBar.PageLeftCommand}" Style="{StaticResource HorizontalScrollBarPageButtonStyle}" />
+                                        </Track.DecreaseRepeatButton>
+                                        <Track.IncreaseRepeatButton>
+                                            <RepeatButton Command="{x:Static ScrollBar.PageRightCommand}" Style="{StaticResource HorizontalScrollBarPageButtonStyle}" />
+                                        </Track.IncreaseRepeatButton>
+                                        <Track.Thumb>
+                                            <Thumb Margin="0,1,0,1" Style="{StaticResource ScrollBarThumbHorizontal}" />
+                                        </Track.Thumb>
+                                    </Track>
+                                    <Grid Margin="1" Grid.Column="2">
+                                        <RepeatButton x:Name="RepeatButtonRight" Style="{StaticResource ScrollBarHorizontalButtonStyle}" Command="{x:Static ScrollBar.LineRightCommand}" Content="{StaticResource RightArrowGeometry}" Opacity="0" />
+                                        <Grid x:Name="RightArrow" Width="5" Height="9" HorizontalAlignment="Center" VerticalAlignment="Center" SnapsToDevicePixels="True">
+                                            <Path Fill="{StaticResource ScrollBar.DefaultState.Path.BorderBrush}" Data="{StaticResource RightArrowGeometry}" Margin="-1" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                            <Path Fill="{StaticResource ScrollBar.DefaultState.Path.Background}" Data="{StaticResource RightArrowGeometry}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                        </Grid>
+                                    </Grid>
+                                </Grid>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Trigger.EnterActions>
+                                            <!--<RemoveStoryboard BeginStoryboardName="StoryboardHoverExit_BeginStoryboard" />-->
+                                            <BeginStoryboard x:Name="StoryboardHoverEnter_BeginStoryboard" Storyboard="{StaticResource StoryboardHover.Enter}" />
+                                        </Trigger.EnterActions>
+                                        <Trigger.ExitActions>
+                                            <!--<RemoveStoryboard BeginStoryboardName="StoryboardHoverEnter_BeginStoryboard" />-->
+                                            <BeginStoryboard x:Name="StoryboardHoverExit_BeginStoryboard" Storyboard="{StaticResource StoryboardHover.Exit}" />
+                                        </Trigger.ExitActions>
+                                        <Setter TargetName="RightArrow" Property="Visibility" Value="Collapsed" />
+                                        <Setter TargetName="LeftArrow" Property="Visibility" Value="Collapsed" />
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </MultiTrigger.Setters>
+            </MultiTrigger>
+        </Style.Triggers>
+    </Style>
+
+</ResourceDictionary>

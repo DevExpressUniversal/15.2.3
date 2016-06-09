@@ -1,0 +1,65 @@
+﻿<UserControl x:Class="DevExpress.XtraRichEdit.Forms.HyperlinkFormControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+    xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+    xmlns:dxre="clr-namespace:DevExpress.Xpf.RichEdit"
+    dx:StyleManager.ApplyApplicationTheme="True">
+
+    <UserControl.Resources>
+        <dxre:RichEditStringIdConverter x:Key="RichEditStringIdConverter" />
+    </UserControl.Resources>
+    <Grid x:Name="LayoutRoot">
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="LinkType">
+                <VisualState x:Name="AddressSelect" />
+                <VisualState x:Name="BookmarkSelect">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="linkToName" Storyboard.TargetProperty="Text">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="Bookmark:" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="address" Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    <Visibility>Collapsed</Visibility>
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="bookmark" Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    <Visibility>Visible</Visibility>
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <TextBlock Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Text="{Binding Source={StaticResource RichEditStringIdConverter}, ConverterParameter=Caption_HyperlinkFormTextToDisplayLabel, Converter={StaticResource RichEditStringIdConverter}}" Margin="0,0,3,0" dx:StyleManager.ApplyApplicationTheme="True" />
+        <TextBlock Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Text="{Binding Source={StaticResource RichEditStringIdConverter}, ConverterParameter=Caption_HyperlinkFormScreenTipLabel, Converter={StaticResource RichEditStringIdConverter}}" Margin="0,0,3,0" dx:StyleManager.ApplyApplicationTheme="True" />
+        <TextBlock Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" Text="{Binding Source={StaticResource RichEditStringIdConverter}, ConverterParameter=Caption_HyperlinkFormTargetFrameLabel, Converter={StaticResource RichEditStringIdConverter}}" Margin="0,0,3,0" dx:StyleManager.ApplyApplicationTheme="True" />
+        <TextBlock Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" Text="{Binding Source={StaticResource RichEditStringIdConverter}, ConverterParameter=Caption_HyperlinkFormLinkToLabel, Converter={StaticResource RichEditStringIdConverter}}" Margin="0,0,3,0" dx:StyleManager.ApplyApplicationTheme="True" />
+        <TextBlock Grid.Row="4" Grid.Column="0" x:Name="linkToName" VerticalAlignment="Center" Text="{Binding Source={StaticResource RichEditStringIdConverter}, ConverterParameter=Caption_HyperlinkFormAddressLabel, Converter={StaticResource RichEditStringIdConverter}}" Margin="0,0,3,0" dx:StyleManager.ApplyApplicationTheme="True" />
+        <dxe:TextEdit Grid.Row="0" Grid.Column="1" x:Name="textToDisplay" Margin="3,3,0,0" VerticalAlignment="Center" dx:StyleManager.ApplyApplicationTheme="True" />
+        <dxe:TextEdit Grid.Row="1" Grid.Column="1" x:Name="screenTip" Margin="3,3,0,0" VerticalAlignment="Center" dx:StyleManager.ApplyApplicationTheme="True" />
+        <dxe:ComboBoxEdit Grid.Row="2" Grid.Column="1" x:Name="targetFrame" DisplayMember="DisplayText" VerticalAlignment="Center" Margin="3,3,0,0" dx:StyleManager.ApplyApplicationTheme="True" />
+        <StackPanel Grid.Row="3" Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
+            <RadioButton x:Name="linkToAddress" GroupName="LinkTo" Content="{Binding Source={StaticResource RichEditStringIdConverter}, ConverterParameter=Caption_HyperlinkFormExistingFileOrWebPageRadioButton, Converter={StaticResource RichEditStringIdConverter}}" Margin="3,3,5,3" IsChecked="True" Checked="OnLinkAddressChecked" dx:StyleManager.ApplyApplicationTheme="True" />
+            <RadioButton x:Name="linkToBookmark" GroupName="LinkTo" Content="{Binding Source={StaticResource RichEditStringIdConverter}, ConverterParameter=Caption_HyperlinkFormPlaceInThisDocumentRadioButton, Converter={StaticResource RichEditStringIdConverter}}" Margin="3,3,0,3" Checked="OnLinkBookmarkChecked" dx:StyleManager.ApplyApplicationTheme="True" />
+        </StackPanel>
+        <dxe:ButtonEdit Grid.Row="4" Grid.Column="1" x:Name="address" Margin="3,3,0,0" DefaultButtonClick="OnAddressButtonClick" VerticalAlignment="Center" dx:StyleManager.ApplyApplicationTheme="True" Visibility="Visible" />
+        <dxe:ComboBoxEdit Grid.Row="4" Grid.Column="1" x:Name="bookmark" Margin="3,3,0,0" dx:StyleManager.ApplyApplicationTheme="True" Visibility="Collapsed" VerticalAlignment="Center" />
+    </Grid>
+</UserControl>

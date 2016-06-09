@@ -1,0 +1,420 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{195CE63E-779F-4778-8FF2-185A76ECFC1E}</ProjectGuid>
+    <OutputType>library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DevExpress.Xpf.PivotGrid</RootNamespace>
+    <AssemblyName>DevExpress.Xpf.PivotGrid.v15.2</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineConstants>TRACE;DEBUG;DXBUILD2010</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <OutputPath>..\..\..\Bin\Framework\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineConstants>TRACE;DXBUILD2010</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <OutputPath>..\..\..\Bin\Framework\</OutputPath>
+  </PropertyGroup>
+  
+  
+  
+  <ItemGroup>
+    <Reference Include="DevExpress.Data.v15.2"><HintPath>..\..\..\Bin\Framework\DevExpress.Data.v15.2.dll</HintPath><Private>False</Private></Reference>
+    <Reference Include="DevExpress.Printing.v15.2.Core"><HintPath>..\..\..\Bin\Framework\DevExpress.Printing.v15.2.Core.dll</HintPath><Private>False</Private></Reference>
+    <Reference Include="DevExpress.Xpf.LayoutControl.v15.2"><HintPath>..\..\..\Bin\Framework\DevExpress.Xpf.LayoutControl.v15.2.dll</HintPath><Private>False</Private></Reference>
+    <Reference Include="DevExpress.Xpf.Printing.v15.2">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Bin\Framework\DevExpress.Xpf.Printing.v15.2.dll</HintPath>
+    <Private>False</Private></Reference>
+    <Reference Include="DevExpress.PivotGrid.v15.2.Core"><HintPath>..\..\..\Bin\Framework\DevExpress.PivotGrid.v15.2.Core.dll</HintPath><Private>False</Private></Reference>
+    <Reference Include="DevExpress.Xpf.Core.v15.2">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Bin\Framework\DevExpress.Xpf.Core.v15.2.dll</HintPath>
+    <Private>False</Private></Reference>
+    <Reference Include="DevExpress.Mvvm.v15.2">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Bin\Framework\DevExpress.Mvvm.v15.2.dll</HintPath>
+    <Private>False</Private></Reference>
+    
+    <Reference Include="System"><Private>False</Private></Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations"><Private>False</Private></Reference>
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    <Private>False</Private></Reference>
+    <Reference Include="System.Drawing"><Private>False</Private></Reference>
+    <Reference Include="System.Printing"><Private>False</Private></Reference>
+    <Reference Include="System.Xaml"><Private>False</Private></Reference>
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    <Private>False</Private></Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    <Private>False</Private></Reference>
+    <Reference Include="System.Data"><Private>False</Private></Reference>
+    <Reference Include="System.Xml"><Private>False</Private></Reference>
+    <Reference Include="UIAutomationClient"><Private>False</Private></Reference>
+    <Reference Include="UIAutomationProvider">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    <Private>False</Private></Reference>
+    <Reference Include="UIAutomationTypes"><Private>False</Private></Reference>
+    <Reference Include="WindowsBase">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    <Private>False</Private></Reference>
+    <Reference Include="PresentationCore">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    <Private>False</Private></Reference>
+    <Reference Include="PresentationFramework">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    <Private>False</Private></Reference>
+  </ItemGroup>
+  
+  <ItemGroup>
+    <Compile Include="Automation\Headers\FieldHeaderAutomationPeer.cs" />
+    <Compile Include="Automation\Headers\GroupHeaderAutomationPeer.cs" />
+    <Compile Include="Automation\Headers\HeaderAreaAutomationPeer.cs" />
+    <Compile Include="Automation\PivotGridAutomationPeer.cs" />
+    <Compile Include="Automation\PivotGridAutomationPeerBase.cs" />
+    <Compile Include="Automation\ScrollableArea\CellsAutomationPeer.cs" />
+    <Compile Include="Automation\ScrollableArea\Celltem.cs" />
+    <Compile Include="Automation\ScrollableArea\FieldValuesAutomationPeer.cs" />
+    <Compile Include="Automation\ScrollableArea\ScrollableAreaAutomationPeer.cs" />
+    <Compile Include="Automation\ScrollableArea\ScrollableAreaItemAutomationPeer.cs" />
+    <Compile Include="Automation\ScrollableArea\ValueItem.cs" />
+    <Compile Include="ConditionalFormatting\AggregationItemValueStorage.cs" />
+    <Compile Include="ConditionalFormatting\ConditionalFormattingDialogDirector.cs" />
+    <Compile Include="ConditionalFormatting\FormatCondition.cs" />
+    <Compile Include="ConditionalFormatting\FormatConditionBase.cs" />
+    <Compile Include="ConditionalFormatting\FormatConditionCollection.cs" />
+    <Compile Include="ConditionalFormatting\IndicatorFormatConditionBase.cs" />
+    <Compile Include="ConditionalFormatting\Native\Utils.cs" />
+    <Compile Include="ConditionalFormatting\PivotFormatConditionInfo.cs" />
+    <Compile Include="ConditionalFormatting\PivotTopBottomRuleFormatConditionInfo.cs" />
+    <Compile Include="Data\AsyncModeHelper.cs" />
+    <Compile Include="Data\ClientDataSources.cs" />
+    <Compile Include="Data\Converters.cs" />
+    <Compile Include="Data\DesignTimeAdorner.cs" />
+    <Compile Include="Data\PivotFieldItem.cs" />
+    <Compile Include="Data\PivotWpfChartDataSource.cs" />
+    <Compile Include="Data\PublicWrappers.cs" />
+    <Compile Include="PivotGrid\BestFit\BestFitter.cs" />
+    <Compile Include="PivotGrid\Cells\CellItems.cs" />
+    <Compile Include="PivotGrid\Cells\HorizontalScroll.cs" />
+    <Compile Include="PivotGrid\Cells\ScrollableAreaItem.cs" />
+    <Compile Include="PivotGrid\Cells\ScrollableCellsAreaPresenter.cs" />
+    <Compile Include="PivotGrid\Cells\ScrollUpdateDelayer.cs" />
+    <Compile Include="PivotGrid\Cells\SelectionScroller.cs" />
+    <Compile Include="PivotGrid\DragDrop\CellsDropTarget.cs" />
+    <Compile Include="PivotGrid\DragDrop\PivotDragDropManager.cs" />
+    <Compile Include="PivotGrid\DragDrop\RemoveColumnDropTarget.cs" />
+    <Compile Include="PivotGrid\DragDrop\PivotEmptyDropTarget.cs" />
+    <Compile Include="PivotGrid\DragDrop\InnerFieldListDropTarget.cs" />
+    <Compile Include="PivotGrid\DragDrop\PivotGridDropTarget.cs" />
+    <Compile Include="PivotGrid\DragDrop\PivotGridDropTargetBase.cs" />
+    <Compile Include="PivotGrid\DragDrop\PivotGridDropTargetFactoryExtension.cs" />
+    <Compile Include="PivotGrid\Exceptions.cs" />
+    <Compile Include="PivotGrid\FieldHeadersBase\FieldHeadersBase.cs" />
+    <Compile Include="PivotGrid\FieldHeadersBase\FieldListFieldsSoure.cs" />
+    <Compile Include="PivotGrid\FieldHeadersBase\FieldsSourceBase.cs" />
+    <Compile Include="PivotGrid\FieldHeadersBase\Interfaces.cs" />
+    <Compile Include="PivotGrid\FieldHeadersBase\RealFieldsSource.cs" />
+    <Compile Include="PivotGrid\FieldHeaders\InnerGroupHeader.cs" />
+    <Compile Include="PivotGrid\FieldHeaders\TreeViewFieldHeader.cs" />
+    <Compile Include="PivotGrid\FieldList\CustomizationFieldsTree.cs" />
+    <Compile Include="PivotGrid\FieldList\InnerFieldListControl.cs" />
+    <Compile Include="PivotGrid\FieldList\TreeViewFieldsPresenter.cs" />
+    <Compile Include="PivotGrid\FrameworkElements\DataAreaPopupEdit.cs" />
+    <Compile Include="PivotGrid\FrameworkElements\FilterPanelControl.cs" />
+    <Compile Include="PivotGrid\FrameworkElements\ImageHelper.cs" />
+    <Compile Include="PivotGrid\FrameworkElements\FilterPopupEdit.cs" />
+    <Compile Include="Data\ScrollableItemsList.cs" />
+    <Compile Include="PivotGrid\FrameworkElements\KPIImagePresenter.cs" />
+    <Compile Include="PivotGrid\PivotGridControl\PivotControlAutomation.cs" />
+    <Compile Include="PivotGrid\PivotGridControl\PivotControlEvents.cs" />
+    <Compile Include="PivotGrid\PivotGridControl\PivotControlPrint.cs" />
+    <Compile Include="PivotGrid\PivotGridControl\PivotControlProperties.cs" />
+    <Compile Include="PivotGrid\PivotGridControl\PivotControlStatics.cs" />
+    <Compile Include="Printing\ImageExporter.cs" />
+    <Compile Include="Printing\MultiplePagePrintRoot.cs" />
+    <Compile Include="Printing\PivotDataNodeBase.cs" />
+    <Compile Include="Printing\PivotPrintCells.cs" />
+    <Compile Include="Printing\PivotPrintFieldValues.cs" />
+    <Compile Include="Printing\PivotPrintHeaderArea.cs" />
+    <Compile Include="Printing\PivotPrintPage.cs" />
+    <Compile Include="Printing\PivotPrintRoot.cs" />
+    <Compile Include="Printing\PrintFieldHeader.cs" />
+    <Compile Include="Printing\PrintFieldValueCell.cs" />
+    <Compile Include="Printing\PrintGroupHeader.cs" />
+    <Compile Include="Printing\PrintHelper.cs" />
+    <Compile Include="Printing\SinglePagePrintRoot.cs" />
+    <Compile Include="Printing\TextExporter.cs" />
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <Page Include="Themes\DeepBlue.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\DeepBlue\Colors.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\DeepBlue\ExpandButtons.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\DeepBlue\FieldHeaders.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\DeepBlue\Generic.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\DeepBlue\PivotGridControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\DeepBlue\ScrollableArea.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    
+    <Page Include="Themes\Generic\FieldList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Generic\FieldHeaders.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Generic\MiscControls.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Generic\PivotGridControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Generic\ScrollableArea.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="Data\CustomTotal.cs" />
+    <Compile Include="Data\NativeDataSource.cs" />
+    <Compile Include="PivotGrid\FieldList\PivotExcelFieldListControl.cs" />
+    <Compile Include="PivotGrid\FieldList\FieldListLayoutSelector.cs" />
+    <Compile Include="PivotGrid\PivotGridControl.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="Themes\Generic\PrintingTemplates.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    
+    
+    
+    
+    
+    
+    <Page Include="Themes\OldGeneric\FieldHeaders.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Core\Categories.cs" />
+    <Compile Include="Data\FieldListFields.cs" />
+    <Compile Include="Data\Enums.cs" />
+    <Compile Include="Data\Exceptions.cs" />
+    <Compile Include="Data\Fields.cs">
+    </Compile>
+    <Compile Include="Data\FilterInfo.cs" />
+    <Compile Include="Data\Groups.cs" />
+    <Compile Include="Data\InternalField.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Data\PivotChildCollection.cs" />
+    <Compile Include="Data\Resizers.cs" />
+    <Compile Include="Data\SortBySummary.cs" />
+    <Compile Include="Data\VisualItems.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Data\WeakEventManagers.cs" />
+    <Compile Include="PivotGrid\BestFit\BestFitCalculator.cs" />
+    <Compile Include="PivotGrid\BestFit\BestFitColumn.cs" />
+    <Compile Include="PivotGrid\CellsAreaPresenter.cs" />
+    <Compile Include="PivotGrid\Events.cs" />
+    <Compile Include="PivotGrid\FieldHeaders\DragFieldHeader.cs" />
+    <Compile Include="PivotGrid\FieldHeaders\FieldHeader.cs" />
+    <Compile Include="PivotGrid\FieldHeaders\FieldHeaders.cs" />
+    <Compile Include="PivotGrid\FieldHeaders\GroupHeader.cs" />
+    <Compile Include="PivotGrid\FieldList\PivotFieldListControl.cs" />
+    <Compile Include="PivotGrid\FieldList\DefaultFieldList.cs" />
+    <Compile Include="PivotGrid\FieldValuesPresenter.cs" />
+    <Compile Include="Data\GridData.cs" />
+    <Compile Include="PivotGrid\FrameworkElements\DXThemesLoader.cs" />
+    <Compile Include="PivotGrid\FrameworkElements\FieldValueExpandButton.cs" />
+    <Compile Include="PivotGrid\Commands.cs" />
+    <Compile Include="PivotGrid\FrameworkElements\PivotGridScroller.cs" />
+    <Compile Include="PivotGrid\FrameworkElements\FieldHeadersPanel.cs" />
+    <Compile Include="PivotGrid\Localization.cs" />
+    <Compile Include="PivotGrid\Menu.cs" />
+    <Compile Include="Serialization\SerializationOptions.cs" />
+    <Compile Include="Serialization\SerializationProvider.cs" />
+    <Compile Include="PivotGrid\ScrollableAreaPresenter.cs" />
+    <Compile Include="Serialization\SerializationController.cs" />
+    <Compile Include="PivotGrid\ThemeKeys.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\ItemRefreshData.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\ItemShowFieldList.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\ItemHideFieldList.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\BottomPanelOnly1by4.png" />
+    <EmbeddedResource Include="Images\BottomPanelOnly2by2.png" />
+    <EmbeddedResource Include="Images\Customization2007Button.png" />
+    <EmbeddedResource Include="Images\Customization2007Column.png" />
+    <EmbeddedResource Include="Images\Customization2007Data.png" />
+    <EmbeddedResource Include="Images\TopPanelOnly.png" />
+    <EmbeddedResource Include="Images\Customization2007Filter.png" />
+    <EmbeddedResource Include="Images\Customization2007Row.png" />
+    <EmbeddedResource Include="Images\StackedSideBySide.png" />
+    <EmbeddedResource Include="Images\StackedDefault.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\ItemHidePrefilter.png" />
+    <EmbeddedResource Include="Images\ItemShowPrefilter.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\Customization2007HiddenFields.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\CustomizationTreeNodeAttribute.png" />
+    <EmbeddedResource Include="Images\CustomizationTreeNodeDimension.png" />
+    <EmbeddedResource Include="Images\CustomizationTreeNodeHierarchy.png" />
+    <EmbeddedResource Include="Images\CustomizationTreeNodeMeasure.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\CustomizationTreeNodeFolderClosed.png" />
+    <EmbeddedResource Include="Images\CustomizationTreeNodeKPI.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\CustomizationTreeNodeFolderOpen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\CustomizationTreeNodeCalculatedMeasure.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <PropertyGroup>
+    
+  </PropertyGroup>
+  <PropertyGroup>
+    
+  </PropertyGroup>
+<ItemGroup><EmbeddedResource Include="Descriptions.resx" /></ItemGroup><ItemGroup><Compile Include="Descriptions.cs" /></ItemGroup></Project>

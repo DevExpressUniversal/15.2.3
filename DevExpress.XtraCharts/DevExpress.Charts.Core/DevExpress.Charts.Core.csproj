@@ -1,0 +1,293 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{74283B70-7A52-48CD-9EE8-28A9A9D4E417}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>DevExpress.Charts</RootNamespace>
+    <AssemblyName>DevExpress.Charts.v15.2.Core</AssemblyName>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>..\..\DevExpress.Key\StrongKey.snk</AssemblyOriginatorKeyFile>
+    <DelaySign>false</DelaySign>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\..\Bin\Framework\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\..\Bin\Framework\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  
+  
+  <ItemGroup>
+    <Reference Include="DevExpress.Data.v15.2">
+      <Name>DevExpress.Data.v15.2</Name>
+      <Private>False</Private>
+    <HintPath>..\..\..\Bin\Framework\DevExpress.Data.v15.2.dll</HintPath></Reference>
+    
+    <Reference Include="System"><Private>False</Private></Reference>
+    <Reference Include="System.Data"><Private>False</Private></Reference>
+    <Reference Include="System.Xml"><Private>False</Private></Reference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <PropertyGroup>
+    
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="AutoLayout\SimpleDiagramAutoLayoutHelper.cs" />
+    <Compile Include="AutoLayout\VisibilityController.cs" />
+    <Compile Include="Axes\AxisGridMapping.cs" />
+    <Compile Include="Axes\AxisLabelRotation.cs" />
+    <Compile Include="Axes\AxisLabelsResolveOverlappingHelper.cs" />
+    <Compile Include="ChartData\Axes\AxisGridItem.cs" />
+    <Compile Include="ChartData\Axes\MeasureUnitsCalculators\DateTimeMeasureUnitsCalculator.cs" />
+    <Compile Include="ChartData\Axes\MeasureUnitsCalculators\MeasureUnitsCalculatorBase.cs" />
+    <Compile Include="ChartData\Axes\MeasureUnitsCalculators\NumericMeasureUnitsCalculator.cs" />
+    <Compile Include="ChartData\Axes\MeasureUnitsCalculators\UnitSelector.cs" />
+    <Compile Include="ChartData\RefinedSeriesRepository.cs" />
+    <Compile Include="ChartData\SeriesInteractions\FullStackedInteractionContainer.cs" />
+    <Compile Include="ChartData\SeriesInteractions\InteractionKey.cs" />
+    <Compile Include="ChartData\SeriesInteractions\RangeSeriesContainer.cs" />
+    <Compile Include="ChartData\SeriesInteractions\SeriesContainer.cs" />
+    <Compile Include="ChartData\SeriesInteractions\SeriesGroupsInteractionContainer.cs" />
+    <Compile Include="ChartData\SeriesInteractions\SeriesGroupsManager.cs" />
+    <Compile Include="ChartData\SeriesInteractions\SeriesInteractionContainer.cs" />
+    <Compile Include="ChartData\SeriesInteractions\SideBySideInteractionContainer.cs" />
+    <Compile Include="ChartData\SeriesInteractions\SimpleSeriesContainer.cs" />
+    <Compile Include="ChartData\SeriesInteractions\SingleSeriesContainer.cs" />
+    <Compile Include="ChartData\SeriesInteractions\StackedInteractionContainer.cs" />
+    <Compile Include="ChartData\SeriesInteractions\XYSeriesContainer.cs" />
+    <Compile Include="ChartData\SeriesInteractions\XYWSeriesContainer.cs" />
+    <Compile Include="Diagrams\SimpleDiagram\Funnel2DLayoutCalculator.cs" />
+    <Compile Include="Indicators\BollingerBandsCalculator.cs" />
+    <Compile Include="Indicators\SeparatePaneIndicatorCalculators\TripleExponentialMovingAverageTrix.cs" />
+    <Compile Include="Indicators\SeparatePaneIndicatorCalculators\AverageTrueRangeCalculator.cs" />
+    <Compile Include="Indicators\SeparatePaneIndicatorCalculators\CommodityChannelIndexCalculator.cs" />
+    <Compile Include="Indicators\SeparatePaneIndicatorCalculators\DetrendedPriceOscillatorCalculator.cs" />
+    <Compile Include="Indicators\SeparatePaneIndicatorCalculators\MassIndexCalculator.cs" />
+    <Compile Include="Indicators\SeparatePaneIndicatorCalculators\MovingAverageConvergenceDivergenceCalculator.cs" />
+    <Compile Include="Indicators\SeparatePaneIndicatorCalculators\RateOfChangeCalculator.cs" />
+    <Compile Include="Indicators\SeparatePaneIndicatorCalculators\RelativeStrengthIndexCalculator.cs" />
+    <Compile Include="Indicators\SeparatePaneIndicatorCalculators\StandardDeviationCalculator.cs" />
+    <Compile Include="Indicators\SeparatePaneIndicatorCalculators\ChaikinsVolatilityCalculator.cs" />
+    <Compile Include="Indicators\SeparatePaneIndicatorCalculators\WilliamsRCalculator.cs" />
+    <Compile Include="Model\AreaSeries.cs" />
+    <Compile Include="Model\BarSeries.cs" />
+    <Compile Include="ChartData\Axes\AxisInterfaces.cs" />
+    <Compile Include="ChartData\Axes\GridTextData.cs" />
+    <Compile Include="ChartData\AxisScrollingZoomingController.cs" />
+    <Compile Include="ChartData\AxisScrollingZoomingControllerRepository.cs" />
+    <Compile Include="ChartData\InteractionManager.cs" />
+    <Compile Include="ChartData\PatternParser.cs" />
+    <Compile Include="ChartData\RangeUpdateStrategy\DatetimeAxisRangeUpdateStrategy.cs" />
+    <Compile Include="ChartData\RangeUpdateStrategy\NumericalAxisRangeUpdateStrategy.cs" />
+    <Compile Include="ChartData\RangeUpdateStrategy\QualitativeAxisRangeUpdateStrategy.cs" />
+    <Compile Include="ChartData\RangeUpdateStrategy\RangeUpdateManager.cs" />
+    <Compile Include="ChartData\RangeUpdateStrategy\RangeUpdateStrategy.cs" />
+    <Compile Include="ChartData\RangeUpdateStrategy\SideMarginCalculator.cs" />
+    <Compile Include="ChartData\RefinedSeriesGroup.cs" />
+    <Compile Include="ChartData\ChartDataUpdate.cs" />
+    <Compile Include="ChartData\SeriesController.cs" />
+    <Compile Include="ChartData\SeriesInteractions\NestedDoughnutInteractionContainer.cs" />
+    <Compile Include="ChartData\SeriesInteractions\InteractionUtils.cs" />
+    <Compile Include="ChartData\RangeUpdateStrategy\RangeHelper.cs" />
+    <Compile Include="ChartData\SeriesInteractions\SeriesInteractionLayout.cs" />
+    <Compile Include="ChartUpdateInfo.cs" />
+    <Compile Include="ChartData\Axes\ScaleTypeMap.cs" />
+    <Compile Include="Diagrams\XYDiagram\AnnotationLayout.cs" />
+    <Compile Include="Diagrams\SimpleDiagram\ResolveOverlapping\SimpleDiagramResolveOverlappingAlgorithm.cs" />
+    <Compile Include="Diagrams\XYDiagram\AxisVisibilityInPanes.cs" />
+    <Compile Include="Diagrams\XYDiagram\CrosshairInfo.cs" />
+    <Compile Include="Diagrams\XYDiagram\CrosshairManager.cs" />
+    <Compile Include="Diagrams\XYDiagram\InternalCoordinates.cs" />
+    <Compile Include="GeometricPrimitives\BezierRangeStrip.cs" />
+    <Compile Include="GeometricPrimitives\BezierStrip.cs" />
+    <Compile Include="GeometricPrimitives\GeometryStripCreator.cs" />
+    <Compile Include="GeometricPrimitives\GRealEllipse.cs" />
+    <Compile Include="GeometricPrimitives\GRealVector2D.cs" />
+    <Compile Include="GeometricPrimitives\GRealSize2D.cs" />
+    <Compile Include="GeometricPrimitives\RangeStripTriangulation.cs" />
+    <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="Axes\AxisRangeLimits.cs" />
+    <Compile Include="Axes\AxisValueContainer.cs" />
+    <Compile Include="Axes\CustomElements.cs" />
+    <Compile Include="Axes\AxisTextData.cs" />
+    <Compile Include="Diagrams\SimpleDiagram\NormalizedValuesCalculators.cs" />
+    <Compile Include="GeometricPrimitives\GRealRect2D.cs" />
+    <Compile Include="Axes\Transformations.cs" />
+    <Compile Include="Binding\BindingProcedure.cs" />
+    <Compile Include="ChartInterfaces.cs" />
+    <Compile Include="Diagrams\SimpleDiagram\SimpleDiagramLayout.cs" />
+    <Compile Include="GeometricPrimitives\GeometricUtils.cs" />
+    <Compile Include="GeometricPrimitives\GRealLine2D.cs" />
+    <Compile Include="GeometricPrimitives\GPoint2D.cs" />
+    <Compile Include="GeometricPrimitives\GPolygon2D.cs" />
+    <Compile Include="GeometricPrimitives\GRealPoint2D.cs" />
+    <Compile Include="GeometricPrimitives\GRect2D.cs" />
+    <Compile Include="GeometricPrimitives\IGeometryStrip.cs" />
+    <Compile Include="GeometricPrimitives\LineStrip.cs" />
+    <Compile Include="GeometricPrimitives\RangeStrip.cs" />
+    <Compile Include="Indicators\FibonacciCircle.cs" />
+    <Compile Include="Indicators\FibonacciLine.cs" />
+    <Compile Include="Indicators\IndicatorsCalculators.cs" />
+    <Compile Include="Indicators\MovingAveragesCalculators.cs" />
+    <Compile Include="Interfaces.cs" />
+    <Compile Include="Model\Chart.cs" />
+    <Compile Include="Model\Axes.cs" />
+    <Compile Include="Model\Appearance.cs" />
+    <Compile Include="Model\FinancialSeries.cs" />
+    <Compile Include="Model\Exceptions.cs" />
+    <Compile Include="Model\Controller.cs" />
+    <Compile Include="Model\LineSeries.cs" />
+    <Compile Include="Model\PieSeries.cs" />
+    <Compile Include="Model\PointSeries.cs" />
+    <Compile Include="Model\SeriesView.cs" />
+    <Compile Include="Model\ModelBase.cs" />
+    <Compile Include="Model\Legend.cs" />
+    <Compile Include="Model\Series.cs" />
+    <Compile Include="Model\Titles.cs" />
+    <Compile Include="NotifyCenter\INotificationObserver.cs" />
+    <Compile Include="NotifyCenter\Notification.cs" />
+    <Compile Include="NotifyCenter\NotificationCenter.cs" />
+    <Compile Include="NotifyCenter\NotificationFilterCredentials.cs" />
+    <Compile Include="NotifyCenter\NotificationQueue.cs" />
+    <Compile Include="NotifyCenter\ObserverFilter.cs" />
+    <Compile Include="NotifyCenter\ObserverManager.cs" />
+    <Compile Include="Options\ScaleOptions\NumericScaleOptions.cs" />
+    <Compile Include="Options\ScaleOptions\DateTimeScaleOptions.cs" />
+    <Compile Include="Options\ScaleOptions\ScaleOptionsBase.cs" />
+    <Compile Include="RefinedSeries\Aggregation\AggregatedSeriesPoint.cs" />
+    <Compile Include="RefinedSeries\Aggregation\AggregationCalculators.cs" />
+    <Compile Include="RefinedSeries\Aggregation\MissingArgumentsCalculator.cs" />
+    <Compile Include="RefinedSeries\Filtering\IPointFilterOptions.cs" />
+    <Compile Include="RefinedSeries\Filtering\MaxValueFilter.cs" />
+    <Compile Include="RefinedSeries\Filtering\PercentMaxValueFilter.cs" />
+    <Compile Include="RefinedSeries\Filtering\PointsFilter.cs" />
+    <Compile Include="RefinedSeries\Filtering\PointsProcessor.cs" />
+    <Compile Include="RefinedSeries\Filtering\PointsValueThresholdFilter.cs" />
+    <Compile Include="RefinedSeries\Filtering\WorkdaysPointsFilter.cs" />
+    <Compile Include="RefinedSeries\RefinedPoint.cs" />
+    <Compile Include="RefinedSeries\RefinedPointCollection.cs" />
+    <Compile Include="RefinedSeries\Aggregation\RefinedPointsAggregator.cs" />
+    <Compile Include="RefinedSeries\RefinedPointsComparerFactory.cs" />
+    <Compile Include="RefinedSeries\RefinedSeries.CollectionManager.cs" />
+    <Compile Include="RefinedSeries\RefinedSeries.cs" />
+    <Compile Include="RefinedSeries\Filtering\TopNFilter.cs" />
+    <Compile Include="Platform\General\Helpers.cs" />
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <Compile Include="Utils\Debug_Release.cs" />
+    <Compile Include="Utils\MinMaxValues.cs" />
+    <Compile Include="Options\DateTimeOptions.cs" />
+    <Compile Include="Options\NumericOptions.cs" />
+    <Compile Include="Options\PointOptions.cs" />
+    <Compile Include="Options\ValueToStringConverter.cs" />
+    <Compile Include="Diagrams\XYDiagram\ResolveOverlapping\RectanglesLayoutAlgorithm.cs" />
+    <Compile Include="Diagrams\XYDiagram\ResolveOverlapping\Rows.cs" />
+    <Compile Include="Diagrams\XYDiagram\ResolveOverlapping\Steps.cs" />
+    <Compile Include="Diagrams\XYDiagram\ResolveOverlapping\XYDiagramResolveOverlappingAlgorithm.cs" />
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <Compile Include="Utils\DateTimeUtils.cs" />
+    <Compile Include="Utils\PatternUtils.cs" />
+    <Compile Include="Series\SeriesIncompatibilityCalculator.cs" />
+    <Compile Include="Utils\Utils.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    
+  </ItemGroup>
+  <ItemGroup />
+</Project>

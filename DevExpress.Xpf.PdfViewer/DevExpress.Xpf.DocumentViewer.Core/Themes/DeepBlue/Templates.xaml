@@ -1,0 +1,232 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:dxdv="clr-namespace:DevExpress.Xpf.DocumentViewer"
+                    xmlns:dxdvt="clr-namespace:DevExpress.Xpf.DocumentViewer.Themes"
+                    xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
+                    xmlns:dxbt="http://schemas.devexpress.com/winfx/2008/xaml/bars/themekeys">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/DevExpress.Xpf.DocumentViewer.v15.2.Core;component/Themes/Generic/Templates.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    <ControlTemplate x:Key="{dxdvt:DocumentViewerThemeKeyExtension ResourceKey=DocumentViewerBarTemplate}" TargetType="{x:Type ContentControl}">
+        <Border Background="#FF789BC8">
+            <ContentPresenter Content="{TemplateBinding Content}" Margin="12,4,6,4"/>
+        </Border>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="{dxdv:SearchBarButtonItemItemBorderThemeKeyExtension ResourceKey=Normal}" TargetType="{x:Type dxb:ItemBorderControl}">
+        <Grid>
+            <Grid x:Name="Normal">
+                <Border Background="#FF5379AE" CornerRadius="2" Margin="2" Padding="1" Opacity="0.75">
+                    <Border CornerRadius="1" Padding="1" SnapsToDevicePixels="True">
+                        <Border.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="#FFD0E3FB" Offset="0" />
+                                <GradientStop Color="#FFADD0F6" Offset="1" />
+                                <GradientStop Color="#FFD5E6FA" Offset="0.5" />
+                            </LinearGradientBrush>
+                        </Border.Background>
+                        <Border CornerRadius="1,1,1,1" SnapsToDevicePixels="True">
+                            <Border.Background>
+                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                    <GradientStop Color="#FFD1E4FC" Offset="0" />
+                                    <GradientStop Color="#FFAED1F6" Offset="1" />
+                                    <GradientStop Color="#FFB5D0F1" Offset="0.5" />
+                                    <GradientStop Color="#FFA4C5ED" Offset="0.5" />
+                                </LinearGradientBrush>
+                            </Border.Background>
+                        </Border>
+                    </Border>
+                </Border>
+            </Grid>
+            <Grid x:Name="HoverState" Opacity="0">
+                <Border x:Name="hover_shadow" Background="#FF000000" CornerRadius="2" Margin="2,2,0,0" Opacity="0.05" SnapsToDevicePixels="True"/>
+                <Border x:Name="hover_border1" Background="#FF5379AE" CornerRadius="2" Margin="2" Padding="1" SnapsToDevicePixels="True">
+                    <Border x:Name="hover_border2" CornerRadius="1" Padding="1" SnapsToDevicePixels="True">
+                        <Border.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="#FFD0E3FB" Offset="0" />
+                                <GradientStop Color="#FFADD0F6" Offset="1" />
+                                <GradientStop Color="#FFD5E6FA" Offset="0.5" />
+                            </LinearGradientBrush>
+                        </Border.Background>
+                        <Border x:Name="hover_border3" CornerRadius="1,1,1,1" SnapsToDevicePixels="True">
+                            <Border.Background>
+                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                    <GradientStop Color="#FFD1E4FC" Offset="0" />
+                                    <GradientStop Color="#FFAED1F6" Offset="1" />
+                                    <GradientStop Color="#FFB5D0F1" Offset="0.5" />
+                                    <GradientStop Color="#FFA4C5ED" Offset="0.5" />
+                                </LinearGradientBrush>
+                            </Border.Background>
+                        </Border>
+                    </Border>
+                </Border>
+            </Grid>
+            <Grid x:Name="PressedState" Opacity="0">
+                <Border x:Name="pressed_shadow" Background="#FFFFFFFF" CornerRadius="2,2,2,2" Margin="2,2,1,0" Opacity="0.15" SnapsToDevicePixels="True"/>
+                <Border x:Name="pressed_border1" Background="#FF486B9D" CornerRadius="2,2,2,2" Margin="1,1,1,1" Padding="1,1,1,1" SnapsToDevicePixels="True">
+                    <Border x:Name="pressed_border2" CornerRadius="1,1,1,1" Height="Auto" Padding="1,1,1,1" SnapsToDevicePixels="True" Width="Auto">
+                        <Border.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="#FF6686B5" Offset="0" />
+                                <GradientStop Color="#FF6686B5" Offset="1" />
+                                <GradientStop Color="#FF7594BD" Offset="0.5" />
+                            </LinearGradientBrush>
+                        </Border.Background>
+                        <Border x:Name="pressed_border3" Background="#FF6686B5" CornerRadius="1,1,1,1" Height="Auto" SnapsToDevicePixels="True" Width="Auto" />
+                    </Border>
+                </Border>
+            </Grid>
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup x:Name="State">
+                    <VisualState x:Name="Normal" />
+                    <VisualState x:Name="Disabled" />
+                    <VisualState x:Name="Hover">
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetName="HoverState" Storyboard.TargetProperty="Opacity" Duration="0" To="1" />
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Pressed">
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetName="PressedState" Storyboard.TargetProperty="Opacity" Duration="0" To="1" />
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Checked" />
+                    <VisualState x:Name="HoverChecked" />
+                    <VisualState x:Name="Focused" />
+                    <VisualState x:Name="Customization" />
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+        </Grid>
+    </ControlTemplate>
+    <ControlTemplate x:Key="{dxdv:SearchBarSubItemItemBorderThemeKeyExtension ResourceKey=Normal}" TargetType="{x:Type dxb:ItemBorderControl}">
+        <Grid>
+            <Grid x:Name="Normal">
+                <Border Background="#FF5379AE" CornerRadius="2" Margin="2" Padding="1" Opacity="0.75">
+                    <Border CornerRadius="1" Padding="1" SnapsToDevicePixels="True">
+                        <Border.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="#FFD0E3FB" Offset="0" />
+                                <GradientStop Color="#FFADD0F6" Offset="1" />
+                                <GradientStop Color="#FFD5E6FA" Offset="0.5" />
+                            </LinearGradientBrush>
+                        </Border.Background>
+                        <Border CornerRadius="1,1,1,1" SnapsToDevicePixels="True">
+                            <Border.Background>
+                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                    <GradientStop Color="#FFD1E4FC" Offset="0" />
+                                    <GradientStop Color="#FFAED1F6" Offset="1" />
+                                    <GradientStop Color="#FFB5D0F1" Offset="0.5" />
+                                    <GradientStop Color="#FFA4C5ED" Offset="0.5" />
+                                </LinearGradientBrush>
+                            </Border.Background>
+                        </Border>
+                    </Border>
+                </Border>
+            </Grid>
+            <Grid x:Name="HoverState" Opacity="0">
+                <Border x:Name="hover_shadow" Background="#FF000000" CornerRadius="2" Margin="2,2,0,0" Opacity="0.05" SnapsToDevicePixels="True"/>
+                <Border x:Name="hover_border1" Background="#FF5379AE" CornerRadius="2" Margin="2" Padding="1" SnapsToDevicePixels="True">
+                    <Border x:Name="hover_border2" CornerRadius="1" Padding="1" SnapsToDevicePixels="True">
+                        <Border.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="#FFD0E3FB" Offset="0" />
+                                <GradientStop Color="#FFADD0F6" Offset="1" />
+                                <GradientStop Color="#FFD5E6FA" Offset="0.5" />
+                            </LinearGradientBrush>
+                        </Border.Background>
+                        <Border x:Name="hover_border3" CornerRadius="1,1,1,1" SnapsToDevicePixels="True">
+                            <Border.Background>
+                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                    <GradientStop Color="#FFD1E4FC" Offset="0" />
+                                    <GradientStop Color="#FFAED1F6" Offset="1" />
+                                    <GradientStop Color="#FFB5D0F1" Offset="0.5" />
+                                    <GradientStop Color="#FFA4C5ED" Offset="0.5" />
+                                </LinearGradientBrush>
+                            </Border.Background>
+                        </Border>
+                    </Border>
+                </Border>
+            </Grid>
+            <Grid x:Name="PressedState" Opacity="0">
+                <Border x:Name="pressed_shadow" Background="#FFFFFFFF" CornerRadius="2,2,2,2" Margin="2,2,1,0" Opacity="0.15" SnapsToDevicePixels="True"/>
+                <Border x:Name="pressed_border1" Background="#FF486B9D" CornerRadius="2,2,2,2" Margin="1,1,1,1" Padding="1,1,1,1" SnapsToDevicePixels="True">
+                    <Border x:Name="pressed_border2" CornerRadius="1,1,1,1" Height="Auto" Padding="1,1,1,1" SnapsToDevicePixels="True" Width="Auto">
+                        <Border.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="#FF6686B5" Offset="0" />
+                                <GradientStop Color="#FF6686B5" Offset="1" />
+                                <GradientStop Color="#FF7594BD" Offset="0.5" />
+                            </LinearGradientBrush>
+                        </Border.Background>
+                        <Border x:Name="pressed_border3" Background="#FF6686B5" CornerRadius="1,1,1,1" Height="Auto" SnapsToDevicePixels="True" Width="Auto" />
+                    </Border>
+                </Border>
+            </Grid>
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup x:Name="State">
+                    <VisualState x:Name="Normal" />
+                    <VisualState x:Name="Disabled" />
+                    <VisualState x:Name="Hover">
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetName="HoverState" Storyboard.TargetProperty="Opacity" Duration="0" To="1" />
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Pressed">
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetName="PressedState" Storyboard.TargetProperty="Opacity" Duration="0" To="1" />
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Checked" />
+                    <VisualState x:Name="HoverChecked" />
+                    <VisualState x:Name="Focused" />
+                    <VisualState x:Name="Customization" />
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+        </Grid>
+    </ControlTemplate>
+
+    <Style x:Key="{dxdv:SearchBarButtonItemLayoutPanelThemeKeyExtension ResourceKey=StyleInBar}" TargetType="{x:Type dxb:BarItemLayoutPanel}">
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="VerticalAlignment" Value="Stretch"/>
+        <Setter Property="MinWidth" Value="64" />
+        <Setter Property="Margin" Value="4,0,2,0"/>
+        <Setter Property="BorderThemeKey" Value="{dxdv:SearchBarButtonItemItemBorderThemeKeyExtension}"/>
+        <Setter Property="FirstBorderNormalStateIsEmpty" Value="False"/>
+        <Setter Property="FirstBorderUseNormalStateOnly" Value="False"/>
+        <Setter Property="GlyphMargin" Value="0"/>
+        <Setter Property="CommonContentMargin" Value="4,0,4,0"/>
+        <Setter Property="LeftGlyphMargin" Value="0"/>
+        <Setter Property="RightGlyphMargin" Value="0"/>
+        <Setter Property="LeftCommonContentMargin" Value="0"/>
+        <Setter Property="RightCommonContentMargin" Value="0"/>
+    </Style>
+    <Style x:Key="{dxdv:SearchBarSubItemLayoutPanelThemeKey ResourceKey=StyleInBar}" TargetType="{x:Type dxb:BarItemLayoutPanel}">
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="VerticalAlignment" Value="Stretch"/>
+        <Setter Property="Margin" Value="0,0,2,0"/>
+        <Setter Property="MinWidth" Value="64" />
+        <Setter Property="BorderThemeKey" Value="{dxdv:SearchBarSubItemItemBorderThemeKeyExtension}"/>
+        <Setter Property="FirstBorderNormalStateIsEmpty" Value="False"/>
+        <Setter Property="FirstBorderUseNormalStateOnly" Value="False"/>
+        <Setter Property="ContentAndGlyphMargin" Value="4"/>
+        <Setter Property="ArrowMargin" Value="0"/>
+        <Setter Property="LeftContentAndGlyphMargin" Value="4"/>
+        <Setter Property="RightContentAndGlyphMargin" Value="4"/>
+        <Setter Property="LeftArrowMargin" Value="0,1,0,0"/>
+        <Setter Property="RightArrowMargin" Value="0,1,4,0"/>
+        <Setter Property="CommonContentMargin" Value="0"/>
+        <Setter Property="ArrowThemeKey" Value="{dxbt:BarSubItemThemeKey ResourceKey=ArrowTemplate}"/>
+    </Style>
+    <Style x:Key="{dxdv:SearchBarStaticItemLayoutPanelThemeKey ResourceKey=StyleInBar}" TargetType="{x:Type dxb:BarItemLayoutPanel}">
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="VerticalAlignment" Value="Stretch"/>
+        <Setter Property="Margin" Value="0"/>
+        <Setter Property="BorderThemeKey" Value="{dxdv:SearchBarStaticItemItemBorderThemeKeyExtension}"/>
+        <Setter Property="FirstBorderNormalStateIsEmpty" Value="False"/>
+        <Setter Property="FirstBorderUseNormalStateOnly" Value="False"/>
+        <Setter Property="ContentAndGlyphMargin" Value="0"/>
+        <Setter Property="CommonContentMargin" Value="0,0,2,0"/>
+    </Style>
+</ResourceDictionary>

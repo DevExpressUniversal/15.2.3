@@ -1,0 +1,54 @@
+﻿<UserControl x:Class="DevExpress.Xpf.Scheduler.UI.WeekDaysCheckEdit"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+             xmlns:dxsch="clr-namespace:DevExpress.XtraScheduler"
+             x:Name="WeekDaysUserControl">
+    <Grid>
+        <Grid.Resources>
+            <Style TargetType="dxe:CheckEdit">
+                <Setter Property="Margin" Value="0,3,8,0"/>
+            </Style>
+        </Grid.Resources>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <dxe:CheckEdit Grid.Row="0" Grid.Column="0" x:Name="chkSun" 
+                           Content="{Binding ElementName=WeekDaysUserControl, Path=SundayCaption}" 
+                           EditValue="{Binding ElementName=WeekDaysUserControl, Path=SundayValue, Mode=TwoWay}"/>
+
+        <dxe:CheckEdit Grid.Row="0" Grid.Column="1" x:Name="chkMon" 
+                           Content="{Binding ElementName=WeekDaysUserControl, Path=MondayCaption}" 
+                           EditValue="{Binding ElementName=WeekDaysUserControl, Path=MondayValue, Mode=TwoWay}"/>
+
+        <dxe:CheckEdit Grid.Row="0" Grid.Column="2" x:Name="chkTue" 
+                           Content="{Binding ElementName=WeekDaysUserControl, Path=TuesdayCaption}"
+                           EditValue="{Binding ElementName=WeekDaysUserControl, Path=TuesdayValue, Mode=TwoWay}"/>
+
+        <dxe:CheckEdit Grid.Row="0" Grid.Column="3" x:Name="chkWed" 
+                           Content="{Binding ElementName=WeekDaysUserControl, Path=WednesdayCaption}"
+                           EditValue="{Binding ElementName=WeekDaysUserControl, Path=WednesdayValue, Mode=TwoWay}"/>
+
+        <dxe:CheckEdit Grid.Row="1" Grid.Column="0" x:Name="chkThu" 
+                           Content="{Binding ElementName=WeekDaysUserControl, Path=ThursdayCaption}"
+                           EditValue="{Binding ElementName=WeekDaysUserControl, Path=ThursdayValue, Mode=TwoWay}"/>
+
+        <dxe:CheckEdit Grid.Row="1" Grid.Column="1" x:Name="chkFri" 
+                           Content="{Binding ElementName=WeekDaysUserControl, Path=FridayCaption}"
+                           EditValue="{Binding ElementName=WeekDaysUserControl, Path=FridayValue, Mode=TwoWay}"/>
+
+        <dxe:CheckEdit Grid.Row="1" Grid.Column="2" x:Name="chkSat" 
+                           Content="{Binding ElementName=WeekDaysUserControl, Path=SaturdayCaption}"
+                           EditValue="{Binding ElementName=WeekDaysUserControl, Path=SaturdayValue, Mode=TwoWay}"/>
+
+    </Grid>
+</UserControl>

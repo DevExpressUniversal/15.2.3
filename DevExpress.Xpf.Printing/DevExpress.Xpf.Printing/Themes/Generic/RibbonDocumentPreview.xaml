@@ -1,0 +1,45 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:bars="http://schemas.devexpress.com/winfx/2008/xaml/bars"
+                    xmlns:local="clr-namespace:DevExpress.Xpf.Printing"
+                    xmlns:native="clr-namespace:DevExpress.Xpf.Printing.Native"
+                    xmlns:core="http://schemas.devexpress.com/winfx/2008/xaml/core"
+                    xmlns:docking="http://schemas.devexpress.com/winfx/2008/xaml/docking"
+                    xmlns:dxr="http://schemas.devexpress.com/winfx/2008/xaml/ribbon">
+
+    <ControlTemplate x:Key="ribbonDocumentPreviewTemplate">
+        <bars:BarManager x:Name="barManager" >
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <native:PreviewSurface Grid.RowSpan="2" />
+
+                <dxr:RibbonControl RibbonHeaderVisibility="Collapsed" x:Name="ribbonControl">
+                    <dxr:RibbonControl.Controllers>
+                        <local:DocumentPreviewRibbonController />
+                    </dxr:RibbonControl.Controllers>
+                </dxr:RibbonControl>
+                <local:DocumentViewer Grid.Row="1" x:Name="DocumentViewer"  Model="{Binding Model, RelativeSource={RelativeSource TemplatedParent} }" >
+                </local:DocumentViewer>
+                <dxr:RibbonStatusBarControl IsSizeGripVisible="False" Grid.Row="2" Name="previewStatusBar">
+                    <dxr:RibbonStatusBarControl.LeftItemLinks>
+                        <bars:BarEditItemLink BarItemName="pageNumber" native:GoToPageEditBehavior.Apply="True" />
+                        <bars:BarEditItemLink BarItemName="progress" />
+                        <bars:BarEditItemLink BarItemName="progressMarquee" />
+                        <bars:BarButtonItemLink BarItemName="stop" />
+                    </dxr:RibbonStatusBarControl.LeftItemLinks>
+                    <dxr:RibbonStatusBarControl.RightItemLinks>
+                        <bars:BarStaticItemLink BarItemName="zoomFactor"/>
+                    </dxr:RibbonStatusBarControl.RightItemLinks>
+                </dxr:RibbonStatusBarControl>
+            </Grid>
+        </bars:BarManager>
+    </ControlTemplate>
+    <Style TargetType="{x:Type local:RibbonDocumentPreview}">
+        <Setter Property="Template" Value="{StaticResource ribbonDocumentPreviewTemplate}">
+        </Setter>
+    </Style>
+</ResourceDictionary>

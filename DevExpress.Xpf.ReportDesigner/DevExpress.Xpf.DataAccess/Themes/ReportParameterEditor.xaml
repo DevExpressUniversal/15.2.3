@@ -1,0 +1,29 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+            xmlns:local="clr-namespace:DevExpress.Xpf.DataAccess.DataSourceWizard"
+            xmlns:localeditors="clr-namespace:DevExpress.Xpf.DataAccess.Editors"
+            xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+            xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
+            xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+            xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
+            xmlns:dxdaeditors="clr-namespace:DevExpress.Xpf.DataAccess.Editors"
+            xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid">
+
+    <Style TargetType="{x:Type localeditors:ReportParameterEditor}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="localeditors:ReportParameterEditor">
+                    <Grid>
+                        <dxdaeditors:ReportParameterPropertyGridControl ReportParameter="{Binding ReportParameter, RelativeSource={RelativeSource TemplatedParent}}" />
+                        <dx:DialogFooter >
+                            <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                                <dx:DialogButton DialogResult="OK" Command="{Binding SaveCommand, RelativeSource={RelativeSource TemplatedParent}}" />
+                                <dx:DialogButton DialogResult="Cancel" />
+                            </StackPanel>
+                        </dx:DialogFooter>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

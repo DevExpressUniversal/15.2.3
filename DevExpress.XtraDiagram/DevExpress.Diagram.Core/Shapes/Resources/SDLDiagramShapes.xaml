@@ -1,0 +1,402 @@
+﻿<p:ResourceDictionary
+    xmlns="clr-namespace:DevExpress.Diagram.Core.Shapes"
+    xmlns:p="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+    xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
+    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+
+    <ShapeTemplate x:Key="{ShapeKey Start}" DefaultSize="100,75" Columns="*;P0;*" Rows="*" IsQuick="True">
+        <Start X="1" Y="0" />
+        <Line X="2" Y ="0" />
+        <Arc X="3" Y="0.5" Direction="Clockwise" />
+        <Arc X="2" Y="1" Direction="Clockwise" />
+        <Line X="1" Y="1" />
+        <Arc X="0" Y="0.5" Direction="Clockwise" />
+        <Arc X="1" Y="0" Direction="Clockwise" />
+        <Start X="1" Y="0" Kind="None" />
+        <Line X="1" Y="1" />
+        <Start X="2" Y="0" Kind="None" />
+        <Line X="2" Y="1" />
+        <ShapeTemplate.ConnectionPoints>
+            <ShapePoint X="1.5" Y="0" />
+            <ShapePoint X="3" Y="0.5" />
+            <ShapePoint X="1.5" Y="1" />
+            <ShapePoint X="0" Y="0.5" />
+        </ShapeTemplate.ConnectionPoints>
+        <ShapeTemplate.Parameters>
+            <Parameter DefaultValue="80" 
+                       Point="CreatePoint(P/2 + W/2, H)" 
+                       Value="P.X * 2 - W" 
+                       Min="W - H" Max="W" />
+        </ShapeTemplate.Parameters>
+    </ShapeTemplate>
+
+    <ShapeTemplate x:Key="{ShapeKey VariableStart}" DefaultSize="100,75" Columns="*;P0;*" Rows="*" IsQuick="True">
+        <Start X="1" Y="0" />
+        <Line X="2" Y ="0" />
+        <Arc X="3" Y="0.5" Direction="Clockwise" />
+        <Arc X="2" Y="1" Direction="Clockwise" />
+        <Line X="1" Y="1" />
+        <Arc X="0" Y="0.5" Direction="Clockwise" />
+        <Arc X="1" Y="0" Direction="Clockwise" />
+        <Start X="1" Y="0" Kind="None" />
+        <Line X="1" Y="1" />
+        <Start X="2" Y="0" Kind="None" />
+        <Line X="2" Y="1" />
+        <ShapeTemplate.ConnectionPoints>
+            <ShapePoint X="1.5" Y="0" />
+            <ShapePoint X="3" Y="0.5" />
+            <ShapePoint X="1.5" Y="1" />
+            <ShapePoint X="0" Y="0.5" />
+        </ShapeTemplate.ConnectionPoints>
+        <ShapeTemplate.Parameters>
+            <Parameter DefaultValue="80" 
+                       Point="CreatePoint(P/2 + W/2, H)" 
+                       Value="P.X * 2 - W" 
+                       Min="W - H" Max="W" />
+        </ShapeTemplate.Parameters>
+    </ShapeTemplate>
+
+    <ShapeTemplate x:Key="{ShapeKey Procedure}" DefaultSize="100,75" Columns="*;P0;*" Rows="*" IsQuick="True">
+        <Start X="0" Y="0" />
+        <Line X="3" Y="0" />
+        <Line X="3" Y="1" />
+        <Line X="0" Y="1" />
+        <Start X="1" Y="0" Kind="None"/>
+        <Line X="1" Y="1" />
+        <Start X="2" Y="0" Kind="None"/>
+        <Line X="2" Y="1" />
+        <ShapeTemplate.ConnectionPoints>
+            <ShapePoint X="1.5" Y="0" />
+            <ShapePoint X="3" Y="0.5" />
+            <ShapePoint X="1.5" Y="1" />
+            <ShapePoint X="0" Y="0.5" />
+        </ShapeTemplate.ConnectionPoints>
+        <ShapeTemplate.Parameters>
+            <Parameter DefaultValue="80" 
+                       Point="CreatePoint(W/2 + P/2, H)" 
+                       Value="P.X * 2 - W" 
+                       Min="W/2" Max="W" />
+        </ShapeTemplate.Parameters>
+    </ShapeTemplate>
+
+    <ShapeTemplate x:Key="{ShapeKey VariableProcedure}" DefaultSize="100,75" Columns="*;P0;*" Rows="*" IsQuick="True">
+        <Start X="0" Y="0" />
+        <Line X="3" Y="0" />
+        <Line X="3" Y="1" />
+        <Line X="0" Y="1" />
+        <Start X="1" Y="0" Kind="None"/>
+        <Line X="1" Y="1" />
+        <Start X="2" Y="0" Kind="None"/>
+        <Line X="2" Y="1" />
+        <ShapeTemplate.ConnectionPoints>
+            <ShapePoint X="1.5" Y="0" />
+            <ShapePoint X="3" Y="0.5" />
+            <ShapePoint X="1.5" Y="1" />
+            <ShapePoint X="0" Y="0.5" />
+        </ShapeTemplate.ConnectionPoints>
+        <ShapeTemplate.Parameters>
+            <Parameter DefaultValue="80" 
+                       Point="CreatePoint(W/2 + P/2, H)" 
+                       Value="P.X * 2 - W" 
+                       Min="W/2" Max="W" />
+        </ShapeTemplate.Parameters>
+    </ShapeTemplate>
+
+    <ShapeTemplate x:Key="{ShapeKey CreateRequest}" DefaultSize="100, 75" Columns="*" Rows="*;P0;*" >
+        <Start X="0" Y="0" />
+        <Line X="1" Y="0" />
+        <Line X="1" Y="3" />
+        <Line X="0" Y="3" />
+        <Start X="0" Y="1" Kind="None"/>
+        <Line X="1" Y="1"/>
+        <Start X="0" Y="2" Kind="None"/>
+        <Line X="1" Y="2" />
+        <ShapeTemplate.ConnectionPoints>
+            <ShapePoint X="0.5" Y="0" />
+            <ShapePoint X="1" Y="1.5" />
+            <ShapePoint X="0.5" Y="3" />
+            <ShapePoint X="0" Y="1.5" />
+        </ShapeTemplate.ConnectionPoints>
+        <ShapeTemplate.Parameters>
+            <Parameter DefaultValue="50" 
+                       Point="CreatePoint(0, H/2 + P/2)" 
+                       Value="P.Y * 2 - H" 
+                       Min="0" Max="H" />
+        </ShapeTemplate.Parameters>
+    </ShapeTemplate>
+
+    <ShapeTemplate x:Key="{ShapeKey Alternative}" DefaultSize="60, 60" Columns="*" Rows="*" EditorBounds="CreateRect(0, 0.5 * H, W, 0.5 * H)" IsQuick="True">
+        <Start X="0.5" Y="0" />
+        <Line X="1" Y="1" />
+        <Line X="0" Y="1" />
+        <ShapeTemplate.ConnectionPoints>
+            <ShapePoint X="0.5" Y="0" />
+            <ShapePoint X="0.25" Y="0.5" />
+            <ShapePoint X="1" Y="1" />
+            <ShapePoint X="0.5" Y="1" />
+            <ShapePoint X="0" Y="1" />
+            <ShapePoint X="0.75" Y="0.5" />
+        </ShapeTemplate.ConnectionPoints>
+    </ShapeTemplate>
+
+    <ShapeTemplate x:Key="{ShapeKey Document}" DefaultSize="100,75" Columns="*" Rows="*">
+        <Start X="0" Y="0" />
+        <Line X="1" Y="0" />
+        <Line X="1" Y="0.85" />
+        <Arc X="0.5" Y="0.85" Direction="Counterclockwise" Size="CreateSize(W / 2, H)"/>
+        <Arc X="0" Y="0.85" Direction="Clockwise" Size="CreateSize(W / 2, H)"/>
+        <ShapeTemplate.ConnectionPoints>
+            <ShapePoint X="0.5" Y="0" />
+            <ShapePoint X="1" Y="0.5" />
+            <ShapePoint X="0.5" Y="0.85" />
+            <ShapePoint X="0" Y="0.5" />
+        </ShapeTemplate.ConnectionPoints>
+    </ShapeTemplate>
+
+    <ShapeTemplate x:Key="{ShapeKey Return}" DefaultSize="60, 60" Columns="*" Rows="*" EditorBounds="CreateRect(0, 0, W, H)" IsQuick="True">
+        <Start X="0" Y="0.5"/>
+        <Arc X="0.5" Y="0" Direction="Clockwise" />
+        <Arc X="1" Y="0.5"  Direction="Clockwise" />
+        <Arc X="0.5" Y="1"  Direction="Clockwise" />
+        <Arc X="0" Y="0.5"  Direction="Clockwise" />
+        <Start X="0.146446" Y="0.146446" Kind="None" />
+        <Line X="0.853553" Y="0.853553" />
+        <Start X="0.853553" Y="0.146446" Kind="None"/>
+        <Line X="0.146446" Y="0.853553"/>
+        <ShapeTemplate.ConnectionPoints>
+            <ShapePoint X="0.5" Y="0" />
+            <ShapePoint X="1" Y="0.5" />
+            <ShapePoint X="0.5" Y="1" />
+            <ShapePoint X="0" Y="0.5" />
+        </ShapeTemplate.ConnectionPoints>
+    </ShapeTemplate>
+
+    <ShapeTemplate x:Key="{ShapeKey Decision1}" DefaultSize="100, 75" Columns="*" Rows="*" EditorBounds="CreateRect(0 + 0.15 * W, 0, W - 0.3 * W, H)">
+        <Start X="0" Y="0.5" />
+        <Line X="0.15" Y="0" />
+        <Line X="0.85" Y="0" />
+        <Line X="1" Y="0.5" />
+        <Line X="0.85" Y="1" />
+        <Line X="0.15" Y="1" />
+        <ShapeTemplate.ConnectionPoints>
+            <ShapePoint X="0.5" Y="0" />
+            <ShapePoint X="1" Y="0.5" />
+            <ShapePoint X="0.5" Y="1" />
+            <ShapePoint X="0" Y="0.5" />
+        </ShapeTemplate.ConnectionPoints>
+    </ShapeTemplate>
+
+    <ShapeTemplate x:Key="{ShapeKey MessageFromUser}" DefaultSize="100, 75" Columns="*" Rows="*">
+        <Start X="0" Y="0" />
+        <Line X="1" Y="0" />
+        <Line X="0.9" Y="0.5" />
+        <Line X="1" Y="1" />
+        <Line X="0" Y="1" />
+        <ShapeTemplate.ConnectionPoints>
+            <ShapePoint X="0.5" Y="0" />
+            <ShapePoint X="0.9" Y="0.5" />
+            <ShapePoint X="0.5" Y="1" />
+            <ShapePoint X="0" Y="0.5" />
+        </ShapeTemplate.ConnectionPoints>
+    </ShapeTemplate>
+
+    <ShapeTemplate x:Key="{ShapeKey PrimitiveFromCallControl}" DefaultSize="100, 75" Columns="P0;*;W * 3/4" Rows="*">
+        <Start X="0" Y="0" />
+        <Line X="3" Y="0" />
+        <Line X="2.9" Y="0.5" />
+        <Line X="3" Y="1" />
+        <Line X="0" Y="1" />
+        <Start X="1" Y="0" Kind="None" />
+        <Line X="1" Y="2"/>
+        <ShapeTemplate.ConnectionPoints>
+            <ShapePoint Kind="Absolute" X="W / 2" Y="0" />
+            <ShapePoint X="2.9" Y="0.5" />
+            <ShapePoint Kind="Absolute" X="W / 2" Y="H" />
+            <ShapePoint X="0" Y="0.5" />
+        </ShapeTemplate.ConnectionPoints>
+        <ShapeTemplate.Parameters>
+            <Parameter DefaultValue="20" 
+                       Point="CreatePoint(P, H)" 
+                       Value="P.X" 
+                       Min="0" Max="W * 1/4" />
+        </ShapeTemplate.Parameters>
+    </ShapeTemplate>
+
+    <ShapeTemplate x:Key="{ShapeKey Decision2}" DefaultSize="75, 75" Columns="*" Rows="*" EditorBounds="CreateRect(0 + 0.1 * W, 0 + 0.1 * H, W - 0.2 * W, H - 0.2 * H)">
+        <Start X="0" Y="0.5" />
+        <Line X="0.5" Y="0" />
+        <Line X="1" Y="0.5" />
+        <Line X="0.5" Y="1" />
+        <ShapeTemplate.ConnectionPoints>
+            <ShapePoint X="0.5" Y="0" />
+            <ShapePoint X="1" Y="0.5" />
+            <ShapePoint X="0.5" Y="1" />
+            <ShapePoint X="0" Y="0.5" />
+        </ShapeTemplate.ConnectionPoints>
+    </ShapeTemplate>
+
+    <ShapeTemplate x:Key="{ShapeKey MessageToUser}" DefaultSize="100, 75" Columns="*" Rows="*">
+        <Start X="0.1" Y="0" />
+        <Line X="1" Y="0" />
+        <Line X="1" Y="1" />
+        <Line X="0.1" Y="1" />
+        <Line X="0" Y="0.5" />
+        <ShapeTemplate.ConnectionPoints>
+            <ShapePoint X="0.5" Y="0" />
+            <ShapePoint X="1" Y="0.5" />
+            <ShapePoint X="0.5" Y="1" />
+            <ShapePoint X="0.1" Y="0.5" />
+        </ShapeTemplate.ConnectionPoints>
+    </ShapeTemplate>
+
+    <ShapeTemplate x:Key="{ShapeKey PrimitiveToCallControl}" DefaultSize="100, 75" Columns="W * 3/4 ;*;P0" Rows="*">
+        <Start X="0.1" Y="0" />
+        <Line X="3" Y="0" />
+        <Line X="3" Y="1" />
+        <Line X="0.1" Y="1" />
+        <Line X="0" Y="0.5" />
+        <Start X="2" Y="0" Kind="None"/>
+        <Line X="2" Y="1" />
+        <ShapeTemplate.ConnectionPoints>
+            <ShapePoint Kind="Absolute" X="W / 2" Y="0" />
+            <ShapePoint Kind="Absolute" X="W" Y="H / 2" />
+            <ShapePoint Kind="Absolute" X="W / 2" Y="H" />
+            <ShapePoint Kind="Absolute" X="0" Y="H / 2" />
+        </ShapeTemplate.ConnectionPoints>
+        <ShapeTemplate.Parameters>
+            <Parameter DefaultValue="20" 
+                       Point="CreatePoint(W - P, H)" 
+                       Value="W - P.X"
+                       Min="0" Max="W * 1/4" />
+        </ShapeTemplate.Parameters>
+    </ShapeTemplate>
+
+    <ShapeTemplate x:Key="{ShapeKey Save}" DefaultSize="100, 75" Columns="*" Rows="*">
+        <Start X="0.1" Y="0" />
+        <Line X="1" Y="0" />
+        <Line X="0.9" Y="1" />
+        <Line X="0" Y="1" />
+        <ShapeTemplate.ConnectionPoints>
+            <ShapePoint X="0.5" Y="0" />
+            <ShapePoint X="0.95" Y="0.5" />
+            <ShapePoint X="0.5" Y="1" />
+            <ShapePoint X="0.05" Y="0.5" />
+        </ShapeTemplate.ConnectionPoints>
+    </ShapeTemplate>
+
+    <ShapeTemplate x:Key="{ShapeKey OnPageReference}" DefaultSize="25, 25" Columns="*" Rows="*" EditorBounds="CreateRect(0, 0, W, H)">
+        <Start X="0" Y="0.5" />
+        <Arc X="0.5" Y="0" Direction="Clockwise" />
+        <Arc X="1" Y="0.5" Direction="Clockwise" />
+        <Arc X="0.5" Y="1" Direction="Clockwise" />
+        <Arc X="0" Y="0.5" Direction="Clockwise" />
+        <ShapeTemplate.ConnectionPoints>
+            <ShapePoint X="0.5" Y="0" />
+            <ShapePoint X="1" Y="0.5" />
+            <ShapePoint X="0.5" Y="1" />
+            <ShapePoint X="0" Y="0.5" />
+        </ShapeTemplate.ConnectionPoints>
+    </ShapeTemplate>
+
+    <ShapeTemplate x:Key="{ShapeKey OffPageReference}" DefaultSize="25, 25" Columns="*" Rows="*">
+        <Start X="0" Y="0" />
+        <Line X="1" Y="0" />
+        <Line X="1" Y="0.5" />
+        <Line X="0.5" Y="1" />
+        <Line X="0" Y="0.5" />
+        <ShapeTemplate.ConnectionPoints>
+            <ShapePoint X="0.5" Y="0" />
+            <ShapePoint X="1" Y="0.5" />
+            <ShapePoint X="0.5" Y="1" />
+            <ShapePoint X="0" Y="0.5" />
+        </ShapeTemplate.ConnectionPoints>
+    </ShapeTemplate>
+
+    <ShapeTemplate x:Key="{ShapeKey DiskStorage}" DefaultSize="100, 75" Columns="*" Rows="0.1*H;0.1*H;0.1*H;*;0.1*H">
+        <Start X="0" Y="1" />
+        <Arc X="0.5" Y="0" Direction="Clockwise"/>
+        <Arc X="1" Y="1" Direction="Clockwise" />
+        <Line X="1" Y="4"/>
+        <Arc X="0.5" Y="5" Direction="Clockwise" />
+        <Arc X="0" Y="4" Direction="Clockwise" />
+        <Line X="0" Y="1" />
+        <Start X="0" Y="1" Kind="None" />
+        <Arc X="0.5" Y="2" Direction="Counterclockwise" />
+        <Arc X="1" Y="1" Direction="Counterclockwise" />
+        <Start X="0" Y="2" Kind="None" />
+        <Arc X="0.5" Y="3" Direction="Counterclockwise" />
+        <Arc X="1" Y="2" Direction="Counterclockwise" />
+        <ShapeTemplate.ConnectionPoints>
+            <ShapePoint X="0.5" Y="0" />
+            <ShapePoint Kind="Absolute" X="W" Y="H/2" />
+            <ShapePoint X="0.5" Y="5" />
+            <ShapePoint Kind="Absolute" X="0" Y="H/2" />
+        </ShapeTemplate.ConnectionPoints>
+    </ShapeTemplate>
+
+    <ShapeTemplate x:Key="{ShapeKey DividedProcess}" DefaultSize="100, 75" Columns="*" Rows="P0;*">
+        <Start X="0" Y="0" />
+        <Line X="1" Y="0" />
+        <Line X="1" Y="2" />
+        <Line X="0" Y="2" />
+        <Start X="0" Y="1" Kind="None"/>
+        <Line X="1" Y="1"/>
+        <ShapeTemplate.ConnectionPoints>
+            <ShapePoint Kind="Absolute" X="W / 2" Y="0" />
+            <ShapePoint Kind="Absolute" X="W" Y="H / 2" />
+            <ShapePoint Kind="Absolute" X="W / 2" Y="H" />
+            <ShapePoint Kind="Absolute" X="0" Y="H / 2" />
+        </ShapeTemplate.ConnectionPoints>
+        <ShapeTemplate.Parameters>
+            <Parameter DefaultValue="20" 
+                       Point="CreatePoint(0, P)" 
+                       Value="P.Y" 
+                       Min="10" Max="H - 10" />
+        </ShapeTemplate.Parameters>
+    </ShapeTemplate>
+
+    <ShapeTemplate x:Key="{ShapeKey DividedEvent}" DefaultSize="100, 75" Columns="10;*;10" Rows="10;P0;*;10">
+        <Start X="1" Y="0" />
+        <Line X="2" Y="0"/>
+        <Arc X="3" Y="1" Direction="Clockwise" />
+        <Line X="3" Y="3" />
+        <Arc X="2" Y="4" Direction="Clockwise" />
+        <Line X="1" Y="4" />
+        <Arc X="0" Y="3" Direction="Clockwise" />
+        <Line X="0" Y="1" />
+        <Arc X="1" Y="0" Direction="Clockwise" />
+        <Start X="0" Y="2" Kind="None" />
+        <Line X="3" Y="2"/>
+        <ShapeTemplate.ConnectionPoints>
+            <ShapePoint Kind="Absolute" X="W / 2" Y="0" />
+            <ShapePoint Kind="Absolute" X="W" Y="H / 2" />
+            <ShapePoint Kind="Absolute" X="W / 2" Y="H" />
+            <ShapePoint Kind="Absolute" X="0" Y="H / 2" />
+        </ShapeTemplate.ConnectionPoints>
+        <ShapeTemplate.Parameters>
+            <Parameter DefaultValue="10" 
+                       Point="CreatePoint(0, P + 10)" 
+                       Value="P.Y" 
+                       Min="0" Max="H - 20" />
+        </ShapeTemplate.Parameters>
+    </ShapeTemplate>
+
+    <ShapeTemplate x:Key="{ShapeKey Terminator}" DefaultSize="100, 50" Columns="H/2;*;H/2" Rows="*" EditorBounds="CreateRect(0, 0, W, H)">
+        <Start X="1" Y="0" />
+        <Line X="2" Y="0" />
+        <Arc X="3" Y="0.5" Direction="Clockwise" />
+        <Arc X="2" Y="1" Direction="Clockwise" />
+        <Line X="1" Y="1" />
+        <Arc X="0" Y="0.5" Direction="Clockwise" />
+        <Arc X="1" Y="0" Direction="Clockwise" />
+        <ShapeTemplate.ConnectionPoints>
+            <ShapePoint X="1.5" Y="0" />
+            <ShapePoint X="3" Y="0.5" />
+            <ShapePoint X="1.5" Y="1" />
+            <ShapePoint X="0" Y="0.5" />
+        </ShapeTemplate.ConnectionPoints>
+    </ShapeTemplate>
+
+</p:ResourceDictionary>

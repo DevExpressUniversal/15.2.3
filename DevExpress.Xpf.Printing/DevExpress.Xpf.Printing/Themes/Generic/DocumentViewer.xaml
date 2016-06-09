@@ -1,0 +1,111 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:DevExpress.Xpf.Printing"
+                    xmlns:native="clr-namespace:DevExpress.Xpf.Printing.Native"
+                    xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+                    xmlns:core="http://schemas.devexpress.com/winfx/2008/xaml/core"
+                    xmlns:docking="http://schemas.devexpress.com/winfx/2008/xaml/docking"
+                    xmlns:dxpp="clr-namespace:DevExpress.Xpf.Printing.Parameters"
+                    xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm">
+
+    <native:NumberToVisibilityConverter x:Key="visibilityConverter" />
+    <native:ObjectToCollectionConverter x:Key="objectToCollectionConverter" />
+    <core:ObjectToBooleanConverter x:Key="objectToBooleanConverter"/>
+    <core:BoolToVisibilityConverter x:Key="boolToVisibilityConverter"/>
+    <native:DocumentMapSelectionChangedEventArgsConverter x:Key="documentMapSelectionEventArgsConverter" />
+    <HierarchicalDataTemplate x:Key="treeViewItemTemplate" ItemsSource="{Binding Path=Nodes}">
+        <TextBlock Text="{Binding Text}" />
+    </HierarchicalDataTemplate>
+    
+    <Style TargetType="{x:Type local:DocumentViewer}">
+        <Style.Setters>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type local:DocumentViewer}">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <native:PreviewSurface Grid.RowSpan="2" />
+                            <native:PrintingSearchPanel Grid.Row="0" 
+                                    Margin="0,0,1,0" 
+                                    MinHeight="32"
+                                    Model="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=Model}"
+                                    Visibility="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=Model.IsSearchPanelVisible, Converter={StaticResource boolToVisibilityConverter}, Mode=TwoWay, FallbackValue=Collapsed}"
+                                    native:SearchPanelBehavior.SearchBoxFocused="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=Model.IsSearchPanelVisible, Mode=OneWay, FallbackValue=false}"/>
+
+                            <native:DocumentPreviewDockLayoutManager x:Name="documentPreviewDockLayoutManager" DataContext="{Binding RelativeSource={RelativeSource TemplatedParent}}" 
+                                                 native:DockLayoutManagerBehavior.HideItemsOnClosing="True"
+                                                 native:DockLayoutManagerBehavior.ForbidDockingWithItems="DocumentViewerPanel,SearchLayoutPanel"
+                                                 Background="Transparent"
+                                                 Grid.Row="1">
+                                <docking:LayoutGroup Margin="0">
+                                    <docking:LayoutGroup Orientation="Vertical" ItemWidth="300" MinWidth="250" Margin="2" DockItemInterval="2">
+                                        <docking:LayoutPanel Caption="{local:PrintingStringId StringId=Parameters}" 
+                                                    Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Model.IsParametersPanelVisible, Converter={StaticResource boolToVisibilityConverter}, Mode=TwoWay, FallbackValue=Collapsed}">
+                                            <ScrollViewer HorizontalScrollBarVisibility="Disabled"  VerticalScrollBarVisibility="Auto"
+                                      BorderThickness="0" Padding="0" >
+                                                <dxpp:ParametersPanel dxe:ValidationService.IsValidationContainer="True"   Name="parametersPanel" ParametersModel="{Binding Model.ParametersModel, RelativeSource={RelativeSource TemplatedParent}}" />
+                                            </ScrollViewer>
+                                        </docking:LayoutPanel>
+
+                                        <docking:LayoutPanel Name="documentMapPanel"
+                                         Caption="{local:PrintingStringId StringId=DocumentMap}" 
+                                         Visibility="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=Model.IsDocumentMapVisible, Converter={StaticResource boolToVisibilityConverter}, Mode=TwoWay, FallbackValue=Collapsed}">
+                                            <TreeView Name="documentMapTreeView" 
+                                                      ItemsSource="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=Model.DocumentMapRootNode, Converter={StaticResource objectToCollectionConverter}}" 
+                                                      ItemTemplate="{StaticResource treeViewItemTemplate}" 
+                                                      BorderThickness="0"
+                                                      native:TreeViewBehavior.ExpandRootNode="{Binding RelativeSource={RelativeSource Self}, Path=ItemsSource, Converter={StaticResource objectToBooleanConverter}}" >
+                                                <dxmvvm:Interaction.Behaviors>
+                                                    <native:DocumentMapSelectionBehavior Model="{Binding Path=Model, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
+                                                </dxmvvm:Interaction.Behaviors>
+                                            </TreeView>
+                                        </docking:LayoutPanel>
+                                    </docking:LayoutGroup>
+
+                                    <docking:LayoutPanel Name="DocumentViewerPanel"
+                                                         AllowDrag="False"
+                                                         ShowCaption="False" 
+                                                         ShowBorder="False" 
+                                                         Background="Transparent"
+                                                         Caption="{local:PrintingStringId StringId=ToolBarCaption}">
+                                        <Grid>
+                                            <ScrollViewer Name="documentPreviewScrollViewer" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" BorderThickness="0" Padding="0"
+                                                              Background="Transparent"
+                                                              FocusVisualStyle="{x:Null}"
+                                                              IsTabStop="False">
+                                                <ScrollViewer.CanContentScroll>True</ScrollViewer.CanContentScroll>
+                                                <FocusManager.FocusedElement>
+                                                    <Binding ElementName="scrollablePageView"/>
+                                                </FocusManager.FocusedElement>
+                                                <native:ScrollablePageView Model="{Binding Path=Model, RelativeSource={RelativeSource Mode=TemplatedParent}, Mode=OneWay}" 
+                                                                               BorderBrush="Black"
+                                                                               BorderThickness="1"
+                                                                               PageMargin="20"
+                                                                               FocusVisualStyle="{x:Null}"
+                                                                               x:Name="scrollablePageView"/>
+                                            </ScrollViewer>
+                                            <TextBlock Visibility="{Binding Path=Model.IsEmptyDocument, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource visibilityConverter}, FallbackValue=Collapsed}"
+                                                           Text="{local:PrintingStringId StringId=Msg_EmptyDocument}"
+                                                           FontWeight="Bold"
+                                                           Foreground="#FFA5A4AD"
+                                                           HorizontalAlignment="Center"
+                                                           VerticalAlignment="Center"/>
+                                            <Grid Visibility="{Binding Path=Model.IsLoading, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource visibilityConverter}, FallbackValue=Collapsed}">
+                                                <core:WaitIndicator DeferedVisibility="True" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                            </Grid>
+                                            
+                                            <native:CursorContainer x:Name="previewCursorContainer"/>
+                                        </Grid>
+                                    </docking:LayoutPanel>
+                                </docking:LayoutGroup>
+                            </native:DocumentPreviewDockLayoutManager>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style.Setters>
+    </Style>
+</ResourceDictionary>

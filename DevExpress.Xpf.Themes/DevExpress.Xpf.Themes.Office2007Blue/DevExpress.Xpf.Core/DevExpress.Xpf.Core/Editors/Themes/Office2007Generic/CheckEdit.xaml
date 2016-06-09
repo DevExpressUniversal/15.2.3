@@ -1,0 +1,85 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:dxtEx="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys" xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors" xmlns:dxeh="http://schemas.devexpress.com/winfx/2008/xaml/editors/internal" xmlns:dxet="http://schemas.devexpress.com/winfx/2008/xaml/editors/themekeys" xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys">
+    <!--BEGIN WPF-->
+    <ResourceDictionary.MergedDictionaries>
+        <dxtEx:ResourceDictionaryEx Source="/DevExpress.Xpf.Themes.Office2007Blue.v15.2;component/DevExpress.Xpf.Core/DevExpress.Xpf.Core/Editors/Themes/Office2007Generic/Brushes.xaml" />
+        <dxtEx:ResourceDictionaryEx Source="/DevExpress.Xpf.Themes.Office2007Blue.v15.2;component/DevExpress.Xpf.Core/DevExpress.Xpf.Core/Editors/Themes/Generic/CheckEdit.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+    <!--END WPF-->
+    <LinearGradientBrush x:Key="CheckRadioFillNormal">
+        <GradientStop Color="#FFD2D4D2" Offset="0" />
+        <GradientStop Color="#FFFFFFFF" Offset="1" />
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="CheckRadioStrokeNormal">
+        <GradientStop Color="#FF004C94" Offset="0" />
+        <GradientStop Color="#FF003C74" Offset="1" />
+    </LinearGradientBrush>
+    <Style BasedOn="{StaticResource BaseCheckEditBoxStyle}" x:Key="{dxet:CheckEditThemeKey ResourceKey=CheckEditBoxStyle}" TargetType="{x:Type dxe:CheckEditBox}">
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+        <Setter Property="FocusVisualStyle" Value="{Binding Path=(dxe:BaseEdit.OwnerEdit).FocusVisualStyle, RelativeSource={RelativeSource TemplatedParent}}" />
+        <Setter Property="Template" Value="{DynamicResource {dxet:CheckEditThemeKey ResourceKey=CheckEditBoxTemplate}}" />
+    </Style>
+    <Style BasedOn="{StaticResource BaseCheckEditBoxInplaceStyle}" x:Key="{dxet:CheckEditThemeKey ResourceKey=CheckEditBoxInplaceStyle}" TargetType="{x:Type dxe:CheckEditBox}">
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="Template" Value="{DynamicResource {dxet:CheckEditThemeKey ResourceKey=CheckEditBoxTemplate}}" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
+    </Style>
+
+    <Thickness x:Key="{dxet:CheckEditThemeKey ResourceKey=Padding}">0,1,0,1</Thickness>
+
+    <ControlTemplate x:Key="{dxet:CheckEditThemeKey ResourceKey=DisplayTemplate}">
+        <dxe:CheckEditBox x:Name="PART_Editor" Style="{DynamicResource {dxet:CheckEditThemeKey ResourceKey=CheckEditBoxStyle}}" />
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="{dxet:CheckEditThemeKey ResourceKey=EditTemplate}">
+        <dxe:CheckEditBox x:Name="PART_Editor" Style="{DynamicResource {dxet:CheckEditThemeKey ResourceKey=CheckEditBoxStyle}}" />
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="{dxet:CheckEditThemeKey ResourceKey=DisplayInplaceTemplate}">
+        <dxe:CheckEditBox x:Name="PART_Editor" Style="{DynamicResource {dxet:CheckEditThemeKey ResourceKey=CheckEditBoxInplaceStyle}}" />
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="{dxet:CheckEditThemeKey ResourceKey=EditInplaceTemplate}">
+		<dxe:CheckEditBox x:Name="PART_Editor" Style="{DynamicResource {dxet:CheckEditThemeKey ResourceKey=CheckEditBoxInplaceStyle}}" />
+	</ControlTemplate>
+
+    <ControlTemplate x:Key="{dxet:CheckEditThemeKey ResourceKey=Template}" TargetType="{x:Type dxe:CheckEdit}">
+        <dxe:EditorControl Grid.Column="0" x:Name="PART_Content" SnapsToDevicePixels="True" Template="{TemplateBinding ActualEditorControlTemplate}">
+            <!--ONLY SL
+            <dxe:EditorControl.Resources>
+                <dx:EnumToObjectConverter x:Key="EnumToObjectConverter">
+                    <dx:EnumToObjectConverter.DefaultValue>
+                        <HorizontalAlignment>Stretch</HorizontalAlignment>
+                    </dx:EnumToObjectConverter.DefaultValue>
+                    <dx:EnumToObjectConverter.Values>
+                        <dx:EnumObjectProvider x:Key="InpaceActive">
+                            <dx:EnumObjectProvider.Value>
+                                <HorizontalAlignment>Center</HorizontalAlignment>
+                            </dx:EnumObjectProvider.Value>
+                        </dx:EnumObjectProvider>
+                        <dx:EnumObjectProvider x:Key="InpaceInactive">
+                            <dx:EnumObjectProvider.Value>
+                                <HorizontalAlignment>Center</HorizontalAlignment>
+                            </dx:EnumObjectProvider.Value>
+                        </dx:EnumObjectProvider>
+                    </dx:EnumToObjectConverter.Values>
+                </dx:EnumToObjectConverter>
+            </dxe:EditorControl.Resources>
+            <dxe:EditorControl.HorizontalAlignment>
+                <Binding Path="EditMode" RelativeSource="{RelativeSource TemplatedParent}" Converter="{StaticResource EnumToObjectConverter}"/>
+            </dxe:EditorControl.HorizontalAlignment>
+            ONLY SL-->
+        </dxe:EditorControl>
+        <ControlTemplate.Triggers>
+            <Trigger Property="EditMode" Value="InplaceInactive">
+                <Setter Property="HorizontalAlignment" Value="Center" />
+            </Trigger>
+            <Trigger Property="EditMode" Value="InplaceActive">
+                <Setter Property="HorizontalAlignment" Value="Center" />
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+</ResourceDictionary>

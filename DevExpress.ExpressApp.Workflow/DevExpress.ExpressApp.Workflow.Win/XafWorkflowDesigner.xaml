@@ -1,0 +1,32 @@
+﻿<UserControl x:Class="DevExpress.ExpressApp.Workflow.Win.XafWorkflowDesigner"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             xmlns:sapt="clr-namespace:System.Activities.Presentation.Toolbox;assembly=System.Activities.Presentation"
+             mc:Ignorable="d" 
+             d:DesignHeight="563" d:DesignWidth="708">
+    <UserControl.Resources>
+        <sys:String x:Key="SystemActivities">System.Activities, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35</sys:String>
+        <sys:String x:Key="MyAssemblyName">CustomActivities</sys:String>
+    </UserControl.Resources>
+    <Grid x:Name="DesignerGrid">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="142*" />
+            <ColumnDefinition Width="5" />
+            <ColumnDefinition Width="389*" />
+            <ColumnDefinition Width="5" />
+            <ColumnDefinition Width="177*" />
+        </Grid.ColumnDefinitions>
+        <Border Name="ToolboxBorder" Grid.Column="0">
+            <sapt:ToolboxControl VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch">
+            </sapt:ToolboxControl>
+        </Border>
+        <Border Name="DesignerBorder" Grid.Column="2" BorderThickness="3" HorizontalAlignment="Stretch">
+        </Border>
+        <Border x:Name="PropertyGridExpander" Grid.Column="4"></Border>
+        <GridSplitter Grid.Column="1" HorizontalAlignment="Stretch" Width="5" Cursor="SizeWE" Focusable="False" ForceCursor="True" IsManipulationEnabled="False" ResizeBehavior="PreviousAndNext" />
+        <GridSplitter Grid.Column="3" HorizontalAlignment="Stretch" Width="5" Cursor="SizeWE" Focusable="False" ForceCursor="True" IsManipulationEnabled="False" ResizeBehavior="PreviousAndNext" />
+    </Grid>
+</UserControl>

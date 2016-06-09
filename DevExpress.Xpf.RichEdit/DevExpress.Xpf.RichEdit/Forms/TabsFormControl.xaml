@@ -1,0 +1,96 @@
+﻿<UserControl x:Class="DevExpress.XtraRichEdit.Forms.TabsFormControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:dxreui="clr-namespace:DevExpress.Xpf.RichEdit.UI"
+             xmlns:dxre="clr-namespace:DevExpress.Xpf.RichEdit"
+             xmlns:dxec="clr-namespace:DevExpress.Xpf.Editors.Controls;assembly=DevExpress.Xpf.Core.v15.2"
+             xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" dx:StyleManager.ApplyApplicationTheme="True">
+
+    <UserControl.Resources>
+        <dxre:RichEditStringIdConverter x:Key="RichEditStringIdConverter" />
+    </UserControl.Resources>
+    <Grid x:Name="LayoutRoot">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition MinHeight="150" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition MinWidth="150" />
+                <ColumnDefinition Width="0.1*" MinWidth="15" />
+                <ColumnDefinition MinWidth="150" />
+            </Grid.ColumnDefinitions>
+            <TextBlock Margin="0,3,3,3" VerticalAlignment="Center" Text="{Binding Source={StaticResource RichEditStringIdConverter}, ConverterParameter=Caption_TabsFormTabStopPositionLabel, Converter={StaticResource RichEditStringIdConverter}}" />
+            <TextBlock Grid.Column="3" Margin="0,3,3,3" VerticalAlignment="Center" Text="{Binding Source={StaticResource RichEditStringIdConverter}, ConverterParameter=Caption_TabsFormDefaultTabStopsLabel, Converter={StaticResource RichEditStringIdConverter}}" />
+            <dxreui:TabStopPositionEdit Grid.Row="1" x:Name="tabStopPositionEdit" />
+            <StackPanel Grid.Column="3" Grid.Row="1" Orientation="Vertical">
+                <dxreui:RichTextIndentEdit x:Name="edtDefaultTabWidth" />
+                <TextBlock Margin="0,6,3,3" VerticalAlignment="Center" x:Name="lblTabStopsToBeCleared" Text="{Binding Source={StaticResource RichEditStringIdConverter}, ConverterParameter=Caption_TabsFormTabStopsToBeClearedLabel, Converter={StaticResource RichEditStringIdConverter}}" />
+                <TextBlock x:Name="lblRemoveTabStops" />
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Row="1" Margin="0,6,0,3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <TextBlock x:Name="lblAlignmemt" Text="{Binding Source={StaticResource RichEditStringIdConverter}, ConverterParameter=Caption_TabsFormAlignmentLabel, Converter={StaticResource RichEditStringIdConverter}}" />
+            <dxec:DXSeparator Grid.Column="1" Margin="3,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Stretch" />
+        </Grid>
+        <Grid Grid.Row="2" Margin="12,0,0,0" x:Name="rgAlignmemt">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <RadioButton x:Name="cbLeft" GroupName="1" Content="{Binding Source={StaticResource RichEditStringIdConverter}, ConverterParameter=Caption_TabsFormLeftRadioButton, Converter={StaticResource RichEditStringIdConverter}}" Grid.Column="0" Grid.Row="0" dx:StyleManager.ApplyApplicationTheme="True" />
+            <RadioButton x:Name="cbRight" GroupName="1" Content="{Binding Source={StaticResource RichEditStringIdConverter}, ConverterParameter=Caption_TabsFormRightRadioButton, Converter={StaticResource RichEditStringIdConverter}}" Grid.Column="1" Grid.Row="0" dx:StyleManager.ApplyApplicationTheme="True" />
+            <RadioButton x:Name="cbDecimal" GroupName="1" Content="{Binding Source={StaticResource RichEditStringIdConverter}, ConverterParameter=Caption_TabsFormDecimalRadionButton, Converter={StaticResource RichEditStringIdConverter}}" Grid.Column="0" Grid.Row="1" dx:StyleManager.ApplyApplicationTheme="True" />
+            <RadioButton x:Name="cbCenter" GroupName="1" Content="{Binding Source={StaticResource RichEditStringIdConverter}, ConverterParameter=Caption_TabsFormCenterRadioButton, Converter={StaticResource RichEditStringIdConverter}}" Grid.Column="1" Grid.Row="1" dx:StyleManager.ApplyApplicationTheme="True" />
+        </Grid>
+        <Grid Grid.Row="3" Margin="0,6,0,3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <TextBlock x:Name="lblLeader" Text="{Binding Source={StaticResource RichEditStringIdConverter}, ConverterParameter=Caption_TabsFormLeaderLabel, Converter={StaticResource RichEditStringIdConverter}}" />
+            <dxec:DXSeparator Grid.Column="1" Margin="3,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Stretch" />
+        </Grid>
+        <Grid Grid.Row="4" Margin="12,0,0,0" x:Name="rgLeader">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <RadioButton x:Name="cbNone" GroupName="2" Content="{Binding Source={StaticResource RichEditStringIdConverter}, ConverterParameter=Caption_TabsFormNoneRadioButton, Converter={StaticResource RichEditStringIdConverter}}" Grid.Column="0" Grid.Row="0" Margin="0,0,5,0" dx:StyleManager.ApplyApplicationTheme="True" />
+            <RadioButton x:Name="cbHyphens" GroupName="2" Content="{Binding Source={StaticResource RichEditStringIdConverter}, ConverterParameter=Caption_TabsFormHyphensRadioButton, Converter={StaticResource RichEditStringIdConverter}}" Grid.Column="1" Grid.Row="0" Margin="0,0,5,0" dx:StyleManager.ApplyApplicationTheme="True" />
+            <RadioButton x:Name="cbEqualSign" GroupName="2" Content="{Binding Source={StaticResource RichEditStringIdConverter}, ConverterParameter=Caption_TabsFormEqualSignRadioButton, Converter={StaticResource RichEditStringIdConverter}}" Grid.Column="2" Grid.Row="0" Margin="0,0,5,0" dx:StyleManager.ApplyApplicationTheme="True" />
+            <RadioButton x:Name="cbDots" GroupName="2" Content="{Binding Source={StaticResource RichEditStringIdConverter}, ConverterParameter=Caption_TabsFormDotsRadioButton, Converter={StaticResource RichEditStringIdConverter}}" Grid.Column="0" Grid.Row="1" Margin="0,0,5,0" dx:StyleManager.ApplyApplicationTheme="True" />
+            <RadioButton x:Name="cbUnderline" GroupName="2" Content="{Binding Source={StaticResource RichEditStringIdConverter}, ConverterParameter=Caption_TabsFormUnderlineRadioButton, Converter={StaticResource RichEditStringIdConverter}}" Grid.Column="1" Grid.Row="1" Margin="0,0,5,0" dx:StyleManager.ApplyApplicationTheme="True" />
+            <RadioButton x:Name="cbMiddleDots" GroupName="2" Content="{Binding Source={StaticResource RichEditStringIdConverter}, ConverterParameter=Caption_TabsFormMiddleDotsRadioButton, Converter={StaticResource RichEditStringIdConverter}}" Grid.Column="0" Grid.Row="2" Margin="0,0,5,0" dx:StyleManager.ApplyApplicationTheme="True" />
+            <RadioButton x:Name="cbThickline" GroupName="2" Content="{Binding Source={StaticResource RichEditStringIdConverter}, ConverterParameter=Caption_TabsFormThickLineRadioButton, Converter={StaticResource RichEditStringIdConverter}}" Grid.Column="1" Grid.Row="2" Margin="0,0,5,0" dx:StyleManager.ApplyApplicationTheme="True" />
+        </Grid>
+        <StackPanel Orientation="Horizontal" Grid.Row="5" HorizontalAlignment="Right" Margin="0,12,0,0">
+            <Button x:Name="btnSet" Content="{Binding Source={StaticResource RichEditStringIdConverter}, ConverterParameter=Caption_TabsFormSetButton, Converter={StaticResource RichEditStringIdConverter}}" Margin="0,0,0,0" Padding="15,0,15,0" dx:StyleManager.ApplyApplicationTheme="True" />
+            <Button x:Name="btnClear" Content="{Binding Source={StaticResource RichEditStringIdConverter}, ConverterParameter=Caption_TabsFormClearButton, Converter={StaticResource RichEditStringIdConverter}}" Margin="6,0,0,0" Padding="15,0,15,0" dx:StyleManager.ApplyApplicationTheme="True" />
+            <Button x:Name="btnClearAll" Content="{Binding Source={StaticResource RichEditStringIdConverter}, ConverterParameter=Caption_TabsFormClearAllButton, Converter={StaticResource RichEditStringIdConverter}}" Margin="6,0,0,0" Padding="15,0,15,0" dx:StyleManager.ApplyApplicationTheme="True" />
+        </StackPanel>
+    </Grid>
+</UserControl>

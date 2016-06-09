@@ -1,0 +1,48 @@
+﻿<ResourceDictionary x:Class="DevExpress.Xpf.Core.Design.SmartTags.DesignTimeListBoxResources"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+        xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+        xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
+        xmlns:dxmvvminternal="http://schemas.devexpress.com/winfx/2008/xaml/mvvm/internal"
+        xmlns:design="clr-namespace:DevExpress.Xpf.Core.Design"
+        xmlns:local="clr-namespace:DevExpress.Xpf.Core.Design.SmartTags"
+        xmlns:SmartTags="clr-namespace:DevExpress.Design.SmartTags">
+
+    <Style x:Key="DesignTimeListBoxItemStyle" TargetType="local:DesignTimeListBoxItem">
+        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Height" Value="22"/>
+        <Setter Property="Padding" Value="11,0,0,0"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ListBoxItem">
+                    <Grid>
+                        <Border x:Name="ListBoxItemHover" Background="#FFB9B9B9" Opacity="0" />
+                        <Border x:Name="ListBoxItemSelection" Background="#FF4F97D1" Opacity="0" />
+                        <ContentPresenter Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}"
+                                          Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"/>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Cursor" Value="Hand" />
+                            <Setter Property="Foreground" Value="#FFFFFFFF" />
+                            <Setter TargetName="ListBoxItemHover" Property="Opacity" Value="1" />
+                        </Trigger>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter Property="Foreground" Value="#FFFFFFFF" />
+                            <Setter TargetName="ListBoxItemSelection" Property="Opacity" Value="1" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style TargetType="local:DesignTimeListBoxItem" BasedOn="{StaticResource DesignTimeListBoxItemStyle}"/>
+    <Style x:Key="DesignTimeListBoxStyle" TargetType="local:DesignTimeListBox">
+        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        <Setter Property="ItemContainerStyle" Value="{StaticResource DesignTimeListBoxItemStyle}"/>
+    </Style>
+    <Style TargetType="local:DesignTimeListBox" BasedOn="{StaticResource DesignTimeListBoxStyle}"/>
+</ResourceDictionary>

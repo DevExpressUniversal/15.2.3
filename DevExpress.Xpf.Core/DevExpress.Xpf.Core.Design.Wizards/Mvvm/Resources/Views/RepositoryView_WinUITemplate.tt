@@ -1,0 +1,116 @@
+﻿<#@ template language="C#" #>
+<#@ import namespace="System" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.Diagnostics" #>
+<#@ import namespace="System.IO" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Xml" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="DevExpress.Design.Mvvm" #>
+<#@ import namespace="DevExpress.Xpf.Core.Design.Wizards.Mvvm.EntityFramework" #>
+<#@ import namespace="DevExpress.Xpf.Core.Design.Wizards.Mvvm" #>
+<#@ import namespace="DevExpress.Xpf.Core.Design.Wizards.Mvvm.ViewModelData" #>
+<#@ import namespace="DevExpress.Xpf.Core.Native" #>
+<#	
+	T4TemplateInfo templateInfo = this.GetTemplateInfo();
+	CollectionViewModelData viewModelData = templateInfo.Properties["IViewModelInfo"] as CollectionViewModelData;
+    string viewName = templateInfo.Properties["ViewName"].ToString();    
+    string localNamespace = templateInfo.Properties["Namespace"].ToString();
+	string viewFullName = localNamespace +"." + viewName;    
+	string generatedFieldsBase64 = (string)templateInfo.Properties["GeneratedFieldsBase64"];
+	string generatedBandsBase64 = (string)templateInfo.Properties["GeneratedBandsBase64"];
+
+    XamlNamespaces xamlNamespaces = templateInfo.Properties["XamlNamespaces"] as XamlNamespaces;
+	string viewModelPrefix = templateInfo.Properties["viewModelPrefix"].ToString();
+#>
+<UserControl x:Class="<#=viewFullName#>"
+<#
+	PasteXamlNamespaces(xamlNamespaces);
+	this.ExecuteCollectionViewHook(TemplatesCodeGen.STR_CollectionViewHook_GenerateCustomXmlNamespaces);
+#>
+mc:Ignorable="<#=xamlNamespaces.GetPrefix(XamlNamespaces.xmlns_blend)#>"
+        d:DesignHeight="400" d:DesignWidth="600"
+<#if(viewModelData.UseProxyFactory) {		
+#> DataContext="{dxmvvm:ViewModelSource <#=viewModelPrefix#>:<#=viewModelData.Name#>}"
+<#}#> 
+>
+<#if(!viewModelData.UseProxyFactory) {		
+#>        <UserControl.DataContext>
+        <<#=viewModelPrefix#>:<#=viewModelData.Name#>/>
+    </UserControl.DataContext>
+<#}#> 
+
+<#if(viewModelData.SupportServices) {		
+#>	    <dxmvvm:Interaction.Behaviors>
+		<dxwui:WinUIMessageBoxService/>
+		<dxmvvm:EventToCommand Event="Loaded" Command="{Binding OnLoadedCommand}" />
+		<dxmvvm:EventToCommand Event="Unloaded" Command="{Binding OnUnloadedCommand}" />
+		<dx:WindowedDocumentUIService YieldToParent="True"/>
+    </dxmvvm:Interaction.Behaviors>
+<#}#>
+    <DockPanel>
+		<dxmvvm:Interaction.Behaviors>
+			<dxmvvm:LayoutSerializationService/>
+		</dxmvvm:Interaction.Behaviors>
+        <dxwui:AppBar DockPanel.Dock="Bottom" HideMode="AlwaysVisible">
+<#foreach(CommandInfo command in viewModelData.Commands) {#>
+			<dxwui:AppBarButton Label="<#=command.Caption#>" Command="{Binding <#=command.CommandPropertyName#>}"<#if(command.HasParameter()){#> CommandParameter="{Binding <#=command.ParameterPropertyName#>}"<#}#><#if(command.HasGlyphs()){#> Glyph="<#=command.LargeGlyph#>" IsEllipseEnabled="False" AllowGlyphTheming="True" GlyphStretch="None"<#}#> HorizontalAlignment="Center" />
+<#}#>
+<#if(!this.ExecuteCollectionViewHook(TemplatesCodeGen.STR_CollectionViewHook_GenerateEmptyString)) {#>
+			<dxwui:AppBarButton Label="Print Preview" Command="{Binding TableViewCommands.ShowPrintPreviewDialog, ElementName=tableView}" Glyph="{dx:DXImageGrayscale Image=Preview_32x32.png}" IsEllipseEnabled="False" AllowGlyphTheming="True" GlyphStretch="None" HorizontalAlignment="Center" />
+<#}#>
+			<#this.ExecuteCollectionViewHook(TemplatesCodeGen.STR_CollectionViewHook_WinUI_GenerateAdditionalAppBarItems);#>
+        </dxwui:AppBar>
+<#if(!this.ExecuteCollectionViewHook(TemplatesCodeGen.STR_CollectionViewHook_GenerateCustomContent)) {#>
+        <dxg:GridControl Name="gridControl" ItemsSource="{Binding <#=viewModelData.CollectionPropertyName#>}" <#if(viewModelData.HasEntityPropertyName()){#>CurrentItem="{Binding <#=viewModelData.EntityPropertyName#>}"<#}#> <#if(viewModelData.UseIsLoadingBinding){#>ShowLoadingPanel="{Binding IsLoading}"<#}#> Margin="50,16,42,2">
+<#if(viewModelData.HasEntityEditProperty()) {#>
+			<dxmvvm:Interaction.Behaviors>
+				<dxmvvm:EventToCommand PassEventArgsToCommand="True" Command="{Binding EditCommand}" EventName="MouseDoubleClick">
+					<dxmvvm:EventToCommand.EventArgsConverter>
+						<dx:EventArgsToDataRowConverter/>
+					</dxmvvm:EventToCommand.EventArgsConverter>
+				</dxmvvm:EventToCommand>
+			</dxmvvm:Interaction.Behaviors>
+<#}
+if(!string.IsNullOrEmpty(generatedFieldsBase64)) {	
+#>						<dxg:GridControl.Columns>
+							<#=generatedFieldsBase64#>
+						</dxg:GridControl.Columns>
+<#}#>
+<#if(!string.IsNullOrEmpty(generatedBandsBase64)) {	
+#>						<dxg:GridControl.Bands>
+							<#=generatedBandsBase64#>
+						</dxg:GridControl.Bands>
+<#}#>
+            <dxg:GridControl.TotalSummary>
+				<dxg:GridSummaryItem SummaryType="Count" Alignment="Right"/>
+            </dxg:GridControl.TotalSummary>
+            <dxg:GridControl.GroupSummary>
+				<dxg:GridSummaryItem SummaryType="Count"/>
+            </dxg:GridControl.GroupSummary>
+            <dxg:GridControl.View>
+				<dxg:TableView Name="tableView" AllowEditing="False" ShowFixedTotalSummary="True" AllowPerPixelScrolling="True" ShowGroupPanel="False" ShowIndicator="False" />
+			</dxg:GridControl.View>
+        </dxg:GridControl>
+<#}#>
+    </DockPanel>
+</UserControl>
+    
+    
+    
+<#+
+void PasteXamlNamespaces(XamlNamespaces xamlNamespaces) {
+	string[] toAdd = new string[]{
+		XmlNamespaceConstants.RibbonNamespaceDefinition,
+		XmlNamespaceConstants.EditorsNamespaceDefinition,
+		XmlNamespaceConstants.LayoutControlNamespaceDefinition,
+		XmlNamespaceConstants.BarsNamespaceDefinition,
+		XmlNamespaceConstants.UtilsNamespaceDefinition,
+		XmlNamespaceConstants.GridNamespaceDefinition,
+		XmlNamespaceConstants.MvvmNamespaceDefinition,
+		XmlNamespaceConstants.WindowsUINamespaceDefinition
+	};
+	xamlNamespaces.AddDevExpressXamlNamespaces(toAdd);
+	this.WriteLine(xamlNamespaces.GetXaml());
+}
+#>

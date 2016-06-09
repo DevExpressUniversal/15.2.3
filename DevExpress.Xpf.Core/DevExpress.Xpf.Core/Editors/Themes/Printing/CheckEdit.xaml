@@ -1,0 +1,55 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:dxtEx="clr-namespace:DevExpress.Xpf.Utils.Themes"
+    xmlns:dx="clr-namespace:DevExpress.Xpf.Core"
+    xmlns:dxe="clr-namespace:DevExpress.Xpf.Editors"
+    xmlns:dxp="clr-namespace:DevExpress.Xpf.Printing"
+    xmlns:dxet="clr-namespace:DevExpress.Xpf.Editors.Themes">
+
+    <ResourceDictionary.MergedDictionaries>
+        <dxtEx:ResourceDictionaryEx Source="{dx:EditorsResource Themes/Printing/TextEdit.xaml}" />
+        <dxtEx:ResourceDictionaryEx Source="{dx:EditorsResource Themes/Generic/CheckEdit.xaml}" />
+    </ResourceDictionary.MergedDictionaries>
+
+    <LinearGradientBrush x:Key="CheckRadioFillNormal">
+        <GradientStop Color="#FFD2D4D2" Offset="0" />
+        <GradientStop Color="#FFFFFFFF" Offset="1" />
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="CheckRadioStrokeNormal">
+        <GradientStop Color="#FF004C94" Offset="0" />
+        <GradientStop Color="#FF003C74" Offset="1" />
+    </LinearGradientBrush>
+
+    <ControlTemplate x:Key="{dxet:CheckEditThemeKey ResourceKey=CheckEditBoxTemplate}" TargetType="{x:Type dxe:CheckEditBox}">
+        <BulletDecorator SnapsToDevicePixels="true" VerticalAlignment="Center">
+            <BulletDecorator.Bullet>
+                <Grid VerticalAlignment="Center" x:Name="checkbox" dxp:ExportSettings.TargetType="Image" dxp:ExportSettings.BorderThickness="0">
+                    <Border x:Name="border" Width="15" Height="15" BorderThickness="1" Background="#FFFFFFFF" BorderBrush="#FF373737" Padding="1,1,1,1">
+                        <Path x:Name="Check" Visibility="Collapsed" Stretch="Fill" Fill="#FF282828" Data="F1 M 1246,766L 1248,764L 1250,766L 1255,761L 1257,763L 1250,770L 1246,766 Z " Width="10" Height="9" />
+                    </Border>
+                </Grid>
+            </BulletDecorator.Bullet>
+            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                            Margin="{TemplateBinding Padding}" 
+                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}" 
+                            SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" 
+                            Content="{TemplateBinding Content}" 
+                            ContentTemplate="{TemplateBinding ContentTemplate}"                            
+                            ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}" 
+                        />
+        </BulletDecorator>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" />
+                <Setter Property="Visibility" TargetName="Check" Value="Hidden" />
+            </Trigger>
+            <Trigger Property="IsChecked" Value="True">
+                <Setter Property="Visibility" Value="Visible" TargetName="Check" />
+            </Trigger>
+            <Trigger Property="IsChecked" Value="{x:Null}">
+                <Setter Property="BorderBrush" TargetName="border" Value="Gray" />
+                <Setter Property="Fill" TargetName="Check" Value="Gray" />
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+</ResourceDictionary>

@@ -1,0 +1,45 @@
+﻿<#@ template language="C#" #>
+<#@ import namespace="System" #>
+<#@ import namespace="DevExpress.Xpf.Core.Design.Wizards.Mvvm.EntityFramework" #>
+<#@ import namespace="DevExpress.Xpf.Core.Design.Wizards.Mvvm" #>
+<#@ import namespace="DevExpress.Design.Mvvm.EntityFramework" #>
+<#@ import namespace="DevExpress.Design.Mvvm" #>
+<#@ import namespace="DevExpress.Entity.Model" #>
+<#
+    T4TemplateInfo templateInfo = this.GetTemplateInfo();
+    var usingList = templateInfo.UsingList;
+    this.PasteUsingList(usingList);
+	EntityModelData entityModel = templateInfo.Properties["EntityModelData"] as EntityModelData;
+#>
+using DevExpress.Mvvm;
+using System.Collections;
+using System.ComponentModel;
+using DevExpress.Data.Linq;
+using DevExpress.Data.Linq.Helpers;
+using DevExpress.Data.Async.Helpers;
+
+namespace <#=this.GetNamespace()#> {
+<#
+    this.PasteAliasList(usingList, entityModel.FullName);
+#>
+	class DesignTimeInstantFeedbackSource<TProjection, TPrimaryKey> : IInstantFeedbackSource<TProjection>
+        where TProjection : class {
+        void IInstantFeedbackSource<TProjection>.Refresh() { }
+
+        bool IInstantFeedbackSource<TProjection>.IsLoadedProxy(object threadSafeProxy) {
+            return true;
+        }
+			
+        bool IListSource.ContainsListCollection {
+            get { return true; }
+        }
+
+        IList IListSource.GetList() {
+            return DesignTimeHelper.CreateDesignTimeObjects<TProjection>(2).ToList();
+        }
+
+        TProperty IInstantFeedbackSource<TProjection>.GetPropertyValue<TProperty>(object threadSafeProxy, Expression<Func<TProjection, TProperty>> propertyExpression) {
+            return default(TProperty);
+        }
+    }
+}

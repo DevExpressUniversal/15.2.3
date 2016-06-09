@@ -1,0 +1,47 @@
+﻿<ResourceDictionary 
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" 
+    xmlns:dxc="http://schemas.devexpress.com/winfx/2008/xaml/core" 
+    xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars" 
+    xmlns:dxbt="http://schemas.devexpress.com/winfx/2008/xaml/bars/themekeys" 
+    xmlns:sys="clr-namespace:System;assembly=mscorlib" 
+    xmlns:dxti="http://schemas.devexpress.com/winfx/2008/xaml/core/internal"
+    xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys">
+
+    <ControlTemplate x:Key="{dxbt:BarStaticItemThemeKey ResourceKey=BorderTemplate}">
+        <Grid>
+            <Grid x:Name="border" Margin="0,2,0,2" Opacity="0.5" SnapsToDevicePixels="True">
+                <Border Background="#7FFFFFFF" BorderBrush="#BF2D486C" BorderThickness="1,0,0,0" HorizontalAlignment="Right" Width="2"/>
+            </Grid>
+            <dx:DXContentPresenter Content="{Binding Path=Content, RelativeSource={RelativeSource TemplatedParent}}" Margin="1"/>
+            <dxti:DXTriggerManager.TriggersInfo>
+                <dxti:DXTriggerInfoCollection>
+                    <dxti:DXTriggerInfo Binding="{Binding Path=Link.Item.ShowBorder, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=dxb:BarItemLinkControl}}" VisualState="HideBorder" VisualStateNormal="ShowBorder">
+                        <dxti:DXTriggerInfo.TriggerValue>
+                            <sys:Boolean>False</sys:Boolean>
+                        </dxti:DXTriggerInfo.TriggerValue>
+                    </dxti:DXTriggerInfo>
+                </dxti:DXTriggerInfoCollection>
+            </dxti:DXTriggerManager.TriggersInfo>
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup x:Name="BorderVisibility">
+                    <VisualState x:Name="ShowBorder">
+                    </VisualState>
+                    <VisualState x:Name="HideBorder">
+                        <Storyboard>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="border" Storyboard.TargetProperty="Opacity">
+                                <DiscreteObjectKeyFrame KeyTime="0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <sys:Double>0.0</sys:Double>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+        </Grid>
+    </ControlTemplate>
+
+</ResourceDictionary>

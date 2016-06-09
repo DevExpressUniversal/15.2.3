@@ -1,0 +1,185 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:dxn="clr-namespace:DevExpress.Xpf.Core.Native"
+                    xmlns:dx="clr-namespace:DevExpress.Xpf.Core"
+                    xmlns:dxei="clr-namespace:DevExpress.Xpf.Editors.Internal"
+                     xmlns:dxet="clr-namespace:DevExpress.Xpf.Editors.Themes"
+                    xmlns:dxtEx="clr-namespace:DevExpress.Xpf.Utils.Themes">
+    <ResourceDictionary.MergedDictionaries>
+        <dxtEx:ResourceDictionaryEx Source="{dx:EditorsResource Themes/Generic/AutoCompleteBox.xaml}" />
+    </ResourceDictionary.MergedDictionaries>
+
+    <Thickness x:Key="{dxet:TokenEditorThemeKey ResourceKey=TokenEditorMargin}">0,0,2,0</Thickness>
+    <ControlTemplate x:Key="{dxet:TokenEditorThemeKey ResourceKey=CellPresenterTemplate}" TargetType="{x:Type dxei:TokenEditorPresenter}">
+        <Grid Background="Transparent">
+            <Border UseLayoutRounding="True" Margin="1,1,0,1">
+                <ContentControl Focusable="False" Template="{TemplateBinding BorderTemplate}"/>
+            </Border>
+            <dxei:CellEditor x:Name="cell" Focusable="False" TextElement.Foreground="#BFFFFFFF"/>
+        </Grid>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsNewTokenEditorPresenter" Value="True">
+                <Setter TargetName="cell" Property="TextElement.Foreground" Value="#FF000000"/> 
+            </Trigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsMouseOver" Value="True"/>
+                    <Condition Property="IsNewTokenEditorPresenter" Value="False"/>
+                </MultiTrigger.Conditions>
+                <MultiTrigger.Setters>
+                    <Setter TargetName="cell" Property="TextElement.Foreground" Value="#FFFFFFFF" />
+                </MultiTrigger.Setters>
+            </MultiTrigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsTokenFocused" Value="True"/>
+                    <Condition Property="IsNewTokenEditorPresenter" Value="False"/>
+                </MultiTrigger.Conditions>
+                <MultiTrigger.Setters>
+                    <Setter TargetName="cell" Property="TextElement.Foreground" Value="#FFFFFFFF" />
+                </MultiTrigger.Setters>
+            </MultiTrigger>
+            <Trigger Property="IsEditorActivated" Value="True">
+                <Setter TargetName="cell" Property="TextElement.Foreground" Value="#FF000000" />
+            </Trigger>
+            <!--<Trigger Property="HasForeground" Value="True">
+                <Setter TargetName="cell" Property="TextElement.Foreground" Value="{TemplateBinding Foreground}" />
+            </Trigger>-->
+        </ControlTemplate.Triggers>  
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="{dxet:TokenEditorThemeKey ResourceKey=TokenContainerTemplate}" TargetType="{x:Type ContentControl}">
+        <Grid x:Name="grid">
+            <Grid x:Name="default">
+                <Border x:Name="normalState" CornerRadius="2">
+                    <Border.Background>
+                        <LinearGradientBrush EndPoint="0.5,0" StartPoint="0.5,1">
+                            <GradientStop Color="#BF6488BC" Offset="0" />
+                            <GradientStop Color="#BF759BD2" Offset="1" />
+                        </LinearGradientBrush>
+                    </Border.Background>
+                </Border>
+            </Grid>
+            <Grid x:Name="hover" Opacity="0">
+                <Border x:Name="hoverState" CornerRadius="2" >
+                    <Border.Background>
+                        <LinearGradientBrush EndPoint="0.5,0" StartPoint="0.5,1">
+                            <GradientStop Color="#FF6488BC" Offset="0" />
+                            <GradientStop Color="#FF759BD2" Offset="1" />
+                        </LinearGradientBrush>
+                    </Border.Background>
+                </Border>
+            </Grid>
+            <Grid x:Name="pressed" Opacity="0">
+                <Border x:Name="selectedState" CornerRadius="2" Opacity="0.6">
+                    <Border.Background>
+                        <RadialGradientBrush RadiusX="0.5" RadiusY="0.5">
+                            <GradientStop Color="#FF6488BC" Offset="0" />
+                            <GradientStop Color="#FF759BD2" Offset="1" />
+                        </RadialGradientBrush>
+                    </Border.Background>
+                </Border>
+            </Grid>
+            <Grid x:Name="editable" Opacity="0">
+                <Border x:Name="editState" CornerRadius="2" BorderThickness="1">
+                    <Border.BorderBrush>
+                        <LinearGradientBrush EndPoint="0.5,0" StartPoint="0.5,1">
+                            <GradientStop Color="#FF6488BC" Offset="0" />
+                            <GradientStop Color="#FF759BD2" Offset="1" />
+                        </LinearGradientBrush>
+                    </Border.BorderBrush>
+                </Border>                
+            </Grid>
+            <Grid x:Name="focused" Opacity="0">
+                <Border x:Name="selectedState2" CornerRadius="2">
+                    <Border.Background>
+                        <RadialGradientBrush RadiusX="0.5" RadiusY="0.5">
+                            <GradientStop Color="#FF6488BC" Offset="0" />
+                            <GradientStop Color="#FF759BD2" Offset="1" />
+                        </RadialGradientBrush>
+                    </Border.Background>
+                </Border>
+            </Grid>
+            <Grid x:Name="focusedunselected" Opacity="0">
+                <Border Background="#00000000" BorderBrush="#FF6488BC" BorderThickness="1" CornerRadius="1" />
+                <Border Background="#00000000" BorderBrush="#FF6488BC" BorderThickness="2" CornerRadius="1" Opacity="0.35" />
+            </Grid>
+            <ContentPresenter/>
+        </Grid>
+        <ControlTemplate.Triggers>
+            <DataTrigger Binding="{Binding Path=(dxei:TokenEditorPresenter.OwnerPresenter).IsMouseOver, RelativeSource={RelativeSource Self}}" Value="True">
+                <Setter TargetName="default"            Property="Opacity" Value="0" />
+                <Setter TargetName="hover"              Property="Opacity" Value="1" />
+                <Setter TargetName="pressed"            Property="Opacity" Value="0" />
+                <Setter TargetName="editable"           Property="Opacity" Value="0" />
+                <Setter TargetName="focused"            Property="Opacity" Value="0" />
+                <Setter TargetName="focusedunselected"  Property="Opacity" Value="0" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Path=(dxei:TokenEditorPresenter.OwnerPresenter).IsSelected, RelativeSource={RelativeSource Self}}" Value="True">
+                <Setter TargetName="default"            Property="Opacity" Value="0" />
+                <Setter TargetName="hover"              Property="Opacity" Value="0" />
+                <Setter TargetName="pressed"            Property="Opacity" Value="1" />
+                <Setter TargetName="editable"           Property="Opacity" Value="0" />
+                <Setter TargetName="focused"            Property="Opacity" Value="0" />
+                <Setter TargetName="focusedunselected"  Property="Opacity" Value="0" />
+            </DataTrigger>
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding Path=(dxei:TokenEditorPresenter.OwnerPresenter).IsSelected, RelativeSource={RelativeSource Self}}" Value="True" />
+                    <Condition Binding="{Binding Path=(dxei:TokenEditorPresenter.OwnerPresenter).IsTokenFocused, RelativeSource={RelativeSource Self}}" Value="True" />
+                </MultiDataTrigger.Conditions>
+                <Setter TargetName="default"            Property="Opacity" Value="0" />
+                <Setter TargetName="hover"              Property="Opacity" Value="0" />
+                <Setter TargetName="pressed"            Property="Opacity" Value="0" />
+                <Setter TargetName="editable"           Property="Opacity" Value="0" />
+                <Setter TargetName="focused"            Property="Opacity" Value="1" />
+                <Setter TargetName="focusedunselected"  Property="Opacity" Value="0" />
+            </MultiDataTrigger>
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding Path=(dxei:TokenEditorPresenter.OwnerPresenter).IsSelected, RelativeSource={RelativeSource Self}}" Value="False" />
+                    <Condition Binding="{Binding Path=(dxei:TokenEditorPresenter.OwnerPresenter).IsTokenFocused, RelativeSource={RelativeSource Self}}" Value="True" />
+                </MultiDataTrigger.Conditions>
+                <Setter TargetName="focused"            Property="Opacity" Value="0" />
+                <Setter TargetName="focusedunselected"  Property="Opacity" Value="1" />
+            </MultiDataTrigger>
+            <DataTrigger Binding="{Binding Path=(dxei:TokenEditorPresenter.OwnerPresenter).IsEditorActivated, RelativeSource={RelativeSource Self}}" Value="True">
+                <Setter TargetName="default"            Property="Opacity" Value="0" />
+                <Setter TargetName="hover"              Property="Opacity" Value="0" />
+                <Setter TargetName="pressed"            Property="Opacity" Value="0" />
+                <Setter TargetName="editable"           Property="Opacity" Value="1" />
+                <Setter TargetName="focused"            Property="Opacity" Value="0" />
+                <Setter TargetName="focusedunselected"  Property="Opacity" Value="0" />
+            </DataTrigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <Style x:Key="{dxet:TokenEditorThemeKey ResourceKey=DeleteButtonStyle}" TargetType="{x:Type Button}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border Background="Transparent" x:Name="Border" Width="16" Height="16" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,2,0">
+                        <Grid>
+                            <Border x:Name="hoverState" Background="#FF6488BC" CornerRadius="32" Margin="2" Opacity="0" />
+                            <Path   x:Name="Path" Stretch="Fill" Fill="#FF6488BC" Data="F1 M 646,365L 648,367L 650,365L 651,366L 649,368L 651,370L 650,371L 648,369L 646,371L 645,370L 647,368L 645,366L 646,365 Z " Width="6" Height="6" />
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <DataTrigger Binding="{Binding Path=(dxei:TokenEditorPresenter.OwnerPresenter).IsMouseOver, RelativeSource={RelativeSource Self}}" Value="True">
+                            <Setter TargetName="Path" Property="Fill" Value="#FFFFFFFF"/>
+                        </DataTrigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="hoverState" Property="Opacity" Value="1" />
+                            <Setter TargetName="Path" Property="Fill" Value="#FFFFFFFF" />
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="hoverState" Property="Opacity" Value="0.75" />
+                            <Setter TargetName="Path" Property="Fill" Value="#FFFFFFFF"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>

@@ -1,0 +1,145 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:dxtEx="clr-namespace:DevExpress.Xpf.Utils.Themes"
+	xmlns:dxc="clr-namespace:DevExpress.Xpf.Core"
+	xmlns:dx="clr-namespace:DevExpress.Xpf.Core"
+	xmlns:dxe="clr-namespace:DevExpress.Xpf.Editors"
+	xmlns:dxet="clr-namespace:DevExpress.Xpf.Editors.Themes"
+	xmlns:dxt="clr-namespace:DevExpress.Xpf.Utils.Themes"
+	xmlns:sys="clr-namespace:System;assembly=mscorlib">
+    <!--BEGIN WPF-->
+    <ResourceDictionary.MergedDictionaries>
+        <dxtEx:ResourceDictionaryEx Source="{dxc:EditorsResource Themes/Generic/RangeEdit.xaml}" />
+    </ResourceDictionary.MergedDictionaries>
+    <!--END WPF-->
+
+    <!--<ControlTemplate x:Key="{dxet:RangeEditThemeKey ResourceKey=BorderTemplate}" TargetType="{x:Type ContentControl}">
+        <Border BorderThickness="1" BorderBrush="Gray">
+            <ContentPresenter/>
+        </Border>
+    </ControlTemplate>
+    <ControlTemplate x:Key="{dxet:RangeEditThemeKey ResourceKey=EmptyBorderTemplate}" TargetType="{x:Type ContentControl}">
+        <ContentPresenter/>
+    </ControlTemplate>
+    <ControlTemplate x:Key="{dxet:RangeEditThemeKey ResourceKey=RangeEditScrollerPanelLeftSideTemplate}">
+        <Border Background="Gray" Opacity="0.35" />
+    </ControlTemplate>
+    <ControlTemplate x:Key="{dxet:RangeEditThemeKey ResourceKey=RangeEditScrollerPanelRightSideTemplate}">
+        <Border Background="Gray" Opacity="0.35" />
+    </ControlTemplate>
+    <ControlTemplate x:Key="{dxet:RangeEditThemeKey ResourceKey=RangeEditScrollerScrollableCenterHorizontalThumbTemplate}">
+        <Border Background="White">
+            <dxe:RangeEditHitTestManager.HitTestNode>
+                <dxe:RangeEditHitTestNode HitTestNodeType="CenterScrollerThumb" />
+            </dxe:RangeEditHitTestManager.HitTestNode>
+        </Border>
+    </ControlTemplate>
+    <ControlTemplate x:Key="{dxet:RangeEditThemeKey ResourceKey=RangeEditScrollerScrollableLeftHorizontalThumbTemplate}">
+        <Border Width="3"  BorderBrush="DarkGray" BorderThickness="1,0,0,0" Background="White">
+            <dxe:RangeEditHitTestManager.HitTestNode>
+                <dxe:RangeEditHitTestNode HitTestNodeType="LeftScrollerThumb" />
+            </dxe:RangeEditHitTestManager.HitTestNode>
+        </Border>
+    </ControlTemplate>
+    <ControlTemplate x:Key="{dxet:RangeEditThemeKey ResourceKey=RangeEditScrollerScrollableRightHorizontalThumbTemplate}">
+        <Border Width="3" BorderBrush="DarkGray" BorderThickness="0,0,1,0" Background="White">
+            <dxe:RangeEditHitTestManager.HitTestNode>
+                <dxe:RangeEditHitTestNode HitTestNodeType="RightScrollerThumb" />
+            </dxe:RangeEditHitTestManager.HitTestNode>
+        </Border>
+    </ControlTemplate>
+
+    <DataTemplate x:Key="{dxet:RangeEditThemeKey ResourceKey=DateTimePanelIntervalViewerLeftTemplate}">
+        <Border BorderBrush="Gray" BorderThickness="1,1,0,1" Background="DarkGray" />
+    </DataTemplate>
+    <DataTemplate x:Key="{dxet:RangeEditThemeKey ResourceKey=DateTimePanelIntervalViewerRightTemplate}">
+        <Border BorderBrush="Gray" BorderThickness="0,1,1,1" Background="DarkGray" />
+    </DataTemplate>
+    <DataTemplate x:Key="{dxet:RangeEditThemeKey ResourceKey=DateTimePanelIntervalViewerCenterTemplate}">
+        <Border BorderBrush="Gray" BorderThickness="0,1,0,1" Background="LightGray"/>
+    </DataTemplate>
+    <DataTemplate x:Key="{dxet:RangeEditThemeKey ResourceKey=DateTimePanelSelectorIntervalViewerLeftTemplate}">
+        <Border/>
+    </DataTemplate>
+    <DataTemplate x:Key="{dxet:RangeEditThemeKey ResourceKey=DateTimePanelSelectorIntervalViewerRightTemplate}">
+        <Border/>
+    </DataTemplate>
+    <DataTemplate x:Key="{dxet:RangeEditThemeKey ResourceKey=DateTimePanelSelectorIntervalViewerCenterTemplate}">
+        <Border BorderBrush="Black" BorderThickness="1,1,1,1" />
+    </DataTemplate>
+
+    <ControlTemplate x:Key="{dxet:RangeEditThemeKey ResourceKey=DateTimePanelSelectorCenterHorizontalThumbTemplate}">
+        <Border Background="Transparent" BorderBrush="DarkGray" BorderThickness="1,1,1,1" />
+    </ControlTemplate>
+    <ControlTemplate x:Key="{dxet:RangeEditThemeKey ResourceKey=PanelSelectorLeftHorizontalThumbTemplate}">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Border Grid.Row="1" Background="DarkGray" Margin="-3,0,-4,0"/>
+        </Grid>
+    </ControlTemplate>
+    <ControlTemplate x:Key="{dxet:RangeEditThemeKey ResourceKey=PanelSelectorRightHorizontalThumbTemplate}">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Border Grid.Row="1" Background="DarkGray" Margin="-4,0,-3,0"/>
+        </Grid>
+    </ControlTemplate>
+    <DataTemplate x:Key="{dxet:RangeEditThemeKey ResourceKey=DateTimePanelGroupIntervalItemTemplate}">
+        <Border Grid.Row="0" BorderBrush="LightGray" BorderThickness="0,0,1,1">
+            <dxe:RangeEditHitTestManager.HitTestNode>
+                <dxe:RangeEditHitTestNode HitTestNodeType="GroupInterval" />
+            </dxe:RangeEditHitTestManager.HitTestNode>
+            <TextBlock Text="{Binding Path=Interval.Label}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        </Border>
+    </DataTemplate>
+
+    <DataTemplate x:Key="{dxet:RangeEditThemeKey ResourceKey=DateTimePanelItemIntervalItemTemplate}">
+        <Grid Background="Transparent">
+            <dxe:RangeEditHitTestManager.HitTestNode>
+                <dxe:RangeEditHitTestNode HitTestNodeType="ItemInterval" />
+            </dxe:RangeEditHitTestManager.HitTestNode>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="18"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Border Grid.Row="0" BorderBrush="LightGray" BorderThickness="0,0,1,0" Height="18">
+                <TextBlock Text="{Binding Path=Interval.Label}" VerticalAlignment="Top" HorizontalAlignment="Center"/>
+            </Border>
+            <Border Grid.Row="1" BorderThickness="0">
+                <Border 
+                    Background="Purple" 
+                    Visibility="{Binding Path=IsMouseDirectlyOver, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource boolToVisibility}}"
+                    Opacity="0.15">
+                </Border>
+            </Border>
+        </Grid>
+    </DataTemplate>
+    <DataTemplate x:Key="{dxet:RangeEditThemeKey ResourceKey=NumericPanelItemIntervalItemTemplate}">
+        <Border Grid.Row="0" BorderBrush="LightGray" BorderThickness="0,0,1,1">
+            <dxe:RangeEditHitTestManager.HitTestNode>
+                <dxe:RangeEditHitTestNode HitTestNodeType="ItemInterval" />
+            </dxe:RangeEditHitTestManager.HitTestNode>
+        </Border>
+    </DataTemplate>
+    <DataTemplate x:Key="{dxet:RangeEditThemeKey ResourceKey=NumericPanelGroupIntervalItemTemplate}">
+        <Grid Background="Transparent">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="18"/>
+            </Grid.RowDefinitions>
+            <dxe:RangeEditHitTestManager.HitTestNode>
+                <dxe:RangeEditHitTestNode HitTestNodeType="GroupInterval" />
+            </dxe:RangeEditHitTestManager.HitTestNode>
+            <Border Grid.Row="1" BorderBrush="LightGray" BorderThickness="0,0,1,1">
+                <TextBlock Text="{Binding Path=Interval.Label}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            </Border>
+        </Grid>
+    </DataTemplate>-->
+
+</ResourceDictionary>

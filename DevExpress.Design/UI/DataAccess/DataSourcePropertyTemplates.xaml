@@ -1,0 +1,601 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:ui="clr-namespace:DevExpress.Design.UI"
+    xmlns:dataAccessUI="clr-namespace:DevExpress.Design.DataAccess.UI"
+    >
+
+    <ControlTemplate x:Key="ResetButtonTemplate" TargetType="{x:Type Button}">
+        <Grid x:Name="grid" Background="Transparent">
+            <Border x:Name="HoverState" Opacity="0"
+                                  Background="{DynamicResource ResourceKey={ui:ThemeColorsKey Key=ColorOrange}}"/>
+            <Border x:Name="border" BorderThickness="1"
+                                  BorderBrush="{DynamicResource ResourceKey={ui:ThemeColorsKey Key=ColorSilverLight}}"/>
+            <Path x:Name="path" Stretch="Fill" Fill="{DynamicResource ResourceKey={ui:ThemeColorsKey Key=ColorSilver}}" Opacity="0.5" 
+                              Data="F1 M 595,372L 597,372L 600,375L 603,372L 605,372L 601,376L 605,380L 603,380L 600,377L 597,380L 595,380L 599,376L 595,372 Z " 
+                              HorizontalAlignment="Center" Height="8" Margin="6,7" VerticalAlignment="Center" Width="10"/>
+        </Grid>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Opacity" TargetName="HoverState" Value="1"/>
+                <Setter Property="Opacity" TargetName="border" Value="0"/>
+                <Setter Property="Fill" TargetName="path" Value="White"/>
+                <Setter Property="Opacity" TargetName="path" Value="1"/>
+            </Trigger>
+            <Trigger Property="IsPressed" Value="True">
+                <Setter Property="Opacity" TargetName="path" Value="0.35"/>
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Opacity" TargetName="path" Value="0.25"/>
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+    <Style x:Key="ResetButtonStyle" TargetType="{x:Type Button}">
+        <Setter Property="Width" Value="27"/>
+        <Setter Property="Height" Value="27"/>
+        <Setter Property="VerticalAlignment" Value="Stretch"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="Template" Value="{StaticResource  ResourceKey=ResetButtonTemplate}"/>
+    </Style>
+
+    <ControlTemplate x:Key="ValidationTemplate">
+        <Grid>
+            <Border BorderBrush="Red" BorderThickness="2" Opacity="0.35" />
+            <AdornedElementPlaceholder />
+        </Grid>
+    </ControlTemplate>
+    <ui:BooleanToVisibilityConverter x:Key="IsSetConverter"/>
+    <DataTemplate x:Key="DataSourcePropertyCustomBindingPropertyTemplate">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <ComboBox Grid.Column="0" ItemsSource="{Binding Fields}" 
+                      SelectedItem="{Binding Path=Source.Value, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType= dataAccessUI:DataSourcePropertyContainer}}"
+                      Style="{DynamicResource ResourceKey={ui:StandardControlsThemeKey Key=ComboBox}}"/>
+            <StackPanel Grid.Column="1" Orientation="Horizontal" Margin="5,0,0,0"
+                        Visibility="{Binding Path=Source.HasValue, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType= dataAccessUI:DataSourcePropertyContainer}, 
+                                        Converter={StaticResource IsSetConverter}, Mode=OneWay}">
+                <Button Style="{StaticResource ResetButtonStyle}" 
+                        Command="{Binding Path=Source.ResetValueCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType= dataAccessUI:DataSourcePropertyContainer}}"
+			/>
+            </StackPanel>
+        </Grid>
+    </DataTemplate>
+    <DataTemplate x:Key="DataSourcePropertyTablesTemplate">
+        <ComboBox DisplayMemberPath="Name" Style="{DynamicResource ResourceKey={ui:StandardControlsThemeKey Key=ComboBox}}"
+                  ItemsSource="{Binding Elements}"
+                  IsSynchronizedWithCurrentItem="True" 
+                  Validation.ErrorTemplate="{StaticResource ValidationTemplate}">
+            <ComboBox.SelectedItem>
+                <Binding Path="SelectedElement" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <DataErrorValidationRule />
+                        <ExceptionValidationRule />
+                    </Binding.ValidationRules>
+                </Binding>
+            </ComboBox.SelectedItem>
+        </ComboBox>
+    </DataTemplate>
+    <DataTemplate x:Key="DataSourcePropertyQueryTemplate">
+        <ComboBox DisplayMemberPath="Name" Style="{DynamicResource ResourceKey={ui:StandardControlsThemeKey Key=ComboBox}}"
+                  ItemsSource="{Binding Elements}"
+                  IsSynchronizedWithCurrentItem="True" 
+                  Validation.ErrorTemplate="{StaticResource ValidationTemplate}">
+            <ComboBox.SelectedItem>
+                <Binding Path="SelectedElement" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <DataErrorValidationRule />
+                        <ExceptionValidationRule />
+                    </Binding.ValidationRules>
+                </Binding>
+            </ComboBox.SelectedItem>
+        </ComboBox>
+    </DataTemplate>
+    <DataTemplate x:Key="DataSourcePropertyElementTypeTemplate">
+        <ui:AutoCompleteComboBox DisplayMemberPath="Name" Style="{DynamicResource ResourceKey={ui:ControlsThemeKey Key=AutoCompleteComboBox}}"
+                  ItemsSource="{Binding Elements}"
+                  ui:AutoCompleteComboBox.NullTextPrompt="{dataAccessUI:DataAccessLocalizerStringId ID=ElementTypePrompt}"               
+                  ui:AutoCompleteComboBox.IsTextFocused="{Binding SelectedElementIsDataType}"
+                  IsSynchronizedWithCurrentItem="True" 
+                  Validation.ErrorTemplate="{StaticResource ValidationTemplate}">
+            <ui:AutoCompleteComboBox.SelectedItem>
+                <Binding Path="SelectedElement" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <DataErrorValidationRule />
+                        <ExceptionValidationRule />
+                    </Binding.ValidationRules>
+                </Binding>
+            </ui:AutoCompleteComboBox.SelectedItem>
+        </ui:AutoCompleteComboBox>
+    </DataTemplate>
+    <DataTemplate x:Key="DataSourcePropertyObjectTypeTemplate">
+        <ui:AutoCompleteComboBox DisplayMemberPath="Name" Style="{DynamicResource ResourceKey={ui:ControlsThemeKey Key=AutoCompleteComboBox}}"
+                  ItemsSource="{Binding Elements}"
+                  ui:AutoCompleteComboBox.NullTextPrompt="{dataAccessUI:DataAccessLocalizerStringId ID=ObjectTypePrompt}"               
+                  ui:AutoCompleteComboBox.IsTextFocused="{Binding SelectedElementIsDataType}"
+                  IsSynchronizedWithCurrentItem="True" 
+                  Validation.ErrorTemplate="{StaticResource ValidationTemplate}">
+            <ui:AutoCompleteComboBox.SelectedItem>
+                <Binding Path="SelectedElement" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <DataErrorValidationRule />
+                        <ExceptionValidationRule />
+                    </Binding.ValidationRules>
+                </Binding>
+            </ui:AutoCompleteComboBox.SelectedItem>
+        </ui:AutoCompleteComboBox>
+    </DataTemplate>
+    <ui:BooleanToVisibilityConverter x:Key="DefaultSortingConverter"/>
+    <ui:ListSortDirectionToNullableBooleanConverter x:Key="AscSortingConverter"/>
+    <ui:ListSortDirectionToNullableBooleanConverter x:Key="DescSortingConverter" Inverted="True"/>
+    <DataTemplate x:Key="DataSourcePropertyDefaultSortingTemplate">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <ComboBox Grid.Column="0" ItemsSource="{Binding Fields}" SelectedItem="{Binding SortField}"
+                      Style="{DynamicResource ResourceKey={ui:StandardControlsThemeKey Key=ComboBox}}"/>
+            <StackPanel Grid.Column="1" Orientation="Horizontal" Margin="5,0,0,0" Width="114" 
+                        Visibility="{Binding IsDefaultSortingAvailable, Converter={StaticResource DefaultSortingConverter}, Mode=OneWay}">
+                <Button Command="{Binding ResetDefaultSortingCommand}" CommandParameter="{Binding SortField}"
+                        Style="{StaticResource ResetButtonStyle}" 
+                        />
+                <ToggleButton Width="38" IsChecked="{Binding SortDirection, Converter={StaticResource AscSortingConverter}}" Margin="4,0,0,0"
+                        Style="{DynamicResource ResourceKey={ui:StandardControlsThemeKey Key=ToggleButton}}" 
+                        >
+                    <Image Source="..\Images\Up.png" Stretch="None" />
+                </ToggleButton>
+                <ToggleButton Width="38" IsChecked="{Binding SortDirection, Converter={StaticResource DescSortingConverter}}" Margin="4,0,0,0"
+                        Style="{DynamicResource ResourceKey={ui:StandardControlsThemeKey Key=ToggleButton}}"
+                        >
+                    <Image Source="..\Images\Down.png" Stretch="None" />
+                </ToggleButton>
+            </StackPanel>
+        </Grid>
+    </DataTemplate>
+
+    <DataTemplate x:Key="DataSourcePropertySortDescriptionsTemplate">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <ComboBox Grid.Column="0" ItemsSource="{Binding Fields}" SelectedItem="{Binding SortField}"
+                      Style="{DynamicResource ResourceKey={ui:StandardControlsThemeKey Key=ComboBox}}"/>
+                <StackPanel Grid.Column="1" Orientation="Horizontal" Margin="5,0,0,0" IsEnabled="{Binding IsSortingAvailable}">
+                    <ToggleButton Width="38" IsChecked="{Binding SortDirection, Converter={StaticResource AscSortingConverter}}"
+                        Style="{DynamicResource ResourceKey={ui:StandardControlsThemeKey Key=ToggleButton}}" 
+                        >
+                        <Image Source="..\Images\Up.png" Stretch="None" />
+                    </ToggleButton>
+                    <ToggleButton Width="38" IsChecked="{Binding SortDirection, Converter={StaticResource DescSortingConverter}}" Margin="4,0,0,0"
+                        Style="{DynamicResource ResourceKey={ui:StandardControlsThemeKey Key=ToggleButton}}"
+                        >
+                        <Image Source="..\Images\Down.png" Stretch="None" />
+                    </ToggleButton>
+                    <Button Grid.Row="2" Width="60" VerticalAlignment="Stretch" Command="{Binding AddSortCommand}" CommandParameter="{Binding SortField}" Margin="4,0,0,0"
+                        Style="{DynamicResource ResourceKey={ui:StandardControlsThemeKey Key=Button}}"
+                        Content="{dataAccessUI:DataAccessLocalizerStringId ID=AddSortCaption}" HorizontalAlignment="Left"
+                        />
+                </StackPanel>
+            </Grid>
+
+            <ListView Grid.Row="1" ItemsSource="{Binding SortDescriptions}"  SelectedItem="{Binding SortDescription}" IsSynchronizedWithCurrentItem="True"
+		     Style="{DynamicResource ResourceKey={ui:StandardControlsThemeKey Key=ListBox}}"
+                     DisplayMemberPath="DisplayName" Height="100" Margin="0,8"
+                 />
+            <StackPanel Grid.Row="2" Orientation="Horizontal">
+                <Button Width="120" Height="26" Command="{Binding DeleteSortCommand}" CommandParameter="{Binding SortDescription}"
+                        	Style="{DynamicResource ResourceKey={ui:StandardControlsThemeKey Key=Button}}"
+                        	Content="{dataAccessUI:DataAccessLocalizerStringId ID=DeleteSortCaption}" HorizontalAlignment="Left"
+                        	/>
+                <Button Width="120" Height="26" Command="{Binding InvertSortDirectionCommand}" CommandParameter="{Binding SortDescription}" Margin="4,0,0,0"
+                        	Style="{DynamicResource ResourceKey={ui:StandardControlsThemeKey Key=Button}}"
+                        	Content="{dataAccessUI:DataAccessLocalizerStringId ID=InvertSortCaption}" HorizontalAlignment="Left"
+                        	/>
+            </StackPanel>
+        </Grid>
+    </DataTemplate>
+    <ui:BooleanToIntegerConverter x:Key="SortingColumnSpanConverter" TrueValue="1" FalseValue="3"/>
+    <ui:BooleanToVisibilityConverter x:Key="SortingAndGroupingRestrictionConverter" Inverted="True"/>
+    <DataTemplate x:Key="DataSourcePropertyGroupAndSortDescriptionsTemplate">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <ComboBox Grid.Row="0" Style="{DynamicResource ResourceKey={ui:StandardControlsThemeKey Key=ComboBox}}"
+                  ItemsSource="{Binding CollectionViewTypes, Mode=OneWay}" SelectedItem="{Binding SelectedCollectionViewType, Mode=TwoWay}" IsSynchronizedWithCurrentItem="True" />
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="4*"/>
+                    <ColumnDefinition Width="12"/>
+                    <ColumnDefinition Width="5*"/>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.ColumnSpan="3" Visibility="{Binding Path=AllowSortingOrGrouping, Converter={StaticResource SortingAndGroupingRestrictionConverter}, Mode=OneWay}" Margin="0,8,0,0">
+                    <Border BorderThickness="1" BorderBrush="{StaticResource ResourceKey={ui:ThemeColorsKey Key=ColorSilverLight}}" >
+                        <TextBlock ui:HyperlinkInlineExpression.InlineExpression="{dataAccessUI:DataAccessLocalizerStringId ID=CollectionViewSourceRestrictions}" 
+                       Style="{DynamicResource ResourceKey={ui:ControlsThemeKey Key=Description}}"
+                       />
+                    </Border>
+                </Grid>
+                <Grid Grid.Column="0"
+		     Grid.ColumnSpan="{Binding Path=AllowSorting, Converter={StaticResource SortingColumnSpanConverter}, Mode=OneWay}" 
+		     Visibility="{Binding Path=AllowGrouping, Converter={StaticResource IsSetConverter}, Mode=OneWay}" Margin="0,8,0,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" Text="{dataAccessUI:DataAccessLocalizerStringId ID=GroupingCaption}"
+				Style="{DynamicResource ResourceKey={ui:ControlsThemeKey Key=GroupCaption}}"
+				/>
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <ComboBox Grid.Column="0" ItemsSource="{Binding Fields}" SelectedItem="{Binding GroupField}"  
+                            	Style="{DynamicResource ResourceKey={ui:StandardControlsThemeKey Key=ComboBox}}"/>
+                        <StackPanel Grid.Column="1" Orientation="Horizontal" Margin="5,0,0,0">
+                            <Button Width="60" VerticalAlignment="Stretch" Command="{Binding AddGroupCommand}" CommandParameter="{Binding GroupField}" Margin="4,0,0,0"
+                                    Style="{DynamicResource ResourceKey={ui:StandardControlsThemeKey Key=Button}}"
+                                    Content="{dataAccessUI:DataAccessLocalizerStringId ID=AddGroupCaption}" HorizontalAlignment="Left"
+                                />
+                        </StackPanel>
+                    </Grid>
+
+                    <ListView Grid.Row="2" ItemsSource="{Binding GroupDescriptions}"  SelectedItem="{Binding GroupDescription}" IsSynchronizedWithCurrentItem="True"
+		        Style="{DynamicResource ResourceKey={ui:StandardControlsThemeKey Key=ListBox}}"
+                        DisplayMemberPath="PropertyName" Height="85" Margin="0,8"
+        	    />
+
+                    <Button Grid.Row="3" Width="120" Height="26" Command="{Binding DeleteGroupCommand}" CommandParameter="{Binding GroupDescription}"
+                                    Style="{DynamicResource ResourceKey={ui:StandardControlsThemeKey Key=Button}}"
+                                    Content="{dataAccessUI:DataAccessLocalizerStringId ID=DeleteGroupCaption}" HorizontalAlignment="Left"
+                                />
+                </Grid>
+                <Grid Grid.Column="2" Visibility="{Binding Path=AllowSorting, Converter={StaticResource IsSetConverter}, Mode=OneWay}" Margin="0,8,0,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" Text="{dataAccessUI:DataAccessLocalizerStringId ID=SortingCaption}"
+				Style="{DynamicResource ResourceKey={ui:ControlsThemeKey Key=GroupCaption}}"
+				/>
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <ComboBox Grid.Column="0" ItemsSource="{Binding Fields}" SelectedItem="{Binding SortField}"  
+                      		Style="{DynamicResource ResourceKey={ui:StandardControlsThemeKey Key=ComboBox}}"/>
+                        <StackPanel Grid.Column="1" Orientation="Horizontal" Margin="5,0,0,0"  IsEnabled="{Binding IsSortingAvailable}">
+                            <ToggleButton Width="38" IsChecked="{Binding SortDirection, Converter={StaticResource AscSortingConverter}}"
+                                    Style="{DynamicResource ResourceKey={ui:StandardControlsThemeKey Key=ToggleButton}}" 
+                                    >
+                                <Image Source="..\Images\Up.png" Stretch="None" />
+                            </ToggleButton>
+                            <ToggleButton Width="38" IsChecked="{Binding SortDirection, Converter={StaticResource DescSortingConverter}}" Margin="4,0,0,0"
+                                    Style="{DynamicResource ResourceKey={ui:StandardControlsThemeKey Key=ToggleButton}}"
+                                    >
+                                <Image Source="..\Images\Down.png" Stretch="None" />
+                            </ToggleButton>
+                            <Button Width="60" VerticalAlignment="Stretch" Command="{Binding AddSortCommand}" CommandParameter="{Binding SortField}" Margin="4,0,0,0"
+                                    Style="{DynamicResource ResourceKey={ui:StandardControlsThemeKey Key=Button}}"
+                                    Content="{dataAccessUI:DataAccessLocalizerStringId ID=AddSortCaption}" HorizontalAlignment="Left"
+                                />
+                        </StackPanel>
+                    </Grid>
+
+                    <ListView Grid.Row="2" ItemsSource="{Binding SortDescriptions}"  SelectedItem="{Binding SortDescription}" IsSynchronizedWithCurrentItem="True"
+		        Style="{DynamicResource ResourceKey={ui:StandardControlsThemeKey Key=ListBox}}"
+                        DisplayMemberPath="DisplayName" Height="85" Margin="0,8"
+        	    />
+                    <StackPanel Grid.Row="3" Orientation="Horizontal">
+                        <Button Width="120" Height="26" Command="{Binding DeleteSortCommand}" CommandParameter="{Binding SortDescription}"
+                        	Style="{DynamicResource ResourceKey={ui:StandardControlsThemeKey Key=Button}}"
+                        	Content="{dataAccessUI:DataAccessLocalizerStringId ID=DeleteSortCaption}" HorizontalAlignment="Left"
+                        	/>
+                        <Button Width="120" Height="26" Command="{Binding InvertSortDirectionCommand}" CommandParameter="{Binding SortDescription}" Margin="4,0,0,0"
+                        	Style="{DynamicResource ResourceKey={ui:StandardControlsThemeKey Key=Button}}"
+                        	Content="{dataAccessUI:DataAccessLocalizerStringId ID=InvertSortCaption}" HorizontalAlignment="Left"
+                        	/>
+                    </StackPanel>
+                </Grid>
+            </Grid>
+            <ui:IntegerTextBox Grid.Row="2" Text="{Binding Path=PageSize, UpdateSourceTrigger=PropertyChanged}" Margin="0,8,0,0"
+		     Visibility="{Binding Path=AllowPaging, Converter={StaticResource IsSetConverter}, Mode=OneWay}"
+                     Style="{DynamicResource ResourceKey={ui:StandardControlsThemeKey Key=TextBox}}"
+            />
+        </Grid>
+
+    </DataTemplate>
+    <DataTemplate x:Key="DataSourcePropertyCultureTemplate">
+        <ComboBox Style="{DynamicResource ResourceKey={ui:StandardControlsThemeKey Key=ComboBox}}" 
+                  DisplayMemberPath="DisplayName" 
+                  ItemsSource="{Binding Cultures, Mode=OneWay}" SelectedItem="{Binding SelectedCulture, Mode=TwoWay}" />
+    </DataTemplate>
+
+    <DataTemplate x:Key="DataSourcePropertyKeyExpressionTemplate">
+        <ComboBox Style="{DynamicResource ResourceKey={ui:StandardControlsThemeKey Key=ComboBox}}" 
+                  ItemsSource="{Binding KeyExpressions, Mode=OneWay}" SelectedItem="{Binding KeyExpression, Mode=TwoWay}" IsSynchronizedWithCurrentItem="True" />
+    </DataTemplate>
+
+    <DataTemplate x:Key="DataSourcePropertyShowDesignDataTemplate">
+        <CheckBox IsChecked="{Binding ShowDesignData}" Style="{DynamicResource ResourceKey={ui:StandardControlsThemeKey Key=CheckBox}}">
+            <TextBlock ui:HyperlinkInlineExpression.InlineExpression="{dataAccessUI:DataAccessLocalizerStringId ID=ShowDesignDataDataSourcePropertyDescription}"
+			Style="{DynamicResource ResourceKey={ui:ControlsThemeKey Key=ItemCaption}}"
+			/>
+        </CheckBox>
+    </DataTemplate>
+    <DataTemplate x:Key="DataSourcePropertyShowCodeBehindTemplate">
+        <CheckBox IsChecked="{Binding ShowCodeBehind}" Style="{DynamicResource ResourceKey={ui:StandardControlsThemeKey Key=CheckBox}}">
+            <TextBlock ui:HyperlinkInlineExpression.InlineExpression="{dataAccessUI:DataAccessLocalizerStringId ID=ShowCodeBehindDataSourcePropertyDescription}"
+			Style="{DynamicResource ResourceKey={ui:ControlsThemeKey Key=ItemCaption}}"
+			/>
+        </CheckBox>
+    </DataTemplate>
+    <DataTemplate x:Key="DataSourcePropertyIsSynchronizedWithCurrentItemTemplate">
+        <CheckBox IsChecked="{Binding IsSynchronizedWithCurrentItem}" Style="{DynamicResource ResourceKey={ui:StandardControlsThemeKey Key=CheckBox}}">
+            <TextBlock ui:HyperlinkInlineExpression.InlineExpression="{dataAccessUI:DataAccessLocalizerStringId ID=IsSynchronizedWithCurrentItemDataSourcePropertyName}"
+			Style="{DynamicResource ResourceKey={ui:ControlsThemeKey Key=ItemCaption}}"
+			/>
+        </CheckBox>
+    </DataTemplate>
+    <DataTemplate x:Key="DataSourcePropertyAreSourceRowsThreadSafeTemplate">
+        <CheckBox IsChecked="{Binding AreSourceRowsThreadSafe}" Style="{DynamicResource ResourceKey={ui:StandardControlsThemeKey Key=CheckBox}}">
+            <TextBlock ui:HyperlinkInlineExpression.InlineExpression="{dataAccessUI:DataAccessLocalizerStringId ID=AreSourceRowsThreadSafeDataSourcePropertyName}"
+			Style="{DynamicResource ResourceKey={ui:ControlsThemeKey Key=ItemCaption}}"
+			/>
+        </CheckBox>
+    </DataTemplate>
+    <DataTemplate x:Key="DataSourcePropertyAutoLoadTemplate">
+        <CheckBox IsChecked="{Binding AutoLoad}" Style="{DynamicResource ResourceKey={ui:StandardControlsThemeKey Key=CheckBox}}"/>
+    </DataTemplate>
+    <DataTemplate x:Key="DataSourcePropertyFilterTemplate">
+        <TextBox Text="{Binding Path=Filter, UpdateSourceTrigger=PropertyChanged}" 
+                 Style="{DynamicResource ResourceKey={ui:StandardControlsThemeKey Key=TextBox}}"/>
+    </DataTemplate>
+    <DataTemplate x:Key="DataSourcePropertyLoadIntervalTemplate">
+        <ui:IntegerTextBox Text="{Binding Path=LoadInterval, UpdateSourceTrigger=PropertyChanged}"
+                     Style="{DynamicResource ResourceKey={ui:StandardControlsThemeKey Key=TextBox}}"
+                      />
+    </DataTemplate>
+    <DataTemplate x:Key="DataSourcePropertyLoadDelayTemplate">
+        <ui:IntegerTextBox Text="{Binding Path=LoadDelay, UpdateSourceTrigger=PropertyChanged}"
+                     Style="{DynamicResource ResourceKey={ui:StandardControlsThemeKey Key=TextBox}}"
+                      />
+    </DataTemplate>
+    <DataTemplate x:Key="DataSourcePropertyLoadSizeTemplate">
+        <ui:IntegerTextBox Text="{Binding Path=LoadSize, UpdateSourceTrigger=PropertyChanged}"
+                     Style="{DynamicResource ResourceKey={ui:StandardControlsThemeKey Key=TextBox}}"
+                      />
+    </DataTemplate>
+    <DataTemplate x:Key="DataSourcePropertyRefreshIntervalTemplate">
+        <ui:IntegerTextBox Text="{Binding Path=RefreshInterval, UpdateSourceTrigger=PropertyChanged}"
+                     Style="{DynamicResource ResourceKey={ui:StandardControlsThemeKey Key=TextBox}}"
+                      />
+    </DataTemplate>
+    <DataTemplate x:Key="DataSourcePropertyPageSizeTemplate">
+        <ui:IntegerTextBox Text="{Binding Path=PageSize, UpdateSourceTrigger=PropertyChanged}"
+                     Style="{DynamicResource ResourceKey={ui:StandardControlsThemeKey Key=TextBox}}"
+                      />
+    </DataTemplate>
+    <DataTemplate x:Key="DataSourcePropertyServiceRootTemplate">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <TextBox Grid.Column="0"
+                     Style="{DynamicResource ResourceKey={ui:StandardControlsThemeKey Key=TextBox}}"
+		     Validation.ErrorTemplate="{StaticResource ValidationTemplate}">
+                <TextBox.Text>
+                    <Binding Path="ServiceRoot" UpdateSourceTrigger="PropertyChanged">
+                        <Binding.ValidationRules>
+                            <DataErrorValidationRule />
+                            <ExceptionValidationRule />
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
+            <StackPanel Grid.Column="1" Orientation="Horizontal" Margin="5,0,0,0">
+                <Button Command="{Binding Path=TestServiceRootCommand}" 
+			Content="{dataAccessUI:DataAccessLocalizerStringId ID=TestConnectionCaption}" 
+			Style="{DynamicResource ResourceKey={ui:ControlsThemeKey Key=EditorButton}}"
+			Validation.ErrorTemplate="{StaticResource ValidationTemplate}"
+			>
+                    <Button.IsEnabled>
+                        <Binding Path="EnableTestConnection" Mode="OneWay">
+                            <Binding.ValidationRules>
+                                <DataErrorValidationRule />
+                                <ExceptionValidationRule />
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </Button.IsEnabled>
+                </Button>
+                <Button Command="{Binding Path=ResetServiceRootCommand}" Style="{StaticResource ResetButtonStyle}" Margin="4,0,0,0"
+			Visibility="{Binding Path=HasServiceRoot, Converter={StaticResource IsSetConverter}, Mode=OneWay}"
+			/>
+            </StackPanel>
+        </Grid>
+    </DataTemplate>
+    <DataTemplate x:Key="DataSourcePropertyProviderTemplate">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <ComboBox Grid.Column="0" ItemsSource="{Binding Providers}" 
+                      SelectedItem="{Binding Path=SelectedProvider, UpdateSourceTrigger=PropertyChanged}"
+                      Style="{DynamicResource ResourceKey={ui:StandardControlsThemeKey Key=ComboBox}}"/>
+            <StackPanel Grid.Column="1" Orientation="Horizontal" Margin="5,0,0,0"
+                        Visibility="{Binding Path=HasProvider, Converter={StaticResource IsSetConverter}, Mode=OneWay}">
+                <Button Command="{Binding Path=ResetProviderCommand}" Style="{StaticResource ResetButtonStyle}"/>
+            </StackPanel>
+        </Grid>
+    </DataTemplate>
+    <DataTemplate x:Key="DataSourcePropertyServerTemplate">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <TextBox Grid.Column="0"
+                     Style="{DynamicResource ResourceKey={ui:StandardControlsThemeKey Key=TextBox}}"
+		     Validation.ErrorTemplate="{StaticResource ValidationTemplate}">
+                <TextBox.Text>
+                    <Binding Path="Server" UpdateSourceTrigger="PropertyChanged">
+                        <Binding.ValidationRules>
+                            <DataErrorValidationRule />
+                            <ExceptionValidationRule />
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
+            <StackPanel Grid.Column="1" Orientation="Horizontal" Margin="5,0,0,0">
+                <Button Command="{Binding Path=RetrieveSchemaCommand}" 
+			Content="{dataAccessUI:DataAccessLocalizerStringId ID=RetrieveSchemaCaption}" 
+			IsEnabled="{Binding Path=HasServer, Mode=OneWay}"
+			Style="{DynamicResource ResourceKey={ui:ControlsThemeKey Key=EditorButton}}"/>
+                <Button Command="{Binding Path=ResetServerCommand}" Style="{StaticResource ResetButtonStyle}" Margin="4,0,0,0"
+			Visibility="{Binding Path=HasServer, Converter={StaticResource IsSetConverter}, Mode=OneWay}"
+			/>
+            </StackPanel>
+        </Grid>
+    </DataTemplate>
+    <DataTemplate x:Key="DataSourcePropertyCatalogTemplate">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <ComboBox Grid.Column="0" ItemsSource="{Binding Catalogs}" 
+                      Style="{DynamicResource ResourceKey={ui:StandardControlsThemeKey Key=ComboBox}}"
+		      Validation.ErrorTemplate="{StaticResource ValidationTemplate}">
+                <ComboBox.SelectedItem>
+                    <Binding Path="SelectedCatalog" UpdateSourceTrigger="PropertyChanged">
+                        <Binding.ValidationRules>
+                            <DataErrorValidationRule />
+                            <ExceptionValidationRule />
+                        </Binding.ValidationRules>
+                    </Binding>
+                </ComboBox.SelectedItem>
+            </ComboBox>
+            <StackPanel Grid.Column="1" Orientation="Horizontal" Margin="5,0,0,0"
+                        Visibility="{Binding Path=HasCatalog, Converter={StaticResource IsSetConverter}, Mode=OneWay}">
+                <Button Command="{Binding Path=ResetCatalogCommand}" Style="{StaticResource ResetButtonStyle}"/>
+            </StackPanel>
+        </Grid>
+    </DataTemplate>
+    <DataTemplate x:Key="DataSourcePropertyCubeTemplate">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <ComboBox Grid.Column="0" ItemsSource="{Binding Cubes}" 
+                      Style="{DynamicResource ResourceKey={ui:StandardControlsThemeKey Key=ComboBox}}"
+		      Validation.ErrorTemplate="{StaticResource ValidationTemplate}">
+                <ComboBox.SelectedItem>
+                    <Binding Path="SelectedCube" UpdateSourceTrigger="PropertyChanged">
+                        <Binding.ValidationRules>
+                            <DataErrorValidationRule />
+                            <ExceptionValidationRule />
+                        </Binding.ValidationRules>
+                    </Binding>
+                </ComboBox.SelectedItem>
+            </ComboBox>
+
+            <StackPanel Grid.Column="1" Orientation="Horizontal" Margin="5,0,0,0"
+                        Visibility="{Binding Path=HasCube, Converter={StaticResource IsSetConverter}, Mode=OneWay}">
+                <Button Command="{Binding Path=ResetCubeCommand}" Style="{StaticResource ResetButtonStyle}"/>
+            </StackPanel>
+        </Grid>
+    </DataTemplate>
+    <DataTemplate x:Key="DataSourcePropertyUserIdTemplate">
+        <TextBox Text="{Binding Path=UserId, UpdateSourceTrigger=PropertyChanged}"
+                     Style="{DynamicResource ResourceKey={ui:StandardControlsThemeKey Key=TextBox}}"
+                      />
+    </DataTemplate>
+    <DataTemplate x:Key="DataSourcePropertyPasswordTemplate">
+        <TextBox Text="{Binding Path=Password, UpdateSourceTrigger=PropertyChanged}"
+                     Style="{DynamicResource ResourceKey={ui:StandardControlsThemeKey Key=TextBox}}"
+                      />
+    </DataTemplate>
+    <DataTemplate x:Key="DataSourcePropertyConnectionStringTemplate">
+        <TextBox Text="{Binding Path=ConnectionString, Mode=OneWay}" IsReadOnly="True"
+                     Style="{DynamicResource ResourceKey={ui:StandardControlsThemeKey Key=TextBox}}"
+                      />
+    </DataTemplate>
+    <DataTemplate x:Key="DataSourcePropertyQueryTimeoutTemplate">
+        <ui:IntegerTextBox Text="{Binding Path=QueryTimeout, UpdateSourceTrigger=PropertyChanged}"
+                     Style="{DynamicResource ResourceKey={ui:StandardControlsThemeKey Key=TextBox}}"
+                      />
+    </DataTemplate>
+    <DataTemplate x:Key="DataSourcePropertyConnectionTimeoutTemplate">
+        <ui:IntegerTextBox Text="{Binding Path=ConnectionTimeout, UpdateSourceTrigger=PropertyChanged}"
+                     Style="{DynamicResource ResourceKey={ui:StandardControlsThemeKey Key=TextBox}}"
+                      />
+    </DataTemplate>
+    <ui:BooleanToVisibilityConverter x:Key="PromptVisibilityConverter"/>
+    <DataTemplate x:Key="DataSourcePropertyXmlPathTemplate">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <TextBox Grid.Column="0" x:Name="textBox"
+                     Style="{DynamicResource ResourceKey={ui:StandardControlsThemeKey Key=TextBox}}"
+		     Validation.ErrorTemplate="{StaticResource ValidationTemplate}">
+                <TextBox.Text>
+                    <Binding Path="XmlPath" UpdateSourceTrigger="PropertyChanged">
+                        <Binding.ValidationRules>
+                            <DataErrorValidationRule />
+                            <ExceptionValidationRule />
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
+            <TextBlock  Grid.Column="0"
+                        VerticalAlignment="Center" Margin="5,1" IsHitTestVisible="False"
+				            Text="{dataAccessUI:DataAccessLocalizerStringId ID=XmlPathPrompt}"  
+				            Foreground="{StaticResource ResourceKey={ui:ThemeColorsKey Key=ColorSilverDark}}"
+	                       	Visibility="{Binding ElementName=textBox, Path=Text.IsEmpty, Converter={StaticResource PromptVisibilityConverter}}" />
+            <StackPanel Grid.Column="1" Orientation="Horizontal" Margin="5,0,0,0">
+                <Button Command="{Binding Path=SetXmlPathCommand}" 
+			                Content="{dataAccessUI:DataAccessLocalizerStringId ID=LoadXmlCaption}" 
+			                Style="{DynamicResource ResourceKey={ui:ControlsThemeKey Key=EditorButton}}"/>
+                <Button Command="{Binding Path=ResetXmlPathCommand}" Style="{StaticResource ResetButtonStyle}" Margin="4,0,0,0"
+			                Visibility="{Binding Path=HasXmlPath, Converter={StaticResource IsSetConverter}, Mode=OneWay}"/>
+            </StackPanel>
+        </Grid>
+    </DataTemplate>
+    <DataTemplate x:Key="DataSourcePropertyExcelPathTemplate">
+        <Grid>
+            <TextBox x:Name="textBox" Text="{Binding Path=ExcelPath, Mode=OneWay}" IsReadOnly="True"
+                        Style="{DynamicResource ResourceKey={ui:StandardControlsThemeKey Key=TextBox}}"
+                        Foreground="{StaticResource ResourceKey={ui:ThemeColorsKey Key=ColorSilverDark}}"
+                        FontSize="14" Padding="5,4"/>
+            <TextBlock VerticalAlignment="Center" Margin="5,1" IsHitTestVisible="False"
+				            Text="{dataAccessUI:DataAccessLocalizerStringId ID=ExcelPathUnspecified}"  
+				            Foreground="{StaticResource ResourceKey={ui:ThemeColorsKey Key=ColorSilverDark}}"
+	                       	Visibility="{Binding ElementName=textBox, Path=Text.IsEmpty, Converter={StaticResource PromptVisibilityConverter}}" />
+        </Grid>
+    </DataTemplate>
+</ResourceDictionary>

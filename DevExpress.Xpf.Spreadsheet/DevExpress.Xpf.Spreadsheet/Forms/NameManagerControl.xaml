@@ -1,0 +1,57 @@
+﻿<UserControl x:Class="DevExpress.Xpf.Spreadsheet.Forms.NameManagerControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+             xmlns:dxsps="clr-namespace:DevExpress.Xpf.Spreadsheet" 
+             mc:Ignorable="d" Width="600"
+             d:DesignHeight="300">
+    <UserControl.Resources>
+        <dxsps:SpreadsheetControlStringIdConverter x:Key="stringIdConverter" />
+    </UserControl.Resources>
+    <Grid Margin="10,10,12,0" FocusManager.FocusedElement="{Binding ElementName=grid}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Button x:Name="btnNew" MinWidth="60" Click="btnNew_Click" Content="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_NameManagerFormNew, Converter={StaticResource stringIdConverter}}" />
+            <Button x:Name="btnEdit" MinWidth="60" Click="btnEdit_Click" Grid.Column="1" Margin="6,0,0,0" IsEnabled="{Binding IsCurrentNameValid}" Content="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_NameManagerFormEdit, Converter={StaticResource stringIdConverter}}" />
+            <Button x:Name="btnDelete" MinWidth="60" Click="btnDelete_Click" Grid.Column="2" Margin="6,0,0,0" IsEnabled="{Binding IsDeleteAllowed}" Content="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_NameManagerFormDelete, Converter={StaticResource stringIdConverter}}" />
+        </Grid>
+        <ListView x:Name="grid" Grid.Row="1" MinHeight="300" Margin="0,6,0,0" ItemsSource="{Binding NamesDataSource}" SelectedIndex="{Binding CurrentNameIndex, Mode=TwoWay}" MouseDoubleClick="grid_MouseDoubleClick" KeyDown="grid_KeyDown">
+            <ListView.View>
+                <GridView AllowsColumnReorder="False">
+                    <GridViewColumn DisplayMemberBinding="{Binding Name}" Header="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_NameManagerFormColumnName, Converter={StaticResource stringIdConverter}}" />
+                    <GridViewColumn DisplayMemberBinding="{Binding Reference}" Header="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_NameManagerFormColumnReference, Converter={StaticResource stringIdConverter}}" />
+                    <GridViewColumn DisplayMemberBinding="{Binding Scope}" Header="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_NameManagerFormColumnScope, Converter={StaticResource stringIdConverter}}" />
+                    <GridViewColumn DisplayMemberBinding="{Binding Comment}" Header="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_NameManagerFormColumnComment, Converter={StaticResource stringIdConverter}}" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <TextBlock Grid.Row="2" VerticalAlignment="Center" Margin="0,6,0,0" Text="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_NameManagerFormReference, Converter={StaticResource stringIdConverter}}" />
+        <Grid Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="btnCancelReferenceChange" Click="btnCancelReferenceChange_Click"  HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="0,6,0,0" MinWidth="24" IsEnabled="{Binding IsReferenceChanged}">
+                <Image Source="/DevExpress.Xpf.Spreadsheet.v15.2;component/Images/Cancel_16x16.png" Stretch="None"/>
+            </Button>
+            <Button x:Name="btnApplyReferenceChange" Click="btnApplyReferenceChange_Click"  HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="6,6,0,0" MinWidth="24" Grid.Column="1" IsEnabled="{Binding IsReferenceChanged}" >
+                <Image Source="/DevExpress.Xpf.Spreadsheet.v15.2;component/Images/Apply_16x16.png" Stretch="None"/>
+            </Button>
+            <dxe:TextEdit x:Name="edtReference" Grid.Column="2" Margin="6,6,0,0" IsEnabled="{Binding IsReferenceChangeAllowed}" EditValue="{Binding Reference, UpdateSourceTrigger=PropertyChanged}" />
+        </Grid>
+    </Grid>
+</UserControl>

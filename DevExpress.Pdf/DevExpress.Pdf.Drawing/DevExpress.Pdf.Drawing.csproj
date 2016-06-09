@@ -1,0 +1,567 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <ProjectType>Local</ProjectType>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{88A99CC2-F43B-42C3-AC6F-2CECC19C84CE}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ApplicationIcon>
+    </ApplicationIcon>
+    <AssemblyKeyContainerName>
+    </AssemblyKeyContainerName>
+    <AssemblyName>DevExpress.Pdf.v15.2.Drawing</AssemblyName>
+    <AssemblyOriginatorKeyFile>..\..\DevExpress.Key\StrongKey.snk</AssemblyOriginatorKeyFile>
+    <DefaultClientScript>JScript</DefaultClientScript>
+    <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
+    <DefaultTargetSchema>IE50</DefaultTargetSchema>
+    <DelaySign>false</DelaySign>
+    <OutputType>Library</OutputType>
+    <RootNamespace>DevExpress.Pdf.Drawing</RootNamespace>
+    <StartupObject>
+    </StartupObject>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <SignAssembly>true</SignAssembly>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>..\..\..\Bin\Framework\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>TRACE;DEBUG;CODE_ANALYSIS</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>true</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <Optimize>false</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>full</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>..\..\..\Bin\Framework\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>TRACE</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>true</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <Optimize>true</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>full</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  
+  <ItemGroup>
+    <Reference Include="DevExpress.Data.v15.2">
+      <SpecificVersion>False</SpecificVersion>
+    <HintPath>..\..\..\Bin\Framework\DevExpress.Data.v15.2.dll</HintPath><Private>False</Private></Reference>
+    <Reference Include="DevExpress.Pdf.v15.2.Core">
+      <SpecificVersion>False</SpecificVersion>
+    <HintPath>..\..\..\Bin\Framework\DevExpress.Pdf.v15.2.Core.dll</HintPath><Private>False</Private></Reference>
+    
+    <Reference Include="System"><Private>False</Private></Reference>
+    <Reference Include="System.Drawing"><Private>False</Private></Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="API\PdfGraphics.cs" />
+    <Compile Include="API\PdfGraphicsJpegImageQuality.cs" />
+    <Compile Include="API\PdfGraphicsTextOrigin.cs" />
+    <Compile Include="PdfImageInfo.cs" />
+    <Compile Include="CommandInterpreter\PdfGdiBrush.cs" />
+    <Compile Include="CommandInterpreter\PdfGraphicsPathBuilder.cs" />
+    <Compile Include="CommandInterpreter\PdfThumbnailCommandInterpreter.cs" />
+    <Compile Include="CommandInterpreter\ShadingPainters\PdfAxialShadingPainter.cs" />
+    <Compile Include="CommandInterpreter\ShadingPainters\PatchMesh\CoonsPatch\PdfCoonsPatchPainter.cs" />
+    <Compile Include="CommandInterpreter\ShadingPainters\CoordsConverter\PdfBitmapShadingCoordsConverter.cs" />
+    <Compile Include="CommandInterpreter\ShadingPainters\GourandShadedTriangleMesh\PdfGourandShadedTriangleMeshPainter.cs" />
+    <Compile Include="CommandInterpreter\ShadingPainters\PatchMesh\PdfRenderingPatch.cs" />
+    <Compile Include="CommandInterpreter\ShadingPainters\PatchMesh\TensorProductPatch\PdfRenderingTensorProductPatch.cs" />
+    <Compile Include="CommandInterpreter\ShadingPainters\PdfRadialShadingPainter.cs" />
+    <Compile Include="CommandInterpreter\ShadingPainters\PatchMesh\PdfRenderingBezierCurve.cs" />
+    <Compile Include="CommandInterpreter\ShadingPainters\PatchMesh\CoonsPatch\PdfRenderingCoonsPatch.cs" />
+    <Compile Include="CommandInterpreter\ShadingPainters\GourandShadedTriangleMesh\PdfRenderingTriangle.cs" />
+    <Compile Include="CommandInterpreter\ShadingPainters\GourandShadedTriangleMesh\PdfRenderingVertex.cs" />
+    <Compile Include="CommandInterpreter\ShadingPainters\CoordsConverter\IShadingCoordsConverter.cs" />
+    <Compile Include="CommandInterpreter\ShadingPainters\PdfShadingPainter.cs" />
+    <Compile Include="CommandInterpreter\ShadingPainters\CoordsConverter\PdfUserSpaceShadingCoordsConverter.cs" />
+    <Compile Include="CommandInterpreter\ShadingPainters\PatchMesh\TensorProductPatch\PdfTensorProductPatchPainter.cs" />
+    <Compile Include="Export\Brushes\PdfBrushContainer.cs" />
+    <Compile Include="Export\Brushes\PdfGraphicsPathData.cs" />
+    <Compile Include="Export\Brushes\PdfHatchBrushContainer.cs" />
+    <Compile Include="Export\Brushes\PdfLinearGradientBrushContainer.cs" />
+    <Compile Include="Export\Brushes\PdfPathGradientBrushContainer.cs" />
+    <Compile Include="Export\Brushes\PdfSolidBrushContainer.cs" />
+    <Compile Include="Export\Brushes\PdfTextureBrushContainer.cs" />
+    <Compile Include="Export\Brushes\PdfTilingBrushContainer.cs" />
+    <Compile Include="Export\CommandContructors\PdfGraphicsAfterPageContentsCommandConstructor.cs" />
+    <Compile Include="Export\CommandContructors\PdfGraphicsBeforePageContentsCommandConstructor.cs" />
+    <Compile Include="Export\CommandContructors\PdfGraphicsCommandConstructor.cs" />
+    <Compile Include="Export\CommandContructors\PdfGraphicsFormContentsCommandConstructor.cs" />
+    <Compile Include="Export\CommandContructors\PdfGraphicsStateParamersCache.cs" />
+    <Compile Include="Export\EditableFontData\PdfEditableFontDataCache.cs" />
+    <Compile Include="Export\EditableFontData\PdfEditableFontData.cs" />
+    <Compile Include="Export\EditableFontData\PdfEmbeddedEditableFontData.cs" />
+    <Compile Include="Export\EditableFontData\PdfFontMetrics.cs" />
+    <Compile Include="Export\EditableFontData\PdfFontSearch.cs" />
+    <Compile Include="Export\EditableFontData\PdfNotEmbeddedEditableFontData.cs" />
+    <Compile Include="Export\EditableFontData\PdfPartialTrustEditableFontData.cs" />
+    <Compile Include="Export\GraphicsCommands\PdfGraphicsAddLinkCommand.cs" />
+    <Compile Include="Export\GraphicsCommands\PdfGraphicsAddLinkToPageCommand.cs" />
+    <Compile Include="Export\GraphicsCommands\PdfGraphicsAddLinkToUriCommand.cs" />
+    <Compile Include="Export\GraphicsCommands\PdfGraphicsDrawFormattedStringCommand.cs" />
+    <Compile Include="Export\GraphicsCommands\PdfGraphicsDrawImageObjectCommand.cs" />
+    <Compile Include="Export\GraphicsCommands\PdfGraphicsDrawImageReferenceCommand.cs" />
+    <Compile Include="Export\GraphicsCommands\PdfGraphicsDrawStringWithLocationCommand.cs" />
+    <Compile Include="Export\ImageConverter\PdfImageConverter.cs" />
+    <Compile Include="Export\ImageConverter\PdfImageConverter24bpp.cs" />
+    <Compile Include="Export\ImageConverter\PdfImageConverter32bpp.cs" />
+    <Compile Include="Export\ImageConverter\PdfImageConverterBitmapDataReader.cs" />
+    <Compile Include="Export\PatternConstructors\HatchPatternConstructors\DashedDownwardDiagonalHatchPatternConstructor.cs" />
+    <Compile Include="Export\PatternConstructors\HatchPatternConstructors\DashedHorizontalHatchPatternConstructor.cs" />
+    <Compile Include="Export\PatternConstructors\HatchPatternConstructors\DashedVerticalHatchPatternConstructor.cs" />
+    <Compile Include="Export\PatternConstructors\HatchPatternConstructors\DiagonalCrossHatchPatternConstructor.cs" />
+    <Compile Include="Export\PatternConstructors\HatchPatternConstructors\DottedDiamondHatchPatternConstructor.cs" />
+    <Compile Include="Export\PatternConstructors\HatchPatternConstructors\OutlinedDiamondHatchPatternConstructor.cs" />
+    <Compile Include="Export\PatternConstructors\HatchPatternConstructors\PdfDashedUpwardDiagonalHatchPatternConstructor.cs" />
+    <Compile Include="Export\PatternConstructors\HatchPatternConstructors\PdfDivotHatchPatternConstructor.cs" />
+    <Compile Include="Export\PatternConstructors\HatchPatternConstructors\PdfDottedGridHatchPatternConstructor.cs" />
+    <Compile Include="Export\PatternConstructors\HatchPatternConstructors\PdfHatchPatternRect.cs" />
+    <Compile Include="Export\PatternConstructors\HatchPatternConstructors\PdfLargeConfettiHatchPatternConstructor.cs" />
+    <Compile Include="Export\PatternConstructors\HatchPatternConstructors\PdfPlaidHatchPatternConstructor.cs" />
+    <Compile Include="Export\PatternConstructors\HatchPatternConstructors\PdfRectangleBasedHatchPatternConstructor.cs" />
+    <Compile Include="Export\PatternConstructors\HatchPatternConstructors\PdfShingleHatchPatternConstructor.cs" />
+    <Compile Include="Export\PatternConstructors\HatchPatternConstructors\PdfSmallConfettiHatchPatternConstructor.cs" />
+    <Compile Include="Export\PatternConstructors\HatchPatternConstructors\PdfSphereHatchPatternConstructor.cs" />
+    <Compile Include="Export\PatternConstructors\HatchPatternConstructors\PdfTrellisHatchPatternConstructor.cs" />
+    <Compile Include="Export\PatternConstructors\HatchPatternConstructors\PdfWaveHatchPatternConstructor.cs" />
+    <Compile Include="Export\PatternConstructors\HatchPatternConstructors\PdfWeaveHatchPatternConstructor.cs" />
+    <Compile Include="Export\PatternConstructors\HatchPatternConstructors\PercentHatchPatternConstructor.cs" />
+    <Compile Include="Export\PatternConstructors\HatchPatternConstructors\SmallCheckerBoardHatchPatternConstructor.cs" />
+    <Compile Include="Export\PatternConstructors\HatchPatternConstructors\SolidDiamondHatchPatternConstructor.cs" />
+    <Compile Include="Export\PatternConstructors\HatchPatternConstructors\ZigZagHatchPatternConstructor.cs" />
+    <Compile Include="Export\PatternConstructors\LinearGradientPatternConstructors\PdfMultiColorLinearGradientPatternConstructor.cs" />
+    <Compile Include="Export\PatternConstructors\PdfBrushTileConstructor.cs" />
+    <Compile Include="Export\PatternConstructors\PathGradientPatternConstructors\PdfDualColorGradientTriangleListBuilder.cs" />
+    <Compile Include="Export\PatternConstructors\PathGradientPatternConstructors\PdfGraphicsPathPointTypes.cs" />
+    <Compile Include="Export\PatternConstructors\PathGradientPatternConstructors\PdfMulticolorGradientTriangleListBuilder.cs" />
+    <Compile Include="Export\PatternConstructors\LinearGradientPatternConstructors\PdfTwoColorLinearGradientPatternConstructor.cs" />
+    <Compile Include="Export\Brushes\PdfBlend.cs" />
+    <Compile Include="Export\Brushes\PdfColorBlend.cs" />
+    <Compile Include="Export\PdfGraphicsConverter.cs" />
+    <Compile Include="Export\GraphicsCommands\PdfGraphicsDrawBezierCommand.cs" />
+    <Compile Include="Export\GraphicsCommands\PdfGraphicsDrawBeziersCommand.cs" />
+    <Compile Include="Export\GraphicsCommands\PdfGraphicsDrawEllipseCommand.cs" />
+    <Compile Include="Export\GraphicsCommands\PdfGraphicsDrawMetafileWithBoundsCommand.cs" />
+    <Compile Include="Export\GraphicsCommands\PdfGraphicsDrawPathCommand.cs" />
+    <Compile Include="Export\GraphicsCommands\PdfGraphicsFillEllipseCommand.cs" />
+    <Compile Include="Export\GraphicsCommands\PdfGraphicsFillPathCommand.cs" />
+    <Compile Include="Export\GraphicsCommands\PdfGraphicsNonStrokingCommand.cs" />
+    <Compile Include="Export\GraphicsCommands\PdfGraphicsCommand.cs" />
+    <Compile Include="Export\GraphicsCommands\PdfGraphicsDrawImageCommand.cs" />
+    <Compile Include="Export\GraphicsCommands\PdfGraphicsDrawLineCommand.cs" />
+    <Compile Include="Export\GraphicsCommands\PdfGraphicsDrawLinesCommand.cs" />
+    <Compile Include="Export\GraphicsCommands\PdfGraphicsDrawPolygonCommand.cs" />
+    <Compile Include="Export\GraphicsCommands\PdfGraphicsDrawRectangleCommand.cs" />
+    <Compile Include="Export\GraphicsCommands\PdfGraphicsDrawStringCommand.cs" />
+    <Compile Include="Export\GraphicsCommands\PdfGraphicsDrawStringWithGlyphPositioningCommand.cs" />
+    <Compile Include="Export\GraphicsCommands\PdfGraphicsFillPolygonCommand.cs" />
+    <Compile Include="Export\GraphicsCommands\PdfGraphicsFillRectangleCommand.cs" />
+    <Compile Include="Export\GraphicsCommands\PdfGraphicsRestoreGraphicsStateCommand.cs" />
+    <Compile Include="Export\GraphicsCommands\PdfGraphicsSaveGraphicsStateCommand.cs" />
+    <Compile Include="Export\GraphicsCommands\PdfGraphicsStrokingCommand.cs" />
+    <Compile Include="Export\GraphicsCommands\PdfGraphicsRotateTransformCommand.cs" />
+    <Compile Include="Export\GraphicsCommands\PdfGraphicsIntersectClipCommand.cs" />
+    <Compile Include="Export\GraphicsCommands\PdfGraphicsTranslateTransformCommand.cs" />
+    <Compile Include="Export\CommandContructors\PdfGraphicsPageContentsCommandConstructor.cs" />
+    <Compile Include="Export\PatternConstructors\HatchPatternConstructors\BackwardDiagonalHatchPatternConstructor.cs" />
+    <Compile Include="Export\PatternConstructors\HatchPatternConstructors\CheckerBoardHatchPatternConstructor.cs" />
+    <Compile Include="Export\PatternConstructors\PathGradientPatternConstructors\PdfColorEnumerator.cs" />
+    <Compile Include="Export\PatternConstructors\HatchPatternConstructors\CrossHatchPatternConstructor.cs" />
+    <Compile Include="Export\PatternConstructors\HatchPatternConstructors\DarkDownwardDiagonalHatchPatternConstructor.cs" />
+    <Compile Include="Export\PatternConstructors\HatchPatternConstructors\DarkHorizontalHatchPatternConstructor.cs" />
+    <Compile Include="Export\PatternConstructors\HatchPatternConstructors\DarkUpwardDiagonalHatchPatternConstructor.cs" />
+    <Compile Include="Export\PatternConstructors\HatchPatternConstructors\DarkVerticalHatchPatternConstructor.cs" />
+    <Compile Include="Export\PatternConstructors\HatchPatternConstructors\DiagonalBricksHatchPatternConstructor.cs" />
+    <Compile Include="Export\PatternConstructors\HatchPatternConstructors\ForwardDiagonalHatchPatternConstructor.cs" />
+    <Compile Include="Export\PatternConstructors\HatchPatternConstructors\HatchPatternConstructor.cs" />
+    <Compile Include="Export\PatternConstructors\HatchPatternConstructors\HorizontalBriksHatchPatternConstructor.cs" />
+    <Compile Include="Export\PatternConstructors\HatchPatternConstructors\HorizontalHatchPatternConstructor.cs" />
+    <Compile Include="Export\PatternConstructors\HatchPatternConstructors\LightDownwardDiagonalHatchPatternConstructor.cs" />
+    <Compile Include="Export\PatternConstructors\HatchPatternConstructors\LightHorizontalHatchPatternConstructor.cs" />
+    <Compile Include="Export\PatternConstructors\HatchPatternConstructors\LightUpwardDiagonalHatchPatternConstructor.cs" />
+    <Compile Include="Export\PatternConstructors\HatchPatternConstructors\LightVerticalHatchPatternConstructor.cs" />
+    <Compile Include="Export\PatternConstructors\LinearGradientPatternConstructors\PdfLinearGradientPatternConstructor.cs" />
+    <Compile Include="Export\PatternConstructors\HatchPatternConstructors\NarrowHorizontalHatchPatternConstructor.cs" />
+    <Compile Include="Export\PatternConstructors\HatchPatternConstructors\NarrowVerticalHatchPatternConstructor.cs" />
+    <Compile Include="Export\PatternConstructors\PathGradientPatternConstructors\PdfPathGradientPatternConstructor.cs" />
+    <Compile Include="Export\PatternConstructors\PathGradientPatternConstructors\PdfTriangleListBuilder.cs" />
+    <Compile Include="Export\PatternConstructors\PathGradientPatternConstructors\PdfTriangleWriter.cs" />
+    <Compile Include="Export\PatternConstructors\HatchPatternConstructors\SmallGridHatchPatternConstructor.cs" />
+    <Compile Include="Export\PatternConstructors\HatchPatternConstructors\VerticalHatchPatternConstructor.cs" />
+    <Compile Include="Export\PatternConstructors\HatchPatternConstructors\WideDownwardDiagonalHatchPatternConstructor.cs" />
+    <Compile Include="Export\PatternConstructors\HatchPatternConstructors\WideUpwardDiagonalHatchPatternConstructor.cs" />
+    <Compile Include="Export\Brushes\PdfBrush.cs" />
+    <Compile Include="Export\PdfGraphicsStateStack.cs" />
+    <Compile Include="Export\PdfGraphicsExportState.cs" />
+    <Compile Include="Export\PdfGraphicsMeasuringContext.cs" />
+    <Compile Include="Export\Brushes\PdfHatchBrush.cs" />
+    <Compile Include="Export\PdfImageCache.cs" />
+    <Compile Include="Export\Brushes\PdfLinearGradientBrush.cs" />
+    <Compile Include="Export\Brushes\PdfPathGradientBrush.cs" />
+    <Compile Include="Export\PdfPen.cs" />
+    <Compile Include="Export\Brushes\PdfSolidBrush.cs" />
+    <Compile Include="Export\Brushes\PdfTextureBrush.cs" />
+    <Compile Include="Export\Brushes\PdfTilingBrush.cs" />
+    <Compile Include="Export\PdfTransparentColor.cs" />
+    <Compile Include="Export\StringFormat\PdfGDIGlyphMapper.cs" />
+    <Compile Include="Export\StringFormat\PdfNotEmbeddedStringFormatter.cs" />
+    <Compile Include="Export\StringFormat\PdfPartialTrustGlyphMapper.cs" />
+    <Compile Include="Export\StringFormat\PdfStringFormatter.cs" />
+    <Compile Include="Export\StringFormat\StringPainter\PdfStringPainter.cs" />
+    <Compile Include="Export\StringFormat\StringPainter\PdfStringPaintingAtPointStrategy.cs" />
+    <Compile Include="Export\StringFormat\StringPainter\PdfStringPaintingInsideRectStrategy.cs" />
+    <Compile Include="Export\StringFormat\StringPainter\PdfStringPaintingStrategy.cs" />
+    <Compile Include="Export\StringFormat\StringPainter\PdfWidgetStringPainter.cs" />
+    <Compile Include="Metafile\EmfMetafile.cs" />
+    <Compile Include="Metafile\EmfMetafileGraphics.cs" />
+    <Compile Include="Metafile\EmfMetafileParser.cs" />
+    <Compile Include="Metafile\EmfPlusGraphicsState.cs" />
+    <Compile Include="Metafile\EmfPlusReader.cs" />
+    <Compile Include="Metafile\EmfEnumToValueConverter.cs" />
+    <Compile Include="Metafile\IEmfStateObject.cs" />
+    <Compile Include="Metafile\Objects\EmfPlus\Brushes\EmfPlusHatchBrush.cs" />
+    <Compile Include="Metafile\Objects\EmfPlus\Brushes\EmfPlusLinearGradientBrush.cs" />
+    <Compile Include="Metafile\Objects\EmfPlus\Brushes\EmfPlusPathGradientBrush.cs" />
+    <Compile Include="Metafile\Objects\EmfPlus\Brushes\EmfPlusSolidBrush.cs" />
+    <Compile Include="Metafile\Objects\EmfPlus\Brushes\EmfPlusTextureBrush.cs" />
+    <Compile Include="Metafile\Objects\EmfPlus\EmfPlusCombineMode.cs" />
+    <Compile Include="Metafile\Objects\EmfPlus\EmfPlusContinuedObject.cs" />
+    <Compile Include="Metafile\Objects\EmfPlus\EmfPlusDriverStringOptions.cs" />
+    <Compile Include="Metafile\Objects\Emf\EmfBackgroundMode.cs" />
+    <Compile Include="Metafile\Objects\Emf\EmfBitmapCoreHeader.cs" />
+    <Compile Include="Metafile\Objects\Emf\EmfBitmapHeader.cs" />
+    <Compile Include="Metafile\Objects\Emf\EmfBitmapInfoHeader.cs" />
+    <Compile Include="Metafile\Objects\Emf\EmfBrushStile.cs" />
+    <Compile Include="Metafile\Objects\EmfPlus\EmfPlusBrushData.cs" />
+    <Compile Include="Metafile\Objects\EmfPlus\EmfPlusBrushType.cs" />
+    <Compile Include="Metafile\Objects\Emf\EmfCharactedSet.cs" />
+    <Compile Include="Metafile\Objects\Emf\EmfColorRef.cs" />
+    <Compile Include="Metafile\Objects\Emf\EmfCompression.cs" />
+    <Compile Include="Metafile\Objects\Emf\EmfDeviceIndependentBitmap.cs" />
+    <Compile Include="Metafile\Objects\EmfPlus\Brushes\EmfPlusBrush.cs" />
+    <Compile Include="Metafile\Objects\EmfPlus\EmfPlusFont.cs" />
+    <Compile Include="Metafile\Objects\EmfPlus\EmfPlusImage.cs" />
+    <Compile Include="Metafile\Objects\EmfPlus\EmfPlusImageDataType.cs" />
+    <Compile Include="Metafile\Objects\EmfPlus\EmfPlusMetafileDataType.cs" />
+    <Compile Include="Metafile\Objects\EmfPlus\EmfPlusObjectType.cs" />
+    <Compile Include="Metafile\Objects\EmfPlus\EmfPlusPath.cs" />
+    <Compile Include="Metafile\Objects\EmfPlus\EmfPlusPen.cs" />
+    <Compile Include="Metafile\Objects\EmfPlus\EmfPlusPenDataFlags.cs" />
+    <Compile Include="Metafile\Objects\EmfPlus\EmfPlusPixelFormat.cs" />
+    <Compile Include="Metafile\Objects\EmfPlus\EmfPlusRecordType.cs" />
+    <Compile Include="Metafile\Objects\EmfPlus\EmfPlusRegion.cs" />
+    <Compile Include="Metafile\Objects\EmfPlus\EmfPlusRegionNodeDataType.cs" />
+    <Compile Include="Metafile\Objects\EmfPlus\EmfPlusStringFormatFlags.cs" />
+    <Compile Include="Metafile\Records\EmfPlus\EmfPlusContinuedObjectRecord.cs" />
+    <Compile Include="Metafile\Records\EmfPlus\EmfPlusDrawDriverStringRecord.cs" />
+    <Compile Include="Metafile\Records\EmfPlus\EmfPlusObjectRecordBase.cs" />
+    <Compile Include="Metafile\Records\Emf\EmfCommetRecord.cs" />
+    <Compile Include="Metafile\Records\Emf\EmfExtCreateFontIndirectWRecord.cs" />
+    <Compile Include="Metafile\Objects\Emf\EmfFamilyFont.cs" />
+    <Compile Include="Metafile\Objects\Emf\EmfHatchStyle.cs" />
+    <Compile Include="Metafile\Objects\Emf\EmfIcmMode.cs" />
+    <Compile Include="Metafile\Objects\Emf\EmfLogFont.cs" />
+    <Compile Include="Metafile\Objects\Emf\EmfLogFontExDv.cs" />
+    <Compile Include="Metafile\Objects\Emf\EmfLogPenEx.cs" />
+    <Compile Include="Metafile\Objects\Emf\EmfModifyWorldTransformMode.cs" />
+    <Compile Include="Metafile\Objects\Emf\EmfPenStyle.cs" />
+    <Compile Include="Metafile\Objects\Emf\EmfPitchFont.cs" />
+    <Compile Include="Metafile\Objects\Emf\EmfPoint.cs" />
+    <Compile Include="Metafile\Objects\Emf\EmfPointL.cs" />
+    <Compile Include="Metafile\Objects\Emf\EmfPointS.cs" />
+    <Compile Include="Metafile\Objects\Emf\EmfRgbQuad.cs" />
+    <Compile Include="Metafile\Objects\Emf\EmfTextAlignmentMode.cs" />
+    <Compile Include="Metafile\Objects\Emf\EmfTransformationMatrix.cs" />
+    <Compile Include="Metafile\Objects\Emf\EmfBitCount.cs" />
+    <Compile Include="Metafile\Objects\Emf\EmfLogPaletteEntry.cs" />
+    <Compile Include="Metafile\Objects\Emf\EmfVerticalTextAlignmentMode.cs" />
+    <Compile Include="Metafile\Records\Emf\EmfDeleteObjectRecord.cs" />
+    <Compile Include="Metafile\Records\EmfPlus\EmfPlusCircleSegmentRecord.cs" />
+    <Compile Include="Metafile\Records\EmfPlus\EmfPlusClearRecord.cs" />
+    <Compile Include="Metafile\Records\EmfPlus\EmfPlusDrawArcRecord.cs" />
+    <Compile Include="Metafile\Records\EmfPlus\EmfPlusDrawBeziersRecord.cs" />
+    <Compile Include="Metafile\Records\EmfPlus\EmfPlusDrawEllipseRecord.cs" />
+    <Compile Include="Metafile\Records\EmfPlus\EmfPlusDrawImagePointsRecord.cs" />
+    <Compile Include="Metafile\Records\EmfPlus\EmfPlusDrawImageRecord.cs" />
+    <Compile Include="Metafile\Records\EmfPlus\EmfPlusDrawLinesRecord.cs" />
+    <Compile Include="Metafile\Records\EmfPlus\EmfPlusDrawPathRecord.cs" />
+    <Compile Include="Metafile\Records\EmfPlus\EmfPlusDrawPieRecord.cs" />
+    <Compile Include="Metafile\Records\EmfPlus\EmfPlusDrawRecord.cs" />
+    <Compile Include="Metafile\Records\EmfPlus\EmfPlusDrawRectsRecord.cs" />
+    <Compile Include="Metafile\Records\EmfPlus\EmfPlusDrawStringRecord.cs" />
+    <Compile Include="Metafile\Records\EmfPlus\EmfPlusEofRecord.cs" />
+    <Compile Include="Metafile\Records\EmfPlus\EmfPlusFillBase.cs" />
+    <Compile Include="Metafile\Records\EmfPlus\EmfPlusFillEllipseRecord.cs" />
+    <Compile Include="Metafile\Records\EmfPlus\EmfPlusFillPathRecord.cs" />
+    <Compile Include="Metafile\Records\EmfPlus\EmfPlusFillPieRecord.cs" />
+    <Compile Include="Metafile\Records\EmfPlus\EmfPlusFillPolygonRecord.cs" />
+    <Compile Include="Metafile\Records\EmfPlus\EmfPlusFillRectsRecord.cs" />
+    <Compile Include="Metafile\Records\EmfPlus\EmfPlusHeaderRecord.cs" />
+    <Compile Include="Metafile\Records\EmfPlus\EmfPlusModifyWorldTransform.cs" />
+    <Compile Include="Metafile\Records\EmfPlus\EmfPlusMultiplyWorldTransformRecord.cs" />
+    <Compile Include="Metafile\Records\EmfPlus\EmfPlusObjectRecord.cs" />
+    <Compile Include="Metafile\Records\EmfPlus\EmfPlusPenDrawingRecordcs.cs" />
+    <Compile Include="Metafile\Records\EmfPlus\EmfPlusPointBasedRecord.cs" />
+    <Compile Include="Metafile\Records\EmfPlus\EmfPlusRecord.cs" />
+    <Compile Include="Metafile\Records\EmfPlus\EmfPlusResetClipRecord.cs" />
+    <Compile Include="Metafile\Records\EmfPlus\EmfPlusResetWorldTransformRecord.cs" />
+    <Compile Include="Metafile\Records\EmfPlus\EmfPlusRestoreRecord.cs" />
+    <Compile Include="Metafile\Records\EmfPlus\EmfPlusRotateWorldTransformRecord.cs" />
+    <Compile Include="Metafile\Records\EmfPlus\EmfPlusSaveRecord.cs" />
+    <Compile Include="Metafile\Records\EmfPlus\EmfPlusScaleWorldTransformRecord.cs" />
+    <Compile Include="Metafile\Records\EmfPlus\EmfPlusSetClipPathRecord.cs" />
+    <Compile Include="Metafile\Records\EmfPlus\EmfPlusSetClipRectRecord.cs" />
+    <Compile Include="Metafile\Records\EmfPlus\EmfPlusSetClipRegionRecord.cs" />
+    <Compile Include="Metafile\Records\EmfPlus\EmfPlusSetPageTransform.cs" />
+    <Compile Include="Metafile\Records\EmfPlus\EmfPlusSetWorldTransformRecord.cs" />
+    <Compile Include="Metafile\Records\EmfPlus\EmfPlusStateControlRecord.cs" />
+    <Compile Include="Metafile\Objects\EmfPlus\EmfPlusStringFormat.cs" />
+    <Compile Include="Metafile\Records\EmfPlus\EmfPlusTranslateWorldTransformRecord.cs" />
+    <Compile Include="Metafile\Records\Emf\EmfSetBkRecord.cs" />
+    <Compile Include="Metafile\Records\Emf\EmfSetTextAlignmentModeRecord.cs" />
+    <Compile Include="Metafile\Records\Emf\EmfSetTextColorRecord.cs" />
+    <Compile Include="Metafile\Records\Emf\EmfShapeRecord.cs" />
+    <Compile Include="Metafile\Records\Emf\EmfEofRecord.cs" />
+    <Compile Include="Metafile\Records\Emf\EmfExtCreatePen.cs" />
+    <Compile Include="Metafile\Records\Emf\EmfMetafileHeaderRecord.cs" />
+    <Compile Include="Metafile\Records\Emf\EmfModifyWorldTransformRecord.cs" />
+    <Compile Include="Metafile\Records\Emf\EmfPolyBezier16Record.cs" />
+    <Compile Include="Metafile\Records\Emf\EmfPolygon16Record.cs" />
+    <Compile Include="Metafile\Records\Emf\EmfPolyLine16Record.cs" />
+    <Compile Include="Metafile\Records\Emf\EmfRecord.cs" />
+    <Compile Include="Metafile\EmfRecordType.cs" />
+    <Compile Include="Metafile\Objects\Emf\EmfRectL.cs" />
+    <Compile Include="Metafile\Objects\Emf\EmfSizeL.cs" />
+    <Compile Include="Metafile\Records\Emf\EmfRestoreDcRecord.cs" />
+    <Compile Include="Metafile\Records\Emf\EmfSaveDcRecord.cs" />
+    <Compile Include="Metafile\Records\Emf\EmfSelectObjectRecord.cs" />
+    <Compile Include="Metafile\Records\Emf\EmfSetIcmModeRecord.cs" />
+    <Compile Include="Metafile\Records\Emf\EmfSetMiterLimitRecord.cs" />
+    <Compile Include="CommandInterpreter\ShadingPainters\PatchMesh\PdfPatchMeshPainter.cs" />
+    <Compile Include="CommandInterpreter\ShadingPainters\ColorConverter\PdfFunctionDomainConverter.cs" />
+    <Compile Include="CommandInterpreter\ShadingPainters\PdfMeshShadingPainter.cs" />
+    <Compile Include="PdfProcessorLauncher.cs" />
+    <Compile Include="CommandInterpreter\ShadingPainters\ColorConverter\PdfShadingColorConverter.cs" />
+    <Compile Include="CommandInterpreter\ShadingPainters\ColorConverter\IShadingColorConverter.cs" />
+    <Compile Include="PdfTempFolder.cs" />
+    <Compile Include="State\InteractiveOperationController\PdfInteractiveOperation.cs" />
+    <Compile Include="State\AnnotationControllers\PdfMarkupAnnotationStateController.cs" />
+    <Compile Include="State\AnnotationControllers\PdfTextBasedWidgetAnnotationStateController.cs" />
+    <Compile Include="State\EditorSettings\PdfChoiceFieldSettings.cs" />
+    <Compile Include="State\EditorSettings\PdfComboBoxSettings.cs" />
+    <Compile Include="State\EditorSettings\PdfEditorBorder.cs" />
+    <Compile Include="State\EditorSettings\PdfEditorBorderStyle.cs" />
+    <Compile Include="State\EditorSettings\PdfListBoxEditValue.cs" />
+    <Compile Include="State\EditorSettings\PdfListBoxSettings.cs" />
+    <Compile Include="State\EditorSettings\PdfStickyNoteEditSettings.cs" />
+    <Compile Include="State\PdfAttachmentsViewerNode.cs" />
+    <Compile Include="State\PdfOutlineViewerNode.cs" />
+    <Compile Include="State\WidgetAppearanceBuilders\PdfChoiceWidgetAppearanceBuilder.cs" />
+    <Compile Include="State\WidgetAppearanceBuilders\PdfTextWidgetAppearanceBuilder.cs" />
+    <Compile Include="State\WidgetAppearanceBuilders\PdfWidgetAppearanceBuilder.cs" />
+    <Compile Include="State\PdfViewerTool.cs" />
+    <Compile Include="State\TabNavigation\PdfTabBackwardNavigationStrategy.cs" />
+    <Compile Include="State\TabNavigation\PdfTabForwardNavigationStrategy.cs" />
+    <Compile Include="State\TabNavigation\PdfTabNavigationStrategy.cs" />
+    <Compile Include="State\TabNavigation\PdfTabNavigationController.cs" />
+    <Compile Include="State\AnnotationControllers\PdfButtonAnnotationStateController.cs" />
+    <Compile Include="State\AnnotationControllers\PdfCheckBoxAnnotationStateController.cs" />
+    <Compile Include="State\AnnotationControllers\PdfLinkAnnotationStateController.cs" />
+    <Compile Include="State\AnnotationControllers\PdfRadioButtonAnnotationStateController.cs" />
+    <Compile Include="State\AnnotationControllers\PdfWidgetAnnotationStateController.cs" />
+    <Compile Include="State\InteractiveOperationController\PdfInteractiveOperationController.cs" />
+    <Compile Include="State\EditorSettings\PdfEditorSettings.cs" />
+    <Compile Include="State\EditorSettings\PdfEditorType.cs" />
+    <Compile Include="State\EditorSettings\PdfTextEditSettings.cs" />
+    <Compile Include="State\ViewerInterfaces\IPdfViewerController.cs" />
+    <Compile Include="State\PdfAnnotationState.cs" />
+    <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="CommandInterpreter\PdfImageSelectionCommandInterpreter.cs" />
+    <Compile Include="FontRegistrator\PdfFontRegistrationData.cs" />
+    <Compile Include="FontRegistrator\PdfInMemoryFontRegistrator.cs" />
+    <Compile Include="FontRegistrator\PdfOpenTypeFontRegistrator.cs" />
+    <Compile Include="FontRegistrator\PdfTrueTypeFontRegistrator.cs" />
+    <Compile Include="FontRegistrator\PdfType1FontRegistrator.cs" />
+    <Compile Include="FontRegistrator\PdfFontRegistrator.cs" />
+    <Compile Include="FontRegistrator\PdfFontStorage.cs" />
+    <Compile Include="FontRegistrator\PdfType1FontFileCreator.cs" />
+    <Compile Include="State\AnnotationControllers\PdfAnnotationStateController.cs" />
+    <Compile Include="State\PdfDocumentState.cs" />
+    <Compile Include="PdfImageDataStorage.cs" />
+    <Compile Include="PdfRenderingOutOfMemoryException.cs" />
+    <Compile Include="CommandInterpreter\PdfViewerCommandInterpreter.cs" />
+    <Compile Include="CommandInterpreter\PdfRenderingCommandInterpreter.cs" />
+    <Compile Include="Printing\PdfDocumentPrinter.cs" />
+    <Compile Include="Printing\PdfPrintCalculator.cs" />
+    <Compile Include="Printing\PdfPrintDialogPreview.cs" />
+    <Compile Include="Printing\PdfPrintDialogViewModel.cs" />
+    <Compile Include="Printing\PdfPrintDocumentCalculator.cs" />
+    <Compile Include="Printing\PdfPrinterSettings.cs" />
+    <Compile Include="Printing\PdfPrintPreviewCalculator.cs" />
+    <Compile Include="State\PdfDocumentStateController.cs" />
+    <Compile Include="State\PdfModifierKeys.cs" />
+    <Compile Include="State\PdfMouseAction.cs" />
+    <Compile Include="State\PdfMouseButton.cs" />
+    <Compile Include="State\PdfPageState.cs" />
+    <Compile Include="State\PdfDocumentStateChangedEventArgs.cs" />
+    <Compile Include="State\Selection\PdfCaret.cs" />
+    <Compile Include="State\Selection\PdfCaretViewData.cs" />
+    <Compile Include="State\Selection\PdfContentHighlight.cs" />
+    <Compile Include="State\Selection\PdfDataSelector.cs" />
+    <Compile Include="State\Selection\PdfImageHighlight.cs" />
+    <Compile Include="State\Selection\PdfImageSelection.cs" />
+    <Compile Include="State\Selection\PdfImageSelector.cs" />
+    <Compile Include="State\Selection\PdfSelection.cs" />
+    <Compile Include="State\Selection\PdfSelectionState.cs" />
+    <Compile Include="State\Selection\PdfTextHighlight.cs" />
+    <Compile Include="State\Selection\PdfTextSelection.cs" />
+    <Compile Include="State\Selection\PdfTextSelector.cs" />
+    <Compile Include="State\ViewerInterfaces\IPdfViewerActionController.cs" />
+    <Compile Include="State\ViewerInterfaces\IPdfViewerNavigationController.cs" />
+    <Compile Include="State\ViewerInterfaces\IPdfViewerValueEditingController.cs" />
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <Compile Include="WindowsInterop\BackgroundMode.cs" />
+    <Compile Include="WindowsInterop\FontCharacteristics.cs" />
+    <Compile Include="WindowsInterop\FontCharSet.cs" />
+    <Compile Include="WindowsInterop\FontClipPrecision.cs" />
+    <Compile Include="WindowsInterop\FontOutputPrecision.cs" />
+    <Compile Include="WindowsInterop\FontPitchAndFamily.cs" />
+    <Compile Include="WindowsInterop\FontQuality.cs" />
+    <Compile Include="WindowsInterop\FontWeight.cs" />
+    <Compile Include="WindowsInterop\GCP_FLAGS.cs" />
+    <Compile Include="WindowsInterop\GCP_RESULTS.cs" />
+    <Compile Include="WindowsInterop\Gdi32Interop.cs" />
+    <Compile Include="WindowsInterop\GraphicsMode.cs" />
+    <Compile Include="WindowsInterop\ModifyWorldTransformMode.cs" />
+    <Compile Include="WindowsInterop\RECT.cs" />
+    <Compile Include="WindowsInterop\ShellInterop.cs" />
+    <Compile Include="WindowsInterop\TextAlign.cs" />
+    <Compile Include="WindowsInterop\TEXTMETRIC.cs" />
+    <Compile Include="WindowsInterop\TextOutOptions.cs" />
+    <Compile Include="WindowsInterop\XFORM.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Images\UnsupportedImage.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    
+    
+  </PropertyGroup>
+</Project>

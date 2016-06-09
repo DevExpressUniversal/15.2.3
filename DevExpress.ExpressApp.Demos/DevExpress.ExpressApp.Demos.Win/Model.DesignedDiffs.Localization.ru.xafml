@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application>
+	<ActionDesign>
+		<Actions>
+			<Action Id="CategorizeImages" Caption="Сортировать изображения" />
+			<Action Id="FillCategories" Caption="Заполнить категории" />
+			<Action Id="ImagePreviewListMode" Caption="Режим просмотра изображений">
+				<ChoiceActionItems>
+					<ChoiceActionItem Id="List" Caption="Список" />
+					<ChoiceActionItem Id="Thumbnails" Caption="Миниатюры" />
+				</ChoiceActionItems>
+			</Action>
+			<Action Id="OpenCategory" Caption="Открыть" />
+		</Actions>
+	</ActionDesign>
+	<BOModel>
+		<Class Name="DevExpress.ExpressApp.Demos.Win.AssemblyImageSourceBrowser" Caption="Обозреватель изображений из сборок" />
+		<Class Name="DevExpress.ExpressApp.Demos.Win.CategoryString" Caption="Категория">
+			<OwnMembers>
+				<Member Name="Images" Caption="Изображения" />
+				<Member Name="Name" Caption="Имя" />
+			</OwnMembers>
+		</Class>
+		<Class Name="DevExpress.ExpressApp.Demos.Win.FileImageSourceBrowser" Caption="Обозреватель изображений из файлов" />
+		<Class Name="DevExpress.ExpressApp.Demos.Win.ImageBrowserCategory" Caption="Категория обозревателя изображений">
+			<OwnMembers>
+				<Member Name="ChildCategories" Caption="Дочерние категории" />
+				<Member Name="Name" Caption="Имя" />
+				<Member Name="Owner" Caption="Владелец" />
+				<Member Name="ParentCategory" Caption="Родительская категория" />
+			</OwnMembers>
+		</Class>
+		<Class Name="DevExpress.ExpressApp.Demos.Win.ImageNode" Caption="Узел изображения">
+			<OwnMembers>
+				<Member Name="Image" Caption="Изображение" />
+			</OwnMembers>
+		</Class>
+		<Class Name="DevExpress.ExpressApp.Demos.Win.ImagePreviewObject" Caption="Изображение">
+			<OwnMembers>
+				<Member Name="Categories" Caption="Категории" />
+				<Member Name="Image12x12" Caption="Небольшое" />
+				<Member Name="Image16x16" Caption="Исходное" />
+				<Member Name="Image32x32" Caption="Большое" />
+				<Member Name="Image48x48" Caption="Диалоговое" />
+				<Member Name="ImageName" Caption="Имя изображения" />
+				<Member Name="OriginalImage" Caption="Исходное изображение" />
+			</OwnMembers>
+		</Class>
+		<Class Name="DevExpress.ExpressApp.Demos.Win.ImagesGroupNode" Caption="Изображения группы узла">
+			<OwnMembers>
+				<Member Name="Images" Caption="Изображения" />
+			</OwnMembers>
+		</Class>
+		<Class Name="DevExpress.ExpressApp.Demos.Win.ImageSourceBrowserBase" Caption="Обозреватель источника изображений">
+			<OwnMembers>
+				<Member Name="Categories" Caption="Категории" />
+				<Member Name="ImageCategories" Caption="Категории изображений" />
+				<Member Name="ImageSourceName" Caption="Название источника изображений" />
+			</OwnMembers>
+		</Class>
+	</BOModel>
+	<NavigationItems>
+		<Items>
+			<Item Id="Images" Caption="Изображения" />
+		</Items>
+	</NavigationItems>
+	<Views>
+		<DetailView Id="ImagePreviewObject_DetailView">
+			<Layout>
+				<LayoutGroup Id="Main">
+					<LayoutGroup Id="SimpleEditors">
+						<LayoutGroup Id="ImagePreviewObject" Caption="Предварительный просмотр изображений" />
+					</LayoutGroup>
+				</LayoutGroup>
+			</Layout>
+		</DetailView>
+	</Views>
+</Application>

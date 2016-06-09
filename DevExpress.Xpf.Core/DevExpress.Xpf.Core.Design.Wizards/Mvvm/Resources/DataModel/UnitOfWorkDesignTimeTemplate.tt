@@ -1,0 +1,33 @@
+﻿<#@ template language="C#" #>
+<#@ import namespace="System" #>
+<#@ import namespace="DevExpress.Xpf.Core.Design.Wizards.Mvvm.EntityFramework" #>
+<#@ import namespace="DevExpress.Xpf.Core.Design.Wizards.Mvvm" #>
+<#
+    T4TemplateInfo templateInfo = this.GetTemplateInfo();
+	EntityModelData entityModel = templateInfo.Properties["EntityModelData"] as EntityModelData;
+	this.PasteUsingList();
+#>
+
+namespace <#=this.GetNamespace()#> {
+    /// <summary>
+    /// A <#=entityModel.Name#>DesignTimeUnitOfWork instance that represents the design-time implementation of the I<#=entityModel.Name#>UnitOfWork interface.
+    /// </summary>
+    public class <#=entityModel.Name#>DesignTimeUnitOfWork : DesignTimeUnitOfWork, I<#=entityModel.Name#>UnitOfWork {
+
+        /// <summary>
+        /// Initializes a new instance of the <#=entityModel.Name#>DesignTimeUnitOfWork class.
+        /// </summary>
+        public <#=entityModel.Name#>DesignTimeUnitOfWork() {
+        }
+<#
+    if(entityModel != null)
+        foreach(EntitySetData entity in entityModel.Entities) {
+            string entityName = TemplatingUtils.FirstCharToLowerCase(entity.Name);
+#>
+
+        I<#if(entity.ReadOnly){#>ReadOnly<#}#>Repository<<#=entity.Type#><#if(!entity.ReadOnly){#>, <#=entity.PrimaryKeyType#><#}#>> I<#=entityModel.Name#>UnitOfWork.<#=entity.Name#> {
+            get { return Get<#if(entity.ReadOnly){#>ReadOnly<#}#>Repository<#if(entity.ReadOnly){#><<#=entity.Type#>><#}#>(<#if(!entity.ReadOnly){#><#=entity.GetPrimaryKeyConstructor()#><#}#>); }
+        }
+<#}#>
+    }
+}

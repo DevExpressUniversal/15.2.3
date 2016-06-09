@@ -1,0 +1,118 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:dxtEx="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys" xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors" xmlns:dxet="http://schemas.devexpress.com/winfx/2008/xaml/editors/themekeys" xmlns:dxeh="http://schemas.devexpress.com/winfx/2008/xaml/editors/internal" xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys">
+
+    <!--BEGIN WPF-->
+    <ResourceDictionary.MergedDictionaries>
+        <dxtEx:ResourceDictionaryEx Source="/DevExpress.Xpf.Themes.Office2007Silver.v15.2;component/DevExpress.Xpf.Core/DevExpress.Xpf.Core/Editors/Themes/Office2007Generic/Brushes.xaml" />
+        <dxtEx:ResourceDictionaryEx Source="/DevExpress.Xpf.Themes.Office2007Silver.v15.2;component/DevExpress.Xpf.Core/DevExpress.Xpf.Core/Editors/Themes/Office2007Generic/ErrorPresenter.xaml" />
+        <dxtEx:ResourceDictionaryEx Source="/DevExpress.Xpf.Themes.Office2007Silver.v15.2;component/DevExpress.Xpf.Core/DevExpress.Xpf.Core/Editors/Themes/Generic/TextEditBase.xaml" />
+        <dxtEx:ResourceDictionaryEx Source="/DevExpress.Xpf.Themes.Office2007Silver.v15.2;component/DevExpress.Xpf.Core/DevExpress.Xpf.Core/Editors/Themes/Generic/TextEdit.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+    <!--END WPF-->
+
+    <SolidColorBrush x:Key="{dxet:TextEditThemeKey ResourceKey=NullTextForeground}" Color="#9C9C9C" />
+
+    <!--BEGIN TOSLONLY REPLACE 'TextBox'dxec:SLTextBox'-->
+
+    <Style BasedOn="{StaticResource BaseTextStyle}" x:Key="{dxet:TextEditThemeKey ResourceKey=TextStyle}" TargetType="{x:Type TextBox}">
+		<Setter Property="BorderThickness" Value="0,0,0,0" />
+		<Setter Property="BorderBrush" Value="{x:Null}" />
+		<!--<Setter Property="Margin" Value="3,3,3,3"/>-->
+		<Setter Property="VerticalAlignment" Value="Stretch" />
+        <!--<Style.Triggers>
+            <DataTrigger Binding="{Binding Path=HasValidationError, RelativeSource={RelativeSource FindAncestor, AncestorLevel=1, AncestorType={x:Type dxe:BaseEdit}}}" Value="True">
+                <Setter Property="Margin" Value="0,3,3,3"/>
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Path=ShowError, RelativeSource={RelativeSource FindAncestor, AncestorLevel=1, AncestorType={x:Type dxe:BaseEdit}}}" Value="false">
+                <Setter Property="Margin" Value="3"/>
+            </DataTrigger>
+
+            <DataTrigger Binding="{Binding Path=ShowBorder, RelativeSource={RelativeSource FindAncestor, AncestorLevel=1, AncestorType={x:Type dxe:BaseEdit}}}" Value="False">
+                <Setter Property="Margin" Value="0"/>
+            </DataTrigger>
+        </Style.Triggers>-->
+	</Style>
+    <Style BasedOn="{StaticResource BaseTextInplaceStyle}" x:Key="{dxet:TextEditThemeKey ResourceKey=TextInplaceStyle}" TargetType="{x:Type TextBox}">
+		<Setter Property="BorderThickness" Value="0,0,0,0" />
+		<Setter Property="BorderBrush" Value="{x:Null}" />
+		<!--<Setter Property="Margin" Value="2,2,2,2"/>-->
+		<Setter Property="VerticalAlignment" Value="Stretch" />
+        <Setter Property="dxeh:EditorMarginHelper.Margin" Value="2,2,2,2,0,2,2,2" />
+        <!--<Style.Triggers>
+            <DataTrigger Binding="{Binding Path=HasValidationError, RelativeSource={RelativeSource FindAncestor, AncestorLevel=1, AncestorType={x:Type dxe:BaseEdit}}}" Value="True">
+                <Setter Property="Margin" Value="0,2,2,2"/>
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Path=ShowError, RelativeSource={RelativeSource FindAncestor, AncestorLevel=1, AncestorType={x:Type dxe:BaseEdit}}}" Value="false">
+                <Setter Property="Margin" Value="2"/>
+            </DataTrigger>
+        </Style.Triggers>-->
+	</Style>
+
+    <Style BasedOn="{StaticResource BaseTextBlockStyle}" x:Key="{dxet:TextEditThemeKey ResourceKey=TextBlockStyle}" TargetType="{x:Type TextBlock}">
+		<Setter Property="Margin" Value="5,3,5,3" />
+	</Style>
+
+    <Style BasedOn="{StaticResource BaseTextBlockInplaceStyle}" x:Key="{dxet:TextEditThemeKey ResourceKey=TextBlockInplaceStyle}" TargetType="{x:Type TextBlock}">
+        <Setter Property="dxeh:EditorMarginHelper.Margin" Value="4,2,4,2,2,2,4,2" />
+		<!--<Setter Property="Margin" Value="4,2,4,2"/>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Path=HasValidationError, RelativeSource={RelativeSource FindAncestor, AncestorLevel=1, AncestorType={x:Type dxe:BaseEdit}}}" Value="True">
+                <Setter Property="Margin" Value="2,2,4,2"/>
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Path=ShowError, RelativeSource={RelativeSource FindAncestor, AncestorLevel=1, AncestorType={x:Type dxe:BaseEdit}}}" Value="false">
+                <Setter Property="Margin" Value="3"/>
+            </DataTrigger>
+        </Style.Triggers>-->
+	</Style>
+    <ControlTemplate x:Key="{dxet:TextEditThemeKey ResourceKey=DisplayInplaceTemplate}">
+        <TextBlock x:Name="PART_Editor" Style="{DynamicResource {dxet:TextEditThemeKey ResourceKey=TextBlockInplaceStyle}}" dx:FocusHelper2.Focusable="False" />
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="{dxet:TextEditThemeKey ResourceKey=EditNonEditableTemplate}">
+        <TextBlock x:Name="PART_Editor" Style="{DynamicResource {dxet:TextEditThemeKey ResourceKey=TextBlockStyle}}">
+        </TextBlock>
+    </ControlTemplate>
+    <ControlTemplate x:Key="{dxet:TextEditThemeKey ResourceKey=EditNonEditableInplaceTemplate}">
+        <TextBlock x:Name="PART_Editor" Style="{DynamicResource {dxet:TextEditThemeKey ResourceKey=TextBlockInplaceStyle}}" />
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="{dxet:TextEditThemeKey ResourceKey=EditInplaceTemplate}">
+        <TextBox x:Name="PART_Editor" Style="{DynamicResource {dxet:TextEditThemeKey ResourceKey=TextInplaceStyle}}" />
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="{dxet:TextEditThemeKey ResourceKey=EditTemplate}">
+        <TextBox x:Name="PART_Editor" Style="{DynamicResource {dxet:TextEditThemeKey ResourceKey=TextStyle}}" dxeh:EditorMarginHelper.Margin="3,3,3,3,0,3,3,3" />
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="{dxet:TextEditThemeKey ResourceKey=EmptyBorderTemplate}" TargetType="{x:Type ContentControl}">
+		<Border x:Name="TextEditEmptyBorder" Width="Auto" Height="Auto" SnapsToDevicePixels="True" Background="#00FFFFFF">
+			<ContentPresenter Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}" ContentTemplate="{TemplateBinding ContentTemplate}" />
+		</Border>
+        <!-- Don't work -->
+		<!--<ControlTemplate.Triggers>
+			<DataTrigger Binding="{Binding Path=EditMode, RelativeSource={RelativeSource FindAncestor, AncestorLevel=1, AncestorType={x:Type dxe:TextEdit}}}" Value="Standalone">
+				<Setter Property="Padding" Value="1,2,1,2"/>
+			</DataTrigger>
+		</ControlTemplate.Triggers>-->
+	</ControlTemplate>
+
+	<ControlTemplate x:Key="{dxet:TextEditThemeKey ResourceKey=ErrorControlTemplate}" TargetType="{x:Type dxe:ErrorControl}">
+		<ContentPresenter Margin="3,0,3,0" x:Name="content" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}" ContentTemplate="{TemplateBinding ContentTemplate}" RenderTransformOrigin="0.5,0.5">
+            <ContentPresenter.Resources>
+                <Storyboard x:Key="showErrorStoryboard">
+                    <DoubleAnimation BeginTime="00:00:00" Duration="00:00:00.2000000" Storyboard.TargetName="content" Storyboard.TargetProperty="Opacity" From="0" To="1" />
+                    <DoubleAnimation BeginTime="00:00:00" Duration="00:00:00.1000000" Storyboard.TargetName="content" Storyboard.TargetProperty="RenderTransform.ScaleX" From="1" To="1.2" />
+                    <DoubleAnimation BeginTime="00:00:00.1000000" Duration="00:00:00.1000000" Storyboard.TargetName="content" Storyboard.TargetProperty="RenderTransform.ScaleX" From="1.2" To="1" />
+                    <DoubleAnimation BeginTime="00:00:00" Duration="00:00:00.1000000" Storyboard.TargetName="content" Storyboard.TargetProperty="RenderTransform.ScaleY" From="1" To="1.2" />
+                    <DoubleAnimation BeginTime="00:00:00.1000000" Duration="00:00:00.1000000" Storyboard.TargetName="content" Storyboard.TargetProperty="RenderTransform.ScaleY" From="1.2" To="1" />
+                </Storyboard>
+                <Storyboard x:Key="hideErrorStoryboard">
+                    <DoubleAnimation BeginTime="00:00:00" Duration="00:00:00" Storyboard.TargetName="content" Storyboard.TargetProperty="Opacity" To="0" />
+                </Storyboard>
+            </ContentPresenter.Resources>
+			<ContentPresenter.RenderTransform>
+				<ScaleTransform />
+			</ContentPresenter.RenderTransform>
+		</ContentPresenter>
+	</ControlTemplate>
+    <!--END TOSLONLY REPLACE 'TextBox'dxec:SLTextBox'-->
+</ResourceDictionary>

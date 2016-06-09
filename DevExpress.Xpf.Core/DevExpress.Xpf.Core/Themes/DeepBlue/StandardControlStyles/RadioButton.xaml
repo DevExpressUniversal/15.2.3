@@ -1,0 +1,79 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:dx="clr-namespace:DevExpress.Xpf.Core"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:dxtEx="clr-namespace:DevExpress.Xpf.Utils.Themes"
+	xmlns:dxt="clr-namespace:DevExpress.Xpf.Utils.Themes">
+    <SolidColorBrush x:Key="BaseBrushBlack" Color="Black" />
+    <SolidColorBrush x:Key="BaseBrush#00FFFFFF" Color="#00FFFFFF" />
+    <SolidColorBrush x:Key="BaseBrush#FF7D9ABE" Color="#FF7D9ABE" />
+    <Color x:Key="BaseColor#FF839FC8">#FF839FC8</Color>
+    <Color x:Key="BaseColor#FF8399C4">#FF8399C4</Color>
+    <Color x:Key="BaseColor#FF7590B9">#FF7590B9</Color>
+    <Color x:Key="BaseColor#FF83A0CE">#FF83A0CE</Color>
+    <ControlTemplate x:Key="{dxt:RadioButtonThemeKey ResourceKey=ControlTemplate}" TargetType="{x:Type RadioButton}">
+        <Grid x:Name="Root" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="Top" Height="Auto">
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup x:Name="InternalFocusStates">
+                    <VisualState x:Name="InternalFocused">
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetName="focus" Storyboard.TargetProperty="Opacity" Duration="0" To="0.35"/>
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="InternalUnfocused" />
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+            <BulletDecorator Background="{DynamicResource BaseBrush#00FFFFFF}">
+                <BulletDecorator.Bullet>
+                    <Grid Width="14" Height="14">
+                        <Grid HorizontalAlignment="Stretch" Margin="0,0,0,0" x:Name="radiobutton" VerticalAlignment="Stretch" Width="Auto" Height="Auto" SnapsToDevicePixels="True">
+                            <Ellipse x:Name="focus" Margin="-2" Opacity="0" Fill="#FF4882d8" />
+                            <Ellipse Fill="{DynamicResource {dxt:BrushesThemeKey IsVisibleInBlend=True, ResourceKey=EditorButtonBorderGradient}}" Stroke="{x:Null}" Margin="0,0,0,0" x:Name="ellipse3"/>
+                            <Ellipse Fill="{DynamicResource {dxt:BrushesThemeKey IsVisibleInBlend=True, ResourceKey=RadioCenter}}" Stroke="{x:Null}" Margin="1,1,1,1" x:Name="ellipse"/>
+                            <Border UseLayoutRounding="True" Margin="3">
+                                <Grid Visibility="Hidden" x:Name="grid" Width="Auto" Height="Auto" Opacity="1">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="0.5*"/>
+                                        <RowDefinition Height="0.5*"/>
+                                    </Grid.RowDefinitions>
+                                    <Ellipse Fill="{DynamicResource {dxt:BrushesThemeKey IsVisibleInBlend=True, ResourceKey=RadioPoint}}" Stroke="{x:Null}" Margin="0,0,0,0" Grid.RowSpan="2"/>
+
+                                    <Ellipse Fill="{DynamicResource {dxt:BrushesThemeKey IsVisibleInBlend=True, ResourceKey=radioButtonNormalGradient}}"
+									Stroke="{x:Null}"
+									Margin="1,1,1,1"
+									x:Name="ellipse1"
+									Grid.RowSpan="2"/>
+                                    <Ellipse Fill="{DynamicResource {dxt:BrushesThemeKey IsVisibleInBlend=True, ResourceKey=radioButtonNormalGlare}}" Stroke="{x:Null}" Margin="3,1,3,0" x:Name="ellipse2"/>
+                                </Grid>
+                            </Border>
+                        </Grid>
+                    </Grid>
+                </BulletDecorator.Bullet>
+                <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Margin="4,0,0,0" RecognizesAccessKey="True"/>
+            </BulletDecorator>
+        </Grid>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Opacity" TargetName="Root" Value="0.35" />
+            </Trigger>
+            <Trigger Property="IsChecked" Value="True">
+                <Setter Property="Visibility" TargetName="grid" Value="Visible" />
+            </Trigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsMouseOver" Value="True" />
+                    <Condition Property="IsChecked" Value="False" />
+                </MultiTrigger.Conditions>
+                <Setter Property="Visibility" TargetName="grid" Value="Hidden" />
+                <Setter Property="Fill" TargetName="ellipse" Value="{DynamicResource {dxt:BrushesThemeKey IsVisibleInBlend=True, ResourceKey=RadioButtonHottrackCenter}}" />
+            </MultiTrigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsMouseOver" Value="True" />
+                    <Condition Property="IsChecked" Value="True" />
+                </MultiTrigger.Conditions>
+                <Setter Property="Visibility" TargetName="grid" Value="Visible" />
+                <Setter Property="Fill" TargetName="ellipse1" Value="{DynamicResource {dxt:BrushesThemeKey IsVisibleInBlend=True, ResourceKey=RadioHottrackGradient}}" />
+                <Setter Property="Fill" TargetName="ellipse2" Value="{DynamicResource {dxt:BrushesThemeKey IsVisibleInBlend=True, ResourceKey=RadioHottrackGlare}}" />
+            </MultiTrigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+</ResourceDictionary>

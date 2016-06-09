@@ -1,0 +1,47 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+    xmlns:dxtEx="clr-namespace:DevExpress.Xpf.Utils.Themes"
+    xmlns:dx="clr-namespace:DevExpress.Xpf.Core"
+    xmlns:dxe="clr-namespace:DevExpress.Xpf.Editors"
+    xmlns:dxei="clr-namespace:DevExpress.Xpf.Editors.Internal"
+    xmlns:dxeh="clr-namespace:DevExpress.Xpf.Editors.Helpers"
+    xmlns:dxep="clr-namespace:DevExpress.Xpf.Editors.Popups"
+    xmlns:dxet="clr-namespace:DevExpress.Xpf.Editors.Themes"
+    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+    <dxei:BaseEditStyleSettingsToBarCodeStyleSettingsConverter x:Key="BaseEditStyleSettingsToBarCodeStyleSettingsConverter"/>
+    <dxei:BaseEditToBarCodeEditConverter x:Key="BaseEditToBarCodeEditConverter"/>
+    <ControlTemplate x:Key="{dxet:BarCodeEditThemeKeyExtension ResourceKey=Template}" TargetType="dxe:BarCodeEdit">
+        <dxe:EditorControl x:Name="PART_Content" Template="{TemplateBinding ActualEditorControlTemplate}"/>
+    </ControlTemplate>
+    <ControlTemplate x:Key="{dxet:BarCodeEditThemeKeyExtension ResourceKey=EditTemplate}">
+        <Grid Name="Part_RootGrid" Background="{Binding Path=(dxe:BaseEdit.OwnerEdit).Background}">
+            <dxei:BarCodePainter Name="Part_BarCodePainter" Margin="2"
+                                  Symbology="{Binding Path=(dxe:BaseEdit.OwnerEdit).(dxe:ActualPropertyProvider.Properties).StyleSettings, Converter={StaticResource BaseEditStyleSettingsToBarCodeStyleSettingsConverter}}"
+                                  BarCodeEdit="{Binding Path=(dxe:BaseEdit.OwnerEdit), Converter={StaticResource BaseEditToBarCodeEditConverter}}"
+                                 />
+        </Grid>
+    </ControlTemplate>
+    <ControlTemplate x:Key="{dxet:BarCodeEditThemeKeyExtension ResourceKey=DisplayTemplate}">
+        <Grid Name="Part_RootGrid" Background="{Binding Path=(dxe:BaseEdit.OwnerEdit).Background}">
+            <dxei:BarCodePainter Name="Part_BarCodePainter" Margin="2"
+                                  Symbology="{Binding Path=(dxe:BaseEdit.OwnerEdit).(dxe:ActualPropertyProvider.Properties).StyleSettings, Converter={StaticResource BaseEditStyleSettingsToBarCodeStyleSettingsConverter}}"
+                                  BarCodeEdit="{Binding Path=(dxe:BaseEdit.OwnerEdit), Converter={StaticResource BaseEditToBarCodeEditConverter}}"
+                                 />
+        </Grid>
+    </ControlTemplate>
+    
+    <Style TargetType="dxei:BarCodePainter">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="dxei:BarCodePainter">
+                    <Grid>
+                        <Grid Name="Part_Grid"/>
+                        <Canvas Name="Part_Canvas"/>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>
+
+

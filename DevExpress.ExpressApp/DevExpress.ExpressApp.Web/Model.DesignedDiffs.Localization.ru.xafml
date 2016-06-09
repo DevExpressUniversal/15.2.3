@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application>
+  <ActionDesign>
+    <Actions>
+      <Action Id="ChooseTheme" Caption="Выбрать скин" />
+      <Action Id="Edit" Caption="Правка" />
+      <Action Id="Export" Caption="Экспорт" />
+      <Action Id="ExportAnalysis" Caption="Экспортировать анализ в" />
+      <Action Id="InlineEdit" Caption="Встроенная правка" />
+      <Action Id="NavigateTo" Caption="Перейти к" />
+      <Action Id="QuickCreateAction" Caption="Быстрое создание" />
+      <Action Id="SwitchToEditMode" Caption="Правка" />
+    </Actions>
+  </ActionDesign>
+  <BOModel>
+    <Class Name="DevExpress.ExpressApp.Web.LogonAttemptsAmountedToLimit" Caption="Попытки входа в систему ограничены" />
+    <Class Name="DevExpress.ExpressApp.Web.ParameterlessLogonFailedInfo" Caption="Информация об ошибке при входе без параметров">
+      <OwnMembers>
+        <Member Name="Message" Caption="Сообщение" />
+      </OwnMembers>
+    </Class>
+  </BOModel>
+  <Localization>
+    <LocalizationGroup Name="ASPxImagePropertyEditor">
+      <LocalizationItem Name="Clear" Value="Очистить" />
+      <LocalizationItem Name="Edit" Value="Редактировать" />
+    </LocalizationGroup>
+    <LocalizationGroup Name="Messages">
+      <LocalizationItem Name="ThereAreNoRecordsToDisplay" Value="Нет записей для отображения" />
+    </LocalizationGroup>
+		<LocalizationGroup Name="Texts" IsNewNode="True">
+			<LocalizationItem Name="IgnoreWarning" Value="Игнорировать предупреждения." />
+		</LocalizationGroup>
+		<LocalizationGroup Name="Captions">
+			<LocalizationItem Name="SelectAll" Value="(Выбрать все)" />
+			<LocalizationItem Name="MyAccount" Value=" Моя учетная запись "  />
+		</LocalizationGroup>
+	</Localization>
+  <Views>
+    <DetailView Id="LogonAttemptsAmountedToLimit_DetailView" Caption="Вход">
+      <Items>
+        <StaticText Id="LogonText" Text="После трех неудачных попыток Войти, браузер должен быть закрыт. Пожалуйста, обратись к администратору за детальной информации о вашем входе." />
+      </Items>
+    </DetailView>
+    <DetailView Id="ParameterlessLogonFailedInfo_DefaultDetailView" Caption="Вход">
+      <Items>
+        <StaticText Id="Message" Text="{0} Пожалуйста, обратись к  администратору за детальной информацией о вашем входе." />
+      </Items>
+    </DetailView>
+  </Views>
+</Application>

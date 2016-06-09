@@ -1,0 +1,55 @@
+﻿<UserControl x:Class="DevExpress.Xpf.Scheduler.UI.EditRecurrenceControl" 
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" 
+    xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors" 
+    xmlns:dxsch="clr-namespace:DevExpress.Xpf.Scheduler" 
+    xmlns:dxschdui="clr-namespace:DevExpress.Xpf.Scheduler.UI" 
+    xmlns:dxschd="clr-namespace:DevExpress.Xpf.Scheduler.Drawing" 
+    xmlns:dxec="clr-namespace:DevExpress.Xpf.Editors.Controls;assembly=DevExpress.Xpf.Core.v15.2"
+    x:Name="RecForm"
+    MinWidth="550">
+    <UserControl.Resources>
+        <dxsch:SchedulerStringIdConverter x:Key="SchedulerStringIdConverter" />
+        <dxsch:SchedulerControlStringIdConverter x:Key="SchedulerControlStringIdConverter" />
+        <dxschd:TimeSpanToDateTimeConverter x:Key="timeSpanToDateTimeConverter" />
+        <dxschd:InvertedBoolConverter x:Key="invertedBoolConverter" />
+        <dx:EnumToBoolConverter x:Key="EnumToBoolConverter" />
+        <dx:BoolToVisibilityConverter x:Key="booleanToVisibilityConverter" />
+        <dx:BoolToVisibilityInverseConverter x:Key="invertedBooleanToVisibilityConverter" />
+    </UserControl.Resources>
+    
+    <Grid Margin="12">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <dx:GroupFrame Header="{Binding Source={StaticResource SchedulerControlStringIdConverter}, ConverterParameter=Form_RecurrencePattern, Converter={StaticResource SchedulerControlStringIdConverter}}" Margin="0,12,0,0">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <dxschdui:RecurrenceTypeEditor RecurrenceType="{Binding RecurrenceType,Mode=TwoWay}"
+                    RecurrenceTypes="{Binding AvailableRecurrenceTypes}"
+                    IsReadOnly="{Binding IsReadOnly}" />
+                <dxec:DXSeparator Grid.Column="1" Orientation="Vertical" Margin="10,0,14,0" UseLayoutRounding="True" />
+                <StackPanel Grid.Column="2">
+                    <dxschdui:DailyRecurrenceControl Visibility="{Binding IsDailyRecurrence, Converter={dxschd:BoolToVisibilityConverter}}" RecurrenceInfo="{Binding RecurrenceInfo}" IsReadOnly="{Binding IsReadOnly}" />
+                    <dxschdui:WeeklyRecurrenceControl Visibility="{Binding IsWeeklyRecurrence, Converter={dxschd:BoolToVisibilityConverter}}" RecurrenceInfo="{Binding RecurrenceInfo}" IsReadOnly="{Binding IsReadOnly}" FirstDayOfWeek="{Binding FirstDayOfWeek}" />
+                    <dxschdui:MonthlyRecurrenceControl Visibility="{Binding IsMonthlyRecurrence, Converter={dxschd:BoolToVisibilityConverter}}" RecurrenceInfo="{Binding RecurrenceInfo}" IsReadOnly="{Binding IsReadOnly}" />
+                    <dxschdui:YearlyRecurrenceControl Visibility="{Binding IsYearlyRecurrence, Converter={dxschd:BoolToVisibilityConverter}}" RecurrenceInfo="{Binding RecurrenceInfo}" IsReadOnly="{Binding IsReadOnly}" />
+                </StackPanel>
+            </Grid>
+        </dx:GroupFrame>
+        <dx:GroupFrame Grid.Row="1" Header="{Binding Source={StaticResource SchedulerControlStringIdConverter}, ConverterParameter=Form_RangeOfRecurrence, Converter={StaticResource SchedulerControlStringIdConverter}}" Margin="0,12,0,0">
+            <dxschdui:RecurrenceRangeControl RecurrenceInfo="{Binding RecurrenceInfo}"
+                        TimeZoneHelper="{Binding TimeZoneHelper, Mode=OneTime}"
+                        Pattern="{Binding PatternCopy}" IsReadOnly="{Binding IsReadOnly}" 
+                        />
+        </dx:GroupFrame>
+    </Grid>
+</UserControl>

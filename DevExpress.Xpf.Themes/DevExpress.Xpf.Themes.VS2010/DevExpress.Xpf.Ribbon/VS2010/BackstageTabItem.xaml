@@ -1,0 +1,85 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:dxr="http://schemas.devexpress.com/winfx/2008/xaml/ribbon"
+                    xmlns:dxrt="http://schemas.devexpress.com/winfx/2008/xaml/ribbon/themekeys">
+
+    <ControlTemplate x:Key="{dxrt:BackstageTabItemThemeKey ResourceKey=BorderTemplate}" TargetType="{x:Type dxr:RibbonCheckedBorderControl}">
+        <Grid Name="rootGrid">
+            <Grid x:Name="HoverState" Opacity="0">
+                <Border BorderBrush="#FFBDB39A" BorderThickness="0,1,0,1">
+                    <Border.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#FFFFFBF0" Offset="0" />
+                            <GradientStop Color="#FFFFE8A6" Offset="1" />
+                            <GradientStop Color="#FFFFF4D2" Offset="0.5" />
+                            <GradientStop Color="#FFFFE8A6" Offset="0.5" />
+                        </LinearGradientBrush>
+                    </Border.Background>
+                </Border>
+            </Grid>
+            <Grid x:Name="PressedState" Opacity="0">
+                <Border Background="#FFBBB229">
+                    <Border Background="#FFFFEEBC" Margin="0,1,0,1">
+                        <Border Background="#FFFFE8A6" Margin="0,1,0,1" />
+                    </Border>
+                </Border>
+                <Grid Margin="0,0,-1,0" Height="18" Width="10" HorizontalAlignment="Right" VerticalAlignment="Center">
+                    <Path Stretch="Fill" Fill="#FFA0ADC1"
+                          Data="F1 M 84,100L 94,90L 94,100L 94,110L 84,100 Z" Margin="1,0,1,0"
+                          UseLayoutRounding="False"/>
+                    <Path Stretch="Fill" Fill="#FFFFFFFF"
+                          Data="F1 M 84,100L 94,90L 94,100L 94,110L 84,100 Z" Margin="2,0,0,0"
+                          UseLayoutRounding="False"/>
+                </Grid>
+            </Grid>
+            <ContentPresenter/>
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup x:Name="CommonStates">
+                    <VisualState x:Name="Normal"/>
+                    <VisualState x:Name="Checked">
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="PressedState" Duration="0" To="1"/>
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Hover">
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="HoverState" Duration="0" To="1"/>
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Disabled">
+                        <Storyboard>
+                            <DoubleAnimation To="0.6" Duration="0:0:0" Storyboard.TargetName="rootGrid" Storyboard.TargetProperty="Opacity"/>
+                        </Storyboard>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+        </Grid>
+    </ControlTemplate>
+
+    <Style x:Key="{dxrt:BackstageTabItemThemeKey ResourceKey=BorderStyle}" TargetType="{x:Type dxr:RibbonCheckedBorderControl}">
+        <Setter Property="Margin" Value="0,1,0,1"/>
+        <Setter Property="Template"
+                Value="{DynamicResource {dxrt:BackstageTabItemThemeKey ResourceKey=BorderTemplate}}"/>
+    </Style>
+
+    <Style x:Key="{dxrt:BackstageTabItemThemeKey ResourceKey=NormalTextStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="FontSize" Value="12"/>
+    </Style>
+
+    <Style x:Key="{dxrt:BackstageTabItemThemeKey ResourceKey=HoverTextStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="FontSize" Value="12"/>
+    </Style>
+
+    <Style x:Key="{dxrt:BackstageTabItemThemeKey ResourceKey=SelectedTextStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="FontSize" Value="12"/>
+        <Setter Property="Foreground" Value="#FF1B293E"/>
+    </Style>
+
+    <Style x:Key="{dxrt:BackstageTabItemThemeKey ResourceKey=ContentStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Margin" Value="2,7,12,7"/>
+    </Style>
+    <Style x:Key="{dxrt:BackstageTabItemThemeKey ResourceKey=ContentTabletOfficeStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Margin" Value="36,11,36,11"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+    </Style>
+</ResourceDictionary>

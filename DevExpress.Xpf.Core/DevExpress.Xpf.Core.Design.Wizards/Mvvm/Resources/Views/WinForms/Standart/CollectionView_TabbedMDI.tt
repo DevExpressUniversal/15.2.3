@@ -1,0 +1,139 @@
+﻿<#@ template language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="DevExpress.Design.Mvvm" #>
+<#@ import namespace="DevExpress.Xpf.Core.Design.Wizards.Mvvm.EntityFramework" #>
+<#@ import namespace="DevExpress.Xpf.Core.Design.Wizards.Mvvm" #>
+<#@ import namespace="DevExpress.Xpf.Core.Design.Wizards.Mvvm.ViewModelData" #>
+<#@ import namespace="DevExpress.Xpf.Core.Native" #>
+<#@ import namespace ="DevExpress.Mvvm.UI.Native.ViewGenerator"#>
+<#@ import namespace ="DevExpress.Entity.Model"#>
+<#@ import namespace ="DevExpress.Mvvm.Native"#>
+<#
+	T4TemplateInfo templateInfo = this.GetTemplateInfo();
+	CollectionViewModelData viewModelData = templateInfo.Properties["IViewModelInfo"] as CollectionViewModelData;
+	UIType uiType = (UIType)templateInfo.Properties["UIType"];
+    string viewName = templateInfo.Properties["ViewName"].ToString();    
+    string localNamespace = templateInfo.Properties["Namespace"].ToString();
+	string viewFullName = localNamespace +"." + viewName;
+	string mvvmContextFullName = viewModelData.Namespace+"."+viewModelData.Name;
+	string bindingSourceName = Char.ToLowerInvariant(viewName[0]) + viewName.Substring(1) + "BindingSource";
+	bool IsVisualBasic = (bool)templateInfo.Properties["IsVisualBasic"];
+#>
+<#
+if(!IsVisualBasic){
+#>
+using System;
+using System.Linq;
+using System.Collections.Generic;
+using DevExpress.XtraGrid.Views.Base;
+using DevExpress.XtraGrid.Views.Grid;
+using DevExpress.XtraEditors;
+using DevExpress.Utils.MVVM.Services;
+using DevExpress.XtraBars;
+
+namespace <#=viewFullName#>{
+    public partial class <#=viewName#> : XtraUserControl {
+        public <#=viewName#>() {
+            InitializeComponent();
+			 if(!mvvmContext.IsDesignMode)
+                InitBindings();
+        }
+        void InitBindings() {
+            var fluentAPI = mvvmContext.OfType<<#=mvvmContextFullName#>>();
+			fluentAPI.WithEvent(this, "Load").EventToCommand(x => x.OnLoaded());
+            // We want to show the <#=viewModelData.CollectionPropertyName#> collection in grid and react on this collection external changes (Reload, server-side Filtering)
+            fluentAPI.SetBinding(gridControl, gControl => gControl.DataSource, x => x.<#=viewModelData.CollectionPropertyName#>);
+			// We want to show loading-indicator when data is loading asynchronously
+            fluentAPI.SetBinding(gridView, gView => gView.LoadingPanelVisible, x => x.IsLoading);
+			<#
+			if(viewModelData.HasEntityEditProperty()){
+			#>
+			// We want to proceed the Edit command when row double-clicked
+            fluentAPI.WithEvent<RowClickEventArgs>(gridView, "RowClick").EventToCommand(
+                    x => x.Edit(null),
+					x => x.SelectedEntity,
+                    args => (args.Clicks == 2) && (args.Button == System.Windows.Forms.MouseButtons.Left));
+			<#}#>
+			// We want to synchronize the ViewModel.SelectedEntity and the GridView.FocusedRowRandle in two-way manner
+            fluentAPI.WithEvent<GridView, FocusedRowObjectChangedEventArgs>(gridView, "FocusedRowObjectChanged")
+                .SetBinding(x => x.SelectedEntity,
+                    args => args.Row as <#=viewModelData.EntityTypeFullName#>,
+                    (gView, entity) => gView.FocusedRowHandle = gView.FindRow(entity));
+			//We want to show ribbon print preview when bbiPrintPreview clicked
+			bbiPrintPreview.ItemClick += (s, e) => { gridControl.ShowRibbonPrintPreview(); };
+			//We want to show RECORDS count on BarStaticItem
+			fluentAPI.SetBinding(bsiRecordsCount, item => item.Caption,	x => x.Entities.Count, 
+					count => string.Format("RECORDS : {0}", count));
+			//We want to show PopupMenu when row clicked by right button
+			gridView.RowClick += (s, e) => {
+                if(e.Clicks == 1 && e.Button == System.Windows.Forms.MouseButtons.Right) {
+                    popupMenu.ShowPopup(gridControl.PointToScreen(e.Location), s);
+                }
+            };
+        }
+    }
+}
+<#
+}
+if(IsVisualBasic){
+#>
+Imports System
+Imports System.Linq
+Imports System.Collections.Generic
+Imports DevExpress.XtraGrid.Views.Base
+Imports DevExpress.XtraGrid.Views.Grid
+Imports DevExpress.XtraEditors
+Imports DevExpress.Utils.MVVM.Services
+Imports DevExpress.XtraBars
+
+Namespace Global.<#=viewFullName#>
+	Partial Public Class <#=viewName#>
+		Inherits XtraUserControl
+
+		Public Sub New()
+			InitializeComponent()
+			If Not mvvmContext.IsDesignMode Then
+				InitBindings()
+			End If
+		End Sub
+		Private Sub InitBindings()
+			Dim fluentAPI = mvvmContext.OfType(Of Global.<#=mvvmContextFullName#>)()
+			fluentAPI.WithEvent(Me, "Load").EventToCommand(Sub(x) x.OnLoaded())
+			' We want to show the <#=viewModelData.CollectionPropertyName#> collection in grid and react on this collection external changes (Reload, server-side Filtering)
+			fluentAPI.SetBinding(gridControl, Function(gControl) gControl.DataSource, Function(x) x.<#=viewModelData.CollectionPropertyName#>)
+			' We want to show loading-indicator when data is loading asynchronously
+			fluentAPI.SetBinding(gridView, Function(gView) gView.LoadingPanelVisible, Function(x) x.IsLoading)
+			<#
+			if(viewModelData.HasEntityEditProperty()){
+			#>
+			' We want to proceed the Edit command when row double-clicked
+            fluentAPI.WithEvent(Of RowClickEventArgs)(gridView, "RowClick").EventToCommand(
+                Sub(x) x.Edit(Nothing),
+                Function(x) x.SelectedEntity,
+                Function(args) (args.Clicks = 2) AndAlso (args.Button = System.Windows.Forms.MouseButtons.Left))
+			<#}#>
+			' We want to synchronize the ViewModel.SelectedEntity and the GridView.FocusedRowRandle in two-way manner
+            fluentAPI.WithEvent(Of GridView, FocusedRowObjectChangedEventArgs)(gridView, "FocusedRowObjectChanged").SetBinding(
+                Function(x) x.SelectedEntity,
+                Function(args) TryCast(args.Row, <#=viewModelData.EntityTypeFullName#>),
+                Sub(gView, entity) gView.FocusedRowHandle = gView.FindRow(entity))
+            'We want to show ribbon print preview when bbiPrintPreview clicked
+            AddHandler bbiPrintPreview.ItemClick, Sub(s, e) gridControl.ShowRibbonPrintPreview()
+			'We want to show RECORDS count on BarStaticItem
+			fluentAPI.SetBinding(bsiRecordsCount, Function(item) item.Caption, Function(x) x.Entities.Count, 
+                                 Function(count) String.Format("RECORDS : {0}", count))
+			'We want to show PopupMenu when row clicked by right button
+			AddHandler gridView.RowClick, Sub(s, e)
+											   If e.Clicks = 1 AndAlso e.Button = System.Windows.Forms.MouseButtons.Right Then
+											   	popupMenu.ShowPopup(gridControl.PointToScreen(e.Location), s)
+											   End If
+										  End Sub
+		End Sub
+	End Class
+End Namespace
+<#
+}
+#>

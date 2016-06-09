@@ -1,0 +1,197 @@
+﻿<UserControl x:Class="DevExpress.XtraRichEdit.Forms.TablePropertiesFormControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+    xmlns:dxec="clr-namespace:DevExpress.Xpf.Editors.Controls;assembly=DevExpress.Xpf.Core.v15.2"
+    xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+    xmlns:dxre="clr-namespace:DevExpress.Xpf.RichEdit"
+    xmlns:dxreui="clr-namespace:DevExpress.Xpf.RichEdit.UI"
+    dx:StyleManager.ApplyApplicationTheme="True" AutomationProperties.AutomationId="TablePropertiesFormContent" AutomationProperties.Name="TablePropertiesFormContent">
+
+    <UserControl.Resources>
+        <dxre:RichEditStringIdConverter x:Key="RichEditStringIdConverter" />
+    </UserControl.Resources>
+    <Grid x:Name="LayoutRoot">
+        <dx:DXTabControl x:Name="tabControl" Margin="3" MinWidth="470" MinHeight="250" dx:StyleManager.ApplyApplicationTheme="True">
+            <dx:DXTabControl.View>
+                <dx:TabControlScrollView />
+            </dx:DXTabControl.View>
+
+            <dx:DXTabItem Header="{Binding Source={StaticResource RichEditStringIdConverter}, ConverterParameter=Caption_TablePropertiesFormTableTab, Converter={StaticResource RichEditStringIdConverter}}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="{Binding Source={StaticResource RichEditStringIdConverter}, ConverterParameter=Caption_TablePropertiesFormSizeLabel, Converter={StaticResource RichEditStringIdConverter}}" dx:StyleManager.ApplyApplicationTheme="True" />
+                        <dxec:DXSeparator HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Column="1" Margin="0,7" Width="422" />
+                    </Grid>
+
+                    <dxreui:TableSizeControl x:Name="tableSizeControl" Grid.Row="1" Margin="20,3,3,3" dx:StyleManager.ApplyApplicationTheme="True" AutomationProperties.AutomationId="TableSize" AutomationProperties.Name="TableSize" />
+
+                    <Grid Grid.Row="2" Margin="0,3,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="{Binding Source={StaticResource RichEditStringIdConverter}, ConverterParameter=Caption_TablePropertiesFormTableAlignmentLabel, Converter={StaticResource RichEditStringIdConverter}}" Grid.Row="2" dx:StyleManager.ApplyApplicationTheme="True" />
+                        <dxec:DXSeparator HorizontalAlignment="Stretch" VerticalAlignment="Center" Grid.Column="1" Margin="3,0,0,0" />
+                    </Grid>
+                    <Grid Grid.Row="3" Margin="20,3,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition MinWidth="220" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Row="3">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition Width="auto"/>
+                            </Grid.ColumnDefinitions>
+                            <RadioButton x:Name="rbTableAlignmentLeft" Grid.Column="0" Content="{Binding Source={StaticResource RichEditStringIdConverter}, ConverterParameter=Caption_TablePropertiesFormLeftRadioButton, Converter={StaticResource RichEditStringIdConverter}}" GroupName="Alignment" VerticalAlignment="Center" dx:StyleManager.ApplyApplicationTheme="True" AutomationProperties.AutomationId="TableAlignmentLeft" AutomationProperties.Name="TableAlignmentLeft" />
+                            <RadioButton x:Name="rbTableAlignmentCenter" Grid.Column="1" Content="{Binding Source={StaticResource RichEditStringIdConverter}, ConverterParameter=Caption_TablePropertiesFormCenterRadioButton, Converter={StaticResource RichEditStringIdConverter}}" GroupName="Alignment" Margin="25,0,0,0" VerticalAlignment="Center" dx:StyleManager.ApplyApplicationTheme="True" AutomationProperties.AutomationId="TableAlignmentCenter" AutomationProperties.Name="TableAlignmentCenter" />
+                            <RadioButton x:Name="rbTableAlignmentRight" Grid.Column="2" Content="{Binding Source={StaticResource RichEditStringIdConverter}, ConverterParameter=Caption_TablePropertiesFormRightRadioButton, Converter={StaticResource RichEditStringIdConverter}}" GroupName="Alignment" Margin="10,0,0,0" VerticalAlignment="Center" dx:StyleManager.ApplyApplicationTheme="True" AutomationProperties.AutomationId="TableAlignmentRight" AutomationProperties.Name="TableAlignmentRight"/>
+                        </Grid>
+                        <StackPanel Orientation="Vertical" Grid.Row="3" Grid.Column="1" Margin="0,3,0,0">
+                            <TextBlock Text="{Binding Source={StaticResource RichEditStringIdConverter}, ConverterParameter=Caption_TablePropertiesFormTableIndentLabel, Converter={StaticResource RichEditStringIdConverter}}" Margin="10,0,3,0" dx:StyleManager.ApplyApplicationTheme="True" />
+                            <dxreui:RichTextIndentEdit x:Name="spnIndentFromLeft" Margin="10,3,3,0" MinWidth="100" HorizontalAlignment="Left" AutomationProperties.AutomationId="IndentFromLeft" AutomationProperties.Name="IndentFromLeft"/>
+                        </StackPanel>
+                    </Grid>
+                    <Grid Grid.Row="4" Grid.Column="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Orientation="Horizontal" Grid.Column="1">
+                            <Button x:Name="btnBorders" Content="{Binding ConverterParameter=Caption_TablePropertiesFormBordersButton, Converter={StaticResource RichEditStringIdConverter}, Source={StaticResource RichEditStringIdConverter}}" Margin="250,10,15,3" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Click="OnBtnBordersClick" dx:StyleManager.ApplyApplicationTheme="True"/>
+                            <Button x:Name="btnTableOptions" Content="{Binding ConverterParameter=Caption_TablePropertiesFormOptionsButton, Converter={StaticResource RichEditStringIdConverter}, Source={StaticResource RichEditStringIdConverter}}" Margin="0,10,3,3" VerticalAlignment="Bottom" HorizontalAlignment="Right" MinWidth="75" Click="OnBtnTableOptionsClick" dx:StyleManager.ApplyApplicationTheme="True" />
+                        </StackPanel>
+                    </Grid>
+                </Grid>
+            </dx:DXTabItem>
+
+            <dx:DXTabItem Header="{Binding Source={StaticResource RichEditStringIdConverter}, ConverterParameter=Caption_TablePropertiesFormRowLabel, Converter={StaticResource RichEditStringIdConverter}}" VerticalAlignment="Bottom">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="{Binding Source={StaticResource RichEditStringIdConverter}, ConverterParameter=Caption_TablePropertiesFormSizeLabel, Converter={StaticResource RichEditStringIdConverter}}" dx:StyleManager.ApplyApplicationTheme="True" />
+                        <dxec:DXSeparator HorizontalAlignment="Stretch" VerticalAlignment="Center" Grid.Column="1" Margin="3,0,0,0" />
+                    </Grid>
+                    
+                    <TextBlock Text="{Binding Source={StaticResource RichEditStringIdConverter}, ConverterParameter=Caption_TablePropertiesFormRowLabel, Converter={StaticResource RichEditStringIdConverter}}" Grid.Row="1" Margin="20,3,0,0" dx:StyleManager.ApplyApplicationTheme="True" />
+
+                    <dxreui:TableRowHeightControl x:Name="tableRowHeightControl" Grid.Row="2" Margin="20,3,3,3" dx:StyleManager.ApplyApplicationTheme="True" />
+
+                    <Grid Grid.Row="3" Margin="0,3,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="{Binding Source={StaticResource RichEditStringIdConverter}, ConverterParameter=Caption_TablePropertiesFormOptionsLabel, Converter={StaticResource RichEditStringIdConverter}}" dx:StyleManager.ApplyApplicationTheme="True" />
+                        <dxec:DXSeparator HorizontalAlignment="Stretch" VerticalAlignment="Center" Grid.Column="1" Margin="3,0,0,0" />
+                    </Grid>
+
+                    <StackPanel Grid.Row="4" Margin="20,3,0,0" Orientation="Vertical">
+                        <dxe:CheckEdit x:Name="chkCantSplit" Content="{Binding Source={StaticResource RichEditStringIdConverter}, ConverterParameter=Caption_TablePropertiesFormAllowRowToBreakAcrossPagesCheckEdit, Converter={StaticResource RichEditStringIdConverter}}" dx:StyleManager.ApplyApplicationTheme="True" AutomationProperties.AutomationId="CantSplit" AutomationProperties.Name="CantSplit" />
+                        <dxe:CheckEdit x:Name="chkHeader" Content="{Binding Source={StaticResource RichEditStringIdConverter}, ConverterParameter=Caption_TablePropertiesFormRepeatHeaderCheckEdit, Converter={StaticResource RichEditStringIdConverter}}" dx:StyleManager.ApplyApplicationTheme="True" AutomationProperties.AutomationId="HeaderRow" AutomationProperties.Name="HeaderRow" />
+                    </StackPanel>
+                </Grid>
+            </dx:DXTabItem>
+
+            <dx:DXTabItem Header="{Binding Source={StaticResource RichEditStringIdConverter}, ConverterParameter=Caption_TablePropertiesFormColumnTab, Converter={StaticResource RichEditStringIdConverter}}" VerticalAlignment="Bottom">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="{Binding Source={StaticResource RichEditStringIdConverter}, ConverterParameter=Caption_TablePropertiesFormSizeLabel, Converter={StaticResource RichEditStringIdConverter}}" dx:StyleManager.ApplyApplicationTheme="True" />
+                        <dxec:DXSeparator HorizontalAlignment="Stretch" VerticalAlignment="Center" Grid.Column="1" Margin="3,0,0,0" />
+                    </Grid>
+                    <TextBlock Text="{Binding Source={StaticResource RichEditStringIdConverter}, ConverterParameter=Caption_TablePropertiesFormColumnLabel, Converter={StaticResource RichEditStringIdConverter}}" Grid.Row="1" Margin="20,3,0,0" dx:StyleManager.ApplyApplicationTheme="True" />
+
+                    <dxreui:TableSizeControl x:Name="columnSizeControl" Grid.Row="2" Margin="20,3,3,3" dx:StyleManager.ApplyApplicationTheme="True" AutomationProperties.AutomationId="ColumnSize" AutomationProperties.Name="ColumnSize" />
+                </Grid>
+            </dx:DXTabItem>
+
+            <dx:DXTabItem Header="{Binding Source={StaticResource RichEditStringIdConverter}, ConverterParameter=Caption_TablePropertiesFormCellTab, Converter={StaticResource RichEditStringIdConverter}}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="{Binding Source={StaticResource RichEditStringIdConverter}, ConverterParameter=Caption_TablePropertiesFormSizeLabel, Converter={StaticResource RichEditStringIdConverter}}" dx:StyleManager.ApplyApplicationTheme="True" />
+                        <dxec:DXSeparator HorizontalAlignment="Stretch" VerticalAlignment="Center" Grid.Column="1" Margin="3,0,0,0" />
+                    </Grid>
+
+                    <dxreui:TableSizeControl x:Name="cellSizeControl" Grid.Row="1" Margin="20,3,3,3" dx:StyleManager.ApplyApplicationTheme="True" AutomationProperties.AutomationId="CellSize" AutomationProperties.Name="CellSize" />
+
+                    <Grid Grid.Row="2" Margin="0,3,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="{Binding Source={StaticResource RichEditStringIdConverter}, ConverterParameter=Caption_TablePropertiesFormCellVerticalAlignmentLabel, Converter={StaticResource RichEditStringIdConverter}}" dx:StyleManager.ApplyApplicationTheme="True" />
+                        <dxec:DXSeparator HorizontalAlignment="Stretch" VerticalAlignment="Center" Grid.Column="1" Margin="3,0,0,0" />
+                    </Grid>
+
+                    <Grid Grid.Row="3" Margin="20,3,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition MinWidth="220" Width="2*"/>
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition Width="auto"/>
+                            </Grid.ColumnDefinitions>
+                            <RadioButton x:Name="rbCellVerticalAlignmentTop" Grid.Column="0" Content="{Binding Source={StaticResource RichEditStringIdConverter}, ConverterParameter=Caption_TablePropertiesFormTopRadioButton, Converter={StaticResource RichEditStringIdConverter}}" GroupName="VerticalAlignment" VerticalAlignment="Center" dx:StyleManager.ApplyApplicationTheme="True" AutomationProperties.AutomationId="CellVerticalAlignmentTop" AutomationProperties.Name="CellVerticalAlignmentTop" />
+                            <RadioButton x:Name="rbCellVerticalAlignmentCenter" Grid.Column="1" Content="{Binding Source={StaticResource RichEditStringIdConverter}, ConverterParameter=Caption_TablePropertiesFormCenterRadioButton, Converter={StaticResource RichEditStringIdConverter}}" GroupName="VerticalAlignment" Margin="20,0,0,0" VerticalAlignment="Center" dx:StyleManager.ApplyApplicationTheme="True" AutomationProperties.AutomationId="CellVerticalAlignmentCenter" AutomationProperties.Name="CellVerticalAlignmentCenter" />
+                            <RadioButton x:Name="rbCellVerticalAlignmentBottom" Grid.Column="2" Content="{Binding Source={StaticResource RichEditStringIdConverter}, ConverterParameter=Caption_TablePropertiesFormBottomRadioButton, Converter={StaticResource RichEditStringIdConverter}}" GroupName="VerticalAlignment" Margin="10,0,0,0" VerticalAlignment="Center" dx:StyleManager.ApplyApplicationTheme="True" AutomationProperties.AutomationId="CellVerticalAlignmentBottom" AutomationProperties.Name="CellVerticalAlignmentBottom" />
+                        </Grid>
+                    </Grid>
+                    <Button x:Name="btnCellOptions" Content="{Binding Source={StaticResource RichEditStringIdConverter}, ConverterParameter=Caption_TablePropertiesFormOptionsButton, Converter={StaticResource RichEditStringIdConverter}}" Grid.Row="4" Margin="0,0,3,3" VerticalAlignment="Bottom" HorizontalAlignment="Right" MinWidth="75" Click="OnBtnCellOptionsClick" dx:StyleManager.ApplyApplicationTheme="True" AutomationProperties.AutomationId="CellOptions" AutomationProperties.Name="CellOptions" />
+                </Grid>
+            </dx:DXTabItem>
+        </dx:DXTabControl>
+    </Grid>
+</UserControl>

@@ -1,0 +1,63 @@
+﻿<#@ template language="C#" #>
+<#@ import namespace="System" #>
+<#@ import namespace="DevExpress.Xpf.Core.Design.Wizards.Mvvm.EntityFramework" #>
+<#@ import namespace="DevExpress.Xpf.Core.Design.Wizards.Mvvm" #>
+<#@ import namespace="DevExpress.Design.Mvvm.EntityFramework" #>
+<#@ import namespace="DevExpress.Design.Mvvm" #>
+<#@ import namespace="DevExpress.Entity.Model" #>
+<#
+    T4TemplateInfo templateInfo = this.GetTemplateInfo();
+    var usingList = templateInfo.UsingList;
+    this.PasteUsingList(usingList);
+	EntityModelData entityModel = templateInfo.Properties["EntityModelData"] as EntityModelData;
+#>
+using DevExpress.Mvvm;
+using System.Collections;
+using System.ComponentModel;
+using DevExpress.Data.Linq;
+using DevExpress.Data.Linq.Helpers;
+using DevExpress.Data.Async.Helpers;
+
+namespace <#=this.GetNamespace()#> {
+<#
+    this.PasteAliasList(usingList, entityModel.FullName);
+#>
+    /// <summary>
+    /// Provides methods to obtain the relevant IUnitOfWorkFactory.
+    /// </summary>
+    public static class UnitOfWorkSource {
+<#if(!entityModel.WithoutDesignTime){#>
+		/// <summary>
+        /// Returns the IUnitOfWorkFactory implementation based on the current mode (run-time or design-time).
+        /// </summary>
+        public static IUnitOfWorkFactory<I<#=entityModel.Name#>UnitOfWork> GetUnitOfWorkFactory() {
+            return GetUnitOfWorkFactory(ViewModelBase.IsInDesignMode);
+        }
+
+		/// <summary>
+        /// Returns the IUnitOfWorkFactory implementation based on the given mode (run-time or design-time).
+        /// </summary>
+        /// <param name="isInDesignTime">Used to determine which implementation of IUnitOfWorkFactory should be returned.</param>
+        public static IUnitOfWorkFactory<I<#=entityModel.Name#>UnitOfWork> GetUnitOfWorkFactory(bool isInDesignTime) {
+			if(isInDesignTime)
+                return new DesignTimeUnitOfWorkFactory<I<#=entityModel.Name#>UnitOfWork>(() => new <#=entityModel.Name#>DesignTimeUnitOfWork());
+<#if(entityModel.ContainerType == DbContainerType.WCF){#>
+			Uri svcUri = new Uri("<#=entityModel.SourceUrl#>");
+			return new DbUnitOfWorkFactory<I<#=entityModel.Name#>UnitOfWork, <#=entityModel.Name#>>(
+				() => new <#=entityModel.Name#>UnitOfWork(() => new <#=entityModel.Name#>(svcUri)),
+				() => new <#=entityModel.Name#>(svcUri));
+<#} else {#>
+            return new DbUnitOfWorkFactory<I<#=entityModel.Name#>UnitOfWork>(() => new <#=entityModel.Name#>UnitOfWork(() => new <#=entityModel.Name#>()));
+<#}#>
+        }
+<#} else {#>
+
+		/// <summary>
+        /// Returns the IUnitOfWorkFactory implementation.
+        /// </summary>
+        public static IUnitOfWorkFactory<I<#=entityModel.Name#>UnitOfWork> GetUnitOfWorkFactory() {
+            return new DbUnitOfWorkFactory<I<#=entityModel.Name#>UnitOfWork>(() => new <#=entityModel.Name#>UnitOfWork(() => new <#=entityModel.Name#>()));
+        }
+<#}#>
+    }
+}

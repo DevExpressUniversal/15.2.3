@@ -1,0 +1,653 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <ProjectType>Local</ProjectType>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{2BFC9A93-ABC2-4597-9266-F0476E9E1EC3}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ApplicationIcon>
+    </ApplicationIcon>
+    <AssemblyKeyContainerName>
+    </AssemblyKeyContainerName>
+    <AssemblyName>DevExpress.Office.v15.2.Core</AssemblyName>
+    <AssemblyOriginatorKeyFile>..\..\DevExpress.Key\StrongKey.snk</AssemblyOriginatorKeyFile>
+    <DefaultClientScript>JScript</DefaultClientScript>
+    <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
+    <DefaultTargetSchema>IE50</DefaultTargetSchema>
+    <DelaySign>false</DelaySign>
+    <OutputType>Library</OutputType>
+    <RootNamespace>DevExpress.Office</RootNamespace>
+    <StartupObject>
+    </StartupObject>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <SignAssembly>true</SignAssembly>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>..\..\..\Bin\Framework\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>TRACE;DEBUG;CODE_ANALYSIS</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>true</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <Optimize>false</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>full</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>..\..\..\Bin\Framework\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>TRACE</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>true</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <Optimize>true</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>full</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  
+  
+  <ItemGroup>
+    <Reference Include="DevExpress.Data.v15.2">
+      <SpecificVersion>False</SpecificVersion>
+    <HintPath>..\..\..\Bin\Framework\DevExpress.Data.v15.2.dll</HintPath><Private>False</Private></Reference>
+    <Reference Include="DevExpress.Printing.v15.2.Core"><HintPath>..\..\..\Bin\Framework\DevExpress.Printing.v15.2.Core.dll</HintPath><Private>False</Private></Reference>
+    
+    <Reference Include="System">
+      <Name>System</Name>
+    <Private>False</Private></Reference>
+    <Reference Include="System.Data">
+      <Name>System.Data</Name>
+    <Private>False</Private></Reference>
+    <Reference Include="System.Core">
+      <Name>System.Core</Name>
+    <Private>False</Private></Reference>
+    <Reference Include="System.Drawing">
+      <Name>System.Drawing</Name>
+    <Private>False</Private></Reference>
+    <Reference Include="System.Windows.Forms">
+      <Name>System.Windows.Forms</Name>
+    <Private>False</Private></Reference>
+    <Reference Include="System.Xml">
+      <Name>System.XML</Name>
+    <Private>False</Private></Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="API\UnitConverter\CentimetersToModelUnitsConverter.cs" />
+    <Compile Include="API\UnitConverter\DocumentsToModelUnitsConverter.cs" />
+    <Compile Include="API\UnitConverter\InchesToModelUnitsConverter.cs" />
+    <Compile Include="API\UnitConverter\MillimetersToModelUnitsConverter.cs" />
+    <Compile Include="API\UnitConverter\PointsToModelUnitsConverter.cs" />
+    <Compile Include="API\UnitConverter\UnitConverter.cs" />
+    <Compile Include="API\UnitConverter\UnitConvertersCreator.cs" />
+    <Compile Include="AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Commands\PasteSource.cs" />
+    <Compile Include="Cursors.cs" />
+    <Compile Include="Data\OfficeDataControllerAdapter.cs" />
+    <Compile Include="DocumentFormats\Html\Export\EmptyWebControl.cs" />
+    <Compile Include="DocumentFormats\Html\Export\ExplicitBodyWebControl.cs" />
+    <Compile Include="DocumentFormats\Html\Export\HtmlExporterBase.cs" />
+    <Compile Include="DocumentFormats\Html\Export\OfficeImageHelper.cs" />
+    <Compile Include="DocumentFormats\Html\Export\IOfficeImageRepository.cs" />
+    <Compile Include="DocumentFormats\Html\Export\ServiceBasedImageRepository.cs" />
+    <Compile Include="DocumentFormats\Html\Export\StyleWebControl.cs" />
+    <Compile Include="DocumentFormats\Html\Export\WebImageControl.cs" />
+    <Compile Include="DocumentFormats\Import\ImageImport.cs" />
+    <Compile Include="DocumentFormats\Import\ImageImportHelper.cs" />
+    <Compile Include="DocumentFormats\OpenDocument\OpenDocumentImporter.cs" />
+    <Compile Include="DocumentFormats\OpenXml\Export\OpenXmlExporterBase.cs" />
+    <Compile Include="DocumentFormats\OpenXml\Import\Drawing\ColorTransformDestination.cs" />
+    <Compile Include="DocumentFormats\OpenXml\Import\Drawing\DrawingBlipFillDestination.cs" />
+    <Compile Include="DocumentFormats\OpenXml\Import\Drawing\DrawingColorDestination.cs" />
+    <Compile Include="DocumentFormats\OpenXml\Import\Drawing\DrawingEffectDestination.cs" />
+    <Compile Include="DocumentFormats\OpenXml\Import\Drawing\GradientFillDestination.cs" />
+    <Compile Include="DocumentFormats\OpenXml\Import\Drawing\OfficeThemeDestination.cs" />
+    <Compile Include="DocumentFormats\OpenXml\Import\Drawing\OutlineDestination.cs" />
+    <Compile Include="DocumentFormats\OpenXml\Import\Drawing\PatternFillDestination.cs" />
+    <Compile Include="DocumentFormats\OpenXml\Import\Drawing\RelativeRectangleDestination.cs" />
+    <Compile Include="DocumentFormats\OpenXml\Import\Drawing\DrawingFillDestinationBase.cs" />
+    <Compile Include="DocumentFormats\OpenXml\Import\Drawing\Scene3dPropertiesDestination.cs" />
+    <Compile Include="DocumentFormats\OpenXml\Import\Drawing\Shape3dPropertiesDestination.cs" />
+    <Compile Include="DocumentFormats\OpenXml\Import\Drawing\TextFontDestination.cs" />
+    <Compile Include="DocumentFormats\TranslationTable.cs" />
+    <Compile Include="DocumentFormats\Export\ExportHelper.cs" />
+    <Compile Include="DocumentFormats\Export\ExportManagerService.cs" />
+    <Compile Include="DocumentFormats\Export\ExportTarget.cs" />
+    <Compile Include="DocumentFormats\Export\IExporter.cs" />
+    <Compile Include="DocumentFormats\Export\IExporterOptions.cs" />
+    <Compile Include="DocumentFormats\Export\IExportManagerService.cs" />
+    <Compile Include="DocumentFormats\Import\DocumentModelImporter.cs" />
+    <Compile Include="DocumentFormats\Import\IImporter.cs" />
+    <Compile Include="DocumentFormats\Import\IImporterOptions.cs" />
+    <Compile Include="DocumentFormats\Import\IImportManagerService.cs" />
+    <Compile Include="DocumentFormats\Import\ImportHelper.cs" />
+    <Compile Include="DocumentFormats\Import\ImportManagerService.cs" />
+    <Compile Include="DocumentFormats\Import\ImportSource.cs" />
+    <Compile Include="DocumentFormats\Import\XmlBased\DestinationAndXmlBasedImporter.cs" />
+    <Compile Include="DocumentFormats\Import\XmlBased\DestinationBasedImporter.cs" />
+    <Compile Include="DocumentFormats\OpenDocument\OfficeOpenDocumentHelper.cs" />
+    <Compile Include="DocumentLayout\UnitConverter\DocumentLayoutUnitConverter.cs" />
+    <Compile Include="DocumentLayout\UnitConverter\DocumentLayoutUnitDocumentConverter.cs" />
+    <Compile Include="DocumentLayout\UnitConverter\DocumentLayoutUnitPixelsConverter.cs" />
+    <Compile Include="DocumentLayout\UnitConverter\DocumentLayoutUnitTwipsConverter.cs" />
+    <Compile Include="DocumentLayout\UnitConverter\EmptyDocumentLayoutUnitConverter.cs" />
+    <Compile Include="DocumentModel\BatchUpdateHelper.cs" />
+    <Compile Include="DocumentModel\CharacterFormattingScript.cs" />
+    <Compile Include="DocumentModel\DocumentModelBase.cs" />
+    <Compile Include="DocumentModel\DocumentUnit.cs" />
+    <Compile Include="DocumentModel\DrawingML\Text\AutoFit.cs" />
+    <Compile Include="DocumentModel\DrawingML\Text\BodyProperties.cs" />
+    <Compile Include="DocumentModel\EventArgs.cs" />
+    <Compile Include="DocumentModel\History\CompositeHistoryItem.cs" />
+    <Compile Include="DocumentModel\History\DisabledHistory.cs" />
+    <Compile Include="DocumentModel\History\DocumentHistory.cs" />
+    <Compile Include="DocumentModel\History\DrawingML\DrawingHistoryItem.cs" />
+    <Compile Include="DocumentModel\History\DrawingML\Text\DrawingTextNormalAutoFitChangedHistoryItem.cs" />
+    <Compile Include="DocumentModel\History\EmptyHistory.cs" />
+    <Compile Include="DocumentModel\History\HistoryItem.cs" />
+    <Compile Include="DocumentModel\History\HistoryTransaction.cs" />
+    <Compile Include="DocumentModel\IBatchInit.cs" />
+    <Compile Include="DocumentModel\IBatchInitHandler.cs" />
+    <Compile Include="DocumentModel\IDocumentModel.cs" />
+    <Compile Include="DocumentModel\IDocumentModelPart.cs" />
+    <Compile Include="DocumentModel\IIndexBasedObject.cs" />
+    <Compile Include="DocumentModel\ImageCache.cs" />
+    <Compile Include="DocumentModel\IndexBasedObject.cs" />
+    <Compile Include="DocumentModel\IndexChangedHistoryItem.cs" />
+    <Compile Include="DocumentModel\MultiIndexObject.cs" />
+    <Compile Include="DocumentModel\PatternLine.cs" />
+    <Compile Include="DocumentModel\Pictures\Picture.cs" />
+    <Compile Include="DocumentModel\PredefinedFontSizeCollection.cs" />
+    <Compile Include="DocumentModel\Styles\Color.cs" />
+    <Compile Include="DocumentModel\Styles\Palette.cs" />
+    <Compile Include="DocumentModel\UndoableCollection.cs" />
+    <Compile Include="DocumentModel\UniqueItemsCache.cs" />
+    <Compile Include="DocumentModel\UnitConverter\DocumentLayoutUnit.cs" />
+    <Compile Include="DocumentModel\UnitConverter\DocumentModelDocumentsToLayoutDocumentsConverter.cs" />
+    <Compile Include="DocumentModel\UnitConverter\DocumentModelDocumentsToLayoutPixelsConverter.cs" />
+    <Compile Include="DocumentModel\UnitConverter\DocumentModelDocumentsToLayoutTwipsConverter.cs" />
+    <Compile Include="DocumentModel\UnitConverter\DocumentModelTwipsToLayoutDocumentsConverter.cs" />
+    <Compile Include="DocumentModel\UnitConverter\DocumentModelTwipsToLayoutPixelsConverter.cs" />
+    <Compile Include="DocumentModel\UnitConverter\DocumentModelTwipsToLayoutTwipsConverter.cs" />
+    <Compile Include="DocumentModel\UnitConverter\DocumentModelUnitConverter.cs" />
+    <Compile Include="DocumentModel\UnitConverter\DocumentModelUnitDocumentConverter.cs" />
+    <Compile Include="DocumentModel\UnitConverter\DocumentModelUnitToLayoutUnitConverter.cs" />
+    <Compile Include="DocumentModel\UnitConverter\DocumentModelUnitTwipsConverter.cs" />
+    <Compile Include="DocumentModel\UnitConverter\IDocumentModelUnitConverter.cs" />
+    <Compile Include="DrawingML\Color\ColorTransform.cs" />
+    <Compile Include="DrawingML\Color\DrawingColor.cs" />
+    <Compile Include="DrawingML\DrawingUtils.cs" />
+    <Compile Include="DrawingML\Effects\DrawingEffect.cs" />
+    <Compile Include="DrawingML\Effects\DrawingEffectStyle.cs" />
+    <Compile Include="DrawingML\Effects\Interfaces.cs" />
+    <Compile Include="DrawingML\Effects\Scene3dProperties.cs" />
+    <Compile Include="DrawingML\Effects\Shape3dProperties.cs" />
+    <Compile Include="DrawingML\Fills\Blip.cs" />
+    <Compile Include="DrawingML\Fills\BlipFill.cs" />
+    <Compile Include="DrawingML\Fills\Fills.cs" />
+    <Compile Include="DrawingML\Fills\GradientFill.cs" />
+    <Compile Include="DrawingML\Outline\Outline.cs" />
+    <Compile Include="DrawingML\SharedStyleSheet\History\HistoryItems.cs" />
+    <Compile Include="DrawingML\SharedStyleSheet\History\TextHistoryItems.cs" />
+    <Compile Include="DrawingML\SharedStyleSheet\SharedStyleSheet.cs" />
+    <Compile Include="DrawingML\SharedStyleSheet\Theme\ColorScheme.cs" />
+    <Compile Include="DrawingML\SharedStyleSheet\Theme\FontScheme.cs" />
+    <Compile Include="DrawingML\SharedStyleSheet\Theme\FormatScheme.cs" />
+    <Compile Include="DrawingML\SharedStyleSheet\Theme\OfficeTheme.cs" />
+    <Compile Include="DrawingML\Text\BodyProperties.cs" />
+    <Compile Include="DrawingML\Text\CharacterProperties.cs" />
+    <Compile Include="DrawingML\Text\ListStyles.cs" />
+    <Compile Include="DrawingML\Text\Paragraph.cs" />
+    <Compile Include="DrawingML\Text\ParagraphProperties.cs" />
+    <Compile Include="DrawingML\Text\TextBullets.cs" />
+    <Compile Include="DrawingML\Text\TextFont.cs" />
+    <Compile Include="DrawingML\Text\TextRun.cs" />
+    <Compile Include="DrawingML\Text\TextSpacing.cs" />
+    <Compile Include="DrawingML\Text\TextTabStops.cs" />
+    <Compile Include="Drawing\GdiPlusPainterBase.cs" />
+    <Compile Include="Drawing\Painter.cs" />
+    <Compile Include="EventArgs.cs" />
+    <Compile Include="FontEngine\FontCache.cs" />
+    <Compile Include="FontEngine\FontCacheManager.cs" />
+    <Compile Include="FontEngine\FontCharacterRange.cs" />
+    <Compile Include="FontEngine\FontCharacterSet.cs" />
+    <Compile Include="FontEngine\FontInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FontEngine\FontInfoMeasurer.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FontEngine\PrecalculatedMetricsFontCache.cs" />
+    <Compile Include="FontEngine\PrecalculatedMetricsFontCacheManager.cs" />
+    <Compile Include="FontEngine\PrecalculatedMetricsFontInfo.cs" />
+    <Compile Include="FontEngine\PrecalculatedMetricsFontInfoMeasurer.cs" />
+    <Compile Include="FontEngine\UnicodeRangeInfo.cs" />
+    <Compile Include="Forms\EditSecurityForm.cs" />
+    <Compile Include="Forms\InsertSymbolViewModel.cs" />
+    <Compile Include="Forms\ViewModelBase.cs" />
+    <Compile Include="Interfaces\IGestureStateIndicator.cs" />
+    <Compile Include="Interfaces\ISimpleCollection.cs" />
+    <Compile Include="Interfaces\ISupportsSizeOf.cs" />
+    <Compile Include="Localization.cs" />
+    <Compile Include="NumberConverters\AlphabetBased.cs" />
+    <Compile Include="NumberConverters\Bullet.cs" />
+    <Compile Include="NumberConverters\Chicago.cs" />
+    <Compile Include="NumberConverters\Decimal.cs" />
+    <Compile Include="NumberConverters\DecimalEnclosedParentheses.cs" />
+    <Compile Include="NumberConverters\DecimalZero.cs" />
+    <Compile Include="NumberConverters\DescriptiveBase.cs" />
+    <Compile Include="NumberConverters\EnglishUK.cs" />
+    <Compile Include="NumberConverters\EnglishUS.cs" />
+    <Compile Include="NumberConverters\French.cs" />
+    <Compile Include="NumberConverters\German.cs" />
+    <Compile Include="NumberConverters\Greek.cs" />
+    <Compile Include="NumberConverters\Hex.cs" />
+    <Compile Include="NumberConverters\Hindi.cs" />
+    <Compile Include="NumberConverters\Italian.cs" />
+    <Compile Include="NumberConverters\LanguageId.cs" />
+    <Compile Include="NumberConverters\LatinLetter.cs" />
+    <Compile Include="NumberConverters\NumberInDash.cs" />
+    <Compile Include="NumberConverters\NumberingFormat.cs" />
+    <Compile Include="NumberConverters\OrdinalBased.cs" />
+    <Compile Include="NumberConverters\OrdinalSlavicNumberConverter.cs" />
+    <Compile Include="NumberConverters\Portuguese.cs" />
+    <Compile Include="NumberConverters\Roman.cs" />
+    <Compile Include="NumberConverters\Russian.cs" />
+    <Compile Include="NumberConverters\RussianLetter.cs" />
+    <Compile Include="NumberConverters\SlavicBased.cs" />
+    <Compile Include="NumberConverters\SlavicCardinalBased.cs" />
+    <Compile Include="NumberConverters\SlavicOrdinalBased.cs" />
+    <Compile Include="NumberConverters\SomeLanguagesBased.cs" />
+    <Compile Include="NumberConverters\Spanish.cs" />
+    <Compile Include="NumberConverters\Swedish.cs" />
+    <Compile Include="NumberConverters\Thai.cs" />
+    <Compile Include="NumberConverters\Turkish.cs" />
+    <Compile Include="NumberConverters\Ukrainian.cs" />
+    <Compile Include="Options\DataSourceWizard.cs" />
+    <Compile Include="PatternLinePainter.cs" />
+    <Compile Include="Platform\WinForms\FontCache.cs" />
+    <Compile Include="Platform\WinForms\FontInfo.cs" />
+    <Compile Include="Platform\WinForms\FontInfoMeasurer.cs" />
+    <Compile Include="Platform\WinForms\GdiPainter.cs" />
+    <Compile Include="Platform\WinForms\GdiPlusPainter.cs" />
+    <Compile Include="Platform\WinForms\HdcOriginModifier.cs" />
+    <Compile Include="Platform\WinForms\HdcZoomModifier.cs" />
+    <Compile Include="Platform\WinForms\MessageQueue.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Platform\WinForms\MetafilePhysicalDimensionCalculator.cs" />
+    <Compile Include="Platform\WinForms\OfficeGdiGraphicsCreator.cs" />
+    <Compile Include="Platform\WinForms\OfficeImage.cs" />
+    <Compile Include="Platform\WinForms\PInvoke\Caret.cs" />
+    <Compile Include="Platform\WinForms\PInvoke\Clipboard.cs" />
+    <Compile Include="Platform\WinForms\PInvoke\DrawTextEx.cs" />
+    <Compile Include="Platform\WinForms\PInvoke\ExtTextOut.cs" />
+    <Compile Include="Platform\WinForms\PInvoke\Fonts.cs" />
+    <Compile Include="Platform\WinForms\PInvoke\Gdi.cs" />
+    <Compile Include="Platform\WinForms\PInvoke\GetAsyncKeyState.cs" />
+    <Compile Include="Platform\WinForms\PInvoke\GetCharacterPlacement.cs" />
+    <Compile Include="Platform\WinForms\PInvoke\GetOutlineTextMetrics.cs" />
+    <Compile Include="Platform\WinForms\PInvoke\GetShortPathName.cs" />
+    <Compile Include="Platform\WinForms\PInvoke\GetUserNameEx.cs" />
+    <Compile Include="Platform\WinForms\PInvoke\Ime.cs" />
+    <Compile Include="Platform\WinForms\PInvoke\ISecurityInformation.cs" />
+    <Compile Include="Platform\WinForms\PInvoke\LogFont.cs" />
+    <Compile Include="Platform\WinForms\PInvoke\Memory.cs" />
+    <Compile Include="Platform\WinForms\PInvoke\Point.cs" />
+    <Compile Include="Platform\WinForms\PInvoke\Rect.cs" />
+    <Compile Include="Platform\WinForms\PInvoke\CharsetInfo.cs" />
+    <Compile Include="Platform\WinForms\PInvoke\SendMessage.cs" />
+    <Compile Include="Platform\WinForms\PInvoke\Size.cs" />
+    <Compile Include="Platform\WinForms\PInvoke\User.cs" />
+    <Compile Include="Platform\WinForms\SelectionPainter.cs" />
+    <Compile Include="Platform\WinForms\SnapToDevicePixelsHelper.cs" />
+    <Compile Include="Platform\WinForms\SpreadsheetRowHeightCalculator.cs" />
+    <Compile Include="Platform\WinForms\Utils.cs" />
+    <Compile Include="Printing\Bricks\ImageBrick.cs" />
+    <Compile Include="Printing\Bricks\PanelBrick.cs" />
+    <Compile Include="Printing\Bricks\PatternLineBrick.cs" />
+    <Compile Include="Printing\Bricks\RectBrick.cs" />
+    <Compile Include="Printing\Bricks\TextBrick.cs" />
+    <Compile Include="Printing\GdiGraphicsModifier.cs" />
+    <Compile Include="Printing\IGraphicsPainter.cs" />
+    <Compile Include="Printing\PaperKindInfo.cs" />
+    <Compile Include="Printing\SimplePageContentAlgorithm.cs" />
+    <Compile Include="Printing\Bricks\TransformationBrick.cs" />
+    <Compile Include="ScrollbarAdapter.cs" />
+    <Compile Include="Services\FontCharsetService.cs" />
+    <Compile Include="Services\IThreadSyncService.cs" />
+    <Compile Include="Services\LogService.cs" />
+    <Compile Include="Services\ThreadPoolService.cs" />
+    <Compile Include="Services\UriProviderService.cs" />
+    <Compile Include="Services\UriStreamService.cs" />
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <Compile Include="TypeConverters.cs" />
+    <Compile Include="Utils\BackgroundUIUpdater.cs" />
+    <Compile Include="Utils\BlipContainer.cs" />
+    <Compile Include="Utils\Characters.cs" />
+    <Compile Include="Utils\ChunkedStringBuilder.cs" />
+    <Compile Include="Utils\ChunkedStringBuilderWriter.cs" />
+    <Compile Include="Utils\DictionaryUtils.cs" />
+    <Compile Include="Utils\HashCodeCalculator.cs" />
+    <Compile Include="Utils\PackedValues.cs" />
+    <Compile Include="Utils\Debug.cs" />
+    <Compile Include="Utils\DXUnit.cs" />
+    <Compile Include="Utils\EnumeratorAdapter.cs" />
+    <Compile Include="Utils\Exceptions.cs" />
+    <Compile Include="Utils\FileDialogFilter.cs" />
+    <Compile Include="Platform\WinForms\GraphicsToLayoutUnitsModifier.cs" />
+    <Compile Include="Utils\HashtableConverterAttribute.cs" />
+    <Compile Include="Utils\HyperlinkUriHelper.cs" />
+    <Compile Include="Utils\IOfficeCoreReference.cs" />
+    <Compile Include="Utils\IStringBuilder.cs" />
+    <Compile Include="Utils\List.cs" />
+    <Compile Include="Utils\ObjectRotationAngleCalculator.cs" />
+    <Compile Include="Utils\OfficeArtContent.cs" />
+    <Compile Include="Utils\OfficeFontSizeEditHelper.cs" />
+    <Compile Include="Utils\OfficeImage.cs" />
+    <Compile Include="Utils\PaperKindDescription.cs" />
+    <Compile Include="Utils\PaperSizeCalculator.cs" />
+    <Compile Include="Utils\ProgressIndication.cs" />
+    <Compile Include="Utils\RectangleUtils.cs" />
+    <Compile Include="Utils\ServiceUtils.cs" />
+    <Compile Include="Utils\SizeOf.cs" />
+    <Compile Include="Utils\SmartStringBuilder.cs" />
+    <Compile Include="Utils\StreamExtensions.cs" />
+    <Compile Include="Utils\StringBuilderWrapper.cs" />
+    <Compile Include="Utils\StringValueParser.cs" />
+    <Compile Include="Utils\ThreadPool.cs" />
+    <Compile Include="Utils\TransformMatrixExtensions.cs" />
+    <Compile Include="Utils\UIUnit.cs" />
+    <Compile Include="Utils\Units.cs" />
+    <Compile Include="Utils\UseWebFontInfoCacheAttribute.cs" />
+    <Compile Include="Utils\ValueChecker.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="LocalizationRes.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LocalizationRes.ru.resx" />
+    <EmbeddedResource Include="LocalizationRes.ja.resx" />
+    <EmbeddedResource Include="LocalizationRes.es.resx" />
+    <EmbeddedResource Include="LocalizationRes.de.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\ImagePlaceHolder.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\New_16x16.png" />
+    <EmbeddedResource Include="Images\New_32x32.png" />
+    <EmbeddedResource Include="Images\Open_16x16.png" />
+    <EmbeddedResource Include="Images\Open_32x32.png" />
+    <EmbeddedResource Include="Images\Redo_16x16.png" />
+    <EmbeddedResource Include="Images\Redo_32x32.png" />
+    <EmbeddedResource Include="Images\SaveAll_16x16.png" />
+    <EmbeddedResource Include="Images\SaveAll_32x32.png" />
+    <EmbeddedResource Include="Images\SaveAs_16x16.png" />
+    <EmbeddedResource Include="Images\SaveAs_32x32.png" />
+    <EmbeddedResource Include="Images\Save_16x16.png" />
+    <EmbeddedResource Include="Images\Save_32x32.png" />
+    <EmbeddedResource Include="Images\Undo_16x16.png" />
+    <EmbeddedResource Include="Images\Undo_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\Copy_16x16.png" />
+    <EmbeddedResource Include="Images\Copy_32x32.png" />
+    <EmbeddedResource Include="Images\Cut_16x16.png" />
+    <EmbeddedResource Include="Images\Cut_32x32.png" />
+    <EmbeddedResource Include="Images\PasteSpecial_16x16.png" />
+    <EmbeddedResource Include="Images\PasteSpecial_32x32.png" />
+    <EmbeddedResource Include="Images\Paste_16x16.png" />
+    <EmbeddedResource Include="Images\Paste_32x32.png" />
+    <EmbeddedResource Include="Images\Preview_16x16.png" />
+    <EmbeddedResource Include="Images\Preview_32x32.png" />
+    <EmbeddedResource Include="Images\PrintDialog_16x16.png" />
+    <EmbeddedResource Include="Images\PrintDialog_32x32.png" />
+    <EmbeddedResource Include="Images\Print_16x16.png" />
+    <EmbeddedResource Include="Images\Print_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\AlignCenter_16x16.png" />
+    <EmbeddedResource Include="Images\AlignCenter_32x32.png" />
+    <EmbeddedResource Include="Images\AlignJustify_16x16.png" />
+    <EmbeddedResource Include="Images\AlignJustify_32x32.png" />
+    <EmbeddedResource Include="Images\AlignLeft_16x16.png" />
+    <EmbeddedResource Include="Images\AlignLeft_32x32.png" />
+    <EmbeddedResource Include="Images\AlignRight_16x16.png" />
+    <EmbeddedResource Include="Images\AlignRight_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\Bold_16x16.png" />
+    <EmbeddedResource Include="Images\Bold_32x32.png" />
+    <EmbeddedResource Include="Images\Italic_16x16.png" />
+    <EmbeddedResource Include="Images\Italic_32x32.png" />
+    <EmbeddedResource Include="Images\UnderlineDouble_16x16.png" />
+    <EmbeddedResource Include="Images\UnderlineDouble_32x32.png" />
+    <EmbeddedResource Include="Images\Underline_16x16.png" />
+    <EmbeddedResource Include="Images\Underline_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\FontSizeDecrease_16x16.png" />
+    <EmbeddedResource Include="Images\FontSizeDecrease_32x32.png" />
+    <EmbeddedResource Include="Images\FontSizeIncrease_16x16.png" />
+    <EmbeddedResource Include="Images\FontSizeIncrease_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\FontColor_16x16.png" />
+    <EmbeddedResource Include="Images\FontColor_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\Background_16x16.png" />
+    <EmbeddedResource Include="Images\Background_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\AlignBottomCenter_16x16.png" />
+    <EmbeddedResource Include="Images\AlignBottomCenter_32x32.png" />
+    <EmbeddedResource Include="Images\AlignMiddleCenter_16x16.png" />
+    <EmbeddedResource Include="Images\AlignMiddleCenter_32x32.png" />
+    <EmbeddedResource Include="Images\AlignTopCenter_16x16.png" />
+    <EmbeddedResource Include="Images\AlignTopCenter_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\IndentDecrease_16x16.png" />
+    <EmbeddedResource Include="Images\IndentDecrease_32x32.png" />
+    <EmbeddedResource Include="Images\IndentIncrease_16x16.png" />
+    <EmbeddedResource Include="Images\IndentIncrease_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\PenColor_16x16.png" />
+    <EmbeddedResource Include="Images\PenColor_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\BorderBottom_16x16.png" />
+    <EmbeddedResource Include="Images\BorderBottom_32x32.png" />
+    <EmbeddedResource Include="Images\BorderLeft_16x16.png" />
+    <EmbeddedResource Include="Images\BorderLeft_32x32.png" />
+    <EmbeddedResource Include="Images\BorderNone_16x16.png" />
+    <EmbeddedResource Include="Images\BorderNone_32x32.png" />
+    <EmbeddedResource Include="Images\BorderRight_16x16.png" />
+    <EmbeddedResource Include="Images\BorderRight_32x32.png" />
+    <EmbeddedResource Include="Images\BordersAll_16x16.png" />
+    <EmbeddedResource Include="Images\BordersAll_32x32.png" />
+    <EmbeddedResource Include="Images\BordersOutside_16x16.png" />
+    <EmbeddedResource Include="Images\BordersOutside_32x32.png" />
+    <EmbeddedResource Include="Images\BorderTop_16x16.png" />
+    <EmbeddedResource Include="Images\BorderTop_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\Delete_Hyperlink_16x16.png" />
+    <EmbeddedResource Include="Images\Delete_Hyperlink_32x32.png" />
+    <EmbeddedResource Include="Images\Hyperlink_16x16.png" />
+    <EmbeddedResource Include="Images\Hyperlink_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\ZoomIn_16x16.png" />
+    <EmbeddedResource Include="Images\ZoomIn_32x32.png" />
+    <EmbeddedResource Include="Images\ZoomOut_16x16.png" />
+    <EmbeddedResource Include="Images\ZoomOut_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\Zoom100Percent_16x16.png" />
+    <EmbeddedResource Include="Images\Zoom100Percent_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="DocumentFormats\OpenXml\Export\Drawing\" />
+    
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\DeleteComment_16x16.png" />
+    <EmbeddedResource Include="Images\DeleteComment_32x32.png" />
+    <EmbeddedResource Include="Images\EditComment_16x16.png" />
+    <EmbeddedResource Include="Images\EditComment_32x32.png" />
+    <EmbeddedResource Include="Images\InsertComment_16x16.png" />
+    <EmbeddedResource Include="Images\InsertComment_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\InsertFloatingObjectImage_16x16.png" />
+    <EmbeddedResource Include="Images\InsertFloatingObjectImage_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\Strikeout_16x16.png" />
+    <EmbeddedResource Include="Images\Strikeout_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\PageMarginsNarrow_16x16.png" />
+    <EmbeddedResource Include="Images\PageMarginsNarrow_32x32.png" />
+    <EmbeddedResource Include="Images\PageMarginsNormal_16x16.png" />
+    <EmbeddedResource Include="Images\PageMarginsNormal_32x32.png" />
+    <EmbeddedResource Include="Images\PageMarginsWide_16x16.png" />
+    <EmbeddedResource Include="Images\PageMarginsWide_32x32.png" />
+    <EmbeddedResource Include="Images\PageOrientation_16x16.png" />
+    <EmbeddedResource Include="Images\PageOrientation_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\PageMarginsModerate_16x16.png" />
+    <EmbeddedResource Include="Images\PageMarginsModerate_32x32.png" />
+    <EmbeddedResource Include="Images\PageMargins_16x16.png" />
+    <EmbeddedResource Include="Images\PageMargins_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\PaperSize_16x16.png" />
+    <EmbeddedResource Include="Images\PaperSize_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Cursors\BeginRotate.cur" />
+    <EmbeddedResource Include="Cursors\IBeamItalic.cur" />
+    <EmbeddedResource Include="Cursors\Rotate.cur" />
+    <EmbeddedResource Include="Cursors\SelectColumn.cur" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Cursors\ResizeColumn.cur" />
+    <EmbeddedResource Include="Cursors\ResizeRow.cur" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\OpenHyperlink_16x16.png" />
+    <EmbeddedResource Include="Images\OpenHyperlink_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\FloatingObjectBringForward_16x16.png" />
+    <EmbeddedResource Include="Images\FloatingObjectBringForward_32x32.png" />
+    <EmbeddedResource Include="Images\FloatingObjectBringToFront_16x16.png" />
+    <EmbeddedResource Include="Images\FloatingObjectBringToFront_32x32.png" />
+    <EmbeddedResource Include="Images\FloatingObjectSendBackward_16x16.png" />
+    <EmbeddedResource Include="Images\FloatingObjectSendBackward_32x32.png" />
+    <EmbeddedResource Include="Images\FloatingObjectSendToBack_16x16.png" />
+    <EmbeddedResource Include="Images\FloatingObjectSendToBack_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    
+  </ItemGroup>
+  <ItemGroup>
+    
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\Find_16x16.png" />
+    <EmbeddedResource Include="Images\Find_32x32.png" />
+    <EmbeddedResource Include="Images\Replace_16x16.png" />
+    <EmbeddedResource Include="Images\Replace_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\Symbol_16x16.png" />
+    <EmbeddedResource Include="Images\Symbol_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\ShowHideComment_16x16.png" />
+    <EmbeddedResource Include="Images\ShowHideComment_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Images\BorderDiagonalDown_16x16.png" />
+    <Content Include="Images\BorderDiagonalDown_32x32.png" />
+    <Content Include="Images\BorderDiagonalUp_16x16.png" />
+    <Content Include="Images\BorderDiagonalUp_32x32.png" />
+    <Content Include="Images\BorderInsideHorizontal_16x16.png" />
+    <Content Include="Images\BorderInsideHorizontal_32x32.png" />
+    <Content Include="Images\BorderInsideVertical_16x16.png" />
+    <Content Include="Images\BorderInsideVertical_32x32.png" />
+    <Content Include="Images\BordersInside_16x16.png" />
+    <Content Include="Images\BordersInside_32x32.png" />
+    <EmbeddedResource Include="Images\PageOrientationLandscape_16x16.png" />
+    <EmbeddedResource Include="Images\PageOrientationLandscape_32x32.png" />
+    <EmbeddedResource Include="Images\PageOrientationPortrait_16x16.png" />
+    <EmbeddedResource Include="Images\PageOrientationPortrait_32x32.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    
+    
+  </PropertyGroup>
+<ItemGroup><EmbeddedResource Include="Descriptions.resx" /></ItemGroup><ItemGroup><Compile Include="Descriptions.cs" /></ItemGroup></Project>

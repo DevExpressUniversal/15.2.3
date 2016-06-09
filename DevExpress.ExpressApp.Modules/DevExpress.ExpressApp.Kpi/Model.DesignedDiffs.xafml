@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application>
+	<BOModel>
+		<Class Name="DevExpress.ExpressApp.Kpi.KpiInstance">
+			<OwnMembers>
+				<Member Name="Change" DisplayFormat="{0:#0.00%}" />
+			</OwnMembers>
+		</Class>
+	</BOModel>
+	<Localization>
+		<LocalizationGroup Name="DateRanges" IsNewNode="True" />
+		<LocalizationGroup Name="DashboardOrganizationItems">
+			<LocalizationItem Name="Kpi" Value="Kpi" IsNewNode="True" />
+		</LocalizationGroup>
+		<LocalizationGroup Name="Texts" IsNewNode="True">
+			<LocalizationItem Name="VersusText" Value="Vs" IsNewNode="True" />
+		</LocalizationGroup>
+		<LocalizationGroup Name="Enums">
+			<LocalizationGroup Name="DevExpress.ExpressApp.Kpi.MeasurementType" IsNewNode="True">
+				<LocalizationItem Name="Current" Value="Current" IsNewNode="True" />
+				<LocalizationItem Name="Previous" Value="Previous" IsNewNode="True" />
+			</LocalizationGroup>
+		</LocalizationGroup>
+		<LocalizationGroup Name="Exceptions" IsNewNode="True">
+			<LocalizationItem Name="RangeNotFound" Value="The '{0}' range is not found." IsNewNode="True" />
+		</LocalizationGroup>
+	</Localization>
+	<SchemaModules>
+		<SchemaModule Name="SystemModule" Version="13.1.6.0" IsNewNode="True" />
+	</SchemaModules>
+	<Views>
+		<DetailView Id="KpiDefinition_DetailView">
+			<Items>
+				<PropertyEditor Id="Objects" PropertyEditorType="DevExpress.ExpressApp.Editors.ListPropertyEditor" />
+				<PropertyEditor Id="SuppressedSeries" Removed="True" />
+				<PropertyEditor Id="EnableCustomizeRepresentation" Removed="True" />
+        <PropertyEditor Id="Range" AllowClear="False" />
+        <PropertyEditor Id="RangeToCompare" AllowClear="False" />
+			</Items>
+			<Layout>
+				<TabbedGroup Id="Tabs" CaptionLocation="Top" Index="0" RelativeSize="100" IsNewNode="True">
+					<LayoutGroup Id="Definition" ShowCaption="True" Caption="Definition" Index="0" RelativeSize="100" IsNewNode="True">
+						<LayoutGroup Id="SimpleEditors" Index="0" RelativeSize="77" IsNewNode="True">
+							<LayoutGroup Id="61434787-29f4-487b-927f-4e94cd82f4e7" Caption="" Direction="Horizontal" Index="0" RelativeSize="4" IsNewNode="True">
+								<LayoutItem Id="Name" Index="0" RelativeSize="78" ViewItem="Name" IsNewNode="True" />
+								<LayoutItem Id="Active" ShowCaption="False" Index="1" RelativeSize="21" ViewItem="Active" IsNewNode="True" />
+							</LayoutGroup>
+							<LayoutItem Id="TargetObjectType" Index="1" RelativeSize="3" ViewItem="TargetObjectType" IsNewNode="True" />
+							<LayoutGroup Id="SizeableEditors" Caption="Criteria" Index="2" RelativeSize="91" IsNewNode="True">
+								<LayoutItem Id="Criteria" Index="0" RelativeSize="100" ViewItem="Criteria" IsNewNode="True" />
+							</LayoutGroup>
+						</LayoutGroup>
+						<LayoutItem Id="Direction" Index="1" RelativeSize="2" ViewItem="Direction" IsNewNode="True" />
+						<LayoutItem Id="Expression" Index="2" RelativeSize="2" ViewItem="Expression" IsNewNode="True" />
+						<LayoutGroup Id="Options" CaptionLocation="Top" Index="3" RelativeSize="16" IsNewNode="True">
+							<TabbedGroup Id="OptionsTabs" CaptionLocation="Top" Index="0" RelativeSize="100" IsNewNode="True">
+								<LayoutGroup Id="MeasurementOptions" ShowCaption="True" Caption="MeasurementOptions" CaptionLocation="Top" Index="0" RelativeSize="100" IsNewNode="True">
+									<LayoutItem Id="Range" Index="0" RelativeSize="36" ViewItem="Range" IsNewNode="True" />
+									<LayoutGroup Id="0315973a-52e5-4f23-bf1c-e1786e7cb2f7" Caption="" Direction="Horizontal" Index="1" RelativeSize="27" IsNewNode="True">
+										<LayoutItem Id="Compare" ShowCaption="False" Index="0" RelativeSize="23" ViewItem="Compare" IsNewNode="True" />
+										<LayoutItem Id="RangeToCompare" Index="1" RelativeSize="76" ViewItem="RangeToCompare" IsNewNode="True" />
+									</LayoutGroup>
+									<LayoutItem Id="MeasurementFrequency" Index="2" RelativeSize="36" ViewItem="MeasurementFrequency" IsNewNode="True" />
+								</LayoutGroup>
+								<LayoutGroup Id="Zones" ShowCaption="True" Caption="Zones" CaptionLocation="Top" Index="1" RelativeSize="100" IsNewNode="True">
+									<LayoutItem Id="GreenZone" Index="0" RelativeSize="36" ViewItem="GreenZone" IsNewNode="True" />
+									<LayoutItem Id="RedZone" Index="1" RelativeSize="63" ViewItem="RedZone" IsNewNode="True" />
+								</LayoutGroup>
+							</TabbedGroup>
+						</LayoutGroup>
+					</LayoutGroup>
+					<LayoutGroup Id="Preview" ShowCaption="True" Caption="Preview" CaptionLocation="Top" Index="1" RelativeSize="100" IsNewNode="True">
+						<LayoutItem Id="Current" Index="0" RelativeSize="3" ViewItem="Current" IsNewNode="True" />
+						<LayoutGroup Id="Objects_Group" ShowCaption="True" Caption="Objects" TextAlignMode="AlignLocal" Index="1" RelativeSize="96" IsNewNode="True">
+							<LayoutItem Id="Objects" ShowCaption="False" Index="0" RelativeSize="95" ViewItem="Objects" IsNewNode="True" />
+						</LayoutGroup>
+					</LayoutGroup>
+				</TabbedGroup>
+				<LayoutGroup Id="Main" Removed="True" />
+			</Layout>
+		</DetailView>
+		<DetailView Id="KpiInstance_Chart_DetailView" Caption="KPI" AllowEdit="False" InvisibleGroupVerticalDistance="0" ItemToBorderHorizontalDistance="0" ItemToBorderVerticalDistance="0" ItemToItemHorizontalDistance="0" ItemToItemVerticalDistance="0" ItemToTabBorderDistance="0">
+			<Layout IsNewNode="True">
+				<LayoutGroup Id="Main" Removed="True" />
+				<LayoutGroup Id="Main" Index="0" RelativeSize="100" IsNewNode="True">
+					<LayoutGroup Id="SimpleEditors" TextAlignMode="AlignLocal" Index="0" RelativeSize="100" IsNewNode="True">
+						<LayoutItem Id="ChartDataSource" ShowCaption="False" Index="0" RelativeSize="100" ViewItem="ChartDataSource" IsNewNode="True" />
+					</LayoutGroup>
+				</LayoutGroup>
+			</Layout>
+		</DetailView>
+    <ListView Id="KpiInstance_ListView" UseServerMode="False" />
+		<ListView Id="KpiInstance_LookupListView" UseServerMode="False" />
+		<ListView Id="KpiScorecard_Indicators_ListView" UseServerMode="False" DetailViewID="" />
+	</Views>
+</Application>

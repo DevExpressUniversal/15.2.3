@@ -1,0 +1,166 @@
+﻿<p:ResourceDictionary
+    xmlns="clr-namespace:DevExpress.Diagram.Core.Shapes"
+    xmlns:p="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+    xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
+    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+
+    <ShapeTemplate x:Key="{ShapeKey Rectangle}" DefaultSize="100,75" IsQuick="True">
+        <Start X="0" Y="0"/>
+        <Line X="1" Y="0" />
+        <Line X="1" Y="1" />
+        <Line X="0" Y="1" />
+        <ShapeTemplate.ConnectionPoints>
+            <ShapePoint X="0.5" Y="0" />
+            <ShapePoint X="1" Y="0.5" />
+            <ShapePoint X="0.5" Y="1" />
+            <ShapePoint X="0" Y="0.5" />
+        </ShapeTemplate.ConnectionPoints>
+    </ShapeTemplate>
+    <ShapeReference x:Key="{ShapeKey Ellipse}" HasParameters="False" DefaultSize="100,75" IsQuick="True"/>
+    <ShapeReference x:Key="{ShapeKey Triangle}" DefaultSize="100,90" IsQuick="True"/>
+    <ShapeReference x:Key="{ShapeKey RightTriangle}" DefaultSize="100,75" IsQuick="True" />
+    <ShapeReference x:Key="{ShapeKey Pentagon}" HasParameters="False" IsQuick="True" />
+    <ShapeReference x:Key="{ShapeKey Hexagon}" HasParameters="False" IsQuick="True" />
+    <ShapeReference x:Key="{ShapeKey Heptagon}" HasParameters="False" />
+    <ShapeReference x:Key="{ShapeKey Octagon}" HasParameters="False" />
+    <ShapeReference x:Key="{ShapeKey Decagon}" HasParameters="False" />
+    <ShapeReference x:Key="{ShapeKey Can}" DefaultSize="70,80"/>
+    <ShapeReference x:Key="{ShapeKey Parallelogram}" DefaultSize="100,75" />
+    <ShapeReference x:Key="{ShapeKey Trapezoid}" DefaultSize="100,75" />
+    <ShapeReference x:Key="{ShapeKey Diamond}" DefaultSize="100,75" HasParameters="False" />
+    <ShapeTemplate x:Key="{ShapeKey Cross}" DefaultSize="100,100" Columns="*;P0;*" Rows="*;P0;*">
+        <Start X="1" Y="0" />
+        <Line X="2" Y="0" />
+        <Line X="2" Y="1" />
+        <Line X="3" Y="1" />
+        <Line X="3" Y="2" />
+        <Line X="2" Y="2" />
+        <Line X="2" Y="3" />
+        <Line X="1" Y="3" />
+        <Line X="1" Y="2" />
+        <Line X="0" Y="2" />
+        <Line X="0" Y="1" />
+        <Line X="1" Y="1" />
+        <ShapeTemplate.ConnectionPoints>
+            <ShapePoint X="1.5" Y="0" />
+            <ShapePoint X="3" Y="1.5" />
+            <ShapePoint X="1.5" Y="3" />
+            <ShapePoint X="0" Y="1.5" />
+        </ShapeTemplate.ConnectionPoints>
+        <ShapeTemplate.Parameters>
+            <Parameter DefaultValue="20" 
+                       Point="CreatePoint((P + W) / 2, H)" 
+                       Value="2 * P.X - W" 
+                       Min="0" Max="Min(W, H)" />
+        </ShapeTemplate.Parameters>
+    </ShapeTemplate>
+    <ShapeReference x:Key="{ShapeKey Chevron}" DefaultSize="80,80" />
+    <ShapeReference x:Key="{ShapeKey Cube}" DefaultSize="100,75" HasCustomEditorBounds="True" />
+    <ShapeReference x:Key="{ShapeKey Star4}" />
+    <ShapeReference x:Key="{ShapeKey Star5}" />
+    <ShapeReference x:Key="{ShapeKey Star6}" />
+    <ShapeReference x:Key="{ShapeKey Star7}" />
+    <ShapeReference x:Key="{ShapeKey Star16}" />
+    <ShapeReference x:Key="{ShapeKey Star24}" />
+    <ShapeReference x:Key="{ShapeKey Star32}" />
+    <ShapeReference x:Key="{ShapeKey RoundedRectangle}" DefaultSize="100,75" />
+    <ShapeReference x:Key="{ShapeKey SingleSnipCornerRectangle}" DefaultSize="100,75" />
+    <ShapeReference x:Key="{ShapeKey SnipSameSideCornerRectangle}" DefaultSize="100,75" />
+    <ShapeReference x:Key="{ShapeKey SnipDiagonalCornerRectangle}" DefaultSize="100,75" />
+    <ShapeReference x:Key="{ShapeKey SingleRoundCornerRectangle}" DefaultSize="100,75" />
+    <ShapeReference x:Key="{ShapeKey RoundSameSideCornerRectangle}" DefaultSize="100,75" />
+    <ShapeReference x:Key="{ShapeKey RoundDiagonalCornerRectangle}" DefaultSize="100,75" />
+    <ShapeReference x:Key="{ShapeKey SnipAndRoundSingleCornerRectangle}" DefaultSize="100,75" />
+    <ShapeReference x:Key="{ShapeKey SnipCornerRectangle}" DefaultSize="100,75" />
+    <ShapeReference x:Key="{ShapeKey RoundCornerRectangle}" DefaultSize="100,75" />
+    <ShapeReference x:Key="{ShapeKey SnipAndRoundCornerRectangle}" DefaultSize="100,75" />
+    <ShapeReference x:Key="{ShapeKey Plaque}" DefaultSize="100,75" />
+    <ShapeReference x:Key="{ShapeKey Frame}" DefaultSize="100,75" UseBackgroundAsForeground="True" />
+    <ShapeReference x:Key="{ShapeKey FrameCorner}" HasCustomEditorBounds="True" UseBackgroundAsForeground="True" />
+    <ShapeReference x:Key="{ShapeKey LShape}" UseBackgroundAsForeground="True" HasCustomEditorBounds="True" />
+    <ShapeReference x:Key="{ShapeKey DiagonalStripe}" UseBackgroundAsForeground="True" HasCustomEditorBounds="True" />
+    <ShapeReference x:Key="{ShapeKey Donut}" UseBackgroundAsForeground="True" HasCustomEditorBounds="True" />
+    <ShapeReference x:Key="{ShapeKey NoSymbol}" UseBackgroundAsForeground="True" HasCustomEditorBounds="True" />
+    <ShapeTemplate x:Key="{ShapeKey LeftParenthesis}" DefaultSize="25,100" Rows="P0H / 2;*;P0H / 2" UseBackgroundAsForeground="True">
+        <Start X="1" Y="0"  Kind="None" />
+        <Arc X="0" Y="1" Direction="Counterclockwise" />
+        <Line X="0" Y="2" />
+        <Arc X="1" Y="3" Direction="Counterclockwise" />
+        <ShapeTemplate.ConnectionPoints>
+            <ShapePoint X="0" Y="1" />
+            <ShapePoint X="0" Y="1.5" />
+            <ShapePoint X="0" Y="2" />
+        </ShapeTemplate.ConnectionPoints>
+        <ShapeTemplate.Parameters>
+            <Parameter DefaultValue="0.2" 
+                       Point="CreatePoint(0, P * H / 2)" 
+                       Value="P.Y / H * 2" 
+                       Min="0" Max="1" />
+        </ShapeTemplate.Parameters>
+    </ShapeTemplate>
+    <ShapeTemplate x:Key="{ShapeKey RightParenthesis}" DefaultSize="25,100" Rows="P0H / 2;*;P0H / 2" UseBackgroundAsForeground="True">
+        <Start X="0" Y="0"  Kind="None" />
+        <Arc X="1" Y="1" Direction="Clockwise" />
+        <Line X="1" Y="2" />
+        <Arc X="0" Y="3" Direction="Clockwise" />
+        <ShapeTemplate.ConnectionPoints>
+            <ShapePoint X="1" Y="1" />
+            <ShapePoint X="1" Y="1.5" />
+            <ShapePoint X="1" Y="2" />
+        </ShapeTemplate.ConnectionPoints>
+        <ShapeTemplate.Parameters>
+            <Parameter DefaultValue="0.2" 
+                       Point="CreatePoint(W, P * H / 2)" 
+                       Value="P.Y / H * 2" 
+                       Min="0" Max="1" />
+        </ShapeTemplate.Parameters>
+    </ShapeTemplate>
+    <ShapeTemplate x:Key="{ShapeKey LeftBrace}" DefaultSize="25,100" Columns="*;*" Rows="P0H / 2;*;P0H / 2" UseBackgroundAsForeground="True">
+        <Start X="2" Y="0"  Kind="None" />
+        <Arc X="1" Y="1" Direction="Counterclockwise" />
+        <Line X="1" Y="2" />
+        <Arc X="2" Y="3" Direction="Counterclockwise" />
+        <Start X="1" Y="1 + P1"  Kind="None" />
+        <Line X="0" Y="1 + P1" />
+        <ShapeTemplate.ConnectionPoints>
+            <ShapePoint X="1" Y="1" />
+            <ShapePoint X="1" Y="1.5" />
+            <ShapePoint X="1" Y="2" />
+        </ShapeTemplate.ConnectionPoints>
+        <ShapeTemplate.Parameters>
+            <Parameter DefaultValue="0.2" 
+                       Point="CreatePoint(W / 2, P * H / 2)" 
+                       Value="P.Y / H * 2" 
+                       Min="0" Max="1" />
+            <Parameter DefaultValue="0.5" 
+                       Point="CreatePoint(0, P * H)" 
+                       Value="P.Y / H" 
+                       Min="0" Max="1" />
+        </ShapeTemplate.Parameters>
+    </ShapeTemplate>
+    <ShapeTemplate x:Key="{ShapeKey RightBrace}" DefaultSize="25,100" Columns="*;*" Rows="P0H / 2;*;P0H / 2" UseBackgroundAsForeground="True">
+        <Start X="0" Y="0"  Kind="None" />
+        <Arc X="1" Y="1" Direction="Clockwise" />
+        <Line X="1" Y="2" />
+        <Arc X="0" Y="3" Direction="Clockwise" />
+        <Start X="1" Y="1 + P1"  Kind="None" />
+        <Line X="2" Y="1 + P1" />
+        <ShapeTemplate.ConnectionPoints>
+            <ShapePoint X="1" Y="1" />
+            <ShapePoint X="1" Y="1.5" />
+            <ShapePoint X="1" Y="2" />
+        </ShapeTemplate.ConnectionPoints>
+        <ShapeTemplate.Parameters>
+            <Parameter DefaultValue="0.2" 
+                       Point="CreatePoint(W / 2, P * H / 2)" 
+                       Value="P.Y / H * 2" 
+                       Min="0" Max="1" />
+            <Parameter DefaultValue="0.5" 
+                       Point="CreatePoint(W, P * H)" 
+                       Value="P.Y / H" 
+                       Min="0" Max="1" />
+        </ShapeTemplate.Parameters>
+    </ShapeTemplate>
+</p:ResourceDictionary>

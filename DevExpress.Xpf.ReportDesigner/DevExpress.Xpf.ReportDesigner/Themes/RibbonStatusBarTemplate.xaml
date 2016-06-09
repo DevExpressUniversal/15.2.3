@@ -1,0 +1,34 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
+    xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
+    xmlns:dxr="http://schemas.devexpress.com/winfx/2008/xaml/ribbon"
+    xmlns:designer="clr-namespace:DevExpress.Xpf.Reports.UserDesigner"
+    xmlns:designernative="clr-namespace:DevExpress.Xpf.Reports.UserDesigner.Native"
+    xmlns:designerthemes="clr-namespace:DevExpress.Xpf.Reports.UserDesigner.Themes"
+    xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <DataTemplate x:Key="{designerthemes:ReportDesignerThemeKey ResourceKey=RibbonStatusBarTemplate}">
+        <dxr:RibbonStatusBarControl DockPanel.Dock="Bottom" >
+            <dxr:RibbonStatusBarControl.Resources>
+                <designernative:TrackBarZoomValueConverter x:Key="trackBarZoomValueConverter" />
+            </dxr:RibbonStatusBarControl.Resources>
+            
+            <dxr:RibbonStatusBarControl.LeftItems >
+                <dxb:BarStaticItem Content="{Binding Path=(designer:ReportDesigner.Document).ReportModel.SelectedModel.Name, RelativeSource={RelativeSource TemplatedParent}}"/>
+            </dxr:RibbonStatusBarControl.LeftItems>
+            <dxr:RibbonStatusBarControl.RightItems >
+                <dxb:BarStaticItem Content="{Binding Path=(designer:ReportDesigner.Document).Diagram.ZoomFactor, RelativeSource={RelativeSource TemplatedParent}, Converter={dxmvvm:FormatStringConverter FormatString=P0} }" />
+                <dxb:BarEditItem EditWidth="150" EditValue="{Binding Path=(designer:ReportDesigner.Document).Diagram.ZoomFactor, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource trackBarZoomValueConverter}}">
+                    <dxb:BarEditItem.EditSettings>
+                        <dxe:TrackBarEditSettings Minimum="0" Maximum="2" SmallStep="0.05" LargeStep="0.1" >
+                            <dxe:TrackBarEditSettings.StyleSettings  >
+                                <dxe:TrackBarZoomStyleSettings />
+                            </dxe:TrackBarEditSettings.StyleSettings>
+                        </dxe:TrackBarEditSettings>
+                    </dxb:BarEditItem.EditSettings>
+                </dxb:BarEditItem>
+            </dxr:RibbonStatusBarControl.RightItems>
+        </dxr:RibbonStatusBarControl>
+    </DataTemplate>
+</ResourceDictionary>

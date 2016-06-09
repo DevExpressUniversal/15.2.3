@@ -1,0 +1,274 @@
+﻿<UserControl
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:DevExpress.Xpf"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d"
+	x:Class="DevExpress.Xpf.ControlAbout"
+	x:Name="Window"
+    Background="{x:Null}">
+    <UserControl.Resources>
+        <!--BEGIN WPF-->
+        <Thickness x:Key="textMargin" ></Thickness>
+        <!--END WPF-->
+        <!--ONLY SL
+        <Thickness x:Key="textMargin" Right="4"></Thickness>
+        ONLY SL-->
+        <SolidColorBrush x:Key="linkColor" Color="#fff78119">
+        </SolidColorBrush>
+        <SolidColorBrush x:Key="linkColorHover" Color="#ff7b410C">
+        </SolidColorBrush>
+
+        <local:EmbeddedResourceAboutImageConverter x:Key="EmbeddedResourceImageConverter"/>
+
+        <ControlTemplate x:Key="buttonTemplate" TargetType="Button" >
+            <Grid Opacity="0.35" x:Name="rootButtonElement">
+                <!--ONLY SL
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="MouseOver">
+                            <Storyboard>
+                                <DoubleAnimation Storyboard.TargetName="rootButtonElement" Storyboard.TargetProperty="Opacity" From="0.35" To="1"/>
+                            </Storyboard>
+                        </VisualState>
+                        <VisualState x:Name="Pressed">
+                            <Storyboard>
+                                <DoubleAnimation Storyboard.TargetName="rootButtonElement" Storyboard.TargetProperty="Opacity" From="0.35" To="1"/>
+                            </Storyboard>
+                        </VisualState>
+                        <VisualState x:Name="Disabled">
+                            <Storyboard/>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+                 ONLY SL-->
+                <ContentPresenter/>
+            </Grid>
+            <!--BEGIN WPF-->
+            <ControlTemplate.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Opacity" TargetName="rootButtonElement" Value="1"/>
+                </Trigger>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter Property="Opacity" TargetName="rootButtonElement" Value="1"/>
+                </Trigger>
+            </ControlTemplate.Triggers>
+            <!--END WPF-->
+        </ControlTemplate>
+        <ControlTemplate x:Key="linkbuttonTemplate" TargetType="Button" >
+            <StackPanel x:Name="rootButtonElement">
+                <ContentPresenter x:Name="blockToUnderline" HorizontalAlignment="Center"/>
+                <!--BEGIN WPF-->
+                <Rectangle Fill="{Binding ElementName=rootButtonElement , Path=(TextBlock.Foreground)}" Margin="0,-4,0,0" Height="1" Width="{Binding ElementName=blockToUnderline, Path=ActualWidth}" />
+                <!--END WPF-->
+            </StackPanel>
+            <!--BEGIN WPF-->
+            <ControlTemplate.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="TextBlock.Foreground" TargetName="rootButtonElement" Value="{StaticResource linkColorHover}"/>
+                </Trigger>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter Property="TextBlock.Foreground" TargetName="rootButtonElement" Value="{StaticResource linkColorHover}"/>
+                </Trigger>
+            </ControlTemplate.Triggers>
+            <!--END WPF-->
+        </ControlTemplate>
+        <ControlTemplate x:Key="buttonTemplate2" TargetType="Button" >
+            <Grid x:Name="rootButtonElement">
+                <!--ONLY SL
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="MouseOver">
+                            <Storyboard>
+                                <DoubleAnimation Storyboard.TargetName="rootButtonElement" Storyboard.TargetProperty="Opacity" From="0.85" To="1"/>
+                            </Storyboard>
+                        </VisualState>
+                        <VisualState x:Name="Pressed">
+                            <Storyboard>
+                                <DoubleAnimation Storyboard.TargetName="rootButtonElement" Storyboard.TargetProperty="Opacity" From="0.85" To="1"/>
+                            </Storyboard>
+                        </VisualState>
+                        <VisualState x:Name="Disabled">
+                            <Storyboard/>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+                ONLY SL-->
+                <ContentPresenter/>
+            </Grid>
+            <!--BEGIN WPF-->
+            <ControlTemplate.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Opacity" TargetName="rootButtonElement" Value="1"/>
+                </Trigger>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter Property="Opacity" TargetName="rootButtonElement" Value="1"/>
+                </Trigger>
+            </ControlTemplate.Triggers>
+            <!--END WPF-->
+        </ControlTemplate>
+        <ControlTemplate x:Key="buttonWithImageTemplate" TargetType="Button">
+            <Grid x:Name="rootButtonElement" Canvas.ZIndex ="0">
+                <!--ONLY SL
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="MouseOver">
+                            <Storyboard>
+                                <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Canvas.ZIndex)" Storyboard.TargetName="rootButtonElement">
+                                    <DiscreteObjectKeyFrame KeyTime="0" Value="1"/>
+                                </ObjectAnimationUsingKeyFrames>
+                            </Storyboard>
+                        </VisualState>
+                        <VisualState x:Name="Pressed">
+                            <Storyboard>
+                                <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Canvas.ZIndex)" Storyboard.TargetName="rootButtonElement">
+                                    <DiscreteObjectKeyFrame KeyTime="0" Value="1"/>
+                                </ObjectAnimationUsingKeyFrames>
+                            </Storyboard>
+                        </VisualState>
+                        <VisualState x:Name="Disabled">
+                            <Storyboard/>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+                ONLY SL-->
+                <ContentPresenter x:Name="contentPresenter" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Grid>
+            <!--BEGIN WPF-->
+            <ControlTemplate.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Canvas.ZIndex" TargetName="rootButtonElement" Value="1"/>
+                </Trigger>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter Property="Canvas.ZIndex" TargetName="rootButtonElement" Value="1"/>
+                </Trigger>
+            </ControlTemplate.Triggers>
+            <!--END WPF-->
+        </ControlTemplate>
+    </UserControl.Resources>
+    <!--BEGIN WPF-->
+    <Grid Margin="56" SnapsToDevicePixels="True">
+        <!--END WPF-->
+        <!--ONLY SL
+    <Grid Margin="56">
+        ONLY SL-->
+        <!--<Grid.Effect>
+        		<DropShadowEffect BlurRadius="48" Direction="-90" ShadowDepth="8" Opacity="0.75"/>
+        	</Grid.Effect>-->
+        <Border Background="#FFFFFFFF" Grid.RowSpan="2" BorderBrush="#593C3C3C" BorderThickness="1"/>
+        <Button x:Name="CloseButton" Margin="4" HorizontalAlignment="Right" Template="{StaticResource buttonTemplate}" VerticalAlignment="Top">
+            <Image Stretch="None" Source="{Binding Source=DevExpress.Xpf.Core.Core.About.Images.Close-Button.png, Converter={StaticResource EmbeddedResourceImageConverter}}"/>
+        </Button>
+        <Grid MinWidth="560" MinHeight="420" Margin="20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid x:Name="Images" MinHeight="175">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Border Background="#FFF7941E" Grid.RowSpan="4" />
+                <Image x:Name="LicensedImage" Margin="0,20" HorizontalAlignment="Right" VerticalAlignment="Bottom" Stretch="None" Source="{Binding Source=DevExpress.Xpf.Core.Core.About.Images.Licensed-App.png, Converter={StaticResource EmbeddedResourceImageConverter}}"/>
+                <Image x:Name="TrialImage" Margin="0,20" HorizontalAlignment="Right" VerticalAlignment="Bottom" Stretch="None" Source="{Binding Source=DevExpress.Xpf.Core.Core.About.Images.Trial.png, Converter={StaticResource EmbeddedResourceImageConverter}}"/>
+                <Image x:Name="ExpiredImage" Margin="0,20" HorizontalAlignment="Right" VerticalAlignment="Bottom" Stretch="None" Source="{Binding Source=DevExpress.Xpf.Core.Core.About.Images.Expired.png, Converter={StaticResource EmbeddedResourceImageConverter}}"/>
+                <TextBlock Foreground="White" Margin="20,0" FontFamily="Segoe UI Light" FontSize="35" VerticalAlignment="Bottom" Grid.Row="1" Text="{Binding ProductName}" />
+                <TextBlock Foreground="White" Margin="20,0" FontFamily="Segoe UI" FontSize="13" VerticalAlignment="Bottom" Grid.Row="2" Text="{Binding ProductPlatform}" />
+                <TextBlock Foreground="#FFFFFFFF" Margin="20,0,20,18" Grid.Row="3" HorizontalAlignment="Right" Text="{Binding Version}"/>
+                <TextBlock Foreground="#FFFFFFFF" Margin="20,0,20,18" Grid.Row="3" HorizontalAlignment="Left" Text="{Binding ProductKind}"/>
+            </Grid>
+            <Grid Grid.Row="1" Margin="20">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <StackPanel x:Name="TrialSection" d:IsHidden="False">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom">
+                        <TextBlock Foreground="#FF3D3D3D" Margin="{StaticResource textMargin}" Text="You are using "/>
+                        <TextBlock Foreground="#FF3D3D3D" Margin="{StaticResource textMargin}" x:Name="trialOrLicensed"/>
+                        <TextBlock Foreground="#FF3D3D3D" Margin="{StaticResource textMargin}" Text=" of "/>
+                        <TextBlock Foreground="#FF3D3D3D" Margin="{StaticResource textMargin}" Text="this Subscription."/>
+                        <StackPanel x:Name="TrialDays" d:IsHidden="False" Orientation="Horizontal">
+                            <TextBlock Foreground="#FF3D3D3D" Margin="{StaticResource textMargin}" Text=" You have "/>
+                            <TextBlock x:Name="TrialDaysCount" Foreground="#FF3D3D3D" Margin="{StaticResource textMargin}" Text="{Binding Days}"/>
+                            <TextBlock Foreground="#FF3D3D3D" Margin="{StaticResource textMargin}" Text=" day(s) remaining."/>
+                        </StackPanel>
+                        <!--<TextBlock x:Name="TrialDays" Foreground="#FF3D3D3D" Margin="{StaticResource textMargin}" Text="" Visibility="Collapsed"/>-->
+                    </StackPanel>
+                    <Button Template="{StaticResource linkbuttonTemplate}" Content="Register Your Product" FontFamily="Segoe UI" FontSize="16" x:Name="RegisterButton" Cursor="Hand"/>
+                    <Grid Grid.Row="1" Margin="-20,10,-20,0" MinHeight="34" x:Name="buttonsPanel">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="1"/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="1"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Button Grid.Column="0" Template="{StaticResource buttonWithImageTemplate}" x:Name="HelpButton" Cursor="Hand">
+                            <StackPanel Orientation="Vertical">
+                                <Image Stretch="None" Source="{Binding Source=DevExpress.Xpf.Core.Core.About.Images.About-Support.png, Converter={StaticResource EmbeddedResourceImageConverter}}"/>
+                                <TextBlock x:Name="blockToUnderline" FontWeight="Bold" Text="Get Free Support" HorizontalAlignment="Center"/>
+                                <Rectangle x:Name="SubscribeButtonLine" Visibility="Collapsed" Fill="Black" Margin="0,-4,0,0" Height="1" Width="{Binding ElementName=blockToUnderline, Path=ActualWidth}" />
+                                <TextBlock Text="30 days of free support" HorizontalAlignment="Center"/>
+                                <TextBlock Text="during your trial."  HorizontalAlignment="Center"/>
+                            </StackPanel>
+                        </Button>
+                        <Button Grid.Column="2" Template="{StaticResource buttonWithImageTemplate}" x:Name="BuyButton" Cursor="Hand">
+                            <StackPanel Orientation="Vertical">
+                                <Image Stretch="None" Source="{Binding Source=DevExpress.Xpf.Core.Core.About.Images.About-Buy.png, Converter={StaticResource EmbeddedResourceImageConverter}}"/>
+                                <TextBlock x:Name="blockToUnderline1" FontWeight="Bold" Text="Buy Now" HorizontalAlignment="Center"/>
+                                <Rectangle x:Name="RegisterButtonLine" Visibility="Collapsed" Fill="Black" Margin="0,-4,0,0" Height="1" Width="{Binding ElementName=blockToUnderline1, Path=ActualWidth}" />
+                                <TextBlock Text="Prices start at only $899.99" HorizontalAlignment="Center"/>
+                                <TextBlock Text="for a 1 year subscription."  HorizontalAlignment="Center"/>
+                            </StackPanel>
+                        </Button>
+                        <Button Grid.Column="4" Template="{StaticResource buttonWithImageTemplate}" x:Name="DiscountsButton" Cursor="Hand">
+                            <StackPanel Orientation="Vertical">
+                                <Image Stretch="None" Source="{Binding Source=DevExpress.Xpf.Core.Core.About.Images.About-Discount.png, Converter={StaticResource EmbeddedResourceImageConverter}}"/>
+                                <TextBlock x:Name="blockToUnderline2" FontWeight="Bold" Text="Competitive Discounts" HorizontalAlignment="Center"/>
+                                <Rectangle x:Name="DiscountsButtonLine" Visibility="Collapsed" Fill="Black" Margin="0,-4,0,0" Height="1" Width="{Binding ElementName=blockToUnderline2, Path=ActualWidth}" />
+                                <TextBlock Text="Switch and save." HorizontalAlignment="Center"/>
+                                <TextBlock Text="Discounts are available."  HorizontalAlignment="Center"/>
+                            </StackPanel>
+                        </Button>
+                    </Grid>
+                </StackPanel >
+                <StackPanel x:Name="LicensedSection" Margin="0,10,0,0">
+                    <TextBlock HorizontalAlignment="Center" Foreground="#FF3D3D3D" Text="Registration code" FontWeight="Bold"/>
+                    <TextBlock HorizontalAlignment="Center" Foreground="#FF3D3D3D" FontSize="20" Text="{Binding RegistrationCode}"/>
+                </StackPanel>
+
+                <StackPanel Grid.Row="1" Margin="0,20,0,0" x:Name="questions">
+                    <TextBlock Foreground="#FF3D3D3D" HorizontalAlignment="Center" FontWeight="Bold" Text="Questions?" />
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <TextBlock Foreground="#FF3D3D3D" HorizontalAlignment="Center" Text="Visit our" />
+                        <Button Template="{StaticResource buttonTemplate2}" x:Name="SupportCenterButton" Cursor="Hand">
+                            <TextBlock Foreground="#FFEF680F" Text="Support Center" Margin="5,0"/>
+                        </Button>
+                        <TextBlock Foreground="#FF3D3D3D" HorizontalAlignment="Center" Margin="0,0,5,0" Text="or"/>
+                        <Button Template="{StaticResource buttonTemplate2}" x:Name="ChatButton" Cursor="Hand">
+                            <TextBlock Foreground="#FFEF680F" Text="Chat Online"/>
+                        </Button>
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+            <Grid Grid.Row="3">
+                <Border Background="#FFEEEEEE" />
+                <StackPanel VerticalAlignment="Center" Margin="20,0" >
+                    <TextBlock x:Name="CopyrightText" Foreground="#FF3D3D3D" Text="Copyright © 2000-2012 Developer Express Inc." />
+                    <TextBlock Foreground="#FF3D3D3D" Text="All rights reserved" />
+                </StackPanel>
+                <Image VerticalAlignment="Bottom" HorizontalAlignment="Right" Source="{Binding Source=DevExpress.Xpf.Core.Core.About.Images.DevExpress-Logo.png, Converter={StaticResource EmbeddedResourceImageConverter}}" Stretch="None"/>
+            </Grid>
+        </Grid>
+    </Grid>
+
+
+
+</UserControl>

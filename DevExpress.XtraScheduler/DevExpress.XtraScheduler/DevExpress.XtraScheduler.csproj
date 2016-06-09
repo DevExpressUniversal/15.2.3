@@ -1,0 +1,1259 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <ProjectType>Local</ProjectType>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{99D7BF5D-353F-4C75-A10A-03AA2E3AFA4E}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ApplicationIcon />
+    <AssemblyKeyContainerName />
+    <AssemblyName>DevExpress.XtraScheduler.v15.2</AssemblyName>
+    <AssemblyOriginatorKeyFile>..\..\DevExpress.Key\StrongKey.snk</AssemblyOriginatorKeyFile>
+    <DefaultClientScript>JScript</DefaultClientScript>
+    <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
+    <DefaultTargetSchema>IE50</DefaultTargetSchema>
+    <DelaySign>false</DelaySign>
+    <OutputType>Library</OutputType>
+    <RootNamespace>DevExpress.XtraScheduler</RootNamespace>
+    <StartupObject />
+    <FileUpgradeFlags />
+    <UpgradeBackupLocation />
+    <SignAssembly>true</SignAssembly>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>..\..\..\Bin\Framework\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile />
+    <DefineConstants>TRACE;DEBUG;DXWhidbey;CODE_ANALYSIS</DefineConstants>
+    <DocumentationFile />
+    <DebugSymbols>true</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <Optimize>false</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>full</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>..\..\..\Bin\Framework\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile />
+    <DefineConstants>TRACE;DXWhidbey</DefineConstants>
+    <DocumentationFile />
+    <DebugSymbols>false</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <Optimize>true</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>none</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  
+  
+  <ItemGroup>
+    <Reference Include="Accessibility"><Private>False</Private></Reference>
+    <Reference Include="DevExpress.Data.v15.2">
+      <Name>DevExpress.Data.v15.2</Name>
+    <HintPath>..\..\..\Bin\Framework\DevExpress.Data.v15.2.dll</HintPath><Private>False</Private></Reference>
+    <Reference Include="DevExpress.Printing.v15.2.Core"><HintPath>..\..\..\Bin\Framework\DevExpress.Printing.v15.2.Core.dll</HintPath><Private>False</Private></Reference>
+    <Reference Include="DevExpress.Utils.v15.2">
+      <Private>False</Private>
+    <HintPath>..\..\..\Bin\Framework\DevExpress.Utils.v15.2.dll</HintPath></Reference>
+    <Reference Include="DevExpress.Xpo.v15.2">
+      <Name>DevExpress.Xpo.v15.2</Name>
+    <HintPath>..\..\..\Bin\Framework\DevExpress.Xpo.v15.2.dll</HintPath><Private>False</Private></Reference>
+    <Reference Include="DevExpress.XtraBars.v15.2"><HintPath>..\..\..\Bin\Framework\DevExpress.XtraBars.v15.2.dll</HintPath><Private>False</Private></Reference>
+    <Reference Include="DevExpress.XtraEditors.v15.2">
+      <Name>DevExpress.XtraEditors.v15.2</Name>
+    <HintPath>..\..\..\Bin\Framework\DevExpress.XtraEditors.v15.2.dll</HintPath><Private>False</Private></Reference>
+    <Reference Include="DevExpress.XtraScheduler.v15.2.Core">
+      <Private>False</Private>
+    <HintPath>..\..\..\Bin\Framework\DevExpress.XtraScheduler.v15.2.Core.dll</HintPath></Reference>
+    <Reference Include="DevExpress.XtraPrinting.v15.2">
+      <SpecificVersion>False</SpecificVersion>
+    <HintPath>..\..\..\Bin\Framework\DevExpress.XtraPrinting.v15.2.dll</HintPath><Private>False</Private></Reference>
+    
+    <Reference Include="System">
+      <Name>System</Name>
+    <Private>False</Private></Reference>
+    <Reference Include="System.Data">
+      <Name>System.Data</Name>
+    <Private>False</Private></Reference>
+    <Reference Include="System.Drawing">
+      <Name>System.Drawing</Name>
+    <Private>False</Private></Reference>
+    <Reference Include="System.Windows.Forms">
+      <Name>System.Windows.Forms</Name>
+    <Private>False</Private></Reference>
+    <Reference Include="System.Xml">
+      <Name>System.XML</Name>
+    <Private>False</Private></Reference>
+  </ItemGroup>
+  
+  <ItemGroup>
+    <Compile Include="Animation\Animation.cs" />
+    <Compile Include="Animation\AnimationKeyboardService.cs" />
+    <Compile Include="Animation\EffectCalculators.cs" />
+    <Compile Include="Animation\Effects.cs" />
+    <Compile Include="Animation\LastPaintInfo.cs" />
+    <Compile Include="Animation\SchedulerAnimationManager.cs" />
+    <Compile Include="Appearances.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="AppointmentContentLayoutCalculator.cs" />
+    <Compile Include="AppointmentSelectionController.cs" />
+    <Compile Include="AppointmentLayoutStrategy.cs" />
+    <Compile Include="AutoHeightCellCalculator.cs" />
+    <Compile Include="Bitmaps256\BittmapSuffixInSameAssemblyAttribute.cs" />
+    <Compile Include="ColorSchema.cs" />
+    <Compile Include="Commands\ChangeAppointmentCommands\ChangeAppointmentLabelCommand.cs" />
+    <Compile Include="Commands\ChangeAppointmentCommands\ChangeAppointmentPropertyImageCommand.cs" />
+    <Compile Include="Commands\ChangeAppointmentCommands\ChangeAppointmentStatusCommand.cs" />
+    <Compile Include="Commands\MenuCommandsShared\CustomizeTimeRulerCommand.cs" />
+    <Compile Include="Commands\MenuCommandsShared\SchedulerMenuItemWinSimpleCommand.cs" />
+    <Compile Include="Commands\MenuCommands\AppointmentCreateDependencyOperationCommand.cs" />
+    <Compile Include="Commands\AppointmentFormMenuCommands\SelectNextAppointmentCommand.cs" />
+    <Compile Include="Commands\AppointmentFormMenuCommands\SelectPrevAppointmentCommand.cs" />
+    <Compile Include="Commands\AppointmentFormMenuCommands\SelectPrevNextAppointmentCommand.cs" />
+    <Compile Include="Commands\MenuCommands\CommitAndCloseInplaceEditorCommand.cs" />
+    <Compile Include="Commands\MenuCommands\DayViewSetSelectionWinCommand.cs" />
+    <Compile Include="Commands\MenuCommands\OperationCommand.cs" />
+    <Compile Include="Commands\MenuCommands\SchedulerMenuCheckItemCommandWinAdapter.cs" />
+    <Compile Include="Commands\MenuCommands\SchedulerMenuItemCommandWinAdapter.cs" />
+    <Compile Include="Commands\NavigateMoreButtonCommands\NavigateMoreButtonDayViewWinCommand.cs" />
+    <Compile Include="Commands\NavigateMoreButtonCommands\NavigateMoreButtonWinCommand.cs" />
+    <Compile Include="Commands\NavigateMoreButtonCommands\NavigateScrollMoreButtonCommand.cs" />
+    <Compile Include="Commands\ScrollingCommands\FixedStepScrollDeltaCalculator.cs" />
+    <Compile Include="Commands\ScrollingCommands\ScrollByPhysicalOffsetCommands\ScrollByPhysicalOffsetCommandBase.cs" />
+    <Compile Include="Commands\ScrollingCommands\ScrollDeltaInfo.cs" />
+    <Compile Include="Commands\ScrollingCommands\ScrollByPhysicalOffsetCommands\ScrollHorizontallyByPhysicalOffsetCommand.cs" />
+    <Compile Include="Commands\ScrollingCommands\ScrollByPhysicalOffsetCommands\ScrollVerticallyByPhysicalOffsetCommand.cs" />
+    <Compile Include="Commands\SplitAppointmentOperationCommand.cs" />
+    <Compile Include="Commands\UserInterfaceObjectWinHelper.cs" />
+    <Compile Include="CreateAppointmentDependencyOperation.cs" />
+    <Compile Include="Design\AppointmentDependencyTypeEdit.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Forms\AppointmentDependencyForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AppointmentDependencyForm.Designer.cs">
+      <DependentUpon>AppointmentDependencyForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\AppointmentRibbonForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AppointmentRibbonForm.Designer.cs">
+      <DependentUpon>AppointmentRibbonForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Printing\HeaderPrintInfo\HeaderPrintInfoCalculator.cs" />
+    <Compile Include="Printing\HeaderPrintInfo\HeaderPrintInfoCalculatorParameters.cs" />
+    <Compile Include="Printing\HeaderPrintInfo\PreliminaryHeaderPrintInfo.cs" />
+    <Compile Include="Printing\MoreItems\MoreItems.cs" />
+    <Compile Include="Printing\MoreItems\MoreItemsPrintPainter.cs" />
+    <Compile Include="Printing\PrintableObjects\Cells\BlankCellPrintViewInfo.cs" />
+    <Compile Include="Printing\PrintableObjects\Headers\CalendarHeaderPrintInfo.cs" />
+    <Compile Include="Printing\PrintableObjects\CompositeViewInfo.cs" />
+    <Compile Include="Printing\PrintableObjects\Headers\HeaderPrintInfo.cs" />
+    <Compile Include="Printing\PrintableObjects\Headers\HeaderTextInfo.cs" />
+    <Compile Include="Printing\PrintableObjects\IPrintableObject.cs" />
+    <Compile Include="Printing\PrintableObjects\IPrintableObjectViewInfo.cs" />
+    <Compile Include="Printing\PrintableObjects\ISupportClear.cs" />
+    <Compile Include="Printing\PrintableObjects\Cells\PageBreakCellPrintViewInfo.cs" />
+    <Compile Include="Printing\PrintableObjects\PageBreakViewInfo.cs" />
+    <Compile Include="Printing\PrintableObjects\Rows\RowPrintViewInfo.cs" />
+    <Compile Include="Printing\PrintableObjects\Cells\SolidLineCellPrintViewInfo.cs" />
+    <Compile Include="Printing\PrintableObjects\Tables\TableViewInfo.cs" />
+    <Compile Include="Printing\PrintableObjects\Cells\TextCellPrintViewInfo.cs" />
+    <Compile Include="Printing\PrintBuilders\CalendarDetailsPrintViewInfoBuilder.cs" />
+    <Compile Include="Printing\PrintBuilders\MemoPrintViewInfoBuilder.cs" />
+    <Compile Include="Printing\PrintBuilders\PrintViewInfoBuilder.cs" />
+    <Compile Include="Printing\PrintBuilders\ReportPrintViewInfoBuilder.cs" />
+    <Compile Include="Printing\PrintBuilders\SchedulerSingleViewPrintBuilder.cs" />
+    <Compile Include="Printing\PrintBuilders\SchedulerViewPrintBuilder.cs" />
+    <Compile Include="Printing\PrintBuilders\TriFoldPrintViewInfoBuilder.cs" />
+    <Compile Include="Printing\PrintBuilders\ViewPart.cs" />
+    <Compile Include="Printing\PrintColorConverters\ApplyToFlags.cs" />
+    <Compile Include="Printing\PrintColorConverters\BlackAndWhitePrintColorConverter.cs" />
+    <Compile Include="Printing\PrintColorConverters\ColorConverterHelper.cs" />
+    <Compile Include="Printing\PrintColorConverters\GrayScalePrintColorConverter.cs" />
+    <Compile Include="Printing\PrintColorConverters\PrintColorConverter.cs" />
+    <Compile Include="Printing\PrintColorConverters\PrintColorConverterToStringConverter.cs" />
+    <Compile Include="Printing\PrintDayView\DayPrintView.cs" />
+    <Compile Include="Printing\PrintDayView\DayPrintViewInfo.cs" />
+    <Compile Include="Printing\PrintDayView\DayPrintViewPainter.cs" />
+    <Compile Include="Printing\PrintDayView\DayViewColumnFlatPrintPainter.cs" />
+    <Compile Include="Printing\PrintDayView\TimeRulerFlatPrintPainter.cs" />
+    <Compile Include="Printing\PrintingHelper.cs" />
+    <Compile Include="Printing\PrintMonthView\MonthPrintView.cs" />
+    <Compile Include="Printing\PrintMonthView\MonthPrintViewInfo.cs" />
+    <Compile Include="Printing\PrintMonthView\MonthPrintViewPainter.cs" />
+    <Compile Include="Printing\PrintDayView\DailyPrintViewBuilderStrategy.cs" />
+    <Compile Include="Printing\PrintMonthView\MonthlyPrintViewBuilderStrategy.cs" />
+    <Compile Include="Printing\PrintStyles\CalendarDetailsPrintStyle.cs" />
+    <Compile Include="Printing\PrintStyles\DailyPrintStyle.cs" />
+    <Compile Include="Printing\PrintStyles\DefaultPageSettingsProvider.cs" />
+    <Compile Include="Printing\PrintStyles\Enums\ArrangeDaysKind.cs" />
+    <Compile Include="Printing\PrintStyles\Enums\PageLayout.cs" />
+    <Compile Include="Printing\PrintStyles\Enums\PeriodKind.cs" />
+    <Compile Include="Printing\PrintStyles\Enums\PrintStyleSectionKind.cs" />
+    <Compile Include="Printing\PrintStyles\Enums\ResourcesKind.cs" />
+    <Compile Include="Printing\PrintStyles\Enums\SchedulerPrintStyleKind.cs" />
+    <Compile Include="Printing\PrintStyles\LayoutPrintStyle.cs" />
+    <Compile Include="Printing\PrintStyles\MemoPrintStyle.cs" />
+    <Compile Include="Printing\PrintStyles\MonthlyPrintStyle.cs" />
+    <Compile Include="Printing\PrintStyles\PrintStyleWithAppointmentHeight.cs" />
+    <Compile Include="Printing\PrintStyles\PrintStyleWithDateRange.cs" />
+    <Compile Include="Printing\PrintStyles\PrintStyleWithResourceOptions.cs" />
+    <Compile Include="Printing\PrintStyles\ResourceOptions.cs" />
+    <Compile Include="Printing\PrintStyles\SchedulerPrintStyle.cs" />
+    <Compile Include="Printing\PrintStyles\SchedulerPrintStyleCollection.cs" />
+    <Compile Include="Printing\PrintStyles\TriFoldPrintStyle.cs" />
+    <Compile Include="Printing\PrintStyles\WeeklyPrintStyle.cs" />
+    <Compile Include="Printing\SchedulerSinglePrintViewBuilderStrategy.cs" />
+    <Compile Include="Printing\PrintWeekView\PrintWeekViewBuilderStrategy\WeeklyLeftToRightPrintViewBuilderStrategy.cs" />
+    <Compile Include="Printing\PrintWeekView\PrintWeekViewBuilderStrategy\WeeklyPrintViewBuilderStrategy.cs" />
+    <Compile Include="Printing\PrintWeekView\PrintWeekViewBuilderStrategy\WeeklyTopToBottomPrintViewBuilderStrategy.cs" />
+    <Compile Include="Printing\PrintWeekView\WeekPrintView.cs" />
+    <Compile Include="Printing\PrintWeekView\WeekPrintViewInfo.cs" />
+    <Compile Include="Printing\PrintWeekView\WeekPrintViewPainter.cs" />
+    <Compile Include="Printing\SchedulerHeadersPrintPainter\SchedulerHeaderFlatPrintPainter.cs" />
+    <Compile Include="Printing\SchedulerHeadersPrintPainter\SchedulerHeaderVerticalFlatPrintPainter.cs" />
+    <Compile Include="Printing\SchedulerPrinter\SchedulerPrinter.cs" />
+    <Compile Include="Printing\SchedulerPrinter\SchedulerPrinterParameters.cs" />
+    <Compile Include="Printing\WeekDaysHelper\PrintWeekDaysHelperBase.cs" />
+    <Compile Include="Printing\WeekDaysHelper\WeekDaysHelper.cs" />
+    <Compile Include="Printing\XBrickPaint.cs" />
+    <Compile Include="SchedulerPaintStyle\SchedulerFlatPaintStyle.cs" />
+    <Compile Include="SchedulerPaintStyle\SchedulerOffice2003PaintStyle.cs" />
+    <Compile Include="SchedulerPaintStyle\SchedulerPaintStyle.cs" />
+    <Compile Include="SchedulerPaintStyle\SchedulerPaintStyleCollection.cs" />
+    <Compile Include="SchedulerPaintStyle\SchedulerSkinPaintStyle.cs" />
+    <Compile Include="SchedulerPaintStyle\SchedulerUltraFlatPaintStyle.cs" />
+    <Compile Include="SchedulerPaintStyle\SchedulerWindowsXPPaintStyle.cs" />
+    <Compile Include="Storage\IInternalSchedulerStorage.cs" />
+    
+    
+    
+    
+    
+    
+    <Compile Include="TimeIndicator\TimeIndicatorItem\HorisontalTimeIndicatorItem.cs" />
+    <Compile Include="TimeIndicator\TimeIndicatorItem\TimeIndicatorBaseItem.cs" />
+    <Compile Include="TimeIndicator\TimeIndicatorItem\VerticalTimeIndicatorItem.cs" />
+    <Compile Include="TimeIndicator\TimeIndicatorLayoutCalculator\HorizontalTimeIndicatorLayoutCalculator.cs" />
+    <Compile Include="TimeIndicator\TimeIndicatorLayoutCalculator\TimeIndicatorLayoutCalculator.cs" />
+    <Compile Include="TimeIndicator\TimeIndicatorLayoutCalculator\VerticalTimeIndicatorLayoutCalculator.cs" />
+    <Compile Include="TimeIndicator\TimeIndicatorPainter\TimeIndicatorFlatPainter.cs" />
+    <Compile Include="TimeIndicator\TimeIndicatorPainter\TimeIndicatorOffice2003Painter.cs" />
+    <Compile Include="TimeIndicator\TimeIndicatorPainter\TimeIndicatorPainter.cs" />
+    <Compile Include="TimeIndicator\TimeIndicatorPainter\TimeIndicatorSkinPainter.cs" />
+    <Compile Include="TimeIndicator\TimeIndicatorPainter\TimeIndicatorUltraFlatPainter.cs" />
+    <Compile Include="TimeIndicator\TimeIndicatorPainter\TimeIndicatorWindowsXPPainter.cs" />
+    <Compile Include="TimeIndicator\TimeIndicatorViewInfo.cs" />
+    <Compile Include="GraphicsCachePool.cs" />
+    <Compile Include="TimeRuler\TimeRulerCalculatorsHelper\TimeRulerHourScaleCalculatorHelper.cs" />
+    <Compile Include="TimeRuler\TimeRulerCalculatorsHelper\TimeRulerCalculatorHelperBase.cs" />
+    <Compile Include="TimeRuler\TimeRulerCalculatorsHelper\TimeRulerMinutesScaleCalculatorHelper.cs" />
+    <Compile Include="TimeRuler\TimeRulerItemsCalculators\HourScaleTimeCaptionItemsCalculator.cs" />
+    <Compile Include="TimeRuler\TimeRulerItemsCalculators\HourScaleTimeSeparatorLineItemsCalculator.cs" />
+    <Compile Include="TimeRuler\TimeRulerItemsCalculators\MinutesScaleAllMinutesCaptionItemsCalculator.cs" />
+    <Compile Include="TimeRuler\TimeRulerItemsCalculators\MinutesScaleHourCaptionItemsCalculator.cs" />
+    <Compile Include="TimeRuler\TimeRulerItemsCalculators\MinutesScaleHourTimeSeparatorLineItemsCalculator.cs" />
+    <Compile Include="TimeRuler\TimeRulerItemsCalculators\MinutesScaleItemsCalculatorBase.cs" />
+    <Compile Include="TimeRuler\TimeRulerItemsCalculators\MinutesScaleMinuteCaptionItemsCalculator.cs" />
+    <Compile Include="TimeRuler\TimeRulerItemsCalculators\MinutesScaleMinutesTimeSeparatorLineItemsCalculator.cs" />
+    <Compile Include="TimeRuler\TimeRulerItemsCalculators\TimeRulerRowBasedItemsCalculator.cs" />
+    <Compile Include="TimeRuler\TimeRulerItemsCalculators\TimeRulerSeparatorLineItemsBaseCalculator.cs" />
+    <Compile Include="TimeRuler\TimeRulerItemsCalculators\TimeRulerTimeCaptionItemsBaseCalculator.cs" />
+    <Compile Include="TimeRuler\TimeRulerItems\TimeRulerCurrentTimelineItem.cs" />
+    <Compile Include="TimeRuler\TimeRulerItems\TimeRulerCurrentTimeAreaItem.cs" />
+    <Compile Include="TimeRuler\TimeRulerItems\TimeRulerCurrentTimelineBaseItem.cs" />
+    <Compile Include="TimeRuler\TimeRulerItems\TimeRulerHourLineItem.cs" />
+    <Compile Include="TimeRuler\TimeRulerItems\TimeRulerMinutesLineItem.cs" />
+    <Compile Include="TimeRuler\TimeRulerItems\TimeRulerSeparatorLineItem.cs" />
+    <Compile Include="TimeRuler\TimeRulerLayoutCalculators\TimeRulerLayoutCalculator.cs" />
+    <Compile Include="TimeRuler\TimeRulerLayoutCalculators\TimeRulerLayoutCalculatorBase.cs" />
+    <Compile Include="TimeRuler\TimeRulerPainters\TimeRulerFlatPainter.cs" />
+    <Compile Include="TimeRuler\TimeRulerPainters\TimeRulerOffice2003Painter.cs" />
+    <Compile Include="TimeRuler\TimeRulerPainters\TimeRulerPainter.cs" />
+    <Compile Include="TimeRuler\TimeRulerPainters\TimeRulerSkinPainter.cs" />
+    <Compile Include="TimeRuler\TimeRulerPainters\TimeRulerUltraFlatPainter.cs" />
+    <Compile Include="TimeRuler\TimeRulerPainters\TimeRulerWindowsXPPainter.cs" />
+    <Compile Include="TimeRuler\TimeRulerViewInfo.cs" />
+    <Compile Include="TimeRuler\TimeRulerViewInfoCollection.cs" />
+    <Compile Include="ViewBase\ViewGrid\ViewLogicalGrid.cs" />
+    <Compile Include="ViewBase\ViewInfoTestHelper.cs" />
+    <Compile Include="ViewDay\ViewGrid\DayViewGrid.cs" />
+    <Compile Include="ViewDay\ViewGrid\DayViewGroupByDateGrid.cs" />
+    <Compile Include="ViewDay\ViewGrid\DayViewGroupByResourceGrid.cs" />
+    <Compile Include="ViewGantt\AppointmentViewInfo.cs" />
+    <Compile Include="ViewGantt\DependencyConnectorCalculator.cs" />
+    <Compile Include="ViewGantt\DependencyContentLayoutCalculator.cs" />
+    <Compile Include="ViewGantt\DependencyGroupingHelper.cs" />
+    <Compile Include="ViewGantt\DependencyPathBuilder.cs" />
+    <Compile Include="ViewGantt\DependencyPathCalculator.cs" />
+    <Compile Include="ViewGantt\DependencyPaths\DependencyPathItems\BaseItems\PathItem.cs" />
+    <Compile Include="ViewGantt\DependencyPaths\DependencyPathItems\BaseItems\PathItemBase.cs" />
+    <Compile Include="ViewGantt\DependencyPaths\DependencyPathItems\BaseItems\PathItemCollection.cs" />
+    <Compile Include="ViewGantt\DependencyPaths\DependencyPathItems\ConnectorItems\ConnectorItemBase.cs" />
+    <Compile Include="ViewGantt\DependencyPaths\DependencyPathItems\ConnectorItems\HorizontalConnectorItem.cs" />
+    <Compile Include="ViewGantt\DependencyPaths\DependencyPathItems\ConnectorItems\VerticalConnectorItem.cs" />
+    <Compile Include="ViewGantt\DependencyPaths\DependencyPathItems\HorizontalItems\PathHorizontalFixedEndItem.cs" />
+    <Compile Include="ViewGantt\DependencyPaths\DependencyPathItems\HorizontalItems\PathHorizontalFixedPointItem.cs" />
+    <Compile Include="ViewGantt\DependencyPaths\DependencyPathItems\HorizontalItems\PathHorizontalFixedStartItem.cs" />
+    <Compile Include="ViewGantt\DependencyPaths\DependencyPathItems\HorizontalItems\PathHorizontalItem.cs" />
+    <Compile Include="ViewGantt\DependencyPaths\DependencyPathItems\HorizontalItems\PathHorizontalItemBase.cs" />
+    <Compile Include="ViewGantt\DependencyPaths\DependencyPathItems\HorizontalItems\PathHorizontalItemType.cs" />
+    <Compile Include="ViewGantt\DependencyPaths\DependencyPathItems\VerticalItems\PathVerticalFixedEndItem.cs" />
+    <Compile Include="ViewGantt\DependencyPaths\DependencyPathItems\VerticalItems\PathVerticalFixedPointItem.cs" />
+    <Compile Include="ViewGantt\DependencyPaths\DependencyPathItems\VerticalItems\PathVerticalFixedStartItem.cs" />
+    <Compile Include="ViewGantt\DependencyPaths\DependencyPathItems\VerticalItems\PathVerticalItem.cs" />
+    <Compile Include="ViewGantt\DependencyPaths\DependencyPathItems\VerticalItems\PathVerticalItemBase.cs" />
+    <Compile Include="ViewGantt\DependencyPaths\DependencyPathItems\VerticalItems\PathVerticalItemType.cs" />
+    <Compile Include="ViewGantt\DependencyViewInfo.cs" />
+    <Compile Include="ViewGantt\DependencyViewInfoCalculators.cs" />
+    <Compile Include="ViewGantt\DependencyViewInfoCornerTypeCalculator.cs" />
+    <Compile Include="ViewGantt\InvisibleAppointmentCalculators\InvisibleAppointmentsCalculator.cs" />
+    <Compile Include="ViewGantt\InvisibleAppointmentCalculators\InvisibleAppointmentsLayoutCalculator.cs" />
+    <Compile Include="ViewGantt\InvisibleAppointmentCalculators\InvisibleAppointmentViewInfosAtVisibleIntervalCalculator.cs" />
+    <Compile Include="ViewGantt\InvisibleAppointmentCalculators\InvisibleAppointmentViewInfosCalculatorBase.cs" />
+    <Compile Include="ViewGantt\InvisibleAppointmentCalculators\InvisibleAppointmentViewInfosDispatchCalculator.cs" />
+    <Compile Include="ViewGantt\InvisibleAppointmentCalculators\InvisibleAppointmentViewInfosOutsideVisibleIntervalCalculator.cs" />
+    <Compile Include="ViewGantt\VisibleResourcesAppointmentSeparator.cs" />
+    <Compile Include="Headers\SchedulerHeaders\DayHeader.cs" />
+    <Compile Include="Headers\SchedulerHeaders\DayOfWeekHeader.cs" />
+    <Compile Include="Headers\GroupSeparator\GroupSeparator.cs" />
+    <Compile Include="Headers\GroupSeparator\GroupSeparatorHorizontal.cs" />
+    <Compile Include="Headers\GroupSeparator\GroupSeparatorVertical.cs" />
+    <Compile Include="Headers\HeaderImageAlign.cs" />
+    <Compile Include="Headers\HeaderImageSizeMode.cs" />
+    <Compile Include="Headers\SchedulerHeaders\MonthViewTimeCellHeader.cs" />
+    <Compile Include="Headers\ResourceHeaders\HorizontalResourceHeader.cs" />
+    <Compile Include="Headers\ResourceHeaders\ResourceHeader.cs" />
+    <Compile Include="Headers\ResourceHeaders\VerticalResourceHeader.cs" />
+    <Compile Include="Headers\SchedulerHeaders\SchedulerHeader.cs" />
+    <Compile Include="Headers\SchedulerHeaders\SchedulerHeaderCollection.cs" />
+    <Compile Include="Headers\SchedulerHeaderContentLayoutCalculator\ComplexContentLayoutCalculator.cs" />
+    <Compile Include="Headers\SchedulerHeaderContentLayoutCalculator\ComplexContentLayoutCalculatorBottomImageAlign.cs" />
+    <Compile Include="Headers\SchedulerHeaderContentLayoutCalculator\ComplexContentLayoutCalculatorHorizontalImageAlign.cs" />
+    <Compile Include="Headers\SchedulerHeaderContentLayoutCalculator\ComplexContentLayoutCalculatorLeftImageAlign.cs" />
+    <Compile Include="Headers\SchedulerHeaderContentLayoutCalculator\ComplexContentLayoutCalculatorRightImageAlign.cs" />
+    <Compile Include="Headers\SchedulerHeaderContentLayoutCalculator\ComplexContentLayoutCalculatorTopImageAlign.cs" />
+    <Compile Include="Headers\SchedulerHeaderContentLayoutCalculator\ComplexContentLayoutCalculatorVerticalImageAlign.cs" />
+    <Compile Include="Headers\SchedulerHeaderContentLayoutCalculator\ContentLayoutCalculator.cs" />
+    <Compile Include="Headers\SchedulerHeaderContentLayoutCalculator\SimpleContentLayoutCalculator.cs" />
+    <Compile Include="Headers\SchedulerHeaderPreliminaryLayoutResult\SchedulerHeaderPreliminaryLayoutResult.cs" />
+    <Compile Include="Headers\SchedulerHeaderPreliminaryLayoutResult\SchedulerHeaderPreliminaryLayoutResultCollection.cs" />
+    <Compile Include="Headers\SchedulerHeaders\UpperLeftCorner.cs" />
+    <Compile Include="Options\PropertyContainer.cs" />
+    <Compile Include="Options\PropertyCreator.cs" />
+    <Compile Include="RangeControl\DataItemThumbnail.cs" />
+    <Compile Include="RangeControl\ScaleBasedRangeControlClient.cs" />
+    <Compile Include="RangeControl\ScaleBasedRangeControlController.cs" />
+    <Compile Include="RangeControl\ScaleBasedRangeControlViewInfo.cs" />
+    <Compile Include="RangeControl\SchedulerControlClient.cs" />
+    <Compile Include="RangeControl\SchedulerRangeControlPainter.cs" />
+    <Compile Include="RangeControl\ScaleBasedRangeControlOptions.cs" />
+    <Compile Include="RangeControl\SchedulerStorageClient.cs" />
+    <Compile Include="Resource.cs" />
+    <Compile Include="SchedulerControl\Gesture.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="SchedulerControl\MouseWheel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Printing\SchedulerLabelBrick.cs" />
+    <Compile Include="Printing\SchedulerSeparableBrick.cs" />
+    <Compile Include="Services\AnimationService.cs" />
+    <Compile Include="Services\FileOperationService.cs" />
+    <Compile Include="Services\SchedulerCommandFactoryService.cs" />
+    
+    
+    
+    <Compile Include="AppointmentStatus.cs" />
+    <Compile Include="AppointmentViewInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BaseCellTypes.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BasePainter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="bricks.cs" />
+    <Compile Include="Design\AppointmentLabelEdit.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Design\AppointmentResourceEdit.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Design\AppointmentResourcesEdit.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Design\AppointmentStatusEdit.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Design\DailyRecurrenceControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Design\DateNavigator.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Design\DurationEdit.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Design\MonthEdit.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Design\MonthlyRecurrenceControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Design\PrintStyleControls\CalendarDetailsPrintStyleOptionsControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Design\PrintStyleControls\DailyPrintStyleOptions.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Design\PrintStyleControls\MemoPrintStyleOptionsControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Design\PrintStyleControls\MonthlyPrintStyleOptionsControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Design\PrintStyleControls\PageSetupFormatTabControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Design\PrintStyleControls\PageSetupPaperTabControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Design\PrintStyleControls\PageSetupResourcesTabControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Design\PrintStyleControls\picturePreviewControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Design\PrintStyleControls\PrintRangeControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Design\PrintStyleControls\PrintStyleOptionsControlBase.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Design\PrintStyleControls\TimeIntervalEditControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Design\PrintStyleControls\TriFoldPrintStyleOptionsControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Design\PrintStyleControls\WeeklyPrintStyleOptionsControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Design\RecurrenceControlBase.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Design\ResourcesCheckedListBoxControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Design\ResourcesComboBoxControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Design\ResourcesPopupCheckedListBoxControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Design\SchedulerTimeEditControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Design\StorageBindedImageComboBoxEdit.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Design\TimeZoneEdit.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Design\TimeZonePropertiesControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Design\StorageUserInterfaceObjectImageComboBoxEdit.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Design\WeekDaysCheckEdit.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Design\WeekDaysEdit.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Design\WeeklyRecurrenceControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Design\WeekOfMonthEdit.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Design\YearlyRecurrenceControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="EditController.cs" />
+    <Compile Include="EventArgs.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Filter.cs" />
+    <Compile Include="Forms\AppointmentForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AppointmentForm.Designer.cs">
+      <DependentUpon>AppointmentForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\AppointmentRecurrenceForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AppointmentRecurrenceForm.Designer.cs">
+      <DependentUpon>AppointmentRecurrenceForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\RecurrenceAppointmentEditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\RecurrenceAppointmentEditForm.Designer.cs">
+      <DependentUpon>RecurrenceAppointmentEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DefineNewStyleForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\DefineNewStyleForm.Designer.cs">
+      <DependentUpon>DefineNewStyleForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\GotoDateForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\GotoDateForm.Designer.cs">
+      <DependentUpon>GotoDateForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\PageSetupForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\PageSetupForm.Designer.cs">
+      <DependentUpon>PageSetupForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\RecurrentAppointmentDeleteForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\RecurrentAppointmentDeleteForm.Designer.cs">
+      <DependentUpon>RecurrentAppointmentDeleteForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\RemindersForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\RemindersForm.Designer.cs">
+      <DependentUpon>RemindersForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ShadingSetupForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ShadingSetupForm.Designer.cs">
+      <DependentUpon>ShadingSetupForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\TimeRulerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\TimeRulerForm.Designer.cs">
+      <DependentUpon>TimeRulerForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewGantt\GanttView.cs" />
+    <Compile Include="MenuBuilder.cs" />
+    <Compile Include="MoreButtons.cs" />
+    <Compile Include="NavigationButton.cs" />
+    <Compile Include="Operations.cs" />
+    <Compile Include="ScrollControllerShared.cs" />
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <Compile Include="Headers\SchedulerHeaders\TimeScaleHeader.cs" />
+    <Compile Include="ViewDay\AllDayAreaCell.cs" />
+    <Compile Include="ViewDay\DayView.cs" />
+    <Compile Include="ViewDay\DayViewColumn.cs" />
+    <Compile Include="ViewDay\DayViewFactoryHelper.cs" />
+    <Compile Include="ViewDay\DayViewInfo.cs" />
+    <Compile Include="ViewDay\DayViewPaint.cs" />
+    <Compile Include="ViewDay\DayViewRow.cs" />
+    <Compile Include="ViewDay\DayViewVerticalAppointmentLayoutCalculatorHelper.cs" />
+    <Compile Include="ViewDay\GroupCellsLayoutCalculators\DayViewCellsCalculatorHelper.cs" />
+    <Compile Include="ViewDay\GroupCellsLayoutCalculators\DayViewGroupByDateCellsLayoutCalculator.cs" />
+    <Compile Include="ViewDay\GroupCellsLayoutCalculators\DayViewGroupByNoneLayoutCalculator.cs" />
+    <Compile Include="ViewDay\GroupCellsLayoutCalculators\DayViewGroupByResiurceCellsLayoutCalculator.cs" />
+    <Compile Include="ViewDay\GroupCellsLayoutCalculators\DayViewGroupCellsLayoutCalculator.cs" />
+    <Compile Include="ViewDay\GroupHeadersLayoutCalculators\DayViewGroupByDateHeadersLayoutCalculator.cs" />
+    <Compile Include="ViewDay\GroupHeadersLayoutCalculators\DayViewGroupByNoneHeadersLayoutCalculator.cs" />
+    <Compile Include="ViewDay\GroupHeadersLayoutCalculators\DayViewGroupByResourceHeadersLayoutCalculator.cs" />
+    <Compile Include="ViewDay\GroupHeadersLayoutCalculators\DayViewGroupHeadersLayoutCalculator.cs" />
+    <Compile Include="ViewDay\HeaderCaptionCalculators\DayViewFixedFormatHeaderCaptionCalculator.cs" />
+    <Compile Include="ViewDay\HeaderCaptionCalculators\DayViewHeaderCaptionCalculator.cs" />
+    <Compile Include="ViewDay\HeaderCaptionCalculators\DayViewOptimalHeaderCaptionCalculator.cs" />
+    <Compile Include="ViewDay\Helpers\DayViewAllDayAppointmentLayoutHelper.cs" />
+    <Compile Include="ViewDay\PreliminaryLayoutResults\DayViewCellsPreliminaryLayoutResult.cs" />
+    <Compile Include="ViewDay\PreliminaryLayoutResults\DayViewPreliminaryLayoutResult.cs" />
+    <Compile Include="ViewDay\Strategies\DayViewGroupByDateStrategy.cs" />
+    <Compile Include="ViewDay\Strategies\DayViewGroupByNoneStrtegy.cs" />
+    <Compile Include="ViewDay\Strategies\DayViewGroupByResourceStrategy.cs" />
+    <Compile Include="ViewFullWeek\ViewFullWeek.cs" />
+    <Compile Include="ViewGantt\Painters\AppointmentPainters\GanttViewAppointmentPainter.cs" />
+    <Compile Include="ViewGantt\Painters\AppointmentPainters\GanttViewAppointmentSkinPainter.cs" />
+    <Compile Include="ViewGantt\Painters\DependenciePainters\GanttDependenciesFlatPainter.cs" />
+    <Compile Include="ViewGantt\Painters\DependenciePainters\GanttDependenciesOffice2003Painter.cs" />
+    <Compile Include="ViewGantt\Painters\DependenciePainters\GanttDependenciesPainter.cs" />
+    <Compile Include="ViewGantt\Painters\DependenciePainters\GanttDependenciesSkinPainter.cs" />
+    <Compile Include="ViewGantt\Painters\DependenciePainters\GanttDependenciesUltraFlatPainter.cs" />
+    <Compile Include="ViewGantt\Painters\DependenciePainters\GanttDependenciesWindowsXPPainter.cs" />
+    <Compile Include="ViewGantt\Painters\ViewPainters\GanttViewPainter.cs" />
+    <Compile Include="ViewGantt\Painters\ViewPainters\GanttViewPainterFlat.cs" />
+    <Compile Include="ViewGantt\Painters\ViewPainters\GanttViewPainterOffice2003.cs" />
+    <Compile Include="ViewGantt\Painters\ViewPainters\GanttViewPainterSkin.cs" />
+    <Compile Include="ViewGantt\Painters\ViewPainters\GanttViewPainterUltraFlat.cs" />
+    <Compile Include="ViewGantt\Painters\ViewPainters\GanttViewPainterWindowsXP.cs" />
+    <Compile Include="ViewMonth\GroupCellsLayoutCalculators\MonthViewGroupByDateCellsLayoutCalculator.cs" />
+    <Compile Include="ViewMonth\GroupCellsLayoutCalculators\MonthViewGroupByNoneCellsLayoutCalculator.cs" />
+    <Compile Include="ViewMonth\GroupCellsLayoutCalculators\MonthViewGroupByResourceCellsLayoutCalculator.cs" />
+    <Compile Include="ViewMonth\GroupCellsLayoutCalculators\MonthViewGroupCellsLayoutCalculator.cs" />
+    <Compile Include="ViewMonth\GroupHeadersLayoutCalculators\MonthViewGroupByDateHeadersLayoutCalculator.cs" />
+    <Compile Include="ViewMonth\GroupHeadersLayoutCalculators\MonthViewGroupByNoneHeadersLayoutCalculator.cs" />
+    <Compile Include="ViewMonth\GroupHeadersLayoutCalculators\MonthViewGroupByResourceHeadersLayoutCalculator.cs" />
+    <Compile Include="ViewMonth\MonthView.cs" />
+    <Compile Include="ViewMonth\MonthViewFactoryHelper.cs" />
+    <Compile Include="ViewMonth\MonthViewInfo.cs" />
+    <Compile Include="ViewMonth\MonthViewPaint.cs" />
+    <Compile Include="ViewMonth\Strategies\MonthViewGroupByDateStrategy.cs" />
+    <Compile Include="ViewMonth\Strategies\MonthViewGroupByNoneStrategy.cs" />
+    <Compile Include="ViewMonth\Strategies\MonthViewGroupByResourceStrategy.cs" />
+    <Compile Include="ViewTimeline\GroupCellsLayoutCalculators\TimelineViewGroupByDateCellsLayoutCalculator.cs" />
+    <Compile Include="ViewTimeline\GroupCellsLayoutCalculators\TimelineViewGroupByNoneCellsLayoutCalculator.cs" />
+    <Compile Include="ViewTimeline\GroupCellsLayoutCalculators\TimelineViewGroupCellsLayoutCalculator.cs" />
+    <Compile Include="ViewTimeline\GroupHeadersLayoutCalculators\TimelineViewGroupByDateHeadersLayoutCalculator.cs" />
+    <Compile Include="ViewTimeline\GroupHeadersLayoutCalculators\TimelineViewGroupByNoneHeadersLayoutCalculator.cs" />
+    <Compile Include="ViewTimeline\GroupHeadersLayoutCalculators\TimelineViewGroupHeadersLayoutCalculator.cs" />
+    <Compile Include="ViewTimeline\SchedulerHeaderLevel.cs" />
+    <Compile Include="ViewTimeline\SchedulerHeaderLevelCollection.cs" />
+    <Compile Include="ViewTimeline\SelectionBar\SelectionBar.cs" />
+    <Compile Include="ViewTimeline\SelectionBar\SelectionBarCell.cs" />
+    <Compile Include="ViewTimeline\SelectionBar\SelectionBarLayoutCalculator.cs" />
+    <Compile Include="ViewTimeline\Strategies\TimelineViewGroupByDateStrategy.cs" />
+    <Compile Include="ViewTimeline\Strategies\TimelineViewGroupByNoneStrategy.cs" />
+    <Compile Include="ViewTimeline\Strategies\TimelineViewGroupByResourceStrategy.cs" />
+    <Compile Include="ViewTimeline\Strategies\TimelineViewGroupTypeStrategy.cs" />
+    <Compile Include="ViewTimeline\Timeline.cs" />
+    <Compile Include="ViewTimeline\TimelineBase.cs" />
+    <Compile Include="ViewTimeline\TimelineFiniteDateTimeScrollController.cs" />
+    <Compile Include="ViewTimeline\TimelineView.cs" />
+    <Compile Include="ViewTimeline\TimelineViewFactoryHelper.cs" />
+    <Compile Include="ViewTimeline\TimelineViewInfo.cs" />
+    <Compile Include="ViewTimeline\TimelineViewPaint.cs" />
+    <Compile Include="ViewTimeline\TimelineViewPreliminaryLayoutResult.cs" />
+    <Compile Include="ViewTimeline\ViewGrid\TimelineViewGrid.cs" />
+    <Compile Include="ViewTimeline\ViewGrid\TimelineViewGroupByDateGrid.cs" />
+    <Compile Include="ViewWeek\GroupCellsLayoutCalculators\SchedulerWeekBasedViewCellsLayoutCalculator.cs" />
+    <Compile Include="ViewWeek\GroupCellsLayoutCalculators\WeekViewGroupByDateCellsLayoutCalculator.cs" />
+    <Compile Include="ViewWeek\GroupCellsLayoutCalculators\WeekViewGroupByNoneCellsLayoutCalculator.cs" />
+    <Compile Include="ViewWeek\GroupCellsLayoutCalculators\WeekViewGroupByResourceCellsLayoutCalculator.cs" />
+    <Compile Include="ViewWeek\GroupCellsLayoutCalculators\WeekViewGroupCellsLayoutCalculator.cs" />
+    <Compile Include="ViewWeek\GroupHeadersLayoutCalculators\WeekViewGroupByDateHeadersLayoutCalculator.cs" />
+    <Compile Include="ViewWeek\GroupHeadersLayoutCalculators\WeekViewGroupByNoneHeadersLayoutCalculator.cs" />
+    <Compile Include="ViewWeek\GroupHeadersLayoutCalculators\WeekViewGroupByResourceHeadersLayoutCalculator.cs" />
+    <Compile Include="ViewWeek\GroupHeadersLayoutCalculators\WeekViewGroupHeadersLayoutCalculator.cs" />
+    <Compile Include="ViewWeek\HeaderCaptionCalculators\WeekBasedViewHeaderCaptionCalculator.cs" />
+    <Compile Include="ViewWeek\HeaderCaptionCalculators\WeekBasedViewOptimalHeaderCaptionCalculator.cs" />
+    <Compile Include="ViewWeek\HeaderCaptionCalculators\WeekViewBasedFixedFormatHeaderCaptionCalculator.cs" />
+    <Compile Include="ViewWeek\HeaderCaptionCalculators\WeekViewBasedFixedFormatHeaderCaptionCalculatorBase.cs" />
+    <Compile Include="ViewWeek\Strategies\WeekViewGroupByDateStrategy.cs" />
+    <Compile Include="ViewWeek\Strategies\WeekViewGroupByNoneStrategy.cs" />
+    <Compile Include="ViewWeek\Strategies\WeekViewGroupByResourceStrategy.cs" />
+    <Compile Include="ViewWeek\ViewGrid\WeekViewGrid.cs" />
+    <Compile Include="ViewWeek\ViewGrid\WeekViewGroupByDateGrid.cs" />
+    <Compile Include="ViewWeek\ViewGrid\WeekViewGroupByResourceGrid.cs" />
+    <Compile Include="ViewWeek\WeekView.cs" />
+    <Compile Include="ViewWeek\WeekViewFactoryHelper.cs" />
+    <Compile Include="ViewWeek\WeekViewInfo.cs" />
+    <Compile Include="ViewWeek\WeekViewPaint.cs" />
+    <Compile Include="ViewWeek\WeekViewPreliminaryLayoutResult.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ViewWorkWeek\WorkWeekView.cs" />
+    <Compile Include="ViewWorkWeek\WorkWeekViewPaint.cs" />
+    <Compile Include="WinFormsMouseHandler.cs" />
+    <Compile Include="SchedulerStorage.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Services.cs" />
+    <Compile Include="SplitAppointmentOperation.cs" />
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <Compile Include="Menu.cs" />
+    <Compile Include="MouseHandler.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Options.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ResourceNavigator.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SchedulerControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Selection.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="SelectionController.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="SingleWeek.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <Compile Include="Utils.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ViewBase.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ViewInfoBase.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ViewInfoItem.cs" />
+    <Compile Include="VisuallyContinuousCellsInfo.cs" />
+    <EmbeddedResource Include="Forms\AppointmentDependencyForm.resx">
+      <DependentUpon>AppointmentDependencyForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\AppointmentDependencyForm.ru.resx"><DependentUpon>AppointmentDependencyForm.cs</DependentUpon></EmbeddedResource>
+    <EmbeddedResource Include="Forms\AppointmentDependencyForm.ja.resx"><DependentUpon>AppointmentDependencyForm.cs</DependentUpon></EmbeddedResource>
+    <EmbeddedResource Include="Forms\AppointmentDependencyForm.es.resx"><DependentUpon>AppointmentDependencyForm.cs</DependentUpon></EmbeddedResource>
+    <EmbeddedResource Include="Forms\AppointmentDependencyForm.de.resx"><DependentUpon>AppointmentDependencyForm.cs</DependentUpon></EmbeddedResource>
+    <EmbeddedResource Include="Forms\AppointmentRibbonForm.resx">
+      <DependentUpon>AppointmentRibbonForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\AppointmentRibbonForm.ru.resx"><DependentUpon>AppointmentRibbonForm.cs</DependentUpon></EmbeddedResource>
+    <EmbeddedResource Include="Forms\AppointmentRibbonForm.ja.resx"><DependentUpon>AppointmentRibbonForm.cs</DependentUpon></EmbeddedResource>
+    <EmbeddedResource Include="Forms\AppointmentRibbonForm.es.resx"><DependentUpon>AppointmentRibbonForm.cs</DependentUpon></EmbeddedResource>
+    <EmbeddedResource Include="Forms\AppointmentRibbonForm.de.resx"><DependentUpon>AppointmentRibbonForm.cs</DependentUpon></EmbeddedResource>
+    <EmbeddedResource Include="SchedulerControl.resx">
+      <DependentUpon>SchedulerControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\appointment_images.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\Appointment.ico" />
+    <EmbeddedResource Include="Images\RecurringAppointment.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\GoToDate.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Forms\GotoDateForm.resx">
+      <DependentUpon>GotoDateForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\GotoDateForm.ru.resx"><DependentUpon>GotoDateForm.cs</DependentUpon></EmbeddedResource>
+    <EmbeddedResource Include="Forms\GotoDateForm.ja.resx"><DependentUpon>GotoDateForm.cs</DependentUpon></EmbeddedResource>
+    <EmbeddedResource Include="Forms\GotoDateForm.es.resx"><DependentUpon>GotoDateForm.cs</DependentUpon></EmbeddedResource>
+    <EmbeddedResource Include="Forms\GotoDateForm.de.resx"><DependentUpon>GotoDateForm.cs</DependentUpon></EmbeddedResource>
+    <EmbeddedResource Include="Images\moreButtonDown.bmp" />
+    <EmbeddedResource Include="Images\moreButtonUp.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Bitmaps256\schedulercontrol.bmp" />
+    <EmbeddedResource Include="Bitmaps256\TimeZoneEdit.bmp" />
+    <EmbeddedResource Include="Design\TimeZonePropertiesControl.resx">
+      <DependentUpon>TimeZonePropertiesControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Design\TimeZonePropertiesControl.ru.resx"><DependentUpon>TimeZonePropertiesControl.cs</DependentUpon></EmbeddedResource>
+    <EmbeddedResource Include="Design\TimeZonePropertiesControl.ja.resx"><DependentUpon>TimeZonePropertiesControl.cs</DependentUpon></EmbeddedResource>
+    <EmbeddedResource Include="Design\TimeZonePropertiesControl.es.resx"><DependentUpon>TimeZonePropertiesControl.cs</DependentUpon></EmbeddedResource>
+    <EmbeddedResource Include="Design\TimeZonePropertiesControl.de.resx"><DependentUpon>TimeZonePropertiesControl.cs</DependentUpon></EmbeddedResource>
+    <EmbeddedResource Include="Forms\TimeRulerForm.resx">
+      <DependentUpon>TimeRulerForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\TimeRulerForm.ru.resx"><DependentUpon>TimeRulerForm.cs</DependentUpon></EmbeddedResource>
+    <EmbeddedResource Include="Forms\TimeRulerForm.ja.resx"><DependentUpon>TimeRulerForm.cs</DependentUpon></EmbeddedResource>
+    <EmbeddedResource Include="Forms\TimeRulerForm.es.resx"><DependentUpon>TimeRulerForm.cs</DependentUpon></EmbeddedResource>
+    <EmbeddedResource Include="Forms\TimeRulerForm.de.resx"><DependentUpon>TimeRulerForm.cs</DependentUpon></EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Bitmaps256\ResourcesCheckedListBox.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Bitmaps256\appointmentLabelEdit.bmp" />
+    <EmbeddedResource Include="Bitmaps256\appointmentStatusEdit.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Bitmaps256\monthEdit.bmp" />
+    <EmbeddedResource Include="Bitmaps256\weekDaysEdit.bmp" />
+    <EmbeddedResource Include="Bitmaps256\weekOfMonthEdit.bmp" />
+    <EmbeddedResource Include="Design\RecurrenceControlBase.resx">
+      <DependentUpon>RecurrenceControlBase.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Design\YearlyRecurrenceControl.resx">
+      <DependentUpon>YearlyRecurrenceControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Design\YearlyRecurrenceControl.ru.resx"><DependentUpon>YearlyRecurrenceControl.cs</DependentUpon></EmbeddedResource>
+    <EmbeddedResource Include="Design\YearlyRecurrenceControl.ja.resx"><DependentUpon>YearlyRecurrenceControl.cs</DependentUpon></EmbeddedResource>
+    <EmbeddedResource Include="Design\YearlyRecurrenceControl.es.resx"><DependentUpon>YearlyRecurrenceControl.cs</DependentUpon></EmbeddedResource>
+    <EmbeddedResource Include="Design\YearlyRecurrenceControl.de.resx"><DependentUpon>YearlyRecurrenceControl.cs</DependentUpon></EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Bitmaps256\recurrenceControlBase.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Bitmaps256\yearlyRecurrenceControl.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Bitmaps256\dailyRecurrenceControl.bmp" />
+    <EmbeddedResource Include="Design\DailyRecurrenceControl.resx">
+      <DependentUpon>DailyRecurrenceControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Design\DailyRecurrenceControl.ru.resx"><DependentUpon>DailyRecurrenceControl.cs</DependentUpon></EmbeddedResource>
+    <EmbeddedResource Include="Design\DailyRecurrenceControl.ja.resx"><DependentUpon>DailyRecurrenceControl.cs</DependentUpon></EmbeddedResource>
+    <EmbeddedResource Include="Design\DailyRecurrenceControl.es.resx"><DependentUpon>DailyRecurrenceControl.cs</DependentUpon></EmbeddedResource>
+    <EmbeddedResource Include="Design\DailyRecurrenceControl.de.resx"><DependentUpon>DailyRecurrenceControl.cs</DependentUpon></EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Bitmaps256\monthlyRecurrenceControl.bmp" />
+    <EmbeddedResource Include="Design\MonthlyRecurrenceControl.resx">
+      <DependentUpon>MonthlyRecurrenceControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Design\MonthlyRecurrenceControl.ru.resx"><DependentUpon>MonthlyRecurrenceControl.cs</DependentUpon></EmbeddedResource>
+    <EmbeddedResource Include="Design\MonthlyRecurrenceControl.ja.resx"><DependentUpon>MonthlyRecurrenceControl.cs</DependentUpon></EmbeddedResource>
+    <EmbeddedResource Include="Design\MonthlyRecurrenceControl.es.resx"><DependentUpon>MonthlyRecurrenceControl.cs</DependentUpon></EmbeddedResource>
+    <EmbeddedResource Include="Design\MonthlyRecurrenceControl.de.resx"><DependentUpon>MonthlyRecurrenceControl.cs</DependentUpon></EmbeddedResource>
+    <EmbeddedResource Include="Design\WeekDaysCheckEdit.resx">
+      <DependentUpon>WeekDaysCheckEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Bitmaps256\weekDaysCheckEdit.bmp" />
+    <EmbeddedResource Include="Design\WeeklyRecurrenceControl.resx">
+      <DependentUpon>WeeklyRecurrenceControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Design\WeeklyRecurrenceControl.ru.resx"><DependentUpon>WeeklyRecurrenceControl.cs</DependentUpon></EmbeddedResource>
+    <EmbeddedResource Include="Design\WeeklyRecurrenceControl.ja.resx"><DependentUpon>WeeklyRecurrenceControl.cs</DependentUpon></EmbeddedResource>
+    <EmbeddedResource Include="Design\WeeklyRecurrenceControl.es.resx"><DependentUpon>WeeklyRecurrenceControl.cs</DependentUpon></EmbeddedResource>
+    <EmbeddedResource Include="Design\WeeklyRecurrenceControl.de.resx"><DependentUpon>WeeklyRecurrenceControl.cs</DependentUpon></EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Bitmaps256\weeklyRecurrenceControl.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Bitmaps256\durationEdit.bmp" />
+    <EmbeddedResource Include="Forms\AppointmentRecurrenceForm.resx">
+      <DependentUpon>AppointmentRecurrenceForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\AppointmentRecurrenceForm.ru.resx"><DependentUpon>AppointmentRecurrenceForm.cs</DependentUpon></EmbeddedResource>
+    <EmbeddedResource Include="Forms\AppointmentRecurrenceForm.ja.resx"><DependentUpon>AppointmentRecurrenceForm.cs</DependentUpon></EmbeddedResource>
+    <EmbeddedResource Include="Forms\AppointmentRecurrenceForm.es.resx"><DependentUpon>AppointmentRecurrenceForm.cs</DependentUpon></EmbeddedResource>
+    <EmbeddedResource Include="Forms\AppointmentRecurrenceForm.de.resx"><DependentUpon>AppointmentRecurrenceForm.cs</DependentUpon></EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Bitmaps256\resourcesEdit.bmp" />
+    <EmbeddedResource Include="Forms\AppointmentForm.resx">
+      <DependentUpon>AppointmentForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\AppointmentForm.ru.resx"><DependentUpon>AppointmentForm.cs</DependentUpon></EmbeddedResource>
+    <EmbeddedResource Include="Forms\AppointmentForm.ja.resx"><DependentUpon>AppointmentForm.cs</DependentUpon></EmbeddedResource>
+    <EmbeddedResource Include="Forms\AppointmentForm.es.resx"><DependentUpon>AppointmentForm.cs</DependentUpon></EmbeddedResource>
+    <EmbeddedResource Include="Forms\AppointmentForm.de.resx"><DependentUpon>AppointmentForm.cs</DependentUpon></EmbeddedResource>
+    <EmbeddedResource Include="Forms\RemindersForm.resx">
+      <DependentUpon>RemindersForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\RemindersForm.ru.resx"><DependentUpon>RemindersForm.cs</DependentUpon></EmbeddedResource>
+    <EmbeddedResource Include="Forms\RemindersForm.ja.resx"><DependentUpon>RemindersForm.cs</DependentUpon></EmbeddedResource>
+    <EmbeddedResource Include="Forms\RemindersForm.es.resx"><DependentUpon>RemindersForm.cs</DependentUpon></EmbeddedResource>
+    <EmbeddedResource Include="Forms\RemindersForm.de.resx"><DependentUpon>RemindersForm.cs</DependentUpon></EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Design\DateNavigator.resx">
+      <DependentUpon>DateNavigator.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\RecurrentAppointmentDeleteForm.resx">
+      <DependentUpon>RecurrentAppointmentDeleteForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\RecurrentAppointmentDeleteForm.ru.resx"><DependentUpon>RecurrentAppointmentDeleteForm.cs</DependentUpon></EmbeddedResource>
+    <EmbeddedResource Include="Forms\RecurrentAppointmentDeleteForm.ja.resx"><DependentUpon>RecurrentAppointmentDeleteForm.cs</DependentUpon></EmbeddedResource>
+    <EmbeddedResource Include="Forms\RecurrentAppointmentDeleteForm.es.resx"><DependentUpon>RecurrentAppointmentDeleteForm.cs</DependentUpon></EmbeddedResource>
+    <EmbeddedResource Include="Forms\RecurrentAppointmentDeleteForm.de.resx"><DependentUpon>RecurrentAppointmentDeleteForm.cs</DependentUpon></EmbeddedResource>
+    <EmbeddedResource Include="Images\Reminder.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Bitmaps256\datenavigator.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Bitmaps256\ResourcesComboBox.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Bitmaps256\ResourcesPopupCheckedListBox.bmp" />
+    <EmbeddedResource Include="Design\PrintStyleControls\CalendarDetailsPrintStyleOptionsControl.resx">
+      <DependentUpon>CalendarDetailsPrintStyleOptionsControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Design\PrintStyleControls\CalendarDetailsPrintStyleOptionsControl.ru.resx"><DependentUpon>CalendarDetailsPrintStyleOptionsControl.cs</DependentUpon></EmbeddedResource>
+    <EmbeddedResource Include="Design\PrintStyleControls\CalendarDetailsPrintStyleOptionsControl.ja.resx"><DependentUpon>CalendarDetailsPrintStyleOptionsControl.cs</DependentUpon></EmbeddedResource>
+    <EmbeddedResource Include="Design\PrintStyleControls\CalendarDetailsPrintStyleOptionsControl.es.resx"><DependentUpon>CalendarDetailsPrintStyleOptionsControl.cs</DependentUpon></EmbeddedResource>
+    <EmbeddedResource Include="Design\PrintStyleControls\CalendarDetailsPrintStyleOptionsControl.de.resx"><DependentUpon>CalendarDetailsPrintStyleOptionsControl.cs</DependentUpon></EmbeddedResource>
+    <EmbeddedResource Include="Design\PrintStyleControls\DailyPrintStyleOptions.resx">
+      <DependentUpon>DailyPrintStyleOptions.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Design\PrintStyleControls\DailyPrintStyleOptions.ru.resx"><DependentUpon>DailyPrintStyleOptions.cs</DependentUpon></EmbeddedResource>
+    <EmbeddedResource Include="Design\PrintStyleControls\DailyPrintStyleOptions.ja.resx"><DependentUpon>DailyPrintStyleOptions.cs</DependentUpon></EmbeddedResource>
+    <EmbeddedResource Include="Design\PrintStyleControls\DailyPrintStyleOptions.es.resx"><DependentUpon>DailyPrintStyleOptions.cs</DependentUpon></EmbeddedResource>
+    <EmbeddedResource Include="Design\PrintStyleControls\DailyPrintStyleOptions.de.resx"><DependentUpon>DailyPrintStyleOptions.cs</DependentUpon></EmbeddedResource>
+    <EmbeddedResource Include="Design\PrintStyleControls\MemoPrintStyleOptionsControl.resx">
+      <DependentUpon>MemoPrintStyleOptionsControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Design\PrintStyleControls\MemoPrintStyleOptionsControl.ru.resx"><DependentUpon>MemoPrintStyleOptionsControl.cs</DependentUpon></EmbeddedResource>
+    <EmbeddedResource Include="Design\PrintStyleControls\MemoPrintStyleOptionsControl.ja.resx"><DependentUpon>MemoPrintStyleOptionsControl.cs</DependentUpon></EmbeddedResource>
+    <EmbeddedResource Include="Design\PrintStyleControls\MemoPrintStyleOptionsControl.es.resx"><DependentUpon>MemoPrintStyleOptionsControl.cs</DependentUpon></EmbeddedResource>
+    <EmbeddedResource Include="Design\PrintStyleControls\MemoPrintStyleOptionsControl.de.resx"><DependentUpon>MemoPrintStyleOptionsControl.cs</DependentUpon></EmbeddedResource>
+    <EmbeddedResource Include="Design\PrintStyleControls\MonthlyPrintStyleOptionsControl.resx">
+      <DependentUpon>MonthlyPrintStyleOptionsControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Design\PrintStyleControls\MonthlyPrintStyleOptionsControl.ru.resx"><DependentUpon>MonthlyPrintStyleOptionsControl.cs</DependentUpon></EmbeddedResource>
+    <EmbeddedResource Include="Design\PrintStyleControls\MonthlyPrintStyleOptionsControl.ja.resx"><DependentUpon>MonthlyPrintStyleOptionsControl.cs</DependentUpon></EmbeddedResource>
+    <EmbeddedResource Include="Design\PrintStyleControls\MonthlyPrintStyleOptionsControl.es.resx"><DependentUpon>MonthlyPrintStyleOptionsControl.cs</DependentUpon></EmbeddedResource>
+    <EmbeddedResource Include="Design\PrintStyleControls\MonthlyPrintStyleOptionsControl.de.resx"><DependentUpon>MonthlyPrintStyleOptionsControl.cs</DependentUpon></EmbeddedResource>
+    <EmbeddedResource Include="Design\PrintStyleControls\picturePreviewControl.resx">
+      <DependentUpon>picturePreviewControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Design\PrintStyleControls\picturePreviewControl.ru.resx"><DependentUpon>picturePreviewControl.cs</DependentUpon></EmbeddedResource>
+    <EmbeddedResource Include="Design\PrintStyleControls\picturePreviewControl.ja.resx"><DependentUpon>picturePreviewControl.cs</DependentUpon></EmbeddedResource>
+    <EmbeddedResource Include="Design\PrintStyleControls\picturePreviewControl.es.resx"><DependentUpon>picturePreviewControl.cs</DependentUpon></EmbeddedResource>
+    <EmbeddedResource Include="Design\PrintStyleControls\picturePreviewControl.de.resx"><DependentUpon>picturePreviewControl.cs</DependentUpon></EmbeddedResource>
+    <EmbeddedResource Include="Design\PrintStyleControls\PrintStyleOptionsControlBase.resx">
+      <DependentUpon>PrintStyleOptionsControlBase.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Design\PrintStyleControls\PrintStyleOptionsControlBase.ru.resx"><DependentUpon>PrintStyleOptionsControlBase.cs</DependentUpon></EmbeddedResource>
+    <EmbeddedResource Include="Design\PrintStyleControls\PrintStyleOptionsControlBase.ja.resx"><DependentUpon>PrintStyleOptionsControlBase.cs</DependentUpon></EmbeddedResource>
+    <EmbeddedResource Include="Design\PrintStyleControls\PrintStyleOptionsControlBase.es.resx"><DependentUpon>PrintStyleOptionsControlBase.cs</DependentUpon></EmbeddedResource>
+    <EmbeddedResource Include="Design\PrintStyleControls\PrintStyleOptionsControlBase.de.resx"><DependentUpon>PrintStyleOptionsControlBase.cs</DependentUpon></EmbeddedResource>
+    <EmbeddedResource Include="Design\PrintStyleControls\TimeIntervalEditControl.resx">
+      <DependentUpon>TimeIntervalEditControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Design\PrintStyleControls\TimeIntervalEditControl.ru.resx"><DependentUpon>TimeIntervalEditControl.cs</DependentUpon></EmbeddedResource>
+    <EmbeddedResource Include="Design\PrintStyleControls\TimeIntervalEditControl.ja.resx"><DependentUpon>TimeIntervalEditControl.cs</DependentUpon></EmbeddedResource>
+    <EmbeddedResource Include="Design\PrintStyleControls\TimeIntervalEditControl.es.resx"><DependentUpon>TimeIntervalEditControl.cs</DependentUpon></EmbeddedResource>
+    <EmbeddedResource Include="Design\PrintStyleControls\TimeIntervalEditControl.de.resx"><DependentUpon>TimeIntervalEditControl.cs</DependentUpon></EmbeddedResource>
+    <EmbeddedResource Include="Design\PrintStyleControls\TriFoldPrintStyleOptionsControl.resx">
+      <DependentUpon>TriFoldPrintStyleOptionsControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Design\PrintStyleControls\TriFoldPrintStyleOptionsControl.ru.resx"><DependentUpon>TriFoldPrintStyleOptionsControl.cs</DependentUpon></EmbeddedResource>
+    <EmbeddedResource Include="Design\PrintStyleControls\TriFoldPrintStyleOptionsControl.ja.resx"><DependentUpon>TriFoldPrintStyleOptionsControl.cs</DependentUpon></EmbeddedResource>
+    <EmbeddedResource Include="Design\PrintStyleControls\TriFoldPrintStyleOptionsControl.es.resx"><DependentUpon>TriFoldPrintStyleOptionsControl.cs</DependentUpon></EmbeddedResource>
+    <EmbeddedResource Include="Design\PrintStyleControls\TriFoldPrintStyleOptionsControl.de.resx"><DependentUpon>TriFoldPrintStyleOptionsControl.cs</DependentUpon></EmbeddedResource>
+    <EmbeddedResource Include="Design\PrintStyleControls\WeeklyPrintStyleOptionsControl.resx">
+      <DependentUpon>WeeklyPrintStyleOptionsControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Design\PrintStyleControls\WeeklyPrintStyleOptionsControl.ru.resx"><DependentUpon>WeeklyPrintStyleOptionsControl.cs</DependentUpon></EmbeddedResource>
+    <EmbeddedResource Include="Design\PrintStyleControls\WeeklyPrintStyleOptionsControl.ja.resx"><DependentUpon>WeeklyPrintStyleOptionsControl.cs</DependentUpon></EmbeddedResource>
+    <EmbeddedResource Include="Design\PrintStyleControls\WeeklyPrintStyleOptionsControl.es.resx"><DependentUpon>WeeklyPrintStyleOptionsControl.cs</DependentUpon></EmbeddedResource>
+    <EmbeddedResource Include="Design\PrintStyleControls\WeeklyPrintStyleOptionsControl.de.resx"><DependentUpon>WeeklyPrintStyleOptionsControl.cs</DependentUpon></EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Bitmaps256\AppointmentResourcesEdit.bmp" />
+    <EmbeddedResource Include="Images\big_calendar.bmp" />
+    <EmbeddedResource Include="Images\big_dayonepage.bmp" />
+    <EmbeddedResource Include="Images\big_memo.bmp" />
+    <EmbeddedResource Include="Images\big_monthonepage.bmp" />
+    <EmbeddedResource Include="Images\big_monthtwopage.bmp" />
+    <EmbeddedResource Include="Images\big_trifold.bmp" />
+    <EmbeddedResource Include="Images\big_weeklefttorightonepage.bmp" />
+    <EmbeddedResource Include="Images\big_weeklefttorighttwopage.bmp" />
+    <EmbeddedResource Include="Images\big_weekonepage.bmp" />
+    <EmbeddedResource Include="Images\big_weektwopage.bmp" />
+    <EmbeddedResource Include="Design\PrintStyleControls\PageSetupFormatTabControl.resx">
+      <DependentUpon>PageSetupFormatTabControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Design\PrintStyleControls\PageSetupFormatTabControl.ru.resx"><DependentUpon>PageSetupFormatTabControl.cs</DependentUpon></EmbeddedResource>
+    <EmbeddedResource Include="Design\PrintStyleControls\PageSetupFormatTabControl.ja.resx"><DependentUpon>PageSetupFormatTabControl.cs</DependentUpon></EmbeddedResource>
+    <EmbeddedResource Include="Design\PrintStyleControls\PageSetupFormatTabControl.es.resx"><DependentUpon>PageSetupFormatTabControl.cs</DependentUpon></EmbeddedResource>
+    <EmbeddedResource Include="Design\PrintStyleControls\PageSetupFormatTabControl.de.resx"><DependentUpon>PageSetupFormatTabControl.cs</DependentUpon></EmbeddedResource>
+    <EmbeddedResource Include="Design\PrintStyleControls\PageSetupPaperTabControl.resx">
+      <DependentUpon>PageSetupPaperTabControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Design\PrintStyleControls\PageSetupPaperTabControl.ru.resx"><DependentUpon>PageSetupPaperTabControl.cs</DependentUpon></EmbeddedResource>
+    <EmbeddedResource Include="Design\PrintStyleControls\PageSetupPaperTabControl.ja.resx"><DependentUpon>PageSetupPaperTabControl.cs</DependentUpon></EmbeddedResource>
+    <EmbeddedResource Include="Design\PrintStyleControls\PageSetupPaperTabControl.es.resx"><DependentUpon>PageSetupPaperTabControl.cs</DependentUpon></EmbeddedResource>
+    <EmbeddedResource Include="Design\PrintStyleControls\PageSetupPaperTabControl.de.resx"><DependentUpon>PageSetupPaperTabControl.cs</DependentUpon></EmbeddedResource>
+    <EmbeddedResource Include="Design\PrintStyleControls\PageSetupResourcesTabControl.resx">
+      <DependentUpon>PageSetupResourcesTabControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Design\PrintStyleControls\PageSetupResourcesTabControl.ru.resx"><DependentUpon>PageSetupResourcesTabControl.cs</DependentUpon></EmbeddedResource>
+    <EmbeddedResource Include="Design\PrintStyleControls\PageSetupResourcesTabControl.ja.resx"><DependentUpon>PageSetupResourcesTabControl.cs</DependentUpon></EmbeddedResource>
+    <EmbeddedResource Include="Design\PrintStyleControls\PageSetupResourcesTabControl.es.resx"><DependentUpon>PageSetupResourcesTabControl.cs</DependentUpon></EmbeddedResource>
+    <EmbeddedResource Include="Design\PrintStyleControls\PageSetupResourcesTabControl.de.resx"><DependentUpon>PageSetupResourcesTabControl.cs</DependentUpon></EmbeddedResource>
+    <EmbeddedResource Include="Design\PrintStyleControls\PrintRangeControl.resx">
+      <DependentUpon>PrintRangeControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Design\PrintStyleControls\PrintRangeControl.ru.resx"><DependentUpon>PrintRangeControl.cs</DependentUpon></EmbeddedResource>
+    <EmbeddedResource Include="Design\PrintStyleControls\PrintRangeControl.ja.resx"><DependentUpon>PrintRangeControl.cs</DependentUpon></EmbeddedResource>
+    <EmbeddedResource Include="Design\PrintStyleControls\PrintRangeControl.es.resx"><DependentUpon>PrintRangeControl.cs</DependentUpon></EmbeddedResource>
+    <EmbeddedResource Include="Design\PrintStyleControls\PrintRangeControl.de.resx"><DependentUpon>PrintRangeControl.cs</DependentUpon></EmbeddedResource>
+    <EmbeddedResource Include="Forms\DefineNewStyleForm.resx">
+      <DependentUpon>DefineNewStyleForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DefineNewStyleForm.ru.resx"><DependentUpon>DefineNewStyleForm.cs</DependentUpon></EmbeddedResource>
+    <EmbeddedResource Include="Forms\DefineNewStyleForm.ja.resx"><DependentUpon>DefineNewStyleForm.cs</DependentUpon></EmbeddedResource>
+    <EmbeddedResource Include="Forms\DefineNewStyleForm.es.resx"><DependentUpon>DefineNewStyleForm.cs</DependentUpon></EmbeddedResource>
+    <EmbeddedResource Include="Forms\DefineNewStyleForm.de.resx"><DependentUpon>DefineNewStyleForm.cs</DependentUpon></EmbeddedResource>
+    <EmbeddedResource Include="Forms\PageSetupForm.resx">
+      <DependentUpon>PageSetupForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\PageSetupForm.ru.resx"><DependentUpon>PageSetupForm.cs</DependentUpon></EmbeddedResource>
+    <EmbeddedResource Include="Forms\PageSetupForm.ja.resx"><DependentUpon>PageSetupForm.cs</DependentUpon></EmbeddedResource>
+    <EmbeddedResource Include="Forms\PageSetupForm.es.resx"><DependentUpon>PageSetupForm.cs</DependentUpon></EmbeddedResource>
+    <EmbeddedResource Include="Forms\PageSetupForm.de.resx"><DependentUpon>PageSetupForm.cs</DependentUpon></EmbeddedResource>
+    <EmbeddedResource Include="Forms\ShadingSetupForm.resx">
+      <DependentUpon>ShadingSetupForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ShadingSetupForm.ru.resx"><DependentUpon>ShadingSetupForm.cs</DependentUpon></EmbeddedResource>
+    <EmbeddedResource Include="Forms\ShadingSetupForm.ja.resx"><DependentUpon>ShadingSetupForm.cs</DependentUpon></EmbeddedResource>
+    <EmbeddedResource Include="Forms\ShadingSetupForm.es.resx"><DependentUpon>ShadingSetupForm.cs</DependentUpon></EmbeddedResource>
+    <EmbeddedResource Include="Forms\ShadingSetupForm.de.resx"><DependentUpon>ShadingSetupForm.cs</DependentUpon></EmbeddedResource>
+    <EmbeddedResource Include="Images\shadows.png" />
+    
+    <EmbeddedResource Include="Images\small_calendar.bmp" />
+    <EmbeddedResource Include="Images\small_dayonepage.bmp" />
+    <EmbeddedResource Include="Images\small_memo.bmp" />
+    <EmbeddedResource Include="Images\small_monthonepage.bmp" />
+    <EmbeddedResource Include="Images\small_monthtwopage.bmp" />
+    <EmbeddedResource Include="Images\small_trifold.bmp" />
+    <EmbeddedResource Include="Images\small_weeklefttorightonepage.bmp" />
+    <EmbeddedResource Include="Images\small_weeklefttorighttwopage.bmp" />
+    <EmbeddedResource Include="Images\small_weekonepage.bmp" />
+    <EmbeddedResource Include="Images\small_weektwopage.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\navButtonNext.png" />
+    <EmbeddedResource Include="Images\navButtonPrev.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\appointmentStartContinueArrow.png" />
+    <EmbeddedResource Include="Images\appointmentEndContinueArrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Bitmaps256\SchedulerStorage.bmp" />
+    <EmbeddedResource Include="Forms\RecurrenceAppointmentEditForm.resx">
+      <DependentUpon>RecurrenceAppointmentEditForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\RecurrenceAppointmentEditForm.ru.resx"><DependentUpon>RecurrenceAppointmentEditForm.cs</DependentUpon></EmbeddedResource>
+    <EmbeddedResource Include="Forms\RecurrenceAppointmentEditForm.ja.resx"><DependentUpon>RecurrenceAppointmentEditForm.cs</DependentUpon></EmbeddedResource>
+    <EmbeddedResource Include="Forms\RecurrenceAppointmentEditForm.es.resx"><DependentUpon>RecurrenceAppointmentEditForm.cs</DependentUpon></EmbeddedResource>
+    <EmbeddedResource Include="Forms\RecurrenceAppointmentEditForm.de.resx"><DependentUpon>RecurrenceAppointmentEditForm.cs</DependentUpon></EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\cut_cursor.cur" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\dependencyArrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    
+    
+    
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\SplitAppointment_16x16.png" />
+    <EmbeddedResource Include="Images\SplitAppointment_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Bitmaps256\appointmentLabelEdit.VisualStudio.11.0.bmp" />
+    <EmbeddedResource Include="Bitmaps256\AppointmentResourcesEdit.VisualStudio.11.0.bmp" />
+    <EmbeddedResource Include="Bitmaps256\appointmentStatusEdit.VisualStudio.11.0.bmp" />
+    <EmbeddedResource Include="Bitmaps256\dailyRecurrenceControl.VisualStudio.11.0.bmp" />
+    <EmbeddedResource Include="Bitmaps256\datenavigator.VisualStudio.11.0.bmp" />
+    <EmbeddedResource Include="Bitmaps256\durationEdit.VisualStudio.11.0.bmp" />
+    <EmbeddedResource Include="Bitmaps256\monthEdit.VisualStudio.11.0.bmp" />
+    <EmbeddedResource Include="Bitmaps256\monthlyRecurrenceControl.VisualStudio.11.0.bmp" />
+    <EmbeddedResource Include="Bitmaps256\recurrenceControlBase.VisualStudio.11.0.bmp" />
+    <EmbeddedResource Include="Bitmaps256\ResourcesCheckedListBox.VisualStudio.11.0.bmp" />
+    <EmbeddedResource Include="Bitmaps256\ResourcesComboBox.VisualStudio.11.0.bmp" />
+    <EmbeddedResource Include="Bitmaps256\resourcesEdit.VisualStudio.11.0.bmp" />
+    <EmbeddedResource Include="Bitmaps256\ResourcesPopupCheckedListBox.VisualStudio.11.0.bmp" />
+    <EmbeddedResource Include="Bitmaps256\schedulercontrol.VisualStudio.11.0.bmp" />
+    <EmbeddedResource Include="Bitmaps256\SchedulerStorage.VisualStudio.11.0.bmp" />
+    <EmbeddedResource Include="Bitmaps256\TimeZoneEdit.VisualStudio.11.0.bmp" />
+    <EmbeddedResource Include="Bitmaps256\weekDaysCheckEdit.VisualStudio.11.0.bmp" />
+    <EmbeddedResource Include="Bitmaps256\weekDaysEdit.VisualStudio.11.0.bmp" />
+    <EmbeddedResource Include="Bitmaps256\weeklyRecurrenceControl.VisualStudio.11.0.bmp" />
+    <EmbeddedResource Include="Bitmaps256\weekOfMonthEdit.VisualStudio.11.0.bmp" />
+    <EmbeddedResource Include="Bitmaps256\yearlyRecurrenceControl.VisualStudio.11.0.bmp" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    
+    
+  </PropertyGroup>
+<ItemGroup><EmbeddedResource Include="Descriptions.resx" /></ItemGroup><ItemGroup><Compile Include="Descriptions.cs" /></ItemGroup></Project>

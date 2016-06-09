@@ -1,0 +1,83 @@
+﻿<UserControl x:Class="DevExpress.Xpf.Bars.Customization.CommandsCustomizationControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:dxtEx="clr-namespace:DevExpress.Xpf.Utils.Themes"
+    xmlns:dx="clr-namespace:DevExpress.Xpf.Core"
+    xmlns:dxbc="clr-namespace:DevExpress.Xpf.Bars.Customization"
+    xmlns:dxbt="clr-namespace:DevExpress.Xpf.Bars.Themes"
+    xmlns:local="clr-namespace:DevExpress.Xpf.Bars.Customization"
+    Loaded="OnLoaded">
+    
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <DataTemplate x:Key="CommandsListBoxItemTemplate">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <dx:ImagePixelSnapper VerticalAlignment="Center" HorizontalAlignment="Center" Width="16" Height="16" Margin="4,0,4,0">
+                        <Image Source="{Binding Glyph}" Stretch="UniformToFill"/>
+                    </dx:ImagePixelSnapper>
+                    <ContentPresenter Name="glyphTemplate" ContentTemplate="{Binding Path=Item.GlyphTemplate}" MaxWidth="16" MaxHeight="16" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="4,0,4,0"/>
+                    <TextBlock VerticalAlignment="Center" Grid.Column="1" Margin="4,0,4,0">
+                        <!--BEGIN WPF-->
+                        <AccessText Text="{Binding Item.ActualCustomizationContent}"/>
+                        <!--END WPF-->
+                        <!--ONLY SL<TextBlock.Text>
+                            <Binding Path="Item.ActualCustomizationContent"/>
+                        </TextBlock.Text>ONLY SL-->
+                    </TextBlock>
+                    <TextBlock VerticalAlignment="Center" HorizontalAlignment="Right" Margin="13,0,4,0" Grid.Column="2" Text="{Binding Item.KeyGesture.DisplayString}"/>
+                </Grid>
+                <DataTemplate.Triggers>
+                    <DataTrigger Binding="{Binding Path=Item.GlyphTemplate}" Value="{x:Null}">
+                        <Setter TargetName="glyphTemplate" Property="Visibility" Value="Collapsed"/>
+                    </DataTrigger>
+                </DataTemplate.Triggers>
+            </DataTemplate>
+            <dx:BarsStringIdConverter x:Key="BarsStringIdConverter" />
+        </ResourceDictionary>
+    </UserControl.Resources>
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0" Margin="0,0,6,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <TextBlock x:Name="categoriesLabel" Margin="0,0,0,3" Text="{Binding ConverterParameter=CommandsCustomizationControl_CategoriesListCaption, Converter={StaticResource BarsStringIdConverter}, RelativeSource={RelativeSource Self}}" />
+                <ListBox x:Name="categoriesList" Grid.Row="1" SelectionChanged="OnCategoriesListSelectionChanged" />
+            </Grid>
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <TextBlock x:Name="commandsLabel" Margin="0,0,0,3" Text="{Binding ConverterParameter=CommandsCustomizationControl_CommandsListCaption, Converter={StaticResource BarsStringIdConverter}, RelativeSource={RelativeSource Self}}" />
+                <!--BEGIN WPF--><dxbc:BarItemList x:Name="commandsList" Grid.Row="1" ItemTemplate="{StaticResource CommandsListBoxItemTemplate}" /><!--END WPF-->
+                <!--ONLY SL<dxbc:BarItemList x:Name="commandsList" Grid.Row="1" HorizontalContentAlignment="Stretch" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto" ItemTemplate="{StaticResource CommandsListBoxItemTemplate}"/>ONLY SL-->
+            </Grid>
+        </Grid>
+        <StackPanel Margin="0,12,0,0" Grid.Row="1">
+            <Grid Margin="0,0,0,6">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <TextBlock x:Name="descriptionLabel" Text="{Binding ConverterParameter=CommandsCustomizationControl_DescriptionCaption, Converter={StaticResource BarsStringIdConverter}, RelativeSource={RelativeSource Self}}" />
+                <!--BEGIN WPF--><Separator Grid.Column="1" VerticalAlignment="Center" Margin="6,1,0,0" /><!--END WPF-->
+            </Grid>
+            <TextBlock x:Name="descriptionContent" MinHeight="30" Text="{Binding Path=SelectedItem.Description, ElementName=commandsList}" />
+        </StackPanel>
+    </Grid>
+</UserControl>

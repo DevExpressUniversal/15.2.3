@@ -1,0 +1,297 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:dxtEx="clr-namespace:DevExpress.Xpf.Utils.Themes" 
+    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+    xmlns:dx="clr-namespace:DevExpress.Xpf.Core" 
+    xmlns:dxc="clr-namespace:DevExpress.Xpf.Core"
+    xmlns:dxt="clr-namespace:DevExpress.Xpf.Utils.Themes" 
+    xmlns:dxb="clr-namespace:DevExpress.Xpf.Bars" 
+    xmlns:dxbt="clr-namespace:DevExpress.Xpf.Bars.Themes" 
+    xmlns:dxbc="clr-namespace:DevExpress.Xpf.Bars.Customization"
+    >
+	
+	<SolidColorBrush x:Key="hotBrush" Color="#FFF2B40E" />
+	<SolidColorBrush x:Key="pressedBrush" Color="#FFEA8D2F" />
+	<Thickness x:Key="{dxbt:SubMenuBarControlThemeKey ResourceKey=GlyphPadding}">7,0,9,0</Thickness>
+	<ControlTemplate x:Key="{dxbt:SubMenuBarControlThemeKey ResourceKey=ScrollUpButtonTemplate}" TargetType="{x:Type RepeatButton}">
+		<Grid>
+			<Border x:Name="border" BorderBrush="#FF8BA7CE" BorderThickness="0,0,0,1" CornerRadius="2,2,0,0">
+				<Border.Background>
+					<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+						<GradientStop Color="#FFD4E4F7" Offset="0" />
+						<GradientStop Color="#FFB0CAF0" Offset="1" />
+						<GradientStop Color="#FFD3E3F9" Offset="0.5" />
+						<GradientStop Color="#FFBDD5F4" Offset="0.5" />
+					</LinearGradientBrush>
+				</Border.Background>
+			</Border>
+			<Border x:Name="pressedBorder" BorderBrush="#FF8BA7CE" BorderThickness="0,0,0,1" CornerRadius="2,2,0,0" Opacity="0">
+				<Border.Background>
+					<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+						<GradientStop Color="#FFEAF0F7" Offset="0" />
+						<GradientStop Color="#FFA5C0E6" Offset="1" />
+						<GradientStop Color="#FFD9E6F7" Offset="0.5" />
+						<GradientStop Color="#FFCDDDF4" Offset="0.5" />
+					</LinearGradientBrush>
+				</Border.Background>
+			</Border>
+			<Path Fill="#FF2D4F85" HorizontalAlignment="Center" VerticalAlignment="Center" Data="M0,0L3.5,4 7,0z" RenderTransformOrigin="0.5,0.5">
+				<Path.RenderTransform>
+					<TransformGroup>
+						<ScaleTransform ScaleX="1" ScaleY="-1" />
+						<SkewTransform AngleX="0" AngleY="0" />
+						<RotateTransform Angle="0" />
+						<TranslateTransform X="0" Y="0" />
+					</TransformGroup>
+				</Path.RenderTransform>
+			</Path>
+			<VisualStateManager.VisualStateGroups>
+				<VisualStateGroup x:Name="CommonStates">
+					<VisualState x:Name="Normal" />
+					<VisualState x:Name="MouseOver">
+					</VisualState>
+					<VisualState x:Name="Pressed">
+						<Storyboard>
+							<DoubleAnimationUsingKeyFrames Storyboard.TargetName="pressedBorder" Storyboard.TargetProperty="Opacity">
+								<DiscreteDoubleKeyFrame KeyTime="0" Value="1" />
+							</DoubleAnimationUsingKeyFrames>
+							<DoubleAnimationUsingKeyFrames Storyboard.TargetName="border" Storyboard.TargetProperty="Opacity">
+								<DiscreteDoubleKeyFrame KeyTime="0" Value="0" />
+							</DoubleAnimationUsingKeyFrames>
+						</Storyboard>
+					</VisualState>
+				</VisualStateGroup>
+			</VisualStateManager.VisualStateGroups>
+		</Grid>
+	</ControlTemplate>
+	<Style x:Key="{dxbt:SubMenuBarControlThemeKey ResourceKey=ScrollUpButtonStyle}" TargetType="{x:Type RepeatButton}">
+		<Setter Property="ClickMode" Value="Hover" />
+		<Setter Property="MinHeight" Value="12" />
+		<Setter Property="Template" Value="{DynamicResource {dxbt:SubMenuBarControlThemeKey ResourceKey=ScrollUpButtonTemplate}}" />
+	</Style>
+	<ControlTemplate x:Key="{dxbt:SubMenuBarControlThemeKey ResourceKey=ScrollDownButtonTemplate}" TargetType="{x:Type RepeatButton}">
+		<Grid>
+			<Border x:Name="border" CornerRadius="0,0,2,2" BorderThickness="0,1,0,0" BorderBrush="#FFA5C0E6">
+				<Border.Background>
+					<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+						<GradientStop Color="#FFE8F2FF" Offset="0" />
+						<GradientStop Color="#FFA5C0E6" Offset="1" />
+						<GradientStop Color="#FFCEE0F8" Offset="0.5" />
+						<GradientStop Color="#FFBDD3F2" Offset="0.5" />
+					</LinearGradientBrush>
+				</Border.Background>
+			</Border>
+			<Border x:Name="pressedBorder" CornerRadius="0,0,2,2" BorderThickness="0,1,0,0" BorderBrush="#FFA5C0E6" Opacity="0">
+				<Border.Background>
+					<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+						<GradientStop Color="#FFF6FAFF" Offset="0" />
+						<GradientStop Color="#FFA5C0E6" Offset="1" />
+						<GradientStop Color="#FFDFEBFB" Offset="0.5" />
+						<GradientStop Color="#FFD3E3F9" Offset="0.5" />
+					</LinearGradientBrush>
+				</Border.Background>
+			</Border>
+			<Path Fill="#FF2D4F85" Data="M0,0L3.5,4 7,0z" HorizontalAlignment="Center" VerticalAlignment="Center" />
+			<VisualStateManager.VisualStateGroups>
+				<VisualStateGroup x:Name="CommonStates">
+					<VisualState x:Name="Normal" />
+					<VisualState x:Name="MouseOver">
+					</VisualState>
+					<VisualState x:Name="Pressed">
+						<Storyboard>
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="pressedBorder" Storyboard.TargetProperty="Opacity">
+                                <DiscreteDoubleKeyFrame KeyTime="0" Value="1" />
+                            </DoubleAnimationUsingKeyFrames>
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="border" Storyboard.TargetProperty="Opacity">
+                                <DiscreteDoubleKeyFrame KeyTime="0" Value="0" />
+                            </DoubleAnimationUsingKeyFrames>
+                        </Storyboard>
+					</VisualState>
+				</VisualStateGroup>
+			</VisualStateManager.VisualStateGroups>
+		</Grid>
+	</ControlTemplate>     
+    <ControlTemplate x:Key="{dxbt:SubMenuBarControlThemeKey ResourceKey=ScrollRightButtonTemplate}" TargetType="{x:Type RepeatButton}">
+        <Grid>
+            <Border x:Name="border" BorderBrush="#FF8BA7CE" BorderThickness="0,0,0,1" CornerRadius="0,2,2,0">
+                <Border.Background>
+                    <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
+                        <GradientStop Color="#FFD4E4F7" Offset="0" />
+                        <GradientStop Color="#FFB0CAF0" Offset="1" />
+                        <GradientStop Color="#FFD3E3F9" Offset="0.5" />
+                        <GradientStop Color="#FFBDD5F4" Offset="0.5" />
+                    </LinearGradientBrush>
+                </Border.Background>
+            </Border>
+            <Border x:Name="pressedBorder" BorderBrush="#FF8BA7CE" BorderThickness="0,0,0,1" CornerRadius="0,2,2,0" Opacity="0">
+                <Border.Background>
+                    <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
+                        <GradientStop Color="#FFEAF0F7" Offset="0" />
+                        <GradientStop Color="#FFA5C0E6" Offset="1" />
+                        <GradientStop Color="#FFD9E6F7" Offset="0.5" />
+                        <GradientStop Color="#FFCDDDF4" Offset="0.5" />
+                    </LinearGradientBrush>
+                </Border.Background>
+            </Border>
+            <Path Fill="#FF2D4F85" HorizontalAlignment="Center" VerticalAlignment="Center" Data="M0,0L3.5,4 7,0z" RenderTransformOrigin="0.5,0.5">
+                <Path.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform ScaleX="1" ScaleY="-1" />
+                        <SkewTransform AngleX="0" AngleY="0" />
+                        <RotateTransform Angle="90" />
+                        <TranslateTransform X="0" Y="0" />
+                    </TransformGroup>
+                </Path.RenderTransform>
+            </Path>
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup x:Name="CommonStates">
+                    <VisualState x:Name="Normal" />
+                    <VisualState x:Name="MouseOver">
+                    </VisualState>
+                    <VisualState x:Name="Pressed">
+                        <Storyboard>
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="pressedBorder" Storyboard.TargetProperty="Opacity">
+                                <DiscreteDoubleKeyFrame KeyTime="0" Value="1" />
+                            </DoubleAnimationUsingKeyFrames>
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="border" Storyboard.TargetProperty="Opacity">
+                                <DiscreteDoubleKeyFrame KeyTime="0" Value="0" />
+                            </DoubleAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+        </Grid>
+    </ControlTemplate> 
+    <ControlTemplate x:Key="{dxbt:SubMenuBarControlThemeKey ResourceKey=ScrollLeftButtonTemplate}" TargetType="{x:Type RepeatButton}">
+        <Grid>
+            <Border x:Name="border" BorderBrush="#FF8BA7CE" BorderThickness="0,0,0,1" CornerRadius="2,0,0,2">
+                <Border.Background>
+                    <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
+                        <GradientStop Color="#FFD4E4F7" Offset="0" />
+                        <GradientStop Color="#FFB0CAF0" Offset="1" />
+                        <GradientStop Color="#FFD3E3F9" Offset="0.5" />
+                        <GradientStop Color="#FFBDD5F4" Offset="0.5" />
+                    </LinearGradientBrush>
+                </Border.Background>
+            </Border>
+            <Border x:Name="pressedBorder" BorderBrush="#FF8BA7CE" BorderThickness="0,0,0,1" CornerRadius="2,0,0,2" Opacity="0">
+                <Border.Background>
+                    <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
+                        <GradientStop Color="#FFEAF0F7" Offset="0" />
+                        <GradientStop Color="#FFA5C0E6" Offset="1" />
+                        <GradientStop Color="#FFD9E6F7" Offset="0.5" />
+                        <GradientStop Color="#FFCDDDF4" Offset="0.5" />
+                    </LinearGradientBrush>
+                </Border.Background>
+            </Border>
+            <Path Fill="#FF2D4F85" HorizontalAlignment="Center" VerticalAlignment="Center" Data="M0,0L3.5,4 7,0z" RenderTransformOrigin="0.5,0.5">
+                <Path.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform ScaleX="1" ScaleY="-1" />
+                        <SkewTransform AngleX="0" AngleY="0" />
+                        <RotateTransform Angle="-90" />
+                        <TranslateTransform X="0" Y="0" />
+                    </TransformGroup>
+                </Path.RenderTransform>
+            </Path>
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup x:Name="CommonStates">
+                    <VisualState x:Name="Normal" />
+                    <VisualState x:Name="MouseOver">
+                    </VisualState>
+                    <VisualState x:Name="Pressed">
+                        <Storyboard>
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="pressedBorder" Storyboard.TargetProperty="Opacity">
+                                <DiscreteDoubleKeyFrame KeyTime="0" Value="1" />
+                            </DoubleAnimationUsingKeyFrames>
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="border" Storyboard.TargetProperty="Opacity">
+                                <DiscreteDoubleKeyFrame KeyTime="0" Value="0" />
+                            </DoubleAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+        </Grid>
+    </ControlTemplate>
+    <Style x:Key="{dxbt:SubMenuBarControlThemeKey ResourceKey=ScrollLeftButtonStyle}" TargetType="{x:Type RepeatButton}">
+        <Setter Property="ClickMode" Value="Hover" />
+        <Setter Property="MinWidth" Value="12" />
+        <Setter Property="Template" Value="{DynamicResource {dxbt:SubMenuBarControlThemeKey ResourceKey=ScrollLeftButtonTemplate}}" />
+    </Style>
+    <Style x:Key="{dxbt:SubMenuBarControlThemeKey ResourceKey=ScrollRightButtonStyle}" TargetType="{x:Type RepeatButton}">
+        <Setter Property="ClickMode" Value="Hover" />
+        <Setter Property="MinWidth" Value="12" />
+        <Setter Property="Template" Value="{DynamicResource {dxbt:SubMenuBarControlThemeKey ResourceKey=ScrollRightButtonTemplate}}" />
+    </Style>
+    <Style x:Key="{dxbt:SubMenuBarControlThemeKey ResourceKey=ScrollDownButtonStyle}" TargetType="{x:Type RepeatButton}">
+		<Setter Property="ClickMode" Value="Hover" />
+		<Setter Property="MinHeight" Value="12" />
+		<Setter Property="Template" Value="{DynamicResource {dxbt:SubMenuBarControlThemeKey ResourceKey=ScrollDownButtonTemplate}}" />
+	</Style>
+	<ControlTemplate x:Key="{dxbt:SubMenuBarControlThemeKey ResourceKey=GlyphSideBorderTemplate}" TargetType="{x:Type ContentControl}">
+		<Border x:Name="PART_Border" SnapsToDevicePixels="True" CornerRadius="2,0,0,2" Background="#FFE4E4E4" />
+        <ControlTemplate.Triggers>
+            <DataTrigger xmlns:interop="clr-namespace:System.Windows.Interop;assembly=PresentationFramework" Binding="{Binding Source={x:Static interop:BrowserInteropHelper.IsBrowserHosted}}" Value="True">
+                <Setter TargetName="PART_Border" Property="CornerRadius" Value="0,0,0,0" />
+            </DataTrigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+	<ControlTemplate x:Key="{dxbt:SubMenuBarControlThemeKey ResourceKey=ContentSideBorderTemplate}" TargetType="{x:Type ContentControl}">
+		<Border x:Name="PART_Border" SnapsToDevicePixels="True" CornerRadius="2" Background="White" />
+        <ControlTemplate.Triggers>
+            <DataTrigger xmlns:interop="clr-namespace:System.Windows.Interop;assembly=PresentationFramework" Binding="{Binding Source={x:Static interop:BrowserInteropHelper.IsBrowserHosted}}" Value="True">
+                <Setter TargetName="PART_Border" Property="CornerRadius" Value="0,0,0,0" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Path=Popup.ExpandMode, RelativeSource={RelativeSource AncestorType={x:Type dxb:SubMenuBarControl}}}" Value="TabletOffice">
+                <Setter TargetName="PART_Border" Property="CornerRadius" Value="0,0,2,2"/>
+            </DataTrigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="{dxbt:SubMenuBarControlThemeKey ResourceKey=DropIndicatorTemplate}" TargetType="{x:Type ContentControl}">
+        <Grid Name="PART_Content" SnapsToDevicePixels="True">
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup x:Name="Orientation">
+                    <VisualState x:Name="Horizontal">
+                        <Storyboard>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Content" Storyboard.TargetProperty="RenderTransform">
+                                <DiscreteObjectKeyFrame KeyTime="0:0:0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <TransformGroup x:Name="HorizontalTransform">
+                                            <TranslateTransform X="-3" Y="0" />
+                                        </TransformGroup>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Vertical">
+                        <Storyboard>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Content" Storyboard.TargetProperty="RenderTransform">
+                                <DiscreteObjectKeyFrame KeyTime="0:0:0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <TransformGroup x:Name="VerticalTransform">
+                                            <RotateTransform Angle="-90" CenterX="0.5" CenterY="0.5" />
+                                            <TranslateTransform X="0" Y="3" />
+                                        </TransformGroup>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+
+            <Border Width="6" Height="2" Background="Black" VerticalAlignment="Top" Margin="0,5,0,0" />
+            <Border Width="6" Height="2" Background="Black" VerticalAlignment="Bottom" Margin="0,0,0,5" />
+            <dx:PixelSnapper Width="2" HorizontalAlignment="Center" Margin="0,5,0,5">
+                <Border Background="Black" />
+            </dx:PixelSnapper>
+            <Grid.RenderTransform>
+                <TranslateTransform X="-3" Y="0" />
+            </Grid.RenderTransform>
+        </Grid>
+    </ControlTemplate>
+    <ControlTemplate x:Key="{dxbt:SubMenuBarControlThemeKey ResourceKey=PopupMenuColumnSplitterTemplate}" TargetType="{x:Type dxb:PopupMenuColumnSplitter}">
+        <Border Background="#FFB0B0B0" Width="1" VerticalAlignment="Stretch" HorizontalAlignment="Center" />
+    </ControlTemplate>
+</ResourceDictionary>

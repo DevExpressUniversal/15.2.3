@@ -1,0 +1,147 @@
+﻿<#@ template language="C#" #>
+<#@ import namespace="System" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.Diagnostics" #>
+<#@ import namespace="System.IO" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Xml" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="DevExpress.Xpf.Core.Design.Wizards.Mvvm.EntityFramework" #>
+<#@ import namespace="DevExpress.Xpf.Core.Design.Wizards.Mvvm" #>
+<#@ import namespace="DevExpress.Xpf.Core.Design.Wizards.Mvvm.ViewModelData" #>
+<#@ import namespace="DevExpress.Xpf.Core.Native" #>
+<#
+	T4TemplateInfo templateInfo = this.GetTemplateInfo();
+	DocumentManagerViewModelInfo viewModelData = templateInfo.Properties["IViewModelInfo"] as DocumentManagerViewModelInfo;
+
+	string[] tileColors = new string[] { "#FF00879C", "#FF404040", "#FFCC6D00", "#FF0073C4", "#FF3E7038" };
+
+    string viewModelNamespace = viewModelData.Namespace;
+	if(!viewModelData.IsLocalType && !string.IsNullOrEmpty(viewModelData.AssemblyName))
+		viewModelNamespace += ";assembly="+ viewModelData.AssemblyName;
+
+    string viewName = templateInfo.Properties["ViewName"].ToString();    
+    string localNamespace = templateInfo.Properties["Namespace"].ToString();
+	string viewFullName = localNamespace +"." + viewName;
+	
+	XamlNamespaces xamlNamespaces = templateInfo.Properties["XamlNamespaces"] as XamlNamespaces;
+	string viewModelPrefix = templateInfo.Properties["viewModelPrefix"].ToString();
+#>
+<UserControl x:Class="<#=viewFullName#>"
+<#
+    PasteXamlNamespaces(xamlNamespaces);
+#>
+	xmlns:pfdata="clr-namespace:System.Windows.Data;assembly=PresentationFramework"
+    mc:Ignorable="<#=xamlNamespaces.GetPrefix(XamlNamespaces.xmlns_blend)#>"
+	dx:ScrollBarExtensions.ScrollBarMode="TouchOverlap"
+    d:DesignHeight="600" d:DesignWidth="800" DataContext="{dxmvvm:ViewModelSource <#=viewModelPrefix#>:<#=viewModelData.Name#>}">
+	<UserControl.Resources>
+		<dxmvvm:ObjectToObjectConverter x:Key="TileColorConverter">
+<#for(int tileColorIndex = 0; tileColorIndex < tileColors.Length; ++tileColorIndex) {#>
+            <dxmvvm:MapItem Source="<#=tileColorIndex#>" Target="<#=tileColors[tileColorIndex]#>" />
+<#}#>
+		</dxmvvm:ObjectToObjectConverter>
+	</UserControl.Resources>
+    <dxmvvm:Interaction.Behaviors>
+<#if(viewModelData.Tables.Any()) {#>
+		<dxmvvm:EventToCommand EventName="Initialized" Command="{Binding OnLoadedCommand}" CommandParameter="{Binding DefaultModule}" />
+<#}#>
+        <dxmvvm:CurrentWindowService ClosingCommand="{Binding OnClosingCommand}" />
+		<dxmvvm:LayoutSerializationService Name="RootLayoutSerializationService" />
+		<dxmvvm:CurrentWindowSerializationBehavior />
+		<#this.ExecuteDocumentManagerViewHook(TemplatesCodeGen.STR_DocumentManagerViewHook_GenerateAdditionalBehaviors);#>
+    </dxmvvm:Interaction.Behaviors>
+	<dx:BackgroundPanel>
+        <DockPanel>
+            <DockPanel.Resources>
+                <CollectionViewSource x:Key="ItemsSource" Source="{Binding Modules}">
+                    <CollectionViewSource.GroupDescriptions>
+                        <pfdata:PropertyGroupDescription PropertyName="ModuleGroup" />
+                    </CollectionViewSource.GroupDescriptions>
+                </CollectionViewSource>
+            </DockPanel.Resources>
+            <dxnav:TileBar ItemsSource="{Binding Source={StaticResource ItemsSource}}" DockPanel.Dock="Top" Padding="0,0,0,27" Background="#FFE8E8E8" AlternationCount="<#=tileColors.Length#>" ShowGroupHeaders="False" SelectedItem="{Binding SelectedModule}">
+				<dxnav:TileBar.ItemContainerStyle>
+					<Style TargetType="dxnav:TileBarItem">
+						<Setter Property="Width" Value="166" />
+						<Setter Property="AllowGlyphTheming" Value="True" />
+						<Setter Property="Content" Value="{Binding ModuleTitle}" />
+						<Setter Property="TileGlyph" Value="<#=this.ExpandMarkupExtension(new DXImageGrayscaleExtension() { Image = (DXImageInfo)new DXImageGrayscaleConverter().ConvertFrom("Cube_16x16.png") })#>" />
+						<Setter Property="Background" Value="{Binding Path=(ItemsControl.AlternationIndex), RelativeSource={RelativeSource Self}, Converter={StaticResource TileColorConverter}}" />
+						<#this.ExecuteDocumentManagerViewHook(TemplatesCodeGen.STR_DocumentManagerViewHook_WinUI_GenerateAdditionalTileBarItemSettings);#>
+					</Style>
+				</dxnav:TileBar.ItemContainerStyle>
+                <dxnav:TileBar.GroupStyle>
+                    <GroupStyle>
+                        <GroupStyle.HeaderTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Name, Converter={dxmvvm:CriteriaOperatorConverter Expression=Upper(This)}}" Margin="9,28,0,5" />
+                            </DataTemplate>
+                        </GroupStyle.HeaderTemplate>
+                        <GroupStyle.Panel>
+                            <ItemsPanelTemplate>
+                                <dxnavi:TileBarItemsPanel Orientation="Horizontal" />
+                            </ItemsPanelTemplate>
+                        </GroupStyle.Panel>
+                    </GroupStyle>
+                </dxnav:TileBar.GroupStyle>
+            </dxnav:TileBar>
+			<dxwui:NavigationFrame AnimationType="SlideHorizontal">
+				<dxmvvm:Interaction.Behaviors>
+                    <dxwuin:FrameDocumentUIService>
+                        <dxwuin:FrameDocumentUIService.PageAdornerControlStyle>
+                            <Style TargetType="dxwui:PageAdornerControl">
+                                <Setter Property="HeaderTemplate">
+                                    <Setter.Value>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding}" FontSize="18" Margin="5,0,0,0" />
+                                        </DataTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="dxwui:PageAdornerControl">
+                                            <Border Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}" Margin="{TemplateBinding Padding}">
+                                                <Grid>
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="Auto" />
+                                                        <RowDefinition />
+                                                    </Grid.RowDefinitions>
+                                                        <dxwuii:NavigationHeaderControl Margin="20,10,10,8" VerticalAlignment="Center" x:Name="PART_NavigationHeader" Content="{TemplateBinding Header}" ContentTemplate="{TemplateBinding HeaderTemplate}" BackCommand="{TemplateBinding BackCommand}" ShowBackButton="{TemplateBinding ShowBackButton}" />
+                                                    <ContentPresenter Grid.Row="1" />
+                                                </Grid>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </dxwuin:FrameDocumentUIService.PageAdornerControlStyle>
+                    </dxwuin:FrameDocumentUIService>
+				</dxmvvm:Interaction.Behaviors>
+			</dxwui:NavigationFrame>
+        </DockPanel>
+	</dx:BackgroundPanel>
+</UserControl>
+
+<#+
+void PasteXamlNamespaces(XamlNamespaces xamlNamespaces) {
+	string[] toAdd = new string[]{
+		XmlNamespaceConstants.RibbonNamespaceDefinition,
+		XmlNamespaceConstants.EditorsNamespaceDefinition,
+		XmlNamespaceConstants.LayoutControlNamespaceDefinition,
+		XmlNamespaceConstants.BarsNamespaceDefinition,
+		XmlNamespaceConstants.UtilsNamespaceDefinition,
+		XmlNamespaceConstants.GridNamespaceDefinition,
+		XmlNamespaceConstants.MvvmNamespaceDefinition,
+		XmlNamespaceConstants.DockingNamespaceDefinition,
+		XmlNamespaceConstants.NavBarNamespaceDefinition,		
+		XmlNamespaceConstants.WindowsUINamespaceDefinition,
+		XmlNamespaceConstants.WindowsUINavigationNamespaceDefinition,
+		XmlNamespaceConstants.WindowsUIInternalNamespaceDefinition,
+		XmlNamespaceConstants.NavigationNamespaceDefinition,
+		XmlNamespaceConstants.NavigationInternalNamespaceDefinition
+	};
+	xamlNamespaces.AddDevExpressXamlNamespaces(toAdd);
+	this.WriteLine(xamlNamespaces.GetXaml());
+}
+#>

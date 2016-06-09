@@ -1,0 +1,204 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+        xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+        xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
+        xmlns:dxmvvminternal="http://schemas.devexpress.com/winfx/2008/xaml/mvvm/internal"
+        xmlns:design="clr-namespace:DevExpress.Xpf.Core.Design"
+        xmlns:local="clr-namespace:DevExpress.Xpf.Core.Design.SmartTags"
+        xmlns:SmartTags="clr-namespace:DevExpress.Design.SmartTags">
+    <Style TargetType="TextBox"/>
+    <Style TargetType="TextBlock"/>
+    <Style TargetType="Label"/>
+    <Style TargetType="ComboBox"/>
+    <Style TargetType="CheckBox"/>
+    <Style TargetType="ScrollBar"/>
+    <Style TargetType="ScrollViewer"/>
+    <Style TargetType="GroupBox"/>
+    <Style TargetType="{x:Type local:WrapHighlightTextBlock}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:WrapHighlightTextBlock}">
+                    <TextBlock x:Name="PART_TEXT"/>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <dx:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+    <local:ValidationEventArgsConverter x:Key="ValidationEventArgsConverter" />
+    <DataTemplate DataType="{x:Type SmartTags:ObjectPropertyLineViewModel}">
+        <Grid Name="grid">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <ComboBox Name="cmbBox" ItemsSource="{Binding ItemsSource}" HorizontalContentAlignment="Stretch"
+                              MaxHeight="{Binding ElementName=textEdit, Path=ActualHeight}"
+                              Text="{Binding PropertyValueText, Mode=TwoWay}"
+                              StaysOpenOnEdit="True"
+                              TextSearch.TextPath="." IsEditable="True">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <dxe:TextEdit Mask="{Binding Path=Mask.Item1}" MaskType="{Binding Path=Mask.Item2}" EditValue="{Binding Path=., Mode=TwoWay}" IsReadOnly="True" EditMode="InplaceInactive"/>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+            <dxe:TextEdit Name="textEdit" Mask="{Binding Path=Mask.Item1}" MaskType="{Binding Mask.Item2}" MaskUseAsDisplayFormat="True"
+                    Text="{Binding PropertyValueText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="{Binding IsReadOnly}"
+                    InvalidValueBehavior="AllowLeaveEditor" ValidateOnTextInput="True" ValidateOnEnterKeyPressed="True" AllowNullInput="True"
+                    EditValuePostMode="Delayed" EditValuePostDelay="3200" ShowNullTextForEmptyValue="True"
+                    dxmvvminternal:InteractionHelper.BehaviorInDesignMode="AsWellAsNotInDesignMode" Visibility="Hidden">
+                <dxmvvm:Interaction.Behaviors>
+                    <dxmvvm:EventToCommand EventName="Validate" Command="{Binding Path=ValidateCommand}" EventArgsConverter="{StaticResource ValidationEventArgsConverter}" PassEventArgsToCommand="True" />
+                </dxmvvm:Interaction.Behaviors>
+            </dxe:TextEdit>
+            <local:DesignTimeButton Name="commandButton" Grid.Column="2" Content="..." Padding="2,0" Margin="-1,0,0,0" MinWidth="0"
+                    Command="{Binding Command}" CommandParameter="{Binding CommandParameter}" CommandTarget="{Binding CommandTarget}"
+                    Visibility="Collapsed" IsMouseOverEx="{Binding Path=IsMouseOverCommandButton, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            <local:DesignTimePopup IsOpenExt="{Binding IsPopupOpen, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" AllowsTransparency="True" PlacementTarget="{Binding ElementName=textEdit}" Placement="Bottom" StaysOpen="False"
+                    Visibility="{Binding Path=HasPopup, Converter={StaticResource BoolToVisibilityConverter}}"
+                    ActualIsOpen="{Binding ActualIsPopupOpen, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                <Border BorderBrush="#FFD8D8D8" BorderThickness="1" Background="White" Padding="12">
+                    <ContentControl Content="{Binding Path=PopupContent}" ContentTemplate="{x:Null}" ContentTemplateSelector="{x:Null}" />
+                </Border>
+            </local:DesignTimePopup>
+            <Border Grid.ColumnSpan="3" Name="focusBorder" BorderThickness="1" BorderBrush="#FFF78A09" Visibility="Collapsed"/>
+        </Grid>
+        <DataTemplate.Triggers>
+            <DataTrigger Binding="{Binding IsReadOnly}" Value="True">
+                <Setter TargetName="cmbBox" Property="IsEditable" Value="False"/>
+            </DataTrigger>
+            <DataTrigger Binding="{Binding ItemsSource}" Value="{x:Null}">
+                <Setter TargetName="cmbBox" Property="Visibility" Value="Hidden"/>
+                <Setter TargetName="textEdit" Property="Visibility" Value="Visible"/>
+            </DataTrigger>
+            <DataTrigger Binding="{Binding HasCommand}" Value="True">
+                <Setter TargetName="commandButton" Property="Visibility" Value="Visible"/>
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Mask}" Value="{x:Null}">
+                <Setter TargetName="textEdit"  Property="MaskUseAsDisplayFormat" Value="False"/>
+                <Setter TargetName="textEdit" Property="Text" Value="{Binding PropertyValueText, Mode=OneTime}"/>
+                <Setter TargetName="textEdit" Property="EditValue" Value="{Binding PropertyValueText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            </DataTrigger>
+            <Trigger SourceName="grid" Property="IsKeyboardFocusWithin" Value="True">
+                <Setter TargetName="focusBorder" Property="Visibility" Value="Visible"/>
+            </Trigger>
+        </DataTemplate.Triggers>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type local:ColorPropertyLineViewModel}">
+        <dxe:PopupColorEdit Color="{Binding PropertyValue, Mode=TwoWay}"/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type local:TypeSelectorPropertyLinePopupViewModelBase}">
+        <local:ViewModelEditorControl
+                SolutionDataProvider="{Binding Path=SolutionDataProvider}" ProjectDataProvider="{Binding Path=ProjectDataProvider}"
+                SelectedItem="{Binding Path=SelectedNode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                CloseCommand="{Binding Path=ClosePopupCommand}" />
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type local:TreeViewPropertyLinePopupViewModel}">
+        <local:NodeSelectorControl
+                DataProvider="{Binding Path=DataProvider}"
+                SelectedItem="{Binding Path=SelectedNode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                CloseCommand="{Binding Path=ClosePopupCommand}" />
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type local:ImageSourcePropertyLinePopupViewModel}">
+        <local:DesignTimeImagePicker Groups="{Binding Path=Groups}" DataProvider="{Binding Path=DataProvider}"
+                SelectedImage="{Binding Path=SelectedImage, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                CloseCommand="{Binding Path=ClosePopupCommand}" PropertyName="{Binding Path=PropertyName}"
+                SelectedImageOriginalString="{Binding Path=SelectedImageOriginalString}"/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type local:BindingPopupViewModel}">
+        <local:BindingEditorControl
+                CloseCommand="{Binding Path=ClosePopupCommand}"
+                DataContextProvider="{Binding}"
+                ElementsProvider="{Binding}"
+                RelativeSourceProvider="{Binding}"
+                ResourcesProvider="{Binding}"
+                BindingSettingsProvider="{Binding}"
+                DefaultPage="{Binding Path=DefaultPage}"
+                Binding="{Binding Path=Binding, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type local:ThemeSelectorPropertyLineViewModel}">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition SharedSizeGroup="captionColumn"/>
+                <ColumnDefinition Width="8"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition SharedSizeGroup="lastColumn"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="ApplicationTheme" VerticalAlignment="Center" TextTrimming="CharacterEllipsis"/>
+            <ComboBox Name="comboBox" Grid.Column="2" ItemsSource="{Binding Themes}" SelectedItem="{Binding SelectedTheme, Mode=TwoWay}"
+                      ScrollViewer.CanContentScroll="False" UseLayoutRounding="True">
+                <ComboBox.GroupStyle>
+                    <GroupStyle>
+                        <GroupStyle.HeaderTemplate>
+                            <DataTemplate>
+                                <Grid Background="#FFB9B9B9">
+                                    <TextBlock Text="{Binding Name}" Margin="3,2"/>
+                                </Grid>
+                            </DataTemplate>
+                        </GroupStyle.HeaderTemplate>
+                    </GroupStyle>
+                </ComboBox.GroupStyle>
+                <ComboBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <UniformGrid Columns="3"/>
+                    </ItemsPanelTemplate>
+                </ComboBox.ItemsPanel>
+                <ComboBox.ItemTemplateSelector>
+                    <local:ThemeItemTemplateSelector>
+                        <local:ThemeItemTemplateSelector.SimpleTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source="{Binding SmallGlyph}" Margin="3,0"/>
+                                    <TextBlock Name="txt" Text="{Binding FullName}"/>
+                                </StackPanel>
+                                <DataTemplate.Triggers>
+                                    <DataTrigger Binding="{Binding Name}" Value="DeepBlue">
+                                        <Setter TargetName="txt" Property="Text" Value="{Binding FullName, StringFormat={}{0} (default)}"/>
+                                    </DataTrigger>
+                                </DataTemplate.Triggers>
+                            </DataTemplate>
+                        </local:ThemeItemTemplateSelector.SimpleTemplate>
+                        <local:ThemeItemTemplateSelector.DetailedTemplate>
+                            <DataTemplate>
+                                <Grid HorizontalAlignment="Stretch" Margin="2">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <Image Source="{Binding LargeGlyph}" HorizontalAlignment="Center"/>
+                                    <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Bottom">
+                                        <TextBlock Name="txt" Text="{Binding FullName}"/>
+                                    </StackPanel>
+                                </Grid>
+                                <DataTemplate.Triggers>
+                                    <DataTrigger Binding="{Binding Name}" Value="DeepBlue">
+                                        <Setter TargetName="txt" Property="Text" Value="{Binding FullName, StringFormat={}{0} (default)}"/>
+                                    </DataTrigger>
+                                </DataTemplate.Triggers>
+                            </DataTemplate>
+                        </local:ThemeItemTemplateSelector.DetailedTemplate>
+                    </local:ThemeItemTemplateSelector>
+                </ComboBox.ItemTemplateSelector>
+                <ComboBox.ItemContainerStyle>
+                    <Style TargetType="{x:Type ComboBoxItem}" BasedOn="{StaticResource {x:Type ComboBoxItem}}">
+                        <Style.Resources>
+                            <SolidColorBrush x:Key="ListItemHighlightBorderBrush" Color="Transparent"/>
+                            <SolidColorBrush x:Key="ListItemHighlightBackgroundBrush" Color="LightGray"/>
+                        </Style.Resources>
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                        <Setter Property="VerticalContentAlignment" Value="Stretch"/>
+                        <Setter Property="Padding" Value="0"/>
+                        <Setter Property="TextBlock.Foreground" Value="#FF1E1E1E"/>
+                        <Style.Triggers>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter Property="Background" Value="#FFF78A09"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </ComboBox.ItemContainerStyle>
+            </ComboBox>
+        </Grid>
+    </DataTemplate>
+</ResourceDictionary>

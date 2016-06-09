@@ -1,0 +1,654 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:dxtEx="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys" xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors" xmlns:help="http://schemas.devexpress.com/winfx/2008/xaml/editors/internal" xmlns:dxet="http://schemas.devexpress.com/winfx/2008/xaml/editors/themekeys" xmlns:sys="clr-namespace:System;assembly=mscorlib" xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys">
+    <!--BEGIN WPF-->
+    <ResourceDictionary.MergedDictionaries>
+        <dxtEx:ResourceDictionaryEx Source="/DevExpress.Xpf.Themes.Office2007Black.v15.2;component/DevExpress.Xpf.Core/DevExpress.Xpf.Core/Editors/Themes/Office2007Generic/TextEdit.xaml" />
+        <dxtEx:ResourceDictionaryEx Source="/DevExpress.Xpf.Themes.Office2007Black.v15.2;component/DevExpress.Xpf.Core/DevExpress.Xpf.Core/Editors/Themes/Office2007Generic/Brushes.xaml" />
+        <dxtEx:ResourceDictionaryEx Source="/DevExpress.Xpf.Themes.Office2007Black.v15.2;component/DevExpress.Xpf.Core/DevExpress.Xpf.Core/Editors/Themes/Generic/ButtonEdit.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+    <!--END WPF-->
+    <!--
+          removed SolidColorBrush x:Key =BaseBrush#00000000-->
+    <!--
+          removed SolidColorBrush x:Key =BaseBrush#FFFFFCF3-->
+    <!--
+          removed SolidColorBrush x:Key =BaseBrush#00FFFFFF-->
+    <!--
+          removed Color x:Key =BaseColor#FFE0D4B2-->
+    <!--
+          removed Color x:Key =BaseColor#FFFFE7A5-->
+    <!--
+          removed Color x:Key =BaseColor#FFF1EBD5-->
+    <!--
+          removed Color x:Key =BaseColor#FFFFD975-->
+    <!--
+          removed Color x:Key =BaseColor#FFFFA838-->
+    <!--
+          removed Color x:Key =BaseColor#FFFFC67D-->
+    <!--
+          removed Color x:Key =BaseColor#FFF5D4A6-->
+    <!--
+          removed Color x:Key =BaseColor#FFB1A572-->
+    <!--
+          removed Color x:Key =BaseColor#FF9A8F63-->
+    <!--
+          removed Color x:Key =BaseColor#FFFFE694-->
+    <!--
+          removed Color x:Key =BaseColor#FFC0B9A5-->
+    <!--
+          removed Color x:Key =BaseColor#FFEAE0BF-->
+    <!--
+          removed Color x:Key =BaseColor#FFA99D6C-->
+    <!--
+          removed Color x:Key =BaseColor#FFA19460-->
+    <!--
+          removed Color x:Key =BaseColor#FFFFFCE2-->
+    <!--
+          removed Color x:Key =BaseColor#FFFFD456-->
+    <!--
+          removed Color x:Key =BaseColor#FFFFE896-->
+    <!--
+          removed Color x:Key =BaseColor#FFC6BA87-->
+    <!--
+          removed Color x:Key =BaseColor#FFEFBD77-->
+    <Color x:Key="#FF000000">#FF000000</Color>
+    <Thickness x:Key="{dxet:ButtonEditThemeKey ResourceKey=ButtonEditPadding}">0</Thickness>
+    <Thickness x:Key="{dxet:ButtonsThemeKey ResourceKey=LeftButtonMargin}">0</Thickness>
+    <Thickness x:Key="{dxet:ButtonsThemeKey ResourceKey=RightButtonMargin}">0</Thickness>
+    <Thickness x:Key="{dxet:ButtonsThemeKey ResourceKey=LeftButtonMarginCorrection}">0</Thickness>
+    <Thickness x:Key="{dxet:ButtonsThemeKey ResourceKey=RightButtonMarginCorrection}">0</Thickness>
+    <SolidColorBrush x:Key="HoverBrush" Color="{StaticResource #FF000000}" />
+    <Style x:Key="{dxet:ButtonsThemeKey ResourceKey=ButtonInfoContentStyle}" TargetType="{x:Type ContentPresenter}">
+        <Setter Property="Margin" Value="0" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
+    </Style>
+    <Style x:Key="{dxet:ButtonsThemeKey ResourceKey=UserButtonInfoContentStyle}" TargetType="{x:Type ContentPresenter}">
+        <Setter Property="Margin" Value="5,0,5,0" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
+    </Style>
+    <Style x:Key="{dxet:ButtonsThemeKey ResourceKey=NoneButtonInfoContentStyle}" TargetType="{x:Type ContentPresenter}">
+        <Setter Property="Margin" Value="5,0,5,0" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
+    </Style>
+    <!--ONLY SL
+                <dx:EnumToObjectConverter x:Key="ButtonEditButtonGlyphEnumToObjectConverter" DefaultValue="{DynamicResource {dxet:ButtonsThemeKey ResourceKey=ButtonInfoContentStyle}}">
+                    <dx:EnumToObjectConverter.Values>
+                        <dx:EnumObjectProvider x:Key="User" Value="{DynamicResource {dxet:ButtonsThemeKey ResourceKey=UserButtonInfoContentStyle}}"/>
+                        <dx:EnumObjectProvider x:Key="None" Value="{DynamicResource {dxet:ButtonsThemeKey ResourceKey=NoneButtonInfoContentStyle}}"/>
+                    </dx:EnumToObjectConverter.Values>
+                </dx:EnumToObjectConverter>
+    ONLY SL-->
+    <ControlTemplate TargetType="{x:Type ButtonBase}" x:Key="{dxet:ButtonsThemeKey ResourceKey=ButtonTemplate}">
+        <Grid Margin="0,0,0,0" Width="Auto" Height="Auto" SnapsToDevicePixels="True" Background="#00FFFFFF ">
+            <Grid.Resources>
+                <Style x:Key="PressedElementStyle" TargetType="{x:Type ContentControl}">
+                    <Setter Property="dx:FocusHelper2.Focusable" Value="False" />
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type ContentControl}">
+                                <Border Margin="0,0,0,0" CornerRadius="0,0,0,0" Padding="1,1,1,1">
+                                    <Border.Background>
+                                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                            <GradientStop Color="#FF9A8F63 " Offset="0" />
+                                            <GradientStop Color="#FFB1A572 " Offset="1" />
+                                        </LinearGradientBrush>
+                                    </Border.Background>
+                                    <Border Padding="1,1,1,1">
+                                        <Border.Background>
+                                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                                <GradientStop Color="#FFC0B9A5 " Offset="0" />
+                                                <GradientStop Color="#FFFFE694 " Offset="1" />
+                                                <GradientStop Color="#FFF5D4A6 " Offset="0.5" />
+                                                <GradientStop Color="#FFFFC67D " Offset="0.5" />
+                                                <GradientStop Color="#FFF1EBD5 " Offset="0.1" />
+                                            </LinearGradientBrush>
+                                        </Border.Background>
+                                        <Border>
+                                            <Border.Background>
+                                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                                    <GradientStop Color="#FFE0D4B2 " Offset="0" />
+                                                    <GradientStop Color="#FFFFD456 " Offset="1" />
+                                                    <GradientStop Color="#FFEFBD77 " Offset="0.5" />
+                                                    <GradientStop Color="#FFFFA838 " Offset="0.5" />
+                                                    <GradientStop Color="#FFEAE0BF " Offset="0.1" />
+                                                </LinearGradientBrush>
+                                            </Border.Background>
+                                        </Border>
+                                    </Border>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </Grid.Resources>
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup x:Name="CommonStates">
+                    <VisualState x:Name="Normal" />
+                    <VisualState x:Name="MouseOver">
+                        <Storyboard>
+                            <DoubleAnimation Duration="0" Storyboard.TargetName="hover" Storyboard.TargetProperty="Opacity" To="1" />
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Pressed">
+                        <Storyboard>
+                            <DoubleAnimation Duration="0" Storyboard.TargetName="pressed1" Storyboard.TargetProperty="Opacity" To="1" />
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Disabled">
+                        <Storyboard>
+                            <DoubleAnimation Duration="0" Storyboard.TargetName="PART_Glyph" Storyboard.TargetProperty="Opacity" To="0.25" />
+                        </Storyboard>
+                    </VisualState>
+                </VisualStateGroup>
+                <VisualStateGroup x:Name="CheckStates">
+                    <VisualState x:Name="Checked">
+                        <Storyboard>
+                            <ObjectAnimationUsingKeyFrames Duration="0" Storyboard.TargetName="pressed2" Storyboard.TargetProperty="Visibility">
+                                <ObjectAnimationUsingKeyFrames.KeyFrames>
+                                    <DiscreteObjectKeyFrame KeyTime="0">
+                                        <DiscreteObjectKeyFrame.Value>
+                                            <Visibility>Visible</Visibility>
+                                        </DiscreteObjectKeyFrame.Value>
+                                    </DiscreteObjectKeyFrame>
+                                </ObjectAnimationUsingKeyFrames.KeyFrames>
+                            </ObjectAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Unchecked" />
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto">
+                    <!--BEGIN WPF-->
+                    <ColumnDefinition.SharedSizeGroup>
+                        <sys:String>ComboBoxButton</sys:String>
+                    </ColumnDefinition.SharedSizeGroup>
+                    <!--END WPF-->
+                </ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Border Margin="0,0,0,0" x:Name="hover" Opacity="0" Grid.ColumnSpan="1" CornerRadius="0,0,0,0" Padding="1,1,1,1">
+                <Border.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FFA19460 " Offset="0" />
+                        <GradientStop Color="#FFC6BA87 " Offset="1" />
+                        <GradientStop Color="#FFA99D6C " Offset="0.3" />
+                    </LinearGradientBrush>
+                </Border.Background>
+                <Border Background="#FFFFFCF3 " Padding="1,1,1,1">
+                    <Border>
+                        <Border.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="#FFFFFCE2 " Offset="0" />
+                                <GradientStop Color="#FFFFE7A5 " Offset="1" />
+                                <GradientStop Color="#FFFFE896 " Offset="0.5" />
+                                <GradientStop Color="#FFFFD975 " Offset="0.5" />
+                            </LinearGradientBrush>
+                        </Border.Background>
+                    </Border>
+                </Border>
+            </Border>
+            <ContentControl x:Name="pressed1" Style="{StaticResource PressedElementStyle}" Opacity="0" />
+            <ContentControl x:Name="pressed2" Style="{StaticResource PressedElementStyle}" Visibility="Collapsed" />
+            <Grid HorizontalAlignment="Center" Margin="0,0,0,0" x:Name="arrow" VerticalAlignment="Center" Width="Auto" Height="Auto" SnapsToDevicePixels="True" Grid.ColumnSpan="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.708*" />
+                    <ColumnDefinition Width="0.292*" />
+                </Grid.ColumnDefinitions>
+                <!--BEGIN WPF-->
+                <ContentPresenter Grid.ColumnSpan="2" x:Name="PART_Glyph" Style="{DynamicResource {dxet:ButtonsThemeKey ResourceKey=ButtonInfoContentStyle}}" />
+                <!--END WPF-->
+                <!--ONLY SL
+                <ContentPresenter Grid.ColumnSpan="2" x:Name="PART_Glyph" Style="{Binding Path=DataContext.GlyphKind, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource ButtonEditButtonGlyphEnumToObjectConverter}}"/>
+                ONLY SL-->
+            </Grid>
+        </Grid>
+        <ControlTemplate.Triggers>
+            <DataTrigger Binding="{Binding Path=GlyphKind}" Value="User">
+                <Setter Property="Style" Value="{DynamicResource {dxet:ButtonsThemeKey ResourceKey=UserButtonInfoContentStyle}}" TargetName="PART_Glyph" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Path=GlyphKind}" Value="None">
+                <Setter Property="Style" Value="{DynamicResource {dxet:ButtonsThemeKey ResourceKey=NoneButtonInfoContentStyle}}" TargetName="PART_Glyph" />
+            </DataTrigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+    <ControlTemplate TargetType="{x:Type ButtonBase}" x:Key="{dxet:ButtonsThemeKey ResourceKey=SpinDownButtonTemplate}">
+        <Grid Margin="0,0,0,0" Width="Auto" Height="Auto" SnapsToDevicePixels="True" Background="#00000000 ">
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup x:Name="CommonStates">
+                    <VisualState x:Name="Normal" />
+                    <VisualState x:Name="MouseOver">
+                        <Storyboard>
+                            <DoubleAnimation Duration="0" Storyboard.TargetName="hover" Storyboard.TargetProperty="Opacity" To="1" />
+                            <ObjectAnimationUsingKeyFrames Duration="0" Storyboard.TargetName="PART_Glyph" Storyboard.TargetProperty="Content">
+                                <ObjectAnimationUsingKeyFrames.KeyFrames>
+                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource HoverBrush}" />
+                                </ObjectAnimationUsingKeyFrames.KeyFrames>
+                            </ObjectAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Pressed">
+                        <Storyboard>
+                            <DoubleAnimation Duration="0" Storyboard.TargetName="pressed" Storyboard.TargetProperty="Opacity" To="1" />
+                            <ObjectAnimationUsingKeyFrames Duration="0" Storyboard.TargetName="PART_Glyph" Storyboard.TargetProperty="Content">
+                                <ObjectAnimationUsingKeyFrames.KeyFrames>
+                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource HoverBrush}" />
+                                </ObjectAnimationUsingKeyFrames.KeyFrames>
+                            </ObjectAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Disabled">
+                        <Storyboard>
+                            <DoubleAnimation Duration="0" Storyboard.TargetName="PART_Glyph" Storyboard.TargetProperty="Opacity" To="0.25" />
+                        </Storyboard>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto">
+                    <!--BEGIN WPF-->
+                    <ColumnDefinition.SharedSizeGroup>
+                        <sys:String>ComboBoxButton</sys:String>
+                    </ColumnDefinition.SharedSizeGroup>
+                    <!--END WPF-->
+                </ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Border Margin="0,0,0,0" x:Name="hover" Opacity="0" CornerRadius="0,0,0,0" Padding="1,1,1,1">
+                <Border.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FFA19460 " Offset="0" />
+                        <GradientStop Color="#FFC6BA87 " Offset="1" />
+                        <GradientStop Color="#FFA99D6C " Offset="0.3" />
+                    </LinearGradientBrush>
+                </Border.Background>
+                <Border Background="#FFFFFCF3 " Padding="1,1,1,1">
+                    <Border>
+                        <Border.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="#FFFFFCE2 " Offset="0" />
+                                <GradientStop Color="#FFFFE7A5 " Offset="1" />
+                                <GradientStop Color="#FFFFE896 " Offset="0.5" />
+                                <GradientStop Color="#FFFFD975 " Offset="0.5" />
+                            </LinearGradientBrush>
+                        </Border.Background>
+                    </Border>
+                </Border>
+            </Border>
+            <Border Margin="0,0,0,0" x:Name="pressed" Opacity="0" CornerRadius="0,0,0,0" Padding="1,1,1,1">
+                <Border.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FF9A8F63 " Offset="0" />
+                        <GradientStop Color="#FFB1A572 " Offset="1" />
+                    </LinearGradientBrush>
+                </Border.Background>
+                <Border Padding="1,1,1,1">
+                    <Border.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#FFC0B9A5 " Offset="0" />
+                            <GradientStop Color="#FFFFE694 " Offset="1" />
+                            <GradientStop Color="#FFF5D4A6 " Offset="0.5" />
+                            <GradientStop Color="#FFFFC67D " Offset="0.5" />
+                            <GradientStop Color="#FFF1EBD5 " Offset="0.1" />
+                        </LinearGradientBrush>
+                    </Border.Background>
+                    <Border>
+                        <Border.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="#FFE0D4B2 " Offset="0" />
+                                <GradientStop Color="#FFFFD456 " Offset="1" />
+                                <GradientStop Color="#FFEFBD77 " Offset="0.5" />
+                                <GradientStop Color="#FFFFA838 " Offset="0.5" />
+                                <GradientStop Color="#FFEAE0BF " Offset="0.1" />
+                            </LinearGradientBrush>
+                        </Border.Background>
+                    </Border>
+                </Border>
+            </Border>
+            <Grid HorizontalAlignment="Stretch" Margin="0,0,0,0" x:Name="arrow" VerticalAlignment="Stretch" Width="Auto" Height="Auto" SnapsToDevicePixels="True" Grid.ColumnSpan="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.708*" />
+                    <ColumnDefinition Width="0.292*" />
+                </Grid.ColumnDefinitions>
+                <ContentPresenter HorizontalAlignment="Center" x:Name="PART_Glyph" VerticalAlignment="Center" Grid.ColumnSpan="2" ContentTemplate="{TemplateBinding ContentTemplate}">
+                    <ContentPresenter.Content>
+                        <SolidColorBrush Color="{DynamicResource {dxet:SpinEditThemeKey ResourceKey=ArrowBrushColor}}" />
+                    </ContentPresenter.Content>
+                </ContentPresenter>
+            </Grid>
+        </Grid>
+    </ControlTemplate>
+    <ControlTemplate TargetType="{x:Type ButtonBase}" x:Key="{dxet:ButtonsThemeKey ResourceKey=SpinUpButtonTemplate}">
+        <Grid Margin="0,0,0,0" Width="Auto" Height="Auto" SnapsToDevicePixels="True" Background="#00000000 ">
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup x:Name="CommonStates">
+                    <VisualState x:Name="Normal" />
+                    <VisualState x:Name="MouseOver">
+                        <Storyboard>
+                            <DoubleAnimation Duration="0" Storyboard.TargetName="hover" Storyboard.TargetProperty="Opacity" To="1" />
+                            <ObjectAnimationUsingKeyFrames Duration="0" Storyboard.TargetName="PART_Glyph" Storyboard.TargetProperty="Content">
+                                <ObjectAnimationUsingKeyFrames.KeyFrames>
+                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource HoverBrush}" />
+                                </ObjectAnimationUsingKeyFrames.KeyFrames>
+                            </ObjectAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Pressed">
+                        <Storyboard>
+                            <DoubleAnimation Duration="0" Storyboard.TargetName="pressed" Storyboard.TargetProperty="Opacity" To="1" />
+                            <ObjectAnimationUsingKeyFrames Duration="0" Storyboard.TargetName="PART_Glyph" Storyboard.TargetProperty="Content">
+                                <ObjectAnimationUsingKeyFrames.KeyFrames>
+                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource HoverBrush}" />
+                                </ObjectAnimationUsingKeyFrames.KeyFrames>
+                            </ObjectAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Disabled">
+                        <Storyboard>
+                            <DoubleAnimation Duration="0" Storyboard.TargetName="PART_Glyph" Storyboard.TargetProperty="Opacity" To="0.25" />
+                        </Storyboard>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto">
+                    <!--BEGIN WPF-->
+                    <ColumnDefinition.SharedSizeGroup>
+                        <sys:String>ComboBoxButton</sys:String>
+                    </ColumnDefinition.SharedSizeGroup>
+                    <!--END WPF-->
+                </ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Border Margin="0,0,0,0" x:Name="hover" Opacity="0" Grid.ColumnSpan="2" CornerRadius="0,0,0,0" Padding="1,1,1,1">
+                <Border.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FFA19460 " Offset="0" />
+                        <GradientStop Color="#FFC6BA87 " Offset="1" />
+                        <GradientStop Color="#FFA99D6C " Offset="0.3" />
+                    </LinearGradientBrush>
+                </Border.Background>
+                <Border Background="#FFFFFCF3 " Padding="1,1,1,1">
+                    <Border>
+                        <Border.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="#FFFFFCE2 " Offset="0" />
+                                <GradientStop Color="#FFFFE7A5 " Offset="1" />
+                                <GradientStop Color="#FFFFE896 " Offset="0.5" />
+                                <GradientStop Color="#FFFFD975 " Offset="0.5" />
+                            </LinearGradientBrush>
+                        </Border.Background>
+                    </Border>
+                </Border>
+            </Border>
+            <Border Margin="0,0,0,0" x:Name="pressed" Opacity="0" Grid.ColumnSpan="2" CornerRadius="0,0,0,0" Padding="1,1,1,1">
+                <Border.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FF9A8F63 " Offset="0" />
+                        <GradientStop Color="#FFB1A572 " Offset="1" />
+                    </LinearGradientBrush>
+                </Border.Background>
+                <Border Padding="1,1,1,1">
+                    <Border.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#FFC0B9A5 " Offset="0" />
+                            <GradientStop Color="#FFFFE694 " Offset="1" />
+                            <GradientStop Color="#FFF5D4A6 " Offset="0.5" />
+                            <GradientStop Color="#FFFFC67D " Offset="0.5" />
+                            <GradientStop Color="#FFF1EBD5 " Offset="0.1" />
+                        </LinearGradientBrush>
+                    </Border.Background>
+                    <Border>
+                        <Border.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="#FFE0D4B2 " Offset="0" />
+                                <GradientStop Color="#FFFFD456 " Offset="1" />
+                                <GradientStop Color="#FFEFBD77 " Offset="0.5" />
+                                <GradientStop Color="#FFFFA838 " Offset="0.5" />
+                                <GradientStop Color="#FFEAE0BF " Offset="0.1" />
+                            </LinearGradientBrush>
+                        </Border.Background>
+                    </Border>
+                </Border>
+            </Border>
+            <Grid HorizontalAlignment="Stretch" Margin="0,0,0,0" x:Name="arrow" VerticalAlignment="Stretch" Width="Auto" Height="Auto" SnapsToDevicePixels="True" Grid.ColumnSpan="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.708*" />
+                    <ColumnDefinition Width="0.292*" />
+                </Grid.ColumnDefinitions>
+                <ContentPresenter HorizontalAlignment="Center" x:Name="PART_Glyph" VerticalAlignment="Center" Grid.ColumnSpan="2" ContentTemplate="{TemplateBinding ContentTemplate}">
+                    <ContentPresenter.Content>
+                        <SolidColorBrush Color="{DynamicResource {dxet:SpinEditThemeKey ResourceKey=ArrowBrushColor}}" />
+                    </ContentPresenter.Content>
+                </ContentPresenter>
+            </Grid>
+        </Grid>
+    </ControlTemplate>
+    <ControlTemplate TargetType="{x:Type ButtonBase}" x:Key="{dxet:ButtonsThemeKey ResourceKey=SpinLeftButtonTemplate}">
+        <Grid Width="Auto" Height="Auto" SnapsToDevicePixels="True" Background="#00000000 ">
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup x:Name="CommonStates">
+                    <VisualState x:Name="Normal" />
+                    <VisualState x:Name="MouseOver">
+                        <Storyboard>
+                            <DoubleAnimation Duration="0" Storyboard.TargetName="hover" Storyboard.TargetProperty="Opacity" To="1" />
+                            <ObjectAnimationUsingKeyFrames Duration="0" Storyboard.TargetName="PART_Glyph" Storyboard.TargetProperty="Content">
+                                <ObjectAnimationUsingKeyFrames.KeyFrames>
+                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource HoverBrush}" />
+                                </ObjectAnimationUsingKeyFrames.KeyFrames>
+                            </ObjectAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Pressed">
+                        <Storyboard>
+                            <DoubleAnimation Duration="0" Storyboard.TargetName="pressed" Storyboard.TargetProperty="Opacity" To="1" />
+                            <ObjectAnimationUsingKeyFrames Duration="0" Storyboard.TargetName="PART_Glyph" Storyboard.TargetProperty="Content">
+                                <ObjectAnimationUsingKeyFrames.KeyFrames>
+                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource HoverBrush}" />
+                                </ObjectAnimationUsingKeyFrames.KeyFrames>
+                            </ObjectAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Disabled">
+                        <Storyboard>
+                            <DoubleAnimation Duration="0" Storyboard.TargetName="PART_Glyph" Storyboard.TargetProperty="Opacity" To="0.25" />
+                        </Storyboard>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto">
+                    <!--BEGIN WPF-->
+                    <ColumnDefinition.SharedSizeGroup>
+                        <sys:String>ComboBoxButton</sys:String>
+                    </ColumnDefinition.SharedSizeGroup>
+                    <!--END WPF-->
+                </ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Border Margin="0,0,0,0" x:Name="hover" Opacity="0" CornerRadius="0,0,0,0" Padding="1,1,1,1" Grid.ColumnSpan="2">
+                <Border.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FFA19460 " Offset="0" />
+                        <GradientStop Color="#FFC6BA87 " Offset="1" />
+                        <GradientStop Color="#FFA99D6C " Offset="0.3" />
+                    </LinearGradientBrush>
+                </Border.Background>
+                <Border Background="#FFFFFCF3 " Padding="1,1,1,1">
+                    <Border>
+                        <Border.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="#FFFFFCE2 " Offset="0" />
+                                <GradientStop Color="#FFFFE7A5 " Offset="1" />
+                                <GradientStop Color="#FFFFE896 " Offset="0.5" />
+                                <GradientStop Color="#FFFFD975 " Offset="0.5" />
+                            </LinearGradientBrush>
+                        </Border.Background>
+                    </Border>
+                </Border>
+            </Border>
+            <Border Margin="0,0,0,0" x:Name="pressed" Opacity="0" CornerRadius="0,0,0,0" Padding="1,1,1,1" Grid.ColumnSpan="2">
+                <Border.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FF9A8F63 " Offset="0" />
+                        <GradientStop Color="#FFB1A572 " Offset="1" />
+                    </LinearGradientBrush>
+                </Border.Background>
+                <Border Padding="1,1,1,1">
+                    <Border.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#FFC0B9A5 " Offset="0" />
+                            <GradientStop Color="#FFFFE694 " Offset="1" />
+                            <GradientStop Color="#FFF5D4A6 " Offset="0.5" />
+                            <GradientStop Color="#FFFFC67D " Offset="0.5" />
+                            <GradientStop Color="#FFF1EBD5 " Offset="0.1" />
+                        </LinearGradientBrush>
+                    </Border.Background>
+                    <Border>
+                        <Border.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="#FFE0D4B2 " Offset="0" />
+                                <GradientStop Color="#FFFFD456 " Offset="1" />
+                                <GradientStop Color="#FFEFBD77 " Offset="0.5" />
+                                <GradientStop Color="#FFFFA838 " Offset="0.5" />
+                                <GradientStop Color="#FFEAE0BF " Offset="0.1" />
+                            </LinearGradientBrush>
+                        </Border.Background>
+                    </Border>
+                </Border>
+            </Border>
+            <Grid HorizontalAlignment="Stretch" Margin="0,0,0,0" x:Name="arrow" VerticalAlignment="Stretch" Width="Auto" Height="Auto" SnapsToDevicePixels="True" Grid.ColumnSpan="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.708*" />
+                    <ColumnDefinition Width="0.292*" />
+                </Grid.ColumnDefinitions>
+                <ContentPresenter HorizontalAlignment="Center" x:Name="PART_Glyph" VerticalAlignment="Center" Grid.ColumnSpan="2" ContentTemplate="{TemplateBinding ContentTemplate}">
+                    <ContentPresenter.Content>
+                        <SolidColorBrush Color="{DynamicResource {dxet:SpinEditThemeKey ResourceKey=ArrowBrushColor}}" />
+                    </ContentPresenter.Content>
+                </ContentPresenter>
+            </Grid>
+        </Grid>
+    </ControlTemplate>
+    <ControlTemplate TargetType="{x:Type ButtonBase}" x:Key="{dxet:ButtonsThemeKey ResourceKey=SpinRightButtonTemplate}">
+        <Grid Width="Auto" Height="Auto" SnapsToDevicePixels="True" Background="#00000000 ">
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup x:Name="CommonStates">
+                    <VisualState x:Name="Normal" />
+                    <VisualState x:Name="MouseOver">
+                        <Storyboard>
+                            <DoubleAnimation Duration="0" Storyboard.TargetName="hover" Storyboard.TargetProperty="Opacity" To="1" />
+                            <ObjectAnimationUsingKeyFrames Duration="0" Storyboard.TargetName="PART_Glyph" Storyboard.TargetProperty="Content">
+                                <ObjectAnimationUsingKeyFrames.KeyFrames>
+                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource HoverBrush}" />
+                                </ObjectAnimationUsingKeyFrames.KeyFrames>
+                            </ObjectAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Pressed">
+                        <Storyboard>
+                            <DoubleAnimation Duration="0" Storyboard.TargetName="pressed" Storyboard.TargetProperty="Opacity" To="1" />
+                            <ObjectAnimationUsingKeyFrames Duration="0" Storyboard.TargetName="PART_Glyph" Storyboard.TargetProperty="Content">
+                                <ObjectAnimationUsingKeyFrames.KeyFrames>
+                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource HoverBrush}" />
+                                </ObjectAnimationUsingKeyFrames.KeyFrames>
+                            </ObjectAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Disabled">
+                        <Storyboard>
+                            <DoubleAnimation Duration="0" Storyboard.TargetName="PART_Glyph" Storyboard.TargetProperty="Opacity" To="0.25" />
+                        </Storyboard>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto">
+                    <!--BEGIN WPF-->
+                    <ColumnDefinition.SharedSizeGroup>
+                        <sys:String>ComboBoxButton</sys:String>
+                    </ColumnDefinition.SharedSizeGroup>
+                    <!--END WPF-->
+                </ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Border Margin="0,0,0,0" x:Name="hover" Opacity="0" CornerRadius="0,0,0,0" Padding="1,1,1,1" Grid.ColumnSpan="2">
+                <Border.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FFA19460 " Offset="0" />
+                        <GradientStop Color="#FFC6BA87 " Offset="1" />
+                        <GradientStop Color="#FFA99D6C " Offset="0.3" />
+                    </LinearGradientBrush>
+                </Border.Background>
+                <Border Background="#FFFFFCF3 " Padding="1,1,1,1">
+                    <Border>
+                        <Border.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="#FFFFFCE2 " Offset="0" />
+                                <GradientStop Color="#FFFFE7A5 " Offset="1" />
+                                <GradientStop Color="#FFFFE896 " Offset="0.5" />
+                                <GradientStop Color="#FFFFD975 " Offset="0.5" />
+                            </LinearGradientBrush>
+                        </Border.Background>
+                    </Border>
+                </Border>
+            </Border>
+            <Border Margin="0,0,0,0" x:Name="pressed" Opacity="0" CornerRadius="0,0,0,0" Padding="1,1,1,1" Grid.ColumnSpan="2">
+                <Border.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FF9A8F63 " Offset="0" />
+                        <GradientStop Color="#FFB1A572 " Offset="1" />
+                    </LinearGradientBrush>
+                </Border.Background>
+                <Border Padding="1,1,1,1">
+                    <Border.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#FFC0B9A5 " Offset="0" />
+                            <GradientStop Color="#FFFFE694 " Offset="1" />
+                            <GradientStop Color="#FFF5D4A6 " Offset="0.5" />
+                            <GradientStop Color="#FFFFC67D " Offset="0.5" />
+                            <GradientStop Color="#FFF1EBD5 " Offset="0.1" />
+                        </LinearGradientBrush>
+                    </Border.Background>
+                    <Border>
+                        <Border.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="#FFE0D4B2 " Offset="0" />
+                                <GradientStop Color="#FFFFD456 " Offset="1" />
+                                <GradientStop Color="#FFEFBD77 " Offset="0.5" />
+                                <GradientStop Color="#FFFFA838 " Offset="0.5" />
+                                <GradientStop Color="#FFEAE0BF " Offset="0.1" />
+                            </LinearGradientBrush>
+                        </Border.Background>
+                    </Border>
+                </Border>
+            </Border>
+            <Grid HorizontalAlignment="Stretch" Margin="0,0,0,0" x:Name="arrow" VerticalAlignment="Stretch" Width="Auto" Height="Auto" SnapsToDevicePixels="True" Grid.ColumnSpan="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.708*" />
+                    <ColumnDefinition Width="0.292*" />
+                </Grid.ColumnDefinitions>
+                <ContentPresenter HorizontalAlignment="Center" x:Name="PART_Glyph" VerticalAlignment="Center" Grid.ColumnSpan="2" ContentTemplate="{TemplateBinding ContentTemplate}">
+                    <ContentPresenter.Content>
+                        <SolidColorBrush Color="{DynamicResource {dxet:SpinEditThemeKey ResourceKey=ArrowBrushColor}}" />
+                    </ContentPresenter.Content>
+                </ContentPresenter>
+            </Grid>
+        </Grid>
+    </ControlTemplate>
+
+    <DataTemplate x:Key="{dxet:ButtonsThemeKey ResourceKey=SpinUpGlyph}">
+        <Path Stretch="Fill" Fill="{Binding}" Data="F1 M 1288,843L 1291,840L 1294,843L 1288,843 Z " Width="6" Height="3" x:Name="path" Margin="5,0,5,0" />
+    </DataTemplate>
+    <DataTemplate x:Key="{dxet:ButtonsThemeKey ResourceKey=SpinDownGlyph}">
+        <Path Stretch="Fill" Fill="{Binding}" Data="F1 M 1284,845L 1281,848L 1278,845L 1284,845 Z " Width="6" Height="3" x:Name="path" Margin="5,0,5,0" />
+    </DataTemplate>
+    <DataTemplate x:Key="{dxet:ButtonsThemeKey ResourceKey=SpinLeftGlyph}">
+        <Path Stretch="Fill" Fill="{Binding}" Data="F1 M 1298,852L 1295,849L 1298,846L 1298,852 Z " Width="3" Height="6" x:Name="path" Margin="6,0,7,0" />
+    </DataTemplate>
+    <DataTemplate x:Key="{dxet:ButtonsThemeKey ResourceKey=SpinRightGlyph}">
+        <Path Stretch="Fill" Fill="{Binding}" Data="F1 M 1300,836L 1303,839L 1300,842L 1300,836 Z " Width="3" Height="6" x:Name="path" Margin="7,0,6,0" />
+    </DataTemplate>
+</ResourceDictionary>

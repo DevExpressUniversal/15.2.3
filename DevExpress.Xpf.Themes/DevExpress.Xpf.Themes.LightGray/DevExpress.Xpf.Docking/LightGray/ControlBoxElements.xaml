@@ -1,0 +1,1085 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:dxc="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:local="http://schemas.devexpress.com/winfx/2008/xaml/docking" xmlns:system="clr-namespace:System;assembly=mscorlib" xmlns:collections="clr-namespace:System.Collections;assembly=mscorlib" xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars" xmlns:ve="http://schemas.devexpress.com/winfx/2008/xaml/docking/visualelements" xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/docking/themekeys" xmlns:dxp="http://schemas.devexpress.com/winfx/2008/xaml/docking/platform" xmlns:dxcn="http://schemas.devexpress.com/winfx/2008/xaml/core/internal" xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys">
+
+    <!-- MDIButton -->
+    <ControlTemplate x:Key="{dxt:MDIButtonElementsThemeKey ResourceKey=ButtonBorder}" TargetType="dxb:ItemBorderControl">
+        <Grid Width="18" Height="18">
+            <Border BorderThickness="0" Background="#FFFFFFFF" CornerRadius="8" />
+            <Grid x:Name="PART_Hover" Opacity="0.0">
+                <Border BorderThickness="0" Background="#FFCEE1F9" CornerRadius="8" />
+            </Grid>
+            <Grid x:Name="PART_Pressed" Opacity="0.0">
+                <Border BorderThickness="0" Background="#FFC9C9C9" CornerRadius="8" />
+            </Grid>
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup x:Name="State">
+                    <VisualState x:Name="Normal" />
+                    <VisualState x:Name="Hover">
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetProperty="(Control.Opacity)" Storyboard.TargetName="PART_Hover" To="1" Duration="0" />
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Pressed">
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetProperty="(Control.Opacity)" Storyboard.TargetName="PART_Pressed" To="1" Duration="0" />
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Checked" />
+                    <VisualState x:Name="HoverChecked" />
+                    <VisualState x:Name="Focused" />
+                    <VisualState x:Name="Customization" />
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+        </Grid>
+    </ControlTemplate>
+     <Style x:Key="{dxt:MDIButtonElementsThemeKey ResourceKey=ButtonBorderStyle}" TargetType="dxb:ItemBorderControl">
+        <Setter Property="Template" Value="{DynamicResource {dxt:MDIButtonElementsThemeKey ResourceKey=ButtonBorder}}" />
+    </Style>
+    <!-- Glyphs -->
+    <DataTemplate x:Key="{dxt:GlyphElementsThemeKey ResourceKey=MDIButtonClose}">
+        <Border Background="Transparent" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <Path x:Name="path" Stretch="Fill" Fill="#FF494949" Data="F1 M 1220,881L 1222,881L 1218,885L 1222,889L 1220,889L 1217,886L 1214,889L 1212,889L 1216,885L 1212,881L 1214,881L 1217,884L 1220,881 Z " HorizontalAlignment="Center" Height="8" UseLayoutRounding="False" VerticalAlignment="Center" Width="10" />
+        </Border>
+    </DataTemplate>
+    <DataTemplate x:Key="{dxt:GlyphElementsThemeKey ResourceKey=MDIButtonMinimize}">
+        <Border Background="Transparent" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <Rectangle x:Name="path" Fill="#FF494949" Height="2" Width="10" UseLayoutRounding="True" HorizontalAlignment="Center" VerticalAlignment="Center" />
+        </Border>
+    </DataTemplate>
+    <DataTemplate x:Key="{dxt:GlyphElementsThemeKey ResourceKey=MDIButtonRestore}">
+        <Border Background="Transparent" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <Path x:Name="path" Stretch="Fill" Fill="#FF494949" Data="F1 M 1177,894L 1185,894L 1185,899.999L 1183,899.999L 1183,903L 1175,903L 1175,897L 1177,897L 1177,894 Z M 1184,898.999L 1184,896L 1178,896L 1178,897L 1183,897L 1183,899L 1184,898.999 Z M 1176,899L 1176,902L 1182,902L 1182,899L 1176,899 Z " HorizontalAlignment="Center" Height="9" UseLayoutRounding="False" VerticalAlignment="Center" Width="10" />
+        </Border>
+    </DataTemplate>
+
+    <!-- GroupBox Button -->
+    <Style x:Key="GroupPane_ExpandButton" TargetType="ve:GroupBoxControlBoxButton">
+        <Style.Setters>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ve:GroupBoxControlBoxButton">
+                        <Grid x:Name="Button" ve:DockPane.HitTestType="ExpandButton" Width="19" Height="19" Background="Transparent">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal" />
+                                    <VisualState x:Name="MouseOver">
+                                        <Storyboard>
+                                            <ColorAnimation Duration="0" To="#3F4049" Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="path1" />
+                                            <ColorAnimation Duration="0" To="#3F4049" Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="path2" />
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Pressed" />
+                                </VisualStateGroup>
+                                <VisualStateGroup x:Name="ExpandedStates">
+                                    <VisualState x:Name="Collapsed">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Control.Visibility)" Storyboard.TargetName="open">
+                                                <DiscreteObjectKeyFrame KeyTime="0">
+                                                    <DiscreteObjectKeyFrame.Value>
+                                                        <Visibility>Visible</Visibility>
+                                                    </DiscreteObjectKeyFrame.Value>
+                                                </DiscreteObjectKeyFrame>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Control.Visibility)" Storyboard.TargetName="close">
+                                                <DiscreteObjectKeyFrame KeyTime="0">
+                                                    <DiscreteObjectKeyFrame.Value>
+                                                        <Visibility>Collapsed</Visibility>
+                                                    </DiscreteObjectKeyFrame.Value>
+                                                </DiscreteObjectKeyFrame>
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Expanded" />
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <Grid Background="#00000000" Width="14" Height="14" x:Name="grid">
+                                <Grid HorizontalAlignment="Center" Margin="0,1,0,0" x:Name="open" VerticalAlignment="Center" Width="14" Visibility="Collapsed">
+                                    <Path x:Name="path2" Stretch="Fill" Fill="#FF7B808E" Data="F1 M 555,361.5C 555,365.642 551.642,369 547.5,369C 543.358,369 540,365.642 540,361.5C 540,357.358 543.358,354 547.5,354C 551.642,354 555,357.358 555,361.5 Z M 542,361.5C 542,364.538 544.462,367 547.5,367C 550.537,367 553,364.538 553,361.5C 553,358.463 550.537,356 547.5,356C 544.462,356 542,358.463 542,361.5 Z M 548,365L 547,365L 544,359L 551,359L 548,365 Z" />
+                                </Grid>
+                                <Grid HorizontalAlignment="Center" Margin="0,0,0,1" VerticalAlignment="Center" x:Name="close" Width="14">
+                                    <Path x:Name="path1" Stretch="Fill" Fill="#FF7B808E" RenderTransformOrigin="0.5,0.5" Data="F1 M 555,361.5C 555,365.642 551.642,369 547.5,369C 543.358,369 540,365.642 540,361.5C 540,357.358 543.358,354 547.5,354C 551.642,354 555,357.358 555,361.5 Z M 542,361.5C 542,364.538 544.462,367 547.5,367C 550.537,367 553,364.538 553,361.5C 553,358.463 550.537,356 547.5,356C 544.462,356 542,358.463 542,361.5 Z M 548,365L 547,365L 544,359L 551,359L 548,365 Z">
+                                        <Path.RenderTransform>
+                                            <RotateTransform Angle="180" />
+                                        </Path.RenderTransform>
+                                    </Path>
+                                </Grid>
+
+                            </Grid>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style.Setters>
+    </Style>
+    <DataTemplate x:Key="{dxt:GroupPaneElementsThemeKey ResourceKey=ExpandButton}">
+        <ve:GroupBoxControlBoxButton x:Name="PART_Button" Style="{StaticResource GroupPane_ExpandButton}" />
+    </DataTemplate>
+    
+    <!-- LayoutPanel Buttons -->
+    <Style x:Key="DockPaneControlBoxBorder" TargetType="ve:ControlBoxButtonBorder">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ve:ControlBoxButtonBorder">
+                    <Grid x:Name="Button" Background="Transparent" Margin="0,0,0,1">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal" />
+                                <VisualState x:Name="MouseOver">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Control.Visibility)" Storyboard.TargetName="hoveredState">
+                                            <DiscreteObjectKeyFrame KeyTime="0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <Visibility>Visible</Visibility>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Pressed">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Control.Visibility)" Storyboard.TargetName="pressedState">
+                                            <DiscreteObjectKeyFrame KeyTime="0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <Visibility>Visible</Visibility>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Border x:Name="hoveredState" Visibility="Collapsed" Background="#FF898989" Padding="1" CornerRadius="3">
+                        </Border>
+                        <Border x:Name="pressedState" Visibility="Collapsed" Background="#FF747576" Padding="1" CornerRadius="3">
+                        </Border>
+                        <Grid x:Name="glyph" Width="15" Height="15" Background="#00FFFEFE">
+                            <ContentPresenter />
+                        </Grid>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="DockPane_PinButton" TargetType="ve:DockPaneControlBoxButton">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ve:DockPaneControlBoxButton">
+                    <ve:ControlBoxButtonBorder Style="{StaticResource DockPaneControlBoxBorder}">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal" />
+                                <VisualState x:Name="MouseOver">
+                                    <Storyboard>
+                                        <ColorAnimation Duration="0" To="White" Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="pinned" />
+                                        <ColorAnimation Duration="0" To="White" Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="unpinned" />
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Pressed">
+                                    <Storyboard>
+                                        <ColorAnimation Duration="0" To="#FFC7C7C7" Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="pinned" />
+                                        <ColorAnimation Duration="0" To="#FFC7C7C7" Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="unpinned" />
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="PinnedStates">
+                                <VisualState x:Name="Unpinned" />
+                                <VisualState x:Name="Pinned">
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="pinned" To="0" Duration="0" />
+                                        <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="unpinned" To="1" Duration="0" />
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Grid>
+                            <Rectangle Fill="#00FFFFFF" StrokeThickness="0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="9" Height="9" />
+                            <Path Fill="#FF464646" Opacity="0" Stretch="Fill" HorizontalAlignment="Center" x:Name="unpinned" VerticalAlignment="Center" Width="9" Height="7" Data="F1M1252,785L1252,786 1257,786 1257,791 1252,791 1252,792 1251,792 1251,789 1248,789 1248,788 1251,788 1251,785 1252,785z M1256,787L1252,787 1252,788 1256,788 1256,787z" />
+                            <Path Fill="#FF464646" Stretch="Fill" HorizontalAlignment="Center" Margin="0,1,0,0" x:Name="pinned" VerticalAlignment="Center" Width="7" Height="9" Data="F1M1265,788L1266,788 1266,783 1271,783 1271,788 1272,788 1272,789 1269,789 1269,792 1268,792 1268,789 1265,789 1265,788z M1267,784L1267,788 1268,788 1268,784 1267,784z" />
+                        </Grid>
+                    </ve:ControlBoxButtonBorder>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="ve:DockPane.HitTestType" Value="PinButton" />
+    </Style>
+    <Style x:Key="DockPane_CloseButton" TargetType="ve:ControlBoxButton">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ve:ControlBoxButton">
+                    <ve:ControlBoxButtonBorder Style="{StaticResource DockPaneControlBoxBorder}">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Disabled" />
+                                <VisualState x:Name="Normal" />
+                                <VisualState x:Name="MouseOver">
+                                    <Storyboard>
+                                        <ColorAnimation Duration="0" To="White" Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="path" />
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Pressed">
+                                    <Storyboard>
+                                        <ColorAnimation Duration="0" To="#FFC7C7C7" Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="path" />
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Path x:Name="path" Fill="#FF3D3C3C" Data="F1 M 54,74.9999L 54,75.9999L 57,79L 54,82L 54,83L 55,83L 58,80L 61,83L 62,83L 62,82L 59,79L 62,76L 62,75L 61,75L 58,78L 55,75L 54,74.9999 Z " Stretch="Fill" UseLayoutRounding="True" Width="7" Height="7" Margin="1,0" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    </ve:ControlBoxButtonBorder>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="ve:DockPane.HitTestType" Value="CloseButton" />
+    </Style>
+    <Style x:Key="DockPane_MaximizeButton" TargetType="ve:ControlBoxButton">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ve:ControlBoxButton">
+                    <ve:ControlBoxButtonBorder Style="{StaticResource DockPaneControlBoxBorder}">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Disabled" />
+                                <VisualState x:Name="Normal" />
+                                <VisualState x:Name="MouseOver">
+                                    <Storyboard>
+                                        <ColorAnimation Duration="0" To="White" Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="path1" />
+                                        <ColorAnimation Duration="0" To="White" Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="path2" />
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Pressed">
+                                    <Storyboard>
+                                        <ColorAnimation Duration="0" To="#FFC7C7C7" Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="path1" />
+                                        <ColorAnimation Duration="0" To="#FFC7C7C7" Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="path2" />
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Grid Width="10" Height="9" Margin="0,1,0,0">
+                            <Path Stretch="Fill" Fill="#5AFFFFFF" Data="F1 M 1182,768L 1192,768L 1192,770L 1182,770L 1182,768 Z M 1183,763L 1191,763L 1191,765L 1183,765L 1183,763 Z " HorizontalAlignment="Stretch" Margin="0,2,0,0" VerticalAlignment="Stretch" />
+                            <Path Stretch="Fill" x:Name="path1" Fill="#FF3D3C3C" Data="F1 M 1182,761L 1192,761L 1192,769L 1182,769L 1182,761 Z M 1183,764L 1183,768L 1191,768L 1191,764L 1183,764 Z " HorizontalAlignment="Stretch" Margin="0,0,0,1" VerticalAlignment="Stretch" />
+                            <Path Stretch="Fill" x:Name="path2" Fill="#FF3D3C3C" Data="F1 M 1182,761L 1192,761L 1192,762L 1182,762L 1182,761 Z " HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="1" />
+                        </Grid>
+                    </ve:ControlBoxButtonBorder>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="ve:DockPane.HitTestType" Value="MaximizeButton" />
+    </Style>
+    <Style x:Key="DockPane_RestoreButton" TargetType="ve:ControlBoxButton">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ve:ControlBoxButton">
+                    <ve:ControlBoxButtonBorder Style="{StaticResource DockPaneControlBoxBorder}">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Disabled" />
+                                    <VisualState x:Name="Normal" />
+                                    <VisualState x:Name="MouseOver">
+                                        <Storyboard>
+                                            <ColorAnimation Duration="0" To="White" Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="path1" />
+                                            <ColorAnimation Duration="0" To="White" Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="path2" />
+                                            <ColorAnimation Duration="0" To="White" Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="path3" />
+                                            <ColorAnimation Duration="0" To="White" Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="path4" />
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Pressed">
+                                        <Storyboard>
+                                            <ColorAnimation Duration="0" To="#FFC7C7C7" Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="path1" />
+                                            <ColorAnimation Duration="0" To="#FFC7C7C7" Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="path2" />
+                                            <ColorAnimation Duration="0" To="#FFC7C7C7" Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="path3" />
+                                            <ColorAnimation Duration="0" To="#FFC7C7C7" Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="path4" />
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                        <Grid Width="10" Height="9" Margin="0,1,0,0">
+                            <Path Stretch="Fill" Fill="#5AFFFFFF" Data="F1 M 1143,762L 1149,762L 1149,764L 1143,764L 1143,762 Z M 1141,766L 1150,766L 1150,767L 1141,767L 1141,766 Z M 1140,769L 1148,769L 1148,770L 1140,770L 1140,769 Z " HorizontalAlignment="Stretch" Margin="0,1,0,0" VerticalAlignment="Stretch" />
+                            <Path Stretch="Fill" x:Name="path1" Fill="#FF3D3C3C" Data="F1 M 1142,761.001L 1150,761.001L 1150,766L 1142,766L 1142,761.001 Z M 1143,763.001L 1143,765L 1149,765L 1149,763.001L 1143,763.001 Z " HorizontalAlignment="Stretch" Margin="2,0.001,0,3.999" VerticalAlignment="Stretch" />
+                            <Path Stretch="Fill" x:Name="path2" Fill="#FF3D3C3C" Data="F1 M 1140,764.001L 1148,764L 1148,769L 1140,769.001L 1140,764.001 Z M 1141,766L 1141,768.001L 1147,768L 1147,766L 1141,766 Z " HorizontalAlignment="Stretch" Margin="0,3,2,1" VerticalAlignment="Stretch" />
+                            <Path Stretch="Fill" x:Name="path3" Fill="#FF3D3C3C" Data="F1 M 1142,761L 1150,761L 1150,762L 1142,762L 1142,761 Z " HorizontalAlignment="Stretch" Margin="2,0,0,0" VerticalAlignment="Top" Height="1" />
+                            <Path Stretch="Fill" x:Name="path4" Fill="#FF3D3C3C" Data="F1 M 1140,764L 1148,764L 1148,765L 1140,765L 1140,764 Z " HorizontalAlignment="Stretch" Margin="0,3,2,0" VerticalAlignment="Top" Height="1" />
+                        </Grid>
+                    </ve:ControlBoxButtonBorder>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="ve:DockPane.HitTestType" Value="RestoreButton" />
+    </Style>
+    <Style x:Key="DockPane_HideButton" TargetType="ve:DockPaneControlBoxButton">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ve:DockPaneControlBoxButton">
+                    <ve:ControlBoxButtonBorder Style="{StaticResource DockPaneControlBoxBorder}">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Disabled" />
+                                <VisualState x:Name="Normal" />
+                                <VisualState x:Name="MouseOver">
+                                    <Storyboard>
+                                        <ColorAnimation Duration="0" To="White" Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="Glyph" />
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Pressed">
+                                    <Storyboard>
+                                        <ColorAnimation Duration="0" To="#FFC7C7C7" Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="Glyph" />
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="DockStates">
+                                <VisualState x:Name="Left" />
+                                <VisualState x:Name="Right">
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="Glyph" Storyboard.TargetProperty="(UIElement.RenderTransform).Children[1].ScaleX" Duration="0" To="-1" />
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Top">
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="Glyph" Storyboard.TargetProperty="(UIElement.RenderTransform).Children[0].Angle" Duration="0" To="90" />
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Bottom">
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="Glyph" Storyboard.TargetProperty="(UIElement.RenderTransform).Children[0].Angle" Duration="0" To="270" />
+                                        <DoubleAnimation Storyboard.TargetName="Glyph" Storyboard.TargetProperty="(UIElement.RenderTransform).Children[1].ScaleX" Duration="0" To="-1" />
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>                            
+                        </VisualStateManager.VisualStateGroups>
+                        <Path x:Name="Glyph" Stretch="Fill" Fill="#FF3D3C3C" Data="F1 M 3,6L 7,2L 7,10L 3,6 Z " Width="4" Height="8" Margin="4" RenderTransformOrigin="0.5,0.5">
+                            <Path.RenderTransform>
+                                <TransformGroup>
+                                    <RotateTransform />
+                                    <ScaleTransform />
+                                </TransformGroup>
+                            </Path.RenderTransform>
+                        </Path>
+                    </ve:ControlBoxButtonBorder>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="ve:DockPane.HitTestType" Value="HideButton" />
+    </Style>
+    <Style x:Key="DockPane_ExpandButton" TargetType="ve:DockPaneControlBoxButton">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ve:DockPaneControlBoxButton">
+                    <ve:ControlBoxButtonBorder Style="{StaticResource DockPaneControlBoxBorder}">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Disabled" />
+                                <VisualState x:Name="Normal" />
+                                <VisualState x:Name="MouseOver">
+                                    <Storyboard>
+                                        <ColorAnimation Duration="0" To="White" Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="Glyph" />
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Pressed">
+                                    <Storyboard>
+                                        <ColorAnimation Duration="0" To="#FFC7C7C7" Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="Glyph" />
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="DockStates">
+                                <VisualState x:Name="Left" />
+                                <VisualState x:Name="Right">
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="Glyph" Storyboard.TargetProperty="(UIElement.RenderTransform).Children[1].ScaleX" Duration="0" To="-1" />
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Top">
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="Glyph" Storyboard.TargetProperty="(UIElement.RenderTransform).Children[0].Angle" Duration="0" To="90" />
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Bottom">
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="Glyph" Storyboard.TargetProperty="(UIElement.RenderTransform).Children[0].Angle" Duration="0" To="270" />
+                                        <DoubleAnimation Storyboard.TargetName="Glyph" Storyboard.TargetProperty="(UIElement.RenderTransform).Children[1].ScaleX" Duration="0" To="-1" />
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>                            
+                        </VisualStateManager.VisualStateGroups>
+                        <Path x:Name="Glyph" Stretch="Fill" Fill="#FF3D3C3C" Data="F1 M 0,5L 5,5L 5,3L 7.5,5.5L 5,8L 5,6L 0,6L 0,5 Z M 11,9.53674e-007L 11,11L 2,11L 2,8L 3,8L 3,10L 10,10L 10,1L 3,1L 3,3L 2,3L 2,0L 11,9.53674e-007 Z " Width="11" Height="11" RenderTransformOrigin="0.5,0.5">
+                            <Path.RenderTransform>
+                                <TransformGroup>
+                                    <RotateTransform />
+                                    <ScaleTransform />
+                                </TransformGroup>
+                            </Path.RenderTransform>
+                        </Path>
+                    </ve:ControlBoxButtonBorder>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="ve:DockPane.HitTestType" Value="ExpandButton" />
+    </Style>
+    <Style x:Key="DockPane_CollapseButton" TargetType="ve:DockPaneControlBoxButton">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ve:DockPaneControlBoxButton">
+                    <ve:ControlBoxButtonBorder Style="{StaticResource DockPaneControlBoxBorder}">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Disabled" />
+                                <VisualState x:Name="Normal" />
+                                <VisualState x:Name="MouseOver">
+                                    <Storyboard>
+                                        <ColorAnimation Duration="0" To="White" Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="Glyph" />
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Pressed">
+                                    <Storyboard>
+                                        <ColorAnimation Duration="0" To="#FFC7C7C7" Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="Glyph" />
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="DockStates">
+                                <VisualState x:Name="Left" />
+                                <VisualState x:Name="Right">
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="Glyph" Storyboard.TargetProperty="(UIElement.RenderTransform).Children[1].ScaleX" Duration="0" To="-1" />
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Top">
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="Glyph" Storyboard.TargetProperty="(UIElement.RenderTransform).Children[0].Angle" Duration="0" To="90" />
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Bottom">
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="Glyph" Storyboard.TargetProperty="(UIElement.RenderTransform).Children[0].Angle" Duration="0" To="270" />
+                                        <DoubleAnimation Storyboard.TargetName="Glyph" Storyboard.TargetProperty="(UIElement.RenderTransform).Children[1].ScaleX" Duration="0" To="-1" />
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Path x:Name="Glyph" Stretch="Fill" Fill="#FF3D3C3C" Data="F1 M 11,5L 11,6L 8,6L 8,8L 5.5,5.5L 8,3L 8,5L 11,5 Z M 0,9.53674e-007L 5,9.53674e-007L 5,11L 0,11L 0,9.53674e-007 Z M 1,1L 1,10L 4,10L 4,1L 1,1 Z " Width="11" Height="11" RenderTransformOrigin="0.5,0.5">
+                            <Path.RenderTransform>
+                                <TransformGroup>
+                                    <RotateTransform />
+                                    <ScaleTransform />
+                                </TransformGroup>
+                            </Path.RenderTransform>
+                        </Path>
+                    </ve:ControlBoxButtonBorder>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="ve:DockPane.HitTestType" Value="CollapseButton" />
+    </Style>
+
+    <DataTemplate x:Key="{dxt:DockPaneElementsThemeKey ResourceKey=CloseButton}">
+        <ve:ControlBoxButton x:Name="PART_Button" Style="{StaticResource DockPane_CloseButton}" />
+    </DataTemplate>
+    <DataTemplate x:Key="{dxt:DockPaneElementsThemeKey ResourceKey=PinButton}">
+        <ve:DockPaneControlBoxButton x:Name="PART_Button" Style="{StaticResource DockPane_PinButton}" />
+    </DataTemplate>
+    <DataTemplate x:Key="{dxt:DockPaneElementsThemeKey ResourceKey=MaximizeButton}">
+        <ve:ControlBoxButton x:Name="PART_Button" Style="{StaticResource DockPane_MaximizeButton}" />
+    </DataTemplate>
+    <DataTemplate x:Key="{dxt:DockPaneElementsThemeKey ResourceKey=RestoreButton}">
+        <ve:ControlBoxButton x:Name="PART_Button" Style="{StaticResource DockPane_RestoreButton}" />
+    </DataTemplate>
+    <DataTemplate x:Key="{dxt:DockPaneElementsThemeKey ResourceKey=HideButton}">
+        <ve:DockPaneControlBoxButton x:Name="PART_Button" Style="{StaticResource DockPane_HideButton}" />
+    </DataTemplate>
+    <DataTemplate x:Key="{dxt:DockPaneElementsThemeKey ResourceKey=ExpandButton}">
+        <ve:DockPaneControlBoxButton x:Name="PART_Button" Style="{StaticResource DockPane_ExpandButton}" />
+    </DataTemplate>
+    <DataTemplate x:Key="{dxt:DockPaneElementsThemeKey ResourceKey=CollapseButton}">
+        <ve:DockPaneControlBoxButton x:Name="PART_Button" Style="{StaticResource DockPane_CollapseButton}" />
+    </DataTemplate>
+
+    <!-- FloatGroup Buttons -->
+    <Style x:Key="FloatPane_CloseButton" TargetType="ve:ControlBoxButton">
+        <Style.Setters>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ve:ControlBoxButton">
+                        <Grid x:Name="Button" Width="16" Height="16" ve:DockPane.HitTestType="CloseButton" Background="Transparent">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Disabled" />
+                                    <VisualState x:Name="Normal" />
+                                    <VisualState x:Name="MouseOver">
+                                        <Storyboard>
+                                            <ColorAnimation Duration="0" To="#FFCEE1F9" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" Storyboard.TargetName="border" />
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Pressed">
+                                        <Storyboard>
+                                            <ColorAnimation Duration="0" To="#FFC9C9C9" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" Storyboard.TargetName="border" />
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <Border x:Name="border" BorderThickness="0" Background="White" CornerRadius="8">
+                                <Path Stretch="Fill" Fill="#FF494949" Data="F1 M 54,74.9999L 54,75.9999L 57,79L 54,82L 54,83L 55,83L 58,80L 61,83L 62,83L 62,82L 59,79L 62,76L 62,75L 61,75L 58,78L 55,75L 54,74.9999 Z " HorizontalAlignment="Center" Height="8" UseLayoutRounding="False" VerticalAlignment="Center" Width="8" />
+                            </Border>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style.Setters>
+    </Style>
+    <Style x:Key="FloatPane_MaximizeButton" TargetType="ve:ControlBoxButton">
+        <Style.Setters>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ve:ControlBoxButton">
+                        <Grid x:Name="Button" Width="16" Height="16" ve:DockPane.HitTestType="MaximizeButton" Margin="0,0,2,0" Background="Transparent">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Disabled" />
+                                    <VisualState x:Name="Normal" />
+                                    <VisualState x:Name="MouseOver">
+                                        <Storyboard>
+                                            <ColorAnimation Duration="0" To="#FFCEE1F9" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" Storyboard.TargetName="border" />
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Pressed">
+                                        <Storyboard>
+                                            <ColorAnimation Duration="0" To="#FFC9C9C9" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" Storyboard.TargetName="border" />
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <Border x:Name="border" BorderThickness="0" Background="White" CornerRadius="8">
+                                <Border x:Name="glyph" Background="#00FFFEFE" Width="10" Height="10" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                    <Grid Width="10" Height="9" Margin="0,1,0,0">
+                                        <Path Stretch="Fill" Fill="#5AFFFFFF" Data="F1 M 1182,768L 1192,768L 1192,770L 1182,770L 1182,768 Z M 1183,763L 1191,763L 1191,765L 1183,765L 1183,763 Z " HorizontalAlignment="Stretch" Margin="0,2,0,0" VerticalAlignment="Stretch" />
+                                        <Path Stretch="Fill" Data="F1 M 1182,761L 1192,761L 1192,769L 1182,769L 1182,761 Z M 1183,764L 1183,768L 1191,768L 1191,764L 1183,764 Z " HorizontalAlignment="Stretch" Margin="0,0,0,1" VerticalAlignment="Stretch">
+                                            <Path.Fill>
+                                                <SolidColorBrush Color="#FF656565" />
+                                            </Path.Fill>
+                                        </Path>
+                                        <Path Stretch="Fill" Fill="#FF494949" Data="F1 M 1182,761L 1192,761L 1192,762L 1182,762L 1182,761 Z " HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="1" />
+                                    </Grid>
+                                </Border>
+                            </Border>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style.Setters>
+    </Style>
+    <Style x:Key="FloatPane_RestoreButton" TargetType="ve:ControlBoxButton">
+        <Style.Setters>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ve:ControlBoxButton">
+                        <Grid x:Name="Button" Width="16" Height="16" ve:DockPane.HitTestType="RestoreButton" Margin="0,0,2,0" Background="Transparent">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Disabled" />
+                                    <VisualState x:Name="Normal" />
+                                    <VisualState x:Name="MouseOver">
+                                        <Storyboard>
+                                            <ColorAnimation Duration="0" To="#FFCEE1F9" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" Storyboard.TargetName="border" />
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Pressed">
+                                        <Storyboard>
+                                            <ColorAnimation Duration="0" To="#FFC9C9C9" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" Storyboard.TargetName="border" />
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <Border x:Name="border" BorderThickness="0" Background="White" CornerRadius="8">
+                                <Border x:Name="glyph" Background="#00FFFEFE" Width="10" Height="10" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                    <Grid Width="10" Height="9" Margin="0,1,0,0">
+                                        <Path Stretch="Fill" Fill="#5AFFFFFF" Data="F1 M 1143,762L 1149,762L 1149,764L 1143,764L 1143,762 Z M 1141,766L 1150,766L 1150,767L 1141,767L 1141,766 Z M 1140,769L 1148,769L 1148,770L 1140,770L 1140,769 Z " HorizontalAlignment="Stretch" Margin="0,1,0,0" VerticalAlignment="Stretch" />
+                                        <Path Stretch="Fill" Data="F1 M 1142,761.001L 1150,761.001L 1150,766L 1142,766L 1142,761.001 Z M 1143,763.001L 1143,765L 1149,765L 1149,763.001L 1143,763.001 Z " HorizontalAlignment="Stretch" Margin="2,0.001,0,3.999" VerticalAlignment="Stretch">
+                                            <Path.Fill>
+                                                <SolidColorBrush Color="#FF656565" />
+                                            </Path.Fill>
+                                        </Path>
+                                        <Path Stretch="Fill" Data="F1 M 1140,764.001L 1148,764L 1148,769L 1140,769.001L 1140,764.001 Z M 1141,766L 1141,768.001L 1147,768L 1147,766L 1141,766 Z " HorizontalAlignment="Stretch" Margin="0,3,2,1" VerticalAlignment="Stretch">
+                                            <Path.Fill>
+                                                <SolidColorBrush Color="#FF656565" />
+                                            </Path.Fill>
+                                        </Path>
+                                        <Path Stretch="Fill" Fill="#FF494949" Data="F1 M 1142,761L 1150,761L 1150,762L 1142,762L 1142,761 Z " HorizontalAlignment="Stretch" Margin="2,0,0,0" VerticalAlignment="Top" Height="1" />
+                                        <Path Stretch="Fill" Fill="#FF494949" Data="F1 M 1140,764L 1148,764L 1148,765L 1140,765L 1140,764 Z " HorizontalAlignment="Stretch" Margin="0,3,2,0" VerticalAlignment="Top" Height="1" />
+                                    </Grid>
+                                </Border>
+                            </Border>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style.Setters>
+    </Style>
+    
+    <DataTemplate x:Key="{dxt:FloatPaneElementsThemeKey ResourceKey=CloseButton}">
+        <ve:ControlBoxButton x:Name="PART_Button" Style="{StaticResource FloatPane_CloseButton}" />
+    </DataTemplate>
+    <DataTemplate x:Key="{dxt:FloatPaneElementsThemeKey ResourceKey=MaximizeButton}">
+        <ve:ControlBoxButton x:Name="PART_Button" Style="{StaticResource FloatPane_MaximizeButton}" />
+    </DataTemplate>
+    <DataTemplate x:Key="{dxt:FloatPaneElementsThemeKey ResourceKey=RestoreButton}">
+        <ve:ControlBoxButton x:Name="PART_Button" Style="{StaticResource FloatPane_RestoreButton}" />
+    </DataTemplate>
+
+    <!-- Document Buttons -->
+    <Style x:Key="DocumentControlBoxButtonBorder" TargetType="ve:ControlBoxButtonBorder">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ve:ControlBoxButtonBorder">
+                    <Grid x:Name="Button" Width="16" Height="16" Background="Transparent">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Disabled" />
+                                <VisualState x:Name="Normal" />
+                                <VisualState x:Name="MouseOver">
+                                    <Storyboard>
+                                        <ColorAnimation Duration="0" To="#FFCEE1F9" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" Storyboard.TargetName="border" />
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Pressed">
+                                    <Storyboard>
+                                        <ColorAnimation Duration="0" To="#FFC9C9C9" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" Storyboard.TargetName="border" />
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Border x:Name="border" BorderThickness="0" Background="White" CornerRadius="8">
+                            <ContentPresenter />
+                        </Border>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="Document_CloseButton" TargetType="ve:ControlBoxButton">
+        <Style.Setters>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ve:ControlBoxButton">
+                        <ve:ControlBoxButtonBorder Style="{StaticResource DocumentControlBoxButtonBorder}" ve:DockPane.HitTestType="CloseButton">
+                            <Border HorizontalAlignment="Center" x:Name="glyph" VerticalAlignment="Center" Width="10" Height="10">
+                                    <Grid HorizontalAlignment="Center" Margin="0,1,0,0" VerticalAlignment="Center" Width="10" Height="9">
+                                        <Path Fill="#FF656565" Stretch="Fill" HorizontalAlignment="Stretch" Margin="0,0,0,4" VerticalAlignment="Stretch" Data="F1M1196,762L1201,767 1206,762 1204,762 1201,765 1198,762 1196,762z" />
+                                        <Path Fill="#5AFFFFFF" Stretch="Fill" HorizontalAlignment="Stretch" Margin="0,4,0,0" VerticalAlignment="Stretch" Data="F1M1206,771L1206,770 1205,770 1201,766 1197,770 1196,770 1196,771 1198,771 1201,768 1204,771 1206,771z" />
+                                        <Path Stretch="Fill" HorizontalAlignment="Stretch" Margin="0,1,0,1" VerticalAlignment="Stretch" Data="F1M1204,763L1205,763 1202,766 1206,770 1204,770 1201,767 1198,770 1196,770 1200,766 1197,763 1198,763 1201,766 1204,763z">
+                                            <Path.Fill>
+                                                <SolidColorBrush Color="#FF494949" />
+                                            </Path.Fill>
+                                        </Path>
+                                    </Grid>
+                                </Border>
+                        </ve:ControlBoxButtonBorder>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style.Setters>
+    </Style>
+    <Style x:Key="Document_MaximizeButton" TargetType="ve:ControlBoxButton">
+        <Style.Setters>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ve:ControlBoxButton">
+                        <ve:ControlBoxButtonBorder Style="{StaticResource DocumentControlBoxButtonBorder}" ve:DockPane.HitTestType="MaximizeButton">
+                            <Border HorizontalAlignment="Center" x:Name="glyph" VerticalAlignment="Center" Width="10" Height="10">
+                                <Grid Width="10" Height="9" Margin="0,1,0,0">
+                                    <Path Stretch="Fill" Fill="#5AFFFFFF" Data="F1 M 1182,768L 1192,768L 1192,770L 1182,770L 1182,768 Z M 1183,763L 1191,763L 1191,765L 1183,765L 1183,763 Z " HorizontalAlignment="Stretch" Margin="0,2,0,0" VerticalAlignment="Stretch" />
+                                    <Path Stretch="Fill" Data="F1 M 1182,761L 1192,761L 1192,769L 1182,769L 1182,761 Z M 1183,764L 1183,768L 1191,768L 1191,764L 1183,764 Z " HorizontalAlignment="Stretch" Margin="0,0,0,1" VerticalAlignment="Stretch">
+                                        <Path.Fill>
+                                            <SolidColorBrush Color="#FF656565" />
+                                        </Path.Fill>
+                                    </Path>
+                                    <Path Stretch="Fill" Fill="#FF494949" Data="F1 M 1182,761L 1192,761L 1192,762L 1182,762L 1182,761 Z " HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="1" />
+                                </Grid>
+                            </Border>
+                        </ve:ControlBoxButtonBorder>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style.Setters>
+    </Style>
+    <Style x:Key="Document_MinimizeButton" TargetType="ve:ControlBoxButton">
+        <Style.Setters>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ve:ControlBoxButton">
+                        <ve:ControlBoxButtonBorder Style="{StaticResource DocumentControlBoxButtonBorder}" ve:DockPane.HitTestType="MinimizeButton">
+                            <Border HorizontalAlignment="Center" x:Name="glyph" VerticalAlignment="Center" Width="10" Height="10">
+                                <Grid Width="8" Height="3" Margin="0,7,0,0">
+                                    <Rectangle Stretch="Fill" Fill="#5AFEFEFE" HorizontalAlignment="Stretch" Margin="0,1,0,0" VerticalAlignment="Stretch" />
+                                    <Rectangle Stretch="Fill" Fill="#FF656565" HorizontalAlignment="Stretch" Margin="0,0,0,1" VerticalAlignment="Stretch" />
+                                    <Rectangle Stretch="Fill" Fill="#FF494949" HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Top" Height="1" />
+                                </Grid>
+                            </Border>
+                        </ve:ControlBoxButtonBorder>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style.Setters>
+    </Style>
+    <Style x:Key="Document_RestoreButton" TargetType="ve:ControlBoxButton">
+        <Style.Setters>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ve:ControlBoxButton">
+                        <ve:ControlBoxButtonBorder Style="{StaticResource DocumentControlBoxButtonBorder}" ve:DockPane.HitTestType="RestoreButton">
+                            <Border HorizontalAlignment="Center" x:Name="glyph" VerticalAlignment="Center" Width="10" Height="10">
+                                <Grid Width="10" Height="9" Margin="0,1,0,0">
+                                    <Path Stretch="Fill" Fill="#5AFFFFFF" Data="F1 M 1143,762L 1149,762L 1149,764L 1143,764L 1143,762 Z M 1141,766L 1150,766L 1150,767L 1141,767L 1141,766 Z M 1140,769L 1148,769L 1148,770L 1140,770L 1140,769 Z " HorizontalAlignment="Stretch" Margin="0,1,0,0" VerticalAlignment="Stretch" />
+                                    <Path Stretch="Fill" Data="F1 M 1142,761.001L 1150,761.001L 1150,766L 1142,766L 1142,761.001 Z M 1143,763.001L 1143,765L 1149,765L 1149,763.001L 1143,763.001 Z " HorizontalAlignment="Stretch" Margin="2,0.001,0,3.999" VerticalAlignment="Stretch">
+                                        <Path.Fill>
+                                            <SolidColorBrush Color="#FF656565" />
+                                        </Path.Fill>
+                                    </Path>
+                                    <Path Stretch="Fill" Data="F1 M 1140,764.001L 1148,764L 1148,769L 1140,769.001L 1140,764.001 Z M 1141,766L 1141,768.001L 1147,768L 1147,766L 1141,766 Z " HorizontalAlignment="Stretch" Margin="0,3,2,1" VerticalAlignment="Stretch">
+                                        <Path.Fill>
+                                            <SolidColorBrush Color="#FF656565" />
+                                        </Path.Fill>
+                                    </Path>
+                                    <Path Stretch="Fill" Fill="#FF494949" Data="F1 M 1142,761L 1150,761L 1150,762L 1142,762L 1142,761 Z " HorizontalAlignment="Stretch" Margin="2,0,0,0" VerticalAlignment="Top" Height="1" />
+                                    <Path Stretch="Fill" Fill="#FF494949" Data="F1 M 1140,764L 1148,764L 1148,765L 1140,765L 1140,764 Z " HorizontalAlignment="Stretch" Margin="0,3,2,0" VerticalAlignment="Top" Height="1" />
+                                </Grid>
+                            </Border>
+                        </ve:ControlBoxButtonBorder>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style.Setters>
+    </Style>
+
+    <DataTemplate x:Key="{dxt:DocumentElementsThemeKey ResourceKey=CloseButton}">
+        <ve:ControlBoxButton x:Name="PART_Button" Style="{StaticResource Document_CloseButton}" />
+    </DataTemplate>
+    <DataTemplate x:Key="{dxt:DocumentElementsThemeKey ResourceKey=MaximizeButton}">
+        <ve:ControlBoxButton x:Name="PART_Button" Style="{StaticResource Document_MaximizeButton}" />
+    </DataTemplate>
+    <DataTemplate x:Key="{dxt:DocumentElementsThemeKey ResourceKey=MinimizeButton}">
+        <ve:ControlBoxButton x:Name="PART_Button" Style="{StaticResource Document_MinimizeButton}" />
+    </DataTemplate>
+    <DataTemplate x:Key="{dxt:DocumentElementsThemeKey ResourceKey=RestoreButton}">
+        <ve:ControlBoxButton x:Name="PART_Button" Style="{StaticResource Document_RestoreButton}" />
+    </DataTemplate>
+
+    <!-- DocumentGroup Buttons -->
+    <Style x:Key="DocumentGroupControlBoxButtonBorder" TargetType="ve:ControlBoxButtonBorder">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ve:ControlBoxButtonBorder">
+                    <Grid x:Name="Button" Background="Transparent">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal" />
+                                <VisualState x:Name="MouseOver">
+                                    <Storyboard>
+                                        <ColorAnimation Duration="0" To="#FF898989" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" Storyboard.TargetName="border" />
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Pressed">
+                                    <Storyboard>
+                                        <ColorAnimation Duration="0" To="#FF747576" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" Storyboard.TargetName="border" />
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Disabled">
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="Button" Storyboard.TargetProperty="(Control.Opacity)" To="0.35" Duration="0" />
+                                        <ColorAnimation Duration="0" To="#008C8D8F" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" Storyboard.TargetName="border" />
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Border x:Name="border" BorderThickness="0" Background="#008C8D8F" Margin="0" CornerRadius="3" Width="14" Height="14">
+                            <ContentPresenter />
+                        </Border>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>    
+    <Style x:Key="DocumentPane_CloseButton" TargetType="ve:ControlBoxButton">
+        <Style.Setters>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ve:ControlBoxButton">
+                        <ve:ControlBoxButtonBorder Style="{StaticResource DocumentGroupControlBoxButtonBorder}" ve:DockPane.HitTestType="CloseButton">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal" />
+                                    <VisualState x:Name="MouseOver">
+                                        <Storyboard>
+                                            <ColorAnimation Duration="0" To="White" Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="path" />
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Pressed">
+                                        <Storyboard>
+                                            <ColorAnimation Duration="0" To="#FFC7C7C7" Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="path" />
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Disabled">
+                                        <Storyboard>
+                                            <ColorAnimation Duration="0" To="#FF3D3C3C" Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="path" />
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <Path x:Name="path" Stretch="Fill" Fill="#FF3D3C3C" Data="F1 M 1220,881L 1222,881L 1218,885L 1222,889L 1220,889L 1217,886L 1214,889L 1212,889L 1216,885L 1212,881L 1214,881L 1217,884L 1220,881 Z " HorizontalAlignment="Center" Height="8" Margin="0" UseLayoutRounding="False" VerticalAlignment="Center" Width="10" />
+                        </ve:ControlBoxButtonBorder>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style.Setters>
+    </Style>
+    <Style x:Key="DocumentPane_ScrollPrevButton" TargetType="ve:ControlBoxButton">
+        <Style.Setters>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ve:ControlBoxButton">
+                        <ve:ControlBoxButtonBorder Style="{StaticResource DocumentGroupControlBoxButtonBorder}" ve:DockPane.HitTestType="ScrollPrevButton">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal" />
+                                    <VisualState x:Name="MouseOver">
+                                        <Storyboard>
+                                            <ColorAnimation Duration="0" To="White" Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="path" />
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Pressed">
+                                        <Storyboard>
+                                            <ColorAnimation Duration="0" To="#FFC7C7C7" Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="path" />
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Disabled">
+                                        <Storyboard>
+                                            <ColorAnimation Duration="0" To="#FF3D3C3C" Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="path" />
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>                            
+                            <Path x:Name="path" Stretch="Fill" Fill="#FF3D3C3C" Data="F1 M 1235,898L 1231,894L 1235,890L 1235,898 Z " HorizontalAlignment="Center" Height="8" Margin="0,0,2,0" UseLayoutRounding="False" VerticalAlignment="Center" Width="4" />
+                        </ve:ControlBoxButtonBorder>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style.Setters>
+    </Style>
+    <Style x:Key="DocumentPane_ScrollNextButton" TargetType="ve:ControlBoxButton">
+        <Style.Setters>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ve:ControlBoxButton">
+                        <ve:ControlBoxButtonBorder Style="{StaticResource DocumentGroupControlBoxButtonBorder}" ve:DockPane.HitTestType="ScrollNextButton">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal" />
+                                    <VisualState x:Name="MouseOver">
+                                        <Storyboard>
+                                            <ColorAnimation Duration="0" To="White" Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="path" />
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Pressed">
+                                        <Storyboard>
+                                            <ColorAnimation Duration="0" To="#FFC7C7C7" Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="path" />
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Disabled">
+                                        <Storyboard>
+                                            <ColorAnimation Duration="0" To="#FF3D3C3C" Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="path" />
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>                            
+                            <Path x:Name="path" Stretch="Fill" Fill="#FF3D3C3C" Data="F1 M 1230,900L 1234,904L 1230,908L 1230,900 Z " HorizontalAlignment="Center" Height="8" Margin="2,0,0,0" UseLayoutRounding="False" VerticalAlignment="Center" Width="4" />
+                        </ve:ControlBoxButtonBorder>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style.Setters>
+    </Style>
+    <Style x:Key="DocumentPane_DropDownButton" TargetType="ve:ControlBoxButton">
+        <Style.Setters>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ve:ControlBoxButton">
+                        <ve:ControlBoxButtonBorder Style="{StaticResource DocumentGroupControlBoxButtonBorder}" ve:DockPane.HitTestType="DropDownButton">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal" />
+                                    <VisualState x:Name="MouseOver">
+                                        <Storyboard>
+                                            <ColorAnimation Duration="0" To="White" Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="path" />
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Pressed">
+                                        <Storyboard>
+                                            <ColorAnimation Duration="0" To="#FFC7C7C7" Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="path" />
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Disabled">
+                                        <Storyboard>
+                                            <ColorAnimation Duration="0" To="#FF3D3C3C" Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="path" />
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>                            
+                            <Path x:Name="path" Stretch="Fill" Fill="#FF3D3C3C" Data="F1 M 1235,883L 1230,888L 1225,883L 1235,883 Z " HorizontalAlignment="Center" Height="5" Margin="0,1,0,0" UseLayoutRounding="False" VerticalAlignment="Center" Width="10" />
+                        </ve:ControlBoxButtonBorder>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style.Setters>
+    </Style>
+    <Style x:Key="DocumentPane_RestoreButton" TargetType="ve:ControlBoxButton">
+        <Style.Setters>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ve:ControlBoxButton">
+                        <ve:ControlBoxButtonBorder Style="{StaticResource DocumentGroupControlBoxButtonBorder}" ve:DockPane.HitTestType="RestoreButton">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal" />
+                                    <VisualState x:Name="MouseOver">
+                                        <Storyboard>
+                                            <ColorAnimation Duration="0" To="White" Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="path" />
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Pressed">
+                                        <Storyboard>
+                                            <ColorAnimation Duration="0" To="#FFC7C7C7" Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="path" />
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Disabled">
+                                        <Storyboard>
+                                            <ColorAnimation Duration="0" To="#FF3D3C3C" Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="path" />
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <Path x:Name="path" Stretch="Fill" Fill="#FF3D3C3C" Data="F1 M 1177,894L 1185,894L 1185,899.999L 1183,899.999L 1183,903L 1175,903L 1175,897L 1177,897L 1177,894 Z M 1184,898.999L 1184,896L 1178,896L 1178,897L 1183,897L 1183,899L 1184,898.999 Z M 1176,899L 1176,902L 1182,902L 1182,899L 1176,899 Z " HorizontalAlignment="Center" Height="9" Margin="0,0,0,1" UseLayoutRounding="False" VerticalAlignment="Center" Width="10" />
+                        </ve:ControlBoxButtonBorder>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style.Setters>
+    </Style>
+
+    <DataTemplate x:Key="{dxt:DocumentPaneElementsThemeKey ResourceKey=CloseButton}">
+        <ve:ControlBoxButton x:Name="PART_Button" Style="{StaticResource DocumentPane_CloseButton}" />
+    </DataTemplate>
+    <DataTemplate x:Key="{dxt:DocumentPaneElementsThemeKey ResourceKey=ScrollPrevButton}">
+        <ve:ControlBoxButton x:Name="PART_Button" Style="{StaticResource DocumentPane_ScrollPrevButton}" />
+    </DataTemplate>
+    <DataTemplate x:Key="{dxt:DocumentPaneElementsThemeKey ResourceKey=ScrollNextButton}">
+        <ve:ControlBoxButton x:Name="PART_Button" Style="{StaticResource DocumentPane_ScrollNextButton}" />
+    </DataTemplate>
+    <DataTemplate x:Key="{dxt:DocumentPaneElementsThemeKey ResourceKey=DropDownButton}">
+        <ve:ControlBoxButton x:Name="PART_Button" Style="{StaticResource DocumentPane_DropDownButton}" />
+    </DataTemplate>
+    <DataTemplate x:Key="{dxt:DocumentPaneElementsThemeKey ResourceKey=RestoreButton}">
+        <ve:ControlBoxButton x:Name="PART_Button" Style="{StaticResource DocumentPane_RestoreButton}" />
+    </DataTemplate>
+
+    <!-- Document Page Buttons -->
+    <Style x:Key="DocumentPageControlBoxButtonBorder" TargetType="ve:ControlBoxButtonBorder">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ve:ControlBoxButtonBorder">
+                    <Grid x:Name="Button" Background="Transparent">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal" />
+                                <VisualState x:Name="MouseOver">
+                                    <Storyboard>
+                                        <ColorAnimation Duration="0" To="#FF898989" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" Storyboard.TargetName="border" />
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Pressed">
+                                    <Storyboard>
+                                        <ColorAnimation Duration="0" To="#FF747576" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" Storyboard.TargetName="border" />
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Disabled">
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetProperty="(Control.Opacity)" Storyboard.TargetName="Button" To="0.35" Duration="0" />                                        
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Border x:Name="border" BorderThickness="0" Background="#008C8D8F" Margin="0" CornerRadius="3" Width="14" Height="14" />
+                        <ContentPresenter />
+                    </Grid>                    
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="Document_ClosePageButton" TargetType="ve:ControlBoxButton">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ve:ControlBoxButton">
+                    <ve:ControlBoxButtonBorder Style="{StaticResource DocumentPageControlBoxButtonBorder}" ve:DockPane.HitTestType="CloseButton">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal" />
+                                <VisualState x:Name="MouseOver">
+                                    <Storyboard>
+                                        <ColorAnimation Duration="0" To="White" Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="path" />
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Pressed">
+                                    <Storyboard>
+                                        <ColorAnimation Duration="0" To="#FFC7C7C7" Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="path" />
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Disabled" />
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Path x:Name="path" Stretch="Fill" Fill="#FF3D3C3C" Data="F1 M 1207,889L 1209,889L 1206,892L 1209,895L 1207,895L 1205,893L 1203,895L 1201,895L 1204,892L 1201,889L 1203,889L 1205,891L 1207,889 Z " HorizontalAlignment="Center" Height="6" Margin="0" UseLayoutRounding="False" VerticalAlignment="Center" Width="8" />
+                    </ve:ControlBoxButtonBorder>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="Document_PinPageButton" TargetType="ve:DockPaneControlBoxButton">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ve:DockPaneControlBoxButton">
+                    <ve:ControlBoxButtonBorder Style="{StaticResource DocumentPageControlBoxButtonBorder}" ve:DockPane.HitTestType="PinButton">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal" />
+                                <VisualState x:Name="MouseOver">
+                                    <Storyboard>
+                                        <ColorAnimation Duration="0" To="White" Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="pinned" />
+                                        <ColorAnimation Duration="0" To="White" Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="unpinned" />
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Pressed">
+                                    <Storyboard>
+                                        <ColorAnimation Duration="0" To="#FFC7C7C7" Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="pinned" />
+                                        <ColorAnimation Duration="0" To="#FFC7C7C7" Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="unpinned" />
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Disabled" />
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="PinnedStates">
+                                <VisualState x:Name="Unpinned" />
+                                <VisualState x:Name="Pinned">
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="pinned" To="0" Duration="0" />
+                                        <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="unpinned" To="1" Duration="0" />
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                            <Grid>
+                                <Path x:Name="pinned" Fill="#FF464646" Stretch="Fill" HorizontalAlignment="Center" VerticalAlignment="Center" Width="9" Height="7" Data="F1M1252,785L1252,786 1257,786 1257,791 1252,791 1252,792 1251,792 1251,789 1248,789 1248,788 1251,788 1251,785 1252,785z M1256,787L1252,787 1252,788 1256,788 1256,787z" />
+                                <Path x:Name="unpinned" Fill="#FF464646" Opacity="0" Stretch="Fill" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,1,0,0" Width="7" Height="9" Data="F1M1265,788L1266,788 1266,783 1271,783 1271,788 1272,788 1272,789 1269,789 1269,792 1268,792 1268,789 1265,789 1265,788z M1267,784L1267,788 1268,788 1268,784 1267,784z" />
+                            </Grid>
+                    </ve:ControlBoxButtonBorder>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <DataTemplate x:Key="{dxt:DocumentElementsThemeKey ResourceKey=ClosePageButton}">
+        <ve:ControlBoxButton x:Name="PART_Button" Style="{StaticResource Document_ClosePageButton}" />
+    </DataTemplate>
+    <DataTemplate x:Key="{dxt:DocumentElementsThemeKey ResourceKey=PinPageButton}">
+        <ve:DockPaneControlBoxButton x:Name="PART_Button" Style="{StaticResource Document_PinPageButton}" />
+    </DataTemplate>
+
+</ResourceDictionary>

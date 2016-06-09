@@ -1,0 +1,44 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:dxtEx="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys" xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:dxc="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:dxet="http://schemas.devexpress.com/winfx/2008/xaml/editors/themekeys" xmlns:dxef="http://schemas.devexpress.com/winfx/2008/xaml/editors" xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys">
+
+    <!--BEGIN WPF-->
+    <ResourceDictionary.MergedDictionaries>
+        <dxtEx:ResourceDictionaryEx Source="/DevExpress.Xpf.Themes.LightGray.v15.2;component/DevExpress.Xpf.Core/DevExpress.Xpf.Core/Editors/Themes/Generic/FilterControl.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+    <!--END WPF-->
+    <dxef:GroupTypeConverter x:Key="FilterControlGroupTypeConverter" />
+    <dxef:OperationStringConverter x:Key="FilterControlOperationStringConverter" />
+    <ControlTemplate x:Key="{dxet:FilterControlThemeKey ResourceKey=FilterControlBorderTemplate}" TargetType="{x:Type ContentControl}">
+        <Grid>
+            <Border Background="#FF021743" />
+            <Border Name="border" Background="White">
+                <Border.Margin>
+                    <Binding Path="Tag" RelativeSource="{RelativeSource TemplatedParent}">
+                        <Binding.Converter>
+                            <dxc:BoolToObjectConverter>
+                                <dxc:BoolToObjectConverter.TrueValue>
+                                    <Thickness>1,1,1,1</Thickness>
+                                </dxc:BoolToObjectConverter.TrueValue>
+                                <dxc:BoolToObjectConverter.FalseValue>
+                                    <Thickness>0,0,0,0</Thickness>
+                                </dxc:BoolToObjectConverter.FalseValue>
+                            </dxc:BoolToObjectConverter>
+                        </Binding.Converter>
+                    </Binding>
+                </Border.Margin>
+            </Border>
+            <ContentPresenter Margin="1" />
+        </Grid>
+    </ControlTemplate>
+    <ControlTemplate x:Key="{dxet:FilterControlThemeKey ResourceKey=FilterControlGroupTypeButtonTemplate}" TargetType="{x:Type ContentControl}">
+        <TextBlock x:Name="TextButton" Text="{Binding Path=NodeType, Converter={StaticResource FilterControlGroupTypeConverter}}" Foreground="Red" />
+    </ControlTemplate>
+    <ControlTemplate x:Key="{dxet:FilterControlThemeKey ResourceKey=FilterControlFirstOperandButtonTemplate}" TargetType="{x:Type ContentControl}">
+        <dxc:XPFContentControl x:Name="FirstOperandButton" Margin="0,2,0,2" VerticalAlignment="Center" Cursor="Hand" Content="{Binding Path=ColumnHeaderCaption}" ContentTemplate="{Binding Path=ColumnHeaderTemplate}" ContentTemplateSelector="{Binding Path=ColumnHeaderTemplateSelector}" Foreground="Blue" />
+    </ControlTemplate>
+    <ControlTemplate x:Key="{dxet:FilterControlThemeKey ResourceKey=FilterControlClauseOperationButtonTemplate}" TargetType="{x:Type ContentControl}">
+        <TextBlock x:Name="TextButton" VerticalAlignment="Center" Margin="0,2,0,2" Text="{Binding Path=Operation, Converter={StaticResource FilterControlOperationStringConverter}}" Foreground="Green" />
+    </ControlTemplate>
+    <ControlTemplate x:Key="{dxet:FilterControlThemeKey ResourceKey=OneLocalDateTimeTemplate}">
+        <dxc:XPFContentControl x:Name="LocalDateTimeButton" Margin="0,3,3,3" VerticalAlignment="Center" Cursor="Hand" Content="{Binding Path=LocalDateTimeFunctionLabel}" Foreground="Blue" />
+    </ControlTemplate>
+</ResourceDictionary>

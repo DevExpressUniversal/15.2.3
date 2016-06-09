@@ -1,0 +1,45 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:native="clr-namespace:DevExpress.Xpf.Printing.Native"
+                    xmlns:core="http://schemas.devexpress.com/winfx/2008/xaml/core">
+
+    <native:NumberToVisibilityConverter x:Key="visibilityConverter" />
+    <core:BoolInverseConverter x:Key="boolInverseConverter" />
+
+    <Style TargetType="native:ScrollablePageView">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="native:ScrollablePageView">
+                    <Border x:Name="pageBorder"
+                            BorderThickness="0"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Visibility="{Binding Path=Model.PageCount, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource visibilityConverter}, FallbackValue=Collapsed}">
+                        <Border BorderBrush="Transparent"
+                                BorderThickness="{TemplateBinding PageMargin}"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center">
+                            <native:PageBorderControl BorderThickness="{TemplateBinding BorderThickness}" 
+                                                      BorderBrush="{TemplateBinding BorderBrush}">
+                                <Grid x:Name="pageContentViewContainer">
+                                    <Viewbox Width="{Binding Path=Model.PageViewWidth, RelativeSource={RelativeSource Mode=TemplatedParent}}"
+                                             Height="{Binding Path=Model.PageViewHeight, RelativeSource={RelativeSource Mode=TemplatedParent}}">
+                                        <core:DXContentPresenter Content="{Binding Path=Model.PageContent, RelativeSource={RelativeSource Mode=TemplatedParent}}"
+                                                                 IsHitTestVisible="{Binding Path=Model.IsLoading, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource boolInverseConverter}, FallbackValue=True}"/>
+                                    </Viewbox>
+
+                                    <Grid Background="White"
+                                          Visibility="{Binding Path=Model.IsIncorrectPageContent, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource visibilityConverter}, FallbackValue=Collapsed}">
+                                        <native:PageWithRedCross/>
+                                    </Grid>
+                                </Grid>
+                            </native:PageBorderControl>
+                        </Border>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+
+        <Setter Property="core:FrameworkElementHelper.IsClipped" Value="True" />
+    </Style>
+</ResourceDictionary>

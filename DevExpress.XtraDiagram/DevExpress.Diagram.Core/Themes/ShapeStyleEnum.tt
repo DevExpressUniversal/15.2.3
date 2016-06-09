@@ -1,0 +1,152 @@
+﻿<#@ template debug="false" hostspecific="true" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ assembly name="System.Xml" #>
+<#@ assembly name="System" #>
+<#@ import namespace="System.Xml" #>
+<#@ import namespace="System" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Text.RegularExpressions" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ output extension=".cs" #>
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Windows;
+using System.Windows.Media;
+using System.Collections.ObjectModel;
+using DevExpress.Diagram.Core.Localization;
+using DevExpress.Diagram.Core.Shapes.Native;
+
+namespace DevExpress.Diagram.Core {
+	public enum DiagramThemeColorId {
+<#
+List<string> columns = new List<string> { "White", "Black", "Light", "Dark", "Accent1", "Accent2", "Accent3", "Accent4", "Accent5", "Accent6" };
+List<string> rows = Enumerable.Range(0, 6).Select(index => "_" + index).ToList();
+rows[0] = string.Empty;
+
+foreach(string row in rows) {
+	foreach(string column in columns) {
+#>		<#=column#><#=row#>,
+<#
+	}
+}
+#>
+	}
+
+	public static class DefaultDiagramStyleId {
+<#
+DefineDefaultShapeStyles();
+DefineItemStyle("ConnectorId.", "Subtle", 1, "theme => theme.ConnectorStyles[0]");
+#>
+	}
+
+	public static class DiagramShapeStyleId {
+<#
+DefineDefaultShapeStyles();
+{
+	int index = 0;
+	foreach(string effect in shapeEffects) {
+		for(int accent = 1; accent < 8; accent++) {
+			DefineItemStyle("ShapeId.", effect, accent, string.Format("theme => theme.ThemeShapeStyles[{0}]", index));
+			index++;
+		}
+	}
+}
+DefineStylesProperty("DiagramShapeStyleId", defaultStyles.Concat(GetThemeShapeStyles()));
+#>
+	}
+
+	public static class DiagramConnectorStyleId {
+<#
+{
+	int index = 0;
+	foreach(string effect in connectorEffects) {
+		for(int accent = 1; accent < 8; accent++) {
+			DefineItemStyle("ConnectorId.", effect, accent, string.Format("theme => theme.ConnectorStyles[{0}]", index));
+			index++;
+		}
+	}
+}
+DefineStylesProperty("DiagramConnectorStyleId", GetConnectorStyles());
+#>
+	}
+}
+<#+
+string[] shapeEffects = new string[] { "Subtle", "Refined", "Balanced", "Moderate", "Focused", "Intense"  };
+List<string> GetThemeShapeStyles() {
+	List<string> styles = new List<string>();
+	foreach(string effect in shapeEffects) {
+		for(int accent = 1; accent < 8; accent++) {
+			styles.Add(effect + accent);
+		}
+	}
+	return styles;
+}
+#>
+<#+
+string[] connectorEffects = new string[] { "Subtle", "Moderate", "Intense"  };
+List<string> GetConnectorStyles() {
+	List<string> styles = new List<string>();
+	foreach(string effect in connectorEffects) {
+		for(int accent = 1; accent < 8; accent++) {
+			styles.Add(effect + accent);
+		}
+	}
+	return styles;
+}
+#>
+<#+
+List<string> defaultStyles = new List<string> { "Variant1", "Variant2", "Variant3", "Variant4" };
+void DefineDefaultShapeStyles() {
+	string prefix = "Variant";
+	for(int i = 0; i < 4; i++) {
+		int variantIndex = i + 1;
+		string defaultStyleId = prefix + variantIndex;
+		DefineVariantStyle(defaultStyleId, variantIndex, string.Format("theme => theme.VariantShapeStyles[{0}]", i));
+	}
+}
+#>
+<#+
+void DefineVariantStyle(string id, int variantIndex, string getStyleFunc) {
+#>
+		public static readonly DiagramItemStyleId <#=id#> = DiagramItemStyleId.Create("<#=id#>", <#=variantIndex#>, <#=getStyleFunc#>);
+<#+
+}
+#>
+<#+
+void DefineItemStyle(string idPrefix, string effectName, int accentIndex, string getStyleFunc) {
+		string styleName = effectName + accentIndex;
+#>
+		public static readonly DiagramItemStyleId <#=styleName#> = DiagramItemStyleId.Create("<#=idPrefix + styleName#>", DiagramControlStringId.Themes_<#=effectName#>Effect_Name, <#=accentIndex#>, <#=getStyleFunc#>);
+<#+
+}
+#>
+<#+
+void DefineStylesProperty(string className, IEnumerable<string> styles) {
+#>
+
+		public static readonly ReadOnlyCollection<DiagramItemStyleId> Styles;
+		static readonly Dictionary<string, DiagramItemStyleId> stylesCore;
+
+		static <#=className#>() {
+			stylesCore = new Dictionary<string, DiagramItemStyleId>();
+<#+foreach(var style in styles) { 
+#>
+			stylesCore.Add(<#=style#>.Id, <#=style#>);
+<#+ 
+}#>
+            Styles = new ReadOnlyCollection<DiagramItemStyleId>(stylesCore.Values.ToList());
+		}
+
+		public static DiagramItemStyleId GetStyleIdByKey(string key) {
+			DiagramItemStyleId styleId = null;
+            if(stylesCore.TryGetValue(key, out styleId))
+                return styleId;
+            return null;
+		}
+<#+
+}
+#>

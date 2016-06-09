@@ -1,0 +1,260 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+    xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+    xmlns:dxcn="http://schemas.devexpress.com/winfx/2008/xaml/core/internal"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:dbhelpers="clr-namespace:DevExpress.Xpf.DemoBase.Helpers">
+
+    <ControlTemplate x:Key="ThemesListboxEditItemTemplate" TargetType="{x:Type dxe:ListBoxEditItem}">
+        <Grid x:Name="grid" SnapsToDevicePixels="True" Background="#00FFFFFF" HorizontalAlignment="Stretch" VerticalAlignment="Center">
+            <Grid.Resources>
+                <DataTemplate x:Key="HoverTemplate">
+                    <dx:DXBorder BorderBrush="#f7941e" BorderThickness="3"/>
+                </DataTemplate>
+                <DataTemplate x:Key="SelectedTemplate">
+                    <dx:DXBorder BorderBrush="#f7941e" BorderThickness="3"/>
+                </DataTemplate>
+
+            </Grid.Resources>
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup x:Name="CommonStates">
+                    <VisualState x:Name="Normal" />
+                    <VisualState x:Name="MouseOver" />
+                    <VisualState x:Name="Disabled">
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetName="grid" Storyboard.TargetProperty="Opacity" Duration="0" To=".35" />
+                        </Storyboard>
+                    </VisualState>
+                </VisualStateGroup>
+                <VisualStateGroup x:Name="SelectionStates">
+                    <VisualState x:Name="Unselected" />
+                    <VisualState x:Name="Selected">
+                        <Storyboard>
+
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="SelectedUnfocused">
+                        <Storyboard>
+
+                        </Storyboard>
+                    </VisualState>
+                </VisualStateGroup>
+                <VisualStateGroup x:Name="FocusStates">
+                    <VisualState x:Name="Focused" />
+                    <VisualState x:Name="Unfocused" />
+                </VisualStateGroup>
+
+            </VisualStateManager.VisualStateGroups>
+            <Grid Width="Auto" Height="Auto" Background="#00FFFFFF">
+                <ContentPresenter x:Name="hover" ContentTemplate="{StaticResource HoverTemplate}" Opacity="0" />
+                <ContentPresenter x:Name="selected" ContentTemplate="{StaticResource SelectedTemplate}" Opacity="0" />
+            </Grid>
+            <dx:DXBorder x:Name="Bd" SnapsToDevicePixels="True" Margin="4">
+
+                <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+
+            </dx:DXBorder>
+        </Grid>
+        <ControlTemplate.Triggers>
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding Path=IsSelected, RelativeSource={RelativeSource Self}}" Value="True" />
+                    <Condition Binding="{Binding Path=Owner.AllowItemHighlighting, RelativeSource={RelativeSource Self}}" Value="False" />
+                </MultiDataTrigger.Conditions>
+                <Setter Property="Foreground" Value="#FF000000" />
+                <Setter Property="Opacity" TargetName="hover" Value="1" />
+            </MultiDataTrigger>
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding Path=IsSelected, RelativeSource={RelativeSource Self}}" Value="True" />
+                    <Condition Binding="{Binding Path=Owner.AllowItemHighlighting, RelativeSource={RelativeSource Self}}" Value="True" />
+                </MultiDataTrigger.Conditions>
+                <Setter Property="Foreground" Value="#FF000000" />
+                <Setter Property="Opacity" TargetName="selected" Value="1" />
+            </MultiDataTrigger>
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding Path=IsMouseOver, RelativeSource={RelativeSource Self}}" Value="True" />
+                    <Condition Binding="{Binding Path=Owner.AllowItemHighlighting, RelativeSource={RelativeSource Self}}" Value="True" />
+                </MultiDataTrigger.Conditions>
+                <Setter Property="Opacity" TargetName="hover" Value="1" />
+            </MultiDataTrigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsSelected" Value="True" />
+                    <Condition Property="Selector.IsSelectionActive" Value="False" />
+                </MultiTrigger.Conditions>
+                <Setter Property="Opacity" TargetName="selected" Value="0.5" />
+            </MultiTrigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <!--BEGIN TOSLONLY REPLACE '(dxe:BaseEdit.OwnerEdit)'Owner'-->
+    <Style x:Key="ThemesListboEditItemStyle" TargetType="{x:Type dxe:ListBoxEditItem}">
+        <Setter Property="dx:FocusHelper2.Focusable" Value="True" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="HorizontalContentAlignment" Value="{Binding Path=(dxe:BaseEdit.OwnerEdit).HorizontalContentAlignment, RelativeSource={RelativeSource Self}}" />
+        <Setter Property="VerticalContentAlignment" Value="{Binding Path=(dxe:BaseEdit.OwnerEdit).VerticalContentAlignment, RelativeSource={RelativeSource Self}}" />
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="IsEnabled" Value="{Binding Path=IsEnabled}" />
+        <Setter Property="Template" Value="{StaticResource ThemesListboxEditItemTemplate}" />
+        <Setter Property="FontFamily" Value="Segoe UI Light, Tahoma Light" />
+        <Setter Property="FontSize" Value="13" />
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+    </Style>
+    <!--END TOSLONLY REPLACE '(dxe:BaseEdit.OwnerEdit)'Owner'-->
+
+    <SolidColorBrush x:Key="DXStyleForeground" Color="#201f35" />
+    <SolidColorBrush x:Key="SevenForeground" Color="#606060" />
+    <SolidColorBrush x:Key="VS2010Foreground" Color="#1e1f20 " />
+    <SolidColorBrush x:Key="MetropolisDarkForeground" Color="#ff9813" />
+    <SolidColorBrush x:Key="MetropolisLightForeground" Color="#ff9813" />
+    <SolidColorBrush x:Key="Office2013Foreground" Color="#0072C6" />
+    <SolidColorBrush x:Key="Office2007BlueForeground" Color="#222222" />
+    <SolidColorBrush x:Key="Office2007BlackForeground" Color="#222222" />
+    <SolidColorBrush x:Key="Office2007SilverForeground" Color="#222222" />
+    <SolidColorBrush x:Key="Office2010BlueForeground" Color="#3a4869" />
+    <SolidColorBrush x:Key="Office2010BlackForeground" Color="#ffffff" />
+    <SolidColorBrush x:Key="Office2010SilverForeground" Color="#686a6f" />
+    <SolidColorBrush x:Key="Office2013DarkGrayForeground" Color="#353535" />
+    <SolidColorBrush x:Key="Office2013LightGrayForeground" Color="#686a6f" />
+    <SolidColorBrush x:Key="DeepBlueForeground" Color="#accffa" />
+    <SolidColorBrush x:Key="LightGrayForeground" Color="#498dd9" />
+    <SolidColorBrush x:Key="DefaultForeground" Color="#353535" />
+
+    <SolidColorBrush x:Key="DXStyleBackground" Color="#dadce6" />
+    <SolidColorBrush x:Key="SevenBackground" Color="#d8efff" />
+    <SolidColorBrush x:Key="VS2010Background" Color="#bcc7d8" />
+    <SolidColorBrush x:Key="MetropolisDarkBackground" Color="#333333" />
+    <SolidColorBrush x:Key="MetropolisLightBackground" Color="#ffffff" />
+    <SolidColorBrush x:Key="Office2013Background" Color="#FFFFFF" />
+    <SolidColorBrush x:Key="Office2007BlueBackground" Color="#d9e7f9" />
+    <SolidColorBrush x:Key="Office2007BlackBackground" Color="#9c9c9c" />
+    <SolidColorBrush x:Key="Office2007SilverBackground" Color="#d5d8dd" />
+    <SolidColorBrush x:Key="Office2010BlueBackground" Color="#d9e7f9" />
+    <SolidColorBrush x:Key="Office2010BlackBackground" Color="#484848" />
+    <SolidColorBrush x:Key="Office2010SilverBackground" Color="#d5d8dd" />
+    <SolidColorBrush x:Key="Office2013DarkGrayBackground" Color="#E3E3E3" />
+    <SolidColorBrush x:Key="Office2013LightGrayBackground" Color="#F6F6F6" />
+    <SolidColorBrush x:Key="DeepBlueBackground" Color="#2a4f8a" />
+    <SolidColorBrush x:Key="LightGrayBackground" Color="#d3d3d3" />
+    <SolidColorBrush x:Key="DefaultBackground" Color="#ffffff" />
+
+    <dx:EnumToObjectConverter x:Key="ThemeToForegroundConverter" DefaultValue="{StaticResource DefaultForeground}">
+        <dx:EnumToObjectConverter.Values>
+            <dx:EnumObjectProvider x:Key="DXStyle" Value="{StaticResource DXStyleForeground}"/>
+            <dx:EnumObjectProvider x:Key="Seven" Value="{StaticResource SevenForeground}"/>
+            <dx:EnumObjectProvider x:Key="VS2010" Value="{StaticResource VS2010Foreground}"/>
+            <dx:EnumObjectProvider x:Key="MetropolisDark" Value="{StaticResource MetropolisDarkForeground}"/>
+            <dx:EnumObjectProvider x:Key="MetropolisLight" Value="{StaticResource MetropolisLightForeground}"/>
+            <dx:EnumObjectProvider x:Key="Office2007Blue" Value="{StaticResource Office2007BlueForeground}"/>
+            <dx:EnumObjectProvider x:Key="Office2007Black" Value="{StaticResource Office2007BlackForeground}"/>
+            <dx:EnumObjectProvider x:Key="Office2007Silver" Value="{StaticResource Office2007SilverForeground}"/>
+            <dx:EnumObjectProvider x:Key="Office2010Blue" Value="{StaticResource Office2010BlueForeground}"/>
+            <dx:EnumObjectProvider x:Key="Office2010Black" Value="{StaticResource Office2010BlackForeground}"/>
+            <dx:EnumObjectProvider x:Key="Office2010Silver" Value="{StaticResource Office2010SilverForeground}"/>
+            <dx:EnumObjectProvider x:Key="Office2013" Value="{StaticResource Office2013Foreground}"/>
+            <dx:EnumObjectProvider x:Key="Office2013LightGray" Value="{StaticResource Office2013LightGrayForeground}"/>
+            <dx:EnumObjectProvider x:Key="Office2013DarkGray" Value="{StaticResource Office2013DarkGrayForeground}"/>
+            <dx:EnumObjectProvider x:Key="Office2016White" Value="{StaticResource Office2013Foreground}"/>
+            <dx:EnumObjectProvider x:Key="Office2016Black" Value="{StaticResource Office2013LightGrayForeground}"/>
+            <dx:EnumObjectProvider x:Key="Office2016Colorful" Value="{StaticResource Office2013DarkGrayForeground}"/>
+            <dx:EnumObjectProvider x:Key="DeepBlue" Value="{StaticResource DeepBlueForeground}"/>
+            <dx:EnumObjectProvider x:Key="LightGray" Value="{StaticResource LightGrayForeground}"/>
+            <dx:EnumObjectProvider x:Key="TouchlineDark" Value="{StaticResource MetropolisDarkForeground}"/>
+        </dx:EnumToObjectConverter.Values>
+    </dx:EnumToObjectConverter>
+    <dx:EnumToObjectConverter x:Key="ThemeToBackgroundConverter" DefaultValue="{StaticResource DefaultBackground}">
+        <dx:EnumToObjectConverter.Values>
+            <dx:EnumObjectProvider x:Key="DXStyle" Value="{StaticResource DXStyleBackground}"/>
+            <dx:EnumObjectProvider x:Key="Seven" Value="{StaticResource SevenBackground}"/>
+            <dx:EnumObjectProvider x:Key="VS2010" Value="{StaticResource VS2010Background}"/>
+            <dx:EnumObjectProvider x:Key="MetropolisDark" Value="{StaticResource MetropolisDarkBackground}"/>
+            <dx:EnumObjectProvider x:Key="MetropolisLight" Value="{StaticResource MetropolisLightBackground}"/>
+            <dx:EnumObjectProvider x:Key="Office2013" Value="{StaticResource Office2013Background}"/>
+            <dx:EnumObjectProvider x:Key="Office2007Blue" Value="{StaticResource Office2007BlueBackground}"/>
+            <dx:EnumObjectProvider x:Key="Office2007Black" Value="{StaticResource Office2007BlackBackground}"/>
+            <dx:EnumObjectProvider x:Key="Office2007Silver" Value="{StaticResource Office2007SilverBackground}"/>
+            <dx:EnumObjectProvider x:Key="Office2010Blue" Value="{StaticResource Office2010BlueBackground}"/>
+            <dx:EnumObjectProvider x:Key="Office2010Black" Value="{StaticResource Office2010BlackBackground}"/>
+            <dx:EnumObjectProvider x:Key="Office2010Silver" Value="{StaticResource Office2010SilverBackground}"/>
+            <dx:EnumObjectProvider x:Key="Office2013LightGray" Value="{StaticResource Office2013LightGrayBackground}"/>
+            <dx:EnumObjectProvider x:Key="Office2013DarkGray" Value="{StaticResource Office2013DarkGrayBackground}"/>
+            <dx:EnumObjectProvider x:Key="Office2013;Touch" Value="{StaticResource Office2013Background}"/>
+            <dx:EnumObjectProvider x:Key="Office2013LightGray;Touch" Value="{StaticResource Office2013LightGrayBackground}"/>
+            <dx:EnumObjectProvider x:Key="Office2013DarkGray;Touch" Value="{StaticResource Office2013DarkGrayBackground}"/>
+            <dx:EnumObjectProvider x:Key="Office2016White" Value="{StaticResource Office2013LightGrayBackground}"/>
+            <dx:EnumObjectProvider x:Key="Office2016Black" Value="{StaticResource Office2013DarkGrayBackground}"/>
+            <dx:EnumObjectProvider x:Key="Office2016White;Touch" Value="{StaticResource Office2013Background}"/>
+            <dx:EnumObjectProvider x:Key="Office2016Black;Touch" Value="{StaticResource Office2013LightGrayBackground}"/>
+            <dx:EnumObjectProvider x:Key="Office2016Colorful;Touch" Value="{StaticResource Office2013DarkGrayBackground}"/>
+            <dx:EnumObjectProvider x:Key="DeepBlue" Value="{StaticResource DeepBlueBackground}"/>
+            <dx:EnumObjectProvider x:Key="LightGray" Value="{StaticResource LightGrayBackground}"/>
+            <dx:EnumObjectProvider x:Key="TouchlineDark" Value="{StaticResource MetropolisDarkBackground}"/>
+        </dx:EnumToObjectConverter.Values>
+    </dx:EnumToObjectConverter>
+    <dx:EnumToObjectConverter x:Key="ThemeToFontSizeConverter" DefaultValue="13">
+        <dx:EnumToObjectConverter.Values>
+            <dx:EnumObjectProvider x:Key="TouchlineDark" Value="24"/>
+            <dx:EnumObjectProvider x:Key="HybridApp" Value="24"/>
+            <dx:EnumObjectProvider x:Key="Office2013;Touch" Value="18"/>
+            <dx:EnumObjectProvider x:Key="Office2013LightGray;Touch" Value="18"/>
+            <dx:EnumObjectProvider x:Key="Office2013DarkGray;Touch" Value="18"/>
+            <dx:EnumObjectProvider x:Key="Office2016White;Touch" Value="18"/>
+            <dx:EnumObjectProvider x:Key="Office2016Black;Touch" Value="18"/>
+            <dx:EnumObjectProvider x:Key="Office2016Colorful;Touch" Value="18"/>
+        </dx:EnumToObjectConverter.Values>
+    </dx:EnumToObjectConverter>
+    <dx:EnumToObjectConverter x:Key="ThemeToFontWeightConverter" DefaultValue="Bold">
+        <dx:EnumToObjectConverter.Values>
+            <dx:EnumObjectProvider x:Key="TouchlineDark" Value="Normal"/>
+            <dx:EnumObjectProvider x:Key="HybridApp" Value="Normal"/>
+            <dx:EnumObjectProvider x:Key="Office2013;Touch" Value="Normal"/>
+            <dx:EnumObjectProvider x:Key="Office2013LightGray;Touch" Value="Normal"/>
+            <dx:EnumObjectProvider x:Key="Office2013DarkGray;Touch" Value="Normal"/>
+            <dx:EnumObjectProvider x:Key="Office2016White;Touch" Value="Normal"/>
+            <dx:EnumObjectProvider x:Key="Office2016Black;Touch" Value="Normal"/>
+            <dx:EnumObjectProvider x:Key="Office2016Colorful;Touch" Value="Normal"/>
+        </dx:EnumToObjectConverter.Values>
+    </dx:EnumToObjectConverter>
+    <dx:EnumToObjectConverter x:Key="ThemeToFontFamilyConverter" DefaultValue="Segoe UI, Tahoma">
+        <dx:EnumToObjectConverter.Values>
+            <dx:EnumObjectProvider x:Key="TouchlineDark" Value="Segoe UI Light, Tahoma Light"/>
+            <dx:EnumObjectProvider x:Key="HybridApp" Value="Segoe UI Light, Tahoma Light"/>
+            <dx:EnumObjectProvider x:Key="Office2013;Touch" Value="Segoe UI Light, Tahoma Light"/>
+            <dx:EnumObjectProvider x:Key="Office2013LightGray;Touch" Value="Segoe UI Light, Tahoma Light"/>
+            <dx:EnumObjectProvider x:Key="Office2013DarkGray;Touch" Value="Segoe UI Light, Tahoma Light"/>
+            <dx:EnumObjectProvider x:Key="Office2016White;Touch" Value="Segoe UI Light, Tahoma Light"/>
+            <dx:EnumObjectProvider x:Key="Office2016Black;Touch" Value="Segoe UI Light, Tahoma Light"/>
+            <dx:EnumObjectProvider x:Key="Office2016Colorful;Touch" Value="Segoe UI Light, Tahoma Light"/>
+        </dx:EnumToObjectConverter.Values>
+    </dx:EnumToObjectConverter>
+    <dx:EnumToObjectConverter x:Key="ThemeToHeightConverter" DefaultValue="40">
+        <dx:EnumToObjectConverter.Values>
+            <dx:EnumObjectProvider x:Key="TouchlineDark" Value="60"/>
+            <dx:EnumObjectProvider x:Key="HybridApp" Value="60"/>
+            <dx:EnumObjectProvider x:Key="Office2013;Touch" Value="60"/>
+            <dx:EnumObjectProvider x:Key="Office2013LightGray;Touch" Value="60"/>
+            <dx:EnumObjectProvider x:Key="Office2013DarkGray;Touch" Value="60"/>
+            <dx:EnumObjectProvider x:Key="Office2016White;Touch" Value="60"/>
+            <dx:EnumObjectProvider x:Key="Office2016Black;Touch" Value="60"/>
+            <dx:EnumObjectProvider x:Key="Office2016Colorful;Touch" Value="60"/>
+        </dx:EnumToObjectConverter.Values>
+    </dx:EnumToObjectConverter>
+    <dbhelpers:ThemeNameToListboxItemTitleConverter x:Key="ThemeNameToListboxItemTitleConverter"/>
+    <DataTemplate x:Key="ThemeTemplate">
+        <Grid MinWidth="160" Height="{Binding Path=Theme.Name, Converter={StaticResource ThemeToHeightConverter}}" HorizontalAlignment="Stretch">
+            <dx:DXBorder Background="{Binding Path=Theme.Name, Converter={StaticResource ThemeToBackgroundConverter}}" HorizontalAlignment="Stretch" BorderThickness="0">
+                <TextBlock Text="{Binding Path=Theme.FullName, Converter={StaticResource ThemeNameToListboxItemTitleConverter}}"
+                           TextAlignment="Center"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           FontWeight="{Binding Path=Theme.Name, Converter={StaticResource ThemeToFontWeightConverter}}"
+                           Foreground="{Binding Path=Theme.Name, Converter={StaticResource ThemeToForegroundConverter}}"
+                           FontFamily="{Binding Path=Theme.Name, Converter={StaticResource ThemeToFontFamilyConverter}}"
+                           FontSize="{Binding Path=Theme.Name, Converter={StaticResource ThemeToFontSizeConverter}}" />
+            </dx:DXBorder>
+            <dx:DXBorder BorderBrush="#000000" BorderThickness="1" IsHitTestVisible="False" Opacity="0.15"/>
+        </Grid>
+    </DataTemplate>
+</ResourceDictionary>

@@ -1,0 +1,691 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+            xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+            xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+            xmlns:dxda="clr-namespace:DevExpress.Xpf.DataAccess.DataSourceWizard;assembly=DevExpress.Xpf.DataAccess.v15.2"
+            xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
+            xmlns:gauges="clr-namespace:DevExpress.XtraGauges.Core.Customization;assembly=DevExpress.XtraGauges.v15.2.Core"
+            xmlns:barcode="clr-namespace:DevExpress.XtraPrinting.BarCode;assembly=DevExpress.Printing.v15.2.Core"
+            xmlns:barcodenative="clr-namespace:DevExpress.XtraPrinting.BarCode.Native;assembly=DevExpress.Printing.v15.2.Core"
+            xmlns:forms="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms"
+            xmlns:drawing2d="clr-namespace:System.Drawing.Drawing2D;assembly=System.Drawing"
+            xmlns:reportsui="clr-namespace:DevExpress.XtraReports.UI;assembly=DevExpress.XtraReports.v15.2"
+            xmlns:xrdiagram="clr-namespace:DevExpress.Xpf.Reports.UserDesigner.XRDiagram"
+            xmlns:designer="clr-namespace:DevExpress.Xpf.Reports.UserDesigner"
+            xmlns:designernative="clr-namespace:DevExpress.Xpf.Reports.UserDesigner.Native"
+            xmlns:designereditors="clr-namespace:DevExpress.Xpf.Reports.UserDesigner.Editors"
+            xmlns:designerthemes="clr-namespace:DevExpress.Xpf.Reports.UserDesigner.Themes"
+            xmlns:printingcorereportsui="clr-namespace:DevExpress.XtraReports.UI;assembly=DevExpress.Printing.v15.2.Core"
+            xmlns:printing="clr-namespace:DevExpress.XtraPrinting;assembly=DevExpress.Data.v15.2"
+            xmlns:printingcore="clr-namespace:DevExpress.XtraPrinting;assembly=DevExpress.Printing.v15.2.Core"
+            xmlns:sparkline="clr-namespace:DevExpress.Sparkline;assembly=DevExpress.Sparkline.v15.2.Core"
+            xmlns:reportexplorernative="clr-namespace:DevExpress.Xpf.Reports.UserDesigner.ReportExplorer.Native">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/DevExpress.Xpf.ReportDesigner.v15.2;component/Themes/XRDiagram/BaseStyles.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    <Style x:Key="SmartTagDialogStyle" TargetType="{x:Type dx:DXDialogWindow}" BasedOn="{StaticResource DXDialogWindowDialogStyleBase}">
+        <Setter Property="SizeToContent" Value="WidthAndHeight" />
+        <Setter Property="ResizeMode" Value="NoResize" />
+        <Setter Property="Title" Value="Edit" />
+    </Style>
+    <Style x:Key="BaseEditItem" TargetType="{x:Type dxe:BaseEdit}">
+        <Setter Property="Width" Value="170" />
+        <Setter Property="HorizontalAlignment" Value="Left" />
+    </Style>
+    <Style x:Key="ComboBoxEditBaseItem" TargetType="{x:Type dxe:ComboBoxEdit}" BasedOn="{StaticResource BaseEditItem}">
+        <Setter Property="IsTextEditable" Value="False" />
+    </Style>
+    <Style x:Key="ReportDesigner_DataBindingStyleBase" TargetType="{x:Type designereditors:PopupTreeListEdit}" BasedOn="{StaticResource BaseEditItem}">
+        <Setter Property="ValueMember" Value="BindingData" />
+        <Setter Property="DisplayMember" Value="FullPath" />
+        <Setter Property="ChildNodesPath" Value="Children" />
+        <Setter Property="PopupDisplayMember" Value="DisplayName" />
+        <Setter Property="HierarchicalPathProvider" Value="{StaticResource ResourceKey=bindingDataHierarchicalPathProvider}" />
+        <Setter Property="PopupSelectionValidator" Value="{StaticResource ResourceKey=bindingDataPopupSelectionValidator}" />
+        <Setter Property="ItemsSource" Value="{Binding Path=Diagram.(designer:ReportDesigner.Document).ReportModel.FieldListNodes}" />
+        <Setter Property="TreeListCellTemplate" Value="{DynamicResource {designerthemes:ReportDesignerThemeKey ResourceKey=FieldListNodeTemplate}}" />
+    </Style>
+    <Style x:Key="ShapeBaseEditItem" TargetType="{x:Type dxe:SpinEdit}">
+        <Setter Property="MinValue" Value="0" />
+        <Setter Property="MaxValue" Value="100" />
+        <Setter Property="IsFloatValue" Value="False" />
+    </Style>
+
+    <Style x:Key="{x:Static xrdiagram:XRDiagramControlBarItemNames.Symbology}" TargetType="{x:Type dxe:ComboBoxEdit}" BasedOn="{StaticResource ComboBoxEditBaseItem}">
+        <Setter Property="EditValue" Value="{Binding Diagram.SelectionToolsModel[Symbology], UpdateSourceTrigger=PropertyChanged}" />
+        <Setter Property="ItemsSource" Value="{dxe:EnumItemsSource EnumType=barcodenative:BarCodeSymbology}" />
+    </Style>
+    <Style x:Key="{x:Static xrdiagram:XRDiagramControlBarItemNames.Module}" TargetType="{x:Type dxe:TextEdit}" BasedOn="{StaticResource BaseEditItem}">
+        <Setter Property="EditValue" Value="{Binding Diagram.SelectionToolsModel[Module], Converter={designernative:DecimalToFloatIntConverter ItemType=Single}, UpdateSourceTrigger=PropertyChanged}" />
+        <Setter Property="MaskType" Value="Numeric" />
+    </Style>
+    <Style x:Key="{x:Static xrdiagram:XRDiagramControlBarItemNames.Orientation}" TargetType="{x:Type dxe:ComboBoxEdit}" BasedOn="{StaticResource ComboBoxEditBaseItem}">
+        <Setter Property="EditValue" Value="{Binding Diagram.SelectionToolsModel[BarCodeOrientation], UpdateSourceTrigger=PropertyChanged}" />
+        <Setter Property="ItemsSource" Value="{dxe:EnumItemsSource EnumType=barcode:BarCodeOrientation}" />
+    </Style>
+    <Style x:Key="{x:Static xrdiagram:XRDiagramControlBarItemNames.Text}" TargetType="{x:Type dxe:TextEdit}" BasedOn="{StaticResource BaseEditItem}">
+        <Setter Property="EditValue" Value="{Binding Diagram.SelectionToolsModel[Text], UpdateSourceTrigger=PropertyChanged}" />
+        <Setter Property="EditValuePostMode" Value="Delayed" />
+    </Style>
+    <Style x:Key="{x:Static xrdiagram:XRDiagramControlBarItemNames.DataBinding}" TargetType="{x:Type designereditors:PopupTreeListEdit}" BasedOn="{StaticResource ReportDesigner_DataBindingStyleBase}">
+        <Setter Property="dxmvvm:Interaction.BehaviorsTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <ContentControl>
+                        <designernative:SyncDataBindingsPropertyBehavior Parameters="{Binding Diagram.SelectionModel, Mode=OneWay, Converter={designernative:SyncDataBindingsPropertyBehaviorConverter}, ConverterParameter='Text, Data'}" />
+                    </ContentControl>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="{x:Static xrdiagram:XRDiagramControlBarItemNames.FormatString}" TargetType="{x:Type dxe:ButtonEdit}" BasedOn="{StaticResource BaseEditItem}" x:Shared="False">
+        <Setter Property="AllowDefaultButton" Value="False" />
+        <Setter Property="Buttons">
+            <Setter.Value>
+                <dxe:ButtonInfoCollection>
+                    <dxe:ButtonInfo GlyphKind="Regular">
+                        <dxmvvm:Interaction.Behaviors>
+                            <dxe:DialogServiceEditorBehavior Commands="{dxe:UICommandContainerGenerator Buttons=OKCancel}" Content="{Binding Path=Diagram.(designer:ReportDesigner.Document).ReportModel.SelectedModel.XRObjectBase}">
+                                <dxe:DialogServiceEditorBehavior.DialogServiceTemplate>
+                                    <DataTemplate>
+                                        <ContentControl>
+                                            <dx:DialogService DialogWindowStartupLocation="CenterOwner">
+                                                <dx:DialogService.DialogStyle>
+                                                    <Style TargetType="{x:Type dx:DXDialogWindow}" BasedOn="{StaticResource DXDialogWindowDialogStyleBase}">
+                                                        <Setter Property="SizeToContent" Value="WidthAndHeight" />
+                                                        <Setter Property="ResizeMode" Value="CanMinimize" />
+                                                        <Setter Property="Title" Value="Format String Editor" />
+                                                    </Style>
+                                                </dx:DialogService.DialogStyle>
+                                                <dx:DialogService.ViewTemplate>
+                                                    <DataTemplate>
+                                                        <designereditors:FormatStringUITypeEditor EditValue="{Binding Value}" PrimarySelection="{Binding Content}" />
+                                                    </DataTemplate>
+                                                </dx:DialogService.ViewTemplate>
+                                            </dx:DialogService>
+                                        </ContentControl>
+                                    </DataTemplate>
+                                </dxe:DialogServiceEditorBehavior.DialogServiceTemplate>
+                            </dxe:DialogServiceEditorBehavior>
+                        </dxmvvm:Interaction.Behaviors>
+                    </dxe:ButtonInfo>
+                </dxe:ButtonInfoCollection>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="dxmvvm:Interaction.BehaviorsTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <ContentControl>
+                        <designernative:SyncDataBindingsPropertyBehavior Parameters="{Binding Diagram.SelectionModel, Mode=OneWay, Converter={designernative:SyncDataBindingsPropertyBehaviorConverter}, ConverterParameter='Text, FormatString'}" />
+                    </ContentControl>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="{x:Static xrdiagram:XRDiagramControlBarItemNames.Bookmark}" TargetType="{x:Type dxe:TextEdit}" BasedOn="{StaticResource BaseEditItem}">
+        <Setter Property="EditValue" Value="{Binding Diagram.SelectionToolsModel[Bookmark], UpdateSourceTrigger=PropertyChanged}" />
+    </Style>
+    <Style x:Key="{x:Static xrdiagram:XRDiagramControlBarItemNames.ParentBookmark}" TargetType="{x:Type designereditors:PopupTreeListEdit}" BasedOn="{StaticResource BaseEditItem}">
+        <Setter Property="EditValue" Value="{Binding Diagram.SelectionToolsModel[BookmarkParent], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+        <Setter Property="ValueMember" Value="XRObjectBase" />
+        <Setter Property="DisplayMember" Value="Name" />
+        <Setter Property="PopupDisplayMember" Value="Name" />
+        <Setter Property="ChildNodesPath" Value="Items" />
+        <Setter Property="HierarchicalPathProvider" Value="{StaticResource ResourceKey=reportExplorerHierarchicalPathProvider}" />
+        <Setter Property="PopupSelectionValidator" Value="{StaticResource ResourceKey=reportExplorerPopupSelectionValidator}" />
+        <Setter Property="ItemsSource" Value="{Binding Path=Diagram.(designer:ReportDesigner.Document).ReportModel, Converter={designernative:YieldConverter}}" />
+        <Setter Property="TreeListCellTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="{Binding RowData.Row, Converter={reportexplorernative:ReportExplorerItemToIconConverter}}" />
+                        <TextBlock Text="{Binding RowData.Row.Name}" />
+                    </StackPanel>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="{x:Static xrdiagram:XRDiagramControlBarItemNames.CheckState}" TargetType="{x:Type dxe:ComboBoxEdit}" BasedOn="{StaticResource ComboBoxEditBaseItem}">
+        <Setter Property="EditValue" Value="{Binding Diagram.SelectionToolsModel[CheckState], UpdateSourceTrigger=PropertyChanged}" />
+        <Setter Property="ItemsSource" Value="{dxe:EnumItemsSource EnumType=forms:CheckState}" />
+    </Style>
+    <Style x:Key="{x:Static xrdiagram:XRDiagramControlBarItemNames.DataBindingCheckState}" TargetType="{x:Type designereditors:PopupTreeListEdit}" BasedOn="{StaticResource ReportDesigner_DataBindingStyleBase}">
+        <Setter Property="dxmvvm:Interaction.BehaviorsTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <ContentControl>
+                        <designernative:SyncDataBindingsPropertyBehavior Parameters="{Binding Diagram.SelectionModel, Mode=OneWay, Converter={designernative:SyncDataBindingsPropertyBehaviorConverter}, ConverterParameter='CheckState, Data'}" />
+                    </ContentControl>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="{x:Static xrdiagram:XRDiagramControlBarItemNames.AnchorVertically}" TargetType="{x:Type dxe:ComboBoxEdit}" BasedOn="{StaticResource ComboBoxEditBaseItem}">
+        <Setter Property="EditValue" Value="{Binding Diagram.SelectionToolsModel[AnchorVertical], UpdateSourceTrigger=PropertyChanged}" />
+        <Setter Property="ItemsSource" Value="{dxe:EnumItemsSource EnumType=printingcorereportsui:VerticalAnchorStyles}" />
+    </Style>
+    <Style x:Key="{x:Static xrdiagram:XRDiagramControlBarItemNames.LineStyle}" TargetType="{x:Type dxe:ComboBoxEdit}" BasedOn="{StaticResource ComboBoxEditBaseItem}">
+        <Setter Property="EditValue" Value="{Binding Diagram.SelectionToolsModel[LineStyle], UpdateSourceTrigger=PropertyChanged}" />
+        <Setter Property="ItemsSource" Value="{dxe:EnumItemsSource EnumType=drawing2d:DashStyle}" />
+    </Style>
+    <Style x:Key="{x:Static xrdiagram:XRDiagramControlBarItemNames.DataSource}" TargetType="{x:Type designernative:ComboBoxEditEx}" BasedOn="{StaticResource ComboBoxEditBaseItem}" x:Shared="False">
+        <Setter Property="EditValue" Value="{Binding Diagram.SelectionToolsModel[DataSource], UpdateSourceTrigger=PropertyChanged}" />
+        <Setter Property="ShowEditorButtonsAlways" Value="True" />
+        <Setter Property="ItemsSource" Value="{Binding Path=Diagram.(designer:ReportDesigner.Document).ReportModel.DataSources}" />
+        <Setter Property="ValueMember" Value="DataSource" />
+        <Setter Property="DisplayMember" Value="DisplayName" />
+        <Setter Property="Buttons">
+            <Setter.Value>
+                <dxe:ButtonInfoCollection>
+                    <dxe:ButtonInfo GlyphKind="Plus">
+                        <dxmvvm:Interaction.Behaviors>
+                            <dxe:DialogServiceEditorBehavior Commands="{dxe:UICommandContainerGenerator Buttons=OKCancel}" Content="{Binding Path=Diagram.(designer:ReportDesigner.Designer)}">
+                                <dxe:DialogServiceEditorBehavior.DialogServiceTemplate>
+                                    <DataTemplate>
+                                        <ContentControl>
+                                            <dx:DialogService DialogWindowStartupLocation="CenterOwner">
+                                                <dx:DialogService.DialogStyle>
+                                                    <Style TargetType="{x:Type dx:DXDialogWindow}" BasedOn="{StaticResource DXDialogWindowDialogStyleBase}">
+                                                        <Setter Property="Width" Value="600" />
+                                                        <Setter Property="Height" Value="430" />
+                                                        <Setter Property="ResizeMode" Value="NoResize" />
+                                                    </Style>
+                                                </dx:DialogService.DialogStyle>
+                                                <dx:DialogService.ViewTemplate>
+                                                    <DataTemplate>
+                                                        <dxda:DataSourceWizardControl Extensions="{Binding Content.ActiveDocument.ReportModel.DataSourceWizardExtensions}" 
+                                                                                      ParameterService="{Binding Content.ActiveDocument.ReportModel.ParameterService}" 
+                                                                                      EnableCustomSql="{Binding Content.EnableCustomSql}"/>
+                                                    </DataTemplate>
+                                                </dx:DialogService.ViewTemplate>
+                                            </dx:DialogService>
+                                        </ContentControl>
+                                    </DataTemplate>
+                                </dxe:DialogServiceEditorBehavior.DialogServiceTemplate>
+                            </dxe:DialogServiceEditorBehavior>
+                        </dxmvvm:Interaction.Behaviors>
+                    </dxe:ButtonInfo>
+                </dxe:ButtonInfoCollection>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="{x:Static xrdiagram:XRDiagramControlBarItemNames.DataMember}" TargetType="{x:Type dxe:ComboBoxEdit}" BasedOn="{StaticResource BaseEditItem}">
+        <Setter Property="EditValue" Value="{Binding Diagram.SelectionToolsModel[DataMember], UpdateSourceTrigger=PropertyChanged}" />
+    </Style>
+    <Style x:Key="{x:Static xrdiagram:XRDiagramControlBarItemNames.FilterString}" TargetType="{x:Type dxe:ButtonEdit}" BasedOn="{StaticResource BaseEditItem}" x:Shared="False">
+        <Setter Property="EditValue" Value="{Binding Diagram.SelectionToolsModel[FilterString], UpdateSourceTrigger=PropertyChanged}" />
+        <Setter Property="AllowDefaultButton" Value="False" />
+        <Setter Property="Buttons">
+            <Setter.Value>
+                <dxe:ButtonInfoCollection>
+                    <dxe:ButtonInfo GlyphKind="Regular">
+                        <dxmvvm:Interaction.Behaviors>
+                            <dxe:DialogServiceEditorBehavior Commands="{dxe:UICommandContainerGenerator Buttons=OKCancel}" Content="{Binding Path=Diagram.(designer:ReportDesigner.Document).ReportModel.XRObjectBase}">
+                                <dxe:DialogServiceEditorBehavior.DialogServiceTemplate>
+                                    <DataTemplate>
+                                        <ContentControl>
+                                            <dx:DialogService DialogWindowStartupLocation="CenterOwner">
+                                                <dx:DialogService.DialogStyle>
+                                                    <Style TargetType="{x:Type dx:DXDialogWindow}" BasedOn="{StaticResource DXDialogWindowDialogStyleBase}">
+                                                        <Setter Property="Width" Value="400" />
+                                                        <Setter Property="Height" Value="300" />
+                                                        <Setter Property="MinWidth" Value="300" />
+                                                        <Setter Property="MinHeight" Value="200" />
+                                                        <Setter Property="ResizeMode" Value="CanResize" />
+                                                        <Setter Property="Title" Value="Filter String Editor" />
+                                                    </Style>
+                                                </dx:DialogService.DialogStyle>
+                                                <dx:DialogService.ViewTemplate>
+                                                    <DataTemplate>
+                                                        <designereditors:FilterStringUITypeEditor EditValue="{Binding Value}" Report="{Binding Content}" />
+                                                    </DataTemplate>
+                                                </dx:DialogService.ViewTemplate>
+                                            </dx:DialogService>
+                                        </ContentControl>
+                                    </DataTemplate>
+                                </dxe:DialogServiceEditorBehavior.DialogServiceTemplate>
+                            </dxe:DialogServiceEditorBehavior>
+                        </dxmvvm:Interaction.Behaviors>
+                    </dxe:ButtonInfo>
+                </dxe:ButtonInfoCollection>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="{x:Static xrdiagram:XRDiagramControlBarItemNames.DetailCountAtDesignTime}" TargetType="{x:Type dxe:SpinEdit}" BasedOn="{StaticResource BaseEditItem}">
+        <Setter Property="EditValue" Value="{Binding Diagram.SelectionToolsModel[DetailCountAtDesignTime], Converter={designernative:DecimalToFloatIntConverter ItemType=Int32}, UpdateSourceTrigger=PropertyChanged}" />
+        <Setter Property="MinValue" Value="0" />
+        <Setter Property="IsFloatValue" Value="False" />
+    </Style>
+    <Style x:Key="{x:Static xrdiagram:XRDiagramControlBarItemNames.ReportUnit}" TargetType="{x:Type dxe:ComboBoxEdit}" BasedOn="{StaticResource ComboBoxEditBaseItem}">
+        <Setter Property="EditValue" Value="{Binding Diagram.SelectionToolsModel[ReportUnit], UpdateSourceTrigger=PropertyChanged}" />
+        <Setter Property="ItemsSource" Value="{dxe:EnumItemsSource EnumType=reportsui:ReportUnit}" />
+    </Style>
+    <Style x:Key="{x:Static xrdiagram:XRDiagramControlBarItemNames.Summary}" TargetType="{x:Type dxe:ButtonEdit}" BasedOn="{StaticResource BaseEditItem}" x:Shared="False">
+        <Setter Property="EditValue" Value="{Binding Diagram.SelectionToolsModel[Summary], UpdateSourceTrigger=PropertyChanged}" />
+        <Setter Property="DisplayTextConverter" Value="{designereditors:SummaryToDisplayTextConverter}" />
+        <Setter Property="IsTextEditable" Value="False" />
+        <Setter Property="AllowDefaultButton" Value="False" />
+        <Setter Property="IsReadOnly" Value="True" />
+        <Setter Property="Buttons">
+            <Setter.Value>
+                <dxe:ButtonInfoCollection>
+                    <dxe:ButtonInfo GlyphKind="Regular">
+                        <dxmvvm:Interaction.Behaviors>
+                            <dxe:DialogServiceEditorBehavior Commands="{dxe:UICommandContainerGenerator Buttons=OKCancel}" Content="{Binding Path=Diagram.(designer:ReportDesigner.Document).ReportModel}">
+                                <dxe:DialogServiceEditorBehavior.DialogServiceTemplate>
+                                    <DataTemplate>
+                                        <ContentControl>
+                                            <dx:DialogService DialogWindowStartupLocation="CenterOwner">
+                                                <dx:DialogService.DialogStyle>
+                                                    <Style TargetType="{x:Type dx:DXDialogWindow}" BasedOn="{StaticResource DXDialogWindowDialogStyleBase}">
+                                                        <Setter Property="SizeToContent" Value="WidthAndHeight" />
+                                                        <Setter Property="ResizeMode" Value="CanMinimize" />
+                                                        <Setter Property="Title" Value="Format String Editor" />
+                                                    </Style>
+                                                </dx:DialogService.DialogStyle>
+                                                <dx:DialogService.ViewTemplate>
+                                                    <DataTemplate>
+                                                        <designereditors:SummaryUITypeEditor EditValue="{Binding Value}" PrimarySelection="{Binding Content.SelectedModel, Mode=OneWay}" FieldListNodes="{Binding Content.FieldListNodes, Mode=OneWay}" />
+                                                    </DataTemplate>
+                                                </dx:DialogService.ViewTemplate>
+                                            </dx:DialogService>
+                                        </ContentControl>
+                                    </DataTemplate>
+                                </dxe:DialogServiceEditorBehavior.DialogServiceTemplate>
+                            </dxe:DialogServiceEditorBehavior>
+                        </dxmvvm:Interaction.Behaviors>
+                    </dxe:ButtonInfo>
+                </dxe:ButtonInfoCollection>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="{x:Static xrdiagram:XRDiagramControlBarItemNames.Angle}" TargetType="{x:Type dxe:SpinEdit}" BasedOn="{StaticResource BaseEditItem}">
+        <Setter Property="EditValue" Value="{Binding Diagram.SelectionToolsModel[Angle], Converter={designernative:DecimalToFloatIntConverter ItemType=Single}, UpdateSourceTrigger=PropertyChanged}" />
+    </Style>
+    <Style x:Key="{x:Static xrdiagram:XRDiagramControlBarItemNames.LineDirection}" TargetType="{x:Type dxe:ComboBoxEdit}" BasedOn="{StaticResource ComboBoxEditBaseItem}">
+        <Setter Property="EditValue" Value="{Binding Diagram.SelectionToolsModel[LineDirection], UpdateSourceTrigger=PropertyChanged}" />
+        <Setter Property="ItemsSource" Value="{dxe:EnumItemsSource EnumType=printingcorereportsui:LineDirection}" />
+    </Style>
+    <Style x:Key="{x:Static xrdiagram:XRDiagramControlBarItemNames.LineWidth}" TargetType="{x:Type dxe:SpinEdit}" BasedOn="{StaticResource BaseEditItem}">
+        <Setter Property="EditValue" Value="{Binding Diagram.SelectionToolsModel[LineWidth], Converter={designernative:DecimalToFloatIntConverter ItemType=Int32}, UpdateSourceTrigger=PropertyChanged}" />
+        <Setter Property="MinValue" Value="0" />
+        <Setter Property="IsFloatValue" Value="False" />
+    </Style>
+    <Style x:Key="{x:Static xrdiagram:XRDiagramControlBarItemNames.PageInformation}" TargetType="{x:Type dxe:ComboBoxEdit}" BasedOn="{StaticResource ComboBoxEditBaseItem}">
+        <Setter Property="EditValue" Value="{Binding Diagram.SelectionToolsModel[PageInfo], UpdateSourceTrigger=PropertyChanged}" />
+        <Setter Property="ItemsSource" Value="{dxe:EnumItemsSource EnumType=printing:PageInfo}" />
+    </Style>
+    <Style x:Key="{x:Static xrdiagram:XRDiagramControlBarItemNames.StartPageNumber}" TargetType="{x:Type dxe:SpinEdit}" BasedOn="{StaticResource BaseEditItem}">
+        <Setter Property="EditValue" Value="{Binding Diagram.SelectionToolsModel[StartPageNumber], Converter={designernative:DecimalToFloatIntConverter ItemType=Int32}, UpdateSourceTrigger=PropertyChanged}" />
+        <Setter Property="MinValue" Value="0" />
+        <Setter Property="IsFloatValue" Value="False" />
+    </Style>
+    <Style x:Key="{x:Static xrdiagram:XRDiagramControlBarItemNames.Format}" TargetType="{x:Type dxe:ButtonEdit}" BasedOn="{StaticResource BaseEditItem}" x:Shared="False">
+        <Setter Property="EditValue" Value="{Binding Diagram.SelectionToolsModel[Format], UpdateSourceTrigger=PropertyChanged}" />
+        <Setter Property="AllowDefaultButton" Value="False" />
+        <Setter Property="Buttons">
+            <Setter.Value>
+                <dxe:ButtonInfoCollection>
+                    <dxe:ButtonInfo GlyphKind="Regular">
+                        <dxmvvm:Interaction.Behaviors>
+                            <dxe:DialogServiceEditorBehavior Commands="{dxe:UICommandContainerGenerator Buttons=OKCancel}" Content="{Binding Path=AssociatedObject.(designer:ReportDesigner.Document).ReportModel.SelectedModel.XRObject, RelativeSource={RelativeSource Self}}">
+                                <dxe:DialogServiceEditorBehavior.DialogServiceTemplate>
+                                    <DataTemplate>
+                                        <ContentControl>
+                                            <dx:DialogService DialogWindowStartupLocation="CenterOwner">
+                                                <dx:DialogService.DialogStyle>
+                                                    <Style TargetType="{x:Type dx:DXDialogWindow}" BasedOn="{StaticResource DXDialogWindowDialogStyleBase}">
+                                                        <Setter Property="SizeToContent" Value="WidthAndHeight" />
+                                                        <Setter Property="ResizeMode" Value="CanMinimize" />
+                                                        <Setter Property="Title" Value="Format String Editor" />
+                                                    </Style>
+                                                </dx:DialogService.DialogStyle>
+                                                <dx:DialogService.ViewTemplate>
+                                                    <DataTemplate>
+                                                        <designereditors:FormatStringUITypeEditor EditValue="{Binding Value}" PrimarySelection="{Binding Content}" />
+                                                    </DataTemplate>
+                                                </dx:DialogService.ViewTemplate>
+                                            </dx:DialogService>
+                                        </ContentControl>
+                                    </DataTemplate>
+                                </dxe:DialogServiceEditorBehavior.DialogServiceTemplate>
+                            </dxe:DialogServiceEditorBehavior>
+                        </dxmvvm:Interaction.Behaviors>
+                    </dxe:ButtonInfo>
+                </dxe:ButtonInfoCollection>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="{x:Static xrdiagram:XRDiagramControlBarItemNames.RunningBand}" TargetType="{x:Type dxe:ComboBoxEdit}" BasedOn="{StaticResource ComboBoxEditBaseItem}">
+        <Setter Property="EditValue" Value="{Binding Diagram.SelectionToolsModel[RunningBand], UpdateSourceTrigger=PropertyChanged}" />
+        <Setter Property="ItemsSource" Value="{Binding Path=Diagram.(designer:ReportDesigner.Document).Report, Converter={designernative:ControlsToRunningBandsConverter}, UpdateSourceTrigger=PropertyChanged}" />
+        <Setter Property="ShowNullText" Value="False" />
+    </Style>
+    <Style x:Key="{x:Static xrdiagram:XRDiagramControlBarItemNames.Image}" TargetType="{x:Type dxe:PopupImageEdit}" BasedOn="{StaticResource BaseEditItem}">
+        <Setter Property="EditValue" Value="{Binding Diagram.SelectionToolsModel[Image], UpdateSourceTrigger=PropertyChanged}" />
+    </Style>
+    <Style x:Key="{x:Static xrdiagram:XRDiagramControlBarItemNames.DataBindingImage}" TargetType="{x:Type designereditors:PopupTreeListEdit}" BasedOn="{StaticResource ReportDesigner_DataBindingStyleBase}">
+        <Setter Property="dxmvvm:Interaction.BehaviorsTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <ContentControl>
+                        <designernative:SyncDataBindingsPropertyBehavior Parameters="{Binding Diagram.SelectionModel, Mode=OneWay, Converter={designernative:SyncDataBindingsPropertyBehaviorConverter}, ConverterParameter='Image, Data'}" />
+                    </ContentControl>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="{x:Static xrdiagram:XRDiagramControlBarItemNames.ImageUrl}" TargetType="{x:Type dxe:TextEdit}" BasedOn="{StaticResource BaseEditItem}">
+        <Setter Property="EditValue" Value="{Binding Diagram.SelectionToolsModel[ImageUrl], UpdateSourceTrigger=PropertyChanged}" />
+    </Style>
+    <Style x:Key="{x:Static xrdiagram:XRDiagramControlBarItemNames.DataBindingImageUrl}" TargetType="{x:Type designereditors:PopupTreeListEdit}" BasedOn="{StaticResource ReportDesigner_DataBindingStyleBase}">
+        <Setter Property="dxmvvm:Interaction.BehaviorsTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <ContentControl>
+                        <designernative:SyncDataBindingsPropertyBehavior Parameters="{Binding Diagram.SelectionModel, Mode=OneWay, Converter={designernative:SyncDataBindingsPropertyBehaviorConverter}, ConverterParameter='ImageUrl, Data'}" />
+                    </ContentControl>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="{x:Static xrdiagram:XRDiagramControlBarItemNames.Sizing}" TargetType="{x:Type dxe:ComboBoxEdit}" BasedOn="{StaticResource ComboBoxEditBaseItem}">
+        <Setter Property="EditValue" Value="{Binding Diagram.SelectionToolsModel[Sizing], UpdateSourceTrigger=PropertyChanged}" />
+        <Setter Property="ItemsSource" Value="{dxe:EnumItemsSource EnumType=printing:ImageSizeMode}" />
+    </Style>
+    <Style x:Key="{x:Static xrdiagram:XRDiagramControlBarItemNames.ImageAlignment}" TargetType="{x:Type dxe:ComboBoxEdit}" BasedOn="{StaticResource ComboBoxEditBaseItem}">
+        <Setter Property="EditValue" Value="{Binding Diagram.SelectionToolsModel[ImageAlignment], UpdateSourceTrigger=PropertyChanged}" />
+        <Setter Property="ItemsSource" Value="{dxe:EnumItemsSource EnumType=printing:ImageAlignment}" />
+    </Style>
+    <Style x:Key="{x:Static xrdiagram:XRDiagramControlBarItemNames.DataAdapter}" TargetType="{x:Type dxe:ComboBoxEdit}" BasedOn="{StaticResource ComboBoxEditBaseItem}">
+        <Setter Property="EditValue" Value="{Binding Diagram.SelectionToolsModel[DataAdapter], UpdateSourceTrigger=PropertyChanged}" />
+    </Style>
+    <Style x:Key="{x:Static xrdiagram:XRDiagramControlBarItemNames.OlapConnectionString}" TargetType="{x:Type dxe:ButtonEdit}" x:Shared="False">
+        <Setter Property="EditValue" Value="{Binding Diagram.SelectionToolsModel[OLAPConnectionString], UpdateSourceTrigger=PropertyChanged}" />
+        <Setter Property="AllowDefaultButton" Value="False" />
+        <Setter Property="Buttons">
+            <Setter.Value>
+                <dxe:ButtonInfoCollection>
+                    <dxe:ButtonInfo GlyphKind="Regular">
+                        <dxmvvm:Interaction.Behaviors>
+                            <dxe:DialogServiceEditorBehavior Commands="{dxe:UICommandContainerGenerator Buttons=OKCancel}">
+                                <dxe:DialogServiceEditorBehavior.DialogServiceTemplate>
+                                    <DataTemplate>
+                                        <ContentControl>
+                                            <dx:DialogService DialogWindowStartupLocation="CenterOwner">
+                                                <dx:DialogService.DialogStyle>
+                                                    <Style TargetType="{x:Type dx:DXDialogWindow}" BasedOn="{StaticResource DXDialogWindowDialogStyleBase}">
+                                                        <Setter Property="Width" Value="400" />
+                                                        <Setter Property="Height" Value="400" />
+                                                        <Setter Property="ResizeMode" Value="NoResize" />
+                                                        <Setter Property="Title" Value="Connection String Editor" />
+                                                    </Style>
+                                                </dx:DialogService.DialogStyle>
+                                                <dx:DialogService.ViewTemplate>
+                                                    <DataTemplate>
+                                                        <designereditors:OLAPConnectionStringUITypeEditor EditValue="{Binding EditValue}" />
+                                                    </DataTemplate>
+                                                </dx:DialogService.ViewTemplate>
+                                            </dx:DialogService>
+                                        </ContentControl>
+                                    </DataTemplate>
+                                </dxe:DialogServiceEditorBehavior.DialogServiceTemplate>
+                            </dxe:DialogServiceEditorBehavior>
+                        </dxmvvm:Interaction.Behaviors>
+                    </dxe:ButtonInfo>
+                </dxe:ButtonInfoCollection>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="{x:Static xrdiagram:XRDiagramControlBarItemNames.DataBindingRtf}" TargetType="{x:Type designereditors:PopupTreeListEdit}" BasedOn="{StaticResource ReportDesigner_DataBindingStyleBase}">
+        <Setter Property="dxmvvm:Interaction.BehaviorsTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <ContentControl>
+                        <designernative:SyncDataBindingsPropertyBehavior Parameters="{Binding Diagram.SelectionModel, Mode=OneWay, Converter={designernative:SyncDataBindingsPropertyBehaviorConverter}, ConverterParameter='Rtf, Data'}" />
+                    </ContentControl>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="{x:Static xrdiagram:XRDiagramControlBarItemNames.FillColor}" TargetType="{x:Type dxe:PopupColorEdit}" BasedOn="{StaticResource BaseEditItem}">
+        <Setter Property="EditValue" Value="{Binding Diagram.SelectionToolsModel[FillColor], UpdateSourceTrigger=PropertyChanged}" />
+    </Style>
+    <Style x:Key="{x:Static xrdiagram:XRDiagramControlBarItemNames.AngleShape}" TargetType="{x:Type dxe:SpinEdit}" BasedOn="{StaticResource BaseEditItem}">
+        <Setter Property="EditValue" Value="{Binding Diagram.SelectionToolsModel[Angle], Converter={designernative:DecimalToFloatIntConverter ItemType=Int32}, UpdateSourceTrigger=PropertyChanged}" />
+    </Style>
+    <Style x:Key="{x:Static xrdiagram:XRDiagramControlBarItemNames.ValueMember}" TargetType="{x:Type dxe:ComboBoxEdit}" BasedOn="{StaticResource ComboBoxEditBaseItem}">
+        <Setter Property="EditValue" Value="{Binding Diagram.SelectionToolsModel[ValueMember], UpdateSourceTrigger=PropertyChanged}" />
+    </Style>
+    <Style x:Key="{x:Static xrdiagram:XRDiagramControlBarItemNames.View}" TargetType="{x:Type dxe:ComboBoxEdit}" BasedOn="{StaticResource ComboBoxEditBaseItem}">
+        <Setter Property="EditValue" Value="{Binding Diagram.SelectionToolsModel[View], UpdateSourceTrigger=PropertyChanged}" />
+        <Setter Property="ItemsSource" Value="{dxe:EnumItemsSource EnumType=sparkline:SparklineViewType}" />
+    </Style>
+    <Style x:Key="{x:Static xrdiagram:XRDiagramControlBarItemNames.ReportSourceUrl}" TargetType="{x:Type dxe:ButtonEdit}" BasedOn="{StaticResource BaseEditItem}" x:Shared="False">
+        <Setter Property="EditValue" Value="{Binding Diagram.SelectionToolsModel[ReportSourceUrl], UpdateSourceTrigger=PropertyChanged}" />
+        <Setter Property="AllowDefaultButton" Value="False" />
+        <Setter Property="Buttons">
+            <Setter.Value>
+                <dxe:ButtonInfoCollection>
+                    <dxe:ButtonInfo GlyphKind="Regular">
+                        <dxmvvm:Interaction.Behaviors>
+                            <dxe:CustomDialogServiceEditorBehavior Content="{Binding Path=Diagram.(designer:ReportDesigner.Designer)}">
+                                <dxe:CustomDialogServiceEditorBehavior.DialogServiceTemplate>
+                                    <DataTemplate>
+                                        <ContentControl>
+                                            <designereditors:ReportSourceUrlDialogService />
+                                        </ContentControl>
+                                    </DataTemplate>
+                                </dxe:CustomDialogServiceEditorBehavior.DialogServiceTemplate>
+                            </dxe:CustomDialogServiceEditorBehavior>
+                        </dxmvvm:Interaction.Behaviors>
+                    </dxe:ButtonInfo>
+                </dxe:ButtonInfoCollection>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="{x:Static xrdiagram:XRDiagramControlBarItemNames.SegmentWidth}" TargetType="{x:Type dxe:SpinEdit}" BasedOn="{StaticResource BaseEditItem}">
+        <Setter Property="EditValue" Value="{Binding Diagram.SelectionToolsModel[SegmentWidth], Converter={designernative:DecimalToFloatIntConverter ItemType=Int32}, UpdateSourceTrigger=PropertyChanged}" />
+        <Setter Property="MinValue" Value="0" />
+        <Setter Property="IsFloatValue" Value="False" />
+    </Style>
+    <Style x:Key="{x:Static xrdiagram:XRDiagramControlBarItemNames.PageBreak}" TargetType="{x:Type dxe:ComboBoxEdit}" BasedOn="{StaticResource ComboBoxEditBaseItem}">
+        <Setter Property="EditValue" Value="{Binding Diagram.SelectionToolsModel[PageBreak], UpdateSourceTrigger=PropertyChanged}" />
+        <Setter Property="ItemsSource" Value="{dxe:EnumItemsSource EnumType=reportsui:PageBreak}" />
+    </Style>
+    <Style x:Key="{x:Static xrdiagram:XRDiagramControlBarItemNames.ViewType}" TargetType="{x:Type dxe:ComboBoxEdit}" BasedOn="{StaticResource ComboBoxEditBaseItem}">
+        <Setter Property="EditValue" Value="{Binding Diagram.SelectionToolsModel[ViewType], UpdateSourceTrigger=PropertyChanged}" />
+        <Setter Property="ItemsSource" Value="{dxe:EnumItemsSource EnumType=gauges:DashboardGaugeType}" />
+    </Style>
+    <Style x:Key="{x:Static xrdiagram:XRDiagramControlBarItemNames.ViewStyle}" TargetType="{x:Type dxe:ComboBoxEdit}" BasedOn="{StaticResource ComboBoxEditBaseItem}">
+        <Setter Property="EditValue" Value="{Binding Diagram.SelectionToolsModel[ViewStyle], UpdateSourceTrigger=PropertyChanged}" />
+        <Setter Property="ItemsSource" Value="{Binding Diagram.SelectionToolsModel[ViewType], Converter={designernative:DashboardGaugeTypeToDashboardGaugeStylesConverter}}" />
+    </Style>
+    <Style x:Key="{x:Static xrdiagram:XRDiagramControlBarItemNames.ViewTheme}" TargetType="{x:Type dxe:ComboBoxEdit}" BasedOn="{StaticResource ComboBoxEditBaseItem}">
+        <Setter Property="EditValue" Value="{Binding Diagram.SelectionToolsModel[ViewTheme], UpdateSourceTrigger=PropertyChanged}" />
+        <Setter Property="ItemsSource" Value="{dxe:EnumItemsSource EnumType=gauges:DashboardGaugeTheme}" />
+    </Style>
+    <Style x:Key="{x:Static xrdiagram:XRDiagramControlBarItemNames.ActualValue}" TargetType="{x:Type dxe:TextEdit}" BasedOn="{StaticResource BaseEditItem}">
+        <Setter Property="EditValue" Value="{Binding Diagram.SelectionToolsModel[ActualValue], Converter={designernative:DecimalToFloatIntConverter ItemType=Single}, UpdateSourceTrigger=PropertyChanged}" />
+    </Style>
+    <Style x:Key="{x:Static xrdiagram:XRDiagramControlBarItemNames.DataBindingActualValue}" TargetType="{x:Type designereditors:PopupTreeListEdit}" BasedOn="{StaticResource ReportDesigner_DataBindingStyleBase}">
+        <Setter Property="dxmvvm:Interaction.BehaviorsTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <ContentControl>
+                        <designernative:SyncDataBindingsPropertyBehavior Parameters="{Binding Diagram.SelectionModel, Mode=OneWay, Converter={designernative:SyncDataBindingsPropertyBehaviorConverter}, ConverterParameter='ActualValue, Data'}" />
+                    </ContentControl>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="{x:Static xrdiagram:XRDiagramControlBarItemNames.TargetValue}" TargetType="{x:Type dxe:TextEdit}" BasedOn="{StaticResource BaseEditItem}">
+        <Setter Property="EditValue" Value="{Binding Diagram.SelectionToolsModel[TargetValue], Converter={designernative:DecimalToFloatIntConverter ItemType=Single}, UpdateSourceTrigger=PropertyChanged}" />
+    </Style>
+    <Style x:Key="{x:Static xrdiagram:XRDiagramControlBarItemNames.DataBindingTargetValue}" TargetType="{x:Type designereditors:PopupTreeListEdit}" BasedOn="{StaticResource ReportDesigner_DataBindingStyleBase}">
+        <Setter Property="dxmvvm:Interaction.BehaviorsTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <ContentControl>
+                        <designernative:SyncDataBindingsPropertyBehavior Parameters="{Binding Diagram.SelectionModel, Mode=OneWay, Converter={designernative:SyncDataBindingsPropertyBehaviorConverter}, ConverterParameter='TargetValue, Data'}" />
+                    </ContentControl>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="{x:Static xrdiagram:XRDiagramControlBarItemNames.Minimum}" TargetType="{x:Type dxe:TextEdit}" BasedOn="{StaticResource BaseEditItem}">
+        <Setter Property="EditValue" Value="{Binding Diagram.SelectionToolsModel[Minimum], Converter={designernative:DecimalToFloatIntConverter ItemType=Single}, UpdateSourceTrigger=PropertyChanged}" />
+    </Style>
+    <Style x:Key="{x:Static xrdiagram:XRDiagramControlBarItemNames.DataBindingMinimum}" TargetType="{x:Type designereditors:PopupTreeListEdit}" BasedOn="{StaticResource ReportDesigner_DataBindingStyleBase}">
+        <Setter Property="dxmvvm:Interaction.BehaviorsTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <ContentControl>
+                        <designernative:SyncDataBindingsPropertyBehavior Parameters="{Binding Diagram.SelectionModel, Mode=OneWay, Converter={designernative:SyncDataBindingsPropertyBehaviorConverter}, ConverterParameter='Minimum, Data'}" />
+                    </ContentControl>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="{x:Static xrdiagram:XRDiagramControlBarItemNames.Maximum}" TargetType="{x:Type dxe:TextEdit}" BasedOn="{StaticResource BaseEditItem}">
+        <Setter Property="EditValue" Value="{Binding Diagram.SelectionToolsModel[Maximum], Converter={designernative:DecimalToFloatIntConverter ItemType=Single}, UpdateSourceTrigger=PropertyChanged}" />
+    </Style>
+    <Style x:Key="{x:Static xrdiagram:XRDiagramControlBarItemNames.DataBindingMaximum}" TargetType="{x:Type designereditors:PopupTreeListEdit}" BasedOn="{StaticResource ReportDesigner_DataBindingStyleBase}">
+        <Setter Property="dxmvvm:Interaction.BehaviorsTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <ContentControl>
+                        <designernative:SyncDataBindingsPropertyBehavior Parameters="{Binding Diagram.SelectionModel, Mode=OneWay, Converter={designernative:SyncDataBindingsPropertyBehaviorConverter}, ConverterParameter='Maximum, Data'}" />
+                    </ContentControl>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="{x:Static xrdiagram:XRDiagramControlBarItemNames.MultiColumnMode}" TargetType="{x:Type dxe:ComboBoxEdit}" BasedOn="{StaticResource ComboBoxEditBaseItem}">
+        <Setter Property="EditValue" Value="{Binding Diagram.SelectionToolsModel[MultiColumnMode], UpdateSourceTrigger=PropertyChanged}" />
+        <Setter Property="ItemsSource" Value="{dxe:EnumItemsSource EnumType={x:Type reportsui:MultiColumnMode}}" />
+    </Style>
+    <Style x:Key="{x:Static xrdiagram:XRDiagramControlBarItemNames.MultiColumnLayout}" TargetType="{x:Type dxe:ComboBoxEdit}" BasedOn="{StaticResource ComboBoxEditBaseItem}">
+        <Setter Property="EditValue" Value="{Binding Diagram.SelectionToolsModel[MultiColumnLayout], UpdateSourceTrigger=PropertyChanged}" />
+        <Setter Property="ItemsSource" Value="{dxe:EnumItemsSource EnumType={x:Type printingcore:ColumnLayout}}" />
+    </Style>
+    <Style x:Key="{x:Static xrdiagram:XRDiagramControlBarItemNames.ColumnCount}" TargetType="{x:Type dxe:SpinEdit}" BasedOn="{StaticResource BaseEditItem}">
+        <Setter Property="EditValue" Value="{Binding Diagram.SelectionToolsModel[MultiColumnColumnCount], Converter={designernative:DecimalToFloatIntConverter ItemType=Int32}, UpdateSourceTrigger=PropertyChanged}" />
+        <Setter Property="MinValue" Value="0" />
+        <Setter Property="IsFloatValue" Value="False" />
+    </Style>
+    <Style x:Key="{x:Static xrdiagram:XRDiagramControlBarItemNames.ColumnWidth}" TargetType="{x:Type dxe:SpinEdit}" BasedOn="{StaticResource BaseEditItem}">
+        <Setter Property="EditValue" Value="{Binding Diagram.SelectionToolsModel[MultiColumnColumnWidth], Converter={designernative:DecimalToFloatIntConverter ItemType=Single}, UpdateSourceTrigger=PropertyChanged}" />
+        <Setter Property="MinValue" Value="0" />
+    </Style>
+    <Style x:Key="{x:Static xrdiagram:XRDiagramControlBarItemNames.ColumnSpacing}" TargetType="{x:Type dxe:SpinEdit}" BasedOn="{StaticResource BaseEditItem}">
+        <Setter Property="EditValue" Value="{Binding Diagram.SelectionToolsModel[MultiColumnColumnSpacing], Converter={designernative:DecimalToFloatIntConverter ItemType=Single}, UpdateSourceTrigger=PropertyChanged}" />
+        <Setter Property="MinValue" Value="0" />
+    </Style>
+    <Style x:Key="{x:Static xrdiagram:XRDiagramControlBarItemNames.PrintOn}" TargetType="{x:Type dxe:ComboBoxEdit}" BasedOn="{StaticResource ComboBoxEditBaseItem}">
+        <Setter Property="EditValue" Value="{Binding Diagram.SelectionToolsModel[PrintOn], UpdateSourceTrigger=PropertyChanged}" />
+        <Setter Property="ItemsSource" Value="{dxe:EnumItemsSource EnumType=printingcorereportsui:PrintOnPages}" />
+    </Style>
+    <Style x:Key="{x:Static xrdiagram:XRDiagramControlBarItemNames.GroupUnion}" TargetType="{x:Type dxe:ComboBoxEdit}" BasedOn="{StaticResource ComboBoxEditBaseItem}">
+        <Setter Property="EditValue" Value="{Binding Diagram.SelectionToolsModel[GroupUnion], UpdateSourceTrigger=PropertyChanged}" />
+        <Setter Property="ItemsSource" Value="{dxe:EnumItemsSource EnumType=reportsui:GroupUnion}" />
+    </Style>
+    <Style x:Key="{x:Static xrdiagram:XRDiagramControlBarItemNames.Level}" TargetType="{x:Type dxe:SpinEdit}" BasedOn="{StaticResource BaseEditItem}">
+        <Setter Property="EditValue" Value="{Binding Diagram.SelectionToolsModel[Level], Converter={designernative:DecimalToFloatIntConverter ItemType=Int32}, UpdateSourceTrigger=PropertyChanged}" />
+        <Setter Property="MinValue" Value="0" />
+        <Setter Property="IsFloatValue" Value="False" />
+    </Style>
+    <Style x:Key="{x:Static xrdiagram:XRDiagramControlBarItemNames.SortingSummary}" TargetType="{x:Type dxe:ButtonEdit}" BasedOn="{StaticResource BaseEditItem}">
+        <Setter Property="EditValue" Value="{Binding Diagram.SelectionToolsModel[SortingSummary], UpdateSourceTrigger=PropertyChanged}" />
+    </Style>
+    <Style x:Key="{x:Static xrdiagram:XRDiagramControlBarItemNames.AutoWidth}" TargetType="{x:Type dxe:CheckEdit}">
+        <Setter Property="IsChecked" Value="{Binding Diagram.SelectionToolsModel[AutoWidth], UpdateSourceTrigger=PropertyChanged}" />
+        <Setter Property="Content" Value="Auto Width" />
+    </Style>
+    <Style x:Key="{x:Static xrdiagram:XRDiagramControlBarItemNames.CanGrow}" TargetType="{x:Type dxe:CheckEdit}">
+        <Setter Property="IsChecked" Value="{Binding Diagram.SelectionToolsModel[CanGrow], UpdateSourceTrigger=PropertyChanged}" />
+        <Setter Property="Content" Value="Can Grow" />
+    </Style>
+    <Style x:Key="{x:Static xrdiagram:XRDiagramControlBarItemNames.CanShrink}" TargetType="{x:Type dxe:CheckEdit}">
+        <Setter Property="IsChecked" Value="{Binding Diagram.SelectionToolsModel[CanShrink], UpdateSourceTrigger=PropertyChanged}" />
+        <Setter Property="Content" Value="Can Shrink" />
+    </Style>
+    <Style x:Key="{x:Static xrdiagram:XRDiagramControlBarItemNames.Multiline}" TargetType="{x:Type dxe:CheckEdit}">
+        <Setter Property="IsChecked" Value="{Binding Diagram.SelectionToolsModel[Multiline], UpdateSourceTrigger=PropertyChanged}" />
+        <Setter Property="Content" Value="Multiline" />
+    </Style>
+    <Style x:Key="{x:Static xrdiagram:XRDiagramControlBarItemNames.WordWrap}" TargetType="{x:Type dxe:CheckEdit}">
+        <Setter Property="IsChecked" Value="{Binding Diagram.SelectionToolsModel[WordWrap], UpdateSourceTrigger=PropertyChanged}" />
+        <Setter Property="Content" Value="Word Wrap" />
+    </Style>
+    <Style x:Key="{x:Static xrdiagram:XRDiagramControlBarItemNames.AutoModule}" TargetType="{x:Type dxe:CheckEdit}">
+        <Setter Property="IsChecked" Value="{Binding Diagram.SelectionToolsModel[AutoModule], UpdateSourceTrigger=PropertyChanged}" />
+        <Setter Property="Content" Value="Auto-Module" />
+    </Style>
+    <Style x:Key="{x:Static xrdiagram:XRDiagramControlBarItemNames.ShowText}" TargetType="{x:Type dxe:CheckEdit}">
+        <Setter Property="IsChecked" Value="{Binding Diagram.SelectionToolsModel[ShowText], UpdateSourceTrigger=PropertyChanged}" />
+        <Setter Property="Content" Value="Show Text" />
+    </Style>
+    <Style x:Key="{x:Static xrdiagram:XRDiagramControlBarItemNames.Stretch}" TargetType="{x:Type dxe:CheckEdit}">
+        <Setter Property="IsChecked" Value="{Binding Diagram.SelectionToolsModel[Stretch], UpdateSourceTrigger=PropertyChanged}" />
+        <Setter Property="Content" Value="Stretch" />
+    </Style>
+    <Style x:Key="{x:Static xrdiagram:XRDiagramControlBarItemNames.KeepTogether}" TargetType="{x:Type dxe:CheckEdit}">
+        <Setter Property="IsChecked" Value="{Binding Diagram.SelectionToolsModel[KeepTogether], UpdateSourceTrigger=PropertyChanged}" />
+        <Setter Property="Content" Value="Keep Together" />
+    </Style>
+    <Style x:Key="{x:Static xrdiagram:XRDiagramControlBarItemNames.KeepTogetherWithDetailReports}" TargetType="{x:Type dxe:CheckEdit}">
+        <Setter Property="IsChecked" Value="{Binding Diagram.SelectionToolsModel[KeepTogetherWithDetailReports], UpdateSourceTrigger=PropertyChanged}" />
+        <Setter Property="Content" Value="Keep Together with Detail Reports" />
+    </Style>
+    <Style x:Key="{x:Static xrdiagram:XRDiagramControlBarItemNames.RepeatEveryPage}" TargetType="{x:Type dxe:CheckEdit}">
+        <Setter Property="IsChecked" Value="{Binding Diagram.SelectionToolsModel[RepeatEveryPage], UpdateSourceTrigger=PropertyChanged}" />
+        <Setter Property="Content" Value="Repeat Every Page" />
+    </Style>
+    <Style x:Key="{x:Static xrdiagram:XRDiagramControlBarItemNames.PrintAtBottom}" TargetType="{x:Type dxe:CheckEdit}">
+        <Setter Property="IsChecked" Value="{Binding Diagram.SelectionToolsModel[PrintAtBottom], UpdateSourceTrigger=PropertyChanged}" />
+        <Setter Property="Content" Value="Print at Bottom" />
+    </Style>
+    <Style x:Key="{x:Static xrdiagram:XRDiagramControlBarItemNames.Shape}" TargetType="{x:Type dxe:ComboBoxEdit}" BasedOn="{StaticResource ComboBoxEditBaseItem}">
+        <Setter Property="EditValue" Value="{Binding Diagram.SelectionToolsModel[ShapeName], UpdateSourceTrigger=PropertyChanged}" />
+        <Setter Property="ItemsSource" Value="{designernative:ShapeCollection}" />
+    </Style>
+    <Style x:Key="{x:Static xrdiagram:XRDiagramControlBarItemNames.Fillet}" TargetType="{x:Type dxe:SpinEdit}" BasedOn="{StaticResource ShapeBaseEditItem}">
+        <Setter Property="EditValue" Value="{Binding Diagram.SelectionToolsModel[Fillet], Converter={designernative:DecimalToFloatIntConverter ItemType=Int32}, UpdateSourceTrigger=PropertyChanged}" />
+    </Style>
+    <Style x:Key="{x:Static xrdiagram:XRDiagramControlBarItemNames.ArrowHeight}" TargetType="{x:Type dxe:SpinEdit}" BasedOn="{StaticResource ShapeBaseEditItem}">
+        <Setter Property="EditValue" Value="{Binding Diagram.SelectionToolsModel[ArrowHeight], Converter={designernative:DecimalToFloatIntConverter ItemType=Int32}, UpdateSourceTrigger=PropertyChanged}" />
+    </Style>
+    <Style x:Key="{x:Static xrdiagram:XRDiagramControlBarItemNames.ArrowWidth}" TargetType="{x:Type dxe:SpinEdit}" BasedOn="{StaticResource ShapeBaseEditItem}">
+        <Setter Property="EditValue" Value="{Binding Diagram.SelectionToolsModel[ArrowWidth], Converter={designernative:DecimalToFloatIntConverter ItemType=Int32}, UpdateSourceTrigger=PropertyChanged}" />
+    </Style>
+    <Style x:Key="{x:Static xrdiagram:XRDiagramControlBarItemNames.NumberOfSides}" TargetType="{x:Type dxe:SpinEdit}" BasedOn="{StaticResource ShapeBaseEditItem}">
+        <Setter Property="EditValue" Value="{Binding Diagram.SelectionToolsModel[NumberOfSides], Converter={designernative:DecimalToFloatIntConverter ItemType=Int32}, UpdateSourceTrigger=PropertyChanged}" />
+        <Setter Property="MinValue" Value="3" />
+        <Setter Property="MaxValue" Value="9999" />
+    </Style>
+    <Style x:Key="{x:Static xrdiagram:XRDiagramControlBarItemNames.StarPointCount}" TargetType="{x:Type dxe:SpinEdit}" BasedOn="{StaticResource ShapeBaseEditItem}">
+        <Setter Property="EditValue" Value="{Binding Diagram.SelectionToolsModel[StarPointCount], Converter={designernative:DecimalToFloatIntConverter ItemType=Int32}, UpdateSourceTrigger=PropertyChanged}" />
+        <Setter Property="MinValue" Value="3" />
+        <Setter Property="MaxValue" Value="9999" />
+    </Style>
+    <Style x:Key="{x:Static xrdiagram:XRDiagramControlBarItemNames.Concavity}" TargetType="{x:Type dxe:SpinEdit}" BasedOn="{StaticResource ShapeBaseEditItem}">
+        <Setter Property="EditValue" Value="{Binding Diagram.SelectionToolsModel[Concavity], Converter={designernative:DecimalToFloatIntConverter ItemType=Single}, UpdateSourceTrigger=PropertyChanged}" />
+        <Setter Property="IsFloatValue" Value="True" />
+        <Setter Property="ShowEditorButtons" Value="False" />
+    </Style>
+    <Style x:Key="{x:Static xrdiagram:XRDiagramControlBarItemNames.HorizontalLineWidth}" TargetType="{x:Type dxe:SpinEdit}" BasedOn="{StaticResource ShapeBaseEditItem}">
+        <Setter Property="EditValue" Value="{Binding Diagram.SelectionToolsModel[HorizontalLineWidth], Converter={designernative:DecimalToFloatIntConverter ItemType=Int32}, UpdateSourceTrigger=PropertyChanged}" />
+    </Style>
+    <Style x:Key="{x:Static xrdiagram:XRDiagramControlBarItemNames.VerticalLineWidth}" TargetType="{x:Type dxe:SpinEdit}" BasedOn="{StaticResource ShapeBaseEditItem}">
+        <Setter Property="EditValue" Value="{Binding Diagram.SelectionToolsModel[VerticalLineWidth], Converter={designernative:DecimalToFloatIntConverter ItemType=Int32}, UpdateSourceTrigger=PropertyChanged}" />
+    </Style>
+    <Style x:Key="{x:Static xrdiagram:XRDiagramControlBarItemNames.TipLength}" TargetType="{x:Type dxe:SpinEdit}" BasedOn="{StaticResource ShapeBaseEditItem}">
+        <Setter Property="EditValue" Value="{Binding Diagram.SelectionToolsModel[TipLength], Converter={designernative:DecimalToFloatIntConverter ItemType=Int32}, UpdateSourceTrigger=PropertyChanged}" />
+    </Style>
+    <Style x:Key="{x:Static xrdiagram:XRDiagramControlBarItemNames.TailLength}" TargetType="{x:Type dxe:SpinEdit}" BasedOn="{StaticResource ShapeBaseEditItem}">
+        <Setter Property="EditValue" Value="{Binding Diagram.SelectionToolsModel[TailLength], Converter={designernative:DecimalToFloatIntConverter ItemType=Int32}, UpdateSourceTrigger=PropertyChanged}" />
+    </Style>
+</ResourceDictionary>

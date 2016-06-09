@@ -1,0 +1,44 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+            xmlns:dxdiag="clr-namespace:DevExpress.Xpf.Diagram;assembly=DevExpress.Xpf.Diagram.v15.2"
+            xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+            xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
+            xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+            xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
+            xmlns:xrdiagram="clr-namespace:DevExpress.Xpf.Reports.UserDesigner.XRDiagram"
+            xmlns:designernative="clr-namespace:DevExpress.Xpf.Reports.UserDesigner.Native">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/DevExpress.Xpf.ReportDesigner.v15.2;component/Themes/XRDiagram/XRDiagramContainerItem.xaml" />
+        <ResourceDictionary Source="/DevExpress.Xpf.ReportDesigner.v15.2;component/Themes/XRDiagram/LinkStyle.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    <Style TargetType="xrdiagram:XRPanelDiagramItem" BasedOn="{StaticResource {x:Type xrdiagram:XRDiagramContainer}}">
+        <Setter Property="xrdiagram:XRDiagramItemBase.ContextMenuTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <dxb:PopupMenu>
+                        <dxb:BarButtonItem Style="{StaticResource {x:Static xrdiagram:XRDiagramControlBarItemNames.Cut}}" />
+                        <dxb:BarButtonItem Style="{StaticResource {x:Static xrdiagram:XRDiagramControlBarItemNames.Copy}}" />
+                        <dxb:BarButtonItem Style="{StaticResource {x:Static xrdiagram:XRDiagramControlBarItemNames.Paste}}" />
+                        <dxb:BarButtonItem Style="{StaticResource {x:Static xrdiagram:XRDiagramControlBarItemNames.Delete}}" />
+                        <dxb:BarItemSeparator />
+                        <dxb:BarButtonItem Style="{StaticResource {x:Static xrdiagram:XRDiagramControlBarItemNames.Properties}}" />
+                    </dxb:PopupMenu>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="xrdiagram:XRPanelDiagramItem">
+                    <Grid Background="{TemplateBinding Background}">
+                        <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                            <TextBlock Text="{TemplateBinding Text}" FontSize="14" TextWrapping="Wrap" FontStyle="Italic" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                        <Canvas x:Name="ItemsPanel" Background="Transparent" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

@@ -1,0 +1,149 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:dxrt="http://schemas.devexpress.com/winfx/2008/xaml/ribbon/themekeys" xmlns:dxr="http://schemas.devexpress.com/winfx/2008/xaml/ribbon" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:cs="colorscheme_ignorable_uri" mc:Ignorable="cs">
+    <dx:ColorOverlayConverter x:Key="colorOverlayConverter" />
+    <Style x:Key="{dxrt:RibbonThemeKey ResourceKey=NormalPageCategoryTextStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Foreground" Value="#FF929292" />
+    </Style>
+    <Style x:Key="{dxrt:RibbonThemeKey ResourceKey=SelectedPageCategoryTextStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Foreground" Value="#FF929292" />
+    </Style>
+    <ControlTemplate x:Key="{dxrt:RibbonPageCategoryThemeKey ResourceKey=HeaderBackgroundTemplate}" TargetType="{x:Type dxr:RibbonCheckedBorderControl}">
+        <Grid Margin="1,1,1,0" SnapsToDevicePixels="True">
+            <Grid x:Name="Grid">
+                <Border Background="{Binding Path=Color, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource colorOverlayConverter}, ConverterParameter=#FF808080}" Height="4" VerticalAlignment="Top" />
+                <ContentPresenter x:Name="Content" Margin="10,10,10,0" />
+            </Grid>
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup x:Name="Placement">
+                    <VisualState x:Name="RibbonWindow">
+                        <Storyboard>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Grid" Storyboard.TargetProperty="Margin">
+                                <DiscreteObjectKeyFrame KeyTime="0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <Thickness>0,-1,0,0</Thickness>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Content" Storyboard.TargetProperty="Margin">
+                                <DiscreteObjectKeyFrame KeyTime="0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <Thickness>4,0,4,0</Thickness>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Standalone">
+                        <Storyboard>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Grid" Storyboard.TargetProperty="Margin">
+                                <DiscreteObjectKeyFrame KeyTime="0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <Thickness>0,0,0,0</Thickness>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Content" Storyboard.TargetProperty="Margin">
+                                <DiscreteObjectKeyFrame KeyTime="0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <Thickness>4,0,4,1</Thickness>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+        </Grid>
+    </ControlTemplate>
+    <ControlTemplate x:Key="{dxrt:RibbonPageCategoryThemeKey ResourceKey=HeadersBackgroundTemplate}" TargetType="{x:Type dxr:RibbonCheckedBorderControl}" />
+    <ControlTemplate x:Key="{dxrt:RibbonPageCategoryThemeKey ResourceKey=HighlightedHeadersBackgroundTemplate}" TargetType="{x:Type dxr:RibbonCheckedBorderControl}" />
+    <Style x:Key="{dxrt:RibbonPageCategoryThemeKey ResourceKey=HeadersPresenterStyle}" TargetType="{x:Type ItemsPresenter}" />
+    <Style x:Key="{dxrt:RibbonThemeKey ResourceKey=NormalPageCategoryTextStyleInAeroWindow}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Foreground" Value="#FF929292" />
+    </Style>
+    <Style x:Key="{dxrt:RibbonThemeKey ResourceKey=SelectedPageCategoryTextStyleInAeroWindow}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Foreground" Value="#FF929292" />
+    </Style>
+    <ControlTemplate x:Key="{dxrt:RibbonPageCategoryThemeKey ResourceKey=HeaderBackgroundTemplateInAeroWindow}" TargetType="{x:Type dxr:RibbonCheckedBorderControl}">
+        <Grid Margin="1,1,1,0" SnapsToDevicePixels="True">
+            <Grid x:Name="Grid">
+                <Border Background="{Binding Path=Color, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource colorOverlayConverter}, ConverterParameter=#FF808080}" Height="4" VerticalAlignment="Top" />
+                <ContentPresenter x:Name="Content" Margin="4,0,4,0" />
+            </Grid>
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup x:Name="Placement">
+                    <VisualState x:Name="RibbonWindow">
+                        <Storyboard>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Grid" Storyboard.TargetProperty="Margin">
+                                <DiscreteObjectKeyFrame KeyTime="0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <Thickness>0,-1,0,0</Thickness>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Content" Storyboard.TargetProperty="Margin">
+                                <DiscreteObjectKeyFrame KeyTime="0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <Thickness>4,0,4,0</Thickness>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Standalone">
+                        <Storyboard>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Grid" Storyboard.TargetProperty="Margin">
+                                <DiscreteObjectKeyFrame KeyTime="0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <Thickness>0,0,0,0</Thickness>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Content" Storyboard.TargetProperty="Margin">
+                                <DiscreteObjectKeyFrame KeyTime="0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <Thickness>4,0,4,1</Thickness>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+        </Grid>
+    </ControlTemplate>
+    <ControlTemplate x:Key="{dxrt:RibbonPageCategoryThemeKey ResourceKey=HeadersBackgroundTemplateInAeroWindow}" TargetType="{x:Type dxr:RibbonCheckedBorderControl}">
+    </ControlTemplate>
+    <ControlTemplate x:Key="{dxrt:RibbonPageCategoryThemeKey ResourceKey=HighlightedHeadersBackgroundTemplateInAeroWindow}" TargetType="{x:Type dxr:RibbonCheckedBorderControl}">
+    </ControlTemplate>
+    <ControlTemplate x:Key="CollapseButtonTemplate" TargetType="{x:Type ToggleButton}">
+        <Grid Background="Transparent" Margin="0,2,0,0" SnapsToDevicePixels="True">
+            <Border x:Name="PART_Hover" Opacity="0">
+                <Border x:Name="hover" Background="#FF666666" />
+            </Border>
+            <Border x:Name="PART_Pressed" Background="#FFF78A09" Opacity="0" />
+            <Path x:Name="Path" Stretch="Fill" Fill="#BFFFFFFF" Data="F1 M 0,0L 3.06162e-016,5L 9,14L 18,5L 18,9.53674e-007L 9,9L 0,0 Z " Height="14" Width="18" Margin="10" />
+        </Grid>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter TargetName="PART_Hover" Property="Opacity" Value="1"/>
+            </Trigger>
+            <Trigger Property="IsPressed" Value="True">
+                <Setter TargetName="PART_Pressed" Property="Opacity" Value="1"/>
+            </Trigger>            
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+    <Style x:Key="{dxrt:RibbonPageCategoryThemeKey ResourceKey=CollapseButtonStyle}" TargetType="{x:Type ToggleButton}">
+        <Setter Property="Content" Value="V"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Template" Value="{StaticResource CollapseButtonTemplate}"/>
+        <Setter Property="Margin" Value="0,2,0,0"/>
+    </Style>
+    <Style x:Key="{dxrt:RibbonPageCategoryThemeKey ResourceKey=AeroCollapseButtonStyle}" TargetType="{x:Type ToggleButton}">
+        <Setter Property="Content" Value="V"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Template" Value="{StaticResource CollapseButtonTemplate}"/>
+        <Setter Property="Margin" Value="0,2,0,0"/>
+    </Style>
+</ResourceDictionary>

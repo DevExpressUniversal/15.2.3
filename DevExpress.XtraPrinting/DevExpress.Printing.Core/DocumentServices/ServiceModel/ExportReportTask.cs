@@ -1,0 +1,92 @@
+﻿#region Copyright (c) 2000-2015 Developer Express Inc.
+/*
+{*******************************************************************}
+{                                                                   }
+{       Developer Express .NET Component Library                    }
+{                                                                   }
+{                                                                   }
+{       Copyright (c) 2000-2015 Developer Express Inc.              }
+{       ALL RIGHTS RESERVED                                         }
+{                                                                   }
+{   The entire contents of this file is protected by U.S. and       }
+{   International Copyright Laws. Unauthorized reproduction,        }
+{   reverse-engineering, and distribution of all or any portion of  }
+{   the code contained in this file is strictly prohibited and may  }
+{   result in severe civil and criminal penalties and will be       }
+{   prosecuted to the maximum extent possible under the law.        }
+{                                                                   }
+{   RESTRICTIONS                                                    }
+{                                                                   }
+{   THIS SOURCE CODE AND ALL RESULTING INTERMEDIATE FILES           }
+{   ARE CONFIDENTIAL AND PROPRIETARY TRADE                          }
+{   SECRETS OF DEVELOPER EXPRESS INC. THE REGISTERED DEVELOPER IS   }
+{   LICENSED TO DISTRIBUTE THE PRODUCT AND ALL ACCOMPANYING .NET    }
+{   CONTROLS AS PART OF AN EXECUTABLE PROGRAM ONLY.                 }
+{                                                                   }
+{   THE SOURCE CODE CONTAINED WITHIN THIS FILE AND ALL RELATED      }
+{   FILES OR ANY PORTION OF ITS CONTENTS SHALL AT NO TIME BE        }
+{   COPIED, TRANSFERRED, SOLD, DISTRIBUTED, OR OTHERWISE MADE       }
+{   AVAILABLE TO OTHER INDIVIDUALS WITHOUT EXPRESS WRITTEN CONSENT  }
+{   AND PERMISSION FROM DEVELOPER EXPRESS INC.                      }
+{                                                                   }
+{   CONSULT THE END USER LICENSE AGREEMENT FOR INFORMATION ON       }
+{   ADDITIONAL RESTRICTIONS.                                        }
+{                                                                   }
+{*******************************************************************}
+*/
+#endregion Copyright (c) 2000-2015 Developer Express Inc.
+
+using System;
+using System.IO;
+using DevExpress.DocumentServices.ServiceModel.Client;
+using DevExpress.DocumentServices.ServiceModel.DataContracts;
+using DevExpress.DocumentServices.ServiceModel.ServiceOperations;
+using DevExpress.Utils;
+using DevExpress.Utils.Serializing;
+using DevExpress.XtraPrinting;
+using DevExpress.XtraPrinting.Native;
+namespace DevExpress.DocumentServices.ServiceModel {
+	class ExportReportTask : ReportServiceTaskBase<byte[]> {
+		ExportOptionsBase exportOptions;
+		public ExportReportTask(IReportServiceClient client)
+			: base(client) {
+		}
+		public void ExecuteAsync(InstanceIdentity reportIdentity, ExportOptionsBase exportOptions, ReportParameter[] parameters, object asyncState) {
+			Guard.ArgumentNotNull(reportIdentity, "reportIdentity");
+			Guard.ArgumentNotNull(exportOptions, "exportOptions");
+			this.exportOptions = exportOptions;
+			CreateDocumentAsync(reportIdentity, parameters, asyncState);
+		}
+		protected override void ProcessGeneratedReport(DocumentId documentId) {
+			DocumentExportArgs exportArgs = new DocumentExportArgs() {
+				CustomArgs = null,
+				Format = ExportOptionsHelper.GetFormat(exportOptions),
+				SerializedExportOptions = Serialize(exportOptions)
+			};
+			ExportDocumentOperation exportDocument = CreateExportOperation(documentId, exportArgs, DefaultUpdateStatusInterval);
+			exportDocument.Completed += ExportDocument_Completed;
+			exportDocument.Start();
+		}
+		void ExportDocument_Completed(object sender, ExportDocumentCompletedEventArgs e) {
+			var exportDocument = (ExportDocumentOperation)sender;
+			exportDocument.Completed -= ExportDocument_Completed;
+			if(HasErrorOrCancelled(e))
+				return;
+			SetResult(e);
+			RaiseCompleted(null, false);
+		}
+		ExportDocumentOperation CreateExportOperation(DocumentId documentId, DocumentExportArgs exportArgs, TimeSpan statusUpdateInterval) {
+			return new ExportDocumentOperation(Client, documentId, exportArgs, DefaultUpdateStatusInterval);
+		}
+		void SetResult(ExportDocumentCompletedEventArgs e) {
+			Result = e.Data;
+		}
+		static byte[] Serialize(ExportOptionsBase exportOptions) {
+			using(var stream = new MemoryStream()) {
+				var serializer = new XmlXtraSerializer();
+				serializer.SerializeObject(exportOptions, stream, typeof(ExportOptions).Name);
+				return stream.ToArray();
+			}
+		}
+	}
+}

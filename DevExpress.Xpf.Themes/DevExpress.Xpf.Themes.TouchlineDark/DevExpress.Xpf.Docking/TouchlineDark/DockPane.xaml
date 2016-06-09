@@ -1,0 +1,47 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/docking/themekeys" xmlns:ve="http://schemas.devexpress.com/winfx/2008/xaml/docking/visualelements" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:cs="colorscheme_ignorable_uri" mc:Ignorable="cs">
+    <dx:BoolToVisibilityConverter x:Key="boolToVisibilityConverter" />
+    <SolidColorBrush x:Key="{dxt:BrushElementsThemeKey ResourceKey=PanelForeground}" Color="#bfffffff" />
+    <SolidColorBrush x:Key="{dxt:BrushElementsThemeKey ResourceKey=PanelBackground}" Color="#FF333333" />
+    <SolidColorBrush x:Key="{dxt:DockPaneElementsThemeKey ResourceKey=BorderBrush}" Color="#FF515151" />
+    <SolidColorBrush x:Key="{dxt:DockPaneElementsThemeKey ResourceKey=Background}" Color="#FF333333" />
+    <SolidColorBrush x:Key="{dxt:DockPaneElementsThemeKey ResourceKey=CaptionActiveBackground}" Color="#FFF78A09" />
+    <SolidColorBrush x:Key="{dxt:DockPaneElementsThemeKey ResourceKey=CaptionNormalBackground}" Color="#FF515151" />
+    <SolidColorBrush x:Key="{dxt:DockPaneElementsThemeKey ResourceKey=CaptionActiveForeground}" Color="#FF333333" />
+    <SolidColorBrush x:Key="{dxt:DockPaneElementsThemeKey ResourceKey=CaptionNormalForeground}" Color="#FF929292" />
+    <SolidColorBrush x:Key="{dxt:BrushElementsThemeKey ResourceKey=MoveTargetBackground}" Color="#FFCD0000" />
+    <CornerRadius x:Key="{dxt:DockPaneElementsThemeKey ResourceKey=CaptionCornerRadius}">0</CornerRadius>
+    <CornerRadius x:Key="{dxt:DockPaneElementsThemeKey ResourceKey=FloatingCaptionCornerRadius}">0</CornerRadius>
+    <Thickness x:Key="{dxt:DockPaneElementsThemeKey ResourceKey=BorderThickness}">1</Thickness>
+    <Thickness x:Key="{dxt:DockPaneElementsThemeKey ResourceKey=BorderMargin}">1,1,1,0</Thickness>
+    <Thickness x:Key="{dxt:DockPaneElementsThemeKey ResourceKey=BorderPadding}">0,0,0,1</Thickness>
+    <Thickness x:Key="{dxt:DockPaneElementsThemeKey ResourceKey=BarContainerMargin}">0</Thickness>
+    <Thickness x:Key="{dxt:DockPaneElementsThemeKey ResourceKey=ContentMargin}">0</Thickness>
+    <Thickness x:Key="{dxt:DockPaneElementsThemeKey ResourceKey=HeaderMargin}">-1,-1,-1,0</Thickness>
+    <ControlTemplate x:Key="{dxt:DockElementsThemeKey ResourceKey=SplitterTemplate}" TargetType="ve:Splitter">
+        <Grid Opacity="0.15">
+            <Border Background="{TemplateBinding Background}" Visibility="{Binding Path=IsDragDropOver, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource boolToVisibilityConverter}}" />
+            <Border x:Name="PART_SplitThumb" Background="Transparent" />
+        </Grid>
+    </ControlTemplate>
+    <DataTemplate x:Key="{dxt:DockPaneElementsThemeKey ResourceKey=Header}">
+        <Grid DataContext="{Binding LayoutItem}">
+            <Border x:Name="PART_CaptionBackground" MinHeight="44" ve:DockPane.HitTestType="Header">
+                <Grid Margin="8">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <ve:TemplatedCaptionControl x:Name="PART_CaptionControlPresenter" LayoutItem="{Binding}" FontSize="18" />
+                    <ve:PanelControlBoxControl x:Name="PART_ControlBox" LayoutItem="{Binding}" Grid.Column="1"
+                                               PinButtonTemplate="{DynamicResource {dxt:DockPaneElementsThemeKey ResourceKey=PinButton}}"
+                                               CloseButtonTemplate="{DynamicResource {dxt:DockPaneElementsThemeKey ResourceKey=CloseButton}}"
+                                               RestoreButtonTemplate="{DynamicResource {dxt:DockPaneElementsThemeKey ResourceKey=RestoreButton}}" 
+                                               MaximizeButtonTemplate="{DynamicResource {dxt:DockPaneElementsThemeKey ResourceKey=MaximizeButton}}"
+                                               HideButtonTemplate="{DynamicResource {dxt:DockPaneElementsThemeKey ResourceKey=HideButton}}"
+                                               ExpandButtonTemplate="{DynamicResource {dxt:DockPaneElementsThemeKey ResourceKey=ExpandButton}}"
+                                               CollapseButtonTemplate="{DynamicResource {dxt:DockPaneElementsThemeKey ResourceKey=CollapseButton}}"/>
+                </Grid>
+            </Border>
+        </Grid>
+    </DataTemplate>
+</ResourceDictionary>

@@ -1,0 +1,214 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:ddhelpers="clr-namespace:DevExpress.DemoData.Helpers;assembly=DevExpress.DemoData.v15.2.Core"
+    xmlns:dxwindow="clr-namespace:DevExpress.Internal.DXWindow;assembly=DevExpress.DemoData.v15.2.Core"
+    xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
+    xmlns:helpers="clr-namespace:DevExpress.Xpf.DemoBase.Helpers"
+    xmlns:dxl="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
+    xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
+    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+    xmlns:dxdb="clr-namespace:DevExpress.Xpf.DemoBase"
+    xmlns:internal="clr-namespace:DevExpress.Xpf.DemoBase.Internal"
+    xmlns:internal2="clr-namespace:DevExpress.Xpf.DemoBase.Internal;assembly=DevExpress.Xpf.DemoBase.v15.2"
+    mc:Ignorable="d">
+    <helpers:ColorToBrushConverter x:Key="ColorToBrushConverter" DoNotUseSolidColorBrush="True" />
+    <ddhelpers:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+    <ddhelpers:BoolToVisibilityConverter x:Key="InvertedBoolToVisibilityConverter" Inverted="True"/>
+    <ddhelpers:ObjectToBooleanConverter x:Key="ObjectToBooleanConverter" />
+    <dxmvvm:ObjectToObjectConverter x:Key="DemoStatusToVisibilityConverter" DefaultTarget="Visible">
+        <dxmvvm:MapItem Source="None" Target="Collapsed"/>
+    </dxmvvm:ObjectToObjectConverter>
+    <ddhelpers:ObjectToBooleanConverter x:Key="InvertedObjectToBooleanConverter" Inverted="True" />
+    <ddhelpers:ActionToCommandConverter x:Key="ActionToCommandConverter" />
+    <DataTemplate x:Key="ProductContextMenuItemTemplate">
+        <dxb:BarButtonItem Command="{Binding OpenCommand}" Content="{Binding Title}"/>
+    </DataTemplate>
+    <helpers:ListToDXContextMenuConverter x:Key="ListToContextMenuConverter"/>
+    <dxdb:AssemblyMarker x:Key="AssemblyMarker" />
+    <ddhelpers:TextToResourceUriConverter x:Key="OpenCodeGlyphConverter" Prefix="Images/Code" Suffix=".png" AssemblyMarker="{StaticResource AssemblyMarker}" />
+    <ddhelpers:TextToResourceUriConverter x:Key="OpenCodeHoverGlyphConverter" Prefix="Images/Code" Suffix="Hover.png" AssemblyMarker="{StaticResource AssemblyMarker}" />
+    <Style x:Key="OpenCodeSmallButton" TargetType="ddhelpers:ButtonExt">
+        <Setter Property="Padding" Value="10,10,10,0" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ddhelpers:ButtonExt">
+                    <Grid Visibility="{Binding Path=IsEnabledExt, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BoolToVisibilityConverter}}">
+                        <dx:DXBorder Background="Transparent" />
+                        <Image Source="{Binding Path=Content, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource OpenCodeGlyphConverter}}" Margin="{TemplateBinding Padding}"
+                               Stretch="None" />
+                        <Image  Source="{Binding Path=Content, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource OpenCodeHoverGlyphConverter}}" Margin="{TemplateBinding Padding}"
+                                Stretch="None"
+                                Visibility="{Binding Path=IsMouseOverExt, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BoolToVisibilityConverter}}" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <ddhelpers:TextToResourceUriConverter x:Key="OpenCodeLargeGlyphConverter" Prefix="Images/Large" Suffix=".png" AssemblyMarker="{StaticResource AssemblyMarker}" />
+    <ddhelpers:SelectConverter x:Key="LargeButtonTextOpacityConverter">
+        <ddhelpers:SelectState Key="False" Value="{ddhelpers:DoubleValue S=0}" />
+        <ddhelpers:SelectState Key="True" Value="{ddhelpers:DoubleValue S=1}" />
+    </ddhelpers:SelectConverter>
+    <DataTemplate x:Key="ShowCaseTileTemplate">
+        <helpers:ToggleTileExt Width="330" Height="110" Foreground="White" FontWeight="Normal"
+                               dxdb:DemoBaseTileControl.TileSize="Double"
+                               CommandExt="{Binding SelectCommand}"
+                               dxb:BarManager.DXContextMenu="{Binding Path=OpenSolutionMenu, Converter={StaticResource ListToContextMenuConverter}, ConverterParameter={StaticResource ProductContextMenuItemTemplate}}"
+                               Background="White" x:Name="ShowCaseTile">
+            <Grid>
+                <Image Source="{Binding Demo.LargeImage.Uri}" Stretch="None" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                <dx:DXBorder BorderBrush="#40000000" BorderThickness="1" />
+                <dx:DXBorder Background="#FFF78A09" Opacity="0.25" Visibility="{Binding Path=IsHoveredExt, Converter={StaticResource BoolToVisibilityConverter}, ElementName=ShowCaseTile}" />
+                <dx:DXBorder Background="{Binding TileBackground, Converter={StaticResource ColorToBrushConverter}}" VerticalAlignment="Bottom" HorizontalAlignment="Left">
+                    <TextBlock Margin="15,5" Text="{Binding Demo.DisplayName}" TextWrapping="Wrap" helpers:TextTrimmingHelper.TextTrimming="CharacterEllipsis" FontSize="15" TextAlignment="Left" />
+                </dx:DXBorder>
+            </Grid>
+        </helpers:ToggleTileExt>
+    </DataTemplate>
+    <DataTemplate x:Key="QuadSizedTileTemplate">
+        <helpers:ToggleTileExt Width="330" Height="230" Foreground="White" FontWeight="Normal"
+                               dxdb:DemoBaseTileControl.TileSize="Quad"
+                               CommandExt="{Binding SelectCommand}"
+                               dxb:BarManager.DXContextMenu="{Binding Path=OpenSolutionMenu, Converter={StaticResource ListToContextMenuConverter}, ConverterParameter={StaticResource ProductContextMenuItemTemplate}}"
+                               Background="White" x:Name="ShowCaseTile">
+            <Grid>
+                <Image Source="{Binding Demo.LargeImage.Uri}" Stretch="None" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                <dx:DXBorder BorderBrush="#40000000" BorderThickness="1" />
+                <dx:DXBorder Background="#FFF78A09" Opacity="0.25" Visibility="{Binding Path=IsHoveredExt, Converter={StaticResource BoolToVisibilityConverter}, ElementName=ShowCaseTile}" />
+                <dx:DXBorder Background="{Binding TileBackground, Converter={StaticResource ColorToBrushConverter}}" VerticalAlignment="Bottom" HorizontalAlignment="Left">
+                    <TextBlock Margin="15,5" Text="{Binding Demo.DisplayName}" TextWrapping="Wrap" helpers:TextTrimmingHelper.TextTrimming="CharacterEllipsis" FontSize="15" TextAlignment="Left" />
+                </dx:DXBorder>
+            </Grid>
+        </helpers:ToggleTileExt>
+    </DataTemplate>
+    <DataTemplate x:Key="LargeProductTileTemplate">
+        <helpers:ToggleTileExt Width="320" Height="110" Foreground="White" FontWeight="Normal"
+                               dxdb:DemoBaseTileControl.TileSize="Double"
+                               CommandExt="{Binding SelectCommand}"
+                               Background="{Binding TileBackground, Converter={StaticResource ColorToBrushConverter}}"
+                               dxb:BarManager.DXContextMenu="{Binding Path=OpenSolutionMenu, Converter={StaticResource ListToContextMenuConverter}, ConverterParameter={StaticResource ProductContextMenuItemTemplate}}"
+                               x:Name="ProductTile" IsEnabled="{Binding Demo.IsInstalled}">
+            <Grid IsHitTestVisible="False">
+                <dx:DXBorder Background="#FFF78A09" Visibility="{Binding IsHoveredExt, Converter={StaticResource BoolToVisibilityConverter}, ElementName=ProductTile}" />
+                <Grid VerticalAlignment="Center" MaxHeight="100" MaxWidth="140">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="10"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Image Source="{Binding Demo.MediumImage.Uri}" VerticalAlignment="Bottom" HorizontalAlignment="Center" Stretch="None" />
+                    <TextBlock Text="{Binding Demo.DisplayName}" TextWrapping="Wrap" TextAlignment="Center" Grid.Row="2" VerticalAlignment="Top" HorizontalAlignment="Center" helpers:TextTrimmingHelper.TextTrimming="CharacterEllipsis" FontSize="15" />
+                </Grid>
+                <dx:DXBorder VerticalAlignment="Top" HorizontalAlignment="Right" Background="#50000000" Margin="0,12,0,0" Visibility="{Binding Demo.DemoStatus, Converter={StaticResource DemoStatusToVisibilityConverter}}">
+                    <Grid>
+                        <TextBlock FontSize="12" FontWeight="Bold" Margin="5,2,5,3" Text="New" Visibility="{Binding Product.IsNew, Converter={dxmvvm:BooleanToVisibilityConverter}}" />
+                        <TextBlock FontSize="12" FontWeight="Bold" Margin="5,2,5,3" Text="Updated" Visibility="{Binding Product.IsUpdated, Converter={dxmvvm:BooleanToVisibilityConverter}}" />
+                    </Grid>
+                </dx:DXBorder>
+                <dx:DXBorder Background="White" Opacity="0.4" Visibility="{Binding Demo.IsInstalled, Converter={StaticResource InvertedBoolToVisibilityConverter}}"/>
+            </Grid>
+        </helpers:ToggleTileExt>
+    </DataTemplate>
+    <DataTemplate x:Key="ProductTileTemplate">
+        <helpers:ToggleTileExt Width="160" Height="110" Foreground="White" FontWeight="Normal"
+                               CommandExt="{Binding SelectCommand}"
+                               Background="{Binding TileBackground, Converter={StaticResource ColorToBrushConverter}}"
+                               dxb:BarManager.DXContextMenu="{Binding OpenSolutionMenu, Converter={StaticResource ListToContextMenuConverter}, ConverterParameter={StaticResource ProductContextMenuItemTemplate}}"
+                               x:Name="ProductTile" IsEnabled="{Binding Product.IsInstalled}">
+            <Grid IsHitTestVisible="False">
+                <dx:DXBorder Background="#FFF78A09" Visibility="{Binding IsHoveredExt, Converter={StaticResource BoolToVisibilityConverter}, ElementName=ProductTile}" />
+                <Grid VerticalAlignment="Center" MaxHeight="100" MaxWidth="140">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="10"/>
+                        <RowDefinition Height="40"/>
+                    </Grid.RowDefinitions>
+                    <Image Source="{Binding Product.Icon.Uri}" VerticalAlignment="Bottom" HorizontalAlignment="Center" Stretch="None" />
+                    <TextBlock Text="{Binding Product.DisplayName}" TextWrapping="Wrap" TextAlignment="Center" Grid.Row="2" VerticalAlignment="Top" HorizontalAlignment="Center" helpers:TextTrimmingHelper.TextTrimming="CharacterEllipsis" FontSize="15" />
+                </Grid>
+                <dx:DXBorder VerticalAlignment="Top" HorizontalAlignment="Right" Background="#50000000" Margin="0,12,0,0" Visibility="{Binding Product.DemoStatus, Converter={StaticResource DemoStatusToVisibilityConverter}}">
+                    <Grid>
+                        <Grid.Resources>
+                            <dxmvvm:ObjectToObjectConverter x:Key="objectToVisibilityConverter" DefaultTarget="Visible">
+                                <dxmvvm:MapItem Source="{x:Null}" Target="Collapsed"/>
+                            </dxmvvm:ObjectToObjectConverter>
+                            <dxmvvm:ObjectToObjectConverter x:Key="invertedObjectToVisibilityConverter" DefaultTarget="Collapsed">
+                                <dxmvvm:MapItem Source="{x:Null}" Target="Visible"/>
+                            </dxmvvm:ObjectToObjectConverter>
+                        </Grid.Resources>
+                        <Grid Visibility="{Binding Product.Tag, Converter={StaticResource invertedObjectToVisibilityConverter}}">
+                            <TextBlock FontSize="12" FontWeight="Bold" Margin="5,2,5,3" Text="New" Visibility="{Binding Product.IsNew, Converter={dxmvvm:BooleanToVisibilityConverter}}" />
+                            <TextBlock FontSize="12" FontWeight="Bold" Margin="5,2,5,3" Text="Updated" Visibility="{Binding Product.IsUpdated, Converter={dxmvvm:BooleanToVisibilityConverter}}" />
+                        </Grid>
+                        <TextBlock FontSize="12" FontWeight="Bold" Margin="5,2,5,3" Text="{Binding Product.Tag}" Visibility="{Binding Product.Tag, Converter={StaticResource objectToVisibilityConverter}}" />
+                    </Grid>
+                </dx:DXBorder>
+                <dx:DXBorder Background="White" Opacity="0.4" Visibility="{Binding Product.IsInstalled, Converter={StaticResource InvertedBoolToVisibilityConverter}}"/>
+            </Grid>
+        </helpers:ToggleTileExt>
+    </DataTemplate>
+    <DataTemplate x:Key="GroupHeaderTemplate">
+        <TextBlock Foreground="#FF5C5C5C" FontSize="21" Text="{Binding}" FontFamily="Segoe UI Light, Tahoma Light" helpers:TextTrimmingHelper.TextTrimming="CharacterEllipsis" />
+    </DataTemplate>
+    <Style TargetType="internal:DemoBaseProductTilesControl">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="internal:DemoBaseProductTilesControl">
+                    <dxb:BarManager>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="60"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Column="0"
+                                           VerticalAlignment="Top"
+                                           Text="{TemplateBinding Title}"
+                                           FontFamily="Segoe UI Light, Tahoma Light"
+                                           FontSize="31"
+                                           Foreground="#FF3C3C3C"
+                                           HorizontalAlignment="Left" />
+                                <TextBlock helpers:TextTrimmingHelper.TextTrimming="CharacterEllipsis"
+                                           Margin="12,0,0,0"
+                                           MaxWidth="610"
+                                           Grid.Column="1"
+                                           VerticalAlignment="Top"
+                                           Text="{TemplateBinding Subtitle}"
+                                           FontFamily="Segoe UI Light, Tahoma Light"
+                                           FontSize="31"
+                                           Foreground="#FFA9A9A9"
+                                           HorizontalAlignment="Left"/>
+                                <Image Grid.Column="2" HorizontalAlignment="Right" Source="/DevExpress.Xpf.DemoBase.v15.2;component/Images/DevExpress-Logo-Medium-Color.png" Stretch="None" VerticalAlignment="Top" Margin="0,11,0,0"/>
+                            </Grid>
+                            <dxdb:DemoBaseTileControl Grid.Row="1" x:Name="demoBaseTileControl"
+                                                      Margin="0,30,0,0"
+                                                      GroupPropertyName="Group"
+                                                      UngroupedItems="{TemplateBinding Products}"
+                                                      IsSimpleGroupsLayout="{TemplateBinding SimpleGroups}">
+                                <dxdb:DemoBaseTileControl.TileTemplateSelector>
+                                    <internal:TileTemplateSelector
+                                        SmallProductTemplate="{StaticResource ProductTileTemplate}"
+                                        LargeProductTemplate="{StaticResource LargeProductTileTemplate}"
+                                        FeatureDemoTemplate="{StaticResource ShowCaseTileTemplate}"
+                                        QuadSizedDemoTemplate="{StaticResource QuadSizedTileTemplate}">
+                                    </internal:TileTemplateSelector>
+                                </dxdb:DemoBaseTileControl.TileTemplateSelector>
+                            </dxdb:DemoBaseTileControl>
+                        </Grid>
+                    </dxb:BarManager>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

@@ -1,0 +1,135 @@
+﻿<UserControl x:Class="DevExpress.Design.SmartTags.SmartTagContentView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:coreutils="clr-namespace:DevExpress.Xpf.Core.Design.CoreUtils"
+             xmlns:design="clr-namespace:DevExpress.Xpf.Core.Design"
+             xmlns:SmartTags="clr-namespace:DevExpress.Design.SmartTags"
+             xmlns:Services="clr-namespace:DevExpress.Xpf.Core.Design.Services"
+             xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+             xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
+             mc:Ignorable="d"
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <coreutils:BoolToVisibilityInverseConverter x:Key="boolToVisibilityInverseConverter"/>
+        <BooleanToVisibilityConverter x:Key="booleanToVisibilityConverter"/>
+        <Style TargetType="RadioButton">
+            <Setter Property="GroupName" Value="group"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Margin" Value="2"/>
+            <Setter Property="Template" >
+                <Setter.Value>
+                    <ControlTemplate TargetType="RadioButton">
+                        <Grid>
+                            <Border Name="hover" Background="LightGray" BorderBrush="Gray" BorderThickness="1" Visibility="Hidden"/>
+                            <Border Name="pressed" BorderBrush="Black" BorderThickness="1" Visibility="Hidden"/>
+                            <ContentPresenter Margin="{TemplateBinding Padding}"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="hover" Property="Visibility" Value="Visible"/>
+                            </Trigger>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter TargetName="pressed" Property="Visibility" Value="Visible"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid TextBlock.FontSize="15" VerticalAlignment="Center" MaxWidth="158">
+                <TextBlock Name="captionTxtBlock" Text="{Binding PropertiesViewModel.RuntimeSelectedItem.Value.ItemType.Name}" TextTrimming="CharacterEllipsis" Foreground="#FF0E70C0" Visibility="{Binding PropertiesViewModel.IsDXType, Converter={StaticResource boolToVisibilityInverseConverter}}"/>
+                <TextBlock Name="hyperlinkTxtBlock" Foreground="#FF0E70C0" TextTrimming="CharacterEllipsis" Visibility="{Binding PropertiesViewModel.IsDXType, Converter={StaticResource booleanToVisibilityConverter}}">
+                    <Hyperlink Command="{Binding Path=OpenHelp}" CommandParameter="{Binding PropertiesViewModel.RuntimeSelectedItem.Value.ItemType, Mode=OneTime}" NavigateUri="http://help.devexpress.com/">
+                        <Run Text="{Binding PropertiesViewModel.RuntimeSelectedItem.Value.ItemType.Name, Mode=OneTime}"/>
+                    </Hyperlink>
+                </TextBlock>
+            </Grid>
+            <StackPanel Grid.Column="1" Orientation="Horizontal" Margin="10,0" Visibility="{Binding IsTabsVisible, Converter={StaticResource booleanToVisibilityConverter}}">
+                <StackPanel.Resources>
+                    <Style TargetType="RadioButton">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="RadioButton">
+                                    <Grid Width="20" Height="20">
+                                        <Border x:Name="border" BorderBrush="#FF4F97D1" BorderThickness="1" Visibility="Collapsed"/>
+                                        <Image x:Name="image" Stretch="None" Source="{TemplateBinding Content}"
+                                               dxb:ImageColorizer.IsEnabled="True"
+                                               dxb:ImageColorizer.Color="#FFB9B9B9"/>
+                                    </Grid>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter TargetName="image" Property="dxb:ImageColorizer.Color" Value="#FF4F97D1"/>
+                                            <Setter TargetName="border" Property="Visibility" Value="Visible"/>
+                                        </Trigger>
+                                        <Trigger Property="IsChecked" Value="True">
+                                            <Setter TargetName="image" Property="dxb:ImageColorizer.Color" Value="#FF4F97D1"/>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding ServiceProviderViewModel}" Value="{x:Null}">
+                                <Setter Property="Visibility" Value="Collapsed"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </StackPanel.Resources>
+                <RadioButton Name="propsBtn" IsChecked="{Binding IsPropertiesVisible, Mode=TwoWay}" ToolTip="Properties">
+                    <RadioButton.Content>
+                        <BitmapImage UriSource="/DevExpress.Xpf.Core.v15.2.Design;component/Images/SmartTag/TabItems-Properties-16x16.png"/>
+                    </RadioButton.Content>
+                </RadioButton>
+                <RadioButton Name="behaviorsBtn" IsChecked="{Binding IsBehaviorsVisible, Mode=TwoWay}" Margin="1,0,0,0" ToolTip="MVVM behaviors and Services">
+                    <RadioButton.Content>
+                        <BitmapImage UriSource="/DevExpress.Xpf.Core.v15.2.Design;component/Images/SmartTag/TabItems-Services-16x16.png"/>
+                    </RadioButton.Content>
+                </RadioButton>
+                <Button Command="{Binding Path=OpenHelp}" CommandParameter="{Binding PropertiesViewModel.RuntimeSelectedItem.Value.ItemType, Mode=OneTime}" MinWidth="0">
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Grid Width="20" Height="20">
+                                <Border x:Name="border" BorderBrush="#FF4F97D1" BorderThickness="1" Visibility="Collapsed"/>
+                                <Image x:Name="image" Stretch="None" 
+                                               dxb:ImageColorizer.IsEnabled="True"
+                                               dxb:ImageColorizer.Color="#FFB9B9B9" Source="{dx:DXImageGrayscale Image=Index_16x16.png}"/>
+                            </Grid>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter TargetName="image" Property="dxb:ImageColorizer.Color" Value="#FF4F97D1"/>
+                                    <Setter TargetName="border" Property="Visibility" Value="Visible"/>
+                                </Trigger>
+                                <Trigger Property="IsPressed" Value="True">
+                                    <Setter TargetName="image" Property="dxb:ImageColorizer.Color" Value="#FF4F97D1"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+            </StackPanel>
+            <Label Grid.Column="2" VerticalAlignment="Center" ToolTip="Disable DevExpress Smart Tags for standard controls" Visibility="{Binding PropertiesViewModel.IsDXType, Converter={StaticResource boolToVisibilityInverseConverter}}">
+                <TextBlock Visibility="{Binding ShowDisableAction, Converter={StaticResource boolToVisibilityInverseConverter}}" TextTrimming="CharacterEllipsis">
+                    <Hyperlink Command="{Binding CloseSmartTag}">Disable Smart Tag</Hyperlink>
+                </TextBlock>
+            </Label>
+            <Grid Grid.ColumnSpan="3" Grid.Row="1" Margin="11,7,0,1" >
+                <SmartTags:FrameworkElementSmartTagPropertiesView x:Name="propertiesView" DataContext="{Binding PropertiesViewModel}" Visibility="{Binding ElementName=propsBtn, Path=IsChecked, Converter={StaticResource booleanToVisibilityConverter}}" />
+                <Services:AdornerServicesPresenter x:Name="behaviorsView" DataContext="{Binding ServiceProviderViewModel}" Visibility="{Binding ElementName=behaviorsBtn, Path=IsChecked, Converter={StaticResource booleanToVisibilityConverter}}" />
+            </Grid>
+        </Grid>
+    </Grid>
+</UserControl>

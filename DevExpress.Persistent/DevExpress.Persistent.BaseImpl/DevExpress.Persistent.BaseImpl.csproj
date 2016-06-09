@@ -1,0 +1,193 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{19815889-3518-45CB-98EE-A575A2198ED2}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DevExpress.Persistent.BaseImpl</RootNamespace>
+    <AssemblyName>DevExpress.Persistent.BaseImpl.v15.2</AssemblyName>
+    <AssemblyOriginatorKeyFile>..\..\DevExpress.Key\StrongKey.snk</AssemblyOriginatorKeyFile>
+    <SignAssembly>true</SignAssembly>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation />
+    <TargetFrameworkProfile />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\..\Bin\Framework\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\..\Bin\Framework\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  
+  
+  
+  <ItemGroup>
+    <Reference Include="DevExpress.Printing.v15.2.Core">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+      <HintPath>..\..\..\Bin\Framework\DevExpress.Printing.v15.2.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Data.v15.2">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+      <HintPath>..\..\..\Bin\Framework\DevExpress.Data.v15.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpo.v15.2">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+      <HintPath>..\..\..\Bin\Framework\DevExpress.Xpo.v15.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraReports.v15.2">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+      <HintPath>..\..\..\Bin\Framework\DevExpress.XtraReports.v15.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraScheduler.v15.2.Core">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Bin\Framework\DevExpress.XtraScheduler.v15.2.Core.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System"><Private>False</Private></Reference>
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    <Private>False</Private></Reference>
+    <Reference Include="System.Data"><Private>False</Private></Reference>
+    <Reference Include="System.Drawing"><Private>False</Private></Reference>
+    <Reference Include="System.Xml"><Private>False</Private></Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AssemblyVersionInfo.cs">
+      
+    </Compile>
+    <Compile Include="Address.cs" />
+    <Compile Include="Analysis.cs" />
+    <Compile Include="AuditTrail\AuditDataItem.cs" />
+    <Compile Include="AuditTrail\AuditDataStore.cs" />
+    <Compile Include="AuditTrail\AuditDataStoreItem.cs" />
+    <Compile Include="AuditTrail\AuditTrailService.cs" />
+    <Compile Include="AuditTrail\AuditTrailSettings.cs" />
+    <Compile Include="AuditTrail\IAuditTimeStampStrategy.cs" />
+    <Compile Include="AuditTrail\ObjectAuditProcessor.cs" />
+    <Compile Include="BaseObject.cs" />
+    <Compile Include="AuditDataItemPersistent.cs" />
+    <Compile Include="Cloner.cs" />
+    <Compile Include="CompressionUtils.cs" />
+    <Compile Include="DC\IEvent.cs" />
+    <Compile Include="DC\IFileData.cs" />
+    <Compile Include="DC\ITreeNode.cs" />
+    <Compile Include="DC\Workflow\IDCRunningWorkflowInstanceInfo.cs" />
+    <Compile Include="DC\Workflow\IDCStartWorkflowRequest.cs" />
+    <Compile Include="DC\Workflow\IDCWorkflowDefinition.cs" />
+    <Compile Include="DC\Workflow\IDCWorkflowInstanceControlCommandRequest.cs" />
+    <Compile Include="DC\Workflow\UserActivityVersion.cs" />
+    <Compile Include="MediaDataObject.cs" />
+    <Compile Include="ModelDifference.cs" />
+    <Compile Include="Country.cs" />
+    <Compile Include="Event.cs" />
+    <Compile Include="FileAttachment.cs" />
+    <Compile Include="FileData.cs" />
+    <Compile Include="HCategory.cs" />
+    <Compile Include="IDGenerator.cs" />
+    <Compile Include="ModelDifferenceAspect.cs" />
+    <Compile Include="Note.cs" />
+    <Compile Include="Organization.cs" />
+    <Compile Include="Party.cs" />
+    <Compile Include="PersistentObjectValidator.cs" />
+    <Compile Include="PersistentPermission.cs" />
+    <Compile Include="Person.cs" />
+    <Compile Include="PhoneNumber.cs" />
+    <Compile Include="PredefinedRepotData.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PropertyBag.cs" />
+    <Compile Include="PropertyBagDescriptor.cs" />
+    <Compile Include="PropertyDescriptor.cs" />
+    <Compile Include="PropertyValue.cs" />
+    <Compile Include="PropertyValueImpl.cs" />
+    <Compile Include="RecurrenceInfo.cs" />
+    <Compile Include="Reminder.cs" />
+    <Compile Include="ReportData.cs" />
+    <Compile Include="ReportDataV2.cs" />
+    <Compile Include="Resource.cs" />
+    <Compile Include="Role.cs" />
+    <Compile Include="SimpleUser.cs" />
+    <Compile Include="Task.cs" />
+    <Compile Include="User.cs" />
+    <Compile Include="Workflow\Activities\XpoInstanceKey.cs" />
+    <Compile Include="Workflow\Activities\XpoTrackingRecord.cs" />
+    <Compile Include="Workflow\Activities\XpoWorkflowInstance.cs" />
+    <Compile Include="Workflow\StartWorkflowRequestHelper.cs" />
+    <Compile Include="Workflow\XpoHostCommandRequest.cs" />
+    <Compile Include="Workflow\XpoRunningWorkflowInstanceInfo.cs" />
+    <Compile Include="Workflow\XpoStartWorkflowRequest.cs" />
+    <Compile Include="Workflow\XpoUserActivityVersion.cs" />
+    <Compile Include="Workflow\XpoWorkflowDefinition.cs" />
+    <Compile Include="XtraReportData.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="DevExpress.ExpressApp.ConditionalAppearance.v15.2"><Name>DevExpress.ExpressApp.ConditionalAppearance.v15.2</Name><HintPath>..\..\..\Bin\Framework\DevExpress.ExpressApp.ConditionalAppearance.v15.2.dll</HintPath></Reference>
+    <Reference Include="DevExpress.ExpressApp.ReportsV2.v15.2"><Name>DevExpress.ExpressApp.ReportsV2.v15.2</Name><HintPath>..\..\..\Bin\Framework\DevExpress.ExpressApp.ReportsV2.v15.2.dll</HintPath></Reference>
+    <Reference Include="DevExpress.ExpressApp.Reports.v15.2"><Name>DevExpress.ExpressApp.Reports.v15.2</Name><HintPath>..\..\..\Bin\Framework\DevExpress.ExpressApp.Reports.v15.2.dll</HintPath></Reference>
+    <Reference Include="DevExpress.ExpressApp.Xpo.v15.2"><Name>DevExpress.ExpressApp.Xpo.v15.2</Name><HintPath>..\..\..\Bin\Framework\DevExpress.ExpressApp.Xpo.v15.2.dll</HintPath></Reference>
+    <Reference Include="DevExpress.ExpressApp.v15.2"><Name>DevExpress.ExpressApp.v15.2</Name><HintPath>..\..\..\Bin\Framework\DevExpress.ExpressApp.v15.2.dll</HintPath></Reference>
+    <Reference Include="DevExpress.Persistent.Base.v15.2"><Name>DevExpress.Persistent.Base.v15.2</Name><HintPath>..\..\..\Bin\Framework\DevExpress.Persistent.Base.v15.2.dll</HintPath></Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

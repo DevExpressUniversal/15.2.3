@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Project DefaultTargets="Debug" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<PropertyGroup>
+		<PackageFile>DevExpressSharepoint2013.wsp</PackageFile>
+		<PackageFileGAC>DevExpressSharepoint2013_GAC.wsp</PackageFileGAC>
+		<ProjectDeploymentFilesFolder>DeploymentFiles</ProjectDeploymentFilesFolder>
+		<ProjectDeploymentFilesFolderGAC>DeploymentFilesGAC</ProjectDeploymentFilesFolderGAC>
+		<ProjectRootFilesFolder>RootFiles</ProjectRootFilesFolder>
+		<WssRootFilesFolder>"$(ProgramFiles)\Common Files\Microsoft Shared\web server extensions\15"</WssRootFilesFolder>
+		<MAKECAB>"C:\Windows\System32\makecab.exe"</MAKECAB>
+		<STSADM>"$(ProgramFiles)\Common Files\Microsoft Shared\web server extensions\15\bin\stsadm.exe"</STSADM>
+	</PropertyGroup>
+	<Target Name="Debug">
+		<Message Text="Deleting Solution Package File..." Importance="high" />
+		<Delete Files="$(PackageFile)" ContinueOnError="true" />
+		<Message Text="Building Solution Package (Debug Version)" Importance="high" />
+		<Exec Command="$(MAKECAB) /F $(ProjectDeploymentFilesFolder)\SolutionPackage.ddf  /D CabinetNameTemplate=$(ProjectDeploymentFilesFolder)\$(PackageFile) /D DLLPath='..\..\Bin\Framework4'" ContinueOnError="false" />
+		<Message Text="" Importance="high" />
+	</Target>
+	<Target Name="DebugWithGAC">
+		<Message Text="DebugWithGAC..." Importance="high" />
+		<Message Text="Deleting Solution Package File..." Importance="high" />
+		<Delete Files="$(PackageFileGAC)" ContinueOnError="true" />
+		<Message Text="Building Solution Package (Debug Version)" Importance="high" />
+		<Exec Command="$(MAKECAB) /F $(ProjectDeploymentFilesFolderGAC)\SolutionPackage.ddf  /D CabinetNameTemplate=$(ProjectDeploymentFilesFolderGAC)\$(PackageFileGAC) /D DLLPath='..\..\Bin\Framework4'" ContinueOnError="false" />
+	</Target>
+	<Target Name="DebugInstall" DependsOnTargets="Debug">
+		<Message Text="Installing Solution..." Importance="high" />
+		<Exec Command="$(STSADM) -o addsolution -filename $(PackageFile)" ContinueOnError="true" />
+		<Exec Command="$(STSADM) -o execadmsvcjobs" />
+		<Message Text="" Importance="high" />
+	</Target>
+	<Target Name="DebugDeploy" DependsOnTargets="DebugInstall">
+		<Message Text="Deploying Solution..." Importance="high" />
+		<Exec Command="$(STSADM) -o deploysolution -name $(PackageFile) -url http://localhost -local -allowGacDeployment -force" />
+		<Exec Command="$(STSADM) -o execadmsvcjobs" />
+		<Message Text="" Importance="high" />
+	</Target>
+
+	<Target Name="DebugQuickCopy">
+		<Message Text="Copying Root Files to WSS system folder" />
+		<Copy SourceFiles="$(ProjectRootFilesFolder)\*" DestinationFolder="$(WssRootFilesFolder)" SkipUnchangedFiles="true" />
+		<Message Text="" Importance="high" />
+	</Target>
+
+	<Target Name="DebugUpgrade" DependsOnTargets="Debug">
+		<Message Text="Updating solution" Importance="high" />
+		<Exec Command="$(STSADM) -o upgradesolution -name $(PackageFile) -filename $(PackageFile) -url http://localhost -immediate -allowGacDeployment" />
+		<Exec Command="$(STSADM) -o execadmsvcjobs" />
+		<Message Text="" Importance="high" />
+	</Target>
+
+	<Target Name="DebugRetract" DependsOnTargets="Debug">
+		<Message Text="Retracting Solution" />
+		<Exec Command="$(STSADM) -o retractsolution -name $(PackageFile) -url http://localhost -immediate" ContinueOnError="true" />
+		<Exec Command="$(STSADM) -o execadmsvcjobs" />
+		<Message Text="" Importance="high" />
+	</Target>
+
+	<Target Name="DebugDelete" DependsOnTargets="DebugRetract">
+		<Message Text="Deleting Solution Package from Farm Solution Package Store" />
+		<Exec Command="$(STSADM) -o deletesolution -name $(PackageFile)" ContinueOnError="true" />
+		<Exec Command="$(STSADM) -o execadmsvcjobs" />
+		<Message Text="" Importance="high" />
+	</Target>
+</Project>

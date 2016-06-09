@@ -1,0 +1,250 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors" xmlns:dxet="http://schemas.devexpress.com/winfx/2008/xaml/editors/themekeys" xmlns:dxc="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:dxepc="http://schemas.devexpress.com/winfx/2008/xaml/editors" xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys">
+    <!--BEGIN WPF-->
+    <ResourceDictionary.MergedDictionaries>
+        <dxdst:ResourceDictionaryEx Source="/DevExpress.Xpf.Themes.Office2007Blue.v15.2;component/DevExpress.Xpf.Core/DevExpress.Xpf.Core/Editors/Themes/Office2007Generic/DateEdit.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+    <!--END WPF-->
+    <!--BEGIN TOSLONLY REPLACE 'RepeatButton'wpfcompatibility:SLRepeatButton'-->
+    <dx:EditorStringIdConverter x:Key="EditorStringIdConverter" />
+    <ControlTemplate x:Key="{dxet:DateEditThemeKey ResourceKey=ClearButtonTemplate}" TargetType="{x:Type Button}">
+        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="Auto" Height="Auto" Background="#00000000">
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup x:Name="CommonStates">
+                    <VisualState x:Name="Normal" />
+                    <VisualState x:Name="MouseOver">
+                        <Storyboard>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="border" Storyboard.TargetProperty="Background" Duration="0">
+                                <DiscreteObjectKeyFrame KeyTime="0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <SolidColorBrush Color="#FFC1A965" />
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="border1" Storyboard.TargetProperty="Background" Duration="0">
+                                <DiscreteObjectKeyFrame KeyTime="0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                            <GradientStop Color="#FFFFFBE5" Offset="0" />
+                                            <GradientStop Color="#FFFCEBB7" Offset="1" />
+                                            <GradientStop Color="#FFFADF8F" Offset="0.5" />
+                                            <GradientStop Color="#FFF4C233" Offset="0.5" />
+                                        </LinearGradientBrush>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="border2" Storyboard.TargetProperty="Background" Duration="0">
+                                <DiscreteObjectKeyFrame KeyTime="0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                            <GradientStop Color="#FFFFFEFB" Offset="0" />
+                                            <GradientStop Color="#FFFFF5D7" Offset="1" />
+                                            <GradientStop Color="#FFFFF6DC" Offset="0.5" />
+                                        </LinearGradientBrush>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Pressed">
+                        <Storyboard>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="border" Storyboard.TargetProperty="Background" Duration="0">
+                                <DiscreteObjectKeyFrame KeyTime="0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                            <GradientStop Color="#FF7B6645" Offset="0" />
+                                            <GradientStop Color="#FFA78E66" Offset="1" />
+                                        </LinearGradientBrush>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                            <DoubleAnimation Storyboard.TargetName="border1" Storyboard.TargetProperty="Opacity" Duration="0" To="0" />
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="border2" Storyboard.TargetProperty="Background" Duration="0">
+                                <DiscreteObjectKeyFrame KeyTime="0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                            <GradientStop Color="#FFC18C5D" Offset="0" />
+                                            <GradientStop Color="#FFFFC14C" Offset="1" />
+                                            <GradientStop Color="#FFFFAB49" Offset="0.5" />
+                                            <GradientStop Color="#FFFF8F08" Offset="0.5" />
+                                            <GradientStop Color="#FFFCB06A" Offset="0.1" />
+                                        </LinearGradientBrush>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Disabled" />
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+            <Border HorizontalAlignment="Stretch" x:Name="border" VerticalAlignment="Stretch" Width="Auto" Height="Auto" Background="#FF7793B9" CornerRadius="2,2,2,2" Padding="1,1,1,1">
+                <Border x:Name="border2" Width="Auto" Height="Auto" CornerRadius="1,1,1,1" Padding="1,1,1,1">
+                    <Border.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#FFF9FCFF" Offset="0" />
+                            <GradientStop Color="#FFF4F8FF" Offset="1" />
+                            <GradientStop Color="#FFF6FAFF" Offset="0.5" />
+                        </LinearGradientBrush>
+                    </Border.Background>
+                    <Border x:Name="border1" Width="Auto" Height="Auto" CornerRadius="1,1,1,1">
+                        <Border.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="#FFF4F9FF" Offset="0" />
+                                <GradientStop Color="#FFEBF3FD" Offset="1" />
+                                <GradientStop Color="#FFE9F1FC" Offset="0.5" />
+                                <GradientStop Color="#FFD2E1F4" Offset="0.5" />
+                            </LinearGradientBrush>
+                        </Border.Background>
+                    </Border>
+                </Border>
+            </Border>
+            <dx:ContentContainer x:Name="Content" Foreground="#FF000000">
+                <ContentPresenter HorizontalAlignment="Center" Margin="16,2,16,3" VerticalAlignment="Center" Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" />
+            </dx:ContentContainer>
+        </Grid>
+    </ControlTemplate>
+    <ControlTemplate x:Key="{dxet:DateEditThemeKey ResourceKey=LeftArrowTemplate}" TargetType="{x:Type RepeatButton}">
+        <Grid Margin="0,0,0,0" Width="Auto" SnapsToDevicePixels="True">
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup x:Name="CommonStates">
+                    <VisualState x:Name="Normal" />
+                    <VisualState x:Name="MouseOver">
+                        <Storyboard>
+                            <ColorAnimation Storyboard.TargetName="pathFill" Storyboard.TargetProperty="Color" Duration="0" To="#FF000000" />
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Pressed">
+                        <Storyboard>
+                            <ColorAnimation Storyboard.TargetName="pathFill" Storyboard.TargetProperty="Color" Duration="0" To="#FF6F9DD9" />
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Disabled" />
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+            <Border HorizontalAlignment="Stretch" x:Name="back" Width="16" Height="16" Visibility="Visible" Background="#00000000" CornerRadius="0,0,0,0">
+                <Path Stretch="Fill" Data="F1 M 1334,811L 1330,807L 1334,803L 1334,811 Z " Width="4" Height="8" x:Name="path">
+                    <Path.Fill>
+                        <SolidColorBrush x:Name="pathFill" Color="#FF6F9DD9" />
+                    </Path.Fill>
+                </Path>
+            </Border>
+        </Grid>
+    </ControlTemplate>
+    <ControlTemplate x:Key="{dxet:DateEditThemeKey ResourceKey=RightArrowTemplate}" TargetType="{x:Type RepeatButton}">
+        <Grid Margin="0,0,0,0" Width="Auto" SnapsToDevicePixels="True">
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup x:Name="CommonStates">
+                    <VisualState x:Name="Normal" />
+                    <VisualState x:Name="MouseOver">
+                        <Storyboard>
+                            <ColorAnimation Storyboard.TargetName="pathFill" Storyboard.TargetProperty="Color" Duration="0" To="#FF000000" />
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Pressed">
+                        <Storyboard>
+                            <ColorAnimation Storyboard.TargetName="pathFill" Storyboard.TargetProperty="Color" Duration="0" To="#FF6F9DD9" />
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Disabled" />
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+            <Border HorizontalAlignment="Stretch" x:Name="back" Width="16" Height="16" Visibility="Visible" Background="#00000000" CornerRadius="0,0,0,0">
+                <Path Stretch="Fill" Data="F1 M 1340,804L 1344,808L 1340,812L 1340,804 Z " Width="4" Height="8" x:Name="path">
+                    <Path.Fill>
+                        <SolidColorBrush x:Name="pathFill" Color="#FF6F9DD9" />
+                    </Path.Fill>
+                </Path>
+            </Border>
+        </Grid>
+    </ControlTemplate>
+    <ControlTemplate x:Key="{dxet:DateEditThemeKey ResourceKey=HeaderButtonTemplate}" TargetType="{x:Type Button}">
+        <Grid Margin="0,0,0,0" Width="Auto" Height="Auto" SnapsToDevicePixels="True">
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup x:Name="CommonStates">
+                    <VisualState x:Name="Normal" />
+                    <VisualState x:Name="MouseOver">
+                        <Storyboard>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Content" Storyboard.TargetProperty="Foreground" Duration="0">
+                                <DiscreteObjectKeyFrame KeyTime="0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <SolidColorBrush Color="#FF063a9a" />
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+            <dx:ContentContainer Foreground="#FF0066cc" x:Name="Content">
+                <ContentPresenter HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center" Width="Auto" Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" />
+            </dx:ContentContainer>
+        </Grid>
+    </ControlTemplate>
+    <Style x:Key="{dxet:DateEditThemeKey ResourceKey=HeaderButtonStyle}" TargetType="{x:Type Button}">
+        <Setter Property="Template" Value="{DynamicResource {dxet:DateEditThemeKey ResourceKey=HeaderButtonTemplate}}" />
+        <Setter Property="Background" Value="#00000000" />
+        <Setter Property="dx:FocusHelper2.Focusable" Value="False" />
+    </Style>
+    <Style x:Key="{dxet:DateEditThemeKey ResourceKey=LeftArrowStyle}" TargetType="{x:Type RepeatButton}">
+        <Setter Property="ClickMode" Value="Press" />
+        <Setter Property="Delay" Value="400" />
+        <Setter Property="Interval" Value="400" />
+        <Setter Property="Template" Value="{DynamicResource {dxet:DateEditThemeKey ResourceKey=LeftArrowTemplate}}" />
+        <Setter Property="dx:FocusHelper2.Focusable" Value="False" />
+    </Style>
+    <Style x:Key="{dxet:DateEditThemeKey ResourceKey=RightArrowStyle}" TargetType="{x:Type RepeatButton}">
+        <Setter Property="ClickMode" Value="Press" />
+        <Setter Property="Delay" Value="400" />
+        <Setter Property="Interval" Value="400" />
+        <Setter Property="Template" Value="{DynamicResource {dxet:DateEditThemeKey ResourceKey=RightArrowTemplate}}" />
+        <Setter Property="dx:FocusHelper2.Focusable" Value="False" />
+    </Style>
+    <ControlTemplate x:Key="{dxet:DateEditThemeKey ResourceKey=CurrentDateButtonTemplate}" TargetType="{x:Type Button}">
+        <ContentPresenter SnapsToDevicePixels="True" HorizontalAlignment="Center" Content="{Binding Path=Content, RelativeSource={RelativeSource TemplatedParent}}" />
+    </ControlTemplate>
+    <Style x:Key="{dxet:DateEditThemeKey ResourceKey=CurrentDateButtonStyle}" TargetType="{x:Type Button}" BasedOn="{StaticResource {dxet:DateEditThemeKey ResourceKey=HeaderButtonStyle}}">
+        <Setter Property="Template" Value="{DynamicResource {dxet:DateEditThemeKey ResourceKey=CurrentDateButtonTemplate}}" />
+    </Style>
+    <Style x:Key="{dxet:DateEditThemeKey ResourceKey=ClearButtonStyle}" TargetType="{x:Type Button}">
+        <Setter Property="Template" Value="{DynamicResource {dxet:DateEditThemeKey ResourceKey=ClearButtonTemplate}}" />
+        <Setter Property="Background" Value="#00000000" />
+        <Setter Property="Margin" Value="0,10,0,10" />
+        <Setter Property="dx:FocusHelper2.Focusable" Value="false" />
+    </Style>
+    <ControlTemplate x:Key="{dxet:DateEditThemeKey ResourceKey=CalendarTemplate}" TargetType="{x:Type dxepc:DateEditCalendar}">
+        <Border Width="Auto" Height="Auto" SnapsToDevicePixels="True" Background="#00FFFFFF" CornerRadius="0,0,0,0">
+            <StackPanel Margin="0,0,0,0" Width="Auto" Height="Auto" Background="{x:Null}">
+                <Border Width="Auto" Height="Auto" Background="{x:Null}" BorderBrush="{x:Null}" BorderThickness="0,0,0,1" CornerRadius="0,0,0,0" Visibility="Visible">
+                    <Button x:Name="PART_Today" Style="{DynamicResource {dxet:DateEditThemeKey IsVisibleInBlend=True, ResourceKey=HeaderButtonStyle}}" Width="Auto" Height="Auto" Content="{Binding Path=DateTimeText, RelativeSource={RelativeSource TemplatedParent}}" BorderThickness="0,0,0,0" BorderBrush="{x:Null}" Foreground="#FF000000" Margin="4,4,4,0" />
+                </Border>
+                <Border Width="Auto" Height="Auto" Background="{x:Null}" Padding="0,0,0,0" Visibility="Visible">
+                    <Grid Margin="4,4,4,0" Width="Auto" Height="Auto" Background="#FFBFDBFF">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <RepeatButton Margin="2,0,0,0" x:Name="PART_LeftArrow" Style="{DynamicResource {dxet:DateEditThemeKey IsVisibleInBlend=True, ResourceKey=LeftArrowStyle}}" Grid.Column="0" />
+                        <Button HorizontalAlignment="Stretch" x:Name="PART_CurrentDate" Style="{DynamicResource {dxet:DateEditThemeKey IsVisibleInBlend=True, ResourceKey=CurrentDateButtonStyle}}" Content="{Binding Path=CurrentDateText, RelativeSource={RelativeSource TemplatedParent}}" Grid.Column="1" Margin="0,2,0,2" />
+                        <RepeatButton x:Name="PART_RightArrow" Style="{DynamicResource {dxet:DateEditThemeKey IsVisibleInBlend=True, ResourceKey=RightArrowStyle}}" Grid.Column="2" Margin="0,0,2,0" />
+                    </Grid>
+                </Border>
+                <Border Background="{x:Null}">
+                    <Grid Margin="12,4,12,8">
+                        <dxepc:DateEditCalendarContent IsEnabled="False" Opacity="0" Template="{TemplateBinding MonthInfoTemplate}" State="Month" />
+                        <dxepc:DateEditCalendarContent IsEnabled="False" Opacity="0" Template="{TemplateBinding YearInfoTemplate}" State="Year" />
+                        <dxepc:DateEditCalendarContent IsEnabled="False" Opacity="0" Template="{TemplateBinding YearsInfoTemplate}" State="Years" />
+                        <dxepc:DateEditCalendarContent IsEnabled="False" Opacity="0" Template="{TemplateBinding YearsGroupInfoTemplate}" State="YearsGroup" />
+                        <dxepc:DateEditCalendarTransferControl x:Name="PART_CalendarTransferContent" Style="{TemplateBinding CalendarTransferStyle}" Width="Auto" Height="Auto" Visibility="Visible" />
+                    </Grid>
+                </Border>
+                <Border Width="Auto" Height="Auto" Background="{x:Null}" CornerRadius="0,0,0,0" Padding="0,0,0,0" Visibility="Visible">
+                    <Button x:Name="PART_Clear" Style="{DynamicResource {dxet:DateEditThemeKey IsVisibleInBlend=True, ResourceKey=ClearButtonStyle}}" Height="Auto" Content="{Binding Path=IsTabStop, RelativeSource={RelativeSource Self}, ConverterParameter=Clear, Converter={StaticResource EditorStringIdConverter}}" BorderThickness="0,0,0,0" BorderBrush="{x:Null}" Margin="0,0,0,8" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                </Border>
+            </StackPanel>
+        </Border>
+    </ControlTemplate>
+    <ControlTemplate x:Key="{dxet:DateEditThemeKey ResourceKey=MonthInfoDelimeter}">
+        <Border Margin="0,0,0,4" Height="1" SnapsToDevicePixels="True" Background="#FF9AC6FF" BorderBrush="{x:Null}" BorderThickness="0,0,0,0" Padding="0,0,0,0" />
+    </ControlTemplate>
+    <!--END TOSLONLY REPLACE 'RepeatButton'wpfcompatibility:SLRepeatButton'-->
+</ResourceDictionary>

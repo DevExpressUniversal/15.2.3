@@ -1,0 +1,167 @@
+﻿<#@ template language="C#" #>
+<#@ import namespace="System" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.Diagnostics" #>
+<#@ import namespace="System.IO" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Xml" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="DevExpress.Xpf.Core.Design.Wizards.Mvvm.EntityFramework" #>
+<#@ import namespace="DevExpress.Xpf.Core.Design.Wizards.Mvvm" #>
+<#@ import namespace="DevExpress.Xpf.Core.Design.Wizards.Mvvm.ViewModelData" #>
+<#@ import namespace="DevExpress.Xpf.Core.Native" #>
+<#
+	T4TemplateInfo templateInfo = this.GetTemplateInfo();
+	DocumentManagerViewModelInfo viewModelData = templateInfo.Properties["IViewModelInfo"] as DocumentManagerViewModelInfo;
+    string viewName = templateInfo.Properties["ViewName"].ToString();    
+    string localNamespace = templateInfo.Properties["Namespace"].ToString();
+	string viewFullName = localNamespace +"." + viewName;
+
+    XamlNamespaces xamlNamespaces = templateInfo.Properties["XamlNamespaces"] as XamlNamespaces;
+	string viewModelPrefix = templateInfo.Properties["viewModelPrefix"].ToString();
+#>
+<UserControl x:Class="<#=viewFullName#>"
+<#
+    PasteXamlNamespaces(xamlNamespaces);
+#>
+	xmlns:pfdata="clr-namespace:System.Windows.Data;assembly=PresentationFramework"
+    mc:Ignorable="<#=xamlNamespaces.GetPrefix(XamlNamespaces.xmlns_blend)#>"
+    d:DesignHeight="600" d:DesignWidth="800" UseLayoutRounding="True" DataContext="{dxmvvm:ViewModelSource <#=viewModelPrefix#>:<#=viewModelData.Name#>}">
+	<dxmvvm:Interaction.Behaviors>
+		<dx:DXMessageBoxService />
+<#if(viewModelData.Tables.Any()) {#>
+		<dxmvvm:EventToCommand EventName="Initialized" Command="{Binding OnLoadedCommand}" />
+<#}#>
+		<dxmvvm:TabbedWindowLayoutSerializationService Name="RootLayoutSerializationService" />
+        <dxmvvm:CurrentWindowSerializationBehavior />
+        <#this.ExecuteDocumentManagerViewHook(TemplatesCodeGen.STR_DocumentManagerViewHook_GenerateAdditionalBehaviors);#>
+	</dxmvvm:Interaction.Behaviors>
+	<UserControl.Resources>
+        <Style x:Key="speedDialTileStyle" TargetType="dxlc:Tile">
+            <Setter Property="Width" Value="210" />
+            <Setter Property="Height" Value="150" />
+            <Setter Property="ContentTemplate">
+                <Setter.Value>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding ModuleTitle}" TextWrapping="Wrap" TextAlignment="Center" />
+                    </DataTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="Command" Value="{Binding DataContext.ShowCommand, RelativeSource={RelativeSource AncestorType=dxlc:TileLayoutControl}}" />
+            <Setter Property="CommandParameter" Value="{Binding}" />
+            <Setter Property="FontSize" Value="20" />
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect ShadowDepth="0" Color="#FF2980D1" Opacity="0" BlurRadius="0"/>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Trigger.EnterActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation Storyboard.TargetProperty="Effect.BlurRadius" To="14" Duration="0:0:0.25"/>
+                                <DoubleAnimation Storyboard.TargetProperty="Effect.Opacity" To="0.6" Duration="0:0:0.20"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </Trigger.EnterActions>
+                    <Trigger.ExitActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation Storyboard.TargetProperty="Effect.BlurRadius" To="0" Duration="0:0:0.14"/>
+                                <DoubleAnimation Storyboard.TargetProperty="Effect.Opacity" To="0" Duration="0:0:0.14"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </Trigger.ExitActions>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <dx:DXTabControl x:Name="tabControl" Padding="0,-1,0,0" TabContentCacheMode="CacheAllTabs" dx:DXSerializer.Enabled="True">
+            <dx:DXTabControl.Resources>
+                <Style TargetType="{x:Type dx:DXTabItem}">
+                    <Setter Property="HeaderTemplate">
+                        <Setter.Value>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding}" TextTrimming="CharacterEllipsis">
+                                    <TextBlock.ToolTip>
+                                        <ToolTip Content="{Binding}"/>
+                                    </TextBlock.ToolTip>
+                                </TextBlock>
+                            </DataTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </dx:DXTabControl.Resources>
+            <dx:DXTabControl.ContentHeaderTemplate>
+                <DataTemplate>
+                    <dxr:RibbonControl Visibility="{Binding RelativeSource={RelativeSource AncestorType=dx:DXTabControl}, Path=SelectedContainer.IsNew, Converter={dxmvvm:BooleanToVisibilityConverter Inverse=True}}" 
+                                       dx:DXSerializer.Enabled="False"
+                                       RibbonStyle="OfficeSlim" 
+                                       ShowApplicationButton="False" 
+                                       AllowMinimizeRibbon="False" 
+                                       RibbonHeaderVisibility="Collapsed" 
+                                       ToolbarShowMode="Hide" 
+                                       AllowCustomization="False">
+                        <dxr:RibbonDefaultPageCategory Caption="defaultCategory">
+                            <dxr:RibbonPage>
+                                <dxr:RibbonPageGroup />
+                            </dxr:RibbonPage>
+                        </dxr:RibbonDefaultPageCategory>
+                    </dxr:RibbonControl>
+                </DataTemplate>
+            </dx:DXTabControl.ContentHeaderTemplate>
+            <dx:DXTabControl.ContentFooterTemplate>
+                <DataTemplate>
+                    <dxr:RibbonStatusBarControl Visibility="{Binding RelativeSource={RelativeSource AncestorType=dx:DXTabControl}, Path=SelectedContainer.IsNew, Converter={dxmvvm:BooleanToVisibilityConverter Inverse=True}}" />
+                </DataTemplate>
+            </dx:DXTabControl.ContentFooterTemplate>
+            <dx:DXTabControl.ControlBoxRightTemplate>
+                <DataTemplate>
+                    <dxb:ToolBarControl BackgroundTemplate="{x:Null}" GlyphSize="Small" ShowDragWidget="False" AllowCollapse="False" AllowCustomizationMenu="False" AllowHide="False" AllowQuickCustomization="False" AllowRename="False">
+                        <dxb:BarButtonItem Content="Save All" Command="{Binding SaveAllCommand}" LargeGlyph="{dx:DXImage Image=SaveAll_32x32.png}" Glyph="{dx:DXImage Image=SaveAll_16x16.png}" />
+                        <dxb:BarSubItem Glyph="{dx:DXImage Image=Colors_16x16.png}" LargeGlyph="{dx:DXImage Image=Colors_32x32.png}">
+                            <dxmvvm:Interaction.Behaviors>
+                                <dxb:BarSubItemThemeSelectorBehavior />
+                            </dxmvvm:Interaction.Behaviors>
+                        </dxb:BarSubItem>
+                    </dxb:ToolBarControl>
+                </DataTemplate>
+            </dx:DXTabControl.ControlBoxRightTemplate>
+            <dxmvvm:Interaction.Behaviors>
+                <dx:TabbedWindowDocumentUIService WindowClosingCommand="{Binding OnClosingCommand}">
+                    <dx:TabbedWindowDocumentUIService.NewItemTemplate>
+                        <DataTemplate>
+                            <dx:DXTabItem Header="Speed Dial">
+                                <dxlc:TileLayoutControl ItemsSource="{Binding Modules}" ItemContainerStyle="{StaticResource speedDialTileStyle}" Orientation="Horizontal" AllowItemMoving="False" VerticalAlignment="Center" ItemSpace="25" Margin="0,1,0,0" Padding="40" />
+                            </dx:DXTabItem>
+                        </DataTemplate>
+                    </dx:TabbedWindowDocumentUIService.NewItemTemplate>
+                </dx:TabbedWindowDocumentUIService>
+            </dxmvvm:Interaction.Behaviors>
+            <dx:DXTabControl.View>
+                <dx:TabControlStretchView MoveItemsWhenDragDrop="False" RemoveTabItemsOnHiding="True" DragDropMode="Full" HideButtonShowMode="InAllTabs" NewButtonShowMode="InTabPanel" CloseWindowOnSingleTabItemHiding="True" SingleTabItemHideMode="HideAndShowNewItem" />
+            </dx:DXTabControl.View>
+        </dx:DXTabControl>
+    </Grid>
+</UserControl>
+<#+
+void PasteXamlNamespaces(XamlNamespaces xamlNamespaces) {
+	string[] toAdd = new string[]{
+		XmlNamespaceConstants.RibbonNamespaceDefinition,
+		XmlNamespaceConstants.EditorsNamespaceDefinition,
+		XmlNamespaceConstants.LayoutControlNamespaceDefinition,
+		XmlNamespaceConstants.BarsNamespaceDefinition,
+		XmlNamespaceConstants.UtilsNamespaceDefinition,
+		XmlNamespaceConstants.GridNamespaceDefinition,
+		XmlNamespaceConstants.MvvmNamespaceDefinition,
+		XmlNamespaceConstants.DockingNamespaceDefinition,
+		XmlNamespaceConstants.NavBarNamespaceDefinition,
+		XmlNamespaceConstants.WindowsUINamespaceDefinition,
+	};
+	xamlNamespaces.AddDevExpressXamlNamespaces(toAdd);
+	this.WriteLine(xamlNamespaces.GetXaml());
+}
+#>

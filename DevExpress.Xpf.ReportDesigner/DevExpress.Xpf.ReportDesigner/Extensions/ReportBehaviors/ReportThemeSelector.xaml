@@ -1,0 +1,268 @@
+﻿<ResourceDictionary xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
+                    xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+                    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+                    xmlns:s="clr-namespace:System;assembly=mscorlib"
+                    xmlns:dxp="http://schemas.devexpress.com/winfx/2008/xaml/printing"
+                    xmlns:dxco="http://schemas.devexpress.com/winfx/2008/xaml/controls"
+                    xmlns:local="clr-namespace:DevExpress.Xpf.Reports.UserDesigner.Extensions">
+    <DataTemplate x:Key="PreviewTemplate">
+        <Grid  Background="White" UseLayoutRounding="True" VerticalAlignment="Center">
+            <Grid.Resources>
+                <DataTemplate x:Key="HeaderCellTemplate">
+                    <Border BorderBrush="Black" BorderThickness="{Binding [BorderThickness]}">
+                        <Border.Background>
+                            <SolidColorBrush Color="{Binding DataContext.Shades.DarkColor2[1], RelativeSource={RelativeSource AncestorType=Grid}}"/>
+                        </Border.Background>
+                        <TextBlock Text="{Binding [Text]}" 
+                                                            Margin="3" FontFamily="{Binding DataContext.Theme.Fonts.MajorFontSet.LatinTypeface, RelativeSource={RelativeSource AncestorType=Grid}}"
+                                                            FontSize="16">
+                            <TextBlock.Foreground>
+                                <SolidColorBrush Color="{Binding DataContext.Shades.DarkColor2[0], RelativeSource={RelativeSource AncestorType=Grid}}"/>
+                            </TextBlock.Foreground>
+                        </TextBlock>
+                    </Border>
+                </DataTemplate>
+                <DataTemplate x:Key="EvenCellTemplate">
+                    <Border BorderBrush="Black" BorderThickness="{Binding [BorderThickness]}">
+                        <Border.Background>
+                            <SolidColorBrush Color="{Binding DataContext.Shades.LightColor1[0], RelativeSource={RelativeSource AncestorType=Grid}}"/>
+                        </Border.Background>
+                        <TextBlock Text="{Binding [Text]}" 
+                                                            Margin="3" FontFamily="{Binding DataContext.Theme.Fonts.MajorFontSet.LatinTypeface, RelativeSource={RelativeSource AncestorType=Grid}}"
+                                                            FontSize="14">
+                            <TextBlock.Foreground>
+                                <SolidColorBrush Color="{Binding DataContext.Shades.DarkColor1[3], RelativeSource={RelativeSource AncestorType=Grid}}"/>
+                            </TextBlock.Foreground>
+                        </TextBlock>
+                    </Border>
+                </DataTemplate>
+                <DataTemplate x:Key="OddCellTemplate">
+                    <Border BorderBrush="Black" BorderThickness="{Binding [BorderThickness]}">
+                        <Border.Background>
+                            <SolidColorBrush Color="{Binding DataContext.Shades.LightColor1[1], RelativeSource={RelativeSource AncestorType=Grid}}"/>
+                        </Border.Background>
+                        <TextBlock Text="{Binding [Text]}" 
+                                                            Margin="3" FontFamily="{Binding DataContext.Theme.Fonts.MajorFontSet.LatinTypeface, RelativeSource={RelativeSource AncestorType=Grid}}"
+                                                            FontSize="14">
+                            <TextBlock.Foreground>
+                                <SolidColorBrush Color="{Binding DataContext.Shades.DarkColor1[3], RelativeSource={RelativeSource AncestorType=Grid}}"/>
+                            </TextBlock.Foreground>
+                        </TextBlock>
+                    </Border>
+                </DataTemplate>
+                <DataTemplate x:Key="FooterCellTemplate">
+                    <Border BorderBrush="Black" BorderThickness="{Binding [BorderThickness]}">
+                        <Border.Background>
+                            <SolidColorBrush Color="{Binding DataContext.Shades.DarkColor2[1], RelativeSource={RelativeSource AncestorType=Grid}}"/>
+                        </Border.Background>
+                        <TextBlock Text="{Binding [Text]}" 
+                                                            Margin="3" FontFamily="{Binding DataContext.Theme.Fonts.MajorFontSet.LatinTypeface, RelativeSource={RelativeSource AncestorType=Grid}}"
+                                                            FontSize="14">
+                            <TextBlock.Foreground>
+                                <SolidColorBrush Color="{Binding DataContext.Shades.DarkColor2[0], RelativeSource={RelativeSource AncestorType=Grid}}"/>
+                            </TextBlock.Foreground>
+                        </TextBlock>
+                    </Border>
+                </DataTemplate>
+            </Grid.Resources>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <ContentControl ContentTemplate="{StaticResource HeaderCellTemplate}" Grid.Row="0" Grid.Column="0">
+                <ResourceDictionary>
+                    <Thickness x:Key="BorderThickness">1,1,0,0</Thickness>
+                </ResourceDictionary>
+            </ContentControl>
+            <ContentControl ContentTemplate="{StaticResource HeaderCellTemplate}" Grid.Row="0" Grid.Column="1">
+                <ResourceDictionary>
+                    <Thickness x:Key="BorderThickness">1,1,1,0</Thickness>
+                    <s:String x:Key="Text">City</s:String>
+                </ResourceDictionary>
+            </ContentControl>
+
+            <ContentControl ContentTemplate="{StaticResource EvenCellTemplate}" Grid.Row="1" Grid.Column="0">
+                <ResourceDictionary>
+                    <Thickness x:Key="BorderThickness">1,1,0,0</Thickness>
+                </ResourceDictionary>
+            </ContentControl>
+            <ContentControl ContentTemplate="{StaticResource EvenCellTemplate}" Grid.Row="1" Grid.Column="1">
+                <ResourceDictionary>
+                    <Thickness x:Key="BorderThickness">1,1,1,0</Thickness>
+                    <s:String x:Key="Text">Los Angeles</s:String>
+                </ResourceDictionary>
+            </ContentControl>
+
+            <ContentControl ContentTemplate="{StaticResource OddCellTemplate}" Grid.Row="2" Grid.Column="0">
+                <ResourceDictionary>
+                    <Thickness x:Key="BorderThickness">1,1,0,0</Thickness>
+                </ResourceDictionary>
+            </ContentControl>
+            <ContentControl ContentTemplate="{StaticResource OddCellTemplate}" Grid.Row="2" Grid.Column="1">
+                <ResourceDictionary>
+                    <Thickness x:Key="BorderThickness">1,1,1,0</Thickness>
+                    <s:String x:Key="Text">Arcadia</s:String>
+                </ResourceDictionary>
+            </ContentControl>
+
+            <ContentControl ContentTemplate="{StaticResource FooterCellTemplate}" Grid.Row="5" Grid.Column="0">
+                <ResourceDictionary>
+                    <Thickness x:Key="BorderThickness">0,1,0,1</Thickness>
+                </ResourceDictionary>
+            </ContentControl>
+            <ContentControl ContentTemplate="{StaticResource FooterCellTemplate}" Grid.Row="5" Grid.Column="1">
+                <ResourceDictionary>
+                    <Thickness x:Key="BorderThickness">0,1,1,1</Thickness>
+                    <s:String x:Key="Text">Count 2</s:String>
+                </ResourceDictionary>
+            </ContentControl>
+        </Grid>
+    </DataTemplate>
+    <Style TargetType="{x:Type local:ReportThemeSelector}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:ReportThemeSelector}">
+                    <dxco:Wizard StartPageViewModel="{Binding}">
+                        <dxco:Wizard.ViewTemplateSelector>
+                            <local:ReportWizardPageTemplateSelector>
+                                <local:ReportWizardPageTemplateSelector.ThemePageTemplate>
+                                    <DataTemplate>
+                                        <DockPanel Margin="13">
+                                            <TextBlock DockPanel.Dock="Top" HorizontalAlignment="Center" Text="{dxp:PrintingStringId StringId=ReportManagerServiceWizard_SelectTheme}" Margin="0,0,0,5"/>
+                                            <dxe:ListBoxEdit ItemsSource="{Binding Themes}" SelectedItem="{Binding SelectedTheme, RelativeSource={RelativeSource AncestorType=local:ReportThemeSelector}, Mode=TwoWay}"
+                                                        DockPanel.Dock="Top" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                                                        BorderThickness="0"
+                                                        Padding="10">
+                                                <dxe:ListBoxEdit.ItemsPanel>
+                                                    <ItemsPanelTemplate>
+                                                        <WrapPanel/>
+                                                    </ItemsPanelTemplate>
+                                                </dxe:ListBoxEdit.ItemsPanel>
+                                                <dxe:ListBoxEdit.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <Border BorderThickness="1" BorderBrush="#55555555" Width="160" Height="150" Margin="7">
+                                                            <Grid ClipToBounds="True">
+                                                                <TextBlock Text="{Binding Theme.Name}"
+                                                                    HorizontalAlignment="Left"
+                                                                    VerticalAlignment="Top"
+                                                                    FontSize="22"
+                                                                    Margin="5,0,0,0"/>
+                                                                <ContentPresenter Width="280" Content="{Binding}" 
+                                                                            ContentTemplate="{StaticResource PreviewTemplate}" 
+                                                                            VerticalAlignment="Bottom"
+                                                                            Margin="-100,0,0,10"/>
+                                                            </Grid>
+                                                        </Border>
+                                                    </DataTemplate>
+                                                </dxe:ListBoxEdit.ItemTemplate>
+                                            </dxe:ListBoxEdit>
+                                            <dx:DialogFooter>
+                                                <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                                                    <dxco:WizardButton Content="Back" dxco:Wizard.IsButtonBack="True" />
+                                                    <dxco:WizardButton Content="Next" dxco:Wizard.IsButtonNext="True" />
+                                                    <dxco:WizardButton Content="Finish" dxco:Wizard.IsButtonFinish="True" Margin="20,0,0,0" />
+                                                </StackPanel>
+                                            </dx:DialogFooter>
+                                        </DockPanel>
+                                    </DataTemplate>
+                                </local:ReportWizardPageTemplateSelector.ThemePageTemplate>
+
+                                <local:ReportWizardPageTemplateSelector.PageSetupPageTemplate>
+                                    <DataTemplate>
+                                        <DockPanel Margin="13">
+                                            <dx:DialogFooter>
+                                                <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                                                    <dxco:WizardButton Content="Back" dxco:Wizard.IsButtonBack="True" />
+                                                    <dxco:WizardButton Content="Next" dxco:Wizard.IsButtonNext="True" />
+                                                    <dxco:WizardButton Content="Finish" dxco:Wizard.IsButtonFinish="True" Margin="20,0,0,0" />
+                                                </StackPanel>
+                                            </dx:DialogFooter>
+                                            <TextBlock DockPanel.Dock="Top" HorizontalAlignment="Center" Text="Select Page Options" Margin="0,0,0,5"/>
+                                            <StackPanel DockPanel.Dock="Left" Width="250">
+                                                <GroupBox Header="{dxp:PrintingStringId StringId=ReportManagerServiceWizard_Paper}">
+                                                    <dxlc:LayoutControl Padding="0" Orientation="Vertical" ItemSpace="5">
+                                                        <dxlc:LayoutItem Label="{dxp:PrintingStringId StringId=ReportManagerServiceWizard_PaperSize}">
+                                                            <dxe:ComboBoxEdit ItemsSource="{Binding PageFormats}"
+                                                                              IsTextEditable="False"
+                                                                              EditValue="{Binding SelectedPageFormat, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                                              DisplayMember="Name"/>
+                                                        </dxlc:LayoutItem>
+                                                        <dxlc:LayoutItem Label="{dxp:PrintingStringId StringId=ReportManagerServiceWizard_ReportUnits}">
+                                                            <dxe:ComboBoxEdit ItemsSource="{Binding Units}"
+                                                                              IsTextEditable="False"
+                                                                              EditValue="{Binding SelectedUnit, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                                              DisplayMember="Name"/>
+                                                        </dxlc:LayoutItem>
+                                                    </dxlc:LayoutControl>
+                                                </GroupBox>
+                                                <GroupBox Header="{dxp:PrintingStringId StringId=ReportManagerServiceWizard_PageOrientation}" Margin="0,10,0,0">
+                                                    <dxlc:LayoutControl Padding="0" Orientation="Vertical" ItemSpace="5">
+                                                        <RadioButton Content="{dxp:PrintingStringId StringId=PageSetupOrientationPortrait}" GroupName="OrientationRadioGroup"
+                                                             IsChecked="{Binding IsVertical, Mode=TwoWay}"/>
+                                                        <RadioButton Content="{dxp:PrintingStringId StringId=PageSetupOrientationLandscape}" GroupName="OrientationRadioGroup"
+                                                             IsChecked="{Binding IsHorizontal, Mode=TwoWay}"/>
+                                                    </dxlc:LayoutControl>
+                                                </GroupBox>
+                                            </StackPanel>
+                                            <GroupBox Margin="10,0,0,0">
+                                                <Grid Width="{Binding Width}"
+                                                      Height="{Binding Height}">
+                                                    <Border Margin="12, 12, 0, 0" Background="Gray"/>
+                                                    <Border Margin="0, 0, 12, 12" Background="White" BorderThickness="1" BorderBrush="Black" Padding="15">
+                                                        <Border.Resources>
+                                                            <Style TargetType="Border">
+                                                                <Setter Property="BorderBrush" Value="Black"/>
+                                                            </Style>
+                                                        </Border.Resources>
+                                                        <Grid>
+                                                            <Grid.RowDefinitions>
+                                                                <RowDefinition Height="10"/>
+                                                                <RowDefinition Height="10"/>
+                                                                <RowDefinition Height="10"/>
+                                                                <RowDefinition Height="10"/>
+                                                            </Grid.RowDefinitions>
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition/>
+                                                                <ColumnDefinition/>
+                                                                <ColumnDefinition/>
+                                                            </Grid.ColumnDefinitions>
+                                                            <Border BorderThickness="1,1,0,0" Grid.Column="0" Grid.Row="0"/>
+                                                            <Border BorderThickness="1,1,0,0" Grid.Column="1" Grid.Row="0"/>
+                                                            <Border BorderThickness="1,1,1,0" Grid.Column="2" Grid.Row="0"/>
+
+                                                            <Border BorderThickness="1,1,0,0" Grid.Column="0" Grid.Row="1"/>
+                                                            <Border BorderThickness="1,1,0,0" Grid.Column="1" Grid.Row="1"/>
+                                                            <Border BorderThickness="1,1,1,0" Grid.Column="2" Grid.Row="1"/>
+
+                                                            <Border BorderThickness="1,1,0,0" Grid.Column="0" Grid.Row="2"/>
+                                                            <Border BorderThickness="1,1,0,0" Grid.Column="1" Grid.Row="2"/>
+                                                            <Border BorderThickness="1,1,1,0" Grid.Column="2" Grid.Row="2"/>
+
+                                                            <Border BorderThickness="1,1,0,1" Grid.Column="0" Grid.Row="3"/>
+                                                            <Border BorderThickness="1,1,0,1" Grid.Column="1" Grid.Row="3"/>
+                                                            <Border BorderThickness="1,1,1,1" Grid.Column="2" Grid.Row="3"/>
+                                                        </Grid>
+                                                    </Border>
+                                                </Grid>
+                                            </GroupBox>
+                                        </DockPanel>
+                                    </DataTemplate>
+                                </local:ReportWizardPageTemplateSelector.PageSetupPageTemplate>
+                            </local:ReportWizardPageTemplateSelector>
+                        </dxco:Wizard.ViewTemplateSelector>
+                    </dxco:Wizard>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

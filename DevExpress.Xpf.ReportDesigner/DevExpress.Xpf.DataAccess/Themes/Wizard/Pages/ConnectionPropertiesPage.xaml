@@ -1,0 +1,130 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+            xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
+            xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+            xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+            xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
+            xmlns:sys="clr-namespace:System;assembly=mscorlib"
+            xmlns:connectionparameters="clr-namespace:DevExpress.DataAccess.ConnectionParameters;assembly=DevExpress.DataAccess.v15.2"
+            xmlns:local="clr-namespace:DevExpress.Xpf.DataAccess.DataSourceWizard"
+            xmlns:localization="clr-namespace:DevExpress.Xpf.DataAccess.Localization"
+            xmlns:localnative="clr-namespace:DevExpress.Xpf.DataAccess.Native">
+
+    <DataTemplate x:Key="{x:Type local:ConnectionPropertiesPage}">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <localnative:WizardTitle Title="{localization:DataAccessUIStringId StringId=WizardPageConnectionProperties}" />
+            <dxlc:LayoutControl Grid.Row="1">
+                <dxlc:LayoutControl.Resources>
+                    <dxmvvm:ObjectToObjectConverter x:Key="AuthTypeToBooleanConverter">
+                        <dxmvvm:MapItem Source="Windows" Target="False" />
+                        <dxmvvm:MapItem Source="SqlServer" Target="True" />
+                    </dxmvvm:ObjectToObjectConverter>
+                    <DataTemplate x:Key="LabelTemplate">
+                        <Grid>
+                            <TextBlock IsHitTestVisible="False" Opacity="0" Text="Authentication type:" />
+                            <TextBlock Text="{Binding}" />
+                        </Grid>
+                    </DataTemplate>
+                </dxlc:LayoutControl.Resources>
+                <dxlc:LayoutGroup Orientation="Vertical">
+                    <dxlc:LayoutItem Label="{localization:DataAccessUIStringId StringId=ConnectionProperties_Provider}" AddColonToLabel="True" LabelTemplate="{StaticResource LabelTemplate}">
+                        <dxe:ComboBoxEdit
+                                    PopupMaxHeight="124"
+                                    AllowSpinOnMouseWheel="False"
+                                    ItemsSource="{Binding Providers}"
+                                    DisplayMember="ProviderName"
+                                    EditValue="{Binding SelectedProvider, UpdateSourceTrigger=PropertyChanged}"
+                                    IsTextEditable="False"
+                        />
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="{localization:DataAccessUIStringId StringId=ConnectionProperties_ServerType}" AddColonToLabel="True" LabelTemplate="{StaticResource LabelTemplate}" Visibility="{Binding ConnectionEdits, Converter={local:ConnectionParameterEditsToVisibilityConverter Editor=ServerType}}" IsEnabled="{Binding DisabledConnectionEdits, Converter={local:ConnectionParameterEditsToBooleanConverter Editor=ServerType}}">
+                        <dxe:ComboBoxEdit
+                                    ItemsSource="{Binding ServerTypes}"
+                                    EditValue="{Binding ServerBased, UpdateSourceTrigger=PropertyChanged}"
+                                    ValueMember="Value"
+                                    IsTextEditable="False"
+                        />
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="{localization:DataAccessUIStringId StringId=ConnectionProperties_Database}" AddColonToLabel="True" LabelTemplate="{StaticResource LabelTemplate}" Visibility="{Binding ConnectionEdits, Converter={local:ConnectionParameterEditsToVisibilityConverter Editor=FileName}}" IsEnabled="{Binding DisabledConnectionEdits, Converter={local:ConnectionParameterEditsToBooleanConverter Editor=FileName}}">
+                        <dxe:ButtonEdit AllowDefaultButton="False" EditValue="{Binding FileName, UpdateSourceTrigger=PropertyChanged}">
+                            <dxe:ButtonInfo GlyphKind="Regular" Command="{Binding BrowseForAssemblyCommand}" />
+                        </dxe:ButtonEdit>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="Hostname" AddColonToLabel="True" LabelTemplate="{StaticResource LabelTemplate}" Visibility="{Binding ConnectionEdits, Converter={local:ConnectionParameterEditsToVisibilityConverter Editor=Hostname}}">
+                        <dxe:TextEdit EditValue="{Binding Hostname, UpdateSourceTrigger=PropertyChanged}" />
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="{localization:DataAccessUIStringId StringId=ConnectionProperties_ServerName}" AddColonToLabel="True" LabelTemplate="{StaticResource LabelTemplate}" Visibility="{Binding ConnectionEdits, Converter={local:ConnectionParameterEditsToVisibilityConverter Editor=ServerName}}" IsEnabled="{Binding DisabledConnectionEdits, Converter={local:ConnectionParameterEditsToBooleanConverter Editor=ServerName}}">
+                        <dxe:TextEdit EditValue="{Binding ServerName, UpdateSourceTrigger=PropertyChanged}" />
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="{localization:DataAccessUIStringId StringId=ConnectionProperties_Port}" AddColonToLabel="True" LabelTemplate="{StaticResource LabelTemplate}" Visibility="{Binding ConnectionEdits, Converter={local:ConnectionParameterEditsToVisibilityConverter Editor=Port}}">
+                        <dxe:TextEdit EditValue="{Binding Port, UpdateSourceTrigger=PropertyChanged}" />
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="{localization:DataAccessUIStringId StringId=ConnectionProperties_AuthenticationType}" LabelTemplate="{StaticResource LabelTemplate}" AddColonToLabel="True" Visibility="{Binding ConnectionEdits, Converter={local:ConnectionParameterEditsToVisibilityConverter Editor=AuthTypeMsSql}}" IsEnabled="{Binding DisabledConnectionEdits, Converter={local:ConnectionParameterEditsToBooleanConverter Editor=AuthTypeMsSql}}">
+                        <dxe:ComboBoxEdit
+                                    ItemsSource="{dxe:EnumItemsSource EnumType=connectionparameters:MsSqlAuthorizationType, NameConverter={local:MsSqlAuthorizationTypeNameConverter}}"
+                                    EditValue="{Binding AuthTypeMsSql, UpdateSourceTrigger=PropertyChanged}"
+                                    IsTextEditable="False"
+                        />
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="{localization:DataAccessUIStringId StringId=ConnectionProperties_UserName}" AddColonToLabel="True" LabelTemplate="{StaticResource LabelTemplate}" Visibility="{Binding ConnectionEdits, Converter={local:ConnectionParameterEditsToVisibilityConverter Editor=UserName}}" IsEnabled="{Binding DisabledConnectionEdits, Converter={local:ConnectionParameterEditsToBooleanConverter Editor=UserName}}">
+                        <dxe:TextEdit EditValue="{Binding UserName, UpdateSourceTrigger=PropertyChanged}"/>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="{localization:DataAccessUIStringId StringId=ConnectionProperties_Password}" AddColonToLabel="True" LabelTemplate="{StaticResource LabelTemplate}" Visibility="{Binding ConnectionEdits, Converter={local:ConnectionParameterEditsToVisibilityConverter Editor=Password}}" IsEnabled="{Binding DisabledConnectionEdits, Converter={local:ConnectionParameterEditsToBooleanConverter Editor=Password}}">
+                        <dxe:PasswordBoxEdit EditValue="{Binding Password, UpdateSourceTrigger=PropertyChanged}" />
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="{localization:DataAccessUIStringId StringId=ConnectionProperties_ServerType}" AddColonToLabel="True" LabelTemplate="{StaticResource LabelTemplate}" Visibility="{Binding ConnectionEdits, Converter={local:ConnectionParameterEditsToVisibilityConverter Editor=AdvantageServerType}}" IsEnabled="{Binding DisabledConnectionEdits, Converter={local:ConnectionParameterEditsToBooleanConverter Editor=AdvantageServerType}}">
+                        <dxe:ComboBoxEdit
+                                    ItemsSource="{dxe:EnumItemsSource EnumType={x:Type connectionparameters:AdvantageServerType}}"
+                                    EditValue="{Binding ServerTypeAdvantage, UpdateSourceTrigger=PropertyChanged}"
+                                    IsTextEditable="False"
+                        />
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="{localization:DataAccessUIStringId StringId=ConnectionProperties_Database}" AddColonToLabel="True" LabelTemplate="{StaticResource LabelTemplate}" Visibility="{Binding ConnectionEdits, Converter={local:ConnectionParameterEditsToVisibilityConverter Editor=Database}}" IsEnabled="{Binding DisabledConnectionEdits, Converter={local:ConnectionParameterEditsToBooleanConverter Editor=Database}}">
+                        <dxe:ComboBoxEdit ItemsSource="{Binding Databases}" AllowDefaultButton="False" EditValue="{Binding Database, UpdateSourceTrigger=PropertyChanged}" IsPopupOpen="{Binding CanSelectDatabase, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                            <dxe:ComboBoxEdit.Buttons>
+                                <dxe:ButtonInfo GlyphKind="DropDown" Visibility="{Binding SelectedProvider.Strategy.CanGetDatabases, Converter={dxmvvm:BooleanToVisibilityConverter}}" Command="{Binding GetDatabasesCommand}" />
+                            </dxe:ComboBoxEdit.Buttons>
+                        </dxe:ComboBoxEdit>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="{localization:DataAccessUIStringId StringId=ConnectionProperties_ProjectID}" AddColonToLabel="True" LabelTemplate="{StaticResource LabelTemplate}" Visibility="{Binding ConnectionEdits, Converter={local:ConnectionParameterEditsToVisibilityConverter Editor=ProjectID}}" IsEnabled="{Binding DisabledConnectionEdits, Converter={local:ConnectionParameterEditsToBooleanConverter Editor=ProjectID}}">
+                        <dxe:TextEdit EditValue="{Binding ProjectID, UpdateSourceTrigger=PropertyChanged}" />
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="{localization:DataAccessUIStringId StringId=ConnectionProperties_AuthenticationType}" AddColonToLabel="True" LabelTemplate="{StaticResource LabelTemplate}" Visibility="{Binding ConnectionEdits, Converter={local:ConnectionParameterEditsToVisibilityConverter Editor=AuthTypeBigQuery}}" IsEnabled="{Binding DisabledConnectionEdits, Converter={local:ConnectionParameterEditsToBooleanConverter Editor=AuthTypeBigQuery}}">
+                        <dxe:ComboBoxEdit
+                                    ItemsSource="{dxe:EnumItemsSource EnumType=connectionparameters:BigQueryAuthorizationType, NameConverter={local:BigQueryAuthorizationTypeNameConverter}}"
+                                    EditValue="{Binding AuthTypeBigQuery, UpdateSourceTrigger=PropertyChanged}"
+                                    IsTextEditable="False"
+                        />
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="{localization:DataAccessUIStringId StringId=ConnectionProperties_KeyFileName}" AddColonToLabel="True" LabelTemplate="{StaticResource LabelTemplate}" Visibility="{Binding ConnectionEdits, Converter={local:ConnectionParameterEditsToVisibilityConverter Editor=KeyFileName}}" IsEnabled="{Binding DisabledConnectionEdits, Converter={local:ConnectionParameterEditsToBooleanConverter Editor=KeyFileName}}">
+                        <dxe:ButtonEdit AllowDefaultButton="False" EditValue="{Binding KeyFileName, UpdateSourceTrigger=PropertyChanged}">
+                            <dxe:ButtonInfo GlyphKind="Regular" Command="{Binding BrowseForAssemblyCommand}" />
+                        </dxe:ButtonEdit>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="{localization:DataAccessUIStringId StringId=ConnectionProperties_ServiceAccountEmail}" AddColonToLabel="True" LabelTemplate="{StaticResource LabelTemplate}" Visibility="{Binding ConnectionEdits, Converter={local:ConnectionParameterEditsToVisibilityConverter Editor=ServiceEmail}}" IsEnabled="{Binding DisabledConnectionEdits, Converter={local:ConnectionParameterEditsToBooleanConverter Editor=ServiceEmail}}">
+                        <dxe:TextEdit EditValue="{Binding ServiceEmail, UpdateSourceTrigger=PropertyChanged}" />
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="{localization:DataAccessUIStringId StringId=ConnectionProperties_ClientID}" AddColonToLabel="True" LabelTemplate="{StaticResource LabelTemplate}" Visibility="{Binding ConnectionEdits, Converter={local:ConnectionParameterEditsToVisibilityConverter Editor=OAuthClientID}}" IsEnabled="{Binding DisabledConnectionEdits, Converter={local:ConnectionParameterEditsToBooleanConverter Editor=OAuthClientID}}">
+                        <dxe:TextEdit EditValue="{Binding OAuthClientID, UpdateSourceTrigger=PropertyChanged}" />
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="{localization:DataAccessUIStringId StringId=ConnectionProperties_ClientSecret}" AddColonToLabel="True" LabelTemplate="{StaticResource LabelTemplate}" Visibility="{Binding ConnectionEdits, Converter={local:ConnectionParameterEditsToVisibilityConverter Editor=OAuthClientSecret}}" IsEnabled="{Binding DisabledConnectionEdits, Converter={local:ConnectionParameterEditsToBooleanConverter Editor=OAuthClientSecret}}">
+                        <dxe:TextEdit EditValue="{Binding OAuthClientSecret, UpdateSourceTrigger=PropertyChanged}" />
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="{localization:DataAccessUIStringId StringId=ConnectionProperties_RefreshToken}" AddColonToLabel="True" LabelTemplate="{StaticResource LabelTemplate}" Visibility="{Binding ConnectionEdits, Converter={local:ConnectionParameterEditsToVisibilityConverter Editor=OAuthRefreshToken}}" IsEnabled="{Binding DisabledConnectionEdits, Converter={local:ConnectionParameterEditsToBooleanConverter Editor=OAuthRefreshToken}}">
+                        <dxe:TextEdit EditValue="{Binding OAuthRefreshToken, UpdateSourceTrigger=PropertyChanged}" />
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="{localization:DataAccessUIStringId StringId=ConnectionProperties_DataSetID}" AddColonToLabel="True" LabelTemplate="{StaticResource LabelTemplate}" Visibility="{Binding ConnectionEdits, Converter={local:ConnectionParameterEditsToVisibilityConverter Editor=DataSetID}}" IsEnabled="{Binding DisabledConnectionEdits, Converter={local:ConnectionParameterEditsToBooleanConverter Editor=DataSetID}}">
+                        <dxe:ComboBoxEdit ItemsSource="{Binding Databases}" AllowDefaultButton="{Binding SelectedProvider.Strategy.CanGetDatabases}" EditValue="{Binding DataSetID, UpdateSourceTrigger=PropertyChanged}" />
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="{localization:DataAccessUIStringId StringId=ConnectionProperties_ConnectionString}" AddColonToLabel="True" LabelTemplate="{StaticResource LabelTemplate}" Visibility="{Binding ConnectionEdits, Converter={local:ConnectionParameterEditsToVisibilityConverter Editor=CustomString}}" VerticalAlignment="Stretch" IsEnabled="{Binding DisabledConnectionEdits, Converter={local:ConnectionParameterEditsToBooleanConverter Editor=CustomString}}">
+                        <dxe:TextEdit VerticalContentAlignment="Top" AcceptsReturn="True" EditValue="{Binding CustomString, UpdateSourceTrigger=PropertyChanged}" />
+                    </dxlc:LayoutItem>
+                </dxlc:LayoutGroup>
+            </dxlc:LayoutControl>
+        </Grid>
+    </DataTemplate>
+</ResourceDictionary>

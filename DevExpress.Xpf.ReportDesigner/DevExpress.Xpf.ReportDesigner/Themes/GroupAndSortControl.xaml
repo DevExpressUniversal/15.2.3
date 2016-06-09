@@ -1,0 +1,161 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
+                    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+                    xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+                    xmlns:designer="clr-namespace:DevExpress.Xpf.Reports.UserDesigner"
+                    xmlns:fieldlistnative="clr-namespace:DevExpress.Xpf.Reports.UserDesigner.FieldList.Native"
+                    xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
+                    xmlns:designereditors="clr-namespace:DevExpress.Xpf.Reports.UserDesigner.Editors"
+                    xmlns:designerGroupSort="clr-namespace:DevExpress.Xpf.Reports.UserDesigner.GroupSort"
+                    xmlns:designerGroupSortNative="clr-namespace:DevExpress.Xpf.Reports.UserDesigner.GroupSort.Native"
+                    xmlns:reportsui="clr-namespace:DevExpress.XtraReports.UI;assembly=DevExpress.XtraReports.v15.2"
+                    xmlns:dxdanative="clr-namespace:DevExpress.Xpf.DataAccess.Native;assembly=DevExpress.Xpf.DataAccess.v15.2"
+                    xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+                    xmlns:designerthemes="clr-namespace:DevExpress.Xpf.Reports.UserDesigner.Themes">
+
+    <Style TargetType="designerGroupSort:GroupSortControl">
+        <Setter Property="ReportModel" Value="{Binding Path=(designer:ReportDesigner.Document).ReportModel, RelativeSource={RelativeSource Self}}" />
+        <Setter Property="SelectedXRModel" Value="{Binding Path=(designer:ReportDesigner.Document).ReportModel.SelectedModel, RelativeSource={RelativeSource Self}}" />
+        <Setter Property="MessageBoxServiceTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <ContentControl>
+                        <dx:DXMessageBoxService />
+                    </ContentControl>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="designerGroupSort:GroupSortControl">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <dxb:ToolBarControl GlyphSize="Small" AllowCustomizationMenu="False" AllowHide="False" BarItemDisplayMode="ContentAndGlyph">
+                            <dxb:ToolBarControl.Resources>
+                                <dx:ObjectToBooleanConverter x:Key="objectToBoleanConverter" />
+                            </dxb:ToolBarControl.Resources>
+                            <dxb:BarSplitButtonItem IsEnabled="{Binding DataSource, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource objectToBoleanConverter}}" ActAsDropDown="True" Content="Add Group" Glyph="/DevExpress.Xpf.ReportDesigner.v15.2;component/Images/GroupAndSort/AddGroup.png">
+                                <dxb:BarSplitButtonItem.PopupControl>
+                                    <dxb:PopupControlContainer>
+                                        <dxg:GridControl Name="groupFieldList" ShowBorder="False" MaxHeight="250" ItemsSource="{Binding DataSource, RelativeSource={RelativeSource TemplatedParent}}" >
+                                            <dxg:GridControl.View>
+                                                <dxg:TreeListView AllowEditing="False" TreeDerivationMode="ChildNodesSelector" ChildNodesPath="Children" AutoWidth="True"
+                                                                  ShowHorizontalLines="False" ShowVerticalLines="False" ShowColumnHeaders="False" ShowIndicator="False"
+                                                                  VerticalScrollbarVisibility="Auto" ExpandCollapseNodesOnNavigation="True">
+                                                    <dxmvvm:Interaction.Behaviors>
+                                                        <designerGroupSort:ExpandFirstNodeBehavior />
+                                                    </dxmvvm:Interaction.Behaviors>
+                                                </dxg:TreeListView>
+                                            </dxg:GridControl.View>
+                                            <dxg:GridControl.Columns>
+                                                <dxg:GridColumn FieldName="DisplayName" CellTemplate="{DynamicResource {designerthemes:ReportDesignerThemeKey ResourceKey=FieldListNodeTemplate}}" />
+                                            </dxg:GridControl.Columns>
+                                        </dxg:GridControl>
+                                        <dxmvvm:Interaction.Behaviors>
+                                            <designerGroupSort:ClosePopupOnFieldSelected GridControl="{Binding ElementName=groupFieldList, Mode=OneWay}" />
+                                            <dxmvvm:EventToCommand EventName="Closed" CommandParameter="{Binding CurrentItem, ElementName=groupFieldList, Mode=OneWay}" Command="{Binding AddGroupCommand, RelativeSource={RelativeSource TemplatedParent}}" />
+                                        </dxmvvm:Interaction.Behaviors>
+                                    </dxb:PopupControlContainer>
+                                </dxb:BarSplitButtonItem.PopupControl>
+                            </dxb:BarSplitButtonItem>
+
+                            <dxb:BarSplitButtonItem IsEnabled="{Binding DataSource, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource objectToBoleanConverter}}" ActAsDropDown="True" Content="Add Sort" Glyph="/DevExpress.Xpf.ReportDesigner.v15.2;component/Images/GroupAndSort/AddSort.png">
+                                <dxb:BarSplitButtonItem.PopupControl>
+                                    <dxb:PopupControlContainer CloseOnClick="True">
+                                        <dxg:GridControl Name="sortFieldList" ShowBorder="False" MaxHeight="250" ItemsSource="{Binding DataSource, RelativeSource={RelativeSource TemplatedParent}}" >
+                                            <dxg:GridControl.View>
+                                                <dxg:TreeListView AllowEditing="False" TreeDerivationMode="ChildNodesSelector" ChildNodesPath="Children" AutoWidth="True"
+                                                                  ShowHorizontalLines="False" ShowVerticalLines="False" ShowColumnHeaders="False" ShowIndicator="False"
+                                                                  VerticalScrollbarVisibility="Auto" ExpandCollapseNodesOnNavigation="True">
+                                                    <dxmvvm:Interaction.Behaviors>
+                                                        <designerGroupSort:ExpandFirstNodeBehavior />
+                                                    </dxmvvm:Interaction.Behaviors>
+                                                </dxg:TreeListView>
+                                            </dxg:GridControl.View>
+                                            <dxg:GridControl.Columns>
+                                                <dxg:GridColumn FieldName="DisplayName" CellTemplate="{DynamicResource {designerthemes:ReportDesignerThemeKey ResourceKey=FieldListNodeTemplate}}" />
+                                            </dxg:GridControl.Columns>
+                                        </dxg:GridControl>
+                                        <dxmvvm:Interaction.Behaviors>
+                                            <designerGroupSort:ClosePopupOnFieldSelected GridControl="{Binding ElementName=sortFieldList, Mode=OneWay}" />
+                                            <dxmvvm:EventToCommand EventName="Closed" CommandParameter="{Binding CurrentItem, ElementName=sortFieldList, Mode=OneWay}" Command="{Binding AddSortCommand, RelativeSource={RelativeSource TemplatedParent}}" />
+                                        </dxmvvm:Interaction.Behaviors>
+                                    </dxb:PopupControlContainer>
+                                </dxb:BarSplitButtonItem.PopupControl>
+                            </dxb:BarSplitButtonItem>
+                            
+                            <dxb:BarButtonItem Content="Remove" Command="{Binding RemoveCommand, RelativeSource={RelativeSource TemplatedParent}}" Glyph="{dx:DXImage Image=Delete_16x16.png}" />
+                            <dxb:BarButtonItem Content="Move Up" Command="{Binding MoveUpCommand, RelativeSource={RelativeSource TemplatedParent}}" Glyph="{dx:DXImage Image=Previous_16x16.png}" />
+                            <dxb:BarButtonItem Content="Move Down" Command="{Binding MoveDownCommand, RelativeSource={RelativeSource TemplatedParent}}" Glyph="pack://application:,,,/DevExpress.Images.v15.2;component/Images/Navigation/Next_16x16.png" />
+                        </dxb:ToolBarControl>
+                        
+                        <dxg:GridControl Grid.Row="1" ItemsSource="{Binding Items, RelativeSource={RelativeSource TemplatedParent}}" 
+                                             CurrentItem="{Binding SelectedItem, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}">
+                            <dxmvvm:Interaction.Behaviors>
+                                <dxmvvm:EventToCommand EventName="ItemsSourceChanged" Command="{Binding AssociatedObject.View.Commands.ExpandAllNodes, RelativeSource={RelativeSource Self}}" PassEventArgsToCommand="False" />
+                            </dxmvvm:Interaction.Behaviors>
+                            <dxg:GridControl.Resources>
+                                <designereditors:BindingDataPopupSelectionValidator x:Key="bindingDataPopupSelectionValidator" />
+                            </dxg:GridControl.Resources>
+                            <dxg:GridControl.View>
+                                <dxg:TreeListView EnableImmediatePosting="True" Name="PART_TreeList" KeyFieldName="Id" ParentFieldName="ParentId" ShowColumnHeaders="True">
+                                    <dxmvvm:Interaction.Behaviors>
+                                        <designerGroupSort:ExpandNodesBehavior />
+                                        <designerGroupSort:ShowBandEditorUpdateBehavior />
+                                    </dxmvvm:Interaction.Behaviors>
+                                </dxg:TreeListView>
+                                
+                            </dxg:GridControl.View>
+                            <dxg:GridControl.Columns>
+                                <dxg:GridColumn FieldName="BindingData" Header="Field" Width="300" >
+                                    <dxg:GridColumn.CellStyle>
+                                        <Style TargetType="dxg:CellEditor">
+                                            <Setter Property="IsEnabled" Value="{Binding RowData.Row.BindingData.Source, Converter={dxmvvm:ObjectToBooleanConverter}}" />
+                                        </Style>
+                                    </dxg:GridColumn.CellStyle>
+                                    <dxg:GridColumn.EditSettings>
+                                        <designereditors:PopupTreeListEditSettings 
+                                            ValueMember="BindingData" DisplayMember="BindingData" ChildNodesPath="Children"
+                                            PopupDisplayMember="DisplayName"
+                                            ItemsSource="{Binding DataSource, RelativeSource={RelativeSource TemplatedParent}}"
+                                            PopupSelectionValidator="{StaticResource ResourceKey=bindingDataPopupSelectionValidator}"
+                                            TreeListCellTemplate="{DynamicResource {designerthemes:ReportDesignerThemeKey ResourceKey=FieldListNodeTemplate}}">
+                                            <dxmvvm:Interaction.Behaviors>
+                                                <designerGroupSort:GroupSortHierarchicalPathProviderBehavior />
+                                            </dxmvvm:Interaction.Behaviors>
+                                        </designereditors:PopupTreeListEditSettings>
+                                    </dxg:GridColumn.EditSettings>
+                                </dxg:GridColumn>
+                                <dxg:GridColumn FieldName="SortOrder" Header="Sort Order">
+                                    <dxg:GridColumn.EditSettings>
+                                        <dxe:ComboBoxEditSettings IsTextEditable="False" ItemsSource="{dxe:EnumItemsSource EnumType={x:Type reportsui:XRColumnSortOrder}}">
+                                        </dxe:ComboBoxEditSettings>
+                                    </dxg:GridColumn.EditSettings>
+                                </dxg:GridColumn>
+                                <dxg:GridColumn FieldName="ShowHeader" Header="Show Header">
+                                    <dxg:GridColumn.EditSettings>
+                                        <dxe:CheckEditSettings />
+                                    </dxg:GridColumn.EditSettings>
+                                </dxg:GridColumn>
+                                <dxg:GridColumn FieldName="ShowFooter" Header="Show Footer">
+                                    <dxg:GridColumn.CellStyle>
+                                        <Style TargetType="dxg:CellEditor">
+                                            <Setter Property="IsEnabled" Value="{Binding RowData.Row.ShowHeader}" />
+                                        </Style>
+                                    </dxg:GridColumn.CellStyle>
+                                    <dxg:GridColumn.EditSettings>
+                                        <dxe:CheckEditSettings />
+                                    </dxg:GridColumn.EditSettings>
+                                </dxg:GridColumn>
+                            </dxg:GridControl.Columns>
+                        </dxg:GridControl>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

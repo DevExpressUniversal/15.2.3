@@ -1,0 +1,356 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{252B6068-D743-4A48-9E16-71B09FE45AF4}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DevExpress.XtraReports.Service</RootNamespace>
+    <AssemblyName>DevExpress.XtraReports.v15.2.Service</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>..\..\DevExpress.Key\StrongKey.snk</AssemblyOriginatorKeyFile>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\..\Bin\Framework\</OutputPath>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <WarningsAsErrors>
+    </WarningsAsErrors>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\..\Bin\Framework\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <WarningsAsErrors>
+    </WarningsAsErrors>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+  
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DevExpress.Data.v15.2">
+      <SpecificVersion>False</SpecificVersion>
+    <HintPath>..\..\..\Bin\Framework\DevExpress.Data.v15.2.dll</HintPath><Private>False</Private></Reference>
+    <Reference Include="DevExpress.Printing.v15.2.Core">
+      <SpecificVersion>False</SpecificVersion>
+    <HintPath>..\..\..\Bin\Framework\DevExpress.Printing.v15.2.Core.dll</HintPath><Private>False</Private></Reference>
+    <Reference Include="DevExpress.Xpo.v15.2">
+      <SpecificVersion>False</SpecificVersion>
+    <HintPath>..\..\..\Bin\Framework\DevExpress.Xpo.v15.2.dll</HintPath><Private>False</Private></Reference>
+    <Reference Include="DevExpress.XtraReports.v15.2">
+      <SpecificVersion>False</SpecificVersion>
+    <HintPath>..\..\..\Bin\Framework\DevExpress.XtraReports.v15.2.dll</HintPath><Private>False</Private></Reference>
+    <Reference Include="Moq.Silverlight">
+      <SpecificVersion>False</SpecificVersion>
+      
+    <Private>False</Private></Reference>
+    
+    <Reference Include="PresentationCore"><Private>False</Private></Reference>
+    <Reference Include="PresentationFramework"><Private>False</Private></Reference>
+    <Reference Include="ReachFramework"><Private>False</Private></Reference>
+    <Reference Include="System"><Private>False</Private></Reference>
+    <Reference Include="System.ComponentModel.Composition"><Private>False</Private></Reference>
+    <Reference Include="System.configuration"><Private>False</Private></Reference>
+    <Reference Include="System.Core"><Private>False</Private></Reference>
+    <Reference Include="System.Data"><Private>False</Private></Reference>
+    <Reference Include="System.Drawing"><Private>False</Private></Reference>
+    <Reference Include="System.Printing"><Private>False</Private></Reference>
+    <Reference Include="System.Runtime.Serialization"><Private>False</Private></Reference>
+    <Reference Include="System.ServiceModel"><Private>False</Private></Reference>
+    <Reference Include="System.ServiceModel.Web"><Private>False</Private></Reference>
+    <Reference Include="System.Xaml"><Private>False</Private></Reference>
+    <Reference Include="System.Xml"><Private>False</Private></Reference>
+    <Reference Include="WindowsBase"><Private>False</Private></Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ConfigSections\AssemblyNameElement.cs" />
+    <Compile Include="ConfigSections\DocumentStoreSection.cs" />
+    <Compile Include="ConfigSections\IncludeAssembliesElementCollection.cs" />
+    <Compile Include="ConfigSections\Native\ConfigurationDefaultConstants.cs" />
+    <Compile Include="ConfigSections\PrintingServiceSection.cs" />
+    <Compile Include="DelegateExtensionsResolver.cs" />
+    <Compile Include="Extensions\DocumentDataStorageProviderExtensions.cs" />
+    <Compile Include="Extensions\IBinaryDataStorageExtension.cs" />
+    <Compile Include="Extensions\IDataSourceService.cs" />
+    <Compile Include="Extensions\IDocumentDataStorageProvider.cs" />
+    <Compile Include="Extensions\IDocumentExportInterceptor.cs" />
+    <Compile Include="Extensions\IDocumentPrintInterceptor.cs" />
+    <Compile Include="Extensions\IReportBuildInterceptor.cs" />
+    <Compile Include="Extensions\IReportResolver.cs" />
+    <Compile Include="IExtensionsResolver.cs" />
+    <Compile Include="MefExtensionsResolver.cs" />
+    <Compile Include="Native\AutoDisposableList.cs" />
+    <Compile Include="Native\BackgroundService.cs" />
+    <Compile Include="Native\ConfigurationSettings.cs" />
+    <Compile Include="Native\ConfigurationSettings.Extensions.cs" />
+    <Compile Include="Native\CultureSwitcher.cs" />
+    <Compile Include="Native\DAL\BinaryChunk.cs" />
+    <Compile Include="Native\DAL\BinaryChunkOwner.cs" />
+    <Compile Include="Native\DAL\BoxedExportMode.cs" />
+    <Compile Include="Native\DAL\BoxedExportMode.Extension.cs" />
+    <Compile Include="Native\DAL\ExportedDocument.cs" />
+    <Compile Include="Native\DAL\ExtendedXPObject.cs" />
+    <Compile Include="Native\DAL\IEnumerableChangedProperties.cs" />
+    <Compile Include="Native\DAL\PagesRequestInformation.cs" />
+    <Compile Include="Native\DAL\PagesResponseInformation.cs" />
+    <Compile Include="Native\DAL\SmartUnitOfWork.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Native\DAL\SmartXPObject.cs" />
+    <Compile Include="Native\DAL\StoredDocument.cs" />
+    <Compile Include="Native\DAL\StoredDocumentRelatedData.cs" />
+    <Compile Include="Native\DAL\StoredServiceFault.cs" />
+    <Compile Include="Native\DAL\SupportedExportOptionKind.cs" />
+    <Compile Include="Native\DAL\TaskRequestingAction.cs" />
+    <Compile Include="Native\DAL\XpoEntityNotFoundException.cs" />
+    <Compile Include="Native\DAL\XpoHelper.cs" />
+    <Compile Include="Native\DocumentDataStorageProvider.cs" />
+    <Compile Include="Native\DocumentDoesNotExistException.cs" />
+    <Compile Include="Native\ExportedDocumentResponseInfo.cs" />
+    <Compile Include="Native\ExportOptionsInfo.cs" />
+    <Compile Include="Native\Extensions\IInstanceIdentityResolver.cs" />
+    <Compile Include="Native\Helper.cs" />
+    <Compile Include="Native\IConfigurationSettings.cs" />
+    <Compile Include="Native\IDelegateOverriddenFunctionalityReportService.cs" />
+    <Compile Include="Native\IDuplexEventWaitHandle.cs" />
+    <Compile Include="Native\FakeDuplexEventWaitHandle.cs" />
+    <Compile Include="Native\IntegrityContainerCreator.cs" />
+    <Compile Include="Native\MemoryStreamExtensions.cs" />
+    <Compile Include="Native\Messages.cs" />
+    <Compile Include="Native\ServiceContainer\ContainerRegistrationKind.cs" />
+    <Compile Include="Native\ServiceContainer\DefaultContainer.cs" />
+    <Compile Include="Native\ServiceContainer\IIntegrityContainer.cs" />
+    <Compile Include="Native\ServiceContainer\IntegrityContainer.Extensions.cs" />
+    <Compile Include="Native\ServiceContainer\ServiceIntegrityContainer.cs" />
+    <Compile Include="Native\Services\BinaryStore\BinaryChunkStream.cs" />
+    <Compile Include="Native\Services\BinaryStore\BinaryDataStorageServiceExtensions.cs" />
+    <Compile Include="Native\Services\BinaryStore\BinaryDataStorageServiceExtensionWrapper.cs" />
+    <Compile Include="Native\Services\BinaryStore\BinaryDataStorageServiceProvider.cs" />
+    <Compile Include="Native\Services\BinaryStore\IBinaryContentProvider.cs" />
+    <Compile Include="Native\Services\BinaryStore\IBinaryDataStorageService.cs" />
+    <Compile Include="Native\Services\BinaryStore\IBinaryDataStorageServiceProvider.cs" />
+    <Compile Include="Native\Services\BinaryStore\XpoBinaryDataStorageService.cs" />
+    <Compile Include="Native\Services\CleanService.cs" />
+    <Compile Include="Native\Services\ConfigurationService.cs" />
+    <Compile Include="Native\Services\ConfigurationSettingsProvider.cs" />
+    <Compile Include="Native\Services\ConfiguredMefExtensionsResolver.cs" />
+    <Compile Include="Native\Services\DALService.cs" />
+    <Compile Include="Native\Services\DefaultLogger.cs" />
+    <Compile Include="Native\Services\Domain\DocumentExportService.cs" />
+    <Compile Include="Native\Services\Domain\DocumentExportServiceExtensions.cs" />
+    <Compile Include="Native\Services\Domain\DocumentPrintService.cs" />
+    <Compile Include="Native\Services\Domain\DocumentStoreService.cs" />
+    <Compile Include="Native\Services\Domain\IDocumentExportService.cs" />
+    <Compile Include="Native\Services\Domain\IDocumentPrintService.cs" />
+    <Compile Include="Native\Services\Domain\IDocumentStoreService.cs" />
+    <Compile Include="Native\Services\Factories\DocumentMediatorFactory.cs" />
+    <Compile Include="Native\Services\Factories\DocumentMediatorFactory.Extensions.cs" />
+    <Compile Include="Native\Services\Factories\ExportFactory.cs" />
+    <Compile Include="Native\Services\Factories\ExportFactory.Extensions.cs" />
+    <Compile Include="Native\Services\Factories\ExtensionsFactory.cs" />
+    <Compile Include="Native\Services\Factories\IDocumentMediatorFactory.cs" />
+    <Compile Include="Native\Services\Factories\IExportFactory.cs" />
+    <Compile Include="Native\Services\Factories\IExtensionsFactory.cs" />
+    <Compile Include="Native\Services\Factories\IPrintingSystemFactory.cs" />
+    <Compile Include="Native\Services\Factories\PrintingSystemFactory.cs" />
+    <Compile Include="Native\Services\ICleanService.cs" />
+    <Compile Include="Native\Services\IConfigurationService.cs" />
+    <Compile Include="Native\Services\IConfigurationSettingsProvider.cs" />
+    <Compile Include="Native\Services\IDALService.cs" />
+    <Compile Include="Native\Services\ILoggingService.cs" />
+    <Compile Include="Native\Services\InMemoryResourceProviderService.cs" />
+    <Compile Include="Native\Services\IPollingService.cs" />
+    <Compile Include="Native\Services\IResourceProviderService.cs" />
+    <Compile Include="Native\Services\ISerializationService.cs" />
+    <Compile Include="Native\Services\IThreadFactoryService.cs" />
+    <Compile Include="Native\Services\LoggingService.cs" />
+    <Compile Include="Native\Services\LoggingService.Extensions.cs" />
+    <Compile Include="Native\Services\PollingService.cs" />
+    <Compile Include="Native\Services\PrintingSystemConfigurationService.cs" />
+    <Compile Include="Native\Services\ResourceProviderService.Extensions.cs" />
+    <Compile Include="Native\Services\SerializationService.cs" />
+    <Compile Include="Native\Services\SerializationService.Extension.cs" />
+    <Compile Include="Native\Services\StubConfigurationSettings.cs" />
+    <Compile Include="Native\Services\StubLoggingService.cs" />
+    <Compile Include="Native\Services\ThreadFactoryService.cs" />
+    <Compile Include="Native\Services\ThreadFactoryService.Extension.cs" />
+    <Compile Include="Native\Services\Transient\DocumentBuilder.cs" />
+    <Compile Include="Native\Services\Transient\DocumentExportConfiguration.cs" />
+    <Compile Include="Native\Services\Transient\DocumentExporter.cs" />
+    <Compile Include="Native\Services\Transient\DocumentMediator.cs" />
+    <Compile Include="Native\Services\Transient\DocumentPrinter.cs" />
+    <Compile Include="Native\Services\Transient\DocumentWorkerBase.cs" />
+    <Compile Include="Native\Services\Transient\ExclusivelyDocumentPagesExporterWrapper.cs" />
+    <Compile Include="Native\Services\Transient\ExportMediator.cs" />
+    <Compile Include="Native\Services\Transient\HtmlPagesExporter.cs" />
+    <Compile Include="Native\Services\Transient\IDocumentBuilder.cs" />
+    <Compile Include="Native\Services\Transient\IDocumentExporter.cs" />
+    <Compile Include="Native\Services\Transient\IDocumentMediator.cs" />
+    <Compile Include="Native\Services\Transient\IDocumentPrinter.cs" />
+    <Compile Include="Native\Services\Transient\IDocumentWorker.cs" />
+    <Compile Include="Native\Services\Transient\IEntityMediator.cs" />
+    <Compile Include="Native\Services\Transient\IExportMediator.cs" />
+    <Compile Include="Native\Services\Transient\ImagePagesExporter.cs" />
+    <Compile Include="Native\Services\Transient\IPagesExporter.cs" />
+    <Compile Include="Native\Services\Transient\IPagesRequestProcessor.cs" />
+    <Compile Include="DataProviderHelper.cs" />
+    <Compile Include="Native\DuplexEventWaitHandle.cs" />
+    <Compile Include="Native\ConfiguredReport.cs" />
+    <Compile Include="Native\ContainerExtensions.cs" />
+    <Compile Include="Native\DAL\PrintedDocument.cs" />
+    <Compile Include="Native\DomainTypeResolver.cs" />
+    <Compile Include="Native\ITypeResolver.cs" />
+    <Compile Include="Native\ReportCreationReason.cs" />
+    <Compile Include="Native\ReportDesignerSession.cs" />
+    <Compile Include="Native\ReportServiceHelper.cs" />
+    <Compile Include="Native\ReportServiceMessages.cs" />
+    <Compile Include="Native\ServiceContainer\XRBootstrapper.cs" />
+    <Compile Include="Native\Services\Domain\DocumentBuildService.cs" />
+    <Compile Include="Native\Services\Domain\IDocumentBuildService.cs" />
+    <Compile Include="Native\Services\Factories\DocumentBuildFactory.cs" />
+    <Compile Include="Native\Services\Factories\IDocumentBuildFactory.cs" />
+    <Compile Include="Native\Services\Factories\IPrintFactory.cs" />
+    <Compile Include="Native\Services\Factories\IReportFactory.cs" />
+    <Compile Include="Native\Services\Factories\PrintFactory.cs" />
+    <Compile Include="Native\Services\Factories\PrintFactory.Extensions.cs" />
+    <Compile Include="Native\Services\Factories\ReportFactory.cs" />
+    <Compile Include="Native\Services\IIntermediateReportService.cs" />
+    <Compile Include="Native\Services\IntermediateReportService.cs" />
+    <Compile Include="Native\Services\IPrintingSystemConfigurationService.cs" />
+    <Compile Include="Native\Services\Transient\IPrintMediator.cs" />
+    <Compile Include="Native\Services\Transient\IXamlPagesExporter.cs" />
+    <Compile Include="Native\Services\Transient\MediatorBase.cs" />
+    <Compile Include="Native\Services\Transient\MediatorInitialization.cs" />
+    <Compile Include="Native\Services\Transient\PagesExporterBase.cs" />
+    <Compile Include="Native\Services\Transient\PagesRequestProcessor.cs" />
+    <Compile Include="Native\Services\Transient\PrintingSystemEventArgs.cs" />
+    <Compile Include="Native\Services\Transient\PrintMediator.cs" />
+    <Compile Include="Native\Services\Transient\PrnxPagesExporter.cs" />
+    <Compile Include="Native\Services\Transient\ReportConfiguration.cs" />
+    <Compile Include="Native\Services\Transient\ReportLifetimeConfiguration.cs" />
+    <Compile Include="Native\Services\Transient\RequestingAction.cs" />
+    <Compile Include="Native\Services\Transient\XamlPagesExporter.cs" />
+    <Compile Include="Native\TransientImpersonationContext.cs" />
+    <Compile Include="Native\WebBackgroundPageBuildEngineStrategy.cs" />
+    <Compile Include="Native\WebDynamicDocumentPaginator.cs" />
+    <Compile Include="Native\XpsExportOptionsInfo.cs" />
+    <Compile Include="Native\XPS\PageRangeCustomPaginator.cs" />
+    <Compile Include="Native\XPS\XpsExporter.cs" />
+    <Compile Include="Native\XPS\XpsExportService.cs" />
+    <Compile Include="ParameterValidationException.cs" />
+    <Compile Include="ReportServiceExtensionsResolver.cs" />
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <Compile Include="Native\SingleThreadProgressReflector.cs" />
+    <Compile Include="Native\SpecificNameTypeResolver.cs" />
+    <Compile Include="IReportService.cs" />
+    <Compile Include="Native\TypeResolvingApproach.cs" />
+    <Compile Include="Native\XRServiceUrlResolver.cs" />
+    <Compile Include="ReportService.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
+  </ItemGroup>
+  <ItemGroup>
+    
+    
+    
+    
+    
+    
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <PropertyGroup>
+    
+  </PropertyGroup>
+</Project>

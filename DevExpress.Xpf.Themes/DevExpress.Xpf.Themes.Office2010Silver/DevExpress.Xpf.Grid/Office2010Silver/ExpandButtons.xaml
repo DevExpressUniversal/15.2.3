@@ -1,0 +1,61 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:dxgt="http://schemas.devexpress.com/winfx/2008/xaml/grid/themekeys" xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid" xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:cs="colorscheme_ignorable_uri" mc:Ignorable="cs">
+    <dx:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    <dx:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverterInverted" Invert="True" />
+    <ControlTemplate x:Key="{dxgt:GroupRowThemeKey ResourceKey=ExpandButtonTemplate}" TargetType="{x:Type dx:ToggleStateButton}">
+        <Grid Background="Transparent" SnapsToDevicePixels="True" cs:Name="Grid_0001">
+            <Path x:Name="Plus2" Fill="#FF80838F" Data="F1 M 248,132L 247,132L 247,130L 249,128L 247,126L 247,124L 248,124L 252,128L 248,132 Z " Width="5" Height="8" Stretch="Fill" Visibility="{Binding IsChecked, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BooleanToVisibilityConverterInverted}}" cs:Name="Path_0001" />
+            <Path x:Name="Plus1" Fill="#FF80838F" Data="F1 M 261,133L 261,132L 259,132L 257,134L 255,132L 253,132L 253,133L 257,137L 261,133 Z " Width="8" Height="5" Stretch="Fill" Visibility="{Binding IsChecked, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BooleanToVisibilityConverter}}" cs:Name="Path_0002" />
+        </Grid>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsChecked" Value="False">
+                <Setter Property="Visibility" Value="Collapsed" TargetName="Plus1" />
+            </Trigger>
+            <Trigger Property="IsChecked" Value="True">
+                <Setter Property="Visibility" Value="Collapsed" TargetName="Plus2" />
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Grid.BackgroundBorderControl}" TargetType="{x:Type dxg:BackgroundBorderControl}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type dxg:BackgroundBorderControl}">
+                    <Border Background="#FFFFFFFF" BorderBrush="#FFFFFFFF" BorderThickness="0,0,0,1" Margin="0,0,1,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" cs:Name="Border_0001" />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <ControlTemplate x:Key="{dxgt:GroupRowThemeKey ResourceKey=ExpandDetailButtonTemplate}" TargetType="{x:Type dx:ToggleStateButton}">
+        <Grid Background="Transparent" dx:FrameworkElementHelper.IsVisible="{Binding Path=(dxg:GridDetailExpandButtonContainer.IsDetailButtonVisible), RelativeSource={RelativeSource TemplatedParent}}" cs:Name="Grid_0002">
+            <Border Background="Transparent" BorderBrush="#FFFFFFFF" BorderThickness="0,0,0,1" Margin="0,0,1,0" Visibility="{Binding IsChecked, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BooleanToVisibilityConverter}}" cs:Name="Border_0003" />
+            <Grid Height="9" Width="9">
+                <Rectangle Fill="#FF000000" Margin="1,1,-1,-1" Opacity="0.1" cs:Name="Rectangle_0001" />
+                <Rectangle Margin="1">
+                    <Rectangle.Fill>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" cs:Name="LinearGradientBrush_0442">
+                            <GradientStop Color="#FFFFFFFF" Offset="0" cs:Name="GradientStop_0001" />
+                            <GradientStop Color="#FFEAEDF1" Offset="1" cs:Name="GradientStop_0002" />
+                        </LinearGradientBrush>
+                    </Rectangle.Fill>
+                </Rectangle>
+                <Path Stretch="Fill" Visibility="{Binding IsChecked, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BooleanToVisibilityConverter}}" Fill="#FF80838F" Data="F1 M 145,63L 154,63L 154,72L 145,72L 145,63 Z M 146,64.0001L 146,71.0001L 153,71.0001L 153,64.0001L 146,64.0001 Z M 147,67.0001L 152,67.0001L 152,68.0001L 147,68.0001L 147,67.0001 Z " cs:Name="Path_0003" />
+                <Path Stretch="Fill" Visibility="{Binding IsChecked, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BooleanToVisibilityConverterInverted}}" Fill="#FF80838F" Data="F1 M 135,67L 137,67L 137,65L 138,65L 138,67L 140,67L 140,68L 138,68L 138,70L 137,70L 137,68L 135,68L 135,67 Z M 133,63.0001L 142,63.0001L 142,72.0001L 133,72.0001L 133,63.0001 Z M 134,64.0001L 134,71.0001L 141,71.0001L 141,64.0001L 134,64.0001 Z " cs:Name="Path_0004" />
+            </Grid>
+        </Grid>
+    </ControlTemplate>
+    <Style x:Key="{dxgt:GroupRowThemeKey ResourceKey=ExpandButtonStyle}" TargetType="{x:Type dx:ToggleStateButton}">
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="Focusable" Value="False" />
+        <Setter Property="Width" Value="13" />
+        <Setter Property="Height" Value="13" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="Template" Value="{DynamicResource {dxgt:GroupRowThemeKey ResourceKey=ExpandButtonTemplate}}" />
+    </Style>
+    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Grid.GridToggleStateButton}" TargetType="{x:Type dxg:GridToggleStateButton}">
+        <Setter Property="Focusable" Value="false" />
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="Template" Value="{DynamicResource {dxgt:GroupRowThemeKey ResourceKey=ExpandDetailButtonTemplate}}" />
+    </Style>
+</ResourceDictionary>

@@ -1,0 +1,85 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:dxr="http://schemas.devexpress.com/winfx/2008/xaml/ribbon" xmlns:dxrt="http://schemas.devexpress.com/winfx/2008/xaml/ribbon/themekeys" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:cs="colorscheme_ignorable_uri" mc:Ignorable="cs">
+    <ControlTemplate x:Key="{dxrt:BackstageTabItemThemeKey ResourceKey=BorderTemplate}" TargetType="{x:Type dxr:RibbonCheckedBorderControl}">
+        <Grid Name="rootGrid" Margin="0,0,-1,0" SnapsToDevicePixels="True">
+            <Grid x:Name="HoverState" Opacity="0">
+                <Border Background="#FF857E62" BorderBrush="#FFD9B32D" BorderThickness="0,1,0,1" Margin="0,0,1,0" cs:Name="Border_0002" />
+            </Grid>
+            <Grid x:Name="PressedState" Opacity="0">
+                <Border BorderBrush="#FF7D3900" BorderThickness="0,1,0,1" cs:Name="Border_0003">
+                    <Border.Background>
+                        <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5" cs:Name="LinearGradientBrush_0532">
+                            <GradientStop Color="#FFEA8817" Offset="0" cs:Name="GradientStop_0001" />
+                            <GradientStop Color="#FFEA8817" Offset="1" cs:Name="GradientStop_0002" />
+                            <GradientStop Color="#FFFAAF29" Offset="0.25" cs:Name="GradientStop_0003" />
+                            <GradientStop Color="#FFFBBB31" Offset="0.5" cs:Name="GradientStop_0004" />
+                            <GradientStop Color="#FFFAAF29" Offset="0.75" cs:Name="GradientStop_0005" />
+                        </LinearGradientBrush>
+                    </Border.Background>
+                    <Border>
+                        <Border.Background>
+                            <RadialGradientBrush cs:Name="RadialGradientBrush_0016">
+                                <RadialGradientBrush.RelativeTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform CenterX="0.5" CenterY="0.5" />
+                                        <TranslateTransform X="0" Y="0.25" />
+                                    </TransformGroup>
+                                </RadialGradientBrush.RelativeTransform>
+                                <GradientStop Color="#FFFED548" Offset="0" cs:Name="GradientStop_0006" />
+                                <GradientStop Color="#00FED548" Offset="1" cs:Name="GradientStop_0007" />
+                            </RadialGradientBrush>
+                        </Border.Background>
+                    </Border>
+                </Border>
+                <Border Background="#FFD38417" Width="1" Margin="0,1,0,1" HorizontalAlignment="Right" cs:Name="Border_0004" />
+                <Grid Height="18" Width="10" HorizontalAlignment="Right" VerticalAlignment="Center">
+                    <Path Stretch="Fill" Fill="#FFD38417" Data="F1 M 84,100L 94,90L 94,100L 94,110L 84,100 Z" Margin="1,0,1,0" UseLayoutRounding="False" cs:Name="Path_0001" />
+                    <Path Stretch="Fill" Fill="#FFFFFFFF" Data="F1 M 84,100L 94,90L 94,100L 94,110L 84,100 Z" Margin="2,0,0,0" UseLayoutRounding="False" cs:Name="Path_0002" />
+                </Grid>
+            </Grid>
+            <ContentPresenter />
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup x:Name="CommonStates">
+                    <VisualState x:Name="Normal" />
+                    <VisualState x:Name="Checked">
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="PressedState" Duration="0" To="1" />
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Hover">
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="HoverState" Duration="0" To="1" />
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Disabled">
+                        <Storyboard>
+                            <DoubleAnimation To="0.6" Duration="0:0:0" Storyboard.TargetName="rootGrid" Storyboard.TargetProperty="Opacity"/>
+                        </Storyboard>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+        </Grid>
+    </ControlTemplate>
+    <Style x:Key="{dxrt:BackstageTabItemThemeKey ResourceKey=BorderStyle}" TargetType="{x:Type dxr:RibbonCheckedBorderControl}">
+        <Setter Property="Margin" Value="0,1,0,1" />
+        <Setter Property="Template" Value="{DynamicResource {dxrt:BackstageTabItemThemeKey ResourceKey=BorderTemplate}}" />
+    </Style>
+    <Style x:Key="{dxrt:BackstageTabItemThemeKey ResourceKey=NormalTextStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="FontSize" Value="12" />
+        <Setter Property="Foreground" Value="#FFFFFFFF" cs:Name="Setter_0001" />
+    </Style>
+    <Style x:Key="{dxrt:BackstageTabItemThemeKey ResourceKey=HoverTextStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="FontSize" Value="12" />
+        <Setter Property="Foreground" Value="#FFFFFFFF" cs:Name="Setter_0002" />
+    </Style>
+    <Style x:Key="{dxrt:BackstageTabItemThemeKey ResourceKey=SelectedTextStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="FontSize" Value="12" />
+        <Setter Property="Foreground" Value="#FF000000" cs:Name="Setter_0003" />
+    </Style>
+    <Style x:Key="{dxrt:BackstageTabItemThemeKey ResourceKey=ContentStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Margin" Value="2,7,12,7"/>
+    </Style>
+    <Style x:Key="{dxrt:BackstageTabItemThemeKey ResourceKey=ContentTabletOfficeStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Margin" Value="36,11,36,11"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+    </Style>
+</ResourceDictionary>

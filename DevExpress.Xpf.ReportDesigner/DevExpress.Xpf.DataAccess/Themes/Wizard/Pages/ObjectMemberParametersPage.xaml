@@ -1,0 +1,17 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+            xmlns:local="clr-namespace:DevExpress.Xpf.DataAccess.DataSourceWizard"
+            xmlns:localization="clr-namespace:DevExpress.Xpf.DataAccess.Localization"
+            xmlns:localnative="clr-namespace:DevExpress.Xpf.DataAccess.Native">
+
+    <DataTemplate x:Key="{x:Type local:ObjectMemberParametersPage}">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <localnative:WizardTitle Title="{localization:DataAccessUIStringId StringId=WizardPageObjectMemberParameters}" />
+            <local:ParameterEditor Grid.Row="1" ItemsSource="{Binding Parameters}" ReportParameters="{Binding ReportParameters}" />
+        </Grid>
+    </DataTemplate>
+</ResourceDictionary>

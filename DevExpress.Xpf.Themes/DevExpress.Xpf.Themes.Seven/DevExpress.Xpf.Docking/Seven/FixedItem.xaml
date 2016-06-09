@@ -1,0 +1,128 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+					xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+                    xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/docking/themekeys"
+					xmlns:local="http://schemas.devexpress.com/winfx/2008/xaml/docking"
+					xmlns:ve="http://schemas.devexpress.com/winfx/2008/xaml/docking/visualelements">
+    <dx:BoolToVisibilityInverseConverter x:Key="boolToVisibilityInverseConverter" />
+    <dx:BoolToVisibilityConverter x:Key="boolToVisibilityConverter" />
+	<ControlTemplate x:Key="{dxt:SplitterControlElementsThemeKey ResourceKey=Template}">
+		<Border x:Name="PART_Border" Background="Transparent" ve:DockPane.HitTestType="Bounds"
+                Margin="{Binding Path=(local:DockLayoutManager.LayoutItem).ActualMargin, RelativeSource={RelativeSource TemplatedParent}}"
+                Padding="{Binding Path=(local:DockLayoutManager.LayoutItem).ActualPadding, RelativeSource={RelativeSource TemplatedParent}}"
+                Visibility="{Binding Path=(local:DockLayoutManager.LayoutItem).Visibility, RelativeSource={RelativeSource TemplatedParent}}">
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup x:Name="CommonStates">
+                    <VisualState x:Name="Normal" />
+                    <VisualState x:Name="MouseOver">
+                        <Storyboard>
+                            <ColorAnimation Storyboard.TargetName="GlyphHorizontal" Storyboard.TargetProperty="(Path.Fill).(SolidColorBrush.Color)" Duration="0" To="#FF535666"/>
+                            <ColorAnimation Storyboard.TargetName="GlyphVertical" Storyboard.TargetProperty="(Path.Fill).(SolidColorBrush.Color)" Duration="0" To="#FF535666"/>
+                        </Storyboard>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+            <ve:DropBoundsControl x:Name="Drop" Margin="1">
+				<dx:Container Background="{TemplateBinding Background}" UseLayoutRounding="True">
+					<dx:Container x:Name="PART_HorizontalRootElement">
+						<Grid SnapsToDevicePixels="True">
+							<Path x:Name="GlyphHorizontal"
+                                  Stretch="Fill" Fill="#FFA0A0A0"
+                                  Data="F1 M 285.5,240C 286.328,240 287,240.672 287,241.5C 287,242.328 286.328,243 285.5,243C 284.672,243 284,242.328 284,241.5C 284,240.672 284.672,240 285.5,240 Z M 293.5,240C 294.328,240 295,240.672 295,241.5C 295,242.329 294.328,243 293.5,243C 292.671,243 292,242.329 292,241.5C 292,240.672 292.671,240 293.5,240 Z M 289.5,240C 290.328,240 291,240.672 291,241.5C 291,242.328 290.328,243 289.5,243C 288.672,243 288,242.328 288,241.5C 288,240.672 288.671,240 289.5,240 Z M 297.5,240C 298.328,240 299,240.672 299,241.5C 299,242.328 298.328,243 297.5,243C 296.672,243 296,242.328 296,241.5C 296,240.672 296.672,240 297.5,240 Z M 301.5,240C 302.328,240 303,240.672 303,241.5C 303,242.328 302.328,243 301.5,243C 300.672,243 300,242.328 300,241.5C 300,240.672 300.672,240 301.5,240 Z"
+                                  Margin="0,0,1,1" Height="3" Width="19"
+                                  UseLayoutRounding="False"/>
+							<Path Stretch="Fill" Fill="#CFFFFFFF"
+                                  Data="F1 M 285.5,240C 286.328,240 287,240.672 287,241.5C 287,242.328 286.328,243 285.5,243C 284.672,243 284,242.328 284,241.5C 284,240.672 284.672,240 285.5,240 Z M 293.5,240C 294.328,240 295,240.672 295,241.5C 295,242.329 294.328,243 293.5,243C 292.671,243 292,242.329 292,241.5C 292,240.672 292.671,240 293.5,240 Z M 289.5,240C 290.328,240 291,240.672 291,241.5C 291,242.328 290.328,243 289.5,243C 288.672,243 288,242.328 288,241.5C 288,240.672 288.671,240 289.5,240 Z M 297.5,240C 298.328,240 299,240.672 299,241.5C 299,242.328 298.328,243 297.5,243C 296.672,243 296,242.328 296,241.5C 296,240.672 296.672,240 297.5,240 Z M 301.5,240C 302.328,240 303,240.672 303,241.5C 303,242.328 302.328,243 301.5,243C 300.672,243 300,242.328 300,241.5C 300,240.672 300.672,240 301.5,240 Z"
+                                  Margin="1,1,0,0" Height="3" Width="19"
+                                  UseLayoutRounding="False"/>
+						</Grid>
+					</dx:Container>
+					<dx:Container x:Name="PART_VerticalRootElement">
+						<Grid SnapsToDevicePixels="True">
+							<Path x:Name="GlyphVertical"
+                                  Stretch="Fill" Fill="#FFA0A0A0"
+                                  Data="F1 M 268,195.5C 268,196.329 267.328,197 266.5,197C 265.672,197 265,196.329 265,195.5C 265,194.672 265.672,194 266.5,194C 267.328,194 268,194.672 268,195.5 Z M 268,203.5C 268,204.328 267.328,205 266.5,205C 265.672,205 265,204.328 265,203.5C 265,202.672 265.672,202 266.5,202C 267.328,202 268,202.672 268,203.5 Z M 268,199.5C 268,200.329 267.328,201 266.5,201C 265.672,201 265,200.329 265,199.5C 265,198.672 265.672,198 266.5,198C 267.328,198 268,198.672 268,199.5 Z M 268,207.5C 268,208.329 267.328,209 266.5,209C 265.672,209 265,208.329 265,207.5C 265,206.672 265.672,206 266.5,206C 267.328,206 268,206.672 268,207.5 Z M 268,211.5C 268,212.329 267.328,213 266.5,213C 265.672,213 265,212.329 265,211.5C 265,210.672 265.672,210 266.5,210C 267.328,210 268,210.672 268,211.5 Z"
+                                  Margin="0,0,1,1" Height="19" Width="3"
+                                  UseLayoutRounding="False"/>
+							<Path Stretch="Fill" Fill="#CFFFFFFF"
+                                  Data="F1 M 268,195.5C 268,196.329 267.328,197 266.5,197C 265.672,197 265,196.329 265,195.5C 265,194.672 265.672,194 266.5,194C 267.328,194 268,194.672 268,195.5 Z M 268,203.5C 268,204.328 267.328,205 266.5,205C 265.672,205 265,204.328 265,203.5C 265,202.672 265.672,202 266.5,202C 267.328,202 268,202.672 268,203.5 Z M 268,199.5C 268,200.329 267.328,201 266.5,201C 265.672,201 265,200.329 265,199.5C 265,198.672 265.672,198 266.5,198C 267.328,198 268,198.672 268,199.5 Z M 268,207.5C 268,208.329 267.328,209 266.5,209C 265.672,209 265,208.329 265,207.5C 265,206.672 265.672,206 266.5,206C 267.328,206 268,206.672 268,207.5 Z M 268,211.5C 268,212.329 267.328,213 266.5,213C 265.672,213 265,212.329 265,211.5C 265,210.672 265.672,210 266.5,210C 267.328,210 268,210.672 268,211.5 Z"
+                                  Margin="1,1,0,0" Height="19" Width="3"
+                                  UseLayoutRounding="False"/>
+						</Grid>
+					</dx:Container>
+				</dx:Container>
+			</ve:DropBoundsControl>
+		</Border>
+	</ControlTemplate>
+
+	<ControlTemplate x:Key="{dxt:EmptySpaceControlElementsThemeKey ResourceKey=Template}">
+		<Border x:Name="PART_Border" ve:DockPane.HitTestType="Bounds" Background="Transparent"
+                Margin="{Binding Path=(local:DockLayoutManager.LayoutItem).ActualMargin, RelativeSource={RelativeSource TemplatedParent}}"
+                Padding="{Binding Path=(local:DockLayoutManager.LayoutItem).ActualPadding, RelativeSource={RelativeSource TemplatedParent}}"
+                Visibility="{Binding Path=(local:DockLayoutManager.LayoutItem).Visibility, RelativeSource={RelativeSource TemplatedParent}}">
+			<ve:DropBoundsControl>
+                <Grid SnapsToDevicePixels="True"/>
+            </ve:DropBoundsControl>
+		</Border>
+	</ControlTemplate>
+
+    <DataTemplate x:Key="{dxt:LabelControlElementsThemeKey ResourceKey=Caption}">
+        <Border Background="Transparent" ve:DockPane.HitTestType="Header" DataContext="{Binding LayoutItem}">
+            <ve:TemplatedCaptionControl LayoutItem="{Binding}" />
+        </Border>
+	</DataTemplate>
+
+    <DataTemplate x:Key="{dxt:LabelControlElementsThemeKey ResourceKey=Content}">
+        <Border ve:DockPane.HitTestType="Content" DataContext="{Binding LayoutItem}">
+            <!--BEGIN WPF-->
+            <ContentPresenter Content="{Binding Path=Content}" 
+                              ContentTemplate="{Binding ContentTemplate}" 
+                              ContentTemplateSelector="{Binding ContentTemplateSelector}" /><!--END WPF--><!--ONLY SL            
+            <ContentPresenter Content="{Binding Path=Content}" 
+                              ContentTemplate="{Binding ContentTemplate}" />ONLY SL-->
+        </Border>
+	</DataTemplate>
+
+    <ControlTemplate x:Key="{dxt:LabelControlElementsThemeKey ResourceKey=Template}" TargetType="ve:psvHeaderedContentControl">
+        <Border x:Name="PART_Border" ve:DockPane.HitTestType="Bounds" Background="Transparent"
+                Padding="{Binding LayoutItem.ActualPadding, RelativeSource={RelativeSource TemplatedParent}}"
+                Margin="{Binding LayoutItem.ActualMargin, RelativeSource={RelativeSource TemplatedParent}}"
+                Visibility="{Binding LayoutItem.Visibility, RelativeSource={RelativeSource TemplatedParent}}">
+            <ve:DropBoundsControl>
+                <Grid SnapsToDevicePixels="true">
+                    <ve:LabelControlCaptionPresenter x:Name="PART_Caption" Content="{TemplateBinding Header}"
+                                                     ContentTemplate="{TemplateBinding HeaderTemplate}"
+                                                     HorizontalAlignment="{Binding LayoutItem.CaptionHorizontalAlignment, RelativeSource={RelativeSource TemplatedParent}}" VerticalAlignment="{Binding LayoutItem.CaptionVerticalAlignment, RelativeSource={RelativeSource TemplatedParent}}"
+                                                     Visibility="{Binding LayoutItem.HasContent, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource boolToVisibilityInverseConverter}}" />
+                    <ve:LabelControlContentPresenter x:Name="PART_Content" Content="{TemplateBinding Content}" 
+                                                     ContentTemplate="{TemplateBinding ContentTemplate}"
+                                                     Margin="{Binding Path=(local:DockLayoutManager.LayoutItem).ActualPadding, RelativeSource={RelativeSource TemplatedParent}}"
+                                                     HorizontalAlignment="{Binding LayoutItem.ContentHorizontalAlignment, RelativeSource={RelativeSource TemplatedParent}}"
+                                                     VerticalAlignment="{Binding LayoutItem.ContentVerticalAlignment, RelativeSource={RelativeSource TemplatedParent}}"
+                                                     Visibility="{Binding LayoutItem.HasContent, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource boolToVisibilityConverter}}" />
+                </Grid>
+            </ve:DropBoundsControl>
+        </Border>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="{dxt:SeparatorControlElementsThemeKey ResourceKey=Template}">
+		<Border x:Name="PART_Border" Background="Transparent" ve:DockPane.HitTestType="Bounds"
+                Margin="{Binding Path=(local:DockLayoutManager.LayoutItem).ActualMargin, RelativeSource={RelativeSource TemplatedParent}}"
+				Padding="{Binding Path=(local:DockLayoutManager.LayoutItem).ActualPadding, RelativeSource={RelativeSource TemplatedParent}}"
+				Visibility="{Binding Path=(local:DockLayoutManager.LayoutItem).Visibility, RelativeSource={RelativeSource TemplatedParent}}">
+			<ve:DropBoundsControl>
+				<Grid SnapsToDevicePixels="True">
+					<Grid Margin="2,4,2,4" Width="2" x:Name="PART_VerticalRootElement">
+                        <Rectangle Stretch="Fill" Fill="#FFCCCCCC" Margin="0,0,0,1" Width="1" HorizontalAlignment="Left"/>
+                        <Rectangle Stretch="Fill" Fill="#FFFFFFFF" Margin="0,1,0,0" Width="1" HorizontalAlignment="Right"/>
+					</Grid>
+					<Grid Margin="4,2,4,2" Height="2" x:Name="PART_HorizontalRootElement">
+                        <Rectangle Stretch="Fill" Fill="#FFCCCCCC" Margin="0,0,1,0" Height="1" VerticalAlignment="Top"/>
+                        <Rectangle Stretch="Fill" Fill="#FFFFFFFF" Margin="1,0,0,0" Height="1" VerticalAlignment="Bottom"/>
+					</Grid>
+				</Grid>
+			</ve:DropBoundsControl>
+		</Border>
+	</ControlTemplate>
+
+</ResourceDictionary>

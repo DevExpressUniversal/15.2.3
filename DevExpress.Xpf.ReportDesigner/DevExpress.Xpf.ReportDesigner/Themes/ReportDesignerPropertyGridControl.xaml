@@ -1,0 +1,1347 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+            xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+            xmlns:reportextensions="clr-namespace:DevExpress.Xpf.Reports.UserDesigner.Native.ReportExtensions"
+            xmlns:propertygrid="clr-namespace:DevExpress.Xpf.Reports.UserDesigner.PropertyGrid"
+            xmlns:reportexplorernative="clr-namespace:DevExpress.Xpf.Reports.UserDesigner.ReportExplorer.Native"
+            xmlns:designereditors="clr-namespace:DevExpress.Xpf.Reports.UserDesigner.Editors"
+            xmlns:dxpg="http://schemas.devexpress.com/winfx/2008/xaml/propertygrid"
+            xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+            xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+            xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
+            xmlns:dxdiag="clr-namespace:DevExpress.Xpf.Diagram;assembly=DevExpress.Xpf.Diagram.v15.2"
+            xmlns:dxdiagnative="clr-namespace:DevExpress.Xpf.Diagram.Native;assembly=DevExpress.Xpf.Diagram.v15.2"
+            xmlns:cm="clr-namespace:System.ComponentModel;assembly=WindowsBase"
+            xmlns:drawing="clr-namespace:System.Drawing;assembly=System.Drawing"
+            xmlns:printing="clr-namespace:System.Drawing.Printing;assembly=System.Drawing"
+            xmlns:xtraprinting="clr-namespace:DevExpress.XtraPrinting;assembly=DevExpress.Data.v15.2"
+            xmlns:xtraprintingcore="clr-namespace:DevExpress.XtraPrinting;assembly=DevExpress.Printing.v15.2.Core"
+            xmlns:barcode="clr-namespace:DevExpress.XtraPrinting.BarCode;assembly=DevExpress.Printing.v15.2.Core"
+            xmlns:xtrareportsparameters="clr-namespace:DevExpress.XtraReports.Parameters;assembly=DevExpress.Printing.v15.2.Core"
+            xmlns:xtrareportsui="clr-namespace:DevExpress.XtraReports.UI;assembly=DevExpress.XtraReports.v15.2"
+            xmlns:xtrareportsuipg="clr-namespace:DevExpress.XtraReports.UI.PivotGrid;assembly=DevExpress.XtraReports.v15.2"
+            xmlns:xtracharts="clr-namespace:DevExpress.XtraCharts;assembly=DevExpress.XtraCharts.v15.2"
+            xmlns:xtrareportsuipivotgrid="clr-namespace:DevExpress.XtraReports.UI.PivotGrid;assembly=DevExpress.XtraReports.v15.2"
+            xmlns:sys="clr-namespace:System;assembly=mscorlib"
+            xmlns:text="clr-namespace:System.Text;assembly=mscorlib"
+            xmlns:utils="clr-namespace:DevExpress.Utils;assembly=DevExpress.Data.v15.2"
+            xmlns:fieldlistnative="clr-namespace:DevExpress.Xpf.Reports.UserDesigner.FieldList.Native"
+            xmlns:designer="clr-namespace:DevExpress.Xpf.Reports.UserDesigner"
+            xmlns:designerthemes="clr-namespace:DevExpress.Xpf.Reports.UserDesigner.Themes"
+            xmlns:dxco="http://schemas.devexpress.com/winfx/2008/xaml/controls"
+            xmlns:dxwui="http://schemas.devexpress.com/winfx/2008/xaml/windowsui"
+            xmlns:dxwuin="http://schemas.devexpress.com/winfx/2008/xaml/windowsui/navigation"
+            xmlns:dxda="clr-namespace:DevExpress.Xpf.DataAccess.DataSourceWizard;assembly=DevExpress.Xpf.DataAccess.v15.2"
+            xmlns:dxdanative="clr-namespace:DevExpress.Xpf.DataAccess.Native;assembly=DevExpress.Xpf.DataAccess.v15.2"
+            xmlns:dxdacollectioneditors="clr-namespace:DevExpress.Xpf.DataAccess.Editors.CollectionUITypeEditors;assembly=DevExpress.Xpf.DataAccess.v15.2"
+            xmlns:designernative="clr-namespace:DevExpress.Xpf.Reports.UserDesigner.Native"
+            xmlns:designernativemetadata="clr-namespace:DevExpress.Xpf.Reports.UserDesigner.Native.Metadata"
+            xmlns:dxet="http://schemas.devexpress.com/winfx/2008/xaml/editors/themekeys"
+            xmlns:dxei="http://schemas.devexpress.com/winfx/2008/xaml/editors/internal">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/DevExpress.Xpf.ReportDesigner.v15.2;component/Themes/PropertyEditors/WatermarkUITypeEditor.xaml" />
+        <ResourceDictionary Source="/DevExpress.Xpf.ReportDesigner.v15.2;component/Themes/PropertyEditors/PdfSecurityOptionsUITypeEditor.xaml" />
+        <ResourceDictionary Source="/DevExpress.Xpf.ReportDesigner.v15.2;component/Themes/PropertyEditors/FilterStringUITypeEditor.xaml" />
+        <ResourceDictionary Source="/DevExpress.Xpf.ReportDesigner.v15.2;component/Themes/PropertyEditors/FormatStringUITypeEditor.xaml" />
+        <ResourceDictionary Source="/DevExpress.Xpf.ReportDesigner.v15.2;component/Themes/PropertyEditors/BordersUITypeEditor.xaml" />
+        <ResourceDictionary Source="/DevExpress.Xpf.ReportDesigner.v15.2;component/Themes/PropertyEditors/CollectionUITypeEditors/SubBandCollectionUITypeEditor.xaml" />
+        <ResourceDictionary Source="/DevExpress.Xpf.ReportDesigner.v15.2;component/Themes/PropertyEditors/CollectionUITypeEditors/XRTableOfContentsLevelCollectionEditor.xaml" />
+        <ResourceDictionary Source="/DevExpress.Xpf.ReportDesigner.v15.2;component/Themes/PropertyEditors/CollectionUITypeEditors/RecipientCollectionUITypeEditor.xaml" />
+        <ResourceDictionary Source="/DevExpress.Xpf.ReportDesigner.v15.2;component/Themes/PropertyEditors/CollectionUITypeEditors/AnnotationCollectionUITypeEditor.xaml" />
+        <ResourceDictionary Source="/DevExpress.Xpf.ReportDesigner.v15.2;component/Themes/PropertyEditors/SeriesViewUITypeEditor.xaml" />
+        <ResourceDictionary Source="/DevExpress.Xpf.ReportDesigner.v15.2;component/Themes/PropertyEditors/CollectionUITypeEditors/ChartTitleCollectionUITypeEditor.xaml" />
+        <ResourceDictionary Source="/DevExpress.Xpf.ReportDesigner.v15.2;component/Themes/PropertyEditors/CollectionUITypeEditors/DataFilterCollectionUITypeEditor.xaml" />
+        <ResourceDictionary Source="/DevExpress.Xpf.ReportDesigner.v15.2;component/Themes/PropertyEditors/CollectionUITypeEditors/XRPivotGridFieldCollectionUITypeEditor.xaml" />
+        <ResourceDictionary Source="/DevExpress.Xpf.ReportDesigner.v15.2;component/Themes/PropertyEditors/CollectionUITypeEditors/SeriesCollectionUITypeEditor.xaml" />
+        <ResourceDictionary Source="/DevExpress.Xpf.ReportDesigner.v15.2;component/Themes/PropertyEditors/CollectionUITypeEditors/XRPivotGridCustomTotalCollectionEditor.xaml" />
+        <ResourceDictionary Source="/DevExpress.Xpf.ReportDesigner.v15.2;component/Themes/PropertyEditors/CollectionUITypeEditors/ParameterBindingCollectionUITypeEditor.xaml" />
+        <ResourceDictionary Source="/DevExpress.Xpf.ReportDesigner.v15.2;component/Themes/PropertyEditors/CollectionUITypeEditors/CalculatedFieldCollectionUITypeEditor.xaml" />
+        <ResourceDictionary Source="/DevExpress.Xpf.ReportDesigner.v15.2;component/Themes/PropertyEditors/CollectionUITypeEditors/GroupFieldCollectionUITypeEditor.xaml" />
+        <ResourceDictionary Source="/DevExpress.Xpf.ReportDesigner.v15.2;component/Themes/PropertyEditors/CollectionUITypeEditors/FormattingRulesUITypeEditor.xaml" />
+        <ResourceDictionary Source="/DevExpress.Xpf.ReportDesigner.v15.2;component/Themes/PropertyEditors/CollectionUITypeEditors/FormattingRuleSheetUITypeEditor.xaml" />
+        <ResourceDictionary Source="/DevExpress.Xpf.ReportDesigner.v15.2;component/Themes/PropertyEditors/CollectionUITypeEditors/ReportParameterCollectionUITypeEditor.xaml" />
+        <ResourceDictionary Source="/DevExpress.Xpf.ReportDesigner.v15.2;component/Themes/PropertyEditors/CollectionUITypeEditors/XRControlStyleSheetUITypeEditor.xaml" />
+        <ResourceDictionary Source="/DevExpress.Xpf.ReportDesigner.v15.2;component/Themes/PropertyEditors/OLAPConnectionStringUITypeEditor.xaml" />
+        <ResourceDictionary Source="/DevExpress.Xpf.ReportDesigner.v15.2;component/Themes/PropertyEditors/SummaryUITypeEditor.xaml" />
+        <ResourceDictionary Source="/DevExpress.Xpf.ReportDesigner.v15.2;component/Themes/XRDiagram/BaseStyles.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    <Style TargetType="propertygrid:ReportDesignerPropertyGridControl">
+        <Setter Property="FieldListNodes" Value="{Binding Path=(designer:ReportDesigner.Document).ReportModel.FieldListNodes, RelativeSource={RelativeSource Self}}" />
+        <Setter Property="DataSources" Value="{Binding Path=(designer:ReportDesigner.Document).ReportModel.DataSources, RelativeSource={RelativeSource Self}}" />
+        <Setter Property="Items" Value="{Binding Path=(designer:ReportDesigner.Document).ReportModel, RelativeSource={RelativeSource Self}, Converter={designernative:YieldConverter UseEnumerableConverter=True}}" />
+        <Setter Property="SelectedItem" Value="{Binding Path=(designer:ReportDesigner.Document).ReportModel.SelectedModel, RelativeSource={RelativeSource Self}, Mode=TwoWay}" />
+        <Setter Property="SelectedObjectModel" Value="{Binding Path=(designer:ReportDesigner.Document).Diagram.SelectionModel, RelativeSource={RelativeSource Self}}" />
+        <Setter Property="propertygrid:ReportDesignerPropertyGridControl.Report" Value="{Binding Path=(designer:ReportDesigner.Document).ReportModel.XRObjectBase, RelativeSource={RelativeSource Self}}" />
+        <Setter Property="propertygrid:ReportDesignerPropertyGridControl.PrimarySelection" Value="{Binding SelectedItem.XRObjectBase, RelativeSource={RelativeSource Self}}" />
+
+        <Setter Property="MessageBoxServiceTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <ContentControl>
+                        <dx:DXMessageBoxService />
+                    </ContentControl>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="propertygrid:ReportDesignerPropertyGridControl">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.Resources>
+                            <designernative:PdfSecurityOptionsDisplayNameConverter x:Key="PdfSecurityOptionsDisplayNameConverter" />
+                            <designernative:HierarchyCollectionViewSource x:Key="ItemsSource" ItemsSource="{Binding Items, RelativeSource={RelativeSource TemplatedParent}}">
+                                <designernative:HierarchyCollectionViewSource.ItemTemplateSelector>
+                                    <reportexplorernative:ReportExplorerItemTemplateSelector>
+                                        <reportexplorernative:ReportExplorerItemTemplateSelector.ContainerTemplate>
+                                            <DataTemplate>
+                                                <designernative:HierarchyCollectionViewSourceNode ItemsSource="{Binding Controls}" />
+                                            </DataTemplate>
+                                        </reportexplorernative:ReportExplorerItemTemplateSelector.ContainerTemplate>
+                                        <reportexplorernative:ReportExplorerItemTemplateSelector.ItemTemplate>
+                                            <DataTemplate>
+                                                <designernative:HierarchyCollectionViewSourceNode />
+                                            </DataTemplate>
+                                        </reportexplorernative:ReportExplorerItemTemplateSelector.ItemTemplate>
+                                    </reportexplorernative:ReportExplorerItemTemplateSelector>
+                                </designernative:HierarchyCollectionViewSource.ItemTemplateSelector>
+                                <designernative:HierarchyCollectionViewSource.SortDescriptions>
+                                    <cm:SortDescription PropertyName="Name" Direction="Ascending" />
+                                </designernative:HierarchyCollectionViewSource.SortDescriptions>
+                            </designernative:HierarchyCollectionViewSource>
+                        </Grid.Resources>
+                        <dxe:ComboBoxEdit
+                                ItemsSource="{Binding Source={StaticResource ItemsSource}}"
+                                IsTextEditable="False"
+                                ApplyItemTemplateToSelectedItem="True"
+                                Margin="10"
+                                EditValue="{Binding SelectedItem, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" >
+                            <dxe:ComboBoxEdit.ItemTemplate >
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal" Margin="4,2,4,3">
+                                        <TextBlock Text="{Binding Name}" />
+                                        <TextBlock Text="  " />
+                                        <TextBlock Text="{Binding Converter={reportexplorernative:ReportExplorerItemToTypeStringConverter}}" />
+                                    </StackPanel>
+                                </DataTemplate>
+                            </dxe:ComboBoxEdit.ItemTemplate>
+                        </dxe:ComboBoxEdit>
+
+                        <dxpg:PropertyGridControl ExpandCategoriesWhenSelectedObjectChanged="True" Grid.Row="1" SortMode="Ascending"
+                                designernative:PropertyGridHelper.SelectedObjectAsync="{Binding SelectedObjectModel, RelativeSource={RelativeSource TemplatedParent}}"
+                                UseCollectionEditor="False" BorderThickness="0">
+                            <dxpg:PropertyGridControl.Resources>
+                                <DataTemplate x:Key="{x:Static designernativemetadata:MetadataPropertyGridEditorTemplateKeys.PrinterName}">
+                                    <dxpg:PropertyDefinition IsReadOnly="False">
+                                        <dxpg:PropertyDefinition.EditSettings>
+                                            <dxe:ComboBoxEditSettings IsTextEditable="False" ItemsSource="{Binding TemplatedParent.InstalledPrinters, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=dxpg:PropertyGridControl}}" />
+                                        </dxpg:PropertyDefinition.EditSettings>
+                                    </dxpg:PropertyDefinition>
+                                </DataTemplate>
+                                <DataTemplate x:Key="{x:Static designernativemetadata:MetadataPropertyGridEditorTemplateKeys.BorderWidth}">
+                                    <dxpg:PropertyDefinition IsReadOnly="False">
+                                        <dxpg:PropertyDefinition.EditSettings>
+                                            <dxe:SpinEditSettings MinValue="0" />
+                                        </dxpg:PropertyDefinition.EditSettings>
+                                    </dxpg:PropertyDefinition>
+                                </DataTemplate>
+                                <DataTemplate x:Key="{x:Static designernativemetadata:MetadataPropertyGridEditorTemplateKeys.Image}">
+                                    <dxpg:PropertyDefinition IsReadOnly="False" PostOnEditValueChanged="True">
+                                        <dxpg:PropertyDefinition.EditSettings>
+                                            <dxe:PopupImageEditSettings ShowMenu="True" ShowMenuMode="Always" ShowLoadDialogOnClickMode="Empty" />
+                                        </dxpg:PropertyDefinition.EditSettings>
+                                    </dxpg:PropertyDefinition>
+                                </DataTemplate>
+                                <DataTemplate x:Key="{x:Static designernativemetadata:MetadataPropertyGridEditorTemplateKeys.Transparency}">
+                                    <dxpg:PropertyDefinition IsReadOnly="False">
+                                        <dxpg:PropertyDefinition.EditSettings>
+                                            <dxe:TrackBarEditSettings Minimum="0" Maximum="255" TickFrequency="0" >
+                                                <dxe:TrackBarEditSettings.StyleSettings  >
+                                                    <dxe:TrackBarStyleSettings />
+                                                </dxe:TrackBarEditSettings.StyleSettings>
+                                            </dxe:TrackBarEditSettings>
+                                        </dxpg:PropertyDefinition.EditSettings>
+                                    </dxpg:PropertyDefinition>
+                                </DataTemplate>
+                                <DataTemplate x:Key="{x:Static designernativemetadata:MetadataPropertyGridEditorTemplateKeys.PageRange}">
+                                    <dxpg:PropertyDefinition IsReadOnly="False">
+                                        <dxpg:PropertyDefinition.EditSettings>
+                                            <dxe:TextEditSettings MaskType="RegEx" Mask="{x:Static propertygrid:ReportDesignerPropertyGridControl.PageRangeMask}" MaskUseAsDisplayFormat="True" />
+                                        </dxpg:PropertyDefinition.EditSettings>
+                                    </dxpg:PropertyDefinition>
+                                </DataTemplate>
+                                <DataTemplate x:Key="{x:Static designernativemetadata:MetadataPropertyGridEditorTemplateKeys.DataSource}">
+                                    <dxpg:PropertyDefinition IsReadOnly="False">
+                                        <dxpg:PropertyDefinition.CellTemplate>
+                                            <DataTemplate>
+                                                <designernative:ComboBoxEditEx 
+                                                    x:Name="PART_Editor"
+                                                    PopupMinHeight="100"
+                                                    AllowNullInput="True"
+                                                    ShowNullText="False"
+                                                    AddNewButtonPlacement="Popup"
+                                                    ShowEditorButtonsAlways="True"
+                                                    ShowPopupOnEmptyItemsSource="True"
+                                                    ItemsSource="{Binding Path=(designer:ReportDesigner.Document).ReportModel.DataSources, RelativeSource={RelativeSource Self}}" ValueMember="DataSource" DisplayMember="DisplayName" IsTextEditable="False">
+                                                    <designernative:ComboBoxEditEx.PopupBottomAreaTemplate>
+                                                        <ControlTemplate TargetType="{x:Type ContentControl}">
+                                                            <Grid x:Name="PART_Root" Margin="0,6,0,0" >
+                                                                <ContentControl dx:FocusHelper2.Focusable="False" Template="{DynamicResource {dxet:PopupBaseEditThemeKey ResourceKey=FooterTemplate}}"/>
+                                                                <dx:UniformStackPanel ChildSpacing="0" Orientation="Horizontal" Width="Auto" HorizontalAlignment="Center">
+                                                                    <dxe:ButtonEdit VerticalContentAlignment="Stretch" ShowBorder="False" ShowText="False" AllowDefaultButton="False" Margin="3,6,3,6" MinWidth="80" 
+                                                                                designer:ReportDesigner.Designer="{Binding Path=PlacementTarget.(designer:ReportDesigner.Designer), RelativeSource={RelativeSource AncestorType=Popup}}">
+                                                                        <dxe:ButtonEdit.Resources>
+                                                                            <dx:EditorStringIdConverter x:Key="EditorStringIdConverter" />
+                                                                        </dxe:ButtonEdit.Resources>
+                                                                        <dxe:ButtonEdit.Buttons>
+                                                                            <dxe:ButtonInfo Content="{Binding Source=True, ConverterParameter=LookUpAddNew, Converter={StaticResource EditorStringIdConverter}}">
+                                                                                <dxe:ButtonInfo.ContentTemplate>
+                                                                                    <DataTemplate>
+                                                                                        <TextBlock Text="Test" Margin="0,3"/>
+                                                                                    </DataTemplate>
+                                                                                </dxe:ButtonInfo.ContentTemplate>
+                                                                                <dxmvvm:Interaction.Behaviors>
+                                                                                    <dxe:DialogServiceEditorBehavior Commands="{dxe:UICommandContainerGenerator Buttons=OKCancel}" Content="{Binding Path=AssociatedObject.(designer:ReportDesigner.Designer), RelativeSource={RelativeSource Self}}">
+                                                                                        <dxe:DialogServiceEditorBehavior.DialogServiceTemplate>
+                                                                                            <DataTemplate>
+                                                                                                <ContentControl>
+                                                                                                    <dx:DialogService DialogWindowStartupLocation="CenterOwner">
+                                                                                                        <dx:DialogService.DialogStyle>
+                                                                                                            <Style TargetType="dx:DXDialogWindow" BasedOn="{StaticResource DXDialogWindowDialogStyleBase}">
+                                                                                                                <Setter Property="Width" Value="650" />
+                                                                                                                <Setter Property="Height" Value="450" />
+                                                                                                                <Setter Property="ResizeMode" Value="NoResize" />
+                                                                                                            </Style>
+                                                                                                        </dx:DialogService.DialogStyle>
+                                                                                                        <dx:DialogService.ViewTemplate>
+                                                                                                            <DataTemplate>
+                                                                                                                <dxda:DataSourceWizardControl Extensions="{Binding Path=Content.ActiveDocument.ReportModel.DataSourceWizardExtensions}" 
+                                                                                                                                              ParameterService="{Binding Path=Content.ActiveDocument.ReportModel.ParameterService}"
+                                                                                                                                              EnableCustomSql="{Binding Path=Content.EnableCustomSql}"/>
+                                                                                                            </DataTemplate>
+                                                                                                        </dx:DialogService.ViewTemplate>
+                                                                                                    </dx:DialogService>
+                                                                                                </ContentControl>
+                                                                                            </DataTemplate>
+                                                                                        </dxe:DialogServiceEditorBehavior.DialogServiceTemplate>
+                                                                                    </dxe:DialogServiceEditorBehavior>
+                                                                                </dxmvvm:Interaction.Behaviors>
+                                                                            </dxe:ButtonInfo>
+                                                                        </dxe:ButtonEdit.Buttons>
+                                                                    </dxe:ButtonEdit>
+                                                                </dx:UniformStackPanel>
+                                                                <dxe:PopupSizeGrip Margin="2,3,2,2"
+                                                                    x:Name="PART_SizeGrip"
+                                                                    dx:FocusHelper2.Focusable="False"
+                                                                    HorizontalAlignment="Right"
+                                                                    Style="{DynamicResource {dxet:PopupBaseEditThemeKey ResourceKey=ResizeGripStyle}}"
+                                                                    VerticalAlignment="{Binding Path=(dxe:BaseEdit.OwnerEdit).(dxe:ActualPropertyProvider.Properties).ResizeGripViewModel.VerticalAlignment, RelativeSource={RelativeSource TemplatedParent}}"
+                                                                    Visibility="{Binding Path=(dxe:BaseEdit.OwnerEdit).(dxe:ActualPropertyProvider.Properties).ResizeGripViewModel.Visibility, RelativeSource={RelativeSource TemplatedParent}}">
+                                                                </dxe:PopupSizeGrip>
+                                                            </Grid>
+                                                        </ControlTemplate>
+                                                    </designernative:ComboBoxEditEx.PopupBottomAreaTemplate>
+                                                </designernative:ComboBoxEditEx>
+                                            </DataTemplate>
+                                        </dxpg:PropertyDefinition.CellTemplate>
+                                    </dxpg:PropertyDefinition>
+                                </DataTemplate>
+                                <DataTemplate x:Key="{x:Static designernativemetadata:MetadataPropertyGridEditorTemplateKeys.DataMember}">
+                                    <dxpg:PropertyDefinition IsReadOnly="False" >
+                                        <dxpg:PropertyDefinition.EditSettings>
+                                            <designereditors:PopupTreeListEditSettings
+                                                        ValueMember="BindingData"
+                                                        DisplayMember="DisplayName"
+                                                        ChildNodesPath="Children"
+                                                        PopupDisplayMember="DisplayName"
+                                                        HierarchicalPathProvider="{StaticResource ResourceKey=bindingDataHierarchicalPathProvider}"
+                                                        ItemsSource="{Binding Path=(designer:ReportDesigner.Document).ReportModel.FieldListNodes, RelativeSource={RelativeSource Self}}"
+                                                        PopupSelectionValidator="{StaticResource ResourceKey=bindingDataPopupSelectionValidator}"
+                                                        TreeListCellTemplate="{DynamicResource {designerthemes:ReportDesignerThemeKey ResourceKey=FieldListNodeTemplate}}"/>
+                                        </dxpg:PropertyDefinition.EditSettings>
+                                    </dxpg:PropertyDefinition>
+                                </DataTemplate>
+                                <DataTemplate x:Key="{x:Static designernativemetadata:MetadataPropertyGridEditorTemplateKeys.PaletteName}">
+                                    <dxpg:PropertyDefinition IsReadOnly="False" UseTypeConverterToStringConversion="False">
+                                        <dxpg:PropertyDefinition.EditSettings>
+                                            <dxe:ComboBoxEditSettings HorizontalContentAlignment="Stretch" ItemsSource="{x:Static designernative:PaletteHelper.Palettes}" DisplayMember="Name" ValueMember="Name" IsTextEditable="False">
+                                                <dxe:ComboBoxEditSettings.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <Grid>
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="*" />
+                                                                <ColumnDefinition Width="Auto" />
+                                                            </Grid.ColumnDefinitions>
+                                                            <TextBlock Text="{Binding Name}" Margin="0,0,5,0" />
+                                                            <StackPanel Grid.Column="1" Orientation="Horizontal">
+                                                                <Rectangle Fill="{Binding Palette.Item1}" Stroke="Gray" Width="10" Height="10" Margin="0,0,1,0" />
+                                                                <Rectangle Fill="{Binding Palette.Item2}" Stroke="Gray" Width="10" Height="10" Margin="0,0,1,0" />
+                                                                <Rectangle Fill="{Binding Palette.Item3}" Stroke="Gray" Width="10" Height="10" Margin="0,0,1,0" />
+                                                                <Rectangle Fill="{Binding Palette.Item4}" Stroke="Gray" Width="10" Height="10" Margin="0,0,1,0" />
+                                                                <Rectangle Fill="{Binding Palette.Item5}" Stroke="Gray" Width="10" Height="10" Margin="0,0,1,0" />
+                                                                <Rectangle Fill="{Binding Palette.Item6}" Stroke="Gray" Width="10" Height="10" Margin="0,0,1,0" />
+                                                            </StackPanel>
+                                                        </Grid>
+                                                    </DataTemplate>
+                                                </dxe:ComboBoxEditSettings.ItemTemplate>
+                                            </dxe:ComboBoxEditSettings>
+                                        </dxpg:PropertyDefinition.EditSettings>
+                                    </dxpg:PropertyDefinition>
+                                </DataTemplate>
+                                <DataTemplate x:Key="{x:Static designernativemetadata:MetadataPropertyGridEditorTemplateKeys.NeverEmbeddedFonts}">
+                                    <dxpg:PropertyDefinition>
+                                        <dxpg:PropertyDefinition.EditSettings>
+                                            <dxe:TextEditSettings MaskType="RegEx" Mask="{x:Static propertygrid:ReportDesignerPropertyGridControl.ListMask}" MaskUseAsDisplayFormat="True" />
+                                        </dxpg:PropertyDefinition.EditSettings>
+                                    </dxpg:PropertyDefinition>
+                                </DataTemplate>
+                                <DataTemplate x:Key="{x:Static designernativemetadata:MetadataPropertyGridEditorTemplateKeys.FilterString}">
+                                    <dxpg:PropertyDefinition IsReadOnly="False">
+                                        <dxpg:PropertyDefinition.EditSettings>
+                                            <dxe:ButtonEditSettings AllowDefaultButton="False">
+                                                <dxe:ButtonEditSettings.Buttons>
+                                                    <dxe:ButtonInfo GlyphKind="Regular">
+                                                        <dxmvvm:Interaction.Behaviors>
+                                                            <dxe:DialogServiceEditorBehavior Commands="{dxe:UICommandContainerGenerator Buttons=OKCancel}" Content="{Binding Path=AssociatedObject.(propertygrid:ReportDesignerPropertyGridControl.Report), RelativeSource={RelativeSource Self}}">
+                                                                <dxe:DialogServiceEditorBehavior.DialogServiceTemplate>
+                                                                    <DataTemplate>
+                                                                        <ContentControl>
+                                                                            <dx:DialogService DialogWindowStartupLocation="CenterOwner">
+                                                                                <dx:DialogService.DialogStyle>
+                                                                                    <Style TargetType="dx:DXDialogWindow" BasedOn="{StaticResource DXDialogWindowDialogStyleBase}">
+                                                                                        <Setter Property="Width" Value="400" />
+                                                                                        <Setter Property="Height" Value="300" />
+                                                                                        <Setter Property="MinWidth" Value="300" />
+                                                                                        <Setter Property="MinHeight" Value="200" />
+                                                                                        <Setter Property="ResizeMode" Value="CanResize" />
+                                                                                        <Setter Property="Title" Value="Filter String Editor" />
+                                                                                    </Style>
+                                                                                </dx:DialogService.DialogStyle>
+                                                                                <dx:DialogService.ViewTemplate>
+                                                                                    <DataTemplate>
+                                                                                        <designereditors:FilterStringUITypeEditor EditValue="{Binding Value}" Report="{Binding Content}" />
+                                                                                    </DataTemplate>
+                                                                                </dx:DialogService.ViewTemplate>
+                                                                            </dx:DialogService>
+                                                                        </ContentControl>
+                                                                    </DataTemplate>
+                                                                </dxe:DialogServiceEditorBehavior.DialogServiceTemplate>
+                                                            </dxe:DialogServiceEditorBehavior>
+                                                        </dxmvvm:Interaction.Behaviors>
+                                                    </dxe:ButtonInfo>
+                                                </dxe:ButtonEditSettings.Buttons>
+                                            </dxe:ButtonEditSettings>
+                                        </dxpg:PropertyDefinition.EditSettings>
+                                    </dxpg:PropertyDefinition>
+                                </DataTemplate>
+                                <DataTemplate x:Key="{x:Static designernativemetadata:MetadataPropertyGridEditorTemplateKeys.BookmarkParent}">
+                                    <dxpg:PropertyDefinition IsReadOnly="False">
+                                        <dxpg:PropertyDefinition.EditSettings>
+                                            <designereditors:PopupTreeListEditSettings
+                                                        ValueMember="XRObjectBase"
+                                                        DisplayMember="Name"
+                                                        PopupDisplayMember="Name"
+                                                        ChildNodesPath="Items"
+                                                        HierarchicalPathProvider="{StaticResource ResourceKey=reportExplorerHierarchicalPathProvider}"
+                                                        PopupSelectionValidator="{StaticResource ResourceKey=reportExplorerPopupSelectionValidator}"
+                                                        ItemsSource="{Binding Path=(designer:ReportDesigner.Document).ReportModel, RelativeSource={RelativeSource Self}, Converter={designernative:YieldConverter}}">
+                                                <designereditors:PopupTreeListEditSettings.TreeListCellTemplate>
+                                                    <DataTemplate>
+                                                        <StackPanel Orientation="Horizontal">
+                                                            <Image Source="{Binding RowData.Row, Converter={reportexplorernative:ReportExplorerItemToIconConverter}}" />
+                                                            <TextBlock Text="{Binding RowData.Row.Name}" />
+                                                        </StackPanel>
+                                                    </DataTemplate>
+                                                </designereditors:PopupTreeListEditSettings.TreeListCellTemplate>
+                                            </designereditors:PopupTreeListEditSettings>
+                                        </dxpg:PropertyDefinition.EditSettings>
+                                    </dxpg:PropertyDefinition>
+                                </DataTemplate>
+                                <DataTemplate x:Key="{x:Static designernativemetadata:MetadataPropertyGridEditorTemplateKeys.PageBorderWidth}">
+                                    <dxpg:PropertyDefinition IsReadOnly="False">
+                                        <dxpg:PropertyDefinition.EditSettings>
+                                            <dxe:SpinEditSettings MinValue="0" Mask="D0" MaskUseAsDisplayFormat="True" />
+                                        </dxpg:PropertyDefinition.EditSettings>
+                                    </dxpg:PropertyDefinition>
+                                </DataTemplate>
+                                <DataTemplate x:Key="{x:Static designernativemetadata:MetadataPropertyGridEditorTemplateKeys.FormatString}">
+                                    <dxpg:PropertyDefinition IsReadOnly="False">
+                                        <dxpg:PropertyDefinition.EditSettings>
+                                            <dxe:ButtonEditSettings AllowDefaultButton="False">
+                                                <dxe:ButtonEditSettings.Buttons>
+                                                    <dxe:ButtonInfo GlyphKind="Regular">
+                                                        <dxmvvm:Interaction.Behaviors>
+                                                            <dxe:DialogServiceEditorBehavior Commands="{dxe:UICommandContainerGenerator Buttons=OKCancel}" Content="{Binding Path=AssociatedObject.(propertygrid:ReportDesignerPropertyGridControl.PrimarySelection), RelativeSource={RelativeSource Self}}">
+                                                                <dxe:DialogServiceEditorBehavior.DialogServiceTemplate>
+                                                                    <DataTemplate>
+                                                                        <ContentControl>
+                                                                            <dx:DialogService DialogWindowStartupLocation="CenterOwner">
+                                                                                <dx:DialogService.DialogStyle>
+                                                                                    <Style TargetType="dx:DXDialogWindow" BasedOn="{StaticResource DXDialogWindowDialogStyleBase}">
+                                                                                        <Setter Property="SizeToContent" Value="WidthAndHeight" />
+                                                                                        <Setter Property="ResizeMode" Value="CanMinimize" />
+                                                                                        <Setter Property="Title" Value="Format String Editor" />
+                                                                                    </Style>
+                                                                                </dx:DialogService.DialogStyle>
+                                                                                <dx:DialogService.ViewTemplate>
+                                                                                    <DataTemplate>
+                                                                                        <designereditors:FormatStringUITypeEditor EditValue="{Binding Value}" PrimarySelection="{Binding Content}" />
+                                                                                    </DataTemplate>
+                                                                                </dx:DialogService.ViewTemplate>
+                                                                            </dx:DialogService>
+                                                                        </ContentControl>
+                                                                    </DataTemplate>
+                                                                </dxe:DialogServiceEditorBehavior.DialogServiceTemplate>
+                                                            </dxe:DialogServiceEditorBehavior>
+                                                        </dxmvvm:Interaction.Behaviors>
+                                                    </dxe:ButtonInfo>
+                                                </dxe:ButtonEditSettings.Buttons>
+                                            </dxe:ButtonEditSettings>
+                                        </dxpg:PropertyDefinition.EditSettings>
+                                    </dxpg:PropertyDefinition>
+                                </DataTemplate>
+                                <DataTemplate x:Key="{x:Static designernativemetadata:MetadataPropertyGridEditorTemplateKeys.Scripts}">
+                                    <dxpg:PropertyDefinition IsReadOnly="False">
+                                        <dxpg:PropertyDefinition.CellTemplate>
+                                            <DataTemplate>
+                                                <dxe:ComboBoxEdit x:Name="PART_Editor" ItemsSource="{Binding Path=(designer:ReportDesigner.Document).ReportModel.Scripts, RelativeSource={RelativeSource Self}}" IsTextEditable="False">
+                                                    <dxe:ComboBoxEdit.Buttons>
+                                                        <dxe:ButtonInfo GlyphKind="Plus" Command="{Binding Path=(designer:ReportDesigner.Document).Diagram.XRCommands.AddNewScript, RelativeSource={RelativeSource Self}}" CommandParameter="{Binding Header}" />
+                                                    </dxe:ComboBoxEdit.Buttons>
+                                                </dxe:ComboBoxEdit>
+                                            </DataTemplate>
+                                        </dxpg:PropertyDefinition.CellTemplate>
+                                    </dxpg:PropertyDefinition>
+                                </DataTemplate>
+                                <DataTemplate x:Key="{x:Static designernativemetadata:MetadataPropertyGridEditorTemplateKeys.BorderSide}">
+                                    <dxpg:PropertyDefinition IsReadOnly="False">
+                                        <dxpg:PropertyDefinition.EditSettings>
+                                            <dxe:PopupBaseEditSettings AllowDefaultButton="False" IsTextEditable="False">
+                                                <dxe:PopupBaseEditSettings.Buttons>
+                                                    <dxe:ButtonInfo GlyphKind="DropDown" IsDefaultButton="True">
+                                                        <dxmvvm:Interaction.Behaviors>
+                                                            <dxe:PopupEditorBehavior>
+                                                                <dxe:PopupEditorBehavior.ContentTemplate>
+                                                                    <DataTemplate>
+                                                                        <designereditors:BordersUITypeEditor EditValue="{Binding Value}" />
+                                                                    </DataTemplate>
+                                                                </dxe:PopupEditorBehavior.ContentTemplate>
+                                                            </dxe:PopupEditorBehavior>
+                                                        </dxmvvm:Interaction.Behaviors>
+                                                    </dxe:ButtonInfo>
+                                                </dxe:PopupBaseEditSettings.Buttons>
+                                            </dxe:PopupBaseEditSettings>
+                                        </dxpg:PropertyDefinition.EditSettings>
+                                    </dxpg:PropertyDefinition>
+                                </DataTemplate>
+                                <DataTemplate x:Key="{x:Static designernativemetadata:MetadataPropertyGridEditorTemplateKeys.Encoding}">
+                                    <dxpg:PropertyDefinition IsReadOnly="False">
+                                        <dxpg:PropertyDefinition.EditSettings>
+                                            <dxe:ComboBoxEditSettings ItemsSource="{designernative:EncodingCollectionExtension}" IsTextEditable="False" DisplayMember="EncodingName" />
+                                        </dxpg:PropertyDefinition.EditSettings>
+                                    </dxpg:PropertyDefinition>
+                                </DataTemplate>
+                                <DataTemplate x:Key="{x:Static designernativemetadata:MetadataPropertyGridEditorTemplateKeys.Font}">
+                                    <dxpg:PropertyDefinition IsReadOnly="False" UseTypeConverterToStringConversion="True">
+                                        <dxpg:PropertyDefinition.EditSettings>
+                                            <dxe:ButtonEditSettings AllowDefaultButton="False">
+                                                <dxe:ButtonEditSettings.Buttons>
+                                                    <dxe:ButtonInfo GlyphKind="Regular">
+                                                        <dxmvvm:Interaction.Behaviors>
+                                                            <dxe:CustomDialogServiceEditorBehavior>
+                                                                <dxe:CustomDialogServiceEditorBehavior.DialogServiceTemplate>
+                                                                    <DataTemplate>
+                                                                        <ContentControl>
+                                                                            <designereditors:FontDialogService />
+                                                                        </ContentControl>
+                                                                    </DataTemplate>
+                                                                </dxe:CustomDialogServiceEditorBehavior.DialogServiceTemplate>
+                                                            </dxe:CustomDialogServiceEditorBehavior>
+                                                        </dxmvvm:Interaction.Behaviors>
+                                                    </dxe:ButtonInfo>
+                                                </dxe:ButtonEditSettings.Buttons>
+                                            </dxe:ButtonEditSettings>
+                                        </dxpg:PropertyDefinition.EditSettings>
+                                    </dxpg:PropertyDefinition>
+                                </DataTemplate>
+                                <DataTemplate x:Key="{x:Static designernativemetadata:MetadataPropertyGridEditorTemplateKeys.PdfPasswordSecurityOptions}">
+                                    <dxpg:PropertyDefinition IsReadOnly="False" UseTypeConverterToStringConversion="True">
+                                        <dxpg:PropertyDefinition.EditSettings>
+                                            <dxe:ButtonEditSettings AllowDefaultButton="False">
+                                                <dxe:ButtonEditSettings.Buttons>
+                                                    <dxe:ButtonInfo GlyphKind="Regular">
+                                                        <dxmvvm:Interaction.Behaviors>
+                                                            <dxe:DialogServiceEditorBehavior Commands="{dxe:UICommandContainerGenerator Buttons=OKCancel}">
+                                                                <dxe:DialogServiceEditorBehavior.DialogServiceTemplate>
+                                                                    <DataTemplate>
+                                                                        <ContentControl>
+                                                                            <dx:DialogService DialogWindowStartupLocation="CenterOwner">
+                                                                                <dx:DialogService.DialogStyle>
+                                                                                    <Style TargetType="dx:DXDialogWindow" BasedOn="{StaticResource DXDialogWindowDialogStyleBase}">
+                                                                                        <Setter Property="SizeToContent" Value="WidthAndHeight" />
+                                                                                        <Setter Property="ResizeMode" Value="CanMinimize" />
+                                                                                    </Style>
+                                                                                </dx:DialogService.DialogStyle>
+                                                                                <dx:DialogService.ViewTemplate>
+                                                                                    <DataTemplate>
+                                                                                        <designereditors:PdfSecurityOptionsUITypeEditor EditValue="{Binding Value}" />
+                                                                                    </DataTemplate>
+                                                                                </dx:DialogService.ViewTemplate>
+                                                                            </dx:DialogService>
+                                                                        </ContentControl>
+                                                                    </DataTemplate>
+                                                                </dxe:DialogServiceEditorBehavior.DialogServiceTemplate>
+                                                            </dxe:DialogServiceEditorBehavior>
+                                                        </dxmvvm:Interaction.Behaviors>
+                                                    </dxe:ButtonInfo>
+                                                </dxe:ButtonEditSettings.Buttons>
+                                            </dxe:ButtonEditSettings>
+                                        </dxpg:PropertyDefinition.EditSettings>
+                                    </dxpg:PropertyDefinition>
+                                </DataTemplate>
+                                <DataTemplate x:Key="{x:Static designernativemetadata:MetadataPropertyGridEditorTemplateKeys.FormattingRuleSheet}">
+                                    <dxpg:PropertyDefinition IsReadOnly="False" UseTypeConverterToStringConversion="True">
+                                        <dxpg:PropertyDefinition.EditSettings>
+                                            <dxe:ButtonEditSettings AllowDefaultButton="False">
+                                                <dxe:ButtonEditSettings.Buttons>
+                                                    <dxe:ButtonInfo GlyphKind="Regular">
+                                                        <dxmvvm:Interaction.Behaviors>
+                                                            <dxe:DialogServiceEditorBehavior Commands="{dxe:UICommandContainerGenerator Buttons=OKCancel}" Content="{Binding Path=AssociatedObject.(designer:ReportDesigner.Document).ReportModel, RelativeSource={RelativeSource Self}}">
+                                                                <dxe:DialogServiceEditorBehavior.DialogServiceTemplate>
+                                                                    <DataTemplate>
+                                                                        <ContentControl>
+                                                                            <dxdiag:CollectionDialogService DialogWindowStartupLocation="CenterOwner">
+                                                                                <dxdiag:CollectionDialogService.DialogStyle>
+                                                                                    <Style TargetType="dx:DXDialogWindow" BasedOn="{StaticResource DXDialogWindowDialogStyleBase}">
+                                                                                        <Setter Property="Width" Value="600" />
+                                                                                        <Setter Property="Height" Value="350" />
+                                                                                        <Setter Property="MinWidth" Value="420" />
+                                                                                        <Setter Property="MinHeight" Value="240" />
+                                                                                        <Setter Property="Title" Value="Formatting Rule Sheet Editor" />
+                                                                                    </Style>
+                                                                                </dxdiag:CollectionDialogService.DialogStyle>
+                                                                                <dxdiag:CollectionDialogService.ViewTemplate>
+                                                                                    <DataTemplate>
+                                                                                        <designereditors:FormattingRuleSheetUITypeEditor EditValue="{Binding Value}" ReportModel="{Binding Content}" />
+                                                                                    </DataTemplate>
+                                                                                </dxdiag:CollectionDialogService.ViewTemplate>
+                                                                            </dxdiag:CollectionDialogService>
+                                                                        </ContentControl>
+                                                                    </DataTemplate>
+                                                                </dxe:DialogServiceEditorBehavior.DialogServiceTemplate>
+                                                            </dxe:DialogServiceEditorBehavior>
+                                                        </dxmvvm:Interaction.Behaviors>
+                                                    </dxe:ButtonInfo>
+                                                </dxe:ButtonEditSettings.Buttons>
+                                            </dxe:ButtonEditSettings>
+                                        </dxpg:PropertyDefinition.EditSettings>
+                                    </dxpg:PropertyDefinition>
+                                </DataTemplate>
+                                <DataTemplate x:Key="{x:Static designernativemetadata:MetadataPropertyGridEditorTemplateKeys.FormattingRuleCollection}">
+                                    <dxpg:PropertyDefinition IsReadOnly="False" UseTypeConverterToStringConversion="True">
+                                        <dxpg:PropertyDefinition.EditSettings>
+                                            <dxe:ButtonEditSettings AllowDefaultButton="False">
+                                                <dxe:ButtonEditSettings.Buttons>
+                                                    <dxe:ButtonInfo GlyphKind="Regular">
+                                                        <dxmvvm:Interaction.Behaviors>
+                                                            <dxe:DialogServiceEditorBehavior Commands="{dxe:UICommandContainerGenerator Buttons=OKCancel}" Content="{Binding Path=AssociatedObject.(designer:ReportDesigner.Document).ReportModel, RelativeSource={RelativeSource Self}}">
+                                                                <dxe:DialogServiceEditorBehavior.DialogServiceTemplate>
+                                                                    <DataTemplate>
+                                                                        <ContentControl>
+                                                                            <dxdiag:CollectionDialogService DialogWindowStartupLocation="CenterOwner">
+                                                                                <dxdiag:CollectionDialogService.DialogStyle>
+                                                                                    <Style TargetType="dx:DXDialogWindow" BasedOn="{StaticResource DXDialogWindowDialogStyleBase}">
+                                                                                        <Setter Property="Width" Value="600" />
+                                                                                        <Setter Property="Height" Value="350" />
+                                                                                        <Setter Property="MinWidth" Value="420" />
+                                                                                        <Setter Property="MinHeight" Value="240" />
+                                                                                        <Setter Property="Title" Value="Formatting Rules Editor" />
+                                                                                    </Style>
+                                                                                </dxdiag:CollectionDialogService.DialogStyle>
+                                                                                <dxdiag:CollectionDialogService.ViewTemplate>
+                                                                                    <DataTemplate>
+                                                                                        <designereditors:FormattingRulesUITypeEditor EditValue="{Binding Value}" ReportModel="{Binding Content}" />
+                                                                                    </DataTemplate>
+                                                                                </dxdiag:CollectionDialogService.ViewTemplate>
+                                                                            </dxdiag:CollectionDialogService>
+                                                                        </ContentControl>
+                                                                    </DataTemplate>
+                                                                </dxe:DialogServiceEditorBehavior.DialogServiceTemplate>
+                                                            </dxe:DialogServiceEditorBehavior>
+                                                        </dxmvvm:Interaction.Behaviors>
+                                                    </dxe:ButtonInfo>
+                                                </dxe:ButtonEditSettings.Buttons>
+                                            </dxe:ButtonEditSettings>
+                                        </dxpg:PropertyDefinition.EditSettings>
+                                    </dxpg:PropertyDefinition>
+                                </DataTemplate>
+                                <DataTemplate x:Key="{x:Static designernativemetadata:MetadataPropertyGridEditorTemplateKeys.BindingData}">
+                                    <dxpg:PropertyDefinition IsReadOnly="False">
+                                        <dxpg:PropertyDefinition.EditSettings>
+                                            <designereditors:PopupTreeListEditSettings
+                                                        ValueMember="BindingData"
+                                                        DisplayMember="FullPath"
+                                                        ChildNodesPath="Children"
+                                                        PopupDisplayMember="DisplayName"
+                                                        HierarchicalPathProvider="{StaticResource ResourceKey=bindingDataHierarchicalPathProvider}"
+                                                        ItemsSource="{Binding Path=(designer:ReportDesigner.Document).ReportModel.FieldListNodes, RelativeSource={RelativeSource Self}}"
+                                                        PopupSelectionValidator="{StaticResource ResourceKey=bindingDataPopupSelectionValidator}"
+                                                        TreeListCellTemplate="{DynamicResource {designerthemes:ReportDesignerThemeKey ResourceKey=FieldListNodeTemplate}}"/>
+                                        </dxpg:PropertyDefinition.EditSettings>
+                                    </dxpg:PropertyDefinition>
+                                </DataTemplate>
+                                <DataTemplate x:Key="{x:Static designernativemetadata:MetadataPropertyGridEditorTemplateKeys.XRControlStyleSheet}">
+                                    <dxpg:PropertyDefinition IsReadOnly="False" UseTypeConverterToStringConversion="True">
+                                        <dxpg:PropertyDefinition.EditSettings>
+                                            <dxe:ButtonEditSettings AllowDefaultButton="False">
+                                                <dxe:ButtonEditSettings.Buttons>
+                                                    <dxe:ButtonInfo GlyphKind="Regular">
+                                                        <dxmvvm:Interaction.Behaviors>
+                                                            <dxe:DialogServiceEditorBehavior Commands="{dxe:UICommandContainerGenerator Buttons=OKCancel}" Content="{Binding Path=AssociatedObject.(designer:ReportDesigner.Document).ReportModel, RelativeSource={RelativeSource Self}}">
+                                                                <dxe:DialogServiceEditorBehavior.DialogServiceTemplate>
+                                                                    <DataTemplate>
+                                                                        <ContentControl>
+                                                                            <dxdiag:CollectionDialogService DialogWindowStartupLocation="CenterOwner">
+                                                                                <dxdiag:CollectionDialogService.DialogStyle>
+                                                                                    <Style TargetType="dx:DXDialogWindow" BasedOn="{StaticResource DXDialogWindowDialogStyleBase}">
+                                                                                        <Setter Property="Width" Value="600" />
+                                                                                        <Setter Property="Height" Value="350" />
+                                                                                        <Setter Property="MinWidth" Value="420" />
+                                                                                        <Setter Property="MinHeight" Value="240" />
+                                                                                        <Setter Property="Title" Value="Styles Editor" />
+                                                                                    </Style>
+                                                                                </dxdiag:CollectionDialogService.DialogStyle>
+                                                                                <dxdiag:CollectionDialogService.ViewTemplate>
+                                                                                    <DataTemplate>
+                                                                                        <designereditors:XRControlStyleSheetUITypeEditor EditValue="{Binding Value}" ReportModel="{Binding Content}"  />
+                                                                                    </DataTemplate>
+                                                                                </dxdiag:CollectionDialogService.ViewTemplate>
+                                                                            </dxdiag:CollectionDialogService>
+                                                                        </ContentControl>
+                                                                    </DataTemplate>
+                                                                </dxe:DialogServiceEditorBehavior.DialogServiceTemplate>
+                                                            </dxe:DialogServiceEditorBehavior>
+                                                        </dxmvvm:Interaction.Behaviors>
+                                                    </dxe:ButtonInfo>
+                                                </dxe:ButtonEditSettings.Buttons>
+                                            </dxe:ButtonEditSettings>
+                                        </dxpg:PropertyDefinition.EditSettings>
+                                    </dxpg:PropertyDefinition>
+                                </DataTemplate>
+                                <DataTemplate x:Key="{x:Static designernativemetadata:MetadataPropertyGridEditorTemplateKeys.SeriesCollection}">
+                                    <dxpg:PropertyDefinition IsReadOnly="False" UseTypeConverterToStringConversion="True">
+                                        <dxpg:PropertyDefinition.EditSettings>
+                                            <dxe:ButtonEditSettings AllowDefaultButton="False">
+                                                <dxe:ButtonEditSettings.Buttons>
+                                                    <dxe:ButtonInfo GlyphKind="Regular">
+                                                        <dxmvvm:Interaction.Behaviors>
+                                                            <dxe:DialogServiceEditorBehavior Commands="{dxe:UICommandContainerGenerator Buttons=OKCancel}">
+                                                                <dxe:DialogServiceEditorBehavior.DialogServiceTemplate>
+                                                                    <DataTemplate>
+                                                                        <ContentControl>
+                                                                            <dx:DialogService DialogWindowStartupLocation="CenterOwner">
+                                                                                <dx:DialogService.DialogStyle>
+                                                                                    <Style TargetType="dx:DXDialogWindow" BasedOn="{StaticResource DXDialogWindowDialogStyleBase}">
+                                                                                        <Setter Property="Width" Value="600" />
+                                                                                        <Setter Property="Height" Value="350" />
+                                                                                        <Setter Property="MinWidth" Value="420" />
+                                                                                        <Setter Property="MinHeight" Value="240" />
+                                                                                        <Setter Property="Title" Value="Series Collection Editor" />
+                                                                                    </Style>
+                                                                                </dx:DialogService.DialogStyle>
+                                                                                <dx:DialogService.ViewTemplate>
+                                                                                    <DataTemplate>
+                                                                                        <designereditors:SeriesCollectionUITypeEditor EditValue="{Binding Value}" />
+                                                                                    </DataTemplate>
+                                                                                </dx:DialogService.ViewTemplate>
+                                                                            </dx:DialogService>
+                                                                        </ContentControl>
+                                                                    </DataTemplate>
+                                                                </dxe:DialogServiceEditorBehavior.DialogServiceTemplate>
+                                                            </dxe:DialogServiceEditorBehavior>
+                                                        </dxmvvm:Interaction.Behaviors>
+                                                    </dxe:ButtonInfo>
+                                                </dxe:ButtonEditSettings.Buttons>
+                                            </dxe:ButtonEditSettings>
+                                        </dxpg:PropertyDefinition.EditSettings>
+                                    </dxpg:PropertyDefinition>
+                                </DataTemplate>
+                                <DataTemplate x:Key="{x:Static designernativemetadata:MetadataPropertyGridEditorTemplateKeys.CalculatedFieldCollection}">
+                                    <dxpg:PropertyDefinition IsReadOnly="False" UseTypeConverterToStringConversion="True">
+                                        <dxpg:PropertyDefinition.EditSettings>
+                                            <dxe:ButtonEditSettings AllowDefaultButton="False">
+                                                <dxe:ButtonEditSettings.Buttons>
+                                                    <dxe:ButtonInfo GlyphKind="Regular">
+                                                        <dxmvvm:Interaction.Behaviors>
+                                                            <dxe:DialogServiceEditorBehavior Commands="{dxe:UICommandContainerGenerator Buttons=OKCancel}" Content="{Binding Path=AssociatedObject.(designer:ReportDesigner.Document).ReportModel, RelativeSource={RelativeSource Self}}">
+                                                                <dxe:DialogServiceEditorBehavior.DialogServiceTemplate>
+                                                                    <DataTemplate>
+                                                                        <ContentControl>
+                                                                            <dxdiag:CollectionDialogService DialogWindowStartupLocation="CenterOwner">
+                                                                                <dxdiag:CollectionDialogService.DialogStyle>
+                                                                                    <Style TargetType="dx:DXDialogWindow" BasedOn="{StaticResource DXDialogWindowDialogStyleBase}">
+                                                                                        <Setter Property="Width" Value="600" />
+                                                                                        <Setter Property="Height" Value="350" />
+                                                                                        <Setter Property="MinWidth" Value="420" />
+                                                                                        <Setter Property="MinHeight" Value="240" />
+                                                                                        <Setter Property="Title" Value="Calculated Field Collection Editor" />
+                                                                                    </Style>
+                                                                                </dxdiag:CollectionDialogService.DialogStyle>
+                                                                                <dxdiag:CollectionDialogService.ViewTemplate>
+                                                                                    <DataTemplate>
+                                                                                        <designereditors:CalculatedFieldCollectionUITypeEditor EditValue="{Binding Value}" ReportModel="{Binding Content}" />
+                                                                                    </DataTemplate>
+                                                                                </dxdiag:CollectionDialogService.ViewTemplate>
+                                                                            </dxdiag:CollectionDialogService>
+                                                                        </ContentControl>
+                                                                    </DataTemplate>
+                                                                </dxe:DialogServiceEditorBehavior.DialogServiceTemplate>
+                                                            </dxe:DialogServiceEditorBehavior>
+                                                        </dxmvvm:Interaction.Behaviors>
+                                                    </dxe:ButtonInfo>
+                                                </dxe:ButtonEditSettings.Buttons>
+                                            </dxe:ButtonEditSettings>
+                                        </dxpg:PropertyDefinition.EditSettings>
+                                    </dxpg:PropertyDefinition>
+                                </DataTemplate>
+                                <DataTemplate x:Key="{x:Static designernativemetadata:MetadataPropertyGridEditorTemplateKeys.ParameterCollection}">
+                                    <dxpg:PropertyDefinition IsReadOnly="False" UseTypeConverterToStringConversion="True">
+                                        <dxpg:PropertyDefinition.EditSettings>
+                                            <dxe:ButtonEditSettings AllowDefaultButton="False">
+                                                <dxe:ButtonEditSettings.Buttons>
+                                                    <dxe:ButtonInfo GlyphKind="Regular">
+                                                        <dxmvvm:Interaction.Behaviors>
+                                                            <dxe:DialogServiceEditorBehavior Commands="{dxe:UICommandContainerGenerator Buttons=OKCancel}" Content="{Binding Path=AssociatedObject.(designer:ReportDesigner.Document).ReportModel, RelativeSource={RelativeSource Self}}">
+                                                                <dxe:DialogServiceEditorBehavior.DialogServiceTemplate>
+                                                                    <DataTemplate>
+                                                                        <ContentControl>
+                                                                            <dxdiag:CollectionDialogService DialogWindowStartupLocation="CenterOwner">
+                                                                                <dxdiag:CollectionDialogService.DialogStyle>
+                                                                                    <Style TargetType="dx:DXDialogWindow" BasedOn="{StaticResource DXDialogWindowDialogStyleBase}">
+                                                                                        <Setter Property="Width" Value="600" />
+                                                                                        <Setter Property="Height" Value="350" />
+                                                                                        <Setter Property="MinWidth" Value="420" />
+                                                                                        <Setter Property="MinHeight" Value="240" />
+                                                                                    </Style>
+                                                                                </dxdiag:CollectionDialogService.DialogStyle>
+                                                                                <dxdiag:CollectionDialogService.ViewTemplate>
+                                                                                    <DataTemplate>
+                                                                                        <designereditors:ReportParameterCollectionUITypeEditor EditValue="{Binding Value}" ReportModel="{Binding Content}"/>
+                                                                                    </DataTemplate>
+                                                                                </dxdiag:CollectionDialogService.ViewTemplate>
+                                                                            </dxdiag:CollectionDialogService>
+                                                                        </ContentControl>
+                                                                    </DataTemplate>
+                                                                </dxe:DialogServiceEditorBehavior.DialogServiceTemplate>
+                                                            </dxe:DialogServiceEditorBehavior>
+                                                        </dxmvvm:Interaction.Behaviors>
+                                                    </dxe:ButtonInfo>
+                                                </dxe:ButtonEditSettings.Buttons>
+                                            </dxe:ButtonEditSettings>
+                                        </dxpg:PropertyDefinition.EditSettings>
+                                    </dxpg:PropertyDefinition>
+                                </DataTemplate>
+                                <DataTemplate x:Key="{x:Static designernativemetadata:MetadataPropertyGridEditorTemplateKeys.ParameterBindingCollection}">
+                                    <dxpg:PropertyDefinition IsReadOnly="False" UseTypeConverterToStringConversion="True">
+                                        <dxpg:PropertyDefinition.EditSettings>
+                                            <dxe:ButtonEditSettings AllowDefaultButton="False">
+                                                <dxe:ButtonEditSettings.Buttons>
+                                                    <dxe:ButtonInfo GlyphKind="Regular">
+                                                        <dxmvvm:Interaction.Behaviors>
+                                                            <dxe:DialogServiceEditorBehavior Commands="{dxe:UICommandContainerGenerator Buttons=OKCancel}" >
+                                                                <dxe:DialogServiceEditorBehavior.DialogServiceTemplate>
+                                                                    <DataTemplate>
+                                                                        <ContentControl>
+                                                                            <dxdiag:CollectionDialogService DialogWindowStartupLocation="CenterOwner">
+                                                                                <dxdiag:CollectionDialogService.DialogStyle>
+                                                                                    <Style TargetType="dx:DXDialogWindow" BasedOn="{StaticResource DXDialogWindowDialogStyleBase}">
+                                                                                        <Setter Property="Width" Value="600" />
+                                                                                        <Setter Property="Height" Value="350" />
+                                                                                        <Setter Property="MinWidth" Value="420" />
+                                                                                        <Setter Property="MinHeight" Value="240" />
+                                                                                    </Style>
+                                                                                </dxdiag:CollectionDialogService.DialogStyle>
+                                                                                <dxdiag:CollectionDialogService.ViewTemplate>
+                                                                                    <DataTemplate>
+                                                                                        <designereditors:ParameterBindingCollectionUITypeEditor EditValue="{Binding Value}" />
+                                                                                    </DataTemplate>
+                                                                                </dxdiag:CollectionDialogService.ViewTemplate>
+                                                                            </dxdiag:CollectionDialogService>
+                                                                        </ContentControl>
+                                                                    </DataTemplate>
+                                                                </dxe:DialogServiceEditorBehavior.DialogServiceTemplate>
+                                                            </dxe:DialogServiceEditorBehavior>
+                                                        </dxmvvm:Interaction.Behaviors>
+                                                    </dxe:ButtonInfo>
+                                                </dxe:ButtonEditSettings.Buttons>
+                                            </dxe:ButtonEditSettings>
+                                        </dxpg:PropertyDefinition.EditSettings>
+                                    </dxpg:PropertyDefinition>
+                                </DataTemplate>
+                                <DataTemplate x:Key="{x:Static designernativemetadata:MetadataPropertyGridEditorTemplateKeys.XRPivotGridCustomTotalCollection}">
+                                    <dxpg:PropertyDefinition IsReadOnly="False" UseTypeConverterToStringConversion="True">
+                                        <dxpg:PropertyDefinition.EditSettings>
+                                            <dxe:ButtonEditSettings AllowDefaultButton="False">
+                                                <dxe:ButtonEditSettings.Buttons>
+                                                    <dxe:ButtonInfo GlyphKind="Regular">
+                                                        <dxmvvm:Interaction.Behaviors>
+                                                            <dxe:DialogServiceEditorBehavior Commands="{dxe:UICommandContainerGenerator Buttons=OKCancel}">
+                                                                <dxe:DialogServiceEditorBehavior.DialogServiceTemplate>
+                                                                    <DataTemplate>
+                                                                        <ContentControl>
+                                                                            <dxdiag:CollectionDialogService DialogWindowStartupLocation="CenterOwner">
+                                                                                <dxdiag:CollectionDialogService.DialogStyle>
+                                                                                    <Style TargetType="dx:DXDialogWindow" BasedOn="{StaticResource DXDialogWindowDialogStyleBase}">
+                                                                                        <Setter Property="Width" Value="600" />
+                                                                                        <Setter Property="Height" Value="350" />
+                                                                                        <Setter Property="MinWidth" Value="420" />
+                                                                                        <Setter Property="MinHeight" Value="240" />
+                                                                                    </Style>
+                                                                                </dxdiag:CollectionDialogService.DialogStyle>
+                                                                                <dxdiag:CollectionDialogService.ViewTemplate>
+                                                                                    <DataTemplate>
+                                                                                        <designereditors:XRPivotGridCustomTotalCollectionEditor EditValue="{Binding Value}" />
+                                                                                    </DataTemplate>
+                                                                                </dxdiag:CollectionDialogService.ViewTemplate>
+                                                                            </dxdiag:CollectionDialogService>
+                                                                        </ContentControl>
+                                                                    </DataTemplate>
+                                                                </dxe:DialogServiceEditorBehavior.DialogServiceTemplate>
+                                                            </dxe:DialogServiceEditorBehavior>
+                                                        </dxmvvm:Interaction.Behaviors>
+                                                    </dxe:ButtonInfo>
+                                                </dxe:ButtonEditSettings.Buttons>
+                                            </dxe:ButtonEditSettings>
+                                        </dxpg:PropertyDefinition.EditSettings>
+                                    </dxpg:PropertyDefinition>
+                                </DataTemplate>
+                                <DataTemplate x:Key="{x:Static designernativemetadata:MetadataPropertyGridEditorTemplateKeys.XRPivotGridFieldCollection}">
+                                    <dxpg:PropertyDefinition IsReadOnly="False" UseTypeConverterToStringConversion="True">
+                                        <dxpg:PropertyDefinition.EditSettings>
+                                            <dxe:ButtonEditSettings AllowDefaultButton="False">
+                                                <dxe:ButtonEditSettings.Buttons>
+                                                    <dxe:ButtonInfo GlyphKind="Regular">
+                                                        <dxmvvm:Interaction.Behaviors>
+                                                            <dxe:DialogServiceEditorBehavior Commands="{dxe:UICommandContainerGenerator Buttons=OKCancel}" Content="{Binding Path=AssociatedObject.(designer:ReportDesigner.Document).ReportModel, RelativeSource={RelativeSource Self}}">
+                                                                <dxe:DialogServiceEditorBehavior.DialogServiceTemplate>
+                                                                    <DataTemplate>
+                                                                        <ContentControl>
+                                                                            <dxdiag:CollectionDialogService DialogWindowStartupLocation="CenterOwner">
+                                                                                <dxdiag:CollectionDialogService.DialogStyle>
+                                                                                    <Style TargetType="dx:DXDialogWindow" BasedOn="{StaticResource DXDialogWindowDialogStyleBase}">
+                                                                                        <Setter Property="Width" Value="600" />
+                                                                                        <Setter Property="Height" Value="350" />
+                                                                                        <Setter Property="MinWidth" Value="420" />
+                                                                                        <Setter Property="MinHeight" Value="240" />
+                                                                                        <Setter Property="Title" Value="Field Collection Editor" />
+                                                                                    </Style>
+                                                                                </dxdiag:CollectionDialogService.DialogStyle>
+                                                                                <dxdiag:CollectionDialogService.ViewTemplate>
+                                                                                    <DataTemplate>
+                                                                                        <designereditors:XRPivotGridFieldCollectionUITypeEditor EditValue="{Binding Value}" ReportModel="{Binding Content}" />
+                                                                                    </DataTemplate>
+                                                                                </dxdiag:CollectionDialogService.ViewTemplate>
+                                                                            </dxdiag:CollectionDialogService>
+                                                                        </ContentControl>
+                                                                    </DataTemplate>
+                                                                </dxe:DialogServiceEditorBehavior.DialogServiceTemplate>
+                                                            </dxe:DialogServiceEditorBehavior>
+                                                        </dxmvvm:Interaction.Behaviors>
+                                                    </dxe:ButtonInfo>
+                                                </dxe:ButtonEditSettings.Buttons>
+                                            </dxe:ButtonEditSettings>
+                                        </dxpg:PropertyDefinition.EditSettings>
+                                    </dxpg:PropertyDefinition>
+                                </DataTemplate>
+                                <DataTemplate x:Key="{x:Static designernativemetadata:MetadataPropertyGridEditorTemplateKeys.ViewType}">
+                                    <dxpg:PropertyDefinition IsReadOnly="False" UseTypeConverterToStringConversion="True">
+                                        <dxpg:PropertyDefinition.EditSettings>
+                                            <dxe:ButtonEditSettings AllowDefaultButton="False" IsTextEditable="False">
+                                                <dxe:ButtonEditSettings.Buttons>
+                                                    <dxe:ButtonInfo GlyphKind="Regular">
+                                                        <dxmvvm:Interaction.Behaviors>
+                                                            <dxe:DialogServiceEditorBehavior Commands="{dxe:UICommandContainerGenerator Buttons=OKCancel}">
+                                                                <dxe:DialogServiceEditorBehavior.DialogServiceTemplate>
+                                                                    <DataTemplate>
+                                                                        <ContentControl>
+                                                                            <dx:DialogService DialogWindowStartupLocation="CenterOwner">
+                                                                                <dx:DialogService.DialogStyle>
+                                                                                    <Style TargetType="dx:DXDialogWindow" BasedOn="{StaticResource DXDialogWindowDialogStyleBase}">
+                                                                                        <Setter Property="SizeToContent" Value="WidthAndHeight" />
+                                                                                        <Setter Property="ResizeMode" Value="CanMinimize" />
+                                                                                        <Setter Property="Title" Value="Choose Series View" />
+                                                                                    </Style>
+                                                                                </dx:DialogService.DialogStyle>
+                                                                                <dx:DialogService.ViewTemplate>
+                                                                                    <DataTemplate>
+                                                                                        <designereditors:SeriesViewUITypeEditor EditValue="{Binding Value}" />
+                                                                                    </DataTemplate>
+                                                                                </dx:DialogService.ViewTemplate>
+                                                                            </dx:DialogService>
+                                                                        </ContentControl>
+                                                                    </DataTemplate>
+                                                                </dxe:DialogServiceEditorBehavior.DialogServiceTemplate>
+                                                            </dxe:DialogServiceEditorBehavior>
+                                                        </dxmvvm:Interaction.Behaviors>
+                                                    </dxe:ButtonInfo>
+                                                </dxe:ButtonEditSettings.Buttons>
+                                            </dxe:ButtonEditSettings>
+                                        </dxpg:PropertyDefinition.EditSettings>
+                                    </dxpg:PropertyDefinition>
+                                </DataTemplate>
+                                <DataTemplate x:Key="{x:Static designernativemetadata:MetadataPropertyGridEditorTemplateKeys.DataFilterCollection}">
+                                    <dxpg:PropertyDefinition IsReadOnly="False" UseTypeConverterToStringConversion="True">
+                                        <dxpg:PropertyDefinition.EditSettings>
+                                            <dxe:ButtonEditSettings AllowDefaultButton="False">
+                                                <dxe:ButtonEditSettings.Buttons>
+                                                    <dxe:ButtonInfo GlyphKind="Regular">
+                                                        <dxmvvm:Interaction.Behaviors>
+                                                            <dxe:DialogServiceEditorBehavior Commands="{dxe:UICommandContainerGenerator Buttons=OKCancel}" >
+                                                                <dxe:DialogServiceEditorBehavior.DialogServiceTemplate>
+                                                                    <DataTemplate>
+                                                                        <ContentControl>
+                                                                            <dxdiag:CollectionDialogService DialogWindowStartupLocation="CenterOwner">
+                                                                                <dxdiag:CollectionDialogService.DialogStyle>
+                                                                                    <Style TargetType="dx:DXDialogWindow" BasedOn="{StaticResource DXDialogWindowDialogStyleBase}">
+                                                                                        <Setter Property="Width" Value="600" />
+                                                                                        <Setter Property="Height" Value="350" />
+                                                                                        <Setter Property="MinWidth" Value="420" />
+                                                                                        <Setter Property="MinHeight" Value="240" />
+                                                                                        <Setter Property="Title" Value="Data Filter Collection Editor" />
+                                                                                    </Style>
+                                                                                </dxdiag:CollectionDialogService.DialogStyle>
+                                                                                <dxdiag:CollectionDialogService.ViewTemplate>
+                                                                                    <DataTemplate>
+                                                                                        <designereditors:DataFilterCollectionUITypeEditor EditValue="{Binding Value}" />
+                                                                                    </DataTemplate>
+                                                                                </dxdiag:CollectionDialogService.ViewTemplate>
+                                                                            </dxdiag:CollectionDialogService>
+                                                                        </ContentControl>
+                                                                    </DataTemplate>
+                                                                </dxe:DialogServiceEditorBehavior.DialogServiceTemplate>
+                                                            </dxe:DialogServiceEditorBehavior>
+                                                        </dxmvvm:Interaction.Behaviors>
+                                                    </dxe:ButtonInfo>
+                                                </dxe:ButtonEditSettings.Buttons>
+                                            </dxe:ButtonEditSettings>
+                                        </dxpg:PropertyDefinition.EditSettings>
+                                    </dxpg:PropertyDefinition>
+                                </DataTemplate>
+                                <DataTemplate x:Key="{x:Static designernativemetadata:MetadataPropertyGridEditorTemplateKeys.ChartTitleCollection}">
+                                    <dxpg:PropertyDefinition IsReadOnly="False" UseTypeConverterToStringConversion="True">
+                                        <dxpg:PropertyDefinition.EditSettings>
+                                            <dxe:ButtonEditSettings AllowDefaultButton="False">
+                                                <dxe:ButtonEditSettings.Buttons>
+                                                    <dxe:ButtonInfo GlyphKind="Regular">
+                                                        <dxmvvm:Interaction.Behaviors>
+                                                            <dxe:DialogServiceEditorBehavior Commands="{dxe:UICommandContainerGenerator Buttons=OKCancel}" >
+                                                                <dxe:DialogServiceEditorBehavior.DialogServiceTemplate>
+                                                                    <DataTemplate>
+                                                                        <ContentControl>
+                                                                            <dxdiag:CollectionDialogService DialogWindowStartupLocation="CenterOwner">
+                                                                                <dxdiag:CollectionDialogService.DialogStyle>
+                                                                                    <Style TargetType="dx:DXDialogWindow" BasedOn="{StaticResource DXDialogWindowDialogStyleBase}">
+                                                                                        <Setter Property="Width" Value="600" />
+                                                                                        <Setter Property="Height" Value="350" />
+                                                                                        <Setter Property="MinWidth" Value="420" />
+                                                                                        <Setter Property="MinHeight" Value="240" />
+                                                                                        <Setter Property="Title" Value="Chart Title Collection Editor" />
+                                                                                    </Style>
+                                                                                </dxdiag:CollectionDialogService.DialogStyle>
+                                                                                <dxdiag:CollectionDialogService.ViewTemplate>
+                                                                                    <DataTemplate>
+                                                                                        <designereditors:ChartTitleCollectionUITypeEditor EditValue="{Binding Value}" />
+                                                                                    </DataTemplate>
+                                                                                </dxdiag:CollectionDialogService.ViewTemplate>
+                                                                            </dxdiag:CollectionDialogService>
+                                                                        </ContentControl>
+                                                                    </DataTemplate>
+                                                                </dxe:DialogServiceEditorBehavior.DialogServiceTemplate>
+                                                            </dxe:DialogServiceEditorBehavior>
+                                                        </dxmvvm:Interaction.Behaviors>
+                                                    </dxe:ButtonInfo>
+                                                </dxe:ButtonEditSettings.Buttons>
+                                            </dxe:ButtonEditSettings>
+                                        </dxpg:PropertyDefinition.EditSettings>
+                                    </dxpg:PropertyDefinition>
+                                </DataTemplate>
+                                <DataTemplate x:Key="{x:Static designernativemetadata:MetadataPropertyGridEditorTemplateKeys.XRAnnotationCollection}">
+                                    <dxpg:PropertyDefinition IsReadOnly="False" UseTypeConverterToStringConversion="True">
+                                        <dxpg:PropertyDefinition.EditSettings>
+                                            <dxe:ButtonEditSettings AllowDefaultButton="False">
+                                                <dxe:ButtonEditSettings.Buttons>
+                                                    <dxe:ButtonInfo GlyphKind="Regular">
+                                                        <dxmvvm:Interaction.Behaviors>
+                                                            <dxe:DialogServiceEditorBehavior Commands="{dxe:UICommandContainerGenerator Buttons=OKCancel}" >
+                                                                <dxe:DialogServiceEditorBehavior.DialogServiceTemplate>
+                                                                    <DataTemplate>
+                                                                        <ContentControl>
+                                                                            <dxdiag:CollectionDialogService DialogWindowStartupLocation="CenterOwner">
+                                                                                <dxdiag:CollectionDialogService.DialogStyle>
+                                                                                    <Style TargetType="dx:DXDialogWindow" BasedOn="{StaticResource DXDialogWindowDialogStyleBase}">
+                                                                                        <Setter Property="Width" Value="600" />
+                                                                                        <Setter Property="Height" Value="350" />
+                                                                                        <Setter Property="MinWidth" Value="420" />
+                                                                                        <Setter Property="MinHeight" Value="240" />
+                                                                                        <Setter Property="Title" Value="Annotation Collection Editor" />
+                                                                                    </Style>
+                                                                                </dxdiag:CollectionDialogService.DialogStyle>
+                                                                                <dxdiag:CollectionDialogService.ViewTemplate>
+                                                                                    <DataTemplate>
+                                                                                        <designereditors:AnnotationCollectionUITypeEditor EditValue="{Binding Value}" />
+                                                                                    </DataTemplate>
+                                                                                </dxdiag:CollectionDialogService.ViewTemplate>
+                                                                            </dxdiag:CollectionDialogService>
+                                                                        </ContentControl>
+                                                                    </DataTemplate>
+                                                                </dxe:DialogServiceEditorBehavior.DialogServiceTemplate>
+                                                            </dxe:DialogServiceEditorBehavior>
+                                                        </dxmvvm:Interaction.Behaviors>
+                                                    </dxe:ButtonInfo>
+                                                </dxe:ButtonEditSettings.Buttons>
+                                            </dxe:ButtonEditSettings>
+                                        </dxpg:PropertyDefinition.EditSettings>
+                                    </dxpg:PropertyDefinition>
+                                </DataTemplate>
+                                <DataTemplate x:Key="{x:Static designernativemetadata:MetadataPropertyGridEditorTemplateKeys.RecipientCollection}">
+                                    <dxpg:PropertyDefinition IsReadOnly="False" UseTypeConverterToStringConversion="True">
+                                        <dxpg:PropertyDefinition.EditSettings>
+                                            <dxe:ButtonEditSettings AllowDefaultButton="False">
+                                                <dxe:ButtonEditSettings.Buttons>
+                                                    <dxe:ButtonInfo GlyphKind="Regular">
+                                                        <dxmvvm:Interaction.Behaviors>
+                                                            <dxe:DialogServiceEditorBehavior Commands="{dxe:UICommandContainerGenerator Buttons=OKCancel}" >
+                                                                <dxe:DialogServiceEditorBehavior.DialogServiceTemplate>
+                                                                    <DataTemplate>
+                                                                        <ContentControl>
+                                                                            <dxdiag:CollectionDialogService  DialogWindowStartupLocation="CenterOwner">
+                                                                                <dxdiag:CollectionDialogService.DialogStyle>
+                                                                                    <Style TargetType="dx:DXDialogWindow" BasedOn="{StaticResource DXDialogWindowDialogStyleBase}">
+                                                                                        <Setter Property="Width" Value="600" />
+                                                                                        <Setter Property="Height" Value="350" />
+                                                                                        <Setter Property="MinWidth" Value="420" />
+                                                                                        <Setter Property="MinHeight" Value="240" />
+                                                                                        <Setter Property="Title" Value="Recipient Collection Editor" />
+                                                                                    </Style>
+                                                                                </dxdiag:CollectionDialogService.DialogStyle>
+                                                                                <dxdiag:CollectionDialogService.ViewTemplate>
+                                                                                    <DataTemplate>
+                                                                                        <designereditors:RecipientCollectionUITypeEditor EditValue="{Binding Value}" />
+                                                                                    </DataTemplate>
+                                                                                </dxdiag:CollectionDialogService.ViewTemplate>
+                                                                            </dxdiag:CollectionDialogService>
+                                                                        </ContentControl>
+                                                                    </DataTemplate>
+                                                                </dxe:DialogServiceEditorBehavior.DialogServiceTemplate>
+                                                            </dxe:DialogServiceEditorBehavior>
+                                                        </dxmvvm:Interaction.Behaviors>
+                                                    </dxe:ButtonInfo>
+                                                </dxe:ButtonEditSettings.Buttons>
+                                            </dxe:ButtonEditSettings>
+                                        </dxpg:PropertyDefinition.EditSettings>
+                                    </dxpg:PropertyDefinition>
+                                </DataTemplate>
+                                <DataTemplate x:Key="{x:Static designernativemetadata:MetadataPropertyGridEditorTemplateKeys.XRTableOfContentsLevelCollection}">
+                                    <dxpg:PropertyDefinition IsReadOnly="False" UseTypeConverterToStringConversion="True">
+                                        <dxpg:PropertyDefinition.EditSettings>
+                                            <dxe:ButtonEditSettings AllowDefaultButton="False">
+                                                <dxe:ButtonEditSettings.Buttons>
+                                                    <dxe:ButtonInfo GlyphKind="Regular">
+                                                        <dxmvvm:Interaction.Behaviors>
+                                                            <dxe:DialogServiceEditorBehavior Commands="{dxe:UICommandContainerGenerator Buttons=OKCancel}">
+                                                                <dxe:DialogServiceEditorBehavior.DialogServiceTemplate>
+                                                                    <DataTemplate>
+                                                                        <ContentControl>
+                                                                            <dxdiag:CollectionDialogService  DialogWindowStartupLocation="CenterOwner">
+                                                                                <dxdiag:CollectionDialogService.DialogStyle>
+                                                                                    <Style TargetType="dx:DXDialogWindow" BasedOn="{StaticResource DXDialogWindowDialogStyleBase}">
+                                                                                        <Setter Property="Width" Value="600" />
+                                                                                        <Setter Property="Height" Value="350" />
+                                                                                        <Setter Property="MinWidth" Value="420" />
+                                                                                        <Setter Property="MinHeight" Value="240" />
+                                                                                        <Setter Property="Title" Value="Table Of Contents Level Collection Editor" />
+                                                                                    </Style>
+                                                                                </dxdiag:CollectionDialogService.DialogStyle>
+                                                                                <dxdiag:CollectionDialogService.ViewTemplate>
+                                                                                    <DataTemplate>
+                                                                                        <designereditors:XRTableOfContentsLevelCollectionEditor EditValue="{Binding Value}" />
+                                                                                    </DataTemplate>
+                                                                                </dxdiag:CollectionDialogService.ViewTemplate>
+                                                                            </dxdiag:CollectionDialogService>
+                                                                        </ContentControl>
+                                                                    </DataTemplate>
+                                                                </dxe:DialogServiceEditorBehavior.DialogServiceTemplate>
+                                                            </dxe:DialogServiceEditorBehavior>
+                                                        </dxmvvm:Interaction.Behaviors>
+                                                    </dxe:ButtonInfo>
+                                                </dxe:ButtonEditSettings.Buttons>
+                                            </dxe:ButtonEditSettings>
+                                        </dxpg:PropertyDefinition.EditSettings>
+                                    </dxpg:PropertyDefinition>
+                                </DataTemplate>
+                                <DataTemplate x:Key="{x:Static designernativemetadata:MetadataPropertyGridEditorTemplateKeys.GroupFieldCollection}">
+                                    <dxpg:PropertyDefinition IsReadOnly="False" UseTypeConverterToStringConversion="True">
+                                        <dxpg:PropertyDefinition.EditSettings>
+                                            <dxe:ButtonEditSettings AllowDefaultButton="False">
+                                                <dxe:ButtonEditSettings.Buttons>
+                                                    <dxe:ButtonInfo GlyphKind="Regular">
+                                                        <dxmvvm:Interaction.Behaviors>
+                                                            <dxe:DialogServiceEditorBehavior Commands="{dxe:UICommandContainerGenerator Buttons=OKCancel}" >
+                                                                <dxe:DialogServiceEditorBehavior.DialogServiceTemplate>
+                                                                    <DataTemplate>
+                                                                        <ContentControl>
+                                                                            <dxdiag:CollectionDialogService DialogWindowStartupLocation="CenterOwner">
+                                                                                <dxdiag:CollectionDialogService.DialogStyle>
+                                                                                    <Style TargetType="dx:DXDialogWindow" BasedOn="{StaticResource DXDialogWindowDialogStyleBase}">
+                                                                                        <Setter Property="Width" Value="600" />
+                                                                                        <Setter Property="Height" Value="350" />
+                                                                                        <Setter Property="MinWidth" Value="420" />
+                                                                                        <Setter Property="MinHeight" Value="240" />
+                                                                                        <Setter Property="Title" Value="GroupField Collection Editor" />
+                                                                                    </Style>
+                                                                                </dxdiag:CollectionDialogService.DialogStyle>
+                                                                                <dxdiag:CollectionDialogService.ViewTemplate>
+                                                                                    <DataTemplate>
+                                                                                        <designereditors:GroupFieldCollectionUITypeEditor EditValue="{Binding Value}" />
+                                                                                    </DataTemplate>
+                                                                                </dxdiag:CollectionDialogService.ViewTemplate>
+                                                                            </dxdiag:CollectionDialogService>
+                                                                        </ContentControl>
+                                                                    </DataTemplate>
+                                                                </dxe:DialogServiceEditorBehavior.DialogServiceTemplate>
+                                                            </dxe:DialogServiceEditorBehavior>
+                                                        </dxmvvm:Interaction.Behaviors>
+                                                    </dxe:ButtonInfo>
+                                                </dxe:ButtonEditSettings.Buttons>
+                                            </dxe:ButtonEditSettings>
+                                        </dxpg:PropertyDefinition.EditSettings>
+                                    </dxpg:PropertyDefinition>
+                                </DataTemplate>
+                                <DataTemplate x:Key="{x:Static designernativemetadata:MetadataPropertyGridEditorTemplateKeys.SubBandCollection}">
+                                    <dxpg:PropertyDefinition IsReadOnly="False" UseTypeConverterToStringConversion="True">
+                                        <dxpg:PropertyDefinition.EditSettings>
+                                            <dxe:ButtonEditSettings AllowDefaultButton="False">
+                                                <dxe:ButtonEditSettings.Buttons>
+                                                    <dxe:ButtonInfo GlyphKind="Regular">
+                                                        <dxmvvm:Interaction.Behaviors>
+                                                            <dxe:DialogServiceEditorBehavior Commands="{dxe:UICommandContainerGenerator Buttons=OKCancel}" 
+                                                                                             Content="{Binding Path=AssociatedObject.(designer:ReportDesigner.Document).ReportModel, RelativeSource={RelativeSource Self}}">
+                                                                <dxe:DialogServiceEditorBehavior.DialogServiceTemplate>
+                                                                    <DataTemplate>
+                                                                        <ContentControl>
+                                                                            <dxdiag:CollectionDialogService DialogWindowStartupLocation="CenterOwner">
+                                                                                <dxdiag:CollectionDialogService.DialogStyle>
+                                                                                    <Style TargetType="dx:DXDialogWindow" BasedOn="{StaticResource DXDialogWindowDialogStyleBase}">
+                                                                                        <Setter Property="Width" Value="600" />
+                                                                                        <Setter Property="Height" Value="350" />
+                                                                                        <Setter Property="MinWidth" Value="420" />
+                                                                                        <Setter Property="MinHeight" Value="240" />
+                                                                                        <Setter Property="Title" Value="SubBand Collection Editor" />
+                                                                                    </Style>
+                                                                                </dxdiag:CollectionDialogService.DialogStyle>
+                                                                                <dxdiag:CollectionDialogService.ViewTemplate>
+                                                                                    <DataTemplate>
+                                                                                        <designereditors:SubBandCollectionUITypeEditor EditValue="{Binding Value}" ReportModel="{Binding Content}"  />
+                                                                                    </DataTemplate>
+                                                                                </dxdiag:CollectionDialogService.ViewTemplate>
+                                                                            </dxdiag:CollectionDialogService>
+                                                                        </ContentControl>
+                                                                    </DataTemplate>
+                                                                </dxe:DialogServiceEditorBehavior.DialogServiceTemplate>
+                                                            </dxe:DialogServiceEditorBehavior>
+                                                        </dxmvvm:Interaction.Behaviors>
+                                                    </dxe:ButtonInfo>
+                                                </dxe:ButtonEditSettings.Buttons>
+                                            </dxe:ButtonEditSettings>
+                                        </dxpg:PropertyDefinition.EditSettings>
+                                    </dxpg:PropertyDefinition>
+                                </DataTemplate>
+                                <DataTemplate x:Key="{x:Static designernativemetadata:MetadataPropertyGridEditorTemplateKeys.XRWatermark}">
+                                    <dxpg:PropertyDefinition IsReadOnly="False" UseTypeConverterToStringConversion="True">
+                                        <dxpg:PropertyDefinition.EditSettings>
+                                            <dxe:ButtonEditSettings AllowDefaultButton="False" IsTextEditable="False">
+                                                <dxe:ButtonEditSettings.Buttons>
+                                                    <dxe:ButtonInfo GlyphKind="Regular">
+                                                        <dxmvvm:Interaction.Behaviors>
+                                                            <dxe:DialogServiceEditorBehavior Commands="{dxe:UICommandContainerGenerator Buttons=OKCancel}" Content="{Binding Path=AssociatedObject.(propertygrid:ReportDesignerPropertyGridControl.Report), RelativeSource={RelativeSource Self}}">
+                                                                <dxe:DialogServiceEditorBehavior.DialogServiceTemplate>
+                                                                    <DataTemplate>
+                                                                        <ContentControl>
+                                                                            <dx:DialogService DialogWindowStartupLocation="CenterOwner" DialogStyle="{StaticResource WatermarkDialogStyle}">
+                                                                                <dx:DialogService.ViewTemplate>
+                                                                                    <DataTemplate>
+                                                                                        <designereditors:WatermarkUITypeEditor EditValue="{Binding Value}" Report="{Binding Content}" />
+                                                                                    </DataTemplate>
+                                                                                </dx:DialogService.ViewTemplate>
+                                                                            </dx:DialogService>
+                                                                        </ContentControl>
+                                                                    </DataTemplate>
+                                                                </dxe:DialogServiceEditorBehavior.DialogServiceTemplate>
+                                                            </dxe:DialogServiceEditorBehavior>
+                                                        </dxmvvm:Interaction.Behaviors>
+                                                    </dxe:ButtonInfo>
+                                                </dxe:ButtonEditSettings.Buttons>
+                                            </dxe:ButtonEditSettings>
+                                        </dxpg:PropertyDefinition.EditSettings>
+                                    </dxpg:PropertyDefinition>
+                                </DataTemplate>
+                                <DataTemplate x:Key="{x:Static designernativemetadata:MetadataPropertyGridEditorTemplateKeys.BindingSettings}">
+                                    <dxpg:PropertyDefinition IsReadOnly="False">
+                                        <dxpg:PropertyDefinition.ContentTemplate>
+                                            <DataTemplate>
+                                                <dxpg:CellEditorPresenter Path="Data" />
+                                            </DataTemplate>
+                                        </dxpg:PropertyDefinition.ContentTemplate>
+                                    </dxpg:PropertyDefinition>
+                                </DataTemplate>
+                                <DataTemplate x:Key="{x:Static designernativemetadata:MetadataPropertyGridEditorTemplateKeys.OLAPConnectionString}">
+                                    <dxpg:PropertyDefinition IsReadOnly="False">
+                                        <dxpg:PropertyDefinition.EditSettings>
+                                            <dxe:ButtonEditSettings AllowDefaultButton="False">
+                                                <dxe:ButtonEditSettings.Buttons>
+                                                    <dxe:ButtonInfo GlyphKind="Regular">
+                                                        <dxmvvm:Interaction.Behaviors>
+                                                            <dxe:DialogServiceEditorBehavior Commands="{dxe:UICommandContainerGenerator Buttons=OKCancel}">
+                                                                <dxe:DialogServiceEditorBehavior.DialogServiceTemplate>
+                                                                    <DataTemplate>
+                                                                        <ContentControl>
+                                                                            <dx:DialogService DialogWindowStartupLocation="CenterOwner">
+                                                                                <dx:DialogService.DialogStyle>
+                                                                                    <Style TargetType="dx:DXDialogWindow" BasedOn="{StaticResource DXDialogWindowDialogStyleBase}">
+                                                                                        <Setter Property="Width" Value="400" />
+                                                                                        <Setter Property="Height" Value="400" />
+                                                                                        <Setter Property="ResizeMode" Value="NoResize" />
+                                                                                        <Setter Property="Title" Value="Connection String Editor" />
+                                                                                    </Style>
+                                                                                </dx:DialogService.DialogStyle>
+                                                                                <dx:DialogService.ViewTemplate>
+                                                                                    <DataTemplate>
+                                                                                        <designereditors:OLAPConnectionStringUITypeEditor EditValue="{Binding Value}" />
+                                                                                    </DataTemplate>
+                                                                                </dx:DialogService.ViewTemplate>
+                                                                            </dx:DialogService>
+                                                                        </ContentControl>
+                                                                    </DataTemplate>
+                                                                </dxe:DialogServiceEditorBehavior.DialogServiceTemplate>
+                                                            </dxe:DialogServiceEditorBehavior>
+                                                        </dxmvvm:Interaction.Behaviors>
+                                                    </dxe:ButtonInfo>
+                                                </dxe:ButtonEditSettings.Buttons>
+                                            </dxe:ButtonEditSettings>
+                                        </dxpg:PropertyDefinition.EditSettings>
+                                    </dxpg:PropertyDefinition>
+                                </DataTemplate>
+                                <DataTemplate x:Key="{x:Static designernativemetadata:MetadataPropertyGridEditorTemplateKeys.Shape}">
+                                    <dxpg:PropertyDefinition IsReadOnly="False" AllowExpanding="Force" UseTypeConverterToStringConversion="True">
+                                        <dxpg:PropertyDefinition.ContentTemplate>
+                                            <DataTemplate>
+                                                <dxpg:CellEditorPresenter Path="Data" />
+                                            </DataTemplate>
+                                        </dxpg:PropertyDefinition.ContentTemplate>
+                                    </dxpg:PropertyDefinition>
+                                </DataTemplate>
+                                <DataTemplate x:Key="{x:Static designernativemetadata:MetadataPropertyGridEditorTemplateKeys.ShapeData}">
+                                    <dxpg:PropertyDefinition IsReadOnly="False">
+                                        <dxpg:PropertyDefinition.EditSettings>
+                                            <dxe:ComboBoxEditSettings ItemsSource="{designernative:ShapeCollection}" IsTextEditable="False" />
+                                        </dxpg:PropertyDefinition.EditSettings>
+                                    </dxpg:PropertyDefinition>
+                                </DataTemplate>
+                                <DataTemplate x:Key="{x:Static designernativemetadata:MetadataPropertyGridEditorTemplateKeys.Styles}">
+                                    <dxpg:PropertyDefinition IsReadOnly="False">
+                                        <dxpg:PropertyDefinition.CellTemplate>
+                                            <DataTemplate>
+                                                <dxe:ComboBoxEdit x:Name="PART_Editor" ItemsSource="{Binding Path=(designer:ReportDesigner.Document).ReportModel.Styles, RelativeSource={RelativeSource Self}}" IsTextEditable="False" DisplayMember="Name">
+                                                    <dxe:ComboBoxEdit.Buttons>
+                                                        <dxe:ButtonInfo GlyphKind="Plus" Command="{Binding Path=(designer:ReportDesigner.Document).Diagram.XRCommands.AddNewStyle, RelativeSource={RelativeSource Self}}" CommandParameter="{Binding PropertyName}" />
+                                                    </dxe:ComboBoxEdit.Buttons>
+                                                </dxe:ComboBoxEdit>
+                                            </DataTemplate>
+                                        </dxpg:PropertyDefinition.CellTemplate>
+                                    </dxpg:PropertyDefinition>
+                                </DataTemplate>
+                                <DataTemplate x:Key="{x:Static designernativemetadata:MetadataPropertyGridEditorTemplateKeys.Color}">
+                                    <dxpg:PropertyDefinition IsReadOnly="False">
+                                        <dxpg:PropertyDefinition.EditSettings>
+                                            <dxe:PopupColorEditSettings />
+                                        </dxpg:PropertyDefinition.EditSettings>
+                                    </dxpg:PropertyDefinition>
+                                </DataTemplate>
+                                <DataTemplate x:Key="{x:Static designernativemetadata:MetadataPropertyGridEditorTemplateKeys.ForUseTypeConverterToStringConversion}">
+                                    <dxpg:PropertyDefinition IsReadOnly="False" UseTypeConverterToStringConversion="True" />
+                                </DataTemplate>
+                                <DataTemplate x:Key="{x:Static designernativemetadata:MetadataPropertyGridEditorTemplateKeys.ForIsReadOnly}">
+                                    <dxpg:PropertyDefinition IsReadOnly="False" />
+                                </DataTemplate>
+                                <DataTemplate x:Key="{x:Static designernativemetadata:MetadataPropertyGridEditorTemplateKeys.Summary}">
+                                    <dxpg:PropertyDefinition UseTypeConverterToStringConversion="True" IsReadOnly="False" >
+                                        <dxpg:PropertyDefinition.EditSettings>
+                                            <dxe:ButtonEditSettings AllowDefaultButton="False">
+                                                <dxe:ButtonEditSettings.Buttons>
+                                                    <dxe:ButtonInfo GlyphKind="Regular">
+                                                        <dxmvvm:Interaction.Behaviors>
+                                                            <dxe:DialogServiceEditorBehavior Commands="{dxe:UICommandContainerGenerator Buttons=OKCancel}" Content="{Binding Path=AssociatedObject.(designer:ReportDesigner.Document).ReportModel, RelativeSource={RelativeSource Self}}">
+                                                                <dxe:DialogServiceEditorBehavior.DialogServiceTemplate>
+                                                                    <DataTemplate>
+                                                                        <ContentControl>
+                                                                            <dx:DialogService DialogWindowStartupLocation="CenterOwner">
+                                                                                <dx:DialogService.DialogStyle>
+                                                                                    <Style TargetType="dx:DXDialogWindow" BasedOn="{StaticResource DXDialogWindowDialogStyleBase}">
+                                                                                        <Setter Property="SizeToContent" Value="WidthAndHeight" />
+                                                                                        <Setter Property="ResizeMode" Value="CanMinimize" />
+                                                                                        <Setter Property="Title" Value="Summary Editor" />
+                                                                                    </Style>
+                                                                                </dx:DialogService.DialogStyle>
+                                                                                <dx:DialogService.ViewTemplate>
+                                                                                    <DataTemplate>
+                                                                                        <designereditors:SummaryUITypeEditor EditValue="{Binding Value}" PrimarySelection="{Binding Content.SelectedModel, Mode=OneWay}" FieldListNodes="{Binding Content.FieldListNodes, Mode=OneWay}" />
+                                                                                    </DataTemplate>
+                                                                                </dx:DialogService.ViewTemplate>
+                                                                            </dx:DialogService>
+                                                                        </ContentControl>
+                                                                    </DataTemplate>
+                                                                </dxe:DialogServiceEditorBehavior.DialogServiceTemplate>
+                                                            </dxe:DialogServiceEditorBehavior>
+                                                        </dxmvvm:Interaction.Behaviors>
+                                                    </dxe:ButtonInfo>
+                                                </dxe:ButtonEditSettings.Buttons>
+                                            </dxe:ButtonEditSettings>
+                                        </dxpg:PropertyDefinition.EditSettings>
+                                    </dxpg:PropertyDefinition>
+                                </DataTemplate>
+                                <DataTemplate x:Key="{x:Static designernativemetadata:MetadataPropertyGridEditorTemplateKeys.ReportSourceUrl}">
+                                    <dxpg:PropertyDefinition IsReadOnly="False" >
+                                        <dxpg:PropertyDefinition.EditSettings>
+                                            <dxe:ButtonEditSettings AllowDefaultButton="False">
+                                                <dxe:ButtonEditSettings.Buttons>
+                                                    <dxe:ButtonInfo GlyphKind="Regular">
+                                                        <dxmvvm:Interaction.Behaviors>
+                                                            <dxe:CustomDialogServiceEditorBehavior Content="{Binding Path=AssociatedObject.(designer:ReportDesigner.Designer), RelativeSource={RelativeSource Self}}">
+                                                                <dxe:CustomDialogServiceEditorBehavior.DialogServiceTemplate>
+                                                                    <DataTemplate>
+                                                                        <ContentControl>
+                                                                            <designereditors:ReportSourceUrlDialogService />
+                                                                        </ContentControl>
+                                                                    </DataTemplate>
+                                                                </dxe:CustomDialogServiceEditorBehavior.DialogServiceTemplate>
+                                                            </dxe:CustomDialogServiceEditorBehavior>
+                                                        </dxmvvm:Interaction.Behaviors>
+                                                    </dxe:ButtonInfo>
+                                                </dxe:ButtonEditSettings.Buttons>
+                                            </dxe:ButtonEditSettings>
+                                        </dxpg:PropertyDefinition.EditSettings>
+                                    </dxpg:PropertyDefinition>
+                                </DataTemplate>
+                            </dxpg:PropertyGridControl.Resources>
+                        </dxpg:PropertyGridControl>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

@@ -1,0 +1,102 @@
+﻿<ResourceDictionary x:Class="DevExpress.Xpf.Printing.Parameters.EditorTemplates"
+                    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+                    xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+                    xmlns:dxpn="clr-namespace:DevExpress.Xpf.Printing.Native"
+                    xmlns:dxppm="clr-namespace:DevExpress.Xpf.Printing.Parameters.Models"
+                    xmlns:mvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
+                    xmlns:dxpp="clr-namespace:DevExpress.Xpf.Printing.Parameters">
+    <dxpp:StringToGuidConverter x:Key="stringToGuidConverter" />
+    <DataTemplate x:Key="stringEditorTemplate">
+        <dxpp:ParameterLineLayout>
+            <dxe:TextEdit Grid.Column="1" MinWidth="70"
+                          EditValuePostMode="Delayed" EditValuePostDelay="500" InvalidValueBehavior="AllowLeaveEditor"
+                          EditValue="{Binding Value, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
+        </dxpp:ParameterLineLayout>
+    </DataTemplate>
+    
+    <DataTemplate x:Key="numericEditorTemplate">
+        <dxpp:ParameterLineLayout>
+            <dxe:SpinEdit Grid.Column="1" MinWidth="70" InvalidValueBehavior="AllowLeaveEditor" 
+                          EditValuePostMode="Delayed" EditValuePostDelay="500" EditValueType="{Binding Type, Mode=OneWay}" 
+                          EditValue="{Binding Value, ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+        </dxpp:ParameterLineLayout>
+    </DataTemplate>
+
+    <DataTemplate x:Key="numericFloatEditorTemplate">
+        <dxpp:ParameterLineLayout>
+            <dxe:SpinEdit Grid.Column="1" MinWidth="70" IsFloatValue="True"  InvalidValueBehavior="AllowLeaveEditor" 
+                          EditValuePostMode="Delayed" EditValuePostDelay="500"  EditValueType="{Binding Type, Mode=OneWay}"  
+                          EditValue="{Binding Value, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"/>
+        </dxpp:ParameterLineLayout>
+    </DataTemplate>
+    
+    <DataTemplate x:Key="booleanEditorTemplate" >
+        <dxpp:ParameterLineLayout>
+            <dxe:ComboBoxEdit Grid.Column="1"  MinWidth="70"
+                              EditValuePostMode="Delayed" EditValuePostDelay="500" 
+                              IsTextEditable="False" InvalidValueBehavior="AllowLeaveEditor" 
+                              ItemsSource="{x:Static dxpp:BooleanValuesHelper.BooleanValues}" DisplayMember="Key" ValueMember="Value" 
+                              EditValue="{Binding Value, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
+        </dxpp:ParameterLineLayout>
+    </DataTemplate>
+    
+    <DataTemplate x:Key="dateTimeEditorTemplate">
+        <dxpp:ParameterLineLayout>
+            <dxe:DateEdit Grid.Column="1"  MinWidth="70"
+                          EditValuePostMode="Delayed" EditValuePostDelay="500" InvalidValueBehavior="AllowLeaveEditor" 
+                          EditValue="{Binding Value, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
+        </dxpp:ParameterLineLayout>
+    </DataTemplate>
+
+    <DataTemplate x:Key="lookUpEditTemplate">
+        <dxpp:ParameterLineLayout>
+            <dxe:ComboBoxEdit Grid.Column="1" MinWidth="70"
+                              IsTextEditable="False" ItemsSource="{Binding LookUpValues}"
+                              DisplayMember="RealDescription"
+                              ValueMember="Value"
+                              EditValue="{Binding Value, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}">
+            </dxe:ComboBoxEdit>
+        </dxpp:ParameterLineLayout>
+    </DataTemplate>
+
+    <DataTemplate x:Key="guidTemplate">
+        <dxpp:ParameterLineLayout>
+            <dxe:TextEdit Grid.Column="1" MinWidth="70" MaskType="RegEx" Mask="[0-9a-fA-F]{8}(-[0-9a-fA-F]{4}){3}-[0-9a-fA-F]{12}"
+                          EditValuePostMode="Delayed" EditValuePostDelay="500" InvalidValueBehavior="AllowLeaveEditor"
+                          EditValue="{Binding Value, Converter={StaticResource stringToGuidConverter}, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
+        </dxpp:ParameterLineLayout>
+    </DataTemplate>
+
+    <DataTemplate x:Key="multiValueTemplate" DataType="{x:Type dxppm:ParameterModel}">
+        <dxpp:ParameterLineLayout>
+            <dxe:ComboBoxEdit Grid.Column="1" MinWidth="70" Name="combobox" MaxHeight="100" >
+                <mvvm:Interaction.Behaviors>
+                    <dxpp:MutliValueBindingProvider SourceType="{Binding Type}" />
+                </mvvm:Interaction.Behaviors>
+                <dxe:ComboBoxEdit.StyleSettings>
+                    <dxe:TokenComboBoxStyleSettings EnableTokenWrapping="True" Name="tokenSettings" AddTokenOnPopupSelection="False" NewTokenPosition="Far">
+                    </dxe:TokenComboBoxStyleSettings>
+                </dxe:ComboBoxEdit.StyleSettings>
+            </dxe:ComboBoxEdit>
+        </dxpp:ParameterLineLayout>
+    </DataTemplate>
+
+    <DataTemplate x:Key="multiValueLookUpTemplate" DataType="{x:Type dxppm:ParameterModel}">
+        <dxpp:ParameterLineLayout>
+            <dxe:ComboBoxEdit Grid.Column="1" MinWidth="70" ShowCustomItems="True"
+                              IncrementalFiltering="False" AutoComplete="True" ImmediatePopup="True"
+                              ItemsSource="{Binding LookUpValues}" DisplayMember="RealDescription" ValueMember="Value" MaxHeight="100" FocusPopupOnOpen="False">
+                <mvvm:Interaction.Behaviors>
+                    <dxpp:MutliValueBindingProvider SourceType="{Binding Type}" />
+                    <dxpp:ShowPopupBehavior />
+                </mvvm:Interaction.Behaviors>
+                <dxe:ComboBoxEdit.StyleSettings>
+                    <dxe:CheckedTokenComboBoxStyleSettings AllowEditTokens="False"  EnableTokenWrapping="True" ShowTokenButtons="True" NewTokenPosition="Far" />
+
+                </dxe:ComboBoxEdit.StyleSettings>
+            </dxe:ComboBoxEdit>
+        </dxpp:ParameterLineLayout>
+    </DataTemplate>
+</ResourceDictionary>

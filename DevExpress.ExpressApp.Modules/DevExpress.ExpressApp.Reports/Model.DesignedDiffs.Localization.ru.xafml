@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application>
+  <ActionDesign>
+    <Actions>
+      <Action Id="ShowInReport" Caption="Показать в Отчете" Tooltip="Показать выбранные записи в отчете"/>
+    </Actions>
+  </ActionDesign>
+  <BOModel>
+    <Class Name="DevExpress.Persistent.BaseImpl.ReportData" Caption="Отчет">
+      <OwnMembers>
+        <Member Name="DataTypeCaption" Caption="Тип данных" />
+        <Member Name="IsInplaceReport" Caption="Встроенный отчет" />
+        <Member Name="ReportName" Caption="Название отчета" />
+      </OwnMembers>
+    </Class>
+  </BOModel>
+  <NavigationItems RelatedReportsGroupCaption="Отчеты" >
+    <Items>
+	    <Item Id="Reports" Caption="Отчеты">
+	      <Items>
+		      <Item Id="Reports" Caption="Отчеты" />
+		    </Items>
+	    </Item>
+	  </Items>
+  </NavigationItems>
+  <Views>
+    <ListView Id="ReportData_ListView" Caption="Отчеты" />
+  </Views>
+</Application>

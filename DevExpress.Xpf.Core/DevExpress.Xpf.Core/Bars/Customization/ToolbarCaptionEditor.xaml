@@ -1,0 +1,22 @@
+﻿<UserControl x:Class="DevExpress.Xpf.Bars.Customization.ToolbarCaptionEditor"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:dxtEx="clr-namespace:DevExpress.Xpf.Utils.Themes"
+    xmlns:dx="clr-namespace:DevExpress.Xpf.Core"
+    xmlns:dxe="clr-namespace:DevExpress.Xpf.Editors"
+    >
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <dx:BarsStringIdConverter x:Key="BarsStringIdConverter" />
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <Grid Margin="12">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <TextBlock x:Name="toolbarNameLabel" Grid.Row="0" Text="{Binding ConverterParameter=ToolbarCaptionEditor_Caption, Converter={StaticResource BarsStringIdConverter}, RelativeSource={RelativeSource Self}}" Margin="0,0,0,3"/>
+        <dxe:TextEdit x:Name="toolbarNameTextEdit" Grid.Row="1" Margin="0,0,0,12" />        
+    </Grid>
+</UserControl>

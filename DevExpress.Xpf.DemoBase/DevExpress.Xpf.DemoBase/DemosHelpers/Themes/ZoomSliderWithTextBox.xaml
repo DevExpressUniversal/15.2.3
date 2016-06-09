@@ -1,0 +1,37 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+    xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <dx:FormatStringConverter x:Key="FormatStringConverter" FormatString="0" />
+    <Style x:Key="ZoomSliderWithTextBox" TargetType="{x:Type Slider}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Slider}">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="0.5*" />
+                            <RowDefinition Height="0.5*" />
+                        </Grid.RowDefinitions>
+                        <dxe:TrackBarEdit x:Name="trackBar" 
+								SmallStep="{TemplateBinding SmallChange}"
+                                LargeStep="{TemplateBinding LargeChange}"
+                                TickPlacement="None"
+                                Minimum="{TemplateBinding Minimum}" 
+                                Maximum="{TemplateBinding Maximum}" 
+                                Value="{Binding Value, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
+								HorizontalAlignment="Stretch" VerticalAlignment="Center" Grid.Row="1" />
+                        <dxe:TextEdit x:Name="textBox" 
+                            HorizontalContentAlignment="Right" 
+                            Text="{Binding Value, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}"
+                            IsReadOnly="True" TextWrapping="Wrap" Margin="0,0,0,6" Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" Grid.ColumnSpan="3" />
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter TargetName="textBox" Property="Opacity" Value="0.35" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

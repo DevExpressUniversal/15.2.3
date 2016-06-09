@@ -1,0 +1,61 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+    xmlns:dxpg="clr-namespace:DevExpress.Xpf.PivotGrid"
+    xmlns:dxpgi="clr-namespace:DevExpress.Xpf.PivotGrid.Internal">
+
+    <dx:BooleanToVisibilityConverter x:Key="boolToVisibilityConverter" />
+    <dx:BooleanToVisibilityConverter x:Key="invertBoolToVisibilityConverter" Invert="True"/>
+    
+    <ControlTemplate x:Key="{dxpgi:ScrollableAreaThemeKey ResourceKey=ExpandButtonTemplate}" TargetType="{x:Type dx:ToggleStateButton}">
+        <Grid Width="13" Height="13" HorizontalAlignment="Stretch" x:Name="collapse" VerticalAlignment="Stretch" Opacity="1">
+            <Border HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="Auto" Height="Auto" Opacity="1" CornerRadius="3,3,3,3">
+                <Border.Background>
+                    <LinearGradientBrush EndPoint="0.5,1.002" StartPoint="0.5,-0.002" SpreadMethod="Pad">
+                        <GradientStop Color="#3E4C6EB3" Offset="0" />
+                        <GradientStop Color="#80EDF4FF" Offset="1" />
+                        <GradientStop Color="#3F7098DC" Offset="0.215" />
+                    </LinearGradientBrush>
+                </Border.Background>
+            </Border>
+            <Border x:Name="border" Width="11" Height="11" Background="#FF274C88" CornerRadius="2,2,2,2" Padding="1,1,1,1">
+                <Border CornerRadius="1,1,1,1">
+                    <Border.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#FF2E66B7" Offset="0" />
+                            <GradientStop Color="#FF9FC3F8" Offset="1" />
+                            <GradientStop Color="#FF4A6FBF" Offset="0.524" />
+                        </LinearGradientBrush>
+                    </Border.Background>
+                    <Border Margin="0,0,0,5" CornerRadius="1,1,1,1">
+                        <Border.Background>
+                            <LinearGradientBrush EndPoint="0.5,-0.002" StartPoint="0.5,1.002">
+                                <GradientStop Color="#FF6085CC" Offset="0" />
+                                <GradientStop Color="#FF7FA7E0" Offset="0.885" />
+                                <GradientStop Color="#FFBBD8FF" Offset="1" />
+                            </LinearGradientBrush>
+                        </Border.Background>
+                    </Border>
+                </Border>
+            </Border>
+            <Grid Margin="3,3,3,3">
+                <Rectangle Margin="1,2,1,4" Width="5" Height="1" Fill="#FF274C88" Stroke="{x:Null}" Opacity="0.5" />
+                <Rectangle Margin="3,0,3,2" x:Name="Plus1" Visibility="{Binding IsChecked, Converter={StaticResource invertBoolToVisibilityConverter}, RelativeSource={RelativeSource TemplatedParent}}" Width="1" Height="5" Fill="#FF274C88" Stroke="{x:Null}" Opacity="0.5" />
+                <Rectangle Margin="0,2,0,2" Width="5" Height="1" Fill="#FFFFFFFF" Stroke="{x:Null}" />
+                <Rectangle Margin="2,0,2,0" x:Name="Plus2" Visibility="{Binding IsChecked, Converter={StaticResource invertBoolToVisibilityConverter}, RelativeSource={RelativeSource TemplatedParent}}" Width="1" Height="5" Fill="#FFFFFFFF" Stroke="{x:Null}" />
+            </Grid>
+        </Grid>
+    </ControlTemplate>
+
+    <Style x:Key="{dxpgi:ScrollableAreaThemeKey ResourceKey=ExpandButtonStyle}" TargetType="{x:Type dx:ToggleStateButton}">
+        <Setter Property="Focusable" Value="false" />
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="Width" Value="13" />
+        <Setter Property="Height" Value="13" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="Template" Value="{DynamicResource {dxpgi:ScrollableAreaThemeKey ResourceKey=ExpandButtonTemplate}}" />
+    </Style>
+
+</ResourceDictionary>

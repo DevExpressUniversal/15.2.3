@@ -1,0 +1,171 @@
+﻿<UserControl x:Class="DevExpress.Xpf.Spreadsheet.Forms.FormatCellsAlignmentControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+             xmlns:dxspsi="clr-namespace:DevExpress.Xpf.Spreadsheet.Internal"
+             xmlns:dxsps="clr-namespace:DevExpress.Xpf.Spreadsheet" 
+             mc:Ignorable="d"
+             d:DesignHeight="500" d:DesignWidth="500">
+    <UserControl.Resources>
+        <dxspsi:CheckStateToBoolConverter x:Key="CheckStateToBoolConverter"/>
+        <dxspsi:ByteToIntConverter x:Key="ByteToIntConverter"/>
+        <dxsps:SpreadsheetControlStringIdConverter x:Key="stringIdConverter" />
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_FormatCellsFormAlignmentTextAlignment, Converter={StaticResource stringIdConverter}}" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            <Separator Margin="10,0,0,0" Grid.Column="1" VerticalAlignment="Center"/>
+        </Grid>
+        <Grid Grid.Row="1" Margin="10,0,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid Margin="0,5,0,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <!--<RowDefinition Height="*"/>-->
+                </Grid.RowDefinitions>
+                <TextBlock Text="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_FormatCellsFormAlignmentHorizontal, Converter={StaticResource stringIdConverter}}"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Center"/>
+                <dxe:ComboBoxEdit Name="horizontalBoxEdit"
+                                  Grid.Row="1" 
+                                  Width="120"
+                                  HorizontalAlignment="Left"
+                                  Margin="0,3,0,0"  
+                                  ItemsSource="{Binding HorizontalAlignments}"
+                                  SelectedItem="{Binding HorizontalAlignment, Mode=TwoWay}"/>
+            </Grid>
+            <Grid Grid.Row="1" Margin="0,3,0,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <!--<RowDefinition Height="*"/>-->
+                </Grid.RowDefinitions>
+                <TextBlock Text="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_FormatCellsFormAlignmentVertical, Converter={StaticResource stringIdConverter}}"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Center"/>
+                <dxe:ComboBoxEdit Grid.Row="1"
+                                  Width="120"
+                                  HorizontalAlignment="Left"
+                                  Margin="0,3,0,0"
+                                  ItemsSource="{Binding VerticalAlignments}"
+                                  SelectedItem="{Binding VerticalAlignment, Mode=TwoWay}"/>
+            </Grid>
+            <Grid Grid.RowSpan="2" Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="1" Margin="5,-3,0,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <!--<RowDefinition Height="*"/>-->
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_FormatCellsFormAlignmentIndent, Converter={StaticResource stringIdConverter}}"
+                     Margin="0,3,0,0"
+                     HorizontalAlignment="Left"
+                     VerticalAlignment="Center"/>
+                    <dxe:SpinEdit Grid.Row="1"
+                                  Width="75"
+                                  HorizontalAlignment="Left"
+                                  Margin="0,3,0,0"
+                                  MinValue="0"
+                                  MaxValue="250"
+                                  AllowNullInput="True"
+                                  IsFloatValue="False"
+                                  EditValue="{Binding Indent, Mode=TwoWay, Converter={StaticResource ByteToIntConverter}, UpdateSourceTrigger=PropertyChanged}"/>
+                </Grid>
+            </Grid>
+            <dxe:CheckEdit Grid.Row="2" 
+                           Grid.ColumnSpan="3"
+                           Margin="0,3,0,0" 
+                           Content="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_FormatCellsFormAlignmentJustifyDistributed, Converter={StaticResource stringIdConverter}}"
+                           EditValue="{Binding JustifyDistributed, Mode=TwoWay, Converter={StaticResource CheckStateToBoolConverter}}"
+                           IsThreeState="{Binding JustifyDistributedIndeterminate}"
+                           IsEnabled="{Binding JustifyDistributedEnabled}"/>
+        </Grid>
+        <Grid Grid.Row="2" Margin="0,10,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_FormatCellsFormAlignmentTextControl, Converter={StaticResource stringIdConverter}}"
+                 HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            <Separator Margin="10,0,0,0" Grid.Column="1" VerticalAlignment="Center"/>
+        </Grid>
+        <Grid Grid.Row="3" Margin="10,0,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <dxe:CheckEdit Grid.Row="0" 
+                           Margin="0,3,0,0" 
+                           Content="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_FormatCellsFormAlignmentWrapText, Converter={StaticResource stringIdConverter}}"
+                           EditValue="{Binding WrapText, Mode=TwoWay, Converter={StaticResource CheckStateToBoolConverter}}" 
+                           IsThreeState="{Binding WrapTextIndeterminate}"/>
+            <dxe:CheckEdit Grid.Row="1"
+                           Margin="0,3,0,0" 
+                           Content="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_FormatCellsFormAlignmentShrinkToFit, Converter={StaticResource stringIdConverter}}"
+                           EditValue="{Binding ShrinkToFit, Mode=TwoWay, Converter={StaticResource CheckStateToBoolConverter}}" 
+                           IsThreeState="{Binding ShrinkToFitIndeterminate}" 
+                           IsEnabled="{Binding ShrinkToFitEnabled}"/>
+            <dxe:CheckEdit Grid.Row="2" 
+                           Margin="0,3,0,0" 
+                           Content="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_FormatCellsFormAlignmentMergeCells, Converter={StaticResource stringIdConverter}}"
+                           EditValue="{Binding MergeCells, Mode=TwoWay, Converter={StaticResource CheckStateToBoolConverter}}" 
+                           IsThreeState="{Binding MergeCellsIndeterminate}" />
+        </Grid>
+        <Grid Grid.Row="4" Margin="0,10,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_FormatCellsFormAlignmentRightToLeft, Converter={StaticResource stringIdConverter}}"
+                 HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            <Separator Margin="10,0,0,0" Grid.Column="1" VerticalAlignment="Center"/>
+        </Grid>
+        <Grid Grid.Row="5" Margin="10,3,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <!--<RowDefinition Height="*"/>-->
+            </Grid.RowDefinitions>
+            <TextBlock Text="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_FormatCellsFormAlignmentTextDirection, Converter={StaticResource stringIdConverter}}"
+                 HorizontalAlignment="Left"
+                 VerticalAlignment="Center"/>
+            <dxe:ComboBoxEdit Grid.Row="1"
+                              Margin="0,3,0,0"
+                              Width="100"
+                              HorizontalAlignment="Left"
+                              ItemsSource="{Binding TextDirections}"
+                              SelectedItem="{Binding TextDirection, Mode=TwoWay}"/>
+        </Grid>
+    </Grid>
+</UserControl>

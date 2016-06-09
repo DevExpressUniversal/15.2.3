@@ -1,0 +1,106 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:dxc="http://schemas.devexpress.com/winfx/2008/xaml/core"
+    xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+    xmlns:local="clr-namespace:DevExpress.Xpf.Printing"
+    xmlns:native="clr-namespace:DevExpress.Xpf.Printing.Native"
+    xmlns:dxpt="clr-namespace:DevExpress.Xpf.Printing.Themes">
+
+    <!--<Style x:Key="stackPanelMargin" TargetType="StackPanel">
+        <Setter Property="Margin" Value="{DynamicResource ResourceKey={dxpt:PrintingThemeKey ResourceKey=clientAreaMargin}}"></Setter>
+    </Style>-->
+    
+    <native:SharedSizeGroup x:Key="headerWidthGroup" />
+    <ControlTemplate x:Key="passwordSecurityOptionsTemplate">
+        <StackPanel Margin="{DynamicResource ResourceKey={dxpt:PrintingThemeKey ResourceKey=clientAreaMargin}}">
+            <dxc:GroupFrame Margin="{DynamicResource ResourceKey={dxpt:PrintingThemeKey ResourceKey=groupVerticalSpacing}}">
+                <dxc:GroupFrame.Header>
+                    <ContentControl IsEnabled="{Binding ElementName=requireOpenPassword, Path=IsEnabled}">
+                        <TextBlock Text="{local:PrintingStringId StringId=PdfPasswordSecurityOptions_OpenPasswordHeader}"></TextBlock>
+                    </ContentControl>
+                </dxc:GroupFrame.Header>
+                <StackPanel>
+                    <dxe:CheckEdit Name="requireOpenPassword"
+                               Margin="{DynamicResource ResourceKey={dxpt:PrintingThemeKey ResourceKey=groupVerticalSpacing}}"
+                               Content="{local:PrintingStringId StringId=PdfPasswordSecurityOptions_RequireOpenPassword}"
+                               IsChecked="{Binding Path=RequireOpenPassword}"/>
+                    <ContentControl IsEnabled="{Binding Path=RequireOpenPassword}">
+                        <Grid >
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="auto"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Name="openPasswordLabel" Text="{local:PrintingStringId StringId=PdfPasswordSecurityOptions_OpenPassword}" Grid.Column="0"></TextBlock>
+                            <dxe:PasswordBoxEdit Name="openPassword" Grid.Column="1" Style="{DynamicResource ResourceKey={dxpt:PrintingThemeKey ResourceKey=PasswordBoxEditPDFDialog}}" EditValue="{Binding Path=OpenPassword}"/>
+                        </Grid>
+                    </ContentControl>
+                </StackPanel>
+            </dxc:GroupFrame>
+            <dxc:GroupFrame>
+                <dxc:GroupFrame.Header>
+                    <ContentControl IsEnabled="{Binding ElementName=restrictPermissions, Path=IsEnabled}">
+                        <TextBlock Text="{local:PrintingStringId StringId=PdfPasswordSecurityOptions_Permissions}"></TextBlock>
+                    </ContentControl>
+                </dxc:GroupFrame.Header>
+                <StackPanel>
+                    <dxe:CheckEdit Name="restrictPermissions" 
+                               Margin="{DynamicResource ResourceKey={dxpt:PrintingThemeKey ResourceKey=groupVerticalSpacing}}"
+                               Content="{local:PrintingStringId StringId=PdfPasswordSecurityOptions_RestrictPermissions}"
+                               IsChecked="{Binding Path=RestrictPermissions}"/>
+                    <ContentControl IsEnabled="{Binding Path=RestrictPermissions}">
+                        <Grid>
+                            <Grid.Resources>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="Margin" Value="0,0,0,5"/>
+                                </Style>
+                            </Grid.Resources>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="auto"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Name="permissionsPasswordLabel" 
+                               Text="{local:PrintingStringId StringId=PdfPasswordSecurityOptions_PermissionsPassword}"
+                               Grid.Row="0" Grid.Column="0" >
+                            </TextBlock>
+                            <dxe:PasswordBoxEdit Name="permissionsPassword" Grid.Row="0" Grid.Column="1" Margin="0,0,0,5" Password="{Binding Path=PermissionsPassword, Mode=TwoWay}" Style="{DynamicResource ResourceKey={dxpt:PrintingThemeKey ResourceKey=PasswordBoxEditPDFDialog}}"/>
+                            <TextBlock Name="printingPermissionsLabel" 
+                               Text="{local:PrintingStringId StringId=PdfPasswordSecurityOptions_PrintingPermissions}"
+                               Grid.Row="1" Grid.Column="0">
+                            </TextBlock>
+                            <dxe:ComboBoxEdit Name="printingPermissions" DisplayMember="Value" ValueMember="Key" IsTextEditable="False" Grid.Row="1" Grid.Column="1" Margin="0,0,0,5"
+                                          Style="{DynamicResource ResourceKey={dxpt:PrintingThemeKey ResourceKey=ComboBoxEditPDFDialog}}" EditValue="{Binding Path=PrintingPermissions, Mode=TwoWay}" 
+                                          ItemsSource="{Binding Path=PrintingPermissionsValues}"/>
+                            <TextBlock Name="changingPermissionsLabel" 
+                               Text="{local:PrintingStringId StringId=PdfPasswordSecurityOptions_ChangingPermissions}"
+                               Grid.Row="2" Grid.Column="0">
+                            </TextBlock>
+                            <dxe:ComboBoxEdit Name="changingPermissions" DisplayMember="Value" ValueMember="Key" IsTextEditable="False" Grid.Row="2" Grid.Column="1" Margin="0,0,0,5" 
+                                          Style="{DynamicResource ResourceKey={dxpt:PrintingThemeKey ResourceKey=ComboBoxEditPDFDialog}}" 
+                                          EditValue="{Binding Path=ChangingPermissions, Mode=TwoWay}" ItemsSource="{Binding Path=ChangingPermissionsValues}"/>
+                            <dxe:CheckEdit Name="enableCopying" Grid.Row="3" Grid.ColumnSpan="2"
+                               Content="{local:PrintingStringId StringId=PdfPasswordSecurityOptions_EnableCopying}" 
+                               Margin="{DynamicResource ResourceKey={dxpt:PrintingThemeKey ResourceKey=controlVerticalSpacing}}" 
+                               IsChecked="{Binding Path=EnableCopying}"/>
+                            <dxe:CheckEdit Name="enableScreenReaders" Grid.Row="4" Grid.ColumnSpan="2"
+                               Content="{local:PrintingStringId StringId=PdfPasswordSecurityOptions_EnableScreenReaders}"
+                               IsChecked="{Binding Path=EnableScreenReaders}"/>
+                        </Grid>
+                    </ContentControl>
+                </StackPanel>
+            </dxc:GroupFrame>
+        </StackPanel>
+    </ControlTemplate>
+    <Style TargetType="native:PdfSecurityOptionsControl">
+        <Setter Property="Template" Value="{StaticResource passwordSecurityOptionsTemplate}"></Setter>
+    </Style>
+</ResourceDictionary>

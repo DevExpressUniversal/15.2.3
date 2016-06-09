@@ -1,0 +1,42 @@
+﻿<#@ template language="C#" #>
+<#@ import namespace="System" #>
+<#@ import namespace="DevExpress.Xpf.Core.Design.Wizards.Mvvm.EntityFramework" #>
+<#@ import namespace="DevExpress.Xpf.Core.Design.Wizards.Mvvm" #>
+<#@ import namespace="DevExpress.Design.Mvvm.EntityFramework" #>
+<#@ import namespace="DevExpress.Design.Mvvm" #>
+<#@ import namespace="DevExpress.Entity.Model" #>
+<#
+    T4TemplateInfo templateInfo = this.GetTemplateInfo();
+    var usingList = templateInfo.UsingList;
+    this.PasteUsingList(usingList);
+	EntityModelData entityModel = templateInfo.Properties["EntityModelData"] as EntityModelData;
+#>
+using DevExpress.Mvvm;
+using System.Collections;
+using System.ComponentModel;
+using DevExpress.Data.Linq;
+using DevExpress.Data.Linq.Helpers;
+using DevExpress.Data.Async.Helpers;
+
+namespace <#=this.GetNamespace()#> {
+<#
+    this.PasteAliasList(usingList, entityModel.FullName);
+#>
+    class DesignTimeUnitOfWorkFactory<TUnitOfWork> : IUnitOfWorkFactory<TUnitOfWork> where TUnitOfWork : IUnitOfWork {
+        Func<TUnitOfWork> getUnitOfWork;
+
+        public DesignTimeUnitOfWorkFactory(Func<TUnitOfWork> getUnitOfWork) {
+            this.getUnitOfWork = getUnitOfWork;
+        }
+
+        TUnitOfWork IUnitOfWorkFactory<TUnitOfWork>.CreateUnitOfWork() {
+            return getUnitOfWork();
+        }
+
+        IInstantFeedbackSource<TProjection> IUnitOfWorkFactory<TUnitOfWork>.CreateInstantFeedbackSource<TEntity, TProjection, TPrimaryKey>(
+            Func<TUnitOfWork, IRepository<TEntity, TPrimaryKey>> getRepositoryFunc,
+            Func<IRepositoryQuery<TEntity>, IQueryable<TProjection>> projection) {
+            return new DesignTimeInstantFeedbackSource<TProjection, TPrimaryKey>();
+        }
+    }
+}

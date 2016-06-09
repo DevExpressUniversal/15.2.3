@@ -1,0 +1,104 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:dxn="http://schemas.devexpress.com/winfx/2008/xaml/core/internal"
+                    xmlns:dxprg="http://schemas.devexpress.com/winfx/2008/xaml/propertygrid"
+                    xmlns:dxprgt="http://schemas.devexpress.com/winfx/2008/xaml/propertygrid/themekeys"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib"                    
+                    >
+
+
+    <dxn:RenderTemplate x:Key="{dxprgt:VSViewRenderTemplateThemeKey ResourceKey=RowCommandButton}" >
+        <dxn:RenderBorder Name="Root" Background="#FFF0F0F0" Width="10" Height="10" Margin="5,0,6,0">
+            <dxn:RenderPanel>
+                <dxn:RenderPath Stretch="Fill" Fill="#FF999999" Data="F1 M 10,10L 0,10L 0,0L 10,0L 10,10 Z M 1,1L 1,9L 5,9L 9,5L 9,1L 1,1 Z " />
+                <dxn:RenderBorder Name="ShouldHightlightValue" Background="#FF999999" Margin="1" Opacity="0" />
+            </dxn:RenderPanel>
+        </dxn:RenderBorder>
+        <dxn:RenderTemplate.Triggers>
+            <dxn:RenderStateGroup Name="CommonStates">
+                <dxn:RenderStateTrigger Name="Normal"/>
+                <dxn:RenderStateTrigger Name="MouseOver">
+                        <dxn:RenderSetter TargetName="Root" Property="Background" Value="#FFB0B0B0" />
+                        <dxn:RenderSetter TargetName="ShouldHightlightValue" Property="Background" Value="#FFB0B0B0" />
+                    </dxn:RenderStateTrigger>
+            </dxn:RenderStateGroup>            
+            <dxn:RenderTrigger DependencyProperty="{x:Static dxprg:RowControl.ShouldHighlightValueProperty}" Value="True">
+                    <dxn:RenderSetter TargetName="ShouldHightlightValue" Property="Opacity" Value="1" />
+                </dxn:RenderTrigger>
+        </dxn:RenderTemplate.Triggers>
+    </dxn:RenderTemplate>
+
+
+    <dxn:RenderTemplate x:Key="{dxprgt:VSViewRenderTemplateThemeKey ResourceKey=RowCollectionButton}" >
+        <dxn:RenderPanel>
+            <dxn:RenderPanel Name="PART_Add" Opacity="0.5">
+                <dxn:RenderPath Stretch="Fill" Fill="#FF818181" Data="F1 M 6,0C 9.31371,0 12,2.68629 12,6C 12,9.31371 9.31371,12 6,12C 2.68629,12 -6.35783e-007,9.31371 -6.35783e-007,6C -6.35783e-007,2.68629 2.68629,0 6,0 Z M 2,5L 2,7L 5,7L 5,10L 7,10L 7,7L 10,7L 10,5L 7,5L 7,2L 5,2L 5,5L 2,5 Z " Width="12" Height="12" />
+            </dxn:RenderPanel>
+            <dxn:RenderPanel Name="PART_Remove" Opacity="0.5" Visibility="Collapsed">
+                <dxn:RenderPath Name="Path" Stretch="Fill" Fill="#FFCC0000" Data="F1 M 1.75736,1.75736C 4.1005,-0.585785 7.89949,-0.585785 10.2426,1.75736C 12.5858,4.10051 12.5858,7.8995 10.2426,10.2426C 7.89949,12.5858 4.1005,12.5858 1.75736,10.2426C -0.585787,7.8995 -0.585787,4.10051 1.75736,1.75736 Z M 2.46447,8.12132L 3.87868,9.53553L 6,7.41421L 8.12132,9.53553L 9.53553,8.12132L 7.41421,6L 9.53553,3.87868L 8.12132,2.46447L 6,4.58579L 3.87868,2.46447L 2.46447,3.87868L 4.58579,6L 2.46447,8.12132 Z " Width="12" Height="12" />
+            </dxn:RenderPanel>
+        </dxn:RenderPanel>
+        <dxn:RenderTemplate.Triggers>
+            <dxn:RenderStateGroup Name="CommonStates">
+                <dxn:RenderStateTrigger Name="Normal"/>
+                <dxn:RenderStateTrigger Name="MouseOver">
+                    <dxn:RenderSetter TargetName="PART_Add" Property="Opacity" Value="1" />
+                    <dxn:RenderSetter TargetName="PART_Remove" Property="Opacity" Value="0.75" />
+                    <dxn:RenderSetter TargetName="Path" Property="Fill" Value="#FF990000" />
+                </dxn:RenderStateTrigger>
+            </dxn:RenderStateGroup>
+            <dxn:RenderStateGroup Name="ButtonKind">
+                <dxn:RenderStateTrigger Name="Add"/>
+                <dxn:RenderStateTrigger Name="Remove">
+                    <dxn:RenderSetter TargetName="PART_Remove" Property="Visibility" Value="Visible" />
+                    <dxn:RenderSetter TargetName="PART_Add" Property="Visibility" Value="Collapsed" />
+                </dxn:RenderStateTrigger>
+            </dxn:RenderStateGroup>            
+        </dxn:RenderTemplate.Triggers>
+    </dxn:RenderTemplate>
+
+    <dxn:RenderTemplate x:Key="{dxprgt:VSViewRenderTemplateThemeKey ResourceKey=Expander}">
+        <dxn:RenderPanel>
+            <dxn:RenderBorder Name="HoverHighlight" Width="14" Height="14" Opacity="0">
+                <dxn:RenderBorder.Background>
+                    <RadialGradientBrush>
+                        <GradientStop Color="#FF1CC4F7" />
+                        <GradientStop Color="#001CC4F7" Offset="1" />
+                    </RadialGradientBrush>
+                </dxn:RenderBorder.Background>
+            </dxn:RenderBorder>
+            <dxn:RenderPanel Name="GlyphExpanded" Width="7" Height="7" Margin="0,0,1,1" Opacity="0">
+                <dxn:RenderPath Name="Path1" Stretch="Fill" Fill="#FF303336" Data="F1 M 5.98438,24.9948L 12.9428,24.9948L 13.9222,24.0155L 13.9222,16.91L 5.98438,24.9948 Z" />
+                <dxn:RenderPath Name="Path2" Stretch="Fill" Fill="#FF303336" Data="F1 M 5.98438,24.9948L 12.9428,24.9948L 13.9222,24.0155L 13.9222,16.91L 5.98438,24.9948 Z" />
+                <dxn:RenderPath Name="Path3" Stretch="Fill" Fill="#FF87898A" Data="F1 M 13.0677,23.9948L 13.0677,19.0358L 8.06719,24.0363L 13.0677,23.9948 Z" Margin="2,2,1,1" />
+            </dxn:RenderPanel>
+            <dxn:RenderPanel Name="GlyphCollapsed" Width="5" Height="10" Margin="1,0,0,0">
+                <dxn:RenderPath Name="Path4" Stretch="Fill" Fill="#FF818181" Data="F1 M 22,13.9999L 22,24L 27,19L 22,13.9999 Z" />
+                <dxn:RenderPath Name="Path5" Stretch="Fill" Fill="#FF818181" Data="F1 M 22,13.9999L 22,24L 27,19L 22,13.9999 Z" />
+                <dxn:RenderPath Name="Path6" Stretch="Fill" Fill="#FFF8F8F8" Data="F1 M 22,13.9999L 22,24L 27,19L 22,13.9999 Z" Margin="1" Width="3" Height="6" />
+            </dxn:RenderPanel>
+        </dxn:RenderPanel>
+        <dxn:RenderTemplate.Triggers>
+            <dxn:RenderStateGroup Name="CommonStates">
+                <dxn:RenderStateTrigger Name="Normal"/>
+                <dxn:RenderStateTrigger Name="MouseOver">
+                    <dxn:RenderSetter TargetName="Path1" Property="Fill" Value="#FF1CC4F7" />
+                    <dxn:RenderSetter TargetName="Path2" Property="Fill" Value="#FF1CC4F7" />
+                    <dxn:RenderSetter TargetName="Path3" Property="Fill" Value="#FFCDEEFB" />
+                    <dxn:RenderSetter TargetName="Path4" Property="Fill" Value="#FF1CC4F7" />
+                    <dxn:RenderSetter TargetName="Path5" Property="Fill" Value="#FF1CC4F7" />
+                    <dxn:RenderSetter TargetName="Path6" Property="Fill" Value="#FFCDEEFB" />
+                    <dxn:RenderSetter TargetName="HoverHighlight" Property="Opacity" Value="0.15" />
+                </dxn:RenderStateTrigger>
+            </dxn:RenderStateGroup>
+            <dxn:RenderStateGroup Name="CheckedStates">
+                <dxn:RenderStateTrigger Name="Checked">
+                    <dxn:RenderSetter Property="Opacity" TargetName="GlyphExpanded" Value="1" />
+                    <dxn:RenderSetter Property="Opacity" TargetName="GlyphCollapsed" Value="0" />
+                </dxn:RenderStateTrigger>
+                <dxn:RenderStateTrigger Name="Unchecked"/>
+            </dxn:RenderStateGroup>
+        </dxn:RenderTemplate.Triggers>
+    </dxn:RenderTemplate>    
+	
+</ResourceDictionary>

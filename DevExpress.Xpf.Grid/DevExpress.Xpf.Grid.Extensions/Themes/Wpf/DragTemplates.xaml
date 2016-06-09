@@ -1,0 +1,141 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" 
+                    xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid" 
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:dxgext="clr-namespace:DevExpress.Xpf.Grid">
+    <DataTemplate x:Key="rowInfoTemplate">
+        <dxgext:NameTextControl NameValue="{dxg:DataControlStringId DDExtensionsRow}" TextValue="{Binding}" />
+    </DataTemplate>
+    <DataTemplate x:Key="dragInfoTemplate">
+        <Border Padding="12,8,24,10">
+            <StackPanel>
+                <TextBlock Name="rowCountTextBlock" Foreground="#FF949494" FontWeight="Bold">
+                    <TextBlock.Text>
+                        <Binding Path="DraggingRows.Count" StringFormat="{dxg:DataControlStringId DDExtensionsDraggingMultipleRows }"/>
+                    </TextBlock.Text>
+                    <TextBlock.Visibility>
+                        <Binding Path="DraggingRows.Count">
+                            <Binding.Converter>
+                                <dxgext:CountToVisibilityConverter />
+                            </Binding.Converter>
+                        </Binding>
+                    </TextBlock.Visibility>
+                </TextBlock>
+                <TextBlock Name="oneRowTextBlock" Foreground="#FF949494" FontWeight="Bold" Text="{dxg:DataControlStringId DDExtensionsDraggingOneRow }">
+                    <TextBlock.Visibility>
+                        <Binding Path="DraggingRows.Count">
+                            <Binding.Converter>
+                                <dxgext:CountToVisibilityConverter Invert="True" />
+                            </Binding.Converter>
+                        </Binding>
+                    </TextBlock.Visibility>
+                </TextBlock>
+                <ContentPresenter Name="rowInfoDragPresenter" Content="{Binding FirstDraggingObject}" ContentTemplate="{StaticResource rowInfoTemplate}">
+                    <ContentPresenter.Visibility>
+                        <Binding Path="DataContext.DraggingRows.Count" RelativeSource="{RelativeSource TemplatedParent}">
+                            <Binding.Converter>
+                                <dxgext:CountToVisibilityConverter Invert="True" />
+                            </Binding.Converter>
+                        </Binding>
+                    </ContentPresenter.Visibility>
+                </ContentPresenter>
+            </StackPanel>
+        </Border>
+    </DataTemplate>
+    <DataTemplate x:Key="dropInfoTemplate">
+        <Border Name="border" CornerRadius="0,0,5,5" Padding="12,8,24,10" BorderThickness="0,1,0,0">
+            <Border.Background>
+                <Binding Path="DropTargetType">
+                    <Binding.Converter>
+                        <dx:EnumToObjectConverter DefaultValue="#FFF0F0F0">
+                            <dx:EnumToObjectConverter.Values>
+                                <dx:EnumObjectProvider x:Key="None" Value="#FFEBADB4" />
+                            </dx:EnumToObjectConverter.Values>
+                        </dx:EnumToObjectConverter>
+                    </Binding.Converter>
+                </Binding>
+            </Border.Background>
+            <Border.BorderBrush>
+                <Binding Path="DropTargetType">
+                    <Binding.Converter>
+                        <dx:EnumToObjectConverter DefaultValue="#FFC8C8C8">
+                            <dx:EnumToObjectConverter.Values>
+                                <dx:EnumObjectProvider x:Key="None" Value="#FFFFD0D6" />
+                            </dx:EnumToObjectConverter.Values>
+                        </dx:EnumToObjectConverter>
+                    </Binding.Converter>
+                </Binding>
+            </Border.BorderBrush>
+            <StackPanel>
+                <TextBlock Name="dropInfoText" FontWeight="Bold">
+                    <TextBlock.Text>
+                        <Binding Path="DropTargetType">
+                            <Binding.Converter>
+                                <dx:EnumToObjectConverter>
+                                    <dx:EnumToObjectConverter.Values>
+                                        <dx:EnumObjectProvider x:Key="None" Value="{dxg:DataControlStringId DDExtensionsCannotDropHere}" />
+                                        <dx:EnumObjectProvider x:Key="DataArea" Value="{dxg:DataControlStringId DDExtensionsAddRows}" />
+                                        <dx:EnumObjectProvider x:Key="InsertRowsIntoGroup" Value="{dxg:DataControlStringId DDExtensionsMoveToGroup}" />
+                                        <dx:EnumObjectProvider x:Key="InsertRowsIntoNode" Value="{dxg:DataControlStringId DDExtensionsMoveToChildrenCollection}" />
+                                        <dx:EnumObjectProvider x:Key="InsertRowsAfter" Value="{dxg:DataControlStringId DDExtensionsInsertAfter}" />
+                                        <dx:EnumObjectProvider x:Key="InsertRowsBefore" Value="{dxg:DataControlStringId DDExtensionsInsertBefore}" />
+                                    </dx:EnumToObjectConverter.Values>
+                                </dx:EnumToObjectConverter>
+                            </Binding.Converter>
+                        </Binding>
+                    </TextBlock.Text>
+                    <TextBlock.Foreground>
+                        <Binding Path="DropTargetType">
+                            <Binding.Converter>
+                                <dx:EnumToObjectConverter DefaultValue="#FF949494">
+                                    <dx:EnumToObjectConverter.Values>
+                                        <dx:EnumObjectProvider x:Key="None" Value="#FFB34242" />
+                                    </dx:EnumToObjectConverter.Values>
+                                </dx:EnumToObjectConverter>
+                            </Binding.Converter>
+                        </Binding>
+                    </TextBlock.Foreground>
+                </TextBlock>
+                <ContentPresenter Name="rowInfoPresenter" Content="{Binding DropTargetRow}" ContentTemplate="{StaticResource rowInfoTemplate}">
+                    <ContentPresenter.Visibility>
+                        <Binding Path="DataContext.DropTargetType" RelativeSource="{RelativeSource TemplatedParent}">
+                            <Binding.Converter>
+                                <dx:EnumToObjectConverter DefaultValue="Collapsed">
+                                    <dx:EnumToObjectConverter.Values>
+                                        <dx:EnumObjectProvider x:Key="InsertRowsAfter" Value="Visible" />
+                                        <dx:EnumObjectProvider x:Key="InsertRowsBefore" Value="Visible" />
+                                        <dx:EnumObjectProvider x:Key="InsertRowsIntoNode" Value="Visible" />
+                                    </dx:EnumToObjectConverter.Values>
+                                </dx:EnumToObjectConverter>
+                            </Binding.Converter>
+                        </Binding>
+                    </ContentPresenter.Visibility>
+                </ContentPresenter>
+                <ItemsControl Name="groupInfoItemsControl" ItemsSource="{Binding GroupInfo}">
+                    <ItemsControl.Visibility>
+                        <Binding Path="DataContext.DropTargetType" RelativeSource="{RelativeSource TemplatedParent}">
+                            <Binding.Converter>
+                                <dx:EnumToObjectConverter DefaultValue="Collapsed">
+                                    <dx:EnumToObjectConverter.Values>
+                                        <dx:EnumObjectProvider x:Key="InsertRowsIntoGroup" Value="Visible" />
+                                    </dx:EnumToObjectConverter.Values>
+                                </dx:EnumToObjectConverter>
+                            </Binding.Converter>
+                        </Binding>
+                    </ItemsControl.Visibility>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <dxgext:NameTextControl x:Name="groupInfoControl" NameValue="{Binding FieldName}" TextValue="{Binding Value}" />
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </StackPanel>
+        </Border>
+        <DataTemplate.Triggers>
+            <DataTrigger Binding="{Binding Source={x:Static interop:BrowserInteropHelper.IsBrowserHosted}}" Value="True" xmlns:interop="clr-namespace:System.Windows.Interop;assembly=PresentationFramework">
+                <Setter Property="CornerRadius" TargetName="border" Value="0,0,0,0" />
+            </DataTrigger>
+        </DataTemplate.Triggers>
+    </DataTemplate>
+</ResourceDictionary>
+    

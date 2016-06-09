@@ -1,0 +1,89 @@
+﻿<#@ template language="C#" #>
+<#@ import namespace="System" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.Diagnostics" #>
+<#@ import namespace="System.IO" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Xml" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="DevExpress.Design.Mvvm" #>
+<#@ import namespace="DevExpress.Xpf.Core.Design.Wizards.Mvvm.EntityFramework" #>
+<#@ import namespace="DevExpress.Xpf.Core.Design.Wizards.Mvvm" #>
+<#@ import namespace="DevExpress.Design.Mvvm.EntityFramework" #>
+<#@ import namespace="DevExpress.Xpf.Core.Design.Wizards.Mvvm.ViewModelData" #>
+<#
+	T4TemplateInfo templateInfo = this.GetTemplateInfo();
+	DocumentManagerViewModelInfo viewModelData = templateInfo.Properties["IViewModelInfo"] as DocumentManagerViewModelInfo;
+    string viewModelName = templateInfo.Properties["ViewModelName"].ToString();
+	string dbContainerName = templateInfo.Properties["DbContainerName"].ToString();
+	var uiType = (DevExpress.Design.Mvvm.UIType)templateInfo.Properties["UIType"];
+	var context = (TemplateGenerationContext)templateInfo.Properties["TemplateGenerationContext"];
+#>
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.ComponentModel;
+using DevExpress.Mvvm;
+using DevExpress.Mvvm.POCO;
+<#this.PasteUsingList(this.GetTemplateInfo().UsingList, false);#>
+
+namespace <#=this.GetNamespace()#> {
+    /// <summary>
+    /// Represents the root POCO view model for the <#=dbContainerName#> data model.
+    /// </summary>
+    public partial class <#=viewModelName#> : DocumentsViewModel<<#=viewModelData.ModuleName#>, I<#=dbContainerName#>UnitOfWork> {
+
+		const string TablesGroup = "Tables";
+
+		const string ViewsGroup = "Views";
+<#if(uiType == DevExpress.Design.Mvvm.UIType.WindowsUI || uiType == DevExpress.Design.Mvvm.UIType.OutlookInspired) {#>
+		INavigationService NavigationService { get { return this.GetService<INavigationService>(); } }
+<#}#>
+	
+        /// <summary>
+        /// Creates a new instance of <#=viewModelName#> as a POCO view model.
+        /// </summary>
+        public static <#=viewModelName#> Create() {
+            return ViewModelSource.Create(() => new <#=viewModelName#>());
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <#=viewModelName#> class.
+        /// This constructor is declared protected to avoid undesired instantiation of the <#=viewModelName#> type without the POCO proxy factory.
+        /// </summary>
+        protected <#=viewModelName#>()
+		    : base(UnitOfWorkSource.GetUnitOfWorkFactory()) {
+        }
+
+        protected override <#=viewModelData.ModuleName#>[] CreateModules() {
+            return new <#=viewModelData.ModuleName#>[] {
+<#foreach(DocumentInfo info in viewModelData.Tables) {
+#>
+                new <#=viewModelData.ModuleName#>("<#=info.Caption#>", "<#=info.ViewName#>", TablesGroup<#if(!EntitySetInfoExtensions.ShouldGenerateReadOnlyView(info.EntityInfo)) {#>, GetPeekCollectionViewModelFactory(x => x.<#=info.RepositoryInfo.Name#>)<#}#>),
+<#}#>
+<#foreach(DocumentInfo info in viewModelData.Views) {#>
+                new <#=viewModelData.ModuleName#>("<#=info.Caption#>", "<#=info.ViewName#>", ViewsGroup<#if(!EntitySetInfoExtensions.ShouldGenerateReadOnlyView(info.EntityInfo)) {#>, GetPeekCollectionViewModelFactory(x => x.<#=info.RepositoryInfo.Name#>)<#}#>),
+<#}#><#this.ExecuteDocumentManagerViewModelHook(TemplatesCodeGen.STR_DocumentManagerViewModelHook_GenerateAdditionalModules);#>
+			};
+        }
+
+        <#this.ExecuteDocumentManagerViewModelHook(TemplatesCodeGen.STR_DocumentManagerViewModelHooks_GenerateAdditionalServices);#>
+
+        <#this.ExecuteDocumentManagerViewModelHook(TemplatesCodeGen.STR_DocumentManagerViewModelHooks_GenerateAdditionalCommands);#>
+
+<#if(uiType == DevExpress.Design.Mvvm.UIType.WindowsUI || uiType == DevExpress.Design.Mvvm.UIType.OutlookInspired) {#>
+		protected override void OnActiveModuleChanged(<#=viewModelData.ModuleName#> oldModule) {
+            if(ActiveModule != null && NavigationService != null) {
+                NavigationService.ClearNavigationHistory();
+            }
+            base.OnActiveModuleChanged(oldModule);
+        }
+<#}#>
+	}
+
+    public partial class <#=viewModelData.ModuleName#> : ModuleDescription<<#=viewModelData.ModuleName#>> {
+        public <#=viewModelData.ModuleName#>(string title, string documentType, string group, Func<<#=viewModelData.ModuleName#>, object> peekCollectionViewModelFactory = null)
+            : base(title, documentType, group, peekCollectionViewModelFactory) {
+        }
+    }
+}

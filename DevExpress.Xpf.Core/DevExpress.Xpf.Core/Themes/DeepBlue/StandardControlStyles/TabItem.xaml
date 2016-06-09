@@ -1,0 +1,295 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:dx="clr-namespace:DevExpress.Xpf.Core"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:dxtEx="clr-namespace:DevExpress.Xpf.Utils.Themes"
+    xmlns:dxt="clr-namespace:DevExpress.Xpf.Utils.Themes">
+
+
+    <Style x:Key="{dxt:TabControlThemeKey ResourceKey=TabItemFocusVisual}">
+        <Setter Property="Control.Template">
+            <Setter.Value>
+                <ControlTemplate />
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
+    <LinearGradientBrush x:Key="{dxt:TabControlThemeKey ResourceKey=TabItemNormalBackground}" EndPoint="0,1" StartPoint="0,0">
+        <GradientStop Color="#FFFFFFFF" Offset="0"/>
+        <GradientStop Color="#FFECEBE6" Offset="1"/>
+    </LinearGradientBrush>
+    <SolidColorBrush x:Key="TabItemHotBorderBrush" Color="#FFE68B2C"/>
+    <SolidColorBrush x:Key="TabItemHotBorderBackround" Color="#FFFFC73C"/>
+    <LinearGradientBrush x:Key="TabItemHotBackground" EndPoint="0,1" StartPoint="0,0">
+        <GradientStop Color="#FFFFFFFF" Offset="0"/>
+        <GradientStop Color="#FFECEBE6" Offset="1"/>
+    </LinearGradientBrush>
+    <SolidColorBrush x:Key="TabItemSelectedBorderBrush" Color="#FFE68B2C"/>
+    <SolidColorBrush x:Key="TabItemSelectedBorderBackround" Color="#FFFFC73C"/>
+    <SolidColorBrush x:Key="TabItemSelectedBackground" Color="#FFFCFCFE"/>
+    <SolidColorBrush x:Key="TabItemDisabledBackground" Color="#FFF5F4EA"/>
+    <SolidColorBrush x:Key="TabItemDisabledBorderBrush" Color="#FFC9C7BA"/>
+    <ControlTemplate x:Key="{dxt:TabControlThemeKey ResourceKey=TabItemControlTemplate}" TargetType="{x:Type TabItem}">
+        <Grid SnapsToDevicePixels="true">
+            <Grid x:Name="TemplateTopUnselected" Visibility="Visible" Margin="0,0,1,0">
+                <Border x:Name="BorderTop" BorderThickness="0" CornerRadius="2,2,0,0" Background="#FF5B81BE">
+                    <Border x:Name="GradientTop" BorderThickness="0" CornerRadius="1,1,0,0" Margin="1,1,1,0">
+                        <Border.Background>
+                            <LinearGradientBrush EndPoint=".7,1" StartPoint=".7,0">
+                                <GradientStop Color="#FFB1C9EA" Offset="1"/>
+                                <GradientStop Color="#FFC5DBF7"/>
+                            </LinearGradientBrush>
+                        </Border.Background>
+                    </Border>
+                </Border>
+            </Grid>
+            <Grid x:Name="TemplateBottomUnselected" Visibility="Collapsed" Margin="0,0,1,0">
+                <Border x:Name="BorderBottom" BorderThickness="0" CornerRadius="0,0,2,2" Background="#FF5B81BE">
+                    <Border x:Name="GradientBottom" BorderThickness="0" CornerRadius="0,0,1,1" Margin="1,0,1,1">
+                        <Border.Background>
+                            <LinearGradientBrush EndPoint=".7,1" StartPoint=".7,0">
+                                <GradientStop Color="#FFB2CAEB" Offset="0"/>
+                                <GradientStop Color="#FFC5DBF4" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Border.Background>
+                    </Border>
+                </Border>
+            </Grid>
+            <Grid x:Name="TemplateLeftUnselected" Visibility="Collapsed" Margin="0,0,0,1">
+                <Border x:Name="BorderLeft" CornerRadius="2,0,0,2" Background="#FF5B81BE">
+                    <Border x:Name="GradientLeft" BorderThickness="0" CornerRadius="1,0,0,1" Margin="1,1,0,1">
+                        <Border.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="#FFC5DBF4" Offset="0"/>
+                                <GradientStop Color="#FFB2CAEB" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Border.Background>
+                    </Border>
+                </Border>
+            </Grid>
+            <Grid x:Name="TemplateRightUnselected" Visibility="Collapsed" Margin="0,0,0,1">
+                <Border x:Name="BorderRight" BorderThickness="0" CornerRadius="0,2,2,0" Background="#FF5B81BE">
+                    <Border x:Name="GradientRight" BorderThickness="0" CornerRadius="0,1,1,0" Margin="0,1,1,1">
+                        <Border.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="#FFC5DBF4" Offset="0"/>
+                                <GradientStop Color="#FFB2CAEB" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Border.Background>
+                    </Border>
+                </Border>
+            </Grid>
+            <Grid x:Name="TemplateTopSelected" Visibility="Collapsed" Margin="0,-2,1,0">
+                <Border BorderThickness="0" CornerRadius="2,2,0,0" Margin="0" Background="#FF5A80BD">
+                    <Border BorderThickness="0" CornerRadius="1,1,0,0" Margin="1,1,1,-1">
+                        <Border.Background>
+                            <LinearGradientBrush EndPoint="0.699999988079071,1" StartPoint="0.699999988079071,0">
+                                <GradientStop Color="#FFEEF5FF" Offset="0"/>
+                                <GradientStop Color="#FFC6DCF6" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Border.Background>
+                    </Border>
+                </Border>
+                <Border x:Name="FocusTop" BorderThickness="3,3,3,0" CornerRadius="3,3,0,0" Margin="0,0,0,-1" Opacity="0">
+                    <Border.BorderBrush>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#7F3A69BC" Offset="0"/>
+                            <GradientStop Color="#FF3A69BC" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Border.BorderBrush>
+                </Border>
+            </Grid>
+            <Grid x:Name="TemplateBottomSelected" Visibility="Collapsed" Margin="0,0,1,-2">
+                <Border BorderThickness="0" CornerRadius="0,0,2,2" Margin="0" Background="#FF5A80BF">
+                    <Border BorderThickness="0" CornerRadius="0,0,1,1" Margin="1,-1,1,1">
+                        <Border.Background>
+                            <LinearGradientBrush EndPoint="0.699999988079071,1" StartPoint="0.699999988079071,0">
+                                <GradientStop Color="#FFE2EEFD" Offset="1"/>
+                                <GradientStop Color="#FFC7DDF7"/>
+                            </LinearGradientBrush>
+                        </Border.Background>
+                    </Border>
+                </Border>
+                <Border x:Name="FocusBottom" BorderThickness="3,0,3,3" CornerRadius="0,0,3,3" Margin="0,-1,0,0" Opacity="0">
+                    <Border.BorderBrush>
+                        <LinearGradientBrush EndPoint="0.5,0" StartPoint="0.5,1">
+                            <GradientStop Color="#7F3A69BC" Offset="0"/>
+                            <GradientStop Color="#FF3A69BC" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Border.BorderBrush>
+                </Border>
+            </Grid>
+            <Grid x:Name="TemplateLeftSelected" Visibility="Collapsed" Margin="-2,0,0,1">
+                <Border BorderThickness="0" CornerRadius="2,0,0,2" Margin="0" Background="#FF5B80BD">
+                    <Border x:Name="border" BorderThickness="0" CornerRadius="1,0,0,1" Margin="1,1,-1,1">
+                        <Border.Background>
+                            <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
+                                <GradientStop Color="#FFE2EEFD"/>
+                                <GradientStop Color="#FFC7DDF7" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Border.Background>
+                    </Border>
+                </Border>
+                <Border x:Name="FocusLeft" BorderThickness="3,3,0,3" CornerRadius="3,0,0,3" Margin="0,0,-1,0" Opacity="0">
+                    <Border.BorderBrush>
+                        <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
+                            <GradientStop Color="#7F3A69BC" Offset="0"/>
+                            <GradientStop Color="#FF3A69BC" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Border.BorderBrush>
+                </Border>
+            </Grid>
+            <Grid x:Name="TemplateRightSelected" Visibility="Collapsed" Margin="0,0,-2,1">
+                <Border BorderThickness="0" CornerRadius="0,2,2,0" Margin="0" Background="#FF5B80BD">
+                    <Border x:Name="border1" BorderThickness="0" CornerRadius="0,1,1,0" Margin="-1,1,1,1">
+                        <Border.Background>
+                            <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
+                                <GradientStop Color="#FFE2EEFD" Offset="1"/>
+                                <GradientStop Color="#FFC7DDF7"/>
+                            </LinearGradientBrush>
+                        </Border.Background>
+                    </Border>
+                </Border>
+                <Border x:Name="FocusRight" BorderThickness="0,3,3,3" CornerRadius="0,3,3,0" Margin="-1,0,0,0" Opacity="0">
+                    <Border.BorderBrush>
+                        <LinearGradientBrush EndPoint="0,0.5" StartPoint="1,0.5">
+                            <GradientStop Color="#7F3A69BC" Offset="0"/>
+                            <GradientStop Color="#FF3A69BC" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Border.BorderBrush>
+                </Border>
+            </Grid>
+            <ContentPresenter x:Name="Content" ContentSource="Header" HorizontalAlignment="{Binding HorizontalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{Binding VerticalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}" Margin="9,2,9,3"/>
+        </Grid>
+        <ControlTemplate.Triggers>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsFocused" Value="True"/>
+                    <Condition Property="TabStripPlacement" Value="Top"/>
+                </MultiTrigger.Conditions>
+                <Setter Property="Opacity" TargetName="FocusTop" Value="0.35"/>
+            </MultiTrigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsFocused" Value="True"/>
+                    <Condition Property="TabStripPlacement" Value="Bottom"/>
+                </MultiTrigger.Conditions>
+                <Setter Property="Opacity" TargetName="FocusBottom" Value="0.35"/>
+            </MultiTrigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsFocused" Value="True"/>
+                    <Condition Property="TabStripPlacement" Value="Left"/>
+                </MultiTrigger.Conditions>
+                <Setter Property="Opacity" TargetName="FocusLeft" Value="0.35"/>
+            </MultiTrigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsFocused" Value="True"/>
+                    <Condition Property="TabStripPlacement" Value="Right"/>
+                </MultiTrigger.Conditions>
+                <Setter Property="Opacity" TargetName="FocusRight" Value="0.35"/>
+            </MultiTrigger>
+            <Trigger Property="IsMouseOver" Value="true"/>
+            <Trigger Property="IsSelected" Value="true">
+                <Setter Property="Visibility" TargetName="TemplateTopSelected" Value="Visible"/>
+                <Setter Property="Visibility" TargetName="TemplateTopUnselected" Value="Collapsed"/>
+            </Trigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsSelected" Value="false"/>
+                    <Condition Property="IsMouseOver" Value="true"/>
+                </MultiTrigger.Conditions>
+            </MultiTrigger>
+            <Trigger Property="TabStripPlacement" Value="Bottom">
+                <Setter Property="Visibility" TargetName="TemplateTopSelected" Value="Collapsed"/>
+                <Setter Property="Visibility" TargetName="TemplateTopUnselected" Value="Collapsed"/>
+                <Setter Property="Visibility" TargetName="TemplateLeftSelected" Value="Collapsed"/>
+                <Setter Property="Visibility" TargetName="TemplateLeftUnselected" Value="Collapsed"/>
+                <Setter Property="Visibility" TargetName="TemplateRightSelected" Value="Collapsed"/>
+                <Setter Property="Visibility" TargetName="TemplateRightUnselected" Value="Collapsed"/>
+                <Setter Property="Visibility" TargetName="TemplateBottomUnselected" Value="Visible"/>
+                <Setter Property="Visibility" TargetName="TemplateBottomSelected" Value="Collapsed"/>
+                <Setter Property="Margin" TargetName="Content" Value="9,2,9,3"/>
+            </Trigger>
+            <Trigger Property="TabStripPlacement" Value="Left">
+                <Setter Property="Visibility" TargetName="TemplateTopSelected" Value="Collapsed"/>
+                <Setter Property="Visibility" TargetName="TemplateTopUnselected" Value="Collapsed"/>
+                <Setter Property="Visibility" TargetName="TemplateBottomSelected" Value="Collapsed"/>
+                <Setter Property="Visibility" TargetName="TemplateBottomUnselected" Value="Collapsed"/>
+                <Setter Property="Visibility" TargetName="TemplateRightSelected" Value="Collapsed"/>
+                <Setter Property="Visibility" TargetName="TemplateRightUnselected" Value="Collapsed"/>
+                <Setter Property="Visibility" TargetName="TemplateLeftUnselected" Value="Visible"/>
+                <Setter Property="Visibility" TargetName="TemplateLeftSelected" Value="Collapsed"/>
+                <Setter Property="Margin" TargetName="Content" Value="9,3,9,4"/>
+            </Trigger>
+            <Trigger Property="TabStripPlacement" Value="Right">
+                <Setter Property="Visibility" TargetName="TemplateTopSelected" Value="Collapsed"/>
+                <Setter Property="Visibility" TargetName="TemplateTopUnselected" Value="Collapsed"/>
+                <Setter Property="Visibility" TargetName="TemplateBottomSelected" Value="Collapsed"/>
+                <Setter Property="Visibility" TargetName="TemplateBottomUnselected" Value="Collapsed"/>
+                <Setter Property="Visibility" TargetName="TemplateLeftSelected" Value="Collapsed"/>
+                <Setter Property="Visibility" TargetName="TemplateLeftUnselected" Value="Collapsed"/>
+                <Setter Property="Visibility" TargetName="TemplateRightUnselected" Value="Visible"/>
+                <Setter Property="Visibility" TargetName="TemplateRightSelected" Value="Collapsed"/>
+                <Setter Property="Margin" TargetName="Content" Value="9,3,9,4"/>
+            </Trigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsSelected" Value="true"/>
+                    <Condition Property="TabStripPlacement" Value="Top"/>
+                </MultiTrigger.Conditions>
+                <Setter Property="Visibility" TargetName="TemplateTopUnselected" Value="Collapsed"/>
+                <Setter Property="Visibility" TargetName="TemplateBottomSelected" Value="Collapsed"/>
+                <Setter Property="Visibility" TargetName="TemplateBottomUnselected" Value="Collapsed"/>
+                <Setter Property="Visibility" TargetName="TemplateLeftSelected" Value="Collapsed"/>
+                <Setter Property="Visibility" TargetName="TemplateLeftUnselected" Value="Collapsed"/>
+                <Setter Property="Visibility" TargetName="TemplateRightSelected" Value="Collapsed"/>
+                <Setter Property="Visibility" TargetName="TemplateRightUnselected" Value="Collapsed"/>
+                <Setter Property="Visibility" TargetName="TemplateTopSelected" Value="Visible"/>
+            </MultiTrigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsSelected" Value="true"/>
+                    <Condition Property="TabStripPlacement" Value="Bottom"/>
+                </MultiTrigger.Conditions>
+                <Setter Property="Visibility" TargetName="TemplateTopSelected" Value="Collapsed"/>
+                <Setter Property="Visibility" TargetName="TemplateTopUnselected" Value="Collapsed"/>
+                <Setter Property="Visibility" TargetName="TemplateBottomUnselected" Value="Collapsed"/>
+                <Setter Property="Visibility" TargetName="TemplateLeftSelected" Value="Collapsed"/>
+                <Setter Property="Visibility" TargetName="TemplateLeftUnselected" Value="Collapsed"/>
+                <Setter Property="Visibility" TargetName="TemplateRightSelected" Value="Collapsed"/>
+                <Setter Property="Visibility" TargetName="TemplateRightUnselected" Value="Collapsed"/>
+                <Setter Property="Visibility" TargetName="TemplateBottomSelected" Value="Visible"/>
+            </MultiTrigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsSelected" Value="true"/>
+                    <Condition Property="TabStripPlacement" Value="Left"/>
+                </MultiTrigger.Conditions>
+                <Setter Property="Visibility" TargetName="TemplateTopSelected" Value="Collapsed"/>
+                <Setter Property="Visibility" TargetName="TemplateTopUnselected" Value="Collapsed"/>
+                <Setter Property="Visibility" TargetName="TemplateBottomSelected" Value="Collapsed"/>
+                <Setter Property="Visibility" TargetName="TemplateBottomUnselected" Value="Collapsed"/>
+                <Setter Property="Visibility" TargetName="TemplateLeftUnselected" Value="Collapsed"/>
+                <Setter Property="Visibility" TargetName="TemplateRightSelected" Value="Collapsed"/>
+                <Setter Property="Visibility" TargetName="TemplateRightUnselected" Value="Collapsed"/>
+                <Setter Property="Visibility" TargetName="TemplateLeftSelected" Value="Visible"/>
+            </MultiTrigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsSelected" Value="true"/>
+                    <Condition Property="TabStripPlacement" Value="Right"/>
+                </MultiTrigger.Conditions>
+                <Setter Property="Visibility" TargetName="TemplateTopSelected" Value="Collapsed"/>
+                <Setter Property="Visibility" TargetName="TemplateTopUnselected" Value="Collapsed"/>
+                <Setter Property="Visibility" TargetName="TemplateBottomSelected" Value="Collapsed"/>
+                <Setter Property="Visibility" TargetName="TemplateBottomUnselected" Value="Collapsed"/>
+                <Setter Property="Visibility" TargetName="TemplateLeftSelected" Value="Collapsed"/>
+                <Setter Property="Visibility" TargetName="TemplateLeftUnselected" Value="Collapsed"/>
+                <Setter Property="Visibility" TargetName="TemplateRightUnselected" Value="Collapsed"/>
+                <Setter Property="Visibility" TargetName="TemplateRightSelected" Value="Visible"/>
+            </MultiTrigger>
+            <Trigger Property="IsEnabled" Value="false"/>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+    
+</ResourceDictionary>

@@ -1,0 +1,176 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+            xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+            xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+            xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
+            xmlns:dxd="http://schemas.devexpress.com/winfx/2008/xaml/docking"
+            xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+            xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
+            xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
+            xmlns:dxpg="http://schemas.devexpress.com/winfx/2008/xaml/propertygrid"
+            xmlns:printing="clr-namespace:DevExpress.XtraPrinting;assembly=DevExpress.Printing.v15.2.Core"
+            xmlns:designernative="clr-namespace:DevExpress.Xpf.Reports.UserDesigner.Native"
+            xmlns:designernativemetadata="clr-namespace:DevExpress.Xpf.Reports.UserDesigner.Native.Metadata"
+            xmlns:dxdacollectioneditors="clr-namespace:DevExpress.Xpf.DataAccess.Editors.CollectionUITypeEditors;assembly=DevExpress.Xpf.DataAccess.v15.2"
+            xmlns:dxdiag="clr-namespace:DevExpress.Xpf.Diagram;assembly=DevExpress.Xpf.Diagram.v15.2"
+            xmlns:designerthemes="clr-namespace:DevExpress.Xpf.Reports.UserDesigner.Themes"
+            xmlns:designereditors="clr-namespace:DevExpress.Xpf.Reports.UserDesigner.Editors">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/DevExpress.Xpf.Diagram.v15.2;component/Behaviors/CollectionUITypeEditors/Themes/SingleSelectionCollectionEditor.xaml" />
+        <ResourceDictionary Source="/DevExpress.Xpf.ReportDesigner.v15.2;component/Themes/XRDiagram/BaseStyles.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    <Style TargetType="designereditors:FormattingRuleSheetUITypeEditor" BasedOn="{StaticResource {x:Type dxdiag:SingleSelectionCollectionEditor}}">
+        <Setter Property="ItemsListTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <dxe:ListBoxEdit Grid.Row="1" Grid.Column="0" ItemsSource="{Binding Path=(dxdiag:CollectionEditorBase.Editor).EditValue, RelativeSource={RelativeSource Self}}" 
+                                         EditValue="{Binding Path=(dxdiag:CollectionEditorBase.Editor).SelectedItem, RelativeSource={RelativeSource Self}, UpdateSourceTrigger=PropertyChanged}" 
+                                         ItemTemplate="{Binding Path=(dxdiag:CollectionEditorBase.Editor).ItemTemplate, RelativeSource={RelativeSource Self}}"
+                                         SelectionMode="Single">
+                        <dxe:ListBoxEdit.ItemContainerStyle>
+                            <Style TargetType="dxe:ListBoxEditItem">
+                                <Setter Property="Visibility">
+                                    <Setter.Value>
+                                        <MultiBinding Converter="{designereditors:DiagramItemTypeToVisibilityConverter}">
+                                            <Binding Path="(dxdiag:CollectionEditorBase.Editor).IsEditorItem" RelativeSource="{RelativeSource Self}" />
+                                            <Binding />
+                                        </MultiBinding>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </dxe:ListBoxEdit.ItemContainerStyle>
+                    </dxe:ListBoxEdit>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+        
+        <Setter Property="ItemTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Name}" />
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="ItemDetailedDescriptionTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <dxpg:PropertyGridControl SelectedObject="{Binding}" ExpandCategoriesWhenSelectedObjectChanged="True">
+                        <!--<dxpg:PropertyGridControl SelectedObject="{Binding Converter={designereditors:TempPropertiesModelConverter}}" ExpandCategoriesWhenSelectedObjectChanged="True">-->
+                        <dxpg:PropertyGridControl.Resources>
+                            <DataTemplate x:Key="{x:Static designernativemetadata:MetadataPropertyGridEditorTemplateKeys.BindingData}">
+                                <dxpg:PropertyDefinition IsReadOnly="False">
+                                    <dxpg:PropertyDefinition.EditSettings>
+                                        <designereditors:PopupTreeListEditSettings
+                                                        ValueMember="BindingData"
+                                                        DisplayMember="FullPath"
+                                                        ChildNodesPath="Children"
+                                                        PopupDisplayMember="DisplayName"
+                                                        HierarchicalPathProvider="{StaticResource ResourceKey=bindingDataHierarchicalPathProvider}"
+                                                        ItemsSource="{Binding Path=ReportModel.FieldListNodes, RelativeSource={RelativeSource AncestorType=designereditors:FormattingRuleSheetUITypeEditor}}"
+                                                        PopupSelectionValidator="{StaticResource ResourceKey=bindingDataPopupSelectionValidator}"
+                                                        TreeListCellTemplate="{DynamicResource {designerthemes:ReportDesignerThemeKey ResourceKey=FieldListNodeTemplate}}"/>
+                                    </dxpg:PropertyDefinition.EditSettings>
+                                </dxpg:PropertyDefinition>
+                            </DataTemplate>
+                            
+                            <DataTemplate x:Key="{x:Static designernativemetadata:MetadataPropertyGridEditorTemplateKeys.DataSource}">
+                                <dxpg:PropertyDefinition IsReadOnly="False">
+                                    <dxpg:PropertyDefinition.EditSettings>
+                                        <designernative:ComboBoxEditSettingsEx PopupMinHeight="100" AllowNullInput="True" ShowEditorButtonsAlways="True" ShowPopupOnEmptyItemsSource="True"
+                                                                               ItemsSource="{Binding Path=ReportModel.DataSources, RelativeSource={RelativeSource AncestorType=designereditors:FormattingRuleSheetUITypeEditor}}"
+                                                                               ValueMember="DataSource" DisplayMember="DisplayName" IsTextEditable="False" />
+                                    </dxpg:PropertyDefinition.EditSettings>
+                                </dxpg:PropertyDefinition>
+                            </DataTemplate>
+                            <DataTemplate x:Key="{x:Static designernativemetadata:MetadataPropertyGridEditorTemplateKeys.ForUseTypeConverterToStringConversion}">
+                                <dxpg:PropertyDefinition IsReadOnly="False" UseTypeConverterToStringConversion="True" />
+                            </DataTemplate>
+                            <DataTemplate x:Key="{x:Static designernativemetadata:MetadataPropertyGridEditorTemplateKeys.Styles}">
+                                <dxpg:PropertyDefinition IsReadOnly="False">
+                                    <dxpg:PropertyDefinition.CellTemplate>
+                                        <DataTemplate>
+                                            <!--TODO-->
+                                            <dxe:TextEdit />
+                                        </DataTemplate>
+                                    </dxpg:PropertyDefinition.CellTemplate>
+                                </dxpg:PropertyDefinition>
+                            </DataTemplate>
+                            <DataTemplate x:Key="{x:Static designernativemetadata:MetadataPropertyGridEditorTemplateKeys.Color}">
+                                <dxpg:PropertyDefinition IsReadOnly="False">
+                                    <dxpg:PropertyDefinition.EditSettings>
+                                        <dxe:PopupColorEditSettings />
+                                    </dxpg:PropertyDefinition.EditSettings>
+                                </dxpg:PropertyDefinition>
+                            </DataTemplate>
+                            <DataTemplate x:Key="{x:Static designernativemetadata:MetadataPropertyGridEditorTemplateKeys.BorderSide}">
+                                <dxpg:PropertyDefinition IsReadOnly="False">
+                                    <dxpg:PropertyDefinition.EditSettings>
+                                        <dxe:PopupBaseEditSettings AllowDefaultButton="False" IsTextEditable="False">
+                                            <dxe:PopupBaseEditSettings.Buttons>
+                                                <dxe:ButtonInfo GlyphKind="DropDown" IsDefaultButton="True">
+                                                    <dxmvvm:Interaction.Behaviors>
+                                                        <dxe:PopupEditorBehavior>
+                                                            <dxe:PopupEditorBehavior.ContentTemplate>
+                                                                <DataTemplate>
+                                                                    <designereditors:BordersUITypeEditor EditValue="{Binding Value}" />
+                                                                </DataTemplate>
+                                                            </dxe:PopupEditorBehavior.ContentTemplate>
+                                                        </dxe:PopupEditorBehavior>
+                                                    </dxmvvm:Interaction.Behaviors>
+                                                </dxe:ButtonInfo>
+                                            </dxe:PopupBaseEditSettings.Buttons>
+                                        </dxe:PopupBaseEditSettings>
+                                    </dxpg:PropertyDefinition.EditSettings>
+                                </dxpg:PropertyDefinition>
+                            </DataTemplate>
+                            <DataTemplate x:Key="{x:Static designernativemetadata:MetadataPropertyGridEditorTemplateKeys.Font}">
+                                <dxpg:PropertyDefinition IsReadOnly="False">
+                                    <dxpg:PropertyDefinition.EditSettings>
+                                        <dxe:ButtonEditSettings AllowDefaultButton="False">
+                                            <dxe:ButtonEditSettings.Buttons>
+                                                <dxe:ButtonInfo GlyphKind="Regular">
+                                                    <dxmvvm:Interaction.Behaviors>
+                                                        <dxe:CustomDialogServiceEditorBehavior>
+                                                            <dxe:CustomDialogServiceEditorBehavior.DialogServiceTemplate>
+                                                                <DataTemplate>
+                                                                    <ContentControl>
+                                                                        <designereditors:FontDialogService />
+                                                                    </ContentControl>
+                                                                </DataTemplate>
+                                                            </dxe:CustomDialogServiceEditorBehavior.DialogServiceTemplate>
+                                                        </dxe:CustomDialogServiceEditorBehavior>
+                                                    </dxmvvm:Interaction.Behaviors>
+                                                </dxe:ButtonInfo>
+                                            </dxe:ButtonEditSettings.Buttons>
+                                        </dxe:ButtonEditSettings>
+                                    </dxpg:PropertyDefinition.EditSettings>
+                                </dxpg:PropertyDefinition>
+                            </DataTemplate>
+                        </dxpg:PropertyGridControl.Resources>
+                    </dxpg:PropertyGridControl>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+
+        <Setter Property="ItemsControlHeaderTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <dxb:BarManager AllowCustomization="False" Margin="0,5,0,0">
+                        <dxb:ToolBarControl AllowCustomizationMenu="False" AllowQuickCustomization="False">
+                            <dxb:BarButtonItem Command="{Binding Path=(dxdiag:CollectionEditorBase.Editor).AddItemCommand, RelativeSource={RelativeSource Self}}" Glyph="{dx:DXImage Image=Add_16x16.png}" Hint="Add a formatting rule" />
+                            <dxb:BarButtonItem Command="{Binding Path=(dxdiag:CollectionEditorBase.Editor).RemoveItemCommand, RelativeSource={RelativeSource Self}}"  Glyph="{dx:DXImage Image=Remove_16x16.png}" Hint="Remove a formatting rule" />
+                            <dxb:BarButtonItem Command="{Binding Path=(dxdiag:CollectionEditorBase.Editor).ClearAllFormattingRulesCommand, RelativeSource={RelativeSource Self}}" Glyph="{dx:DXImage Image=Clear_16x16.png}" Hint="Clear formatting rules" />
+                            <dxb:BarButtonItem Command="{Binding Path=(dxdiag:CollectionEditorBase.Editor).ClearUnusedFormattingRulesCommand, RelativeSource={RelativeSource Self}}" Glyph="{dx:DXImage Image=ClearRules_16x16.png}" Hint="Delete unused formatting rules" />
+                        </dxb:ToolBarControl>
+                    </dxb:BarManager>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+
+        <Setter Property="NavigationPanelTemplate"  Value="{x:Null}" />
+
+        <Setter Property="ActionButtonsTemplate" Value="{x:Null}" />
+    </Style>
+</ResourceDictionary>

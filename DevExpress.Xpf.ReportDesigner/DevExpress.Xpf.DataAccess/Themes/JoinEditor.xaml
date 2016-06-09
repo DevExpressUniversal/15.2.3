@@ -1,0 +1,151 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+            xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+            xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
+            xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+            xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
+            xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
+            xmlns:local="clr-namespace:DevExpress.Xpf.DataAccess.DataSourceWizard"
+            xmlns:localization="clr-namespace:DevExpress.Xpf.DataAccess.Localization"
+            xmlns:localnative="clr-namespace:DevExpress.Xpf.DataAccess.Native">
+
+    <local:ImageNameToSourceConverter x:Key="ImageNameToSourceConverter" />
+
+    <Style x:Key="ImageOpacityTrigger" TargetType="{x:Type Image}">
+        <Setter Property="Image.Opacity" Value="0.5" />
+        <Style.Triggers>
+            <Trigger Property="Image.IsMouseOver" Value="True">
+                <Setter Property="Image.Opacity" Value="1.0" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    <Style x:Key="UnderlineTextTrigger" TargetType="{x:Type TextBlock}">
+        <Setter Property="TextBlock.TextDecorations" Value="None" />
+        <Style.Triggers>
+            <Trigger Property="TextBlock.IsMouseOver" Value="True">
+                <Setter Property="TextBlock.TextDecorations" Value="Underline" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <dxmvvm:ObjectToObjectConverter x:Key="StringValueToForegroundConverter">
+        <dxmvvm:ObjectToObjectConverter.DefaultTarget>
+            <SolidColorBrush Color="Black" />
+        </dxmvvm:ObjectToObjectConverter.DefaultTarget>
+        <dxmvvm:MapItem Source="{x:Null}">
+            <dxmvvm:MapItem.Target>
+                <SolidColorBrush Color="Gray" />
+            </dxmvvm:MapItem.Target>
+        </dxmvvm:MapItem>
+    </dxmvvm:ObjectToObjectConverter>
+    <dxmvvm:ObjectToObjectConverter x:Key="StringValueToVisibilityConverter">
+        <dxmvvm:ObjectToObjectConverter.DefaultTarget>
+            <Visibility>Visible</Visibility>
+        </dxmvvm:ObjectToObjectConverter.DefaultTarget>
+        <dxmvvm:MapItem Source="{x:Null}">
+            <dxmvvm:MapItem.Target>
+                <Visibility>Collapsed</Visibility>
+            </dxmvvm:MapItem.Target>
+        </dxmvvm:MapItem>
+    </dxmvvm:ObjectToObjectConverter>
+
+    <Style TargetType="{x:Type local:JoinEditorControl}">
+        <Setter Property="MessageBoxServiceTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <ContentControl>
+                        <dx:DXMessageBoxService />
+                    </ContentControl>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:JoinEditorControl">
+                    <dxlc:LayoutControl Orientation="Vertical">
+                        <dxlc:LayoutItem Label="{localization:DataAccessUIStringId StringId=JoinEditor_JoinType}">
+                            <dxe:ComboBoxEdit ItemsSource="{x:Static localnative:ListsWithNamesValues.JoinTypes}" DisplayMember="Name" ValueMember="Value" EditValue="{Binding EditValue.JoinType, RelativeSource={RelativeSource TemplatedParent}}" IsTextEditable="False" />
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem VerticalAlignment="Stretch">
+                            <dxe:ListBoxEdit Grid.Row="1" SelectionMode="Extended" ItemsSource="{Binding EditValue.Items, RelativeSource={RelativeSource TemplatedParent}}">
+                                <dxe:ListBoxEdit.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Image Source="{dx:DXImage Image=Add_16x16.png}" Visibility="{Binding IsDeletable, Converter={dxmvvm:BooleanToVisibilityConverter}}" Style="{StaticResource ImageOpacityTrigger}" Margin="2">
+                                                <dxmvvm:Interaction.Behaviors>
+                                                    <dxmvvm:EventToCommand EventName="MouseLeftButtonDown" Command="{Binding AddCommand}" />
+                                                </dxmvvm:Interaction.Behaviors>
+                                            </Image>
+                                            <StackPanel Orientation="Horizontal" Visibility="{Binding IsDeletable, Converter={dxmvvm:BooleanToVisibilityConverter Inverse=True}}">
+                                                <Image Source="{dx:DXImage Image=Remove_16x16.png}" Style="{StaticResource ImageOpacityTrigger}" Margin="2">
+                                                    <dxmvvm:Interaction.Behaviors>
+                                                        <dxmvvm:EventToCommand EventName="MouseLeftButtonDown" Command="{Binding RemoveCommand}" />
+                                                    </dxmvvm:Interaction.Behaviors>
+                                                </Image>
+                                                <TextBlock Text="{Binding LeftTable, StringFormat='[{0}]', TargetNullValue={localization:DataAccessUIStringId StringId=JoinEditorEmptyTableText}}" Foreground="{Binding LeftTable, Converter={StaticResource StringValueToForegroundConverter}}" />
+                                                <TextBlock Text="." Visibility="{Binding LeftTable, Converter={StaticResource StringValueToVisibilityConverter}}" Margin="5,0" />
+                                                <TextBlock Text="{Binding LeftColumn, StringFormat='[{0}]', TargetNullValue={localization:DataAccessUIStringId StringId=JoinEditorEmptyColumnText}}" Visibility="{Binding LeftTable, Converter={StaticResource StringValueToVisibilityConverter}}" Foreground="{Binding LeftColumn, Converter={StaticResource StringValueToForegroundConverter}}" Style="{StaticResource UnderlineTextTrigger}" dxb:BarManager.MenuShowMouseButton="LeftRightButton">
+                                                    <dxb:BarManager.DXContextMenu>
+                                                        <dxb:PopupMenu ItemLinksSource="{Binding LeftColumnMenuItems}">
+                                                            <dxb:PopupMenu.ItemTemplate>
+                                                                <DataTemplate>
+                                                                    <ContentControl>
+                                                                        <dxb:BarButtonItem Content="{Binding Name}" Command="{Binding JoinEditorItem.SelectLeftColumnCommand}" CommandParameter="{Binding Parameter}" />
+                                                                    </ContentControl>
+                                                                </DataTemplate>
+                                                            </dxb:PopupMenu.ItemTemplate>
+                                                        </dxb:PopupMenu>
+                                                    </dxb:BarManager.DXContextMenu>
+                                                </TextBlock>
+                                                <Image Source="{Binding OperatorType, Converter={local:ImageNameToSourceConverter Folder=JoinEditor}}" dxb:BarManager.MenuShowMouseButton="LeftButton" Margin="5,0">
+                                                    <dxb:BarManager.DXContextMenu>
+                                                        <dxb:PopupMenu ItemLinksSource="{Binding SignOperatorMenuItems}">
+                                                            <dxb:PopupMenu.ItemTemplate>
+                                                                <DataTemplate>
+                                                                    <ContentControl>
+                                                                        <dxb:BarButtonItem Glyph="{Binding Name, Converter={local:ImageNameToSourceConverter Folder=JoinEditor}}" Content="{Binding MenuItem.Name}" Command="{Binding MenuItem.JoinEditorItem.SelectSignOperatorCommand}" CommandParameter="{Binding MenuItem.Parameter}" />
+                                                                    </ContentControl>
+                                                                </DataTemplate>
+                                                            </dxb:PopupMenu.ItemTemplate>
+                                                        </dxb:PopupMenu>
+                                                    </dxb:BarManager.DXContextMenu>
+                                                </Image>
+                                                <TextBlock Text="{Binding RightTable, StringFormat='[{0}]', TargetNullValue={localization:DataAccessUIStringId StringId=JoinEditorEmptyTableText}}" Foreground="{Binding RightTable, Converter={StaticResource StringValueToForegroundConverter}}" Style="{StaticResource UnderlineTextTrigger}" dxb:BarManager.MenuShowMouseButton="LeftRightButton">
+                                                    <dxb:BarManager.DXContextMenu>
+                                                        <dxb:PopupMenu ItemLinksSource="{Binding RightTableMenuItems}">
+                                                            <dxb:PopupMenu.ItemTemplate>
+                                                                <DataTemplate>
+                                                                    <ContentControl>
+                                                                        <dxb:BarButtonItem Content="{Binding Name}" Command="{Binding JoinEditorItem.SelectRightTableCommand}" CommandParameter="{Binding Parameter}" />
+                                                                    </ContentControl>
+                                                                </DataTemplate>
+                                                            </dxb:PopupMenu.ItemTemplate>
+                                                        </dxb:PopupMenu>
+                                                    </dxb:BarManager.DXContextMenu>
+                                                </TextBlock>
+                                                <TextBlock Text="." Visibility="{Binding RightTable, Converter={StaticResource StringValueToVisibilityConverter}}" Margin="5,0" />
+                                                <TextBlock Text="{Binding RightColumn, StringFormat='[{0}]', TargetNullValue={localization:DataAccessUIStringId StringId=JoinEditorEmptyColumnText}}" Visibility="{Binding RightTable, Converter={StaticResource StringValueToVisibilityConverter}}" Foreground="{Binding RightColumn, Converter={StaticResource StringValueToForegroundConverter}}" Style="{StaticResource UnderlineTextTrigger}" dxb:BarManager.MenuShowMouseButton="LeftRightButton">
+                                                    <dxb:BarManager.DXContextMenu>
+                                                        <dxb:PopupMenu ItemLinksSource="{Binding RightColumnMenuItems}">
+                                                            <dxb:PopupMenu.ItemTemplate>
+                                                                <DataTemplate>
+                                                                    <ContentControl>
+                                                                        <dxb:BarButtonItem Content="{Binding Name}" Command="{Binding JoinEditorItem.SelectRightColumnCommand}" CommandParameter="{Binding Parameter}" />
+                                                                    </ContentControl>
+                                                                </DataTemplate>
+                                                            </dxb:PopupMenu.ItemTemplate>
+                                                        </dxb:PopupMenu>
+                                                    </dxb:BarManager.DXContextMenu>
+                                                </TextBlock>
+                                            </StackPanel>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </dxe:ListBoxEdit.ItemTemplate>
+                            </dxe:ListBoxEdit>
+                        </dxlc:LayoutItem>
+                    </dxlc:LayoutControl>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

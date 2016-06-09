@@ -1,0 +1,123 @@
+﻿<UserControl x:Class="DevExpress.Xpf.Core.ConditionalFormatting.CustomFormatEditorView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:dx="clr-namespace:DevExpress.Xpf.Core"
+             xmlns:dxc="clr-namespace:DevExpress.Xpf.Core.ConditionalFormatting"
+             xmlns:dxe="clr-namespace:DevExpress.Xpf.Editors"
+             xmlns:dxb="clr-namespace:DevExpress.Xpf.Bars"
+             xmlns:dxgcfm="clr-namespace:DevExpress.Xpf.Core.ConditionalFormattingManager"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <dx:DXTabControl ItemsSource="{Binding ViewModels}">
+        <dx:DXTabControl.Resources>
+            <Style x:Key="DescriptionTextStyle" TargetType="{x:Type TextBlock}">
+                <Setter Property="Margin" Value="0,0,0,2"/>
+            </Style>
+            <Style x:Key="SelectorStyle" TargetType="{x:Type dxe:ButtonEdit}">
+                <Setter Property="Width" Value="130"/>
+                <Setter Property="Margin" Value="0,0,10,0"/>
+                <Setter Property="IsTextEditable" Value="False"/>
+            </Style>
+            <Style x:Key="GroupStyle" TargetType="{x:Type GroupBox}">
+                <Setter Property="Margin" Value="2"/>
+            </Style>
+            <Style x:Key="GalleryIconStyle" TargetType="{x:Type dxb:Gallery}">
+                <Setter Property="GroupsSource" Value="{Binding Groups}"/>
+                <Setter Property="FirstCheckedItem" Value="{Binding IconItem, Mode=TwoWay}"/>
+                <Setter Property="AllowFilter" Value="False"/>
+                <Setter Property="ItemCheckMode" Value="Single"/>
+                <Setter Property="GroupTemplate">
+                    <Setter.Value>
+                        <DataTemplate>
+                            <ContentControl>
+                                <dxb:GalleryItemGroup Caption="{Binding Header}" ItemsSource="{Binding Icons}">
+                                    <dxb:GalleryItemGroup.ItemTemplate>
+                                        <DataTemplate>
+                                            <ContentControl>
+                                                <dxb:GalleryItem Caption="{Binding Icon}" IsChecked="{Binding IsChecked, Mode=TwoWay}"/>
+                                            </ContentControl>
+                                        </DataTemplate>
+                                    </dxb:GalleryItemGroup.ItemTemplate>
+                                </dxb:GalleryItemGroup>
+                            </ContentControl>
+                        </DataTemplate>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="ItemCaptionTemplate">
+                    <Setter.Value>
+                        <DataTemplate>
+                            <dx:DXImage Source="{Binding}" Stretch="None"/>
+                        </DataTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            <DataTemplate DataType="{x:Type dxgcfm:FormatEditorFontViewModel}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="{dxc:DataControlStringId ConditionalFormatting_Manager_FormatFontFamily}" Style="{StaticResource DescriptionTextStyle}"/>
+                    <TextBlock Text="{dxc:DataControlStringId ConditionalFormatting_Manager_FormatFontStyle}" Style="{StaticResource DescriptionTextStyle}" Grid.Column="1"/>
+                    <TextBlock Text="{dxc:DataControlStringId ConditionalFormatting_Manager_FormatFontWeight}" Style="{StaticResource DescriptionTextStyle}" Grid.Column="2"/>
+                    <dxe:FontEdit EditValue="{Binding Path=FontName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource SelectorStyle}" Grid.Row="1"/>
+                    <dxe:ComboBoxEdit ItemsSource="{Binding FontStyles}" SelectedItem="{Binding FontStyle}" Style="{StaticResource SelectorStyle}" Grid.Row="1" Grid.Column="1"/>
+                    <dxe:ComboBoxEdit ItemsSource="{Binding FontWeights}" SelectedItem="{Binding FontWeight}" Style="{StaticResource SelectorStyle}" Grid.Row="1" Grid.Column="2"/>
+                    <TextBlock Text="{dxc:DataControlStringId ConditionalFormatting_Manager_FormatFontSize}" Style="{StaticResource DescriptionTextStyle}" Grid.Row="2" Grid.Column="0"/>
+                    <TextBlock Text="{dxc:DataControlStringId ConditionalFormatting_Manager_FormatColor}" Style="{StaticResource DescriptionTextStyle}" Grid.Row="2" Grid.Column="1"/>
+                    <dxe:ComboBoxEdit ItemsSource="{Binding FontSizes}" SelectedItem="{Binding FontSize}" Style="{StaticResource SelectorStyle}" Grid.Row="3"/>
+                    <dxe:PopupColorEdit EditValue="{Binding FontColor}" AllowNullInput="True" DefaultColor="Transparent" Style="{StaticResource SelectorStyle}" Grid.Row="3" Grid.Column="1"/>
+                    <GroupBox Style="{StaticResource GroupStyle}" Margin="0,10,0,0" Grid.Row="4">
+                        <StackPanel Orientation="Vertical">
+                            <dxe:CheckEdit IsChecked="{Binding Strikethrough}" Content="{dxc:DataControlStringId ConditionalFormatting_Manager_FormatStrikethrough}"/>
+                            <dxe:CheckEdit IsChecked="{Binding Underline}" Content="{dxc:DataControlStringId ConditionalFormatting_Manager_FormatUnderline}"/>
+                        </StackPanel>
+                    </GroupBox>
+                </Grid>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type dxgcfm:FormatEditorFillViewModel}">
+                <StackPanel Orientation="Vertical">
+                    <TextBlock Text="{dxc:DataControlStringId ConditionalFormatting_Manager_FormatBackgroundColor}" Style="{StaticResource DescriptionTextStyle}"/>
+                    <dxe:ColorEdit EditValue="{Binding Background}" AllowNullInput="True" DefaultColor="Transparent"/>
+                </StackPanel>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type dxgcfm:FormatEditorIconViewModel}">
+                <StackPanel Orientation="Vertical">
+                    <TextBlock Text="{dxc:DataControlStringId ConditionalFormatting_Manager_FormatIconDescription}" Style="{StaticResource DescriptionTextStyle}"/>
+                    <dxb:GalleryControl MaxHeight="210">
+                        <dxb:GalleryControl.Gallery>
+                            <dxb:Gallery Style="{StaticResource GalleryIconStyle}"/>
+                        </dxb:GalleryControl.Gallery>
+                    </dxb:GalleryControl>
+                </StackPanel>
+            </DataTemplate>
+        </dx:DXTabControl.Resources>
+        <dx:DXTabControl.ItemHeaderTemplate>
+            <DataTemplate>
+                <TextBlock Text="{Binding Description}"/>
+            </DataTemplate>
+        </dx:DXTabControl.ItemHeaderTemplate>
+        <dx:DXTabControl.ItemTemplate>
+            <DataTemplate>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <ContentPresenter Content="{Binding}"/>
+                    <Button Content="{dxc:DataControlStringId ConditionalFormatting_Manager_ClearButtonDescription}" Command="{Binding ClearCommand}" Margin="2" Grid.Row="1" VerticalAlignment="Bottom" HorizontalAlignment="Right"/>
+                </Grid>
+            </DataTemplate>
+        </dx:DXTabControl.ItemTemplate>
+    </dx:DXTabControl>
+</UserControl>

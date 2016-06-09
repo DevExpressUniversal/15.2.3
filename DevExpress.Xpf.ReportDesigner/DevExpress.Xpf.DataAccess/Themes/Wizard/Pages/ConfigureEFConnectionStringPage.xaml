@@ -1,0 +1,58 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+            xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
+            xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+            xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+            xmlns:local="clr-namespace:DevExpress.Xpf.DataAccess.DataSourceWizard"
+            xmlns:localization="clr-namespace:DevExpress.Xpf.DataAccess.Localization"
+            xmlns:localnative="clr-namespace:DevExpress.Xpf.DataAccess.Native">
+
+    <DataTemplate x:Key="{x:Type local:ConfigureEFConnectionStringPage}">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <localnative:WizardTitle Title="{localization:DataAccessUIStringId StringId=WizardPageEFConnectionProperties}" />
+            <Grid Grid.Row="1" Margin="40,10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <dxe:ListBoxEdit
+                            ItemsSource="{Binding Options}"
+                            ValueMember="Value"
+                            EditValue="{Binding UseDefaultConnectionString, UpdateSourceTrigger=PropertyChanged}"
+                            StyleSettings="{dxe:RadioListBoxEditStyleSettings}"
+                            ShowBorder="False"
+                />
+                <dxe:TextEdit
+                            Grid.Row="1"
+                            VerticalContentAlignment="Top"
+                            AcceptsReturn="True"
+                            IsEnabled="{Binding UseDefaultConnectionString, Converter={dxmvvm:BooleanNegationConverter}}"
+                            EditValue="{Binding TextConnectionString, UpdateSourceTrigger=PropertyChanged}"
+                />
+                <StackPanel Grid.Row="2">
+                    <dxe:CheckEdit Content="{localization:DataAccessUIStringId StringId=WizardPageEFConnectionProperties_SaveToConfig}">
+                        <dxe:CheckEdit.IsEnabled>
+                            <MultiBinding Converter="{local:UseDefaultConnectionStringAndCanSaveToStorageToBooleanConverter}">
+                                <Binding Path="UseDefaultConnectionString" Converter="{dxmvvm:BooleanNegationConverter}" />
+                                <Binding Path="CanSaveToStorage" />
+                            </MultiBinding>
+                        </dxe:CheckEdit.IsEnabled>
+                    </dxe:CheckEdit>
+                    <dxe:TextEdit EditValue="{Binding TextConnectionName, UpdateSourceTrigger=PropertyChanged}">
+                        <dxe:TextEdit.IsEnabled>
+                            <MultiBinding Converter="{local:UseDefaultConnectionStringAndCanSaveToStorageToBooleanConverter}">
+                                <Binding Path="UseDefaultConnectionString" Converter="{dxmvvm:BooleanNegationConverter}" />
+                                <Binding Path="CanSaveToStorage" />
+                            </MultiBinding>
+                        </dxe:TextEdit.IsEnabled>
+                    </dxe:TextEdit>
+                </StackPanel>
+            </Grid>
+        </Grid>
+    </DataTemplate>
+</ResourceDictionary>

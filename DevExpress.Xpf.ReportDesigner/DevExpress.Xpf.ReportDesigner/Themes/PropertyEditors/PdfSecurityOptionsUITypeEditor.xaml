@@ -1,0 +1,62 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+            xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+            xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+            xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
+            xmlns:printing="clr-namespace:DevExpress.XtraPrinting;assembly=DevExpress.Printing.v15.2.Core"
+            xmlns:designernative="clr-namespace:DevExpress.Xpf.Reports.UserDesigner.Native"
+            xmlns:designereditors="clr-namespace:DevExpress.Xpf.Reports.UserDesigner.Editors">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/DevExpress.Xpf.ReportDesigner.v15.2;component/Themes/PropertyEditors/GroupBox.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    <Style TargetType="designereditors:PdfSecurityOptionsUITypeEditor">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="designereditors:PdfSecurityOptionsUITypeEditor">
+                    <dxlc:LayoutControl Orientation="Vertical">
+                        <dxlc:LayoutGroup Orientation="Vertical" Style="{StaticResource LayoutGroupWithInvisibleStandardGroupBox}">
+                            <dxlc:LayoutItem>
+                                <dxe:CheckEdit EditValue="{Binding RequirePassword, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Content="Require a password to open the document" x:Name="requirePasswordCheckBox" />
+                            </dxlc:LayoutItem>
+                            <dxlc:LayoutItem Label="Document Open Password:" Padding="50,0,0,0">
+                                <dxe:PasswordBoxEdit EditValue="{Binding OpenPassword, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding EditValue, ElementName=requirePasswordCheckBox}" x:Name="passwordEdit" />
+                            </dxlc:LayoutItem>
+                        </dxlc:LayoutGroup>
+                        <dxlc:LayoutGroup Orientation="Vertical" Style="{StaticResource LayoutGroupWithStandardGroupBox}" Header="Permissions">
+                            <dxlc:LayoutItem>
+                                <dxe:CheckEdit Content="Restrict editing and printing of the document" x:Name="allowEditingCheckBox" />
+                            </dxlc:LayoutItem>
+                            <dxlc:LayoutGroup Padding="0" Orientation="Vertical" x:Name="editingGroup" IsEnabled="{Binding EditValue, ElementName=allowEditingCheckBox}">
+                                <dxlc:LayoutItem Label="Change Permissions Password:">
+                                    <dxe:PasswordBoxEdit EditValue="{Binding PermissionsPassword, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Right" designernative:LayoutControlHelper.WidthSource="{Binding ElementName=passwordEdit}" />
+                                </dxlc:LayoutItem>
+                                <dxlc:LayoutItem Label="Printing Allowed:">
+                                    <dxlc:LayoutItem.Resources>
+                                        <designereditors:PrintingPermissionsDisplayNameConverter x:Key="ItemConverter" />
+                                    </dxlc:LayoutItem.Resources>
+                                    <dxe:ComboBoxEdit EditValue="{Binding PrintingPermissions, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsTextEditable="False" HorizontalAlignment="Right" designernative:LayoutControlHelper.WidthSource="{Binding ElementName=passwordEdit}" ItemsSource="{dxe:EnumItemsSource EnumType=printing:PrintingPermissions, NameConverter={StaticResource ItemConverter}}" />
+                                </dxlc:LayoutItem>
+                                <dxlc:LayoutItem Label="Changes Allowed:">
+                                    <dxlc:LayoutItem.Resources>
+                                        <designereditors:ChangingPermissionsDisplayNameConverter x:Key="ItemConverter" />
+                                    </dxlc:LayoutItem.Resources>
+                                    <dxe:ComboBoxEdit EditValue="{Binding ChangingPermissions, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsTextEditable="False" HorizontalAlignment="Right" designernative:LayoutControlHelper.WidthSource="{Binding ElementName=passwordEdit}" ItemsSource="{dxe:EnumItemsSource EnumType=printing:ChangingPermissions, NameConverter={StaticResource ItemConverter}}" />
+                                </dxlc:LayoutItem>
+                                <dxlc:LayoutGroup Orientation="Vertical">
+                                    <dxlc:LayoutItem>
+                                        <dxe:CheckEdit Content="Enable copying of text, images, and other content" EditValue="{Binding EnableCopying, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                    </dxlc:LayoutItem>
+                                    <dxlc:LayoutItem>
+                                        <dxe:CheckEdit Content="Enable text access for screen reader devices for the visually impaired" EditValue="{Binding EnableScreenReaders, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                    </dxlc:LayoutItem>
+                                </dxlc:LayoutGroup>
+                            </dxlc:LayoutGroup>
+                        </dxlc:LayoutGroup>
+                    </dxlc:LayoutControl>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

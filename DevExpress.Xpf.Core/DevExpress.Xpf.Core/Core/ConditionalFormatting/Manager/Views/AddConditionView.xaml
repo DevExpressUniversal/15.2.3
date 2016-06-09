@@ -1,0 +1,44 @@
+﻿<UserControl x:Class="DevExpress.Xpf.Core.ConditionalFormattingManager.AddConditionView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:dx="clr-namespace:DevExpress.Xpf.Core"
+             xmlns:dxc="clr-namespace:DevExpress.Xpf.Core.ConditionalFormatting"
+             xmlns:dxgcfm="clr-namespace:DevExpress.Xpf.Core.ConditionalFormattingManager"
+             mc:Ignorable="d" >
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="{dx:UtilsResource Core/ConditionalFormatting/Manager/Views/ManagerResources.xaml}"/>
+            </ResourceDictionary.MergedDictionaries>
+            <DataTemplate DataType="{x:Type dxgcfm:ValueBasedViewModel}">
+                <dxgcfm:ValueBasedView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type dxgcfm:ContainViewModel}">
+                <dxgcfm:ContainView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type dxgcfm:TopBottomViewModel}">
+                <dxgcfm:ContainView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type dxgcfm:AboveBelowViewModel}">
+                <dxgcfm:ContainView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type dxgcfm:FormulaViewModel}">
+                <dxgcfm:ContainView/>
+            </DataTemplate>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <GroupBox Header="{dxc:DataControlStringId ConditionalFormatting_Manager_SelectRuleType}" Style="{StaticResource GroupStyle}">
+            <ListBox ItemsSource="{Binding ViewModels}" SelectedItem="{Binding SelectedViewModel}" DisplayMemberPath="Description" Style="{x:Null}"/>
+        </GroupBox>
+        <GroupBox Header="{dxc:DataControlStringId ConditionalFormatting_Manager_EditRuleDescription}" Style="{StaticResource GroupStyle}" Grid.Row="1">
+            <ContentPresenter Content="{Binding SelectedViewModel}"/>
+        </GroupBox>
+    </Grid>
+</UserControl>

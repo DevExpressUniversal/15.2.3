@@ -1,0 +1,381 @@
+﻿<UserControl x:Class="DevExpress.XtraRichEdit.Forms.FloatingObjectLayoutFormControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+             xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+             xmlns:dxec="clr-namespace:DevExpress.Xpf.Editors.Controls;assembly=DevExpress.Xpf.Core.v15.2"
+             xmlns:dxre="clr-namespace:DevExpress.Xpf.RichEdit"
+             xmlns:dxreui="clr-namespace:DevExpress.Xpf.RichEdit.UI"
+             dx:StyleManager.ApplyApplicationTheme="True">
+
+    <UserControl.Resources>
+        <dxre:RichEditStringIdConverter x:Key="RichEditStringIdConverter" />
+    </UserControl.Resources>
+    <Grid x:Name="LayoutRoot" MinWidth="570" MinHeight="330">
+        <dx:DXTabControl Name="tabControl">
+            <dx:DXTabControl.View>
+                <dx:TabControlScrollView />
+            </dx:DXTabControl.View>
+            <dx:DXTabItem x:Name="tabPosition" Header="{Binding Source={StaticResource RichEditStringIdConverter}, ConverterParameter=Caption_FloatingObjectLayoutFormPosition, Converter={StaticResource RichEditStringIdConverter}}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Row="0" Margin="0,0,0,3">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="{Binding Source={StaticResource RichEditStringIdConverter}, ConverterParameter=Caption_FloatingObjectLayoutFormHorizontalLabel, Converter={StaticResource RichEditStringIdConverter}}" />
+                        <dxec:DXSeparator Grid.Column="1" Margin="3,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Stretch" />
+                    </Grid>
+                    <Grid Grid.Row="1" Margin="12,0,0,3">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" MinWidth="100" />
+                            <ColumnDefinition MinWidth="130" />
+                            <ColumnDefinition Width="Auto" MinWidth="100" />
+                            <ColumnDefinition MinWidth="130" />
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Column="0" Orientation="Vertical" VerticalAlignment="Center">
+                            <RadioButton x:Name="chkHorizontalPositionAlignment" GroupName="rgHorizontal" Content="{Binding Source={StaticResource RichEditStringIdConverter}, ConverterParameter=Caption_FloatingObjectLayoutFormHorizontalPositionAlignmentRadioButton, Converter={StaticResource RichEditStringIdConverter}}" Margin="3,3,5,3" dx:StyleManager.ApplyApplicationTheme="True" />
+                            <RadioButton x:Name="chkHorizontalAbsolutePosition" GroupName="rgHorizontal" Content="{Binding Source={StaticResource RichEditStringIdConverter}, ConverterParameter=Caption_FloatingObjectLayoutFormHorizontalAbsolutePositionRadioButton, Converter={StaticResource RichEditStringIdConverter}}" Margin="3,3,0,3" dx:StyleManager.ApplyApplicationTheme="True" />
+                        </StackPanel>
+                        <Grid Grid.Column="1" Margin="12,0,0,3">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <dxe:ComboBoxEdit Grid.Row="0" x:Name="cbHorizontalAlignment" DisplayMember="DisplayText" VerticalAlignment="Center" Margin="3,3,0,3" dx:StyleManager.ApplyApplicationTheme="True" />
+                            <dxreui:RichTextIndentEdit Grid.Row="1" Grid.Column="1" x:Name="edtHorizontalAbsolutePosition" Margin="3" MinValue="0" VerticalAlignment="Center" MinWidth="60" />
+                        </Grid>
+                        <Grid Grid.Column="2" Margin="12,0,0,3">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <TextBlock Grid.Row="0" x:Name="lblHorizontalPositionType" VerticalAlignment="Center" Text="{Binding Source={StaticResource RichEditStringIdConverter}, ConverterParameter=Caption_FloatingObjectLayoutFormHorizontalPositionTypeLabel, Converter={StaticResource RichEditStringIdConverter}}" Margin="0,0,3,0" dx:StyleManager.ApplyApplicationTheme="True" />
+                            <TextBlock Grid.Row="1" x:Name="lblHorizontalAbsolutePosition" VerticalAlignment="Center" Text="{Binding Source={StaticResource RichEditStringIdConverter}, ConverterParameter=Caption_FloatingObjectLayoutFormHorizontalAbsolutePositionLabel, Converter={StaticResource RichEditStringIdConverter}}" Margin="0,0,3,0" dx:StyleManager.ApplyApplicationTheme="True" />
+                        </Grid>
+                        <Grid Grid.Column="3" Margin="12,0,0,3">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <dxe:ComboBoxEdit Grid.Row="0" x:Name="cbHorizontalPositionType" DisplayMember="DisplayText" VerticalAlignment="Center" Margin="3,3,0,3" dx:StyleManager.ApplyApplicationTheme="True" />
+                            <dxe:ComboBoxEdit Grid.Row="1" x:Name="cbHorizontalAbsolutePositionRightOf" DisplayMember="DisplayText" VerticalAlignment="Center" Margin="3,3,0,3" dx:StyleManager.ApplyApplicationTheme="True" />
+                        </Grid>
+                    </Grid>
+                    <Grid Grid.Row="2" Margin="0,0,0,3">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="{Binding Source={StaticResource RichEditStringIdConverter}, ConverterParameter=Caption_FloatingObjectLayoutFormVerticalLabel, Converter={StaticResource RichEditStringIdConverter}}" />
+                        <dxec:DXSeparator Grid.Column="1" Margin="3,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Stretch" />
+                    </Grid>
+                    <Grid Grid.Row="3" Margin="12,0,0,3">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" MinWidth="100" />
+                            <ColumnDefinition MinWidth="130" />
+                            <ColumnDefinition Width="Auto" MinWidth="100" />
+                            <ColumnDefinition MinWidth="130" />
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Column="0" Orientation="Vertical" VerticalAlignment="Center">
+                            <RadioButton x:Name="chkVerticalPositionAlignment" GroupName="rgVertical" Content="{Binding Source={StaticResource RichEditStringIdConverter}, ConverterParameter=Caption_FloatingObjectLayoutFormVerticalPositionAlignmentRadioButton, Converter={StaticResource RichEditStringIdConverter}}" Margin="3,3,5,3" Checked="OnVerticalPositionAlignmentRadioButtonChecked" dx:StyleManager.ApplyApplicationTheme="True" />
+                            <RadioButton x:Name="chkVerticalAbsolutePosition" GroupName="rgVertical" Content="{Binding Source={StaticResource RichEditStringIdConverter}, ConverterParameter=Caption_FloatingObjectLayoutFormVerticalAbsolutePositionRadioButton, Converter={StaticResource RichEditStringIdConverter}}" Margin="3,3,0,3" Checked="OnVerticalAbsolutePositionRadioButtonChecked" dx:StyleManager.ApplyApplicationTheme="True" />
+                        </StackPanel>
+                        <Grid Grid.Column="1" Margin="12,0,0,3">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <dxe:ComboBoxEdit Grid.Row="0" x:Name="cbVerticalAlignment" DisplayMember="DisplayText" VerticalAlignment="Center" Margin="3,3,0,3" dx:StyleManager.ApplyApplicationTheme="True" />
+                            <dxreui:RichTextIndentEdit Grid.Row="1" Grid.Column="1" x:Name="edtVerticalAbsolutePosition" Margin="3" MinValue="0" VerticalAlignment="Center" MinWidth="60" />
+                        </Grid>
+                        <Grid Grid.Column="2" Margin="12,0,0,3">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <TextBlock Grid.Row="0" x:Name="lblVerticalPositionType" VerticalAlignment="Center" Text="{Binding Source={StaticResource RichEditStringIdConverter}, ConverterParameter=Caption_FloatingObjectLayoutFormVerticalPositionTypeLabel, Converter={StaticResource RichEditStringIdConverter}}" Margin="0,0,3,0" dx:StyleManager.ApplyApplicationTheme="True" />
+                            <TextBlock Grid.Row="1" x:Name="lblVerticalAbsolutePosition" VerticalAlignment="Center" Text="{Binding Source={StaticResource RichEditStringIdConverter}, ConverterParameter=Caption_FloatingObjectLayoutFormVerticalAbsolutePositionLabel, Converter={StaticResource RichEditStringIdConverter}}" Margin="0,0,3,0" dx:StyleManager.ApplyApplicationTheme="True" />
+                        </Grid>
+                        <Grid Grid.Column="3" Margin="12,0,0,3">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <dxe:ComboBoxEdit Grid.Row="0" x:Name="cbVerticalPositionType" DisplayMember="DisplayText" VerticalAlignment="Center" Margin="3,3,0,3" dx:StyleManager.ApplyApplicationTheme="True" />
+                            <dxe:ComboBoxEdit Grid.Row="1" x:Name="cbVerticalAbsolutePositionBelow" DisplayMember="DisplayText" VerticalAlignment="Center" Margin="3,3,0,3" dx:StyleManager.ApplyApplicationTheme="True" />
+                        </Grid>
+                    </Grid>
+                    <Grid Grid.Row="4" Margin="0,0,0,3" Visibility="Collapsed">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="{Binding Source={StaticResource RichEditStringIdConverter}, ConverterParameter=Caption_FloatingObjectLayoutFormOptionsLabel, Converter={StaticResource RichEditStringIdConverter}}" />
+                        <dxec:DXSeparator Grid.Column="1" Margin="3,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Stretch" />
+                    </Grid>
+                    <Grid Grid.Row="5" Margin="12,0,0,3" Visibility="Collapsed">
+                        <dxe:CheckEdit Margin="12,3,0,3" Grid.Row="6" x:Name="chkLockAnchor" VerticalAlignment="Top" Content="{Binding Source={StaticResource RichEditStringIdConverter}, ConverterParameter=Caption_FloatingObjectLayoutFormLockAnchorCheckEdit, Converter={StaticResource RichEditStringIdConverter}}" dx:StyleManager.ApplyApplicationTheme="True" />
+                    </Grid>
+                </Grid>
+            </dx:DXTabItem>
+            <dx:DXTabItem x:Name="tabWrapping" Header="{Binding Source={StaticResource RichEditStringIdConverter}, ConverterParameter=Caption_FloatingObjectLayoutFormTextWrapping, Converter={StaticResource RichEditStringIdConverter}}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Row="0" Margin="0,0,0,3">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="{Binding Source={StaticResource RichEditStringIdConverter}, ConverterParameter=Caption_FloatingObjectLayoutFormWrappingStyleLabel, Converter={StaticResource RichEditStringIdConverter}}" />
+                        <dxec:DXSeparator Grid.Column="1" Margin="3,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Stretch" />
+                    </Grid>
+                    <Grid Grid.Row="1" Margin="12,0,0,3">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <dxreui:ColumnsPresetControl x:Name="columnsPresetControlSquare" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Text="{Binding Source={StaticResource RichEditStringIdConverter}, ConverterParameter=Caption_FloatingObjectLayoutFormSquarePreset, Converter={StaticResource RichEditStringIdConverter}}" />
+                        <dxreui:ColumnsPresetControl x:Name="columnsPresetControlTight" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Text="{Binding Source={StaticResource RichEditStringIdConverter}, ConverterParameter=Caption_FloatingObjectLayoutFormTightPreset, Converter={StaticResource RichEditStringIdConverter}}" />
+                        <dxreui:ColumnsPresetControl x:Name="columnsPresetControlThought" Grid.Row="0" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Text="{Binding Source={StaticResource RichEditStringIdConverter}, ConverterParameter=Caption_FloatingObjectLayoutFormThoughtPreset, Converter={StaticResource RichEditStringIdConverter}}" />
+                        <dxreui:ColumnsPresetControl x:Name="columnsPresetControlTopAndBottom" Grid.Row="0" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center" Text="{Binding Source={StaticResource RichEditStringIdConverter}, ConverterParameter=Caption_FloatingObjectLayoutFormTopAndBottomPreset, Converter={StaticResource RichEditStringIdConverter}}" />
+                        <dxreui:ColumnsPresetControl x:Name="columnsPresetControlBehindText" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Text="{Binding Source={StaticResource RichEditStringIdConverter}, ConverterParameter=Caption_FloatingObjectLayoutFormBehindTextPreset, Converter={StaticResource RichEditStringIdConverter}}" />
+                        <dxreui:ColumnsPresetControl x:Name="columnsPresetControlInFrontOfText" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Text="{Binding Source={StaticResource RichEditStringIdConverter}, ConverterParameter=Caption_FloatingObjectLayoutFormInFrontOfTextPreset, Converter={StaticResource RichEditStringIdConverter}}" />
+                    </Grid>
+                    <Grid Grid.Row="2" Margin="0,0,0,3">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="{Binding Source={StaticResource RichEditStringIdConverter}, ConverterParameter=Caption_FloatingObjectLayoutFormWrapTextLabel, Converter={StaticResource RichEditStringIdConverter}}" />
+                        <dxec:DXSeparator Grid.Column="1" Margin="3,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Stretch" />
+                    </Grid>
+                    <Grid Grid.Row="3" Margin="12,0,0,3">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center">
+                            <RadioButton x:Name="chkBoth" GroupName="rbWrapText" Content="{Binding Source={StaticResource RichEditStringIdConverter}, ConverterParameter=Caption_FloatingObjectLayoutFormBothSidesRadioButton, Converter={StaticResource RichEditStringIdConverter}}" Margin="3,3,5,3" dx:StyleManager.ApplyApplicationTheme="True" />
+                            <RadioButton x:Name="chkLeft" GroupName="rbWrapText" Content="{Binding Source={StaticResource RichEditStringIdConverter}, ConverterParameter=Caption_FloatingObjectLayoutFormLeftOnlyRadioButton, Converter={StaticResource RichEditStringIdConverter}}" Margin="3,3,0,3" dx:StyleManager.ApplyApplicationTheme="True" />
+                            <RadioButton x:Name="chkRight" GroupName="rbWrapText" Content="{Binding Source={StaticResource RichEditStringIdConverter}, ConverterParameter=Caption_FloatingObjectLayoutFormRightOnlyRadioButton, Converter={StaticResource RichEditStringIdConverter}}" Margin="3,3,5,3" dx:StyleManager.ApplyApplicationTheme="True" />
+                            <RadioButton x:Name="chkLargest" GroupName="rbWrapText" Content="{Binding Source={StaticResource RichEditStringIdConverter}, ConverterParameter=Caption_FloatingObjectLayoutFormLargestOnlyRadioButton, Converter={StaticResource RichEditStringIdConverter}}" Margin="3,3,0,3" dx:StyleManager.ApplyApplicationTheme="True" />
+                        </StackPanel>
+                    </Grid>
+                    <Grid Grid.Row="4" Margin="0,0,0,3">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="{Binding Source={StaticResource RichEditStringIdConverter}, ConverterParameter=Caption_FloatingObjectLayoutFormDistanceFromTextLabel, Converter={StaticResource RichEditStringIdConverter}}" />
+                        <dxec:DXSeparator Grid.Column="1" Margin="3,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Stretch" />
+                    </Grid>
+                    <Grid Grid.Row="5" Margin="12,0,0,3">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" MinWidth="100" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" MinWidth="100" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock x:Name="lblTop" VerticalAlignment="Center" Text="{Binding Source={StaticResource RichEditStringIdConverter}, ConverterParameter=Caption_FloatingObjectLayoutFormTopLabel, Converter={StaticResource RichEditStringIdConverter}}" Margin="0,0,3,0" dx:StyleManager.ApplyApplicationTheme="True" />
+                        <TextBlock Grid.Row="1" Grid.Column="0" x:Name="lblBottom" VerticalAlignment="Center" Text="{Binding Source={StaticResource RichEditStringIdConverter}, ConverterParameter=Caption_FloatingObjectLayoutFormBottomLabel, Converter={StaticResource RichEditStringIdConverter}}" Margin="0,0,3,0" dx:StyleManager.ApplyApplicationTheme="True" />
+                        <dxreui:RichTextIndentEdit Grid.Row="0" Grid.Column="1" x:Name="edtTop" Margin="3" MinValue="0" VerticalAlignment="Center" MinWidth="60" />
+                        <dxreui:RichTextIndentEdit Grid.Row="1" Grid.Column="1" x:Name="edtBottom" Margin="3" MinValue="0" VerticalAlignment="Center" MinWidth="60" />
+                        <TextBlock Grid.Row="0" Grid.Column="2" x:Name="lblLeft" VerticalAlignment="Center" Text="{Binding Source={StaticResource RichEditStringIdConverter}, ConverterParameter=Caption_FloatingObjectLayoutFormLeftLabel, Converter={StaticResource RichEditStringIdConverter}}" Margin="12,0,3,0" dx:StyleManager.ApplyApplicationTheme="True" />
+                        <TextBlock Grid.Row="1" Grid.Column="2" x:Name="lblRight" VerticalAlignment="Center" Text="{Binding Source={StaticResource RichEditStringIdConverter}, ConverterParameter=Caption_FloatingObjectLayoutFormRightLabel, Converter={StaticResource RichEditStringIdConverter}}" Margin="12,0,3,0" dx:StyleManager.ApplyApplicationTheme="True" />
+                        <dxreui:RichTextIndentEdit Grid.Row="0" Grid.Column="3" x:Name="edtLeft" Margin="3" MinValue="0" VerticalAlignment="Center" MinWidth="60" />
+                        <dxreui:RichTextIndentEdit Grid.Row="1" Grid.Column="3" x:Name="edtRight" Margin="3" MinValue="0" VerticalAlignment="Center" MinWidth="60" />
+                    </Grid>
+                </Grid>
+            </dx:DXTabItem>
+            <dx:DXTabItem Header="{Binding Source={StaticResource RichEditStringIdConverter}, ConverterParameter=Caption_FloatingObjectLayoutFormSize, Converter={StaticResource RichEditStringIdConverter}}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <Grid Grid.Row="0" Margin="0,0,0,5" Grid.ColumnSpan="3">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock VerticalAlignment="Center" Text="{Binding ConverterParameter=Caption_FloatingObjectLayoutFormTabSizeHeightLabel, Converter={StaticResource RichEditStringIdConverter}, Source={StaticResource RichEditStringIdConverter}}" />
+                            <dxec:DXSeparator Grid.Column="1" Margin="3,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Stretch" />
+                        </Grid>
+                        <TextBlock Grid.Row="1" Grid.Column="0" Margin="10,0,0,5" VerticalAlignment="Top" HorizontalAlignment="Left" Text="{Binding ConverterParameter=Caption_FloatingObjectLayoutFormTabSizeHeightAbsoluteLabel, Converter={StaticResource RichEditStringIdConverter}, Source={StaticResource RichEditStringIdConverter}}" />
+                        <dxreui:RichTextIndentEdit Grid.Row="1" Grid.Column="1" Margin="5,0,0,5" x:Name="edtHeightAbsolute" MinValue="1" VerticalAlignment="Top" HorizontalAlignment="Left" MinWidth="80" MaxValue="100000"/>
+
+                        <Grid Grid.Row="2" Margin="0,0,0,5" Grid.ColumnSpan="3">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock VerticalAlignment="Center" Text="{Binding ConverterParameter=Caption_FloatingObjectLayoutFormTabSizeWidthLabel, Converter={StaticResource RichEditStringIdConverter}, Source={StaticResource RichEditStringIdConverter}}" />
+                            <dxec:DXSeparator Grid.Column="1" Margin="3,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Stretch" />
+                        </Grid>
+                        <TextBlock Grid.Row="3" Grid.Column="0" Margin="10,0,0,5" VerticalAlignment="Top" HorizontalAlignment="Left" Text="{Binding ConverterParameter=Caption_FloatingObjectLayoutFormTabSizeWidthAbsoluteLabel, Converter={StaticResource RichEditStringIdConverter}, Source={StaticResource RichEditStringIdConverter}}" />
+                        <dxreui:RichTextIndentEdit Grid.Row="3" Grid.Column="1" Margin="5,0,0,5" x:Name="edtWidthAbsolute" MinValue="1" VerticalAlignment="Top" HorizontalAlignment="Left" MinWidth="80" MaxValue="100000" />
+
+                        <Grid Grid.Row="4" Margin="0,0,0,5" Grid.ColumnSpan="3">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock VerticalAlignment="Center" Text="{Binding ConverterParameter=Caption_FloatingObjectLayoutFormRotateLabel, Converter={StaticResource RichEditStringIdConverter}, Source={StaticResource RichEditStringIdConverter}}" />
+                            <dxec:DXSeparator Grid.Column="1" Margin="3,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Stretch" />
+                        </Grid>
+                        <TextBlock Grid.Row="5" Grid.Column="0" Margin="10,0,0,5" VerticalAlignment="Top" HorizontalAlignment="Left" Text="{Binding ConverterParameter=Caption_FloatingObjectLayoutFormRotateLabel, Converter={StaticResource RichEditStringIdConverter}, Source={StaticResource RichEditStringIdConverter}}" />
+                        <dxe:SpinEdit Grid.Row="5" Grid.Column="1" Margin="5,0,0,5" VerticalAlignment="Top" HorizontalAlignment="Left" x:Name="spnRotation" IsFloatValue="False" Increment="1" AllowNullInput="True" Value="0" ShowText="True" MinWidth="80" />
+                    </Grid>
+                    <!--<Grid Grid.Row="1" Margin="0,0,0,3" Grid.ColumnSpan="4">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="10" />
+                            <ColumnDefinition Width="80" />
+                            <ColumnDefinition Width="110" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="1" Margin="0,0,0,0" VerticalAlignment="Center" Text="{Binding ConverterParameter=Caption_FloatingObjectLayoutFormTabSizeHeightAbsoluteLabel, Converter={StaticResource RichEditStringIdConverter}, Source={StaticResource RichEditStringIdConverter}}" />
+                        <dxreui:RichTextIndentEdit Grid.Column="2" x:Name="edtHeightAbsolute" MinValue="0" VerticalAlignment="Center" />
+   
+                    </Grid>
+                    <Grid Grid.Row="2" Margin="0,0,0,3" Grid.ColumnSpan="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="{Binding ConverterParameter=Caption_FloatingObjectLayoutFormTabSizeWidthLabel, Converter={StaticResource RichEditStringIdConverter}, Source={StaticResource RichEditStringIdConverter}}" />
+                        <dxec:DXSeparator Grid.Column="1" Margin="3,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Stretch" />
+                    </Grid>
+                    <Grid Grid.Row="3" Margin="0,0,0,3" Grid.ColumnSpan="4">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="10" />
+                            <ColumnDefinition Width="80" />
+                            <ColumnDefinition Width="110" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="1" Margin="0,0,0,0" VerticalAlignment="Center" Text="{Binding ConverterParameter=Caption_FloatingObjectLayoutFormTabSizeWidthAbsoluteLabel, Converter={StaticResource RichEditStringIdConverter}, Source={StaticResource RichEditStringIdConverter}}" />
+                        <dxreui:RichTextIndentEdit Grid.Column="2" x:Name="edtWidthAbsolute" MinValue="0" VerticalAlignment="Center" />
+                    </Grid>
+                    <Grid Grid.Row="4" Margin="0,0,0,3" Grid.ColumnSpan="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="{Binding ConverterParameter=Caption_FloatingObjectLayoutFormRotateLabel, Converter={StaticResource RichEditStringIdConverter}, Source={StaticResource RichEditStringIdConverter}}" />
+                        <dxec:DXSeparator Grid.Column="1" Margin="3,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Stretch" />
+                    </Grid>
+                    <Grid Grid.Row="5" Margin="0,0,0,3" Grid.ColumnSpan="4">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="10" />
+                            <ColumnDefinition Width="80" />
+                            <ColumnDefinition Width="110" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" Text="{Binding ConverterParameter=Caption_FloatingObjectLayoutFormRotationLabel, Converter={StaticResource RichEditStringIdConverter}, Source={StaticResource RichEditStringIdConverter}}" Margin="4,0,0,0" dx:StyleManager.ApplyApplicationTheme="True" />
+                        <dxe:SpinEdit x:Name="spnRotation" Grid.Column="2" IsFloatValue="False" Increment="1" AllowNullInput="True" VerticalAlignment="Center" Value="0" ShowText="True" />
+                    </Grid>
+                    -->
+                    <Grid Grid.Row="1" Margin="0,0,0,5" Grid.ColumnSpan="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="{Binding ConverterParameter=Caption_FloatingObjectLayoutFormScaleLabel, Converter={StaticResource RichEditStringIdConverter}, Source={StaticResource RichEditStringIdConverter}}" />
+                        <dxec:DXSeparator Grid.Column="1" Margin="3,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Stretch" />
+                    </Grid>
+                    <Grid Grid.Row="2" Margin="12,0,0,5" Grid.ColumnSpan="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="10" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <dxe:CheckEdit Grid.Column="1" x:Name="chkLockAspectRatio" VerticalAlignment="Center" Content="{Binding ConverterParameter=Caption_FloatingObjectLayoutFormLockAspectRatioCheckEdit, Converter={StaticResource RichEditStringIdConverter}, Source={StaticResource RichEditStringIdConverter}}" dx:StyleManager.ApplyApplicationTheme="True" />
+                    </Grid>
+                    <Grid Grid.Row="3" Margin="0,0,0,5" Grid.ColumnSpan="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="{Binding ConverterParameter=Caption_FloatingObjectLayoutFormTabSizeOriginalSizeLabel, Converter={StaticResource RichEditStringIdConverter}, Source={StaticResource RichEditStringIdConverter}}" />
+                        <dxec:DXSeparator Grid.Column="1" Margin="3,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Stretch" />
+                    </Grid>
+                    <Grid Grid.Row="4" Margin="0,0,0,5" Grid.ColumnSpan="7">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="10" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="1" Text="{Binding ConverterParameter=Caption_FloatingObjectLayoutFormTabSizeOriginalSizeHeightLabel, Converter={StaticResource RichEditStringIdConverter}, Source={StaticResource RichEditStringIdConverter}}" />
+                        <TextBlock Grid.Column="2" Margin="5,0,0,0" x:Name="lblOriginalHeight" Text="{Binding ConverterParameter=Caption_FloatingObjectLayoutFormTabSizeOriginalSizeHeightLabel, Converter={StaticResource RichEditStringIdConverter}, Source={StaticResource RichEditStringIdConverter}}" />
+                        <TextBlock Grid.Column="3" Margin="20,0,0,0" Text="{Binding ConverterParameter=Caption_FloatingObjectLayoutFormTabSizeOriginalSizeWidthLabel, Converter={StaticResource RichEditStringIdConverter}, Source={StaticResource RichEditStringIdConverter}}" />
+                        <TextBlock Grid.Column="4" Margin="5,0,0,0" x:Name="lblOriginalWidth" Text="{Binding ConverterParameter=Caption_FloatingObjectLayoutFormTabSizeOriginalSizeWidthLabel, Converter={StaticResource RichEditStringIdConverter}, Source={StaticResource RichEditStringIdConverter}}" />
+                        <Button Grid.Column="6" x:Name="btnReset" MinWidth="20" HorizontalAlignment="Right" VerticalAlignment="Center" MaxWidth="60" Content="{Binding ConverterParameter=Caption_FloatingObjectLayoutFormTabSizeResetButton, Converter={StaticResource RichEditStringIdConverter}, Source={StaticResource RichEditStringIdConverter}}" dx:StyleManager.ApplyApplicationTheme="True" />
+                    </Grid>
+                </Grid>
+            </dx:DXTabItem>
+        </dx:DXTabControl>
+    </Grid>
+</UserControl>

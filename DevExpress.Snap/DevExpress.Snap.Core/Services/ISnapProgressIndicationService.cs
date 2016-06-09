@@ -1,0 +1,105 @@
+﻿#region Copyright (c) 2000-2015 Developer Express Inc.
+/*
+{*******************************************************************}
+{                                                                   }
+{       Developer Express .NET Component Library                    }
+{                                                                   }
+{                                                                   }
+{       Copyright (c) 2000-2015 Developer Express Inc.              }
+{       ALL RIGHTS RESERVED                                         }
+{                                                                   }
+{   The entire contents of this file is protected by U.S. and       }
+{   International Copyright Laws. Unauthorized reproduction,        }
+{   reverse-engineering, and distribution of all or any portion of  }
+{   the code contained in this file is strictly prohibited and may  }
+{   result in severe civil and criminal penalties and will be       }
+{   prosecuted to the maximum extent possible under the law.        }
+{                                                                   }
+{   RESTRICTIONS                                                    }
+{                                                                   }
+{   THIS SOURCE CODE AND ALL RESULTING INTERMEDIATE FILES           }
+{   ARE CONFIDENTIAL AND PROPRIETARY TRADE                          }
+{   SECRETS OF DEVELOPER EXPRESS INC. THE REGISTERED DEVELOPER IS   }
+{   LICENSED TO DISTRIBUTE THE PRODUCT AND ALL ACCOMPANYING .NET    }
+{   CONTROLS AS PART OF AN EXECUTABLE PROGRAM ONLY.                 }
+{                                                                   }
+{   THE SOURCE CODE CONTAINED WITHIN THIS FILE AND ALL RELATED      }
+{   FILES OR ANY PORTION OF ITS CONTENTS SHALL AT NO TIME BE        }
+{   COPIED, TRANSFERRED, SOLD, DISTRIBUTED, OR OTHERWISE MADE       }
+{   AVAILABLE TO OTHER INDIVIDUALS WITHOUT EXPRESS WRITTEN CONSENT  }
+{   AND PERMISSION FROM DEVELOPER EXPRESS INC.                      }
+{                                                                   }
+{   CONSULT THE END USER LICENSE AGREEMENT FOR INFORMATION ON       }
+{   ADDITIONAL RESTRICTIONS.                                        }
+{                                                                   }
+{*******************************************************************}
+*/
+#endregion Copyright (c) 2000-2015 Developer Express Inc.
+
+using System;
+using System.ComponentModel;
+using System.Threading;
+using DevExpress.Office.Utils;
+using DevExpress.Services;
+using DevExpress.Utils;
+namespace DevExpress.Snap.Core.Services {
+	public interface ISnapProgressIndicationService {
+		int Begin(string displayName, int minProgress, int maxProgress, int currentProgress);
+		void End(int token);
+		void SetProgress(int token, int currentProgress);
+	}
+	public class DefaultSnapProgressIndicationService : ISnapProgressIndicationService {
+		IServiceProvider provider;
+		public DefaultSnapProgressIndicationService(IServiceProvider provider) {
+			Guard.ArgumentNotNull(provider, "provider");
+			this.provider = provider;
+		}
+		IProgressIndicationService GetService() {
+			return this.provider.GetService(typeof(IProgressIndicationService)) as IProgressIndicationService;
+		}
+		#region ISnapProgressIndicationService Members
+		public int Begin(string displayName, int minProgress, int maxProgress, int currentProgress) {
+			IProgressIndicationService service = GetService();
+			if(service != null)
+				service.Begin(displayName, minProgress, maxProgress, currentProgress);
+			return 0;
+		}
+		public void End(int token) {
+			IProgressIndicationService service = GetService();
+			if(service != null)
+				service.End();
+		}
+		public void SetProgress(int token, int currentProgress) {
+			IProgressIndicationService service = GetService();
+			if(service != null)
+				service.SetProgress(currentProgress);
+		}
+		#endregion
+	}
+	public interface ISnapMailMergeProgressIndicationService : IProgressIndicationService {
+		void Reset();
+		CancellationToken CancellationToken { get; }
+	}
+	public class SnapMailMergeProgressIndication : ProgressIndication {
+		public SnapMailMergeProgressIndication(IServiceProvider provider)
+			: base(provider) {
+		}
+		public override void Begin(string displayName, int minProgress, int maxProgress, int currentProgress) {
+			ISnapMailMergeProgressIndicationService srv = GetService() as ISnapMailMergeProgressIndicationService;
+			if (srv != null)
+				srv.Reset();
+			base.Begin(displayName, minProgress, maxProgress, currentProgress);
+		}
+		public bool IsCancellationRequested {
+			get {
+				ISnapMailMergeProgressIndicationService srv = GetService() as ISnapMailMergeProgressIndicationService;
+				if (srv == null)
+					return false;
+				return srv.CancellationToken.IsCancellationRequested;
+			}
+		}
+		protected internal override IProgressIndicationService GetService() {
+			return (ISnapMailMergeProgressIndicationService)Provider.GetService(typeof(ISnapMailMergeProgressIndicationService));
+		}
+	}
+}

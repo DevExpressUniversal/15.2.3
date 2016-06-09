@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FeatureItems SourceType="ColumnView">
+<FeatureItem ID="DataBinding_Main" Name="Data Binding" Category="">
+    <Description>
+      This section contains pages that allow you to bind the grid control to data, bind the current view's columns to data fields or create unbound columns.
+    </Description>
+  </FeatureItem>
+	<FeatureItem ID="DataBinding_Grid" Name="Bind Grid" SourceProperty="GridControl" Category="DataBinding_Main" SelectedPropertyOnStart="DataSource">
+        <Properties>
+			<Item Name="DataSource"></Item>
+			<Item Name="DataMember"></Item>
+			<Item Name="DataSourceChanged"></Item>
+			<Item Name="ShowOnlyPredefinedDetails"></Item>
+		</Properties>
+		<Description>
+			Data source:
+			[DataSource], [DataMember].
+			
+			Data source change notification:
+			[DataSourceChanged].
+			
+			Suppress details that don't have associated levels in the grid's structure:
+			[{(ShowOnlyPredefinedDetails=False)}ShowOnlyPredefinedDetails].
+			
+			To customize the level tree and its associated views, use the Views and View Repository links in the leftmost navigation bar.
+		</Description>
+	</FeatureItem>
+	<FeatureItem ID="DataBinding_Columns" Name="Bind Columns" Category="DataBinding_Main" SelectedPropertyOnStart="CustomUnboundColumnData">
+        <Properties>
+			<Item Name="CustomUnboundColumnData"></Item>
+		</Properties>
+		<Pages>
+			<Columns>
+				<Properties>
+					<Item Name="UnboundType"></Item>
+					<Item Name="FieldName"></Item>
+					<Item Name="Caption"></Item>
+				</Properties>
+			</Columns>
+		</Pages>
+		<Description>
+			Bind column to a field:
+			[{goto:Columns,FieldName}Column.FieldName] property.
+			
+			Create an unbound column:
+			[{goto:Columns,UnboundType}Column.UnboundType] property, [CustomUnboundColumnData] event.
+		</Description>
+	</FeatureItem>
+  <FeatureItem ID="Nav_Main" Name="Focus, Selection, Navigation" Category="">
+    <Description>
+      The pages in this section allow you to specify settings for focus, selection and navigation.
+    </Description>
+  </FeatureItem>
+	<FeatureItem ID="Nav_Navigator" SourceProperty="GridControl" Name="Embedded Navigator" Category="Nav_Main" Index="0" ReferenceId="VE_Navigator">	
+	</FeatureItem>
+  <FeatureItem ID="Editing_Main" Name="Editing" Category="">
+    <Description>
+      The pages in this section allow you to specify settings for data editing.
+    </Description>
+  </FeatureItem>
+	<FeatureItem ID="Editing_CellEditing" Name="Cell Editing" Category="Editing_Main" SelectedPropertyOnStart="OptionsBehavior.Editable">
+        <Properties>
+			<Item Name="OptionsBehavior.Editable"></Item>
+			<Item Name="OptionsBehavior.AutoSelectAllInEditor"></Item>
+			<Item Name="OptionsBehavior.EditorShowMode"></Item>
+			<Item Name="ShowingEditor"></Item>
+			<Item Name="ShownEditor"></Item>
+			<Item Name="HiddenEditor"></Item>
+			<Item Name="CellValueChanged"></Item>
+			<Item Name="CellValueChanging"></Item>
+		</Properties>
+		<Pages>
+			<Columns>
+				<Properties>
+					<Item Name="OptionsColumn.AllowEdit"></Item>
+					<Item Name="OptionsColumn.ReadOnly"></Item>
+				</Properties>
+			</Columns>
+		</Pages>
+		<Description>
+			User action that switches a cell to edit mode:
+			[OptionsBehavior.EditorShowMode] option.
+			
+			Edit mode availability: 
+			- for the view: [{(OptionsBehavior.Editable=False)}OptionsBehavior.Editable] property.
+			- for columns: [{goto:Columns,OptionsColumn.AllowEdit}OptionsColumn.AllowEdit], [{goto:Columns,OptionsColumn.ReadOnly}OptionsColumn.ReadOnly] properties.
+			- for cells: [ShowingEditor] event.
+			
+			Editing notifications:
+			- start / finish editing: [ShownEditor], [HiddenEditor] events.
+			- changes to edit values: [CellValueChanging], [CellValueChanged] events.
+		</Description>
+	</FeatureItem>
+	<FeatureItem ID="Editing_Validation" Name="Data Validation" Category="Editing_Main" SelectedPropertyOnStart="ValidatingEditor">
+        <Properties>
+			<Item Name="ValidatingEditor"></Item>
+			<Item Name="ValidateRow"></Item>
+			<Item Name="InvalidValueException"></Item>
+			<Item Name="InvalidRowException"></Item>
+		</Properties>
+		<Description>
+			Check for errors in:
+			- cells: [ValidatingEditor] event.
+			- rows: [ValidateRow] event.
+			
+			Handle errors in: 
+			- cells: [InvalidValueException] event.
+			- rows: [InvalidRowException] event.
+		</Description>
+	</FeatureItem>
+  <FeatureItem ID="MD_Main" Name="Master-Detail" Category="">
+    <Description>
+      The pages in this section allow you to customize how the view and its details work in master-detail mode.
+    </Description>
+  </FeatureItem>
+	<FeatureItem ID="MD_Grid" Name="Grid Control Settings" Index="0" SourceProperty="GridControl" Category="MD_Main">
+        <Properties>
+			<Item Name="ShowOnlyPredefinedDetails"></Item>
+			<Item Name="DefaultViewChanged"></Item>
+			<Item Name="ViewRegistered"></Item>
+			<Item Name="ViewRemoved"></Item>
+		</Properties>
+		<Description>
+			Suppress details that don't have an associated level in the grid's structure:
+			[{(ShowOnlyPredefinedDetails=False)}ShowOnlyPredefinedDetails].
+
+			Notifications of Zooming operations:
+			[DefaultViewChanged] event.
+			
+			Notifications of Clones being created / destroyed:
+			[ViewRegistered], [ViewRemoved] events.
+		</Description>
+	</FeatureItem>
+
+  <FeatureItem ID="Appearance_Main" Name="Appearance" Category="">
+    <Description>
+      The pages in this section allow you to specify the look and feel (paint style) for the entire grid control or just for the currently selected view. They also enable you to change the style of individual view elements. For a list of all the visual elements available along with their appearance settings, refer to the [{gotoFeature:VE_Main}Visual Elements] section.
+    </Description>
+  </FeatureItem>
+	<FeatureItem ID="Appearance_GridControl" Name="Grid Control Look And Feel" Index="0" SourceProperty="GridControl" Category="Appearance_Main" ShowColumns="False" ExpandAll="False" SelectedPropertyOnStart="LookAndFeel.UseDefaultLookAndFeel">	
+		<Properties>
+			<Item Name="BackgroundImage"></Item>
+			<Item Name="LookAndFeel"></Item>
+		</Properties>
+		<ExpandedPropertiesOnStart>
+			<ExpandedItem Name="LookAndFeel"></ExpandedItem>
+		</ExpandedPropertiesOnStart>
+		<Description>
+			Background image: 
+			[BackgroundImage] property.
+			
+			Use the look and feel settings from the default look and feel object: 
+			[LookAndFeel.UseDefaultLookAndFeel] property.
+			
+			Paint the control using the current XP theme:
+			[LookAndFeel.UseWindowsXPTheme] property.
+			
+			Other styles:
+			[LookAndFeel.Style], [LookAndFeel.SkinName] properties.
+		</Description>
+	</FeatureItem>
+	
+	<FeatureItem ID="Appearance_ViewLookAndFeel" Name="View Look and Feel" Category="Appearance_Main" SelectedPropertyOnStart="PaintStyleName">	
+		<Properties>
+			<Item Name="BorderStyle"></Item>
+			<Item Name="PaintStyleName"></Item>
+		</Properties>
+		<Description>
+			View look and feel: 
+			[PaintStyleName].
+			
+			View border style: 
+			[BorderStyle].
+			
+			By default, a view's look and feel depends upon the grid control's look and feel settings. 
+		</Description>
+	</FeatureItem>
+  <FeatureItem ID="VE_Main" Name="Visual Elements" Category="" Sorted="True">
+    <Description>
+      This section contains pages that describe how to change the visibility, appearance and size of the visual elements provided by the grid control and the currently selected view.
+    </Description>
+  </FeatureItem>
+	<FeatureItem ID="VE_Navigator" Name="Embedded Navigator" SourceProperty="GridControl" Category="VE_Main" SelectedPropertyOnStart="UseEmbeddedNavigator">
+        <Properties>
+			<Item Name="EmbeddedNavigator.Buttons"></Item>
+			<Item Name="EmbeddedNavigator.ButtonStyle"></Item>
+			<Item Name="EmbeddedNavigator.TextLocation"></Item>
+			<Item Name="EmbeddedNavigator.ShowToolTips"></Item>
+			<Item Name="UseEmbeddedNavigator"></Item>
+		</Properties>
+        <ExpandedPropertiesOnStart>
+			<ExpandedItem Name="EmbeddedNavigator"></ExpandedItem>
+		</ExpandedPropertiesOnStart>
+		<Description>
+			Availability: 
+			[{(UseEmbeddedNavigator=False)}UseEmbeddedNavigator] property.
+			
+			Content: 
+			[EmbeddedNavigator] property.
+		</Description>
+	</FeatureItem>
+  <FeatureItem ID="EndUser_Main" Name="End-user Actions" Category="">
+    <Description>
+      The pages in this section provide settings that control the availability of particular actions to end users and events that provide notifications about actions performed.
+    </Description>
+  </FeatureItem>
+	<FeatureItem ID="EndUser_CellEditing" Name="Cell Editing" Category="EndUser_Main" ReferenceId="Editing_CellEditing">
+	</FeatureItem>
+
+</FeatureItems>

@@ -1,0 +1,83 @@
+﻿<UserControl x:Class="DevExpress.Xpf.RichEdit.UI.BorderShadingUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" 
+             xmlns:dxec="clr-namespace:DevExpress.Xpf.Editors.Controls;assembly=DevExpress.Xpf.Core.v15.2" 
+             xmlns:dxre="clr-namespace:DevExpress.Xpf.RichEdit"  
+             xmlns:dxreui="clr-namespace:DevExpress.Xpf.RichEdit.UI"
+             xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+             dx:StyleManager.ApplyApplicationTheme="True">
+    
+    <UserControl.Resources>
+        <dxre:RichEditStringIdConverter x:Key="RichEditStringIdConverter" />
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0" Grid.Row="0">
+            <TextBlock Text="{Binding Source={StaticResource RichEditStringIdConverter}, ConverterParameter=Caption_BorderShadingUserControlPreviewLabel, Converter={StaticResource RichEditStringIdConverter}}" Margin="10,3,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" dx:StyleManager.ApplyApplicationTheme="True"/>
+            <dxec:DXSeparator HorizontalAlignment="Stretch" Height="1" Margin="10,13,0,0" VerticalAlignment="Top" MinWidth ="150"/>
+        </StackPanel>
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,0,0,0" Grid.Row="1">
+            <TextBlock x:Name="textBlock1" Text="{Binding Source={StaticResource RichEditStringIdConverter}, ConverterParameter=Caption_BorderShadingUserControlClickLabel, Converter={StaticResource RichEditStringIdConverter}}" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="20,10,0,0" dx:StyleManager.ApplyApplicationTheme="True"/>
+            <TextBlock x:Name="textBlock2" Text="{Binding Source={StaticResource RichEditStringIdConverter}, ConverterParameter=Caption_BorderShadingUserControlButtonsLabel, Converter={StaticResource RichEditStringIdConverter}}" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="20,0,0,0"  dx:StyleManager.ApplyApplicationTheme="True" />
+        </StackPanel>
+        <Grid HorizontalAlignment="Center" Margin="20,20" Grid.Row="2" VerticalAlignment="Center">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <dxreui:PreviewBSUserControl x:Name="previewBSUserControl" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="21,0,0,0" DrawColumns="True" DrawParagraph="False"/>
+            <Grid Margin="0,0,0,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <ToggleButton x:Name="btnHorizontBorderUp" Margin="3,0" VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Row="0" Checked="btnHorizontBorderUp_Checked" Unchecked="btnHorizontBorderUp_Unchecked">
+                    <Image Source="/DevExpress.Xpf.RichEdit.v15.2;component/Images/BorderTop_16x16.png" Width="16" Height="16" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="1,1,1,1"/>
+                </ToggleButton>
+                <ToggleButton x:Name="btnHorizontBorderIn" Margin="3,9,0,10" VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Row="1" Checked="btnHorizontBorderIn_Checked" Unchecked="btnHorizontBorderIn_Unchecked">
+                    <Image Source="/DevExpress.Xpf.RichEdit.v15.2;component/Images/BorderInsideHorizontal_16x16.png" Width="16" Height="16" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="1,1,1,1"/>
+                </ToggleButton>
+                <ToggleButton x:Name="btnHorizontBorderDown" Margin="3,0" VerticalAlignment="Bottom" HorizontalAlignment="Left" Grid.Row="2" Checked="btnHorizontBorderDown_Checked" Unchecked="btnHorizontBorderDown_Unchecked">
+                    <Image Source="/DevExpress.Xpf.RichEdit.v15.2;component/Images/BorderBottom_16x16.png" Width="16" Height="16" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="1,1,1,1"/>
+                </ToggleButton>
+            </Grid>
+            <Grid Grid.Column="1" HorizontalAlignment="Stretch" Margin="20,10,0,0" Grid.Row="1" VerticalAlignment="Stretch">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <ToggleButton x:Name="btnVerticalBorderLeft" Margin="0,10,0,3" VerticalAlignment="Bottom" HorizontalAlignment="Left" Grid.Column="0" Checked="btnVerticalBorderLeft_Checked" Unchecked="btnVerticalBorderLeft_Unchecked">
+                    <Image Source="/DevExpress.Xpf.RichEdit.v15.2;component/Images/BorderLeft_16x16.png" Width="16" Height="16" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="1,1,1,1"/>
+                </ToggleButton>
+                <ToggleButton x:Name="btnVerticalBorderIn" Margin="10,10,10,3" VerticalAlignment="Bottom" HorizontalAlignment="Center" Grid.Column="1" Checked="btnVerticalBorderIn_Checked" Unchecked="btnVerticalBorderIn_Unchecked">
+                    <Image Source="/DevExpress.Xpf.RichEdit.v15.2;component/Images/BorderInsideVertical_16x16.png" Width="16" Height="16" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="1,1,1,1"/>
+                </ToggleButton>
+                <ToggleButton x:Name="btnVerticalBorderRight" Margin="0,10,0,3" VerticalAlignment="Bottom" HorizontalAlignment="Right" Grid.Column="2" Checked="btnVerticalBorderRight_Checked" Unchecked="btnVerticalBorderRight_Unchecked">
+                    <Image Source="/DevExpress.Xpf.RichEdit.v15.2;component/Images/BorderRight_16x16.png" Width="16" Height="16" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="1,1,1,1"/>
+                </ToggleButton>
+            </Grid>
+        </Grid>
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="0,0" Grid.Row="3">
+            <TextBlock x:Name="textBlock" Text="{Binding Source={StaticResource RichEditStringIdConverter}, ConverterParameter=Caption_BorderShadingUserControlApplyLabel, Converter={StaticResource RichEditStringIdConverter}}" Margin="10,3,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" dx:StyleManager.ApplyApplicationTheme="True"/>
+            <dxe:ComboBoxEdit x:Name="comboBoxEdit" HorizontalAlignment="Stretch" Margin="10,10,10,0" VerticalAlignment="Top" Width="180"/>
+            <Button x:Name="btnTableOptions" Content="{Binding ConverterParameter=Caption_BorderShadingUserControlOptionsButton, Converter={StaticResource RichEditStringIdConverter}, Source={StaticResource RichEditStringIdConverter}}" HorizontalAlignment="Right" VerticalAlignment="Bottom" Height="23" Width="75" Margin="0,10,10,10" dx:StyleManager.ApplyApplicationTheme="True"/>
+
+        </StackPanel>
+
+
+    </Grid>
+</UserControl>

@@ -1,0 +1,57 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:local="http://schemas.devexpress.com/winfx/2008/xaml/docking" xmlns:system="clr-namespace:System;assembly=mscorlib" xmlns:collections="clr-namespace:System.Collections;assembly=mscorlib" xmlns:ve="http://schemas.devexpress.com/winfx/2008/xaml/docking/visualelements" xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/docking/themekeys" xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys">
+    <dx:BoolToVisibilityConverter x:Key="boolToVisibilityConverter" />
+    <SolidColorBrush x:Key="{dxt:BrushElementsThemeKey ResourceKey=PanelForeground}" Color="#FF000000" />
+    <SolidColorBrush x:Key="{dxt:BrushElementsThemeKey ResourceKey=PanelBackground}" Color="#FFEAEDF3" />
+    <SolidColorBrush x:Key="{dxt:BrushElementsThemeKey ResourceKey=CaptionActive}" Color="#FFB8CFE9" />
+    <SolidColorBrush x:Key="{dxt:BrushElementsThemeKey ResourceKey=CaptionInactive}" Color="#FFC9DAEE" />
+    <SolidColorBrush x:Key="{dxt:BrushElementsThemeKey ResourceKey=MoveTargetBackground}" Color="#FFCD0000" />
+
+    <SolidColorBrush x:Key="{dxt:DockPaneElementsThemeKey ResourceKey=BorderBrush}" Color="#FF9B9B9B" />
+    <LinearGradientBrush x:Key="{dxt:DockPaneElementsThemeKey ResourceKey=CaptionActiveBackground}" EndPoint="0.5,1" StartPoint="0.5,0">
+        <GradientStop Color="#FFCDE1F9" Offset="0" />
+        <GradientStop Color="#FFBAD5F3" Offset="1" />
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="{dxt:DockPaneElementsThemeKey ResourceKey=CaptionNormalBackground}" EndPoint="0.5,1" StartPoint="0.5,0">
+        <GradientStop Color="#FFCFCFCF" Offset="0" />
+        <GradientStop Color="#FFC6C6C6" Offset="1" />
+    </LinearGradientBrush>
+    <SolidColorBrush x:Key="{dxt:DockPaneElementsThemeKey ResourceKey=CaptionActiveForeground}" Color="#FF000000" />
+    <SolidColorBrush x:Key="{dxt:DockPaneElementsThemeKey ResourceKey=CaptionNormalForeground}" Color="#FF000000" />
+
+    <SolidColorBrush x:Key="{dxt:DockPaneElementsThemeKey ResourceKey=Background}" Color="#FFEAEDF3" />
+    <CornerRadius x:Key="{dxt:DockPaneElementsThemeKey ResourceKey=CaptionCornerRadius}">2,2,0,0</CornerRadius>
+    <CornerRadius x:Key="{dxt:DockPaneElementsThemeKey ResourceKey=FloatingCaptionCornerRadius}">2</CornerRadius>
+    <Thickness x:Key="{dxt:DockPaneElementsThemeKey ResourceKey=BorderThickness}">1</Thickness>
+    <Thickness x:Key="{dxt:DockPaneElementsThemeKey ResourceKey=BorderMargin}">1</Thickness>
+    <Thickness x:Key="{dxt:DockPaneElementsThemeKey ResourceKey=BorderPadding}">0,0,0,1</Thickness>
+    <Thickness x:Key="{dxt:DockPaneElementsThemeKey ResourceKey=BarContainerMargin}">0</Thickness>
+    <Thickness x:Key="{dxt:DockPaneElementsThemeKey ResourceKey=ContentMargin}">0</Thickness>
+    <Thickness x:Key="{dxt:DockPaneElementsThemeKey ResourceKey=HeaderMargin}">0</Thickness>
+
+    <ControlTemplate x:Key="{dxt:DockElementsThemeKey ResourceKey=SplitterTemplate}" TargetType="ve:Splitter">
+        <Grid x:Name="bg" Opacity="0.15">
+            <Border Background="{TemplateBinding Background}" Visibility="{Binding Path=IsDragDropOver, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource boolToVisibilityConverter}}" />
+            <Border x:Name="PART_SplitThumb" Background="Transparent" />
+        </Grid>
+    </ControlTemplate>
+    <!-- DockPane Theme Elements -->
+    <DataTemplate x:Key="{dxt:DockPaneElementsThemeKey ResourceKey=Header}">
+        <Border x:Name="PART_CaptionBackground" SnapsToDevicePixels="True" ve:DockPane.HitTestType="Header" CornerRadius="1,1,0,0" DataContext="{Binding LayoutItem}" BorderBrush="#FF9B9B9B" BorderThickness="0,0,0,1">
+            <Border.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFCFCFCF" Offset="0" />
+                    <GradientStop Color="#FFC6C6C6" Offset="1" />
+                </LinearGradientBrush>
+            </Border.Background>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <ve:TemplatedCaptionControl x:Name="PART_CaptionControlPresenter" LayoutItem="{Binding}" Padding="4,2" />
+                <ve:PanelControlBoxControl x:Name="PART_ControlBox" LayoutItem="{Binding}" Margin="0,0,1,0" Grid.Column="1" PinButtonTemplate="{DynamicResource {dxt:DockPaneElementsThemeKey ResourceKey=PinButton}}" CloseButtonTemplate="{DynamicResource {dxt:DockPaneElementsThemeKey ResourceKey=CloseButton}}" RestoreButtonTemplate="{DynamicResource {dxt:DockPaneElementsThemeKey ResourceKey=RestoreButton}}" MaximizeButtonTemplate="{DynamicResource {dxt:DockPaneElementsThemeKey ResourceKey=MaximizeButton}}" HideButtonTemplate="{DynamicResource {dxt:DockPaneElementsThemeKey ResourceKey=HideButton}}" ExpandButtonTemplate="{DynamicResource {dxt:DockPaneElementsThemeKey ResourceKey=ExpandButton}}" CollapseButtonTemplate="{DynamicResource {dxt:DockPaneElementsThemeKey ResourceKey=CollapseButton}}" />
+            </Grid>
+        </Border>
+    </DataTemplate>
+    <!-- DockPane Theme Elements -->
+</ResourceDictionary>

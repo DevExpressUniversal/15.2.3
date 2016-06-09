@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application>
+  <ActionDesign>
+    <Actions>
+      <Action Id="CategorizeImages" Caption="Bilder kategorisieren" />
+      <Action Id="FillCategories" Caption="Kategorien füllen" />
+      <Action Id="ImagePreviewListMode" Caption="Bildvorschau Listenmodus">
+        <ChoiceActionItems>
+          <ChoiceActionItem Id="List" Caption="Auflistung" />
+          <ChoiceActionItem Id="Thumbnails" Caption="Miniaturbilder" />
+        </ChoiceActionItems>
+      </Action>
+      <Action Id="OpenCategory" Caption="Öffnen" />
+    </Actions>
+  </ActionDesign>
+  <BOModel>
+    <Class Name="DevExpress.ExpressApp.Demos.Win.AssemblyImageSourceBrowser" Caption="Montage Bild Quellen Browser" />
+    <Class Name="DevExpress.ExpressApp.Demos.Win.CategoryString" Caption="Kategorie">
+      <OwnMembers>
+        <Member Name="Images" Caption="Bilder" />
+      </OwnMembers>
+    </Class>
+    <Class Name="DevExpress.ExpressApp.Demos.Win.FileImageSourceBrowser" Caption="Datei Bild Quellen Browser" />
+    <Class Name="DevExpress.ExpressApp.Demos.Win.ImageBrowserCategory" Caption="Bild Browser Kategorie">
+      <OwnMembers>
+        <Member Name="ChildCategories" Caption="Child Kategorien" />
+        <Member Name="Owner" Caption="Besitzer" />
+        <Member Name="ParentCategory" Caption="Parent Kategorie" />
+      </OwnMembers>
+    </Class>
+    <Class Name="DevExpress.ExpressApp.Demos.Win.ImageNode" Caption="Bild Knoten">
+      <OwnMembers>
+        <Member Name="Image" Caption="Bild" />
+      </OwnMembers>
+    </Class>
+    <Class Name="DevExpress.ExpressApp.Demos.Win.ImagePreviewObject" Caption="Bild">
+      <OwnMembers>
+        <Member Name="Categories" Caption="Kategorien" />
+        <Member Name="Image12x12" Caption="Klein" />
+        <Member Name="Image32x32" Caption="Gross" />
+        <Member Name="ImageName" Caption="Bild Name" />
+        <Member Name="OriginalImage" Caption="Original Bild" />
+      </OwnMembers>
+    </Class>
+    <Class Name="DevExpress.ExpressApp.Demos.Win.ImagesGroupNode" Caption="Bild Gruppen Knoten">
+      <OwnMembers>
+        <Member Name="Images" Caption="Bilder Quellen Browser" />
+      </OwnMembers>
+    </Class>
+    <Class Name="DevExpress.ExpressApp.Demos.Win.ImageSourceBrowserBase" Caption="Bilder Quellen Browser">
+      <OwnMembers>
+        <Member Name="Categories" Caption="Kategorien" />
+        <Member Name="ImageCategories" Caption="Bild Kategorien" />
+        <Member Name="ImageSourceName" Caption="Bilder Quellen Name" />
+      </OwnMembers>
+    </Class>
+  </BOModel>
+  <NavigationItems>
+    <Items>
+      <Item Id="Images" Caption="Bilder" />
+    </Items>
+  </NavigationItems>
+  <Views>
+    <DetailView Id="ImagePreviewObject_DetailView">
+      <Layout>
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="ImagePreviewObject" Caption="Bild Vorschau Objekt" />
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+  </Views>
+</Application>

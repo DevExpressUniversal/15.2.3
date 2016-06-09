@@ -1,0 +1,93 @@
+﻿#region Copyright (c) 2000-2015 Developer Express Inc.
+/*
+{*******************************************************************}
+{                                                                   }
+{       Developer Express .NET Component Library                    }
+{                                                                   }
+{                                                                   }
+{       Copyright (c) 2000-2015 Developer Express Inc.              }
+{       ALL RIGHTS RESERVED                                         }
+{                                                                   }
+{   The entire contents of this file is protected by U.S. and       }
+{   International Copyright Laws. Unauthorized reproduction,        }
+{   reverse-engineering, and distribution of all or any portion of  }
+{   the code contained in this file is strictly prohibited and may  }
+{   result in severe civil and criminal penalties and will be       }
+{   prosecuted to the maximum extent possible under the law.        }
+{                                                                   }
+{   RESTRICTIONS                                                    }
+{                                                                   }
+{   THIS SOURCE CODE AND ALL RESULTING INTERMEDIATE FILES           }
+{   ARE CONFIDENTIAL AND PROPRIETARY TRADE                          }
+{   SECRETS OF DEVELOPER EXPRESS INC. THE REGISTERED DEVELOPER IS   }
+{   LICENSED TO DISTRIBUTE THE PRODUCT AND ALL ACCOMPANYING .NET    }
+{   CONTROLS AS PART OF AN EXECUTABLE PROGRAM ONLY.                 }
+{                                                                   }
+{   THE SOURCE CODE CONTAINED WITHIN THIS FILE AND ALL RELATED      }
+{   FILES OR ANY PORTION OF ITS CONTENTS SHALL AT NO TIME BE        }
+{   COPIED, TRANSFERRED, SOLD, DISTRIBUTED, OR OTHERWISE MADE       }
+{   AVAILABLE TO OTHER INDIVIDUALS WITHOUT EXPRESS WRITTEN CONSENT  }
+{   AND PERMISSION FROM DEVELOPER EXPRESS INC.                      }
+{                                                                   }
+{   CONSULT THE END USER LICENSE AGREEMENT FOR INFORMATION ON       }
+{   ADDITIONAL RESTRICTIONS.                                        }
+{                                                                   }
+{*******************************************************************}
+*/
+#endregion Copyright (c) 2000-2015 Developer Express Inc.
+
+using System.IO;
+#if DXWINDOW
+namespace DevExpress.Internal.DXWindow {
+#else
+namespace DevExpress.Utils.Zip {
+#endif
+	public interface ICheckSumCalculator<T> {
+		T InitialCheckSumValue { get; }
+		T UpdateCheckSum(T value, byte[] buffer, int offset, int count);
+		T GetFinalCheckSum(T value);
+	}
+	public class CheckSumStream<T> : Stream {
+		readonly Stream stream;
+		readonly ICheckSumCalculator<T> checkSumCalculator;
+		T readCheckSum;
+		T writeCheckSum;
+		public CheckSumStream(Stream stream, ICheckSumCalculator<T> checkSumCalculator) {
+			this.stream = stream;
+			this.checkSumCalculator = checkSumCalculator;
+			ResetCheckSum();
+		}
+		#region Properties
+		public Stream Stream { get { return stream; } }
+		public override bool CanRead { get { return Stream.CanRead; } }
+		public override bool CanSeek { get { return Stream.CanSeek; } }
+		public override bool CanWrite { get { return Stream.CanWrite; } }
+		public override long Length { get { return Stream.Length; } }
+		public override long Position { get { return Stream.Position; } set { Stream.Position = value; } }
+		public T ReadCheckSum { get { return checkSumCalculator.GetFinalCheckSum(readCheckSum); } }
+		public T WriteCheckSum { get { return checkSumCalculator.GetFinalCheckSum(writeCheckSum); } }
+		#endregion
+		public void ResetCheckSum() {
+			readCheckSum = checkSumCalculator.InitialCheckSumValue;
+			writeCheckSum = checkSumCalculator.InitialCheckSumValue;
+		}
+		public override void Flush() {
+			Stream.Flush();
+		}
+		public override long Seek(long offset, SeekOrigin origin) {
+			return Stream.Seek(offset, origin);
+		}
+		public override void SetLength(long value) {
+			Stream.SetLength(value);
+		}
+		public override int Read(byte[] buffer, int offset, int count) {
+			count = Stream.Read(buffer, offset, count);
+			this.readCheckSum = checkSumCalculator.UpdateCheckSum(this.readCheckSum, buffer, offset, count);
+			return count;
+		}
+		public override void Write(byte[] buffer, int offset, int count) {
+			Stream.Write(buffer, offset, count);
+			this.writeCheckSum = checkSumCalculator.UpdateCheckSum(this.writeCheckSum, buffer, offset, count);
+		}
+	}
+}

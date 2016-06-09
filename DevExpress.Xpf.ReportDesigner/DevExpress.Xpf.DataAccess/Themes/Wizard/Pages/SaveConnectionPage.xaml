@@ -1,0 +1,46 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+            xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+            xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
+            xmlns:local="clr-namespace:DevExpress.Xpf.DataAccess.DataSourceWizard"
+            xmlns:localnative="clr-namespace:DevExpress.Xpf.DataAccess.Native"
+            xmlns:localization="clr-namespace:DevExpress.Xpf.DataAccess.Localization"
+            xmlns:editors="clr-namespace:DevExpress.Xpf.DataAccess.Editors">
+
+    <DataTemplate x:Key="{x:Type local:SaveConnectionPage}">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <localnative:WizardTitle Title="{localization:DataAccessUIStringId StringId=WizardPageSaveConnection}" />
+            <Grid Grid.Row="1" Margin="50,20">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <StackPanel Orientation="Vertical" Visibility="{Binding ShouldSaveConnectionString, Mode=OneTime, Converter={dxmvvm:BooleanToVisibilityConverter}}">
+                        <TextBlock Text="Do you want to save the connection string to the application's configuration file?" Margin="0,0,0,10" />
+                        <dxe:CheckEdit EditValue="{Binding ShouldSaveConnectionString, UpdateSourceTrigger=PropertyChanged}" Content="{localization:DataAccessUIStringId StringId=WizardPageSaveConnection_ConfirmSaving}" />
+                        <dxe:TextEdit EditValue="{Binding ConnectionName, UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding ShouldSaveConnectionString, UpdateSourceTrigger=PropertyChanged}" />
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical" Grid.Row="1" Visibility="{Binding ConnectionUsesServerAuth, UpdateSourceTrigger=PropertyChanged, Converter={dxmvvm:BooleanToVisibilityConverter}}">
+                        <TextBlock Text="{localization:DataAccessUIStringId StringId=WizardPageSaveConnection_SaveCredentialsQuestion}" Margin="0,30,0,20" />
+                        <dxe:ListBoxEdit
+                                    ShowBorder="False"
+                                    ItemsSource="{Binding Options}"
+                                    ValueMember="Value"
+                                    EditValue="{Binding ShouldSaveCredentials, UpdateSourceTrigger=PropertyChanged}"
+                                    StyleSettings="{editors:RadioListBoxEditStyleSettingsEx}"
+                        />
+                    </StackPanel>
+                </Grid>
+            </Grid>
+        </Grid>
+    </DataTemplate>
+</ResourceDictionary>

@@ -1,0 +1,25 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+    xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
+    xmlns:dxr="http://schemas.devexpress.com/winfx/2008/xaml/ribbon"
+    xmlns:local="clr-namespace:DevExpress.Charts.Designer.Native">
+    
+    <local:BarItemTemplateSelector
+        x:Key="barTemplateSelector"/>
+
+    <DataTemplate
+        x:Key="ribbonPageGroupTemplate">
+        <ContentControl>
+            <dxr:RibbonPageGroup
+                ItemLinksSource="{Binding Path=BarItems}"
+                ItemTemplateSelector="{StaticResource barTemplateSelector}"
+                Caption="{Binding Path=Caption, Mode=OneWay}"
+                Glyph="{Binding Path=Image32x32, Mode=OneWay}"
+                ShowCaptionButton="False"
+                AllowCollapse="{Binding Path=AllowCollapse, Mode=OneWay}" 
+                IsVisible="{Binding IsVisible}"/>
+        </ContentControl>
+    </DataTemplate>
+</ResourceDictionary>

@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application>
+  <ActionDesign>
+    <Actions>
+      <Action Id="ChooseTheme" Caption="Motiv wählen" />
+      <Action Id="Edit" Caption="Editieren" />
+      <Action Id="Export" Caption="Exportieren nach" />
+      <Action Id="ExportAnalysis" Caption="Exportiere Analyse nach" />
+      <Action Id="InlineEdit" Caption="Inline editieren" />
+      <Action Id="NavigateTo" Caption="Navigieren zu" />
+      <Action Id="QuickCreateAction" Caption="Schnellerstellung" />
+      <Action Id="SwitchToEditMode" Caption="Editieren" />
+    </Actions>
+  </ActionDesign>
+  <BOModel>
+    <Class Name="DevExpress.ExpressApp.Web.LogonAttemptsAmountedToLimit" Caption="Anzahl Anmeldeversuche wurden erreicht." />
+    <Class Name="DevExpress.ExpressApp.Web.ParameterlessLogonFailedInfo" Caption="Info parameterlose fehlgeschlagene Anmeldungen ">
+      <OwnMembers>
+        <Member Name="Message" Caption="Information" />
+      </OwnMembers>
+    </Class>
+  </BOModel>
+  <Localization>
+    <LocalizationGroup Name="Messages">
+      <LocalizationItem Name="ThereAreNoRecordsToDisplay" Value="Es existieren keine Datensätze zum Anzeigen." />
+    </LocalizationGroup>
+    <LocalizationGroup Name="ASPxImagePropertyEditor">
+      <LocalizationItem Name="Clear" Value="Löschen" />
+      <LocalizationItem Name="Edit" Value="Editieren" />
+    </LocalizationGroup>
+	<LocalizationGroup Name="Captions">
+		<LocalizationItem Name="MyAccount" Value="Mein Konto"  />
+	</LocalizationGroup>
+  </Localization>
+  <Views>
+    <DetailView Id="AboutInfo_DetailView">
+      <Items>
+        <StaticText Id="AboutText" Text="{0:ProductName}&lt;br&gt;{0:Version}&lt;br&gt;&lt;br&gt;{0:Copyright}&lt;br&gt;&lt;br&gt;{0:Description}" />
+      </Items>
+    </DetailView>
+    <DetailView Id="LogonAttemptsAmountedToLimit_DetailView" Caption="Anmelden">
+      <Items>
+        <StaticText Id="LogonText" Text="Nach drei nicht erfolgreichen Anmeldeversuchen wird der Browser geschlossen. Bitte kontaktieren Sie den Administrator über die Anmeldeinformationen." />
+      </Items>
+    </DetailView>
+    <DetailView Id="ParameterlessLogonFailedInfo_DefaultDetailView" Caption="Anmelden">
+      <Items>
+        <StaticText Id="Message" Text="{0} Bitte kontaktieren Sie einen Administrator über die Anmeldeinformationen." />
+      </Items>
+    </DetailView>
+  </Views>
+</Application>

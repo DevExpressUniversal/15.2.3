@@ -1,0 +1,361 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors" xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:dxgcore="http://schemas.devexpress.com/winfx/2008/xaml/grid" xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid" xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars" xmlns:sys="clr-namespace:System;assembly=mscorlib" xmlns:dxgt="http://schemas.devexpress.com/winfx/2008/xaml/grid/themekeys" xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys">
+
+    <!--BEGIN WPF-->
+    <ResourceDictionary.MergedDictionaries>
+        <dxdst:ResourceDictionaryEx Source="/DevExpress.Xpf.Themes.Office2007Blue.v15.2;component/DevExpress.Xpf.Grid/Generic/HeaderFooterItemsControlStyles.xaml" />
+        <dxdst:ResourceDictionaryEx Source="/DevExpress.Xpf.Themes.Office2007Blue.v15.2;component/DevExpress.Xpf.Grid/Office2007Blue/Constants.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+    <!--END WPF-->
+
+    <ControlTemplate x:Key="{dxgt:TotalSummaryThemeKey ResourceKey=FootersContentTemplate}" TargetType="{x:Type ContentControl}">
+        <Grid>
+            <Border BorderBrush="#FFB1C8EA" Background="#FFE3EFFF">
+                <Border.BorderThickness>
+                    <Binding Path="View.IsRootView">
+                        <Binding.Converter>
+                            <dx:BoolToObjectConverter TrueValue="0,1,0,0" FalseValue="0,0,0,1" />
+                        </Binding.Converter>
+                    </Binding>
+                </Border.BorderThickness>
+            </Border>
+            <ContentPresenter Margin="0,3,0,2" />
+        </Grid>
+    </ControlTemplate>
+    <ControlTemplate x:Key="{dxgt:TableViewThemeKey ResourceKey=DataPresenterTemplate}" TargetType="{x:Type dxg:DataPresenter}">
+        <Border Background="White">
+            <ContentPresenter />
+        </Border>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="{dxgt:TableViewThemeKey ResourceKey=OuterBorderElementTemplate}" TargetType="{x:Type dxg:OuterBorderElement}">
+    </ControlTemplate>
+    <Style x:Key="{dxgt:TableViewThemeKey ResourceKey=ColumnChooserDragTextStyle}" TargetType="TextBlock">
+        <Setter Property="TextWrapping" Value="Wrap" />
+        <Setter Property="Foreground" Value="#FFA3A3A3 " />
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="TextAlignment" Value="Center" />
+        <Setter Property="Margin" Value="35,4" />
+    </Style>
+    <Style x:Key="{dxgt:TableViewThemeKey ResourceKey=GroupPanelDragTextStyle}" TargetType="TextBlock">
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="FontSize" Value="11" />
+        <Setter Property="MinHeight" Value="15" />
+        <Setter Property="Foreground" Value="#FF89A9D2 " />
+        <Setter Property="Margin" Value="0,4,0,5" />
+        <Setter Property="TextTrimming" Value="CharacterEllipsis" />
+    </Style>
+    
+    <Thickness x:Key="{dxgt:TableViewThemeKey ResourceKey=GroupPanelBorderThickness}">0,0,0,1</Thickness>
+    <Thickness x:Key="{dxgt:TableViewThemeKey ResourceKey=GroupPanelMargin}">8</Thickness>
+    <Thickness x:Key="{dxgt:TableViewThemeKey ResourceKey=GroupPanelSeparatorMargin}">0,-23,0,0</Thickness>
+    <SolidColorBrush x:Key="{dxgt:TableViewThemeKey ResourceKey=GroupPanelBorderBrush}" Color="#FF6593CF" />
+
+    <DataTemplate x:Key="{dxgt:TotalSummaryThemeKey ResourceKey=TotalSummaryItemTemplate}">
+        <TextBlock Text="{Binding Column.TotalSummaryText}" Style="{StaticResource {dxgt:TotalSummaryThemeKey ResourceKey=TotalSummaryTextControlStyle}}" />
+    </DataTemplate>
+    <!--BEGIN WPF-->
+    <dxg:DefaultStyle x:Key="{dxgt:GroupRowThemeKey ResourceKey=GroupValueContentStyle}" TargetType="{x:Type Border}">
+    </dxg:DefaultStyle>
+    <!--END WPF-->
+    <dxg:DefaultStyle x:Key="{dxgt:GroupRowThemeKey ResourceKey=GroupRowStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Control.Foreground" Value="#FF3764A0 " />
+        <Setter Property="Control.Background" Value="#FFFFFFFF " />
+    </dxg:DefaultStyle>
+    <ControlTemplate x:Key="{dxgt:GroupRowThemeKey ResourceKey=GroupRowContentTemplate}" TargetType="{x:Type ContentControl}">
+        <Border x:Name="groupRowBorder" Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}" BorderBrush="#FF6F9DD9 " BorderThickness="0,0,0,2">
+            <Grid>
+                <Border x:Name="groupRowBorderSelected" Background="#FFE6F1FF" dxg:FadeSelectionHelper.IsKeyboardFocusWithinView="{Binding Path=(dxg:GridControl.ActiveView).IsKeyboardFocusWithin, RelativeSource={RelativeSource Mode=Self}}" dxg:FadeSelectionHelper.FadeSelectionOnLostFocus="{Binding Path=View.ActualFadeSelectionOnLostFocus}">
+                    <Border.Visibility>
+                        <Binding Path="SelectionState">
+                            <Binding.Converter>
+                                <dxg:SelectionStateToVisibilityConverter Value="Selected" />
+                            </Binding.Converter>
+                        </Binding>
+                    </Border.Visibility>
+                </Border>
+                <Border x:Name="groupRowBorderFocused" Background="#FFD6E8FF" dxg:FadeSelectionHelper.IsKeyboardFocusWithinView="{Binding Path=(dxg:GridControl.ActiveView).IsKeyboardFocusWithin, RelativeSource={RelativeSource Mode=Self}}" dxg:FadeSelectionHelper.FadeSelectionOnLostFocus="{Binding Path=View.ActualFadeSelectionOnLostFocus}">
+                    <Border.Visibility>
+                        <Binding Path="SelectionState">
+                            <Binding.Converter>
+                                <dxg:SelectionStateToVisibilityConverter Value="Focused" />
+                            </Binding.Converter>
+                        </Binding>
+                    </Border.Visibility>
+                </Border>
+                <ContentPresenter />
+            </Grid>
+        </Border>
+    </ControlTemplate>
+
+    <dxgcore:DefaultDataTemplate x:Key="{dxgt:GroupRowThemeKey ResourceKey=GroupValueTemplate}">
+        <Border Style="{Binding Path=View.GroupValueContentStyle}" VerticalAlignment="Center" Padding="0,0,0,1">
+            <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" Text="{Binding Path=DisplayText}" />
+        </Border>
+    </dxgcore:DefaultDataTemplate>
+    <Thickness x:Key="{dxgt:GroupRowThemeKey ResourceKey=GroupColumnSummaryPadding}">4,12,4,2</Thickness>
+    <Thickness x:Key="{dxgt:GroupRowThemeKey ResourceKey=GroupBandSummaryPadding}">4,2,4,2</Thickness>
+    <sys:Double x:Key="{dxgt:GroupRowThemeKey ResourceKey=BandedViewGroupSummaryMinHeight}">31</sys:Double>
+    <Thickness x:Key="{dxgt:GroupRowThemeKey ResourceKey=GroupDefaultSummaryPadding}">0,12,0,2</Thickness>
+    <Thickness x:Key="{dxgt:GroupRowThemeKey ResourceKey=ExpandButtonMargin}">16,13,1,3</Thickness>
+    <Thickness x:Key="{dxgt:GroupRowThemeKey ResourceKey=GroupRowExpandButtonMargin}">16,13,1,5</Thickness>
+    <Thickness x:Key="{dxgt:GroupRowThemeKey ResourceKey=CheckBoxSelectorMargin}">4,10,0,0</Thickness>
+    <Thickness x:Key="{dxgt:GroupRowThemeKey ResourceKey=GroupValuePresenterMargin}">4,12,4,2</Thickness>
+    <Thickness x:Key="{dxgt:GroupRowThemeKey ResourceKey=BandedGroupValuePresenterMargin}">4,12,20,2</Thickness>
+
+    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Grid.GroupSummaryContentPresenter}" TargetType="{x:Type dxg:GroupSummaryContentPresenter}">
+        <Setter Property="Margin" Value="0,0,4,0" />
+    </Style>
+    <ControlTemplate x:Key="{dxgt:GridRowThemeKey ResourceKey=FilterRowTemplate}" TargetType="{x:Type ContentControl}">
+        <Border Background="White" BorderBrush="{DynamicResource {dxgt:GridRowThemeKey ResourceKey=GridDataRowDelimiterBrush}}" BorderThickness="0,0,0,1">
+            <Grid>
+                <Border x:Name="borderFocused" Margin="0" SnapsToDevicePixels="True" Background="#FFD6E8FF " dxg:FadeSelectionHelper.IsKeyboardFocusWithinView="{Binding Path=(dxg:GridControl.ActiveView).IsKeyboardFocusWithin, RelativeSource={RelativeSource Mode=Self}}" dxg:FadeSelectionHelper.FadeSelectionOnLostFocus="{Binding Path=View.ActualFadeSelectionOnLostFocus}">
+                    <Border.Visibility>
+                        <Binding Path="SelectionState">
+                            <Binding.Converter>
+                                <dxg:SelectionStateToVisibilityConverter Value="Focused" />
+                            </Binding.Converter>
+                        </Binding>
+                    </Border.Visibility>
+                </Border>
+                <ContentControl HorizontalContentAlignment="Stretch">
+                    <ContentPresenter />
+                </ContentControl>
+            </Grid>
+        </Border>
+    </ControlTemplate>
+    <ControlTemplate x:Key="{dxgt:GridRowThemeKey ResourceKey=NewItemRowTemplate}" TargetType="{x:Type ContentControl}">
+        <Grid Margin="0,0,0,1">
+            <Border x:Name="borderFocused" Background="#FFD6E8FF " dxg:FadeSelectionHelper.IsKeyboardFocusWithinView="{Binding Path=(dxg:GridControl.ActiveView).IsKeyboardFocusWithin, RelativeSource={RelativeSource Mode=Self}}" dxg:FadeSelectionHelper.FadeSelectionOnLostFocus="{Binding Path=View.ActualFadeSelectionOnLostFocus}">
+                <Border.Visibility>
+                    <Binding Path="SelectionState">
+                        <Binding.Converter>
+                            <dxg:SelectionStateToVisibilityConverter Value="Focused" />
+                        </Binding.Converter>
+                    </Binding>
+                </Border.Visibility>
+            </Border>
+            <ContentControl HorizontalContentAlignment="Stretch">
+                <ContentPresenter />
+            </ContentControl>
+            <Border x:Name="backgroundBorder" Background="#FFFFFFFF " IsHitTestVisible="False"
+                            Visibility="{Binding Path=IsFocused, Converter={StaticResource BooleanToVisibilityConverterInverted}}">
+                <dx:MeasurePixelSnapper>
+                    <TextBlock Foreground="#FFA3A3A3 " Margin="0,1,0,2" HorizontalAlignment="Center" VerticalAlignment="Center" x:Name="PART_GridNewRowText">
+                                <TextBlock.Text>
+                                    <Binding Path="View.LocalizationDescriptor" ConverterParameter="GridNewRowText">
+                                        <Binding.Converter>
+                                            <dxg:DynamicLocalizationStringValueConvertor />
+                                        </Binding.Converter>
+                                    </Binding>
+                                </TextBlock.Text>
+                    </TextBlock>
+                </dx:MeasurePixelSnapper>
+            </Border>
+        </Grid>
+        <ControlTemplate.Triggers>
+            <DataTrigger Binding="{Binding Path=SelectionState}" Value="Focused">
+                <Setter Property="Foreground" Value="{DynamicResource {dxgt:GridRowThemeKey ResourceKey=TextFocusedBrush}}" />
+            </DataTrigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+    <ControlTemplate x:Key="{dxgt:GridRowThemeKey ResourceKey=FilterCellContentPresenterTemplate}" TargetType="{x:Type dxg:FilterCellContentPresenter}">
+        <Border x:Name="ContentBorder" Padding="{TemplateBinding Padding}" BorderThickness="{TemplateBinding BorderState}" BorderBrush="{TemplateBinding BorderBrush}">
+            <!--BEGIN WPF-->
+            <Border.Background>
+                <Binding Path="Background" RelativeSource="{RelativeSource TemplatedParent}" />
+            </Border.Background>
+            <!--END WPF-->
+            <!--ONLY SL<Border.Background>
+                <Binding Path="SelectionState" RelativeSource="{RelativeSource TemplatedParent}">
+                    <Binding.Converter>
+                        <dx:EnumToObjectConverter>
+                            <dx:EnumToObjectConverter.Values>
+                                <dx:EnumObjectProvider x:Key="None" Value="{DynamicResource {dxgt:GridRowThemeKey ResourceKey=CellBorderNoneBrush}}"/>
+                                <dx:EnumObjectProvider x:Key="Selected" Value="{DynamicResource {dxgt:GridRowThemeKey ResourceKey=BorderSelectedBrush}}"/>
+                                <dx:EnumObjectProvider x:Key="Focused" Value="{DynamicResource {dxgt:GridRowThemeKey ResourceKey=CellBorderFocusedBrush}}"/>
+                                <dx:EnumObjectProvider x:Key="FocusedAndSelected" Value="{DynamicResource {dxgt:GridRowThemeKey ResourceKey=BorderFocusedBrush}}"/>
+                            </dx:EnumToObjectConverter.Values>
+                        </dx:EnumToObjectConverter>
+                    </Binding.Converter>
+                </Binding>
+            </Border.Background>
+            ONLY SL-->
+            <dxgcore:FilterRowCellEditor x:Name="PART_CellEditor">
+            </dxgcore:FilterRowCellEditor>
+        </Border>
+    </ControlTemplate>
+    <SolidColorBrush x:Key="{dxgt:TableViewThemeKey ResourceKey=ColumnChooserBackgroundBrush}" Color="#FFFFFFFF " />
+    <SolidColorBrush x:Key="{dxgt:TableViewThemeKey ResourceKey=ColumnChooserBorderBrush}" Color="#FF7496C2 " />
+    <DataTemplate x:Key="{dxgt:GridColumnHeaderThemeKey ResourceKey=FixedColumnsDelimiterTemplate}">
+        <Border BorderBrush="#FF6593CF " BorderThickness="1,0,1,1" Background="#FFFFFFFF " />
+    </DataTemplate>
+    <ControlTemplate x:Key="{dxgt:GridRowThemeKey ResourceKey=CellContentPresenterTemplate}" TargetType="{x:Type dxgcore:CellContentPresenter}">
+        <Border x:Name="ContentBorder" Padding="{TemplateBinding Padding}" BorderThickness="{Binding Path=BorderState, RelativeSource={RelativeSource TemplatedParent}}">
+            <!--ONLY SL<Border.BorderBrush>
+                <SolidColorBrush x:Name="ContentBorderBorderBrush" Color="#FFC3CEDC"/>
+            </Border.BorderBrush>
+            <Border.Background>
+                <SolidColorBrush x:Name="InnerBorderBackground" Color="Transparent"/>
+            </Border.Background>ONLY SL-->
+            <!--BEGIN WPF-->
+            <Border.Background>
+                <Binding Path="Background" RelativeSource="{RelativeSource TemplatedParent}" />
+            </Border.Background>
+            <Border.BorderBrush>
+                <Binding Path="BorderBrush" RelativeSource="{RelativeSource TemplatedParent}" />
+            </Border.BorderBrush>
+            <!--END WPF-->
+            <!--ONLY SL<VisualStateManager.VisualStateGroups>
+                <VisualStateGroup x:Name="SelectionStates">
+                    <VisualState x:Name="None"/>
+                    <VisualState x:Name="Selected">
+                        <Storyboard>
+                            <ColorAnimation Storyboard.TargetName="InnerBorderBackground" Storyboard.TargetProperty="(SolidColorBrush.Color)" To="#FFE8F2FF" Duration="0"/>
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Focused">
+                        <Storyboard>
+                            <ColorAnimation Storyboard.TargetName="InnerBorderBackground" Storyboard.TargetProperty="(SolidColorBrush.Color)" To="#FFF2F8FF" Duration="0"/>
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="FocusedAndSelected">
+                        <Storyboard>
+                            <ColorAnimation Storyboard.TargetName="InnerBorderBackground" Storyboard.TargetProperty="(SolidColorBrush.Color)" To="#FFD6E8FF" Duration="0"/>
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="RowFocused"/>
+                    <VisualState x:Name="RowSelected"/>         
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>ONLY SL-->
+            <dxgcore:CellEditor x:Name="PART_CellEditor">
+                <!--ONLY SL
+                <dxgcore:CellEditor.Template>
+                    <ControlTemplate TargetType="ContentControl">
+                        <dxe:InplaceEditorContentPresenter/>
+                    </ControlTemplate>
+                </dxgcore:CellEditor.Template>
+                ONLY SL-->
+            </dxgcore:CellEditor>
+        </Border>
+    </ControlTemplate>
+    <ControlTemplate x:Key="{dxgt:GridRowThemeKey ResourceKey=FitColumnContentTemplate}">
+        <Border Name="fitColumnVerticalLine" Background="Transparent" BorderThickness="1,0,0,0"
+                BorderBrush="{DynamicResource {dxgt:GridRowThemeKey ResourceKey=GridDataRowDelimiterBrush}}">
+            <Border.Opacity>
+                <Binding Path="View.ShowVerticalLines">
+                    <Binding.Converter>
+                        <dx:BoolToObjectConverter FalseValue="0" TrueValue="1" />
+                    </Binding.Converter>
+                </Binding>
+            </Border.Opacity>
+        </Border>
+    </ControlTemplate>
+    <ControlTemplate x:Key="{dxgt:GridRowThemeKey ResourceKey=FitColumnLeftContentTemplate}">
+        <Border Name="fitColumnVerticalLine" Background="Transparent" BorderThickness="0,0,1,0"
+                BorderBrush="{DynamicResource {dxgt:GridRowThemeKey ResourceKey=GridDataRowDelimiterBrush}}">
+            <Border.Opacity>
+                <Binding Path="View.ShowVerticalLines">
+                    <Binding.Converter>
+                        <dx:BoolToObjectConverter FalseValue="0" TrueValue="1" />
+                    </Binding.Converter>
+                </Binding>
+            </Border.Opacity>
+        </Border>
+    </ControlTemplate>
+    <DataTemplate x:Key="{dxgt:GridRowThemeKey ResourceKey=FixedColumnsDelimiterTemplate}">
+        <Border x:Name="border" Background="Transparent" BorderThickness="1,0,1,0" BorderBrush="#FFC6D7ED ">
+            <Border Background="#FFF3F9FF ">
+                <Border.Visibility>
+                    <Binding Path="View.ShowVerticalLines">
+                        <Binding.Converter>
+                            <dx:BoolToVisibilityConverter />
+                        </Binding.Converter>
+                    </Binding>
+                </Border.Visibility>
+            </Border>
+        </Border>
+    </DataTemplate>
+    <ControlTemplate x:Key="{dxgt:GroupRowThemeKey ResourceKey=GroupFooterRowContentTemplate}" TargetType="{x:Type ContentControl}">
+        <Border BorderBrush="#FFB1C8EA" Background="#FFFFFFFF" MinHeight="32">
+            <Border.BorderThickness>
+                <Binding Path="FooterPosition">
+                    <Binding.Converter>
+                        <dx:EnumToObjectConverter>
+                            <dx:EnumToObjectConverter.Values>
+                                <dx:EnumObjectProvider x:Key="Top"    Value="0,0,0,1"/>
+                                <dx:EnumObjectProvider x:Key="Bottom" Value="0,0,0,1"/>
+                                <dx:EnumObjectProvider x:Key="Middle" Value="0,0,0,1"/>
+                                <dx:EnumObjectProvider x:Key="Single" Value="0,0,0,1"/>
+                            </dx:EnumToObjectConverter.Values>
+                        </dx:EnumToObjectConverter>
+                    </Binding.Converter>
+                </Binding>
+            </Border.BorderThickness>
+            <ContentPresenter Margin="0,2,0,2" />
+        </Border>
+    </ControlTemplate>
+    <ControlTemplate x:Key="{dxgt:GroupRowThemeKey ResourceKey=GroupFooterSummaryControlTemplate}">
+        <Border Background="Transparent" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}" >
+            <Grid Margin="{TemplateBinding Padding}" Name="rootGrid">
+                <!--BEGIN WPF-->
+                <Grid.Visibility>
+                    <Binding Path="HasSummary">
+                        <Binding.Converter>
+                            <dx:BoolToObjectConverter TrueValue="Visible" FalseValue="Hidden" />
+                        </Binding.Converter>
+                    </Binding>
+                </Grid.Visibility>
+                <!--END WPF-->
+                <!--ONLY SL
+                <Grid.Opacity>
+                    <Binding Path="HasSummary">
+                        <Binding.Converter>
+                            <dx:BoolToObjectConverter TrueValue="1" FalseValue="0"/>
+                        </Binding.Converter>
+                    </Binding>
+                </Grid.Opacity>
+                ONLY SL-->
+                <Border Background="#FFFFFFFF" BorderBrush="#FFC6D7ED" BorderThickness="1" MinHeight="22" Margin="1,1,2,1" CornerRadius="2">
+                    <dx:DataContentPresenter Style="{Binding Path=Column.View.GroupFooterSummaryContentStyle}" Content="{Binding}" ContentTemplateSelector="{Binding Path=Column.View.ActualGroupFooterSummaryItemTemplateSelector}"  /> 
+                </Border>
+            </Grid>
+        </Border>
+    </ControlTemplate>
+    <Style x:Key="{dxgt:GroupRowThemeKey ResourceKey=GroupFooterSummaryContentStyle}" TargetType="{x:Type dx:DataContentPresenter}">
+        <Setter Property="HorizontalAlignment" Value="Right" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="Margin" Value="4,1,4,1" />
+    </Style>
+    <Style x:Key="{dxgt:GroupRowThemeKey ResourceKey=GroupBandSummaryContentStyle}" TargetType="{x:Type dxg:GroupBandSummaryControl}">
+        <Setter Property="Padding" Value="{DynamicResource {dxgt:GroupRowThemeKey ResourceKey=GroupBandSummaryPadding}}" />
+        <Setter Property="NormalBorderBrush" Value="#FFC6D7ED" />
+        <Setter Property="FocusedBorderBrush" Value="#FFA4BEE2" />
+        <Setter Property="NormalForeground" Value="{DynamicResource {dxgt:GridRowThemeKey ResourceKey=TextUnfocusedBrush}}" />
+        <Setter Property="FocusedForeground" Value="{DynamicResource {dxgt:GridRowThemeKey ResourceKey=TextFocusedBrush}}" />
+        <Setter Property="NormalBackground" Value="Transparent" />
+        <Setter Property="FocusedBackground" Value="Transparent" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type dxg:GroupColumnSummaryControl}">
+                    <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="1" MinHeight="22" CornerRadius="2">
+                        <Border.Margin>
+                            <Binding Path="HasTopElement" RelativeSource="{RelativeSource TemplatedParent}">
+                                <Binding.Converter>
+                                    <dx:BoolToObjectConverter TrueValue="0,0,2,2" FalseValue="0,2,2,2"/>
+                                </Binding.Converter>
+                            </Binding>
+                        </Border.Margin>
+                        <ContentPresenter x:Name="PART_Content" Margin="4,1,4,1" Content="{Binding}" ContentTemplate="{Binding View.GroupColumnSummaryItemTemplate}" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <DataTemplate x:Key="{dxgt:GroupRowThemeKey ResourceKey=GroupFooterSummaryItemTemplate}">
+        <TextBlock Text="{Binding Value}" Style="{StaticResource {dxgt:TotalSummaryThemeKey ResourceKey=TotalSummaryTextControlStyle}}"/>
+    </DataTemplate>
+
+    <SolidColorBrush x:Key="{dxgt:TableViewThemeKey ResourceKey=EditFormBackground}" Color="#FFE3EFFF " />
+</ResourceDictionary>

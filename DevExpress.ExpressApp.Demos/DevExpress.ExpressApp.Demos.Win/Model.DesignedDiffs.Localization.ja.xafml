@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application>
+  <ActionDesign>
+    <Actions>
+      <Action Id="CategorizeImages" Caption="画像の分類" />
+      <Action Id="FillCategories" Caption="カテゴリの投入" />
+      <Action Id="ImagePreviewListMode" Caption="画像プレビュー リスト モード">
+        <ChoiceActionItems>
+          <ChoiceActionItem Id="List" Caption="リスト" />
+          <ChoiceActionItem Id="Thumbnails" Caption="サムネイル" />
+        </ChoiceActionItems>
+      </Action>
+      <Action Id="OpenCategory" Caption="開く" />
+    </Actions>
+  </ActionDesign>
+  <BOModel>
+    <Class Name="DevExpress.ExpressApp.Demos.Win.AssemblyImageSourceBrowser" Caption="アセンブリ画像ソース ブラウザ" />
+    <Class Name="DevExpress.ExpressApp.Demos.Win.CategoryString" Caption="カテゴリー">
+      <OwnMembers>
+        <Member Name="Images" Caption="画像" />
+        <Member Name="Name" Caption="名前" />
+      </OwnMembers>
+    </Class>
+    <Class Name="DevExpress.ExpressApp.Demos.Win.FileImageSourceBrowser" Caption="ファイル画像ソース ブラウザ" />
+    <Class Name="DevExpress.ExpressApp.Demos.Win.ImageBrowserCategory" Caption="画像ブラウザ カテゴリー">
+      <OwnMembers>
+        <Member Name="ChildCategories" Caption="子カテゴリー" />
+        <Member Name="Name" Caption="名前" />
+        <Member Name="Owner" Caption="所有者" />
+        <Member Name="ParentCategory" Caption="親カテゴリー" />
+      </OwnMembers>
+    </Class>
+    <Class Name="DevExpress.ExpressApp.Demos.Win.ImageNode" Caption="画像ノード">
+      <OwnMembers>
+        <Member Name="Image" Caption="画像" />
+      </OwnMembers>
+    </Class>
+    <Class Name="DevExpress.ExpressApp.Demos.Win.ImagePreviewObject" Caption="画像">
+      <OwnMembers>
+        <Member Name="Categories" Caption="カテゴリー" />
+        <Member Name="Image12x12" Caption="小さい" />
+        <Member Name="Image16x16" Caption="オリジナル" />
+        <Member Name="Image32x32" Caption="大きい" />
+        <Member Name="Image48x48" Caption="ダイアログ" />
+        <Member Name="ImageName" Caption="画像名" />
+        <Member Name="OriginalImage" Caption="元の画像" />
+      </OwnMembers>
+    </Class>
+    <Class Name="DevExpress.ExpressApp.Demos.Win.ImagesGroupNode" Caption="画像グループ ノード">
+      <OwnMembers>
+        <Member Name="Images" Caption="画像" />
+      </OwnMembers>
+    </Class>
+    <Class Name="DevExpress.ExpressApp.Demos.Win.ImageSourceBrowserBase" Caption="画像ソース ブラウザ">
+      <OwnMembers>
+        <Member Name="Categories" Caption="カテゴリー" />
+        <Member Name="ImageCategories" Caption="画像カテゴリー" />
+        <Member Name="ImageSourceName" Caption="画像ソース名" />
+      </OwnMembers>
+    </Class>
+  </BOModel>
+  <NavigationItems>
+    <Items>
+      <Item Id="Images" Caption="画像" />
+    </Items>
+  </NavigationItems>
+  <Views>
+    <DetailView Id="ImagePreviewObject_DetailView">
+      <Layout>
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="ImagePreviewObject" Caption="画像プレビュー オブジェクト" />
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+  </Views>
+</Application>

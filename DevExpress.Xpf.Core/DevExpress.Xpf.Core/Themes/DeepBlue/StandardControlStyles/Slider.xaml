@@ -1,0 +1,533 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:dxtEx="clr-namespace:DevExpress.Xpf.Utils.Themes"
+	xmlns:dx="clr-namespace:DevExpress.Xpf.Core"
+    xmlns:dxt="clr-namespace:DevExpress.Xpf.Utils.Themes"
+    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+    <SolidColorBrush x:Key="HorizontalSliderTrackNormalBackground" Color="#FFF0EDE0"/>
+    <SolidColorBrush x:Key="VerticalSliderTrackNormalBackground" Color="#FFF0EDE0"/>
+    <SolidColorBrush x:Key="SliderThumbBackgroundInverted" Color="#F3F3EF"/>
+    <SolidColorBrush x:Key="SliderThumbBackground" Color="#F3F3EF"/>
+    <!--BEGIN WPF-->
+    <Geometry x:Key="SliderPointedThumbTopAccentGeometry">M 4.5,-6 L 4.5,-9 L -4.5,-9 L -4.5,-6 Z</Geometry>
+    <Geometry x:Key="SliderPointedThumbBottomAccentGeometry">M 4.5,4 L 0,8.5 L -4.5,4 L -4.5,5 L 0,10 L 4.5,5 Z</Geometry>
+    <Geometry x:Key="SliderPointedThumbOuterBorderGeometry">M 5,-8 A 1.5 1.5 0 0 0 3.5,-9.5 L -3.5,-9.5 A 1.5 1.5 0 0 0 -5,-8 L -5,5.5 L 0,10.5 L 5,5.5 Z</Geometry>
+    <Geometry x:Key="SliderThumbOuterBorderGeometry">M 5,-9 A 1.5 1.5 0 0 0 3.5,-10.5 L -3.5,-10.5 A 1.5 1.5 0 0 0 -5,-9 L -5,9 A 1.5 1.5 0 0 0 -3.5,10.5 L 3.5,10.5 A 1.5 1.5 0 0 0 5,9 Z</Geometry>
+    <Geometry x:Key="SliderThumbTopAccentGeometry">M 4.5,-8 L 4.5,-10 L -4.5,-10 L -4.5,-8 Z</Geometry>
+    <Geometry x:Key="SliderThumbBottomAccentGeometry">M 4.5,8 L 4.5,10 L -4.5,10 L -4.5,8 Z</Geometry>
+    <!--END WPF-->
+    <LinearGradientBrush x:Key="HorizontalSliderTrackNormalBorder" EndPoint="0,1" StartPoint="0,0">
+        <GradientStop Color="#FFAEB1AF" Offset="0.1"/>
+        <GradientStop Color="White" Offset=".9"/>
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="HorizontalSliderThumbTopAccent" EndPoint="1,1" StartPoint="0,0">
+        <GradientStop Color="#70D66F" Offset="0"/>
+        <GradientStop Color="#46CA44" Offset="1"/>
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="HorizontalSliderThumbBottomAccent" EndPoint="1,1" StartPoint="0,0">
+        <GradientStop Color="#46CA44" Offset="0"/>
+        <GradientStop Color="#1B9B1A" Offset=".8"/>
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="HorizontalSliderThumbShadeGradient" EndPoint="1,0" StartPoint="0,0">
+        <GradientStop Color="#40FFFFFF" Offset="0"/>
+        <GradientStop Color="#00FFFFFF" Offset=".3"/>
+        <GradientStop Color="#00000000" Offset=".7"/>
+        <GradientStop Color="#40000000" Offset="1"/>
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="HorizontalSliderThumbBorder" EndPoint="1,1" StartPoint="0,0">
+        <GradientStop Color="#FFBECBD3" Offset="0"/>
+        <GradientStop Color="#FF72838D" Offset="1"/>
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="HorizontalSliderThumbTopAccentHover" EndPoint="1,1" StartPoint="0,0">
+        <GradientStop Color="#FBCE7C" Offset="0"/>
+        <GradientStop Color="#F7B335" Offset="1"/>
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="HorizontalSliderThumbBottomAccentHover" EndPoint="1,1" StartPoint="0,0">
+        <GradientStop Color="#FAC055" Offset="0"/>
+        <GradientStop Color="#C7902A" Offset=".8"/>
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="HorizontalSliderThumbTopAccentPressed" EndPoint="1,1" StartPoint="0,0">
+        <GradientStop Color="#70BA66" Offset="0"/>
+        <GradientStop Color="#229412" Offset="1"/>
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="HorizontalSliderThumbBottomAccentPressed" EndPoint="1,1" StartPoint="0,0">
+        <GradientStop Color="#46A638" Offset="0"/>
+        <GradientStop Color="#1B770E" Offset=".8"/>
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="HorizontalSliderThumbTopAccentInverted" EndPoint="1,1" StartPoint="0,0">
+        <GradientStop Color="#46CA44" Offset="1"/>
+        <GradientStop Color="#1B9B1A" Offset="0"/>
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="HorizontalSliderThumbBottomAccentInverted" EndPoint="1,1" StartPoint="0,0">
+        <GradientStop Color="#70D66F" Offset="1"/>
+        <GradientStop Color="#46CA44" Offset=".2"/>
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="HorizontalSliderThumbShadeGradientInverted" EndPoint="1,0" StartPoint="0,0">
+        <GradientStop Color="#40FFFFFF" Offset="1"/>
+        <GradientStop Color="#00FFFFFF" Offset=".7"/>
+        <GradientStop Color="#00000000" Offset=".3"/>
+        <GradientStop Color="#40000000" Offset="0"/>
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="HorizontalSliderThumbBorderInverted" EndPoint="1,1" StartPoint="0,0">
+        <GradientStop Color="#FFBECBD3" Offset="1"/>
+        <GradientStop Color="#FF72838D" Offset="0"/>
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="HorizontalSliderThumbTopAccentHoverInverted" EndPoint="1,1" StartPoint="0,0">
+        <GradientStop Color="#FAC055" Offset="1"/>
+        <GradientStop Color="#C7902A" Offset="0"/>
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="HorizontalSliderThumbBottomAccentHoverInverted" EndPoint="1,1" StartPoint="0,0">
+        <GradientStop Color="#FBCE7C" Offset="1"/>
+        <GradientStop Color="#F7B335" Offset=".2"/>
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="HorizontalSliderThumbTopAccentPressedInverted" EndPoint="1,1" StartPoint="0,0">
+        <GradientStop Color="#46A638" Offset="1"/>
+        <GradientStop Color="#1B770E" Offset="0"/>
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="VerticalSliderTrackNormalBorder" EndPoint="1,0" StartPoint="0,0">
+        <GradientStop Color="#FFAEB1AF" Offset="0.1"/>
+        <GradientStop Color="White" Offset=".9"/>
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="VerticalSliderThumbTopAccent" EndPoint="0,1" StartPoint="1,0">
+        <GradientStop Color="#70D66F" Offset="0"/>
+        <GradientStop Color="#46CA44" Offset="1"/>
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="VerticalSliderThumbBottomAccent" EndPoint="0,1" StartPoint="1,0">
+        <GradientStop Color="#46CA44" Offset="0"/>
+        <GradientStop Color="#1B9B1A" Offset=".8"/>
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="VerticalSliderThumbShadeGradient" EndPoint="0,0" StartPoint="1,0">
+        <GradientStop Color="#40FFFFFF" Offset="0"/>
+        <GradientStop Color="#00FFFFFF" Offset=".3"/>
+        <GradientStop Color="#00000000" Offset=".7"/>
+        <GradientStop Color="#40000000" Offset="1"/>
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="VerticalSliderThumbBorder" EndPoint="0,.5" StartPoint="1,0">
+        <GradientStop Color="#FFBECBD3" Offset="0"/>
+        <GradientStop Color="#FF72838D" Offset="1"/>
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="VerticalSliderThumbTopAccentHover" EndPoint="0,1" StartPoint="1,0">
+        <GradientStop Color="#FBCE7C" Offset="0"/>
+        <GradientStop Color="#F7B335" Offset="1"/>
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="VerticalSliderThumbBottomAccentHover" EndPoint="0,1" StartPoint="1,0">
+        <GradientStop Color="#FAC055" Offset="0"/>
+        <GradientStop Color="#C7902A" Offset=".8"/>
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="VerticalSliderThumbTopAccentPressed" EndPoint="0,1" StartPoint="1,0">
+        <GradientStop Color="#70BA66" Offset="0"/>
+        <GradientStop Color="#229412" Offset="1"/>
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="VerticalSliderThumbBottomAccentPressed" EndPoint="0,1" StartPoint="1,0">
+        <GradientStop Color="#46A638" Offset="0"/>
+        <GradientStop Color="#1B770E" Offset=".8"/>
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="VerticalSliderThumbTopAccentInverted" EndPoint="0,1" StartPoint="1,0">
+        <GradientStop Color="#46CA44" Offset="1"/>
+        <GradientStop Color="#1B9B1A" Offset="0"/>
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="VerticalSliderThumbBottomAccentInverted" EndPoint="0,1" StartPoint="1,0">
+        <GradientStop Color="#70D66F" Offset="1"/>
+        <GradientStop Color="#46CA44" Offset=".2"/>
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="VerticalSliderThumbShadeGradientInverted" EndPoint="0,0" StartPoint="1,0">
+        <GradientStop Color="#40FFFFFF" Offset="1"/>
+        <GradientStop Color="#00FFFFFF" Offset=".7"/>
+        <GradientStop Color="#00000000" Offset=".3"/>
+        <GradientStop Color="#40000000" Offset="0"/>
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="VerticalSliderThumbBorderInverted" EndPoint="0,1" StartPoint="1,0">
+        <GradientStop Color="#FFBECBD3" Offset="1"/>
+        <GradientStop Color="#FF72838D" Offset="0"/>
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="VerticalSliderThumbTopAccentHoverInverted" EndPoint="0,1" StartPoint="1,0">
+        <GradientStop Color="#FAC055" Offset="1"/>
+        <GradientStop Color="#C7902A" Offset="0"/>
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="VerticalSliderThumbBottomAccentHoverInverted" EndPoint="0,1" StartPoint="1,0">
+        <GradientStop Color="#FBCE7C" Offset="1"/>
+        <GradientStop Color="#F7B335" Offset=".2"/>
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="VerticalSliderThumbTopAccentPressedInverted" EndPoint="0,1" StartPoint="1,0">
+        <GradientStop Color="#46A638" Offset="1"/>
+        <GradientStop Color="#1B770E" Offset="0"/>
+    </LinearGradientBrush>
+    <Style x:Key="SliderRepeatButtonStyle" TargetType="{x:Type RepeatButton}">
+        <Setter Property="OverridesDefaultStyle" Value="true" />
+        <Setter Property="IsTabStop" Value="false" />
+        <Setter Property="Focusable" Value="false" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type RepeatButton}">
+                    <Rectangle Fill="Transparent" />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="HorizontalSliderThumbStyle" TargetType="{x:Type Thumb}">
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="Focusable" Value="False" />
+        <Setter Property="OverridesDefaultStyle" Value="true" />
+        <Setter Property="Height" Value="22" />
+        <Setter Property="Width" Value="14" />
+        <Setter Property="Foreground" Value="Gray" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Thumb}">
+                    <Grid>
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal" />
+                                <VisualState x:Name="MouseOver">
+                                    <Storyboard>
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="MouseOverState">
+                                            <EasingDoubleKeyFrame KeyTime="0" Value="1" />
+                                        </DoubleAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Pressed">
+                                    <Storyboard>
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="MouseOverState">
+                                            <EasingDoubleKeyFrame KeyTime="0" Value="1" />
+                                        </DoubleAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Disabled" />
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="FocusStates">
+                                <VisualState x:Name="Focused"/>
+                                <VisualState x:Name="Unfocused" />
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Border Padding="1,0,1,1" Background="#26000000" CornerRadius="3">
+                            <Border CornerRadius="2" Padding="1">
+                                <Border.Background>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FF233B6C" Offset="0" />
+                                        <GradientStop Color="#FF5077B3" Offset="1" />
+                                        <GradientStop Color="#FF22417C" Offset="0.178" />
+                                        <GradientStop Color="#FF264B85" Offset="0.692" />
+                                    </LinearGradientBrush>
+                                </Border.Background>
+                                <Grid>
+                                    <Grid x:Name="NormalState">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="0.5*" />
+                                            <RowDefinition Height="0.5*" />
+                                        </Grid.RowDefinitions>
+                                        <Border Grid.RowSpan="2" CornerRadius="1">
+                                            <Border.Background>
+                                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                                    <GradientStop Color="#FF578BC8" Offset="0" />
+                                                    <GradientStop Color="#FFBDD7FF" Offset="1" />
+                                                    <GradientStop Color="#FF88B1F0" Offset="0.529" />
+                                                </LinearGradientBrush>
+                                            </Border.Background>
+                                        </Border>
+                                        <Border Grid.RowSpan="1" CornerRadius="1">
+                                            <Border.Background>
+                                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                                    <GradientStop Color="#FFD5E1F6" Offset="0.135" />
+                                                    <GradientStop Color="#FFE7F2FA" />
+                                                    <GradientStop Color="#FFAAC4EC" Offset="1" />
+                                                </LinearGradientBrush>
+                                            </Border.Background>
+                                        </Border>
+                                    </Grid>
+                                    <Grid x:Name="MouseOverState" Opacity="0">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="0.5*" />
+                                            <RowDefinition Height="0.5*" />
+                                        </Grid.RowDefinitions>
+                                        <Border Grid.RowSpan="2" CornerRadius="1">
+                                            <Border.Background>
+                                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                                    <GradientStop Color="#FF89B7EE" Offset="0" />
+                                                    <GradientStop Color="#FFDCEAFF" Offset="1" />
+                                                    <GradientStop Color="#FFB8D3FD" Offset="0.529" />
+                                                </LinearGradientBrush>
+                                            </Border.Background>
+                                        </Border>
+                                        <Border Grid.RowSpan="1" CornerRadius="1">
+                                            <Border.Background>
+                                                <LinearGradientBrush EndPoint="0.5,0" StartPoint="0.5,1">
+                                                    <GradientStop Color="#FFEBF2FF" Offset="0.865" />
+                                                    <GradientStop Color="#FFF6FBFF" Offset="1" />
+                                                    <GradientStop Color="#FFD5E4FB" />
+                                                </LinearGradientBrush>
+                                            </Border.Background>
+                                        </Border>
+                                    </Grid>
+                                </Grid>
+                            </Border>
+                        </Border>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="VerticalSliderThumbStyle" TargetType="{x:Type Thumb}">
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="Focusable" Value="False" />
+        <Setter Property="OverridesDefaultStyle" Value="true" />
+        <Setter Property="Height" Value="15" />
+        <Setter Property="Width" Value="22" />
+        <Setter Property="Foreground" Value="Gray" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Thumb}">
+                    <Grid>
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal" />
+                                <VisualState x:Name="MouseOver">
+                                    <Storyboard>
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="MouseOverState">
+                                            <EasingDoubleKeyFrame KeyTime="0" Value="1" />
+                                        </DoubleAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Pressed">
+                                    <Storyboard>
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="MouseOverState">
+                                            <EasingDoubleKeyFrame KeyTime="0" Value="1" />
+                                        </DoubleAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Disabled" />
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="FocusStates">
+                                <VisualState x:Name="Focused"/>
+                                <VisualState x:Name="Unfocused" />
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Border Padding="1,0,1,1" Background="#26000000" CornerRadius="3">
+                            <Border CornerRadius="2" Padding="1">
+                                <Border.Background>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FF233B6C" Offset="0" />
+                                        <GradientStop Color="#FF5077B3" Offset="1" />
+                                        <GradientStop Color="#FF22417C" Offset="0.178" />
+                                        <GradientStop Color="#FF264B85" Offset="0.692" />
+                                    </LinearGradientBrush>
+                                </Border.Background>
+                                <Grid>
+                                    <Grid x:Name="NormalState">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="0.5*" />
+                                            <RowDefinition Height="0.5*" />
+                                        </Grid.RowDefinitions>
+                                        <Border Grid.RowSpan="2" CornerRadius="1">
+                                            <Border.Background>
+                                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                                    <GradientStop Color="#FF578BC8" Offset="0" />
+                                                    <GradientStop Color="#FFBDD7FF" Offset="1" />
+                                                    <GradientStop Color="#FF88B1F0" Offset="0.529" />
+                                                </LinearGradientBrush>
+                                            </Border.Background>
+                                        </Border>
+                                        <Border Grid.RowSpan="1" CornerRadius="1">
+                                            <Border.Background>
+                                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                                    <GradientStop Color="#FFD5E1F6" Offset="0.135" />
+                                                    <GradientStop Color="#FFE7F2FA" />
+                                                    <GradientStop Color="#FFAAC4EC" Offset="1" />
+                                                </LinearGradientBrush>
+                                            </Border.Background>
+                                        </Border>
+                                    </Grid>
+                                    <Grid x:Name="MouseOverState" Opacity="0">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="0.5*" />
+                                            <RowDefinition Height="0.5*" />
+                                        </Grid.RowDefinitions>
+                                        <Border Grid.RowSpan="2" CornerRadius="1">
+                                            <Border.Background>
+                                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                                    <GradientStop Color="#FF89B7EE" Offset="0" />
+                                                    <GradientStop Color="#FFDCEAFF" Offset="1" />
+                                                    <GradientStop Color="#FFB8D3FD" Offset="0.529" />
+                                                </LinearGradientBrush>
+                                            </Border.Background>
+                                        </Border>
+                                        <Border Grid.RowSpan="1" CornerRadius="1">
+                                            <Border.Background>
+                                                <LinearGradientBrush EndPoint="0.5,0" StartPoint="0.5,1">
+                                                    <GradientStop Color="#FFEBF2FF" Offset="0.865" />
+                                                    <GradientStop Color="#FFF6FBFF" Offset="1" />
+                                                    <GradientStop Color="#FFD5E4FB" />
+                                                </LinearGradientBrush>
+                                            </Border.Background>
+                                        </Border>
+                                    </Grid>
+                                </Grid>
+                            </Border>
+                        </Border>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="{dxt:DefaultStyleThemeKey ThemeName=DeepBlue, Type=Slider, TypeInTargetAssembly=dx:ResourceFinder}" TargetType="{x:Type Slider}">
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="Stylus.IsPressAndHoldEnabled" Value="false" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Foreground" Value="#FFC4C4C4" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Slider}">
+                    <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="true">
+                        <Grid x:Name="Root">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" MinHeight="{TemplateBinding MinHeight}" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <TickBar x:Name="TopTick" Height="4" Placement="Top" Grid.Row="0" Opacity="0" Fill="#FF35558E" />
+                            <TickBar x:Name="BottomTick" Height="4" Placement="Bottom" Grid.Row="2" Opacity="0" Fill="#FF35558E" />
+                            <Grid x:Name="TrackBackground" Grid.ColumnSpan="3" Margin="1,0" VerticalAlignment="Center" Height="8" Grid.RowSpan="3">
+                                <Border Margin="5,0,5,0" VerticalAlignment="Center" Height="7" Grid.Row="1" Padding="1" CornerRadius="2">
+                                    <Border.Background>
+                                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                            <GradientStop Color="#3E4C6EB3" Offset="0" />
+                                            <GradientStop Color="#80EDF4FF" Offset="1" />
+                                            <GradientStop Color="#3F7098DC" Offset="0.215" />
+                                        </LinearGradientBrush>
+                                    </Border.Background>
+                                    <Grid>
+                                        <Border x:Name="Focus" Opacity="0" Background="#FF4882d8" CornerRadius="3" Grid.ColumnSpan="1" Margin="-2" />
+                                        <Border BorderBrush="#FF35558E" BorderThickness="1" CornerRadius="1" Margin="0">
+                                            <Border.Background>
+                                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                                    <GradientStop Color="#FF668ED0" Offset="0" />
+                                                    <GradientStop Color="#FF97B3DA" Offset="1" />
+                                                </LinearGradientBrush>
+                                            </Border.Background>
+                                            <Canvas>
+                                                <Rectangle x:Name="PART_SelectionRange" Fill="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" Stroke="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}" StrokeThickness="1.0" Visibility="Hidden" HorizontalAlignment="Stretch" Margin="0" Height="4" />
+                                            </Canvas>
+                                        </Border>
+                                    </Grid>
+                                </Border>
+                            </Grid>
+                            <Track x:Name="PART_Track" Grid.Row="1">
+                                <Track.DecreaseRepeatButton>
+                                    <RepeatButton Command="{x:Static Slider.DecreaseLarge}" Style="{StaticResource SliderRepeatButtonStyle}" />
+                                </Track.DecreaseRepeatButton>
+                                <Track.IncreaseRepeatButton>
+                                    <RepeatButton Command="{x:Static Slider.IncreaseLarge}" Style="{StaticResource SliderRepeatButtonStyle}" />
+                                </Track.IncreaseRepeatButton>
+                                <Track.Thumb>
+                                    <Thumb x:Name="Thumb" Style="{StaticResource HorizontalSliderThumbStyle}" />
+                                </Track.Thumb>
+                            </Track>
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsSelectionRangeEnabled" Value="True">
+                            <Setter TargetName="PART_SelectionRange" Property="Visibility" Value="Visible" />
+                        </Trigger>
+                        <Trigger Property="TickPlacement" Value="TopLeft">
+                            <Setter Property="Opacity" TargetName="TopTick" Value="1" />
+                        </Trigger>
+                        <Trigger Property="TickPlacement" Value="BottomRight">
+                            <Setter Property="Opacity" TargetName="BottomTick" Value="1" />
+                        </Trigger>
+                        <Trigger Property="TickPlacement" Value="Both">
+                            <Setter Property="Opacity" TargetName="TopTick" Value="1" />
+                            <Setter Property="Opacity" TargetName="BottomTick" Value="1" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Opacity" TargetName="Root" Value="0.35" />
+                        </Trigger>
+                        <Trigger Property="IsFocused" Value="True">
+                            <Setter Property="Opacity" TargetName="Focus" Value="0.35"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="Orientation" Value="Vertical">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type Slider}">
+                            <Grid x:Name="Root">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition MinWidth="{TemplateBinding MinWidth}" Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <TickBar x:Name="TopTick" Grid.Column="0" Placement="Left" Opacity="0" Width="4" Fill="#FF35558E" />
+                                <TickBar x:Name="BottomTick" Grid.Column="2" Placement="Right" Opacity="0" Width="4" Fill="#FF35558E" />
+                                <Grid x:Name="TrackBackground" Grid.RowSpan="3" Margin="0,1" Width="8" Background="Transparent" HorizontalAlignment="Center" VerticalAlignment="Stretch" Grid.ColumnSpan="3">
+                                    <Border Margin="0,5" Grid.Row="1" Padding="1" CornerRadius="2" Width="7" HorizontalAlignment="Center">
+                                        <Border.Background>
+                                            <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
+                                                <GradientStop Color="#3E4C6EB3" Offset="0" />
+                                                <GradientStop Color="#80EDF4FF" Offset="1" />
+                                                <GradientStop Color="#3F7098DC" Offset="0.215" />
+                                            </LinearGradientBrush>
+                                        </Border.Background>
+                                        <Grid>
+                                            <Border x:Name="Focus" Opacity="0" Background="#FF4882d8" CornerRadius="3" Grid.ColumnSpan="1" Margin="-2" />
+                                            <Border BorderBrush="#FF35558E" BorderThickness="1" CornerRadius="1" Margin="0">
+                                                <Border.Background>
+                                                    <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
+                                                        <GradientStop Color="#FF668ED0" Offset="0" />
+                                                        <GradientStop Color="#FF97B3DA" Offset="1" />
+                                                    </LinearGradientBrush>
+                                                </Border.Background>
+                                                <Canvas>
+                                                    <Rectangle x:Name="PART_SelectionRange" Fill="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" Stroke="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}" StrokeThickness="1.0" Visibility="Hidden" HorizontalAlignment="Stretch" Margin="0" Width="4" />
+                                                </Canvas>
+                                            </Border>
+                                        </Grid>
+                                    </Border>
+                                </Grid>
+                                <Track x:Name="PART_Track" Grid.Column="1">
+                                    <Track.DecreaseRepeatButton>
+                                        <RepeatButton Command="{x:Static Slider.DecreaseLarge}" Style="{StaticResource SliderRepeatButtonStyle}" />
+                                    </Track.DecreaseRepeatButton>
+                                    <Track.IncreaseRepeatButton>
+                                        <RepeatButton Command="{x:Static Slider.IncreaseLarge}" Style="{StaticResource SliderRepeatButtonStyle}" />
+                                    </Track.IncreaseRepeatButton>
+                                    <Track.Thumb>
+                                        <Thumb x:Name="Thumb" Style="{StaticResource VerticalSliderThumbStyle}" />
+                                    </Track.Thumb>
+                                </Track>
+                            </Grid>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsSelectionRangeEnabled" Value="true">
+                                    <Setter Property="Visibility" TargetName="PART_SelectionRange" Value="Visible" />
+                                </Trigger>
+                                <Trigger Property="TickPlacement" Value="TopLeft">
+                                    <Setter Property="Opacity" TargetName="TopTick" Value="1" />
+                                </Trigger>
+                                <Trigger Property="TickPlacement" Value="BottomRight">
+                                    <Setter Property="Opacity" TargetName="BottomTick" Value="1" />
+                                </Trigger>
+                                <Trigger Property="TickPlacement" Value="Both">
+                                    <Setter Property="Opacity" TargetName="TopTick" Value="1" />
+                                    <Setter Property="Opacity" TargetName="BottomTick" Value="1" />
+                                </Trigger>
+                                <Trigger Property="IsKeyboardFocused" Value="true">
+                                    <Setter Property="Foreground" TargetName="Thumb" Value="Blue" />
+                                </Trigger>
+                                <Trigger Property="IsEnabled" Value="False">
+                                    <Setter Property="Opacity" TargetName="Root" Value="0.35" />
+                                </Trigger>
+                                <Trigger Property="IsFocused" Value="True">
+                                    <Setter Property="Opacity" TargetName="Focus" Value="0.35"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+</ResourceDictionary>

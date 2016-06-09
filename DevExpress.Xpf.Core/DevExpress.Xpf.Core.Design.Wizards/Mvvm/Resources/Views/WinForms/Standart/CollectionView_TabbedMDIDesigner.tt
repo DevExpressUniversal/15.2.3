@@ -1,0 +1,490 @@
+﻿<#@ template language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="DevExpress.Design.Mvvm" #>
+<#@ import namespace="DevExpress.Xpf.Core.Design.Wizards.Mvvm.EntityFramework" #>
+<#@ import namespace="DevExpress.Xpf.Core.Design.Wizards.Mvvm" #>
+<#@ import namespace="DevExpress.Xpf.Core.Design.Wizards.Mvvm.ViewModelData" #>
+<#@ import namespace="DevExpress.Xpf.Core.Native" #>
+<#@ import namespace ="DevExpress.Mvvm.UI.Native.ViewGenerator"#>
+<#@ import namespace ="DevExpress.Entity.Model"#>
+<#@ import namespace ="DevExpress.Mvvm.Native"#>
+<#
+	T4TemplateInfo templateInfo = this.GetTemplateInfo();
+	CollectionViewModelData viewModelData = templateInfo.Properties["IViewModelInfo"] as CollectionViewModelData;
+	UIType uiType = (UIType)templateInfo.Properties["UIType"];
+    string viewName = templateInfo.Properties["ViewName"].ToString();    
+    string localNamespace = templateInfo.Properties["Namespace"].ToString();
+	string viewFullName = localNamespace +"." + viewName;
+	string mvvmContextFullName = viewModelData.Namespace+"."+viewModelData.Name;
+	string bindingSourceName = Char.ToLowerInvariant(viewName[0]) + viewName.Substring(1) + "BindingSource";
+	List<PropertyEditorInfo> listLookUpInfo = templateInfo.Properties["GeneratedLookups"] as List<PropertyEditorInfo>;
+	bool IsVisualBasic = (bool)templateInfo.Properties["IsVisualBasic"];
+	IEnumerable<IEdmPropertyInfo> scaffoldingProperties = viewModelData.GetScaffoldingProperties();
+    System.Reflection.PropertyInfo[] typeProperties = viewModelData.EntityType.GetProperties();
+    IEnumerable<string> NonVisibleTypes = typeProperties.Where(e => !scaffoldingProperties.Any(q => q.Name == e.Name)).Select(e => e.Name);
+#>
+<#
+if(!IsVisualBasic){
+#>
+namespace <#=viewFullName#> {
+    partial class <#=viewName#> {
+        /// <summary> 
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary> 
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing) {
+            if(disposing && (components != null)) {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+		 #region Component Designer generated code
+
+        /// <summary> 
+        /// Required method for Designer support - do not modify 
+        /// the contents of this method with the code editor.
+        /// </summary>
+		private void InitializeComponent() {
+			this.components = new System.ComponentModel.Container();
+			this.gridControl = new DevExpress.XtraGrid.GridControl();
+            this.gridView = new DevExpress.XtraGrid.Views.Grid.GridView();
+			this.mvvmContext = new DevExpress.Utils.MVVM.MVVMContext(this.components);
+			this.ribbonControl = new DevExpress.XtraBars.Ribbon.RibbonControl();
+			this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
+            this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+			this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.ribbonStatusBar = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
+            this.bsiRecordsCount = new DevExpress.XtraBars.BarStaticItem();
+			this.bbiPrintPreview = new DevExpress.XtraBars.BarButtonItem();
+			this.popupMenu = new DevExpress.XtraBars.PopupMenu(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.gridControl)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mvvmContext)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.popupMenu)).BeginInit();
+            this.SuspendLayout();
+			// 
+            // ribbonControl
+            // 
+            this.ribbonControl.ExpandCollapseItem.Id = 0;
+            this.ribbonControl.MaxItemId = 14;
+            this.ribbonControl.Name = "ribbonControl";
+			this.ribbonControl.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
+            this.ribbonPage1});
+            this.ribbonControl.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonControlStyle.Office2013;
+            this.ribbonControl.ShowApplicationButton = DevExpress.Utils.DefaultBoolean.False;
+            this.ribbonControl.ToolbarLocation = DevExpress.XtraBars.Ribbon.RibbonQuickAccessToolbarLocation.Hidden;
+			 this.ribbonControl.Items.AddRange(new DevExpress.XtraBars.BarItem[] {this.bbiPrintPreview, this.bsiRecordsCount});
+			<#foreach(var item in viewModelData.Commands){
+				string nameForItem = item.CommandPropertyName.Remove(item.CommandPropertyName.Length -7,7);
+			#>
+			DevExpress.XtraBars.BarButtonItem bbi<#=nameForItem#> = new DevExpress.XtraBars.BarButtonItem();
+			bbi<#=nameForItem#>.Caption = "<#=item.Caption#>";
+			bbi<#=nameForItem#>.Name = "bbi<#=nameForItem#>";
+			bbi<#=nameForItem#>.ImageUri.Uri = "<#=nameForItem#>";
+			this.ribbonControl.Items.Add(bbi<#=nameForItem#>);
+			<#}	#>
+            // 
+            // ribbonPage1
+            // 
+            this.ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
+            this.ribbonPageGroup1,
+            this.ribbonPageGroup2});
+			this.ribbonPage1.MergeOrder = 0;
+            this.ribbonPage1.Name = "ribbonPage1";
+            this.ribbonPage1.Text = "Home";
+            // 
+            // ribbonPageGroup1
+            // 
+            this.ribbonPageGroup1.AllowTextClipping = false;
+			<#foreach(var item in viewModelData.Commands){
+				string nameForItem = item.CommandPropertyName.Remove(item.CommandPropertyName.Length -7,7);
+			#>
+			this.ribbonPageGroup1.ItemLinks.Add(bbi<#=nameForItem#>);
+			<#}#>
+            this.ribbonPageGroup1.Name = "ribbonPageGroup1";
+            this.ribbonPageGroup1.ShowCaptionButton = false;
+            this.ribbonPageGroup1.Text = "<#=viewModelData.EntityTypeName#> Tasks";
+			// 
+            // ribbonPageGroup2
+            // 
+            this.ribbonPageGroup2.ItemLinks.Add(this.bbiPrintPreview);
+            this.ribbonPageGroup2.Name = "ribbonPageGroup2";
+            this.ribbonPageGroup2.Text = "Print and Export";
+			this.ribbonPageGroup2.AllowTextClipping = false;
+			this.ribbonPageGroup2.ShowCaptionButton = false;
+			// 
+            // ribbonStatusBar
+            // 
+            this.ribbonStatusBar.ItemLinks.Add(this.bsiRecordsCount);
+            this.ribbonStatusBar.Name = "ribbonStatusBar";
+            this.ribbonStatusBar.Ribbon = this.ribbonControl;
+			// 
+            // bbiPrintPreview
+            // 
+            this.bbiPrintPreview.Caption = "Print Preview";
+            this.bbiPrintPreview.ImageUri.Uri = "Preview";
+            this.bbiPrintPreview.Name = "bbiPrintPreview";
+			// 
+            // barStaticItem1
+            // 
+            this.bsiRecordsCount.Caption = "RECORDS : 2";
+            this.bsiRecordsCount.Name = "bsiRecordsCount";
+            this.bsiRecordsCount.TextAlignment = System.Drawing.StringAlignment.Near;
+			// 
+            // gridControl
+            // 
+            this.gridControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gridControl.Location = new System.Drawing.Point(5, 116);
+            this.gridControl.MainView = this.gridView;
+            this.gridControl.MenuManager = this.ribbonControl;
+            this.gridControl.Name = "gridControl";
+            this.gridControl.Size = new System.Drawing.Size(779, 311);
+            this.gridControl.TabIndex = 2;
+            this.gridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridView});
+            // 
+            // gridView
+            // 
+            this.gridView.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.gridView.GridControl = this.gridControl;
+            this.gridView.Name = "gridView";
+            this.gridView.OptionsBehavior.Editable = false;
+            this.gridView.OptionsBehavior.ReadOnly = true;
+			this.<#=bindingSourceName#> = new System.Windows.Forms.BindingSource(this.components);
+			this.<#=bindingSourceName#>.DataSource = typeof(<#=viewModelData.EntityTypeFullName#>);
+			this.gridControl.DataSource = <#=bindingSourceName#>;
+
+			DevExpress.XtraGrid.Extensions.PopulateColumnsParameters parameters = new DevExpress.XtraGrid.Extensions.PopulateColumnsParameters();
+			<#
+			foreach(var realLookUpInfo in listLookUpInfo){
+			string nameForLookUp =  realLookUpInfo.Property.Name;
+			#>
+			//
+			//<#=nameForLookUp#>
+			//
+			DevExpress.XtraGrid.Extensions.PopulateColumnParameters <#=nameForLookUp#>PopulateColumnParameters = new DevExpress.XtraGrid.Extensions.PopulateColumnParameters();
+            <#=nameForLookUp#>PopulateColumnParameters.FieldName = "<#=realLookUpInfo.Property.Name#>";
+            <#=nameForLookUp#>PopulateColumnParameters.Path = "<#=realLookUpInfo.Property.Name#>.<#=realLookUpInfo.Lookup.DisplayMemberPropertyName#>";
+			parameters.CustomColumnParameters.Add(<#=nameForLookUp#>PopulateColumnParameters);
+			<#if(realLookUpInfo.Lookup.ForeignKeyInfo != null && realLookUpInfo.Lookup.ForeignKeyInfo.ForeignKeyPropertyName != null){#>
+			DevExpress.XtraGrid.Extensions.PopulateColumnParameters <#=nameForLookUp#>PopulateColumnParameters_NotGenerate = new DevExpress.XtraGrid.Extensions.PopulateColumnParameters();
+            <#=nameForLookUp#>PopulateColumnParameters_NotGenerate.FieldName = "<#=realLookUpInfo.Lookup.ForeignKeyInfo.ForeignKeyPropertyName#>";
+		    <#=nameForLookUp#>PopulateColumnParameters_NotGenerate.ColumnVisible = false;
+			parameters.CustomColumnParameters.Add(<#=nameForLookUp#>PopulateColumnParameters_NotGenerate);
+			<#}#>
+			<#}#> 
+			<#foreach(var noVisibleColumn in NonVisibleTypes){#>	
+			DevExpress.XtraGrid.Extensions.PopulateColumnParameters <#=noVisibleColumn#>PopulateColumnParameters_NotVisible = new DevExpress.XtraGrid.Extensions.PopulateColumnParameters();
+            <#=noVisibleColumn#>PopulateColumnParameters_NotVisible.FieldName = "<#=noVisibleColumn#>";
+		    <#=noVisibleColumn#>PopulateColumnParameters_NotVisible.ColumnVisible = false;
+			parameters.CustomColumnParameters.Add(<#=noVisibleColumn#>PopulateColumnParameters_NotVisible);
+			<#}#>
+			this.gridView.PopulateColumns(typeof(<#=viewModelData.EntityTypeFullName#>),parameters);
+			// 
+            // popupMenu1
+            // 
+			<#foreach(var item in viewModelData.Commands){
+				string nameForItem = item.CommandPropertyName.Remove(item.CommandPropertyName.Length -7,7);
+			#>
+			this.popupMenu.ItemLinks.Add(bbi<#=nameForItem#>);
+			<#}#>
+            this.popupMenu.Name = "popupMenu";
+            this.popupMenu.Ribbon = this.ribbonControl;
+		    // 
+            // mvvmContext
+            // 
+            this.mvvmContext.ContainerControl = this;
+            this.mvvmContext.ViewModelType = typeof(<#=mvvmContextFullName#>);
+			<#foreach(var item in viewModelData.Commands){
+				string nameForItem = item.CommandPropertyName.Remove(item.CommandPropertyName.Length -7,7);
+			#>
+			<#
+			if(String.IsNullOrEmpty(item.ParameterPropertyName))
+			{
+			#>
+			this.mvvmContext.BindingExpressions.Add(DevExpress.Utils.MVVM.BindingExpression.CreateCommandBinding(typeof(<#=mvvmContextFullName#>), "<#=nameForItem#>", bbi<#=nameForItem#>));
+			<#}#>
+			<#
+			if(!String.IsNullOrEmpty(item.ParameterPropertyName))
+			{
+			#>
+			this.mvvmContext.BindingExpressions.Add(DevExpress.Utils.MVVM.BindingExpression.CreateParameterizedCommandBinding(typeof(<#=mvvmContextFullName#>), "<#=nameForItem#>", "<#=item.ParameterPropertyName#>", bbi<#=nameForItem#>));
+			<#}#>
+			<#}#>
+			this.mvvmContext.RegistrationExpressions.AddRange(new DevExpress.Utils.MVVM.RegistrationExpression[] {
+            DevExpress.Utils.MVVM.RegistrationExpression.RegisterLayoutSerializationService(null, false, DevExpress.Utils.DefaultBoolean.Default, this.gridControl)});
+			//
+			//<#=viewName#>
+			//
+			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.Controls.Add(this.ribbonStatusBar);
+            this.Controls.Add(this.gridControl);
+			this.Controls.Add(this.ribbonControl);
+			this.Size = new System.Drawing.Size(1024, 768);
+            this.Name = "<#=viewName#>";
+			((System.ComponentModel.ISupportInitialize)(this.gridControl)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mvvmContext)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.popupMenu)).EndInit();
+            this.ResumeLayout(false);
+            this.PerformLayout();
+		}
+		
+        #endregion
+
+		private DevExpress.XtraGrid.GridControl gridControl;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView;
+		private DevExpress.Utils.MVVM.MVVMContext mvvmContext;
+		private DevExpress.XtraBars.Ribbon.RibbonControl ribbonControl;
+		private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPage1;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup1;
+		private System.Windows.Forms.BindingSource <#=bindingSourceName#>;
+		private DevExpress.XtraBars.BarButtonItem bbiPrintPreview;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup2;
+        private DevExpress.XtraBars.Ribbon.RibbonStatusBar ribbonStatusBar;
+        private DevExpress.XtraBars.BarStaticItem bsiRecordsCount;
+		private DevExpress.XtraBars.PopupMenu popupMenu;
+	}
+}
+<#
+}
+if(IsVisualBasic){
+#>
+Namespace Global.<#=viewFullName#>
+	Partial Public Class <#=viewName#>
+		''' <summary> 
+		''' Required designer variable.
+		''' </summary>
+		Private components As System.ComponentModel.IContainer = Nothing
+
+		''' <summary> 
+		''' Clean up any resources being used.
+		''' </summary>
+		''' <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+		Protected Overrides Sub Dispose(ByVal disposing As Boolean)
+			If disposing AndAlso (components IsNot Nothing) Then
+				components.Dispose()
+			End If
+			MyBase.Dispose(disposing)
+		End Sub
+		#Region "Component Designer generated code"
+		
+		''' <summary> 
+		''' Required method for Designer support - do not modify 
+		''' the contents of this method with the code editor.
+		''' </summary>
+		Private Sub InitializeComponent()
+			Me.components = New System.ComponentModel.Container()
+			Me.gridControl = New DevExpress.XtraGrid.GridControl()
+			Me.gridView = New DevExpress.XtraGrid.Views.Grid.GridView()
+			Me.mvvmContext = New DevExpress.Utils.MVVM.MVVMContext(Me.components)
+			Me.ribbonControl = New DevExpress.XtraBars.Ribbon.RibbonControl()
+			Me.ribbonPage1 = New DevExpress.XtraBars.Ribbon.RibbonPage()
+			Me.ribbonPageGroup1 = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
+			Me.ribbonPageGroup2 = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
+			Me.ribbonStatusBar = New DevExpress.XtraBars.Ribbon.RibbonStatusBar()
+			Me.bsiRecordsCount = New DevExpress.XtraBars.BarStaticItem()
+			Me.bbiPrintPreview = New DevExpress.XtraBars.BarButtonItem()
+			Me.popupMenu = New DevExpress.XtraBars.PopupMenu(Me.components)
+			CType(Me.gridControl, System.ComponentModel.ISupportInitialize).BeginInit()
+			CType(Me.gridView, System.ComponentModel.ISupportInitialize).BeginInit()
+			CType(Me.ribbonControl, System.ComponentModel.ISupportInitialize).BeginInit()
+			CType(Me.mvvmContext, System.ComponentModel.ISupportInitialize).BeginInit()
+			CType(Me.popupMenu, System.ComponentModel.ISupportInitialize).BeginInit()
+			Me.SuspendLayout()
+			' 
+			' ribbonControl
+			' 
+			Me.ribbonControl.ExpandCollapseItem.Id = 0
+			Me.ribbonControl.MaxItemId = 14
+			Me.ribbonControl.Name = "ribbonControl"
+			Me.ribbonControl.Pages.AddRange(New DevExpress.XtraBars.Ribbon.RibbonPage() { Me.ribbonPage1})
+			Me.ribbonControl.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonControlStyle.Office2013
+			Me.ribbonControl.ShowApplicationButton = DevExpress.Utils.DefaultBoolean.False
+			Me.ribbonControl.ToolbarLocation = DevExpress.XtraBars.Ribbon.RibbonQuickAccessToolbarLocation.Hidden
+			Me.ribbonControl.Items.AddRange(New DevExpress.XtraBars.BarItem() { Me.bbiPrintPreview, Me.bsiRecordsCount })
+			<#foreach(var item in viewModelData.Commands){
+				string nameForItem = item.CommandPropertyName.Remove(item.CommandPropertyName.Length -7,7);
+			#>
+			Dim bbi<#=nameForItem#> As New DevExpress.XtraBars.BarButtonItem()
+			bbi<#=nameForItem#>.Caption = "<#=item.Caption#>"
+			bbi<#=nameForItem#>.Name = "bbi<#=nameForItem#>"
+			bbi<#=nameForItem#>.ImageUri.Uri = "<#=item.Caption#>"
+			Me.ribbonControl.Items.Add(bbi<#=nameForItem#>)
+			<#}	#>
+			' 
+			' ribbonPage1
+			' 
+			Me.ribbonPage1.Groups.AddRange(New DevExpress.XtraBars.Ribbon.RibbonPageGroup() { Me.ribbonPageGroup1, Me.ribbonPageGroup2})
+			Me.ribbonPage1.MergeOrder = 0
+			Me.ribbonPage1.Name = "ribbonPage1"
+			Me.ribbonPage1.Text = "Home"
+			' 
+			' ribbonPageGroup1
+			' 
+			Me.ribbonPageGroup1.AllowTextClipping = False
+			<#foreach(var item in viewModelData.Commands){
+				string nameForItem = item.CommandPropertyName.Remove(item.CommandPropertyName.Length -7,7);
+			#>
+			Me.ribbonPageGroup1.ItemLinks.Add(bbi<#=nameForItem#>)
+			<#}#>
+			Me.ribbonPageGroup1.Name = "ribbonPageGroup1"
+			Me.ribbonPageGroup1.ShowCaptionButton = False
+			Me.ribbonPageGroup1.Text = "<#=viewModelData.EntityTypeName#> Tasks"
+			' 
+			' ribbonPageGroup2
+			' 
+			Me.ribbonPageGroup2.ItemLinks.Add(Me.bbiPrintPreview)
+			Me.ribbonPageGroup2.Name = "ribbonPageGroup2"
+			Me.ribbonPageGroup2.Text = "Print and Export"
+			Me.ribbonPageGroup2.AllowTextClipping = False
+			Me.ribbonPageGroup2.ShowCaptionButton = False
+			' 
+			' ribbonStatusBar
+			' 
+			Me.ribbonStatusBar.ItemLinks.Add(Me.bsiRecordsCount)
+			Me.ribbonStatusBar.Name = "ribbonStatusBar"
+			Me.ribbonStatusBar.Ribbon = Me.ribbonControl
+			' 
+			' bbiPrintPreview
+			' 
+			Me.bbiPrintPreview.Caption = "Print Preview"
+			Me.bbiPrintPreview.ImageUri.Uri = "Preview"
+			Me.bbiPrintPreview.Name = "bbiPrintPreview"
+			' 
+			' barStaticItem1
+			' 
+			Me.bsiRecordsCount.Caption = "RECORDS : 2"
+			Me.bsiRecordsCount.Name = "bsiRecordsCount"
+			Me.bsiRecordsCount.TextAlignment = System.Drawing.StringAlignment.Near
+			' 
+			' gridControl
+			' 
+			Me.gridControl.Dock = System.Windows.Forms.DockStyle.Fill
+			Me.gridControl.Location = New System.Drawing.Point(5, 116)
+			Me.gridControl.MainView = Me.gridView
+			Me.gridControl.MenuManager = Me.ribbonControl
+			Me.gridControl.Name = "gridControl"
+			Me.gridControl.Size = New System.Drawing.Size(779, 311)
+			Me.gridControl.TabIndex = 2
+			Me.gridControl.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() { Me.gridView})
+			' 
+			' gridView
+			' 
+			Me.gridView.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+			Me.gridView.GridControl = Me.gridControl
+			Me.gridView.Name = "gridView"
+			Me.gridView.OptionsBehavior.Editable = False
+			Me.gridView.OptionsBehavior.ReadOnly = True
+			Me.<#=bindingSourceName#> = New System.Windows.Forms.BindingSource(Me.components)
+			Me.<#=bindingSourceName#>.DataSource = GetType(Global.<#=viewModelData.EntityTypeFullName#>)
+			Me.gridControl.DataSource = <#=bindingSourceName#>
+
+			Dim parameters As New DevExpress.XtraGrid.Extensions.PopulateColumnsParameters()
+			<#
+			foreach(var realLookUpInfo in listLookUpInfo){
+			string nameForLookUp =  realLookUpInfo.Property.Name;
+			#>
+			'
+			'<#=nameForLookUp#>
+			'
+			Dim <#=nameForLookUp#>PopulateColumnParameters As New DevExpress.XtraGrid.Extensions.PopulateColumnParameters()
+			<#=nameForLookUp#>PopulateColumnParameters.FieldName = "<#=realLookUpInfo.Property.Name#>"
+			<#=nameForLookUp#>PopulateColumnParameters.Path = "<#=realLookUpInfo.Property.Name#>.<#=realLookUpInfo.Lookup.DisplayMemberPropertyName#>"
+			parameters.CustomColumnParameters.Add(<#=nameForLookUp#>PopulateColumnParameters)
+			<#if(realLookUpInfo.Lookup.ForeignKeyInfo != null && realLookUpInfo.Lookup.ForeignKeyInfo.ForeignKeyPropertyName != null){#>
+			Dim <#=nameForLookUp#>PopulateColumnParameters_NotGenerate As New DevExpress.XtraGrid.Extensions.PopulateColumnParameters()
+			<#=nameForLookUp#>PopulateColumnParameters_NotGenerate.FieldName = "<#=realLookUpInfo.Lookup.ForeignKeyInfo.ForeignKeyPropertyName#>"
+			<#=nameForLookUp#>PopulateColumnParameters_NotGenerate.ColumnVisible = False
+			parameters.CustomColumnParameters.Add(<#=nameForLookUp#>PopulateColumnParameters_NotGenerate)
+			<#}#> 
+			<#}#> 
+			<#foreach(var noVisibleColumn in NonVisibleTypes){#>	
+			Dim <#=noVisibleColumn#>PopulateColumnParameters_NotVisible As New DevExpress.XtraGrid.Extensions.PopulateColumnParameters()
+            <#=noVisibleColumn#>PopulateColumnParameters_NotVisible.FieldName = "<#=noVisibleColumn#>"
+		    <#=noVisibleColumn#>PopulateColumnParameters_NotVisible.ColumnVisible = False
+			parameters.CustomColumnParameters.Add(<#=noVisibleColumn#>PopulateColumnParameters_NotVisible)
+			<#}#> 
+			Me.gridView.PopulateColumns(GetType(Global.<#=viewModelData.EntityTypeFullName#>), parameters)
+			' 
+            ' popupMenu1
+            ' 
+			<#foreach(var item in viewModelData.Commands){
+				string nameForItem = item.CommandPropertyName.Remove(item.CommandPropertyName.Length -7,7);
+			#>
+			Me.popupMenu.ItemLinks.Add(bbi<#=nameForItem#>)
+			<#}#>
+			Me.popupMenu.Name = "popupMenu"
+			Me.popupMenu.Ribbon = Me.ribbonControl
+			' 
+			' mvvmContext
+			' 
+			Me.mvvmContext.ContainerControl = Me
+            Me.mvvmContext.ViewModelType = GetType(Global.<#=mvvmContextFullName#>)
+			<#foreach(var item in viewModelData.Commands){
+				string nameForItem = item.CommandPropertyName.Remove(item.CommandPropertyName.Length -7,7);
+			#>
+			<#
+			if(String.IsNullOrEmpty(item.ParameterPropertyName))
+			{
+			#>
+			Me.mvvmContext.BindingExpressions.Add(DevExpress.Utils.MVVM.BindingExpression.CreateCommandBinding(GetType(Global.<#=mvvmContextFullName#>), "<#=nameForItem#>", bbi<#=nameForItem#>))
+			<#}#>
+			<#
+			if(!String.IsNullOrEmpty(item.ParameterPropertyName))
+			{
+			#>
+			Me.mvvmContext.BindingExpressions.Add(DevExpress.Utils.MVVM.BindingExpression.CreateParameterizedCommandBinding(GetType(Global.<#=mvvmContextFullName#>), "<#=nameForItem#>", "<#=item.ParameterPropertyName#>", bbi<#=nameForItem#>))
+			<#}#>
+			<#}#>
+            Me.mvvmContext.RegistrationExpressions.AddRange(New DevExpress.Utils.MVVM.RegistrationExpression() {
+            DevExpress.Utils.MVVM.RegistrationExpression.RegisterLayoutSerializationService(Nothing, False, DevExpress.Utils.DefaultBoolean.Default, Me.gridControl)})
+			'
+            '<#=viewName#>
+            '
+			Me.AutoScaleDimensions = New System.Drawing.SizeF(6F, 13F)
+			Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+			Me.Controls.Add(Me.ribbonStatusBar)
+			Me.Controls.Add(Me.gridControl)
+			Me.Controls.Add(Me.ribbonControl)
+			Me.Size = New System.Drawing.Size(1024, 768)
+			Me.Name = "<#=viewName#>"
+			CType(Me.gridControl, System.ComponentModel.ISupportInitialize).EndInit()
+			CType(Me.gridView, System.ComponentModel.ISupportInitialize).EndInit()
+			CType(Me.ribbonControl, System.ComponentModel.ISupportInitialize).EndInit()
+			CType(Me.mvvmContext, System.ComponentModel.ISupportInitialize).EndInit()
+			CType(Me.popupMenu, System.ComponentModel.ISupportInitialize).EndInit()
+			Me.ResumeLayout(False)
+			Me.PerformLayout()
+		End Sub
+
+		#End Region
+
+		Private gridControl As DevExpress.XtraGrid.GridControl
+		Private gridView As DevExpress.XtraGrid.Views.Grid.GridView
+		Private mvvmContext As DevExpress.Utils.MVVM.MVVMContext
+		Private ribbonControl As DevExpress.XtraBars.Ribbon.RibbonControl
+		Private ribbonPage1 As DevExpress.XtraBars.Ribbon.RibbonPage
+		Private ribbonPageGroup1 As DevExpress.XtraBars.Ribbon.RibbonPageGroup
+		Private <#=bindingSourceName#> As System.Windows.Forms.BindingSource
+		Private bbiPrintPreview As DevExpress.XtraBars.BarButtonItem
+		Private ribbonPageGroup2 As DevExpress.XtraBars.Ribbon.RibbonPageGroup
+		Private ribbonStatusBar As DevExpress.XtraBars.Ribbon.RibbonStatusBar
+		Private bsiRecordsCount As DevExpress.XtraBars.BarStaticItem
+		Private popupMenu As DevExpress.XtraBars.PopupMenu
+	End Class
+End Namespace
+<#
+}
+#>

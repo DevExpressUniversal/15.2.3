@@ -1,0 +1,46 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:dxdb="clr-namespace:DevExpress.Xpf.DemoBase"
+    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+    xmlns:helpers="clr-namespace:DevExpress.Xpf.DemoBase.Helpers"
+    xmlns:ddhelpers="clr-namespace:DevExpress.DemoData.Helpers;assembly=DevExpress.DemoData.v15.2.Core"
+    xmlns:dxl="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <ddhelpers:SelectConverter x:Key="LoadingBlackVisibilityConverter" DefaultValue="{ddhelpers:VisibilityValue S=Collapsed}">
+        <ddhelpers:SelectState Key="Black" Value="{ddhelpers:VisibilityValue S=Visible}" />
+    </ddhelpers:SelectConverter>
+    <ddhelpers:SelectConverter x:Key="LoadingWhiteVisibilityConverter" DefaultValue="{ddhelpers:VisibilityValue S=Collapsed}">
+        <ddhelpers:SelectState Key="White" Value="{ddhelpers:VisibilityValue S=Visible}" />
+    </ddhelpers:SelectConverter>
+    <ddhelpers:SelectConverter x:Key="LoadingOpacityConverter">
+        <!--<ddhelpers:SelectConverter.Transitions>
+            <ddhelpers:SelectTransition From="False" To="True">
+                <Storyboard>
+                    <DoubleAnimation From="0" To="1" Duration="00:00:00.07" Storyboard.TargetProperty="(UIElement.Opacity)" />
+                </Storyboard>
+            </ddhelpers:SelectTransition>
+            <ddhelpers:SelectTransition From="True" To="False">
+                <Storyboard>
+                    <DoubleAnimation From="1" To="0" Duration="00:00:00.07" Storyboard.TargetProperty="(UIElement.Opacity)" />
+                </Storyboard>
+            </ddhelpers:SelectTransition>
+        </ddhelpers:SelectConverter.Transitions>-->
+        <ddhelpers:SelectState Key="False" Value="{ddhelpers:DoubleValue S=0}" />
+        <ddhelpers:SelectState Key="True" Value="{ddhelpers:DoubleValue S=1}" />
+    </ddhelpers:SelectConverter>
+
+    <Style TargetType="dxdb:DemoBaseLoadingControl">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="dxdb:DemoBaseLoadingControl">
+                    <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Opacity="{ddhelpers:SelectBinding Binding={Binding LoadingInProgress, RelativeSource={RelativeSource TemplatedParent}}, Converter={StaticResource LoadingOpacityConverter}}">
+                        <Image Source="/DevExpress.Xpf.DemoBase.v15.2;component/Images/LoadingBlack.png" Stretch="None"
+                               Visibility="{ddhelpers:SelectBinding Binding={Binding LoadingBackground, RelativeSource={RelativeSource TemplatedParent}}, Converter={StaticResource LoadingBlackVisibilityConverter}}" />
+                        <Image Source="/DevExpress.Xpf.DemoBase.v15.2;component/Images/LoadingWhite.png" Stretch="None"
+                               Visibility="{ddhelpers:SelectBinding Binding={Binding LoadingBackground, RelativeSource={RelativeSource TemplatedParent}}, Converter={StaticResource LoadingWhiteVisibilityConverter}}" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

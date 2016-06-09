@@ -1,0 +1,41 @@
+﻿<UserControl x:Class="DevExpress.Xpf.Spreadsheet.Forms.GroupUngroupControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:dxsps="clr-namespace:DevExpress.Xpf.Spreadsheet" 
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <dxsps:SpreadsheetControlStringIdConverter x:Key="stringIdConverter" />
+    </UserControl.Resources>
+    <Grid Margin="5,5">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="{Binding LabelText}" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <Separator Margin="10,0,0,0" Grid.Column="1" VerticalAlignment="Center"/>
+            </Grid>
+        </Grid>
+        <Grid Grid.Row="1">
+            <RadioButton Margin="10,10,0,0" 
+                         GroupName="group" 
+                         Content="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_OutlineGroupFormRows, Converter={StaticResource stringIdConverter}}"
+                         IsChecked="{Binding Rows, ConverterParameter=0, Mode=TwoWay}" />
+        </Grid>
+        <Grid Grid.Row="2">
+            <RadioButton Margin="10,5,0,0" 
+                         GroupName="group" 
+                         Content="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_OutlineGroupFormColumns, Converter={StaticResource stringIdConverter}}"
+                         IsChecked="{Binding !Rows, ConverterParameter=0, Mode=TwoWay}" />
+        </Grid>
+    </Grid>
+</UserControl>

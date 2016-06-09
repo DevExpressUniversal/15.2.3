@@ -1,0 +1,147 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application>
+  <ActionDesign>
+    <Actions>
+      <Action Id="RefreshKpi" Caption="KPI の更新" />
+      <Action Id="ShowChart" Caption="グラフの表示" />
+    </Actions>
+  </ActionDesign>
+  <BOModel>
+    <Class Name="DevExpress.ExpressApp.Kpi.BaseKpiObject" Caption="ベース Kpi オブジェクト" />
+    <Class Name="DevExpress.ExpressApp.Kpi.IDateRange" Caption="IDate 範囲">
+      <OwnMembers>
+        <Member Name="Caption" Caption="キャプション" />
+        <Member Name="EndPoint" Caption="終了点" />
+        <Member Name="Name" Caption="名前" />
+        <Member Name="StartPoint" Caption="開始点" />
+      </OwnMembers>
+    </Class>
+    <Class Name="DevExpress.ExpressApp.Kpi.KpiDashboardOrganizationItem">
+      <OwnMembers>
+        <Member Name="ActionsToolbarVisibility" Caption="操作ツールバーの表示" />
+        <Member Name="Kpi" Caption="KPI" />
+        <Member Name="Id" Caption="ID" />
+        <Member Name="Item" Caption="アイテム" />
+        <Member Name="Visibility" Caption="表示の有無" />
+      </OwnMembers>
+    </Class>
+    <Class Name="DevExpress.ExpressApp.Kpi.KpiDefinition" Caption="定義">
+      <OwnMembers>
+        <Member Name="Active" Caption="アクティブ" />
+        <Member Name="Compare" Caption="比較" />
+        <Member Name="Criteria" Caption="基準" />
+        <Member Name="Current" Caption="現在" />
+        <Member Name="Direction" Caption="方向" />
+        <Member Name="EnableCustomizeRepresentation" Caption="カスタム表示の有効" />
+        <Member Name="Expression" Caption="式" />
+        <Member Name="GreenZone" Caption="グリーン ゾーン" />
+        <Member Name="MeasurementFrequency" Caption="測定頻度" />
+        <Member Name="Name" Caption="名前" />
+        <Member Name="Objects" Caption="オブジェクト" />
+        <Member Name="Period" Caption="期間" />
+        <Member Name="Range" Caption="範囲" />
+        <Member Name="RangeToCompare" Caption="比較する範囲" />
+        <Member Name="RedZone" Caption="レッド ゾーン" />
+        <Member Name="SuppressedSeries" Caption="抑制済みシリーズ" />
+        <Member Name="TargetObjectType" Caption="ターゲット オブジェクト タイプ" />
+      </OwnMembers>
+    </Class>
+    <Class Name="DevExpress.ExpressApp.Kpi.KpiHistoryItem" Caption="KPI 履歴アイテム">
+      <OwnMembers>
+        <Member Name="RangeEnd" Caption="範囲の終了" />
+        <Member Name="RangeStart" Caption="範囲の開始" />
+        <Member Name="Value" Caption="値" />
+      </OwnMembers>
+    </Class>
+    <Class Name="DevExpress.ExpressApp.Kpi.KpiInstance" Caption="KPI インスタンス">
+      <OwnMembers>
+        <Member Name="Change" Caption="変更" />
+        <Member Name="ChartDataSource" Caption="グラフ データソース" />
+        <Member Name="Current" Caption="現在" />
+        <Member Name="GaugeDataSource" Caption="ゲージ データソース" />
+        <Member Name="HistoryItems" Caption="履歴アイテム" />
+        <Member Name="KpiName" Caption="KPI 名" />
+        <Member Name="Period" Caption="期間" />
+        <Member Name="Previous" Caption="前回" />
+        <Member Name="Scorecards" Caption="スコアカード" />
+        <Member Name="Sparkline" Caption="スパークライン" />
+        <Member Name="Trend" Caption="傾向" />
+      </OwnMembers>
+    </Class>
+    <Class Name="DevExpress.ExpressApp.Kpi.KpiScorecard" Caption="スコアカード">
+      <OwnMembers>
+        <Member Name="Indicators" Caption="インジケータ" />
+        <Member Name="Name" Caption="名前" />
+      </OwnMembers>
+    </Class>
+  </BOModel>
+  <Localization>
+    <LocalizationGroup Name="DashboardOrganizationItems">
+      <LocalizationItem Name="Kpi" Value="KPI" />
+    </LocalizationGroup>
+    <LocalizationGroup Name="DateRanges">
+      <LocalizationItem Name="DayMonthAgo" Value="前月同日" />
+      <LocalizationItem Name="DayWeekAgo" Value="前週同日" />
+      <LocalizationItem Name="DayYearAgo" Value="前年同日" />
+      <LocalizationItem Name="LastMonthToDate" Value="先月累計" />
+      <LocalizationItem Name="LastTenDays" Value="過去10日間" />
+      <LocalizationItem Name="LastThirtyDays" Value="過去30日間" />
+      <LocalizationItem Name="LastThreeDays" Value="過去3日間" />
+      <LocalizationItem Name="LastWeekToDate" Value="今週と先週の同日" />
+      <LocalizationItem Name="LastYearToDate" Value="今年と昨年の同日" />
+      <LocalizationItem Name="Now" Value="今" />
+      <LocalizationItem Name="ThisMonthToDate" Value="当月累計" />
+      <LocalizationItem Name="ThisWeekToDate" Value="週間累計" />
+      <LocalizationItem Name="ThisYearToDate" Value="年間累計" />
+      <LocalizationItem Name="Today" Value="今日" />
+      <LocalizationItem Name="Yesterday" Value="昨日" />
+    </LocalizationGroup>
+    <LocalizationGroup Name="Enums">
+      <LocalizationGroup Name="DevExpress.ExpressApp.Editors.Trend" Value="傾向">
+        <LocalizationItem Name="Better" Value="向上" />
+        <LocalizationItem Name="NoChange" Value="変更なし" />
+        <LocalizationItem Name="Worse" Value="低下" />
+      </LocalizationGroup>
+      <LocalizationGroup Name="DevExpress.ExpressApp.Kpi.Direction" Value="方向">
+        <LocalizationItem Name="HighIsBetter" Value="高数値が良い" />
+        <LocalizationItem Name="LowIsBetter" Value="低数値が良い" />
+      </LocalizationGroup>
+      <LocalizationGroup Name="DevExpress.ExpressApp.Kpi.MeasurementType">
+        <LocalizationItem Name="Current" Value="現在" />
+        <LocalizationItem Name="Previous" Value="前回" />
+      </LocalizationGroup>
+      <LocalizationGroup Name="DevExpress.ExpressApp.Kpi.TimeIntervalType" Value="時間間隔タイプ">
+        <LocalizationItem Name="Day" Value="日" />
+        <LocalizationItem Name="Hour" Value="時間" />
+        <LocalizationItem Name="Month" Value="月" />
+        <LocalizationItem Name="Week" Value="週" />
+        <LocalizationItem Name="Year" Value="年" />
+      </LocalizationGroup>
+    </LocalizationGroup>
+    <LocalizationGroup Name="Exceptions">
+      <LocalizationItem Name="RangeNotFound" Value="範囲 '{0}' が見つかりません。" />
+    </LocalizationGroup>
+  </Localization>
+  <Views>
+    <DetailView Id="KpiDefinition_DetailView">
+      <Layout>
+        <TabbedGroup Id="Tabs">
+          <LayoutGroup Id="Definition" Caption="定義">
+            <LayoutGroup Id="SimpleEditors">
+              <LayoutGroup Id="SizeableEditors" Caption="基準" />
+            </LayoutGroup>
+            <LayoutGroup Id="Options">
+              <TabbedGroup Id="OptionsTabs">
+                <LayoutGroup Id="Zones" Caption="ゾーン" />
+              </TabbedGroup>
+            </LayoutGroup>
+          </LayoutGroup>
+          <LayoutGroup Id="Preview" Caption="プレビュー">
+            <LayoutGroup Id="Objects_Group" Caption="オブジェクト" />
+            <LayoutGroup Id="Preview.Objects_Group" Caption="プレビュー.Objects_Group" />
+          </LayoutGroup>
+        </TabbedGroup>
+      </Layout>
+    </DetailView>
+  </Views>
+</Application>

@@ -1,0 +1,321 @@
+﻿<!--BEGIN WPF-->
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"                    
+                    xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys">
+    <!--END WPF-->
+    <!--ONLY SL
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk">
+ONLY SL-->
+
+    <!--BEGIN REPLACE 'TreeView'sdk:TreeView'-->
+    <Style x:Key="{dxt:DefaultStyleThemeKey ThemeName=Office2007Silver, FullName=System.Windows.Controls.TreeView}" TargetType="{x:Type TreeView}">
+        <Setter Property="Background" Value="#FFFFFFFF" />
+        <Setter Property="BorderBrush" Value="#FF6f7074" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="Padding" Value="1" />
+        <Setter Property="Foreground" Value="#FF000000 " />
+        <!--BEGIN WPF-->
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <!--END WPF-->
+        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto" />
+        <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="VirtualizingStackPanel.IsVirtualizing" Value="True"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type TreeView}">
+                    <Grid>
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal" />
+                                <VisualState x:Name="MouseOver" />
+                                <VisualState x:Name="Pressed" />
+                                <VisualState x:Name="Disabled" />
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="FocusStates">
+                                <VisualState x:Name="Unfocused" />
+                                <VisualState x:Name="Focused" />
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="ValidationStates">
+                                <VisualState x:Name="Valid" />
+                                <VisualState x:Name="InvalidUnfocused" />
+                                <VisualState x:Name="InvalidFocused" />
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}">
+                            <ScrollViewer x:Name="ScrollViewer" HorizontalScrollBarVisibility="{TemplateBinding ScrollViewer.HorizontalScrollBarVisibility}"  VerticalScrollBarVisibility="{TemplateBinding ScrollViewer.VerticalScrollBarVisibility}"  IsTabStop="False" BorderThickness="0" CanContentScroll="True" >
+                                <ItemsPresenter/>
+                            </ScrollViewer>
+                        </Border>
+                    </Grid> 
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="VirtualizingStackPanel.IsVirtualizing"
+                 Value="true">
+                <Setter Property="ItemsPanel">
+                    <Setter.Value>
+                        <ItemsPanelTemplate>
+                            <VirtualizingStackPanel/>
+                        </ItemsPanelTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="{dxt:DefaultStyleThemeKey ThemeName=Office2007Silver, FullName=System.Windows.Controls.TreeViewItem}" TargetType="{x:Type TreeViewItem}">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Foreground" Value="#FF000000" />
+        <Setter Property="Padding" Value="5,2,5,2" />
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="ItemsPanel">
+            <Setter.Value>
+                <ItemsPanelTemplate>
+                    <VirtualizingStackPanel/>
+                </ItemsPanelTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type TreeViewItem}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" MinWidth="19" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <ToggleButton x:Name="Expander" IsTabStop="False" IsChecked="{Binding IsExpanded, RelativeSource={RelativeSource TemplatedParent}}">
+                            <ToggleButton.Template>
+                                <ControlTemplate TargetType="ToggleButton">
+                                    <Grid Background="Transparent" Width="16" Height="16">
+                                        <VisualStateManager.VisualStateGroups>
+                                            <VisualStateGroup x:Name="CommonStates">
+                                                <VisualState x:Name="Normal" />
+                                                <VisualState x:Name="MouseOver" />
+                                                <VisualState x:Name="Disabled">
+                                                    <Storyboard>
+                                                        <DoubleAnimation Duration="0" To="0.5" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="IsUnchecked" />
+                                                    </Storyboard>
+                                                </VisualState>
+                                                <VisualState x:Name="Pressed" />
+                                            </VisualStateGroup>
+                                            <VisualStateGroup x:Name="CheckStates">
+                                                <VisualState x:Name="Unchecked" />
+                                                <VisualState x:Name="Checked">
+                                                    <Storyboard>
+                                                        <ObjectAnimationUsingKeyFrames Duration="0" Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="IsUnchecked">
+                                                            <DiscreteObjectKeyFrame KeyTime="0">
+                                                                <DiscreteObjectKeyFrame.Value>
+                                                                    <Visibility>
+                                                                        Collapsed
+                                                                    </Visibility>
+                                                                </DiscreteObjectKeyFrame.Value>
+                                                            </DiscreteObjectKeyFrame>
+                                                        </ObjectAnimationUsingKeyFrames>
+                                                        <ObjectAnimationUsingKeyFrames Duration="0" Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="IsChecked">
+                                                            <DiscreteObjectKeyFrame KeyTime="0">
+                                                                <DiscreteObjectKeyFrame.Value>
+                                                                    <Visibility>
+                                                                        Visible
+                                                                    </Visibility>
+                                                                </DiscreteObjectKeyFrame.Value>
+                                                            </DiscreteObjectKeyFrame>
+                                                        </ObjectAnimationUsingKeyFrames>
+                                                    </Storyboard>
+                                                </VisualState>
+                                                <VisualState x:Name="Indeterminate" />
+                                            </VisualStateGroup>
+                                        </VisualStateManager.VisualStateGroups>
+                                        <Grid x:Name="Root" Background="Transparent" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                            <Border x:Name="IsUnchecked" CornerRadius="2" Width="9" Height="9">
+                                                <Border.Background>
+                                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                                        <GradientStop Color="#FF7A7C7E " Offset="0" />
+                                                        <GradientStop Color="#FF404143 " Offset="1" />
+                                                    </LinearGradientBrush>
+                                                </Border.Background>
+                                                <Border CornerRadius="1" Margin="1">
+                                                    <Border.Background>
+                                                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                                            <GradientStop Color="#FFF2F3F3 " Offset="0" />
+                                                            <GradientStop Color="#FFBFC1C4 " Offset="1" />
+                                                        </LinearGradientBrush>
+                                                    </Border.Background>
+                                                    <Grid>
+                                                        <Path Stretch="Fill" Fill="#FF272526 " Data="F1 M 17,8.00006L 18,8.00006L 18,10L 20,10L 20,11L 18,11L 18,13.0001L 17,13.0001L 17,11L 15,11L 15,10L 17,10L 17,8.00006 Z " Width="5" Height="5" />
+                                                    </Grid>
+                                                </Border>
+                                            </Border>
+                                            <Border x:Name="IsChecked" CornerRadius="2" Visibility="Collapsed" Width="9" Height="9">
+                                                <Border.Background>
+                                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                                        <GradientStop Color="#FF7A7C7E " Offset="0" />
+                                                        <GradientStop Color="#FF404143 " Offset="1" />
+                                                    </LinearGradientBrush>
+                                                </Border.Background>
+                                                <Border CornerRadius="1" Margin="1">
+                                                    <Border.Background>
+                                                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                                            <GradientStop Color="#FFF2F3F3 " Offset="0" />
+                                                            <GradientStop Color="#FFBFC1C4 " Offset="1" />
+                                                        </LinearGradientBrush>
+                                                    </Border.Background>
+                                                    <Grid Height="1">
+                                                        <Rectangle Stretch="Fill" Fill="#FF272526 " Width="5" />
+                                                    </Grid>
+                                                </Border>
+                                            </Border>
+                                        </Grid>
+                                    </Grid>
+                                </ControlTemplate>
+                            </ToggleButton.Template>
+                        </ToggleButton>
+                        <Grid Grid.Column="1" Grid.ColumnSpan="2">
+                            <Border x:Name="TreeListItemSelection" Grid.Column="2" Opacity="0" CornerRadius="2" Margin="3,0,0,0">
+                                <Border.Background>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FFB8A27A" Offset="0" />
+                                        <GradientStop Color="#FFC0B297" Offset="1" />
+                                    </LinearGradientBrush>
+                                </Border.Background>
+                                <Border CornerRadius="1" Margin="1">
+                                    <Border.Background>
+                                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                            <GradientStop Color="#FFEDDBC3" Offset="0" />
+                                            <GradientStop Color="#FFFFEBA7" Offset="1" />
+                                        </LinearGradientBrush>
+                                    </Border.Background>
+                                    <Border CornerRadius="1" Margin="1">
+                                        <Border.Background>
+                                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                                <GradientStop Color="#FFFCE5C6" />
+                                                <GradientStop Color="#FFFFE18A" Offset="1" />
+                                                <GradientStop Color="#FFFCC972" Offset="0.5" />
+                                                <GradientStop Color="#FFFCBD4C" Offset="0.5" />
+                                            </LinearGradientBrush>
+                                        </Border.Background>
+                                    </Border>
+                                </Border>
+                            </Border>
+                            <Border x:Name="TreeListItemHoverSelection" Grid.Column="1" Opacity="0" CornerRadius="2" Margin="3,0,0,0">
+                                <Border.Background>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FFE7D490 " Offset="0" />
+                                        <GradientStop Color="#FFBBA67F " Offset="1" />
+                                    </LinearGradientBrush>
+                                </Border.Background>
+                                <Border CornerRadius="1" Margin="1">
+                                    <Border.Background>
+                                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                            <GradientStop Color="#FFFFFFFA " Offset="0" />
+                                            <GradientStop Color="#FFFFF9DE " Offset="1" />
+                                        </LinearGradientBrush>
+                                    </Border.Background>
+                                    <Border CornerRadius="1" Margin="1">
+                                        <Border.Background>
+                                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                                <GradientStop Color="#FFFFFCED" Offset="0" />
+                                                <GradientStop Color="#FFFFEDA9" Offset="1" />
+                                                <GradientStop Color="#FFFFEB9F" Offset="0.5" />
+                                                <GradientStop Color="#FFFFDD5D" Offset="0.5" />
+                                            </LinearGradientBrush>
+                                        </Border.Background>
+                                    </Border>
+                                </Border>
+                            </Border>
+                            <Border x:Name="TreeListItemInactiveSelection" Grid.Column="1" Opacity="0" CornerRadius="2" Margin="3,0,0,0">
+                                <Border.Background>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FFB8A27A" Offset="0" />
+                                        <GradientStop Color="#FFC0B297" Offset="1" />
+                                    </LinearGradientBrush>
+                                </Border.Background>
+                                <Border CornerRadius="1" Margin="1">
+                                    <Border.Background>
+                                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                            <GradientStop Color="#FFEDDBC3" Offset="0" />
+                                            <GradientStop Color="#FFFFEBA7" Offset="1" />
+                                        </LinearGradientBrush>
+                                    </Border.Background>
+                                    <Border CornerRadius="1" Margin="1">
+                                        <Border.Background>
+                                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                                <GradientStop Color="#FFFCE5C6" />
+                                                <GradientStop Color="#FFFFE18A" Offset="1" />
+                                                <GradientStop Color="#FFFCC972" Offset="0.5" />
+                                                <GradientStop Color="#FFFCBD4C" Offset="0.5" />
+                                            </LinearGradientBrush>
+                                        </Border.Background>
+                                    </Border>
+                                </Border>
+                            </Border>
+                            <!--<Border x:Name="TreeListItemFocusState" Style="{StaticResource FocusTemplate}" Opacity="0" />-->
+                        </Grid>
+                        <Border x:Name="contentBorder" Background="{TemplateBinding Background}" Grid.Column="1" Grid.ColumnSpan="2" SnapsToDevicePixels="true">
+                            <ContentPresenter x:Name="PART_Header" ContentSource="Header" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                        </Border>
+                        <ItemsPresenter x:Name="ItemsHost" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" />
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsExpanded" Value="False">
+                            <Setter TargetName="ItemsHost" Property="Visibility" Value="Collapsed" />
+                        </Trigger>
+                        <Trigger Property="HasItems" Value="False">
+                            <Setter TargetName="Expander" Property="Visibility" Value="Hidden" />
+                        </Trigger>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter TargetName="TreeListItemSelection" Property="Opacity" Value="1" />
+                            <Setter TargetName="TreeListItemHoverSelection" Property="Opacity" Value="0" />
+                            <Setter Property="Foreground" Value="#FF000000" />
+                        </Trigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsSelectionActive" Value="False" />
+                                <Condition Property="IsFocused" Value="True" />
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="TreeListItemInactiveSelection" Property="Opacity" Value="0" />
+                            <Setter TargetName="TreeListItemSelection" Property="Opacity" Value="0" />
+                            <Setter TargetName="TreeListItemHoverSelection" Property="Opacity" Value="1" />
+                            <Setter Property="Foreground" Value="#FF000000" />
+                        </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsSelected" Value="True" />
+                                <Condition Property="IsSelectionActive" Value="False" />
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="TreeListItemInactiveSelection" Property="Opacity" Value="0.75" />
+                            <Setter TargetName="TreeListItemSelection" Property="Opacity" Value="0" />
+                            <Setter TargetName="TreeListItemHoverSelection" Property="Opacity" Value="0" />
+                            <Setter Property="Foreground" Value="#FF000000" />
+                        </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition SourceName="contentBorder" Property="IsMouseOver" Value="True" />
+                                <Condition Property="IsSelected" Value="False" />
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="TreeListItemSelection" Property="Opacity" Value="0" />
+                            <Setter TargetName="TreeListItemHoverSelection" Property="Opacity" Value="1" />
+                            <Setter Property="Foreground" Value="#FF000000" />
+                        </MultiTrigger>
+                        <Trigger Property="IsFocused" Value="True">
+                            <Setter TargetName="TreeListItemSelection" Property="Opacity" Value="1" />
+                            <Setter TargetName="TreeListItemHoverSelection" Property="Opacity" Value="0" />
+                            <Setter Property="Foreground" Value="#FF000000" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="PART_Header" Property="Opacity" Value="0.35" />
+                            <Setter TargetName="ItemsHost" Property="Opacity" Value="0.35" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!--END REPLACE 'TreeView'sdk:TreeView'-->
+</ResourceDictionary>

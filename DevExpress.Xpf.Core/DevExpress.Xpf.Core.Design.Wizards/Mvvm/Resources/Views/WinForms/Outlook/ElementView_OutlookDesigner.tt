@@ -1,0 +1,771 @@
+﻿<#@ template language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="DevExpress.Design.Mvvm" #>
+<#@ import namespace="DevExpress.Xpf.Core.Design.Wizards.Mvvm.EntityFramework" #>
+<#@ import namespace="DevExpress.Xpf.Core.Design.Wizards.Mvvm" #>
+<#@ import namespace="DevExpress.Xpf.Core.Design.Wizards.Mvvm.ViewModelData" #>
+<#@ import namespace="DevExpress.Xpf.Core.Native" #>
+<#@ import namespace ="DevExpress.Mvvm.UI.Native.ViewGenerator"#>
+<#@ import namespace ="DevExpress.Entity.Model"#>
+<#@ import namespace ="DevExpress.Mvvm.Native"#>
+<#
+	T4TemplateInfo templateInfo = this.GetTemplateInfo();
+	EntityViewModelData viewModelData = templateInfo.Properties["IViewModelInfo"] as EntityViewModelData;
+	UIType uiType = (UIType)templateInfo.Properties["UIType"];
+    string viewName = templateInfo.Properties["ViewName"].ToString();    
+    string localNamespace = templateInfo.Properties["Namespace"].ToString();
+	string viewFullName = localNamespace +"." + viewName;
+	string mvvmContextFullName = viewModelData.Namespace+"."+viewModelData.Name;
+	string bindingSourceName = Char.ToLowerInvariant(viewName[0]) + viewName.Substring(1) + "BindingSource";
+
+	 List<PropertyEditorInfo> listLookUpInfo = templateInfo.Properties["GeneratedLookups"] as List<PropertyEditorInfo>;
+	bool IsVisualBasic = (bool)templateInfo.Properties["IsVisualBasic"];
+#>
+<#
+if(!IsVisualBasic){
+#>
+namespace <#=viewFullName#> {
+    partial class <#=viewName#> {
+        /// <summary> 
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary> 
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing) {
+            if(disposing && (components != null)) {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+		 #region Component Designer generated code
+
+        /// <summary> 
+        /// Required method for Designer support - do not modify 
+        /// the contents of this method with the code editor.
+        /// </summary>
+		private void InitializeComponent() {
+			this.components = new System.ComponentModel.Container();
+			this.dataLayoutControl1 = new DevExpress.XtraDataLayout.DataLayoutControl();
+			this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
+			this.mvvmContext = new DevExpress.Utils.MVVM.MVVMContext(this.components);
+			this.mainRibbonControl = new DevExpress.XtraBars.Ribbon.RibbonControl();
+			this.mainRibbonPage = new DevExpress.XtraBars.Ribbon.RibbonPage();
+            this.mainRibbonPageGroup = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+			this.ribbonPageGroupLayout = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.bbiCustomize = new DevExpress.XtraBars.BarButtonItem();
+			<#foreach(var lookUpTable in viewModelData.LookUpTables){
+				string nameForGridControl = lookUpTable.LookUpCollectionPropertyAssociationName +"GridControl";
+				string nameForGridView = lookUpTable.LookUpCollectionPropertyAssociationName +"GridView";
+				string nameForBarManager = lookUpTable.LookUpCollectionPropertyAssociationName +"BarManager";
+				string nameForBar = lookUpTable.LookUpCollectionPropertyAssociationName +"Bar";
+				string nameForUserControl = lookUpTable.LookUpCollectionPropertyAssociationName +"XtraUserControl";
+				string nameForPopUpMenu = lookUpTable.LookUpCollectionPropertyAssociationName +"PopUpMenu";
+			#>
+			this.<#=nameForGridControl#> = new DevExpress.XtraGrid.GridControl();
+			this.<#=nameForGridView#> = new DevExpress.XtraGrid.Views.Grid.GridView();
+			this.<#=nameForBarManager#> = new DevExpress.XtraBars.BarManager();
+			this.<#=nameForBar#> = new DevExpress.XtraBars.Bar();
+			this.<#=nameForUserControl#> = new DevExpress.XtraEditors.XtraUserControl();
+			this.<#=nameForPopUpMenu#> = new DevExpress.XtraBars.PopupMenu(this.components);
+			<#foreach(var commandsLookUpTable in lookUpTable.Commands){
+				string nameForBarItemInLookUpTable = lookUpTable.LookUpCollectionPropertyAssociationName + commandsLookUpTable.CommandPropertyName.Remove(commandsLookUpTable.CommandPropertyName.Length -7,7);
+			#>
+			this.bbi<#=nameForBarItemInLookUpTable#> = new DevExpress.XtraBars.BarButtonItem();
+			<#}#>
+			((System.ComponentModel.ISupportInitialize)(this.<#=nameForBarManager#>)).BeginInit();
+			<#}#>
+			<#
+			foreach(var realLookUpInfo in listLookUpInfo){
+			string nameForLookUp = realLookUpInfo.Property.Name+"LookUpEdit";
+			string nameForLookUpBindingSource = realLookUpInfo.Property.Name+ "BindingSource";
+			#>
+			this.<#=nameForLookUp#> = new DevExpress.XtraEditors.GridLookUpEdit();
+			this.<#=nameForLookUpBindingSource#> = new System.Windows.Forms.BindingSource(this.components);
+			<#}#> 
+			this.SuspendLayout();
+			// 
+            // mainRibbonControl
+            // 
+            this.mainRibbonControl.ExpandCollapseItem.Id = 0;
+			this.mainRibbonControl.Items.AddRange(new DevExpress.XtraBars.BarItem[] {this.bbiCustomize});
+            this.mainRibbonControl.Name = "mainRibbonControl";
+			this.mainRibbonControl.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {this.mainRibbonPage});
+            this.mainRibbonControl.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonControlStyle.Office2013;
+            this.mainRibbonControl.ShowApplicationButton = DevExpress.Utils.DefaultBoolean.False;
+            this.mainRibbonControl.ToolbarLocation = DevExpress.XtraBars.Ribbon.RibbonQuickAccessToolbarLocation.Hidden;
+			<#foreach(var mainCommand in viewModelData.Commands){
+				string nameForBarItemMain = mainCommand.CommandPropertyName.Remove(mainCommand.CommandPropertyName.Length -7,7);
+				string imageUri = nameForBarItemMain;
+				if(nameForBarItemMain.Contains("Layout")){
+					imageUri = nameForBarItemMain.Replace("Layout", string.Empty);
+				} 
+			#>
+			DevExpress.XtraBars.BarButtonItem bbi<#=nameForBarItemMain#> = new DevExpress.XtraBars.BarButtonItem();
+			bbi<#=nameForBarItemMain#>.Caption = "<#=mainCommand.Caption#>";
+			bbi<#=nameForBarItemMain#>.Name = "bbi<#=nameForBarItemMain#>";
+			bbi<#=nameForBarItemMain#>.ImageUri.Uri = "<#=imageUri#>";
+			this.mainRibbonControl.Items.Add(bbi<#=nameForBarItemMain#>);
+			<#}#>
+            // 
+            // mainRibbonPage
+            // 
+            this.mainRibbonPage.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
+            this.mainRibbonPageGroup,
+            this.ribbonPageGroupLayout});
+            this.mainRibbonPage.Name = "mainRibbonPage";
+            this.mainRibbonPage.Text = "Home";
+			this.mainRibbonPage.MergeOrder = 0;
+            // 
+            // mainRibbonPageGroup
+            // 
+            this.mainRibbonPageGroup.AllowTextClipping = false;
+			<#foreach(var mainCommand in viewModelData.Commands){
+				string nameForBarItemMain = mainCommand.CommandPropertyName.Remove(mainCommand.CommandPropertyName.Length -7,7);
+				if(!nameForBarItemMain.Contains("Layout")){
+			#>
+			this.mainRibbonPageGroup.ItemLinks.Add(bbi<#=nameForBarItemMain#>);
+			<#}}#>
+            this.mainRibbonPageGroup.Name = "mainRibbonPageGroup";
+            this.mainRibbonPageGroup.ShowCaptionButton = false;
+            this.mainRibbonPageGroup.Text = "<#=viewModelData.EntityTypeName#> Tasks";
+			// 
+            // ribbonPageGroupLayout
+            //
+			this.ribbonPageGroupLayout.AllowTextClipping = false; 
+			this.ribbonPageGroupLayout.ItemLinks.Add(this.bbiCustomize);
+			<#foreach(var mainCommand in viewModelData.Commands){
+				string nameForBarItemMain = mainCommand.CommandPropertyName.Remove(mainCommand.CommandPropertyName.Length -7,7);
+				if(nameForBarItemMain.Contains("Layout")){
+			#>
+			this.ribbonPageGroupLayout.ItemLinks.Add(bbi<#=nameForBarItemMain#>);
+			<#}}#>
+            this.ribbonPageGroupLayout.Name = "ribbonPageGroupLayout";
+            this.ribbonPageGroupLayout.Text = "Layout";
+			// 
+            // bbiCustomize
+            // 
+            this.bbiCustomize.Caption = "Customize";
+            this.bbiCustomize.ImageUri.Uri = "Customization";
+            this.bbiCustomize.Name = "bbiCustomize";
+			// 
+            // layoutControlGroup1
+            // 
+            this.layoutControlGroup1.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
+            this.layoutControlGroup1.GroupBordersVisible = false;
+            this.layoutControlGroup1.Name = "Root";
+            this.layoutControlGroup1.TextVisible = false;
+			// 
+            // dataLayoutControl1
+            // 
+            this.dataLayoutControl1.AllowCustomization = false;
+			this.dataLayoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.dataLayoutControl1.Root = this.layoutControlGroup1;
+			this.<#=bindingSourceName#> = new System.Windows.Forms.BindingSource(this.components);
+			this.<#=bindingSourceName#>.DataSource = typeof(<#=viewModelData.EntityTypeFullName#>);
+			this.dataLayoutControl1.DataSource = <#=bindingSourceName#>;
+			//
+			//Create GridControls
+			//
+			DevExpress.XtraDataLayout.RetrieveFieldsParameters parameters = new DevExpress.XtraDataLayout.RetrieveFieldsParameters();
+			parameters.DataSourceUpdateMode = System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged;
+           	<#
+			//Begin create xtrausercontrol with grid and bar manager//
+			foreach(var lookUpTable in viewModelData.LookUpTables){
+				string nameForGridControl = lookUpTable.LookUpCollectionPropertyAssociationName +"GridControl";
+				string nameForGridView = lookUpTable.LookUpCollectionPropertyAssociationName +"GridView";
+				string nameForBindingSource = lookUpTable.LookUpCollectionPropertyAssociationName +"BindingSource";
+				string nameForBarManager = lookUpTable.LookUpCollectionPropertyAssociationName +"BarManager";
+				string nameForBar = lookUpTable.LookUpCollectionPropertyAssociationName +"Bar";
+				string nameForUserControl = lookUpTable.LookUpCollectionPropertyAssociationName +"XtraUserControl";
+				string nameForPopUpMenu = lookUpTable.LookUpCollectionPropertyAssociationName +"PopUpMenu";
+				string nameForParemeters = lookUpTable.LookUpCollectionPropertyAssociationName +"PopulateColumnsParameters";
+				IEnumerable<IEdmPropertyInfo> scaffoldingProperties = lookUpTable.GetScaffoldingProperties();
+				List<IEdmPropertyInfo>  navigationProperty = new List<IEdmPropertyInfo>();
+				System.Reflection.PropertyInfo[] typeProperties = lookUpTable.EntityType.GetProperties();
+				List<string> NonVisibleTypes = typeProperties.Where(e => !scaffoldingProperties.Any(q => q.Name == e.Name)).Select(e => e.Name).ToList();
+				foreach(IEdmPropertyInfo property in scaffoldingProperties){
+                        if(property.IsForeignKey) NonVisibleTypes.Add(property.Name);
+						if(property.IsNavigationProperty){
+							if(property.PropertyType == viewModelData.EntityType) NonVisibleTypes.Add(property.Name);
+							else navigationProperty.Add(property);
+						}
+                }
+			#>
+			//
+			//<#=nameForGridControl#>
+			//
+			this.<#=nameForGridControl#>.MainView = this.<#=nameForGridView#>;
+			this.<#=nameForGridControl#>.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.<#=nameForGridControl#>.MenuManager = this.mainRibbonControl;
+            this.<#=nameForGridControl#>.Name = "<#=nameForGridControl#>";
+            this.<#=nameForGridControl#>.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.<#=nameForGridView#>});
+			//
+			//<#=nameForGridView#>
+			//
+            this.<#=nameForGridView#>.GridControl = this.<#=nameForGridControl#>;
+            this.<#=nameForGridView#>.Name = "<#=nameForGridView#>";
+            this.<#=nameForGridView#>.OptionsBehavior.Editable = false;
+            this.<#=nameForGridView#>.OptionsBehavior.ReadOnly = true;
+			//
+			//<#=nameForParemeters#>
+			//
+			DevExpress.XtraGrid.Extensions.PopulateColumnsParameters <#=nameForParemeters#> = new DevExpress.XtraGrid.Extensions.PopulateColumnsParameters();
+			<#foreach(var noVisibleColumn in NonVisibleTypes){
+			 string nameForNonVisibleColumn = noVisibleColumn + lookUpTable.LookUpCollectionPropertyAssociationName;
+			#>	
+			DevExpress.XtraGrid.Extensions.PopulateColumnParameters <#=nameForNonVisibleColumn#>ChildPopulateColumnParameters_NotVisible = new DevExpress.XtraGrid.Extensions.PopulateColumnParameters();
+            <#=nameForNonVisibleColumn#>ChildPopulateColumnParameters_NotVisible.FieldName = "<#=noVisibleColumn#>";
+		    <#=nameForNonVisibleColumn#>ChildPopulateColumnParameters_NotVisible.ColumnVisible = false;
+			<#=nameForParemeters#>.CustomColumnParameters.Add(<#=nameForNonVisibleColumn#>ChildPopulateColumnParameters_NotVisible);
+			<#}#>
+			<#foreach(var navProperty in navigationProperty){
+				string displayMember = EditorsSource.GetDisplayMemberPropertyName(navProperty.PropertyType);
+				string BindingPath = navProperty.Name + ((string.IsNullOrEmpty(displayMember) ? null : "." + displayMember));
+				string name = navProperty.Name + lookUpTable.LookUpCollectionPropertyAssociationName;
+			#>	
+			DevExpress.XtraGrid.Extensions.PopulateColumnParameters <#=name#>ChildPopulateColumnParameters = new DevExpress.XtraGrid.Extensions.PopulateColumnParameters();
+            <#=name#>ChildPopulateColumnParameters.FieldName = "<#=name#>";
+            <#=name#>ChildPopulateColumnParameters.Path = "<#=BindingPath#>";
+			<#=nameForParemeters#>.CustomColumnParameters.Add(<#=name#>ChildPopulateColumnParameters);
+			<#}#> 
+		    this.<#=nameForGridView#>.PopulateColumns(typeof(<#=lookUpTable.EntityTypeFullName#>),<#=nameForParemeters#>);
+			//
+			//<#=nameForBindingSource#>
+			//
+			System.Windows.Forms.BindingSource <#=nameForBindingSource#> = new System.Windows.Forms.BindingSource(this.components);
+			<#=nameForBindingSource#>.DataSource = typeof(<#=lookUpTable.EntityTypeFullName#>);
+            this.<#=nameForGridControl#>.DataSource = <#=nameForBindingSource#>;
+			//
+			//<#=nameForUserControl#>
+			//
+            this.<#=nameForUserControl#>.Controls.Add(<#=nameForGridControl#>);
+			this.<#=nameForUserControl#>.Name = "<#=nameForUserControl#>";
+			this.<#=nameForUserControl#>.MinimumSize = new System.Drawing.Size(100, 100); 
+				<#foreach(var commandLookUpTable in lookUpTable.Commands){
+						string nameForBarItemInLookUpTable = lookUpTable.LookUpCollectionPropertyAssociationName + commandLookUpTable.CommandPropertyName.Remove(commandLookUpTable.CommandPropertyName.Length -7,7);
+						string imageUri = commandLookUpTable.CommandPropertyName.Remove(commandLookUpTable.CommandPropertyName.Length -7,7);
+				
+				#>
+			//
+			//<#=nameForBarItemInLookUpTable#>
+			//
+			this.bbi<#=nameForBarItemInLookUpTable#>.Caption = "<#=commandLookUpTable.Caption#>";
+			this.bbi<#=nameForBarItemInLookUpTable#>.Name = "bbi<#=nameForBarItemInLookUpTable#>";
+			this.bbi<#=nameForBarItemInLookUpTable#>.ImageUri.Uri = "<#=imageUri#>";
+			this.bbi<#=nameForBarItemInLookUpTable#>.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+			this.<#=nameForBarManager#>.Items.Add(this.bbi<#=nameForBarItemInLookUpTable#>);
+			this.<#=nameForBar#>.LinksPersistInfo.Add(new DevExpress.XtraBars.LinkPersistInfo(this.bbi<#=nameForBarItemInLookUpTable#>));
+			this.<#=nameForPopUpMenu#>.LinksPersistInfo.Add(new DevExpress.XtraBars.LinkPersistInfo(this.bbi<#=nameForBarItemInLookUpTable#>));
+			<#}#>
+			//
+			//<#=nameForBar#>
+			//
+			this.<#=nameForBar#>.BarName = "<#=lookUpTable.LookUpCollectionPropertyAssociationName#>";
+            this.<#=nameForBar#>.DockCol = 0;
+            this.<#=nameForBar#>.DockRow = 0;
+            this.<#=nameForBar#>.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
+            this.<#=nameForBar#>.OptionsBar.AllowQuickCustomization = false;
+            this.<#=nameForBar#>.OptionsBar.DrawDragBorder = false;
+            this.<#=nameForBar#>.Text = "<#=lookUpTable.LookUpCollectionPropertyAssociationName#>";
+			//
+			//<#=nameForBarManager#>
+			//
+			this.<#=nameForBarManager#>.AllowCustomization = false;
+            this.<#=nameForBarManager#>.Bars.AddRange(new DevExpress.XtraBars.Bar[] {this.<#=nameForBar#>});
+            this.<#=nameForBarManager#>.Form = <#=nameForUserControl#>;
+            this.<#=nameForBarManager#>.MainMenu = this.<#=nameForBar#>;
+			// 
+            // <#=nameForPopUpMenu#>
+            // 
+            this.<#=nameForPopUpMenu#>.Manager = this.<#=nameForBarManager#>;
+            this.<#=nameForPopUpMenu#>.Name = "<#=nameForPopUpMenu#>";
+			//
+			//<#=lookUpTable.LookUpCollectionPropertyAssociationName#>RetriveFieldParameters
+			//
+			DevExpress.XtraDataLayout.RetrieveFieldParameters <#=lookUpTable.LookUpCollectionPropertyAssociationName#>RetriveFieldParameters = new DevExpress.XtraDataLayout.RetrieveFieldParameters();
+            <#=lookUpTable.LookUpCollectionPropertyAssociationName#>RetriveFieldParameters.FieldName = "<#=lookUpTable.LookUpCollectionPropertyAssociationName#>";
+            <#=lookUpTable.LookUpCollectionPropertyAssociationName#>RetriveFieldParameters.ControlForField = <#=nameForUserControl#>;
+			<#=lookUpTable.LookUpCollectionPropertyAssociationName#>RetriveFieldParameters.CreateTabGroupForItem = true;
+			parameters.CustomListParameters.Add(<#=lookUpTable.LookUpCollectionPropertyAssociationName#>RetriveFieldParameters);
+			<#}#>
+			<#
+			//End of create xtrausercontrol with grid and barmanager//
+			//THIS IS REAL LOOKUP//
+			foreach(var realLookUpInfo in listLookUpInfo){
+			string nameForLookUp = realLookUpInfo.Property.Name+"LookUpEdit";
+			string nameForLookUpBindingSource = realLookUpInfo.Property.Name+ "BindingSource";
+			#>
+			//
+			//<#=nameForLookUp#>
+			//
+			this.<#=nameForLookUpBindingSource#>.DataSource = typeof(<#=realLookUpInfo.Property.PropertyType.FullName#>);
+			this.<#=nameForLookUp#>.Properties.ValueMember = "<#=realLookUpInfo.Lookup.ForeignKeyInfo.PrimaryKeyPropertyName#>"; 
+			this.<#=nameForLookUp#>.Properties.DisplayMember = "<#=realLookUpInfo.Lookup.DisplayMemberPropertyName#>";
+			this.<#=nameForLookUp#>.Properties.DataSource = this.<#=nameForLookUpBindingSource#>;
+			this.<#=nameForLookUp#>.Name = "<#=nameForLookUp#>";
+			this.<#=nameForLookUp#>.DataBindings.Add("EditValue", <#=bindingSourceName#>, "<#=realLookUpInfo.Lookup.ForeignKeyInfo.ForeignKeyPropertyName#>", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged);
+			DevExpress.XtraDataLayout.RetrieveFieldParameters <#=nameForLookUp#>RetrieveFieldParameters = new DevExpress.XtraDataLayout.RetrieveFieldParameters();
+            <#=nameForLookUp#>RetrieveFieldParameters.FieldName = "<#=realLookUpInfo.Lookup.ForeignKeyInfo.ForeignKeyPropertyName#>";
+            <#=nameForLookUp#>RetrieveFieldParameters.ControlForField = this.<#=nameForLookUp#>;
+			parameters.CustomListParameters.Add(<#=nameForLookUp#>RetrieveFieldParameters);
+			DevExpress.XtraDataLayout.RetrieveFieldParameters <#=nameForLookUp#>RetrieveFieldParameters_NotGenerate = new DevExpress.XtraDataLayout.RetrieveFieldParameters();
+		    <#=nameForLookUp#>RetrieveFieldParameters_NotGenerate.FieldName = "<#=realLookUpInfo.Property.Name#>";
+		    <#=nameForLookUp#>RetrieveFieldParameters_NotGenerate.GenerateField = false;
+			parameters.CustomListParameters.Add(<#=nameForLookUp#>RetrieveFieldParameters_NotGenerate);
+			<#}#> 
+			//
+			//call RetrieveFields
+			//
+            this.dataLayoutControl1.RetrieveFields(parameters);
+			// 
+            // mvvmContext
+            // 
+            this.mvvmContext.ContainerControl = this;
+            this.mvvmContext.ViewModelType = typeof(<#=mvvmContextFullName#>);
+			<#foreach(var item in viewModelData.Commands){
+				string nameForBarItemMain = item.CommandPropertyName.Remove(item.CommandPropertyName.Length -7,7);
+			#>
+			this.mvvmContext.BindingExpressions.Add(DevExpress.Utils.MVVM.BindingExpression.CreateCommandBinding(typeof(<#=mvvmContextFullName#>), "<#=nameForBarItemMain#>", bbi<#=nameForBarItemMain#>));
+			<#}#>
+			this.mvvmContext.RegistrationExpressions.AddRange(new DevExpress.Utils.MVVM.RegistrationExpression[] {
+            DevExpress.Utils.MVVM.RegistrationExpression.RegisterLayoutSerializationService(null, false, DevExpress.Utils.DefaultBoolean.True, this.dataLayoutControl1)});
+			//
+			//<#=viewName#>
+			//
+			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
+            this.Controls.Add(this.dataLayoutControl1);
+			this.Controls.Add(this.mainRibbonControl);
+			this.Size = new System.Drawing.Size(1024, 768);
+            this.Name = "<#=viewName#>";
+			<#foreach(var lookUpTable in viewModelData.LookUpTables){
+				string nameForBarManager = lookUpTable.LookUpCollectionPropertyAssociationName +"BarManager";
+			#>
+			((System.ComponentModel.ISupportInitialize)(this.<#=nameForBarManager#>)).EndInit();
+			<#}#>
+			this.ResumeLayout(false);
+		}
+		
+        #endregion
+
+		private DevExpress.XtraDataLayout.DataLayoutControl dataLayoutControl1;
+		private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup1;
+		private DevExpress.Utils.MVVM.MVVMContext mvvmContext;
+		private DevExpress.XtraBars.Ribbon.RibbonControl mainRibbonControl;
+		private DevExpress.XtraBars.Ribbon.RibbonPage mainRibbonPage;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup mainRibbonPageGroup;
+		private DevExpress.XtraBars.BarButtonItem bbiCustomize;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroupLayout;
+		private System.Windows.Forms.BindingSource <#=bindingSourceName#>;
+		<#foreach(var lookUpTable in viewModelData.LookUpTables){
+				string nameForGridControl = lookUpTable.LookUpCollectionPropertyAssociationName +"GridControl";
+				string nameForGridView = lookUpTable.LookUpCollectionPropertyAssociationName +"GridView";
+				string nameForBarManager = lookUpTable.LookUpCollectionPropertyAssociationName +"BarManager";
+				string nameForBar = lookUpTable.LookUpCollectionPropertyAssociationName +"Bar";
+				string nameForUserControl = lookUpTable.LookUpCollectionPropertyAssociationName +"XtraUserControl";
+				string nameForPopUpMenu = lookUpTable.LookUpCollectionPropertyAssociationName +"PopUpMenu";
+		#>
+		private DevExpress.XtraGrid.GridControl <#=nameForGridControl#>;
+		private DevExpress.XtraGrid.Views.Grid.GridView <#=nameForGridView#>;
+		private DevExpress.XtraBars.BarManager <#=nameForBarManager#>;
+		private DevExpress.XtraBars.Bar <#=nameForBar#>;
+		private DevExpress.XtraEditors.XtraUserControl <#=nameForUserControl#>;
+		private DevExpress.XtraBars.PopupMenu <#=nameForPopUpMenu#>;
+		<#foreach(var commandLookUpTable in lookUpTable.Commands){
+		string nameForBarItemInLookUpTable = lookUpTable.LookUpCollectionPropertyAssociationName + commandLookUpTable.CommandPropertyName.Remove(commandLookUpTable.CommandPropertyName.Length -7,7);
+		#>
+		private DevExpress.XtraBars.BarButtonItem bbi<#=nameForBarItemInLookUpTable#>;
+		<#}#>
+		<#}#>
+		<#
+		foreach(var realLookUpInfo in listLookUpInfo){
+		string nameForLookUp = realLookUpInfo.Property.Name+"LookUpEdit";
+		string nameForLookUpBindingSource = realLookUpInfo.Property.Name+ "BindingSource";
+		#>
+		private DevExpress.XtraEditors.GridLookUpEdit <#=nameForLookUp#>;
+		private System.Windows.Forms.BindingSource <#=nameForLookUpBindingSource#>;
+		<#}#> 
+	}
+}
+<#
+}
+if(IsVisualBasic){
+#>
+Namespace Global.<#=viewFullName#>
+	Partial Public Class <#=viewName#>
+		''' <summary> 
+		''' Required designer variable.
+		''' </summary>
+		Private components As System.ComponentModel.IContainer = Nothing
+
+		''' <summary> 
+		''' Clean up any resources being used.
+		''' </summary>
+		''' <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+		Protected Overrides Sub Dispose(ByVal disposing As Boolean)
+			If disposing AndAlso (components IsNot Nothing) Then
+				components.Dispose()
+			End If
+			MyBase.Dispose(disposing)
+		End Sub
+		#Region "Component Designer generated code"
+
+		''' <summary> 
+		''' Required method for Designer support - do not modify 
+		''' the contents of this method with the code editor.
+		''' </summary>
+		Private Sub InitializeComponent()
+			Me.components = New System.ComponentModel.Container()
+			Me.dataLayoutControl1 = New DevExpress.XtraDataLayout.DataLayoutControl()
+			Me.layoutControlGroup1 = New DevExpress.XtraLayout.LayoutControlGroup()
+			Me.mvvmContext = New DevExpress.Utils.MVVM.MVVMContext(Me.components)
+			Me.mainRibbonControl = New DevExpress.XtraBars.Ribbon.RibbonControl()
+			Me.mainRibbonPage = New DevExpress.XtraBars.Ribbon.RibbonPage()
+			Me.mainRibbonPageGroup = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
+			Me.ribbonPageGroupLayout = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
+			Me.bbiCustomize = New DevExpress.XtraBars.BarButtonItem()
+			<#foreach(var lookUpTable in viewModelData.LookUpTables){
+				string nameForGridControl = lookUpTable.LookUpCollectionPropertyAssociationName +"GridControl";
+				string nameForGridView = lookUpTable.LookUpCollectionPropertyAssociationName +"GridView";
+				string nameForBarManager = lookUpTable.LookUpCollectionPropertyAssociationName +"BarManager";
+				string nameForBar = lookUpTable.LookUpCollectionPropertyAssociationName +"Bar";
+				string nameForUserControl = lookUpTable.LookUpCollectionPropertyAssociationName +"XtraUserControl";
+				string nameForPopUpMenu = lookUpTable.LookUpCollectionPropertyAssociationName +"PopUpMenu";
+			#>
+			Me.<#=nameForGridControl#> = New DevExpress.XtraGrid.GridControl()
+			Me.<#=nameForGridView#> = New DevExpress.XtraGrid.Views.Grid.GridView()
+			Me.<#=nameForBarManager#> = New DevExpress.XtraBars.BarManager()
+			Me.<#=nameForBar#> = New DevExpress.XtraBars.Bar()
+			Me.<#=nameForUserControl#> = New DevExpress.XtraEditors.XtraUserControl()
+			Me.<#=nameForPopUpMenu#> = New DevExpress.XtraBars.PopupMenu(Me.components)
+			<#foreach(var commandsLookUpTable in lookUpTable.Commands){
+				string nameForBarItemInLookUpTable = lookUpTable.LookUpCollectionPropertyAssociationName + commandsLookUpTable.CommandPropertyName.Remove(commandsLookUpTable.CommandPropertyName.Length -7,7);
+			#>
+			Me.bbi<#=nameForBarItemInLookUpTable#> = New DevExpress.XtraBars.BarButtonItem()
+			<#}#>
+			CType(Me.<#=nameForBarManager#>, System.ComponentModel.ISupportInitialize).BeginInit()
+			<#}#>
+			<#
+			foreach(var realLookUpInfo in listLookUpInfo){
+			string nameForLookUp = realLookUpInfo.Property.Name+"LookUpEdit";
+			string nameForLookUpBindingSource = realLookUpInfo.Property.Name+ "BindingSource";
+			#>
+			Me.<#=nameForLookUp#> = New DevExpress.XtraEditors.GridLookUpEdit()
+			Me.<#=nameForLookUpBindingSource#> = New System.Windows.Forms.BindingSource(Me.components)
+			<#}#> 
+			Me.SuspendLayout()
+			' 
+			' mainRibbonControl
+			' 
+			Me.mainRibbonControl.ExpandCollapseItem.Id = 0
+			Me.mainRibbonControl.Items.AddRange(New DevExpress.XtraBars.BarItem() { Me.bbiCustomize })
+			Me.mainRibbonControl.Name = "mainRibbonControl"
+			Me.mainRibbonControl.Pages.AddRange(New DevExpress.XtraBars.Ribbon.RibbonPage() { Me.mainRibbonPage })
+			Me.mainRibbonControl.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonControlStyle.Office2013
+			Me.mainRibbonControl.ShowApplicationButton = DevExpress.Utils.DefaultBoolean.False
+			Me.mainRibbonControl.ToolbarLocation = DevExpress.XtraBars.Ribbon.RibbonQuickAccessToolbarLocation.Hidden
+			<#foreach(var mainCommand in viewModelData.Commands){
+				string nameForBarItemMain = mainCommand.CommandPropertyName.Remove(mainCommand.CommandPropertyName.Length -7,7);
+				string imageUri = nameForBarItemMain;
+				if(nameForBarItemMain.Contains("Layout")){
+					imageUri = nameForBarItemMain.Replace("Layout", string.Empty);
+				} 
+			#>
+			Dim bbi<#=nameForBarItemMain#> As New DevExpress.XtraBars.BarButtonItem()
+			bbi<#=nameForBarItemMain#>.Caption = "<#=mainCommand.Caption#>"
+			bbi<#=nameForBarItemMain#>.Name = "bbi<#=nameForBarItemMain#>"
+			bbi<#=nameForBarItemMain#>.ImageUri.Uri = "<#=imageUri#>"
+			Me.mainRibbonControl.Items.Add(bbi<#=nameForBarItemMain#>)
+			<#}#>
+			' 
+			' mainRibbonPage
+			' 
+			Me.mainRibbonPage.Groups.AddRange(New DevExpress.XtraBars.Ribbon.RibbonPageGroup() { Me.mainRibbonPageGroup, Me.ribbonPageGroupLayout})
+			Me.mainRibbonPage.Name = "mainRibbonPage"
+			Me.mainRibbonPage.Text = "Home"
+			Me.mainRibbonPage.MergeOrder = 0
+			' 
+			' mainRibbonPageGroup
+			' 
+			Me.mainRibbonPageGroup.AllowTextClipping = False
+			<#foreach(var mainCommand in viewModelData.Commands){
+				string nameForBarItemMain = mainCommand.CommandPropertyName.Remove(mainCommand.CommandPropertyName.Length -7,7);
+				if(!nameForBarItemMain.Contains("Layout")){
+			#>
+			Me.mainRibbonPageGroup.ItemLinks.Add(bbi<#=nameForBarItemMain#>)
+			<#}}#>
+			Me.mainRibbonPageGroup.Name = "mainRibbonPageGroup"
+			Me.mainRibbonPageGroup.ShowCaptionButton = False
+			Me.mainRibbonPageGroup.Text = "<#=viewModelData.EntityTypeName#> Tasks"
+			' 
+			' ribbonPageGroupLayout
+			'
+			Me.ribbonPageGroupLayout.AllowTextClipping = False
+			Me.ribbonPageGroupLayout.ItemLinks.Add(Me.bbiCustomize)
+			<#foreach(var mainCommand in viewModelData.Commands){
+				string nameForBarItemMain = mainCommand.CommandPropertyName.Remove(mainCommand.CommandPropertyName.Length -7,7);
+				if(nameForBarItemMain.Contains("Layout")){
+			#>
+			Me.ribbonPageGroupLayout.ItemLinks.Add(bbi<#=nameForBarItemMain#>)
+			<#}}#>
+			Me.ribbonPageGroupLayout.Name = "ribbonPageGroupLayout"
+			Me.ribbonPageGroupLayout.Text = "Layout"
+			' 
+			' bbiCustomize
+			' 
+			Me.bbiCustomize.Caption = "Customize"
+			Me.bbiCustomize.ImageUri.Uri = "Customization"
+			Me.bbiCustomize.Name = "bbiCustomize"
+			' 
+			' layoutControlGroup1
+			' 
+			Me.layoutControlGroup1.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True
+			Me.layoutControlGroup1.GroupBordersVisible = False
+			Me.layoutControlGroup1.Name = "Root"
+			Me.layoutControlGroup1.TextVisible = False
+			' 
+			' dataLayoutControl1
+			' 
+			Me.dataLayoutControl1.AllowCustomization = False
+			Me.dataLayoutControl1.Dock = System.Windows.Forms.DockStyle.Fill
+			Me.dataLayoutControl1.Root = Me.layoutControlGroup1
+			Me.<#=bindingSourceName#> = New System.Windows.Forms.BindingSource(Me.components)
+			Me.<#=bindingSourceName#>.DataSource = GetType(Global.<#=viewModelData.EntityTypeFullName#>)
+			Me.dataLayoutControl1.DataSource = <#=bindingSourceName#>
+			'
+			' Create GridControls
+			'
+			Dim parameters As New DevExpress.XtraDataLayout.RetrieveFieldsParameters()
+			parameters.DataSourceUpdateMode = System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged
+          	<#
+			//Begin create xtrausercontrol with grid and bar manager//
+			foreach(var lookUpTable in viewModelData.LookUpTables){
+				string nameForGridControl = lookUpTable.LookUpCollectionPropertyAssociationName +"GridControl";
+				string nameForGridView = lookUpTable.LookUpCollectionPropertyAssociationName +"GridView";
+				string nameForBindingSource = lookUpTable.LookUpCollectionPropertyAssociationName +"BindingSource";
+				string nameForBarManager = lookUpTable.LookUpCollectionPropertyAssociationName +"BarManager";
+				string nameForBar = lookUpTable.LookUpCollectionPropertyAssociationName +"Bar";
+				string nameForUserControl = lookUpTable.LookUpCollectionPropertyAssociationName +"XtraUserControl";
+				string nameForPopUpMenu = lookUpTable.LookUpCollectionPropertyAssociationName +"PopUpMenu";
+				string nameForParemeters = lookUpTable.LookUpCollectionPropertyAssociationName +"PopulateColumnsParameters";
+				IEnumerable<IEdmPropertyInfo> scaffoldingProperties = lookUpTable.GetScaffoldingProperties();
+				List<IEdmPropertyInfo>  navigationProperty = new List<IEdmPropertyInfo>();
+				System.Reflection.PropertyInfo[] typeProperties = lookUpTable.EntityType.GetProperties();
+				List<string> NonVisibleTypes = typeProperties.Where(e => !scaffoldingProperties.Any(q => q.Name == e.Name)).Select(e => e.Name).ToList();
+				foreach(IEdmPropertyInfo property in scaffoldingProperties){
+                        if(property.IsForeignKey) NonVisibleTypes.Add(property.Name);
+						if(property.IsNavigationProperty){
+							if(property.PropertyType == viewModelData.EntityType) NonVisibleTypes.Add(property.Name);
+							else navigationProperty.Add(property);
+						}
+                }
+			#>
+			'
+			' <#=nameForGridControl#>
+			'
+			Me.<#=nameForGridControl#>.MainView = Me.<#=nameForGridView#>
+			Me.<#=nameForGridControl#>.Dock = System.Windows.Forms.DockStyle.Fill
+            Me.<#=nameForGridControl#>.MenuManager = Me.mainRibbonControl
+            Me.<#=nameForGridControl#>.Name = "<#=nameForGridControl#>"
+            Me.<#=nameForGridControl#>.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.<#=nameForGridView#>})
+			'
+			'<#=nameForGridView#>
+			'
+            Me.<#=nameForGridView#>.GridControl = Me.<#=nameForGridControl#>
+            Me.<#=nameForGridView#>.Name = "<#=nameForGridView#>"
+            Me.<#=nameForGridView#>.OptionsBehavior.Editable = False
+            Me.<#=nameForGridView#>.OptionsBehavior.ReadOnly = True
+			'
+			' <#=nameForParemeters#>
+			'
+			Dim <#=nameForParemeters#> As New DevExpress.XtraGrid.Extensions.PopulateColumnsParameters()
+			<#foreach(var noVisibleColumn in NonVisibleTypes){
+			 string nameForNonVisibleColumn = noVisibleColumn + lookUpTable.LookUpCollectionPropertyAssociationName;
+			#>	
+			Dim <#=nameForNonVisibleColumn#>ChildPopulateColumnParameters_NotVisible As New DevExpress.XtraGrid.Extensions.PopulateColumnParameters()
+            <#=nameForNonVisibleColumn#>ChildPopulateColumnParameters_NotVisible.FieldName = "<#=noVisibleColumn#>"
+		    <#=nameForNonVisibleColumn#>ChildPopulateColumnParameters_NotVisible.ColumnVisible = False
+			<#=nameForParemeters#>.CustomColumnParameters.Add(<#=nameForNonVisibleColumn#>ChildPopulateColumnParameters_NotVisible)
+			<#}#>  
+			<#foreach(var navProperty in navigationProperty){
+				string displayMember = EditorsSource.GetDisplayMemberPropertyName(navProperty.PropertyType);
+				string BindingPath = navProperty.Name + ((string.IsNullOrEmpty(displayMember) ? null : "." + displayMember));
+				string name = navProperty.Name + lookUpTable.LookUpCollectionPropertyAssociationName;
+			#>	
+			Dim <#=name#>ChildPopulateColumnParameters As New DevExpress.XtraGrid.Extensions.PopulateColumnParameters()
+            <#=name#>ChildPopulateColumnParameters.FieldName = "<#=name#>"
+            <#=name#>ChildPopulateColumnParameters.Path = "<#=BindingPath#>"
+			<#=nameForParemeters#>.CustomColumnParameters.Add(<#=name#>ChildPopulateColumnParameters)
+			<#}#>
+			Me.<#=nameForGridView#>.PopulateColumns(GetType(Global.<#=lookUpTable.EntityTypeFullName#>), <#=nameForParemeters#>) 
+			'
+			' <#=nameForBindingSource#>
+			'
+			Dim <#=nameForBindingSource#> As New System.Windows.Forms.BindingSource(Me.components)
+			<#=nameForBindingSource#>.DataSource =  GetType(Global.<#=lookUpTable.EntityTypeFullName#>)
+            Me.<#=nameForGridControl#>.DataSource = <#=nameForBindingSource#>
+			'
+			'<#=nameForUserControl#>
+			'
+            Me.<#=nameForUserControl#>.Controls.Add(<#=nameForGridControl#>)
+			Me.<#=nameForUserControl#>.Name = "<#=nameForUserControl#>"
+			Me.<#=nameForUserControl#>.MinimumSize = new System.Drawing.Size(100, 100) 
+				<#foreach(var commandLookUpTable in lookUpTable.Commands){
+						string nameForBarItemInLookUpTable = lookUpTable.LookUpCollectionPropertyAssociationName + commandLookUpTable.CommandPropertyName.Remove(commandLookUpTable.CommandPropertyName.Length -7,7);
+						string imageUri = commandLookUpTable.CommandPropertyName.Remove(commandLookUpTable.CommandPropertyName.Length -7,7);
+				
+				#>
+			'
+			'<#=nameForBarItemInLookUpTable#>
+			'
+			Me.bbi<#=nameForBarItemInLookUpTable#>.Caption = "<#=commandLookUpTable.Caption#>"
+			Me.bbi<#=nameForBarItemInLookUpTable#>.Name = "bbi<#=nameForBarItemInLookUpTable#>"
+			Me.bbi<#=nameForBarItemInLookUpTable#>.ImageUri.Uri = "<#=imageUri#>"
+			Me.bbi<#=nameForBarItemInLookUpTable#>.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph
+			Me.<#=nameForBarManager#>.Items.Add(Me.bbi<#=nameForBarItemInLookUpTable#>)
+			Me.<#=nameForBar#>.LinksPersistInfo.Add(New DevExpress.XtraBars.LinkPersistInfo(Me.bbi<#=nameForBarItemInLookUpTable#>))
+			Me.<#=nameForPopUpMenu#>.LinksPersistInfo.Add(New DevExpress.XtraBars.LinkPersistInfo(Me.bbi<#=nameForBarItemInLookUpTable#>))
+			<#}#>
+			'
+			' <#=nameForBar#>
+			'
+			Me.<#=nameForBar#>.BarName = "<#=lookUpTable.LookUpCollectionPropertyAssociationName#>"
+            Me.<#=nameForBar#>.DockCol = 0
+            Me.<#=nameForBar#>.DockRow = 0
+            Me.<#=nameForBar#>.DockStyle = DevExpress.XtraBars.BarDockStyle.Top
+            Me.<#=nameForBar#>.OptionsBar.AllowQuickCustomization = False
+            Me.<#=nameForBar#>.OptionsBar.DrawDragBorder = False
+            Me.<#=nameForBar#>.Text = "<#=lookUpTable.LookUpCollectionPropertyAssociationName#>"
+			'
+			' <#=nameForBarManager#>
+			'
+			Me.<#=nameForBarManager#>.AllowCustomization = False
+            Me.<#=nameForBarManager#>.Bars.AddRange(New DevExpress.XtraBars.Bar() {Me.<#=nameForBar#>})
+            Me.<#=nameForBarManager#>.Form = <#=nameForUserControl#>
+            Me.<#=nameForBarManager#>.MainMenu = Me.<#=nameForBar#>
+			' 
+            ' <#=nameForPopUpMenu#>
+            ' 
+            Me.<#=nameForPopUpMenu#>.Manager = Me.<#=nameForBarManager#>
+            Me.<#=nameForPopUpMenu#>.Name = "<#=nameForPopUpMenu#>"
+			'
+			' <#=lookUpTable.LookUpCollectionPropertyAssociationName#>RetriveFieldParameters
+			'
+			Dim <#=lookUpTable.LookUpCollectionPropertyAssociationName#>RetriveFieldParameters As New DevExpress.XtraDataLayout.RetrieveFieldParameters()
+            <#=lookUpTable.LookUpCollectionPropertyAssociationName#>RetriveFieldParameters.FieldName = "<#=lookUpTable.LookUpCollectionPropertyAssociationName#>"
+            <#=lookUpTable.LookUpCollectionPropertyAssociationName#>RetriveFieldParameters.ControlForField = <#=nameForUserControl#>
+			<#=lookUpTable.LookUpCollectionPropertyAssociationName#>RetriveFieldParameters.CreateTabGroupForItem = True
+			parameters.CustomListParameters.Add(<#=lookUpTable.LookUpCollectionPropertyAssociationName#>RetriveFieldParameters)
+			<#}#>
+			<#
+			//End of create xtrausercontrol with grid and barmanager//
+			//THIS IS REAL LOOKUP//
+			foreach(var realLookUpInfo in listLookUpInfo){
+			string nameForLookUp = realLookUpInfo.Property.Name+"LookUpEdit";
+			string nameForLookUpBindingSource = realLookUpInfo.Property.Name+ "BindingSource";
+			#>
+			'
+			' <#=nameForLookUp#>
+			'
+			Me.<#=nameForLookUpBindingSource#>.DataSource = GetType(Global.<#=realLookUpInfo.Property.PropertyType.FullName#>)
+			Me.<#=nameForLookUp#>.Properties.ValueMember = "<#=realLookUpInfo.Lookup.ForeignKeyInfo.PrimaryKeyPropertyName#>" 
+			Me.<#=nameForLookUp#>.Properties.DisplayMember = "<#=realLookUpInfo.Lookup.DisplayMemberPropertyName#>"
+			Me.<#=nameForLookUp#>.Properties.DataSource = Me.<#=nameForLookUpBindingSource#>
+			Me.<#=nameForLookUp#>.Name = "<#=nameForLookUp#>"
+			Me.<#=nameForLookUp#>.DataBindings.Add("EditValue", <#=bindingSourceName#>, "<#=realLookUpInfo.Lookup.ForeignKeyInfo.ForeignKeyPropertyName#>", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged)
+			Dim <#=nameForLookUp#>RetrieveFieldParameters As New DevExpress.XtraDataLayout.RetrieveFieldParameters()
+            <#=nameForLookUp#>RetrieveFieldParameters.FieldName = "<#=realLookUpInfo.Lookup.ForeignKeyInfo.ForeignKeyPropertyName#>"
+            <#=nameForLookUp#>RetrieveFieldParameters.ControlForField = Me.<#=nameForLookUp#>
+			parameters.CustomListParameters.Add(<#=nameForLookUp#>RetrieveFieldParameters)
+			Dim <#=nameForLookUp#>RetrieveFieldParameters_NotGenerate As New DevExpress.XtraDataLayout.RetrieveFieldParameters()
+		    <#=nameForLookUp#>RetrieveFieldParameters_NotGenerate.FieldName = "<#=realLookUpInfo.Property.Name#>"
+		    <#=nameForLookUp#>RetrieveFieldParameters_NotGenerate.GenerateField = False
+			parameters.CustomListParameters.Add(<#=nameForLookUp#>RetrieveFieldParameters_NotGenerate)
+			<#}#> 
+			'
+			'call RetrieveFields
+			'
+			Me.dataLayoutControl1.RetrieveFields(parameters)
+			' 
+            ' mvvmContext
+            ' 
+            Me.mvvmContext.ContainerControl = Me
+            Me.mvvmContext.ViewModelType = GetType(Global.<#=mvvmContextFullName#>)
+			<#foreach(var item in viewModelData.Commands){
+				string nameForBarItemMain = item.CommandPropertyName.Remove(item.CommandPropertyName.Length -7,7);
+			#>
+			Me.mvvmContext.BindingExpressions.Add(DevExpress.Utils.MVVM.BindingExpression.CreateCommandBinding(GetType(Global.<#=mvvmContextFullName#>), "<#=nameForBarItemMain#>", bbi<#=nameForBarItemMain#>))
+			<#}#>
+            Me.mvvmContext.RegistrationExpressions.AddRange(New DevExpress.Utils.MVVM.RegistrationExpression() {
+            DevExpress.Utils.MVVM.RegistrationExpression.RegisterLayoutSerializationService(Nothing, False, DevExpress.Utils.DefaultBoolean.True, Me.dataLayoutControl1)})
+			'
+			'<#=viewName#>
+			'
+			Me.AutoScaleDimensions = New System.Drawing.SizeF(6F, 13F)
+			Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+			Me.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange
+			Me.Controls.Add(Me.dataLayoutControl1)
+			Me.Controls.Add(Me.mainRibbonControl)
+			Me.Size = New System.Drawing.Size(1024, 768)
+            Me.Name = "<#=viewName#>"
+			<#foreach(var lookUpTable in viewModelData.LookUpTables){
+				string nameForBarManager = lookUpTable.LookUpCollectionPropertyAssociationName +"BarManager";
+			#>
+			CType(Me.<#=nameForBarManager#>, System.ComponentModel.ISupportInitialize).EndInit()
+			<#}#>
+			Me.ResumeLayout(False)
+		End Sub
+
+		#End Region
+
+		Private dataLayoutControl1 As DevExpress.XtraDataLayout.DataLayoutControl
+		Private layoutControlGroup1 As DevExpress.XtraLayout.LayoutControlGroup
+		Private mvvmContext As DevExpress.Utils.MVVM.MVVMContext
+		Private mainRibbonControl As DevExpress.XtraBars.Ribbon.RibbonControl
+		Private mainRibbonPage As DevExpress.XtraBars.Ribbon.RibbonPage
+		Private mainRibbonPageGroup As DevExpress.XtraBars.Ribbon.RibbonPageGroup
+		Private bbiCustomize As DevExpress.XtraBars.BarButtonItem
+		Private ribbonPageGroupLayout As DevExpress.XtraBars.Ribbon.RibbonPageGroup
+		Private <#=bindingSourceName#> As System.Windows.Forms.BindingSource
+		<#foreach(var lookUpTable in viewModelData.LookUpTables){
+				string nameForGridControl = lookUpTable.LookUpCollectionPropertyAssociationName +"GridControl";
+				string nameForGridView = lookUpTable.LookUpCollectionPropertyAssociationName +"GridView";
+				string nameForBarManager = lookUpTable.LookUpCollectionPropertyAssociationName +"BarManager";
+				string nameForBar = lookUpTable.LookUpCollectionPropertyAssociationName +"Bar";
+				string nameForUserControl = lookUpTable.LookUpCollectionPropertyAssociationName +"XtraUserControl";
+				string nameForPopUpMenu = lookUpTable.LookUpCollectionPropertyAssociationName +"PopUpMenu";
+		#>
+		Private <#=nameForGridControl#> As DevExpress.XtraGrid.GridControl
+		Private <#=nameForGridView#> As DevExpress.XtraGrid.Views.Grid.GridView
+		Private <#=nameForBarManager#> As DevExpress.XtraBars.BarManager
+		Private <#=nameForBar#> As DevExpress.XtraBars.Bar
+		Private <#=nameForUserControl#> As DevExpress.XtraEditors.XtraUserControl
+		Private <#=nameForPopUpMenu#> As DevExpress.XtraBars.PopupMenu
+		<#foreach(var commandLookUpTable in lookUpTable.Commands){
+		string nameForBarItemInLookUpTable = lookUpTable.LookUpCollectionPropertyAssociationName + commandLookUpTable.CommandPropertyName.Remove(commandLookUpTable.CommandPropertyName.Length -7,7);
+		#>
+		Private bbi<#=nameForBarItemInLookUpTable#> As DevExpress.XtraBars.BarButtonItem
+		<#}#>
+		<#}#>
+		<#
+		foreach(var realLookUpInfo in listLookUpInfo){
+		string nameForLookUp = realLookUpInfo.Property.Name+"LookUpEdit";
+		string nameForLookUpBindingSource = realLookUpInfo.Property.Name+ "BindingSource";
+		#>
+		Private <#=nameForLookUp#> As DevExpress.XtraEditors.GridLookUpEdit
+		Private <#=nameForLookUpBindingSource#> As System.Windows.Forms.BindingSource
+		<#}#> 
+	End Class
+End Namespace
+<#
+}
+#>

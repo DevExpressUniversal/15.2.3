@@ -1,0 +1,62 @@
+﻿<UserControl x:Class="DevExpress.Xpf.Core.Design.SmartTags.BindingEditorControlElementBindingEditorView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+        xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+        xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+        xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
+        xmlns:local="clr-namespace:DevExpress.Xpf.Core.Design.SmartTags"
+        mc:Ignorable="d" 
+        d:DesignHeight="300" d:DesignWidth="300">
+
+    <UserControl.Resources>
+        <DataTemplate x:Key="separatorElement">
+            <Grid Margin="0,0,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" Text="{Binding}" VerticalAlignment="Center" 
+                           Margin="0,0,4,0" Foreground="#FF0E70C0"
+                           FontSize="11" FontWeight="SemiBold"/>
+                <Border Grid.Column="1" Height="1" Background="#FF4F97D1" Margin="0,1,0,0"
+                        VerticalAlignment="Center" HorizontalAlignment="Stretch"/>
+            </Grid>
+        </DataTemplate>
+    </UserControl.Resources>
+    <Grid x:Name="viewContainer">
+        <Grid.RowDefinitions>
+            <RowDefinition x:Name="row1" Height="*" />
+            <RowDefinition x:Name="row2" Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid IsKeyboardFocusWithinChanged="view1_IsKeyboardFocusWithinChanged">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <ContentPresenter Grid.Row="0" Content="Elements" ContentTemplate="{StaticResource separatorElement}"/>
+            <dxe:TextEdit Grid.Row="1" NullText="Type to search..." 
+                              EditValue="{Binding Path=ElementSelector.FilterText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            <dx:DXExpander Grid.Row="2" x:Name="expander1" StretchChild="True" VerticalExpand="FromTopToBottom" HorizontalExpand="None">
+                <local:BindingEditorControlElementSelectorView x:Name="view1" DataContext="{Binding Path=ElementSelector}" IsSearchBoxVisible="False"
+                                                                   Margin="0,3,0,0"/>
+            </dx:DXExpander>
+        </Grid>
+        <Grid Grid.Row="1" IsKeyboardFocusWithinChanged="view2_IsKeyboardFocusWithinChanged">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <ContentPresenter Grid.Row="0" Content="Properties" ContentTemplate="{StaticResource separatorElement}"/>
+            <dxe:TextEdit Grid.Row="1" NullText="Type to search..." 
+                              EditValue="{Binding Path=PropertySelector.FilterText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            <dx:DXExpander Grid.Row="2" x:Name="expander2" StretchChild="True" VerticalExpand="FromTopToBottom" HorizontalExpand="None">
+                <local:BindingEditorControlPropertySelectorView x:Name="view2" DataContext="{Binding Path=PropertySelector}" IsSearchBoxVisible="False" 
+                                                                    Margin="0,3,0,0"/>
+            </dx:DXExpander>
+        </Grid>
+    </Grid>
+</UserControl>

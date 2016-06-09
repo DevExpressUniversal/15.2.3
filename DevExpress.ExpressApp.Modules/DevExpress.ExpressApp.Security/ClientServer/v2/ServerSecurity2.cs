@@ -1,0 +1,122 @@
+﻿#region Copyright (c) 2000-2015 Developer Express Inc.
+/*
+{*******************************************************************}
+{                                                                   }
+{       Developer Express .NET Component Library                    }
+{       eXpressApp Framework                                        }
+{                                                                   }
+{       Copyright (c) 2000-2015 Developer Express Inc.              }
+{       ALL RIGHTS RESERVED                                         }
+{                                                                   }
+{   The entire contents of this file is protected by U.S. and       }
+{   International Copyright Laws. Unauthorized reproduction,        }
+{   reverse-engineering, and distribution of all or any portion of  }
+{   the code contained in this file is strictly prohibited and may  }
+{   result in severe civil and criminal penalties and will be       }
+{   prosecuted to the maximum extent possible under the law.        }
+{                                                                   }
+{   RESTRICTIONS                                                    }
+{                                                                   }
+{   THIS SOURCE CODE AND ALL RESULTING INTERMEDIATE FILES           }
+{   ARE CONFIDENTIAL AND PROPRIETARY TRADE                          }
+{   SECRETS OF DEVELOPER EXPRESS INC. THE REGISTERED DEVELOPER IS   }
+{   LICENSED TO DISTRIBUTE THE PRODUCT AND ALL ACCOMPANYING .NET    }
+{   CONTROLS AS PART OF AN EXECUTABLE PROGRAM ONLY.                 }
+{                                                                   }
+{   THE SOURCE CODE CONTAINED WITHIN THIS FILE AND ALL RELATED      }
+{   FILES OR ANY PORTION OF ITS CONTENTS SHALL AT NO TIME BE        }
+{   COPIED, TRANSFERRED, SOLD, DISTRIBUTED, OR OTHERWISE MADE       }
+{   AVAILABLE TO OTHER INDIVIDUALS WITHOUT EXPRESS WRITTEN CONSENT  }
+{   AND PERMISSION FROM DEVELOPER EXPRESS INC.                      }
+{                                                                   }
+{   CONSULT THE END USER LICENSE AGREEMENT FOR INFORMATION ON       }
+{   ADDITIONAL RESTRICTIONS.                                        }
+{                                                                   }
+{*******************************************************************}
+*/
+#endregion Copyright (c) 2000-2015 Developer Express Inc.
+
+using System;
+using System.Collections.Generic;
+using System.Text;
+using DevExpress.ExpressApp.Security;
+using DevExpress.Data.Filtering;
+using DevExpress.ExpressApp.Utils;
+using DevExpress.Xpo;
+using DevExpress.ExpressApp.DC;
+using DevExpress.ExpressApp.DC.Xpo;
+using DevExpress.ExpressApp.Xpo;
+using System.ComponentModel;
+namespace DevExpress.ExpressApp.Security.ClientServer {
+	public class ServerSecurity2 : IServerSecurity {
+		private readonly QueryRequestSecurityStrategyHandler queryRequestSecurityStrategyHandler;
+		private readonly QueryDataLayerHandler queryDataLayerHandler;
+		private UnitOfWork CreateUnitOfWork() {
+			IDataLayer dataLayer = queryDataLayerHandler();
+			Guard.ArgumentNotNull(dataLayer, "QueryDataLayerHandler");
+			return new UnitOfWork(dataLayer);
+		}
+		private IDataServerSecurity GetSecurity(IClientInfo clientInfo) {
+			IDataServerSecurity result = queryRequestSecurityStrategyHandler();
+			Guard.ArgumentNotNull(result, "queryRequestSecurityStrategyHandler");
+			return result;
+		}
+		public IDataServerSecurity GetSecurityAndLogon(IClientInfo clientInfo) {
+			IDataServerSecurity result = GetSecurity(clientInfo);
+			if(AnonymousLogonParameters.Instance.Equals(clientInfo.LogonParameters)) {
+			}
+			else {
+				result.SetLogonParameters(clientInfo.LogonParameters);
+				ITypesInfo typesInfo = XafTypesInfo.Instance;
+				XpoTypeInfoSource xpoTypeInfoSource = (XpoTypeInfoSource)((TypesInfo)XafTypesInfo.Instance).FindEntityStore(typeof(XpoTypeInfoSource));
+				result.Logon(new XPObjectSpace(typesInfo, xpoTypeInfoSource, CreateUnitOfWork));
+			}
+			SecuritySystem.SetInstance((ISecurityStrategyBase)result);
+			return result;
+		}
+		public ServerSecurity2(QueryDataLayerHandler queryDataLayerHandler, QueryRequestSecurityStrategyHandler queryRequestSecurityStrategyHandler) {
+			Guard.ArgumentNotNull(queryDataLayerHandler, "queryDataLayerHandler");
+			Guard.ArgumentNotNull(queryRequestSecurityStrategyHandler, "queryRequestSecurityStrategyHandler");
+			this.queryDataLayerHandler = queryDataLayerHandler;
+			this.queryRequestSecurityStrategyHandler = queryRequestSecurityStrategyHandler;
+		}
+		#region IServerSecurity
+		void IServerSecurity.Logon(IClientInfo clientInfo) {
+			GetSecurityAndLogon(clientInfo);
+		}
+		void IServerSecurity.Logoff(IClientInfo clientInfo) {
+		}
+		bool IServerSecurity.IsGranted(IClientInfo clientInfo, IPermissionRequest permissionRequest) {
+			return GetSecurityAndLogon(clientInfo).IsGranted(permissionRequest);
+		}
+		IList<bool> IServerSecurity.IsGranted(IClientInfo clientInfo, IList<IPermissionRequest> permissionRequests) {
+			return GetSecurityAndLogon(clientInfo).IsGranted(permissionRequests);
+		}
+		object IServerSecurity.GetUserId(IClientInfo clientInfo) {
+			return GetSecurityAndLogon(clientInfo).UserId;
+		}
+		string IServerSecurity.GetUserName(IClientInfo clientInfo) {
+			return GetSecurityAndLogon(clientInfo).UserName;
+		}
+		object IServerSecurity.GetLogonParameters(IClientInfo clientInfo) {
+			return GetSecurity(clientInfo).LogonParameters;
+		}
+		bool IServerSecurity.GetNeedLogonParameters(IClientInfo clientInfo) {
+			return GetSecurity(clientInfo).NeedLogonParameters;
+		}
+		bool IServerSecurity.GetIsLogoffEnabled(IClientInfo clientInfo) {
+			return GetSecurity(clientInfo).IsLogoffEnabled;
+		}
+		Type IServerSecurity.GetUserType(IClientInfo clientInfo) {
+			return GetSecurity(clientInfo).UserType;
+		}
+		Type IServerSecurity.GetRoleType(IClientInfo clientInfo) {
+			IRoleTypeProvider roleTypeProvider = GetSecurity(clientInfo) as IRoleTypeProvider;
+			if(roleTypeProvider != null) {
+				return roleTypeProvider.RoleType;
+			}
+			return null;
+		}
+		#endregion
+	}
+}

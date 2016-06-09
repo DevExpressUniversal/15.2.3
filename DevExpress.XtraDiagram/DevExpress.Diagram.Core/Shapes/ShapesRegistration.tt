@@ -1,0 +1,274 @@
+﻿<#@ template debug="false" hostspecific="true" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ assembly name="System.Xml" #>
+<#@ assembly name="System" #>
+<#@ import namespace="System.Xml" #>
+<#@ import namespace="System" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Text.RegularExpressions" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ output extension=".cs" #>
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Windows;
+using System.Windows.Media;
+using DevExpress.Diagram.Core.Localization;
+using DevExpress.Diagram.Core.Shapes.Native;
+using System.Collections.ObjectModel;
+
+namespace DevExpress.Diagram.Core {
+<#
+
+List<string> categoryList = new List<string>();
+
+Generate(Host.ResolvePath("Resources//"), "BasicShapes", categoryList);
+Generate(Host.ResolvePath("Resources//"), "BasicFlowchartShapes", categoryList);
+Generate(Host.ResolvePath("Resources//"), "ArrowShapes", categoryList);
+Generate(Host.ResolvePath("Resources//"), "SDLDiagramShapes", categoryList);
+Generate(Host.ResolvePath("Resources//"), "SoftwareIcons", categoryList);
+Generate(Host.ResolvePath("Resources//"), "DecorativeShapes", categoryList);
+GenerateArrows();
+#>
+	internal static class ShapeRegistratorHelper {
+		readonly static Dictionary<string, DiagramControlStringId> arrowStringId;
+		readonly static Dictionary<string, DiagramControlStringId> categoryStringId;
+		readonly static Dictionary<string, Dictionary<string, DiagramControlStringId>> shapeStringId;
+		readonly static Dictionary<string, Dictionary<string, Func<ShapeDescription>>> codedShapeFactory;
+		readonly static Dictionary<string, Type> shapeOwners;
+
+		static ShapeRegistratorHelper() {
+			arrowStringId = new Dictionary<string, DiagramControlStringId>();
+			categoryStringId = new Dictionary<string, DiagramControlStringId>();
+			shapeStringId = new Dictionary<string, Dictionary<string, DiagramControlStringId>>();
+			codedShapeFactory = new Dictionary<string, Dictionary<string, Func<ShapeDescription>>>();
+			shapeOwners = new Dictionary<string, Type>();
+			PopulateStringIdTable();
+			PopulateArrowStringIdTable();
+			PopulateShapeFactory();
+			RegisterCategories();
+		}
+
+		static void PopulateStringIdTable() {
+<#
+			IterateShapes(categoryId => { 
+#>
+				categoryStringId.Add("<#=categoryId#>", DiagramControlStringId.<#=categoryId#>_Name);
+				shapeStringId.Add("<#=categoryId#>", new Dictionary<string, DiagramControlStringId>());
+<#
+			},
+			(categoryId, shapeId, isTemplateShape) => {
+#>
+				shapeStringId["<#=categoryId#>"].Add("<#=shapeId#>", DiagramControlStringId.<#=categoryId#>_<#=shapeId#>_Name);
+<#
+			}
+			);
+#>
+		}
+		static void PopulateArrowStringIdTable() {
+<#
+			IterateArrows(id => { 
+#>
+				arrowStringId.Add("<#=id#>", DiagramControlStringId.Arrow_<#=id#>);
+<#
+			});
+#>
+		}
+		static void PopulateShapeFactory() {
+<#
+			IterateShapes(categoryId => { 
+#>
+				codedShapeFactory.Add("<#=categoryId#>", new Dictionary<string, Func<ShapeDescription>>());
+<#
+			},
+			(categoryId, shapeId, isTemplateShape) => {
+			if(!isTemplateShape) {
+#>
+				codedShapeFactory["<#=categoryId#>"].Add("<#=shapeId#>", <#=categoryId#>.Create<#=shapeId#>Shape);
+<#
+			}
+			}
+			);
+#>
+		}
+
+		internal static DiagramControlStringId GetCategoryStringId(string categoryId) {
+			return categoryStringId[categoryId];
+		}
+		internal static DiagramControlStringId GetShapeStringId(string categoryId, string shapeId) {
+			return shapeStringId[categoryId][shapeId];
+		}
+		internal static ShapeDescription CreateShape(string categoryId, string shapeId) {
+			return codedShapeFactory[categoryId][shapeId]();
+		}
+		internal static bool IsTemplateShape(string categoryId, string shapeId) {
+			Dictionary<string, Func<ShapeDescription>> categoryFactory;
+			if(codedShapeFactory.TryGetValue(categoryId, out categoryFactory))
+				return !codedShapeFactory[categoryId].ContainsKey(shapeId);
+			return true;
+		}
+		internal static DiagramControlStringId GetArrowStringId(string arrowId) {
+			return arrowStringId[arrowId];
+		}
+		internal static Type GetShapeOwner(string categoryId) {
+			if(!shapeOwners.ContainsKey(categoryId)) {
+				throw new ArgumentException(categoryId);
+			}
+			return shapeOwners[categoryId];
+		}
+		static void RegisterCategories() {
+		<#
+	foreach(string categoryId in categoryList) {
+		#>
+		RegisterShapeOwner("<#= categoryId #>", typeof(<#= categoryId #>));
+		<#
+	}
+		#>
+}
+		static void RegisterShapeOwner(string categoryId, Type ownerType) {
+			shapeOwners[categoryId] = ownerType;
+		}
+	}
+}
+
+<#+
+Dictionary<string, List<Tuple<string, bool>>> shapes = new Dictionary<string, List<Tuple<string, bool>>>();
+
+void IterateShapes(Action<string> processCategory, Action<string, string, bool> processShape) {
+	foreach(string categoryId in shapes.Keys) {
+		processCategory(categoryId);
+		foreach(var shape in shapes[categoryId]) {
+			string shapeId = shape.Item1;
+			bool isTemplateShape = shape.Item2;
+			processShape(categoryId, shapeId, isTemplateShape);
+		}
+	}
+}
+
+List<string> arrows = new List<string>();
+void IterateArrows(Action<string> processArrow) {
+	foreach(string arrowId in arrows) {
+		processArrow(arrowId);
+	}
+}
+
+string categoryName;
+void DefineCategory(string name) {
+	categoryName = name;
+	if(!shapes.ContainsKey(name))
+		shapes.Add(name, new List<Tuple<string, bool>>());
+#>
+	public static partial class <#=categoryName#> {
+		static DiagramStencil Stencil { get { return DiagramToolboxRegistrator.GetStencil(StencilId); } }
+		public const string StencilId = "<#=categoryName#>";
+<#+}#>
+
+<#+
+void DefineArrow(string name, string connectionPointLocation) {#>
+		public static readonly ArrowDescription <#=name#> 
+			= RegisterArrow("<#=name#>", new ArrowDescription("<#=name#>", () => DiagramControlLocalizer.GetString(DiagramControlStringId.Arrow_<#=name#>), Get<#=name#>, Get<#=connectionPointLocation#>ConnectionPoint));
+<#+}#>
+<#+
+void DefineShapeCore(string name, bool isTemplateShape) {
+		shapes[categoryName].Add(new Tuple<string, bool>(name, isTemplateShape));
+}#>
+
+<#+
+enum ShapeKind {
+    Template,
+    Reference
+}
+void IterateElements(string xmlDocumentPath, Action<XmlNode> action) {
+	XmlDocument document = new XmlDocument();
+    document.Load(xmlDocumentPath);
+    XmlNode dictionaryNode = document.FirstChild;
+    XmlNode node = dictionaryNode.FirstChild;
+    while(node != null) {
+		if(node.NodeType == XmlNodeType.Element)
+			action(node);
+        node = node.NextSibling;
+    }
+}
+void GenerateArrows() {
+	string path = Host.ResolvePath("Resources//") + "Arrows.xaml";
+	#>
+	public static partial class ArrowDescriptions {
+<#+
+	IterateElements(path, arrow => DefineArrow(arrow));
+	#>
+	}
+<#+
+}
+void DefineArrow(XmlNode arrow) {
+    string arrowKey = arrow.Attributes["x:Key"].Value;
+	MatchEvaluator evaluator = new MatchEvaluator(match => match.Groups[2].Value);
+    string arrowId = Regex.Replace(arrowKey, "({ShapeKey )([A-z0-9]*)(})", evaluator);
+    DefineArrow(arrowId);
+}
+void DefineArrow(string name) {
+		arrows.Add(name);
+#>
+		public static ArrowDescription <#=name#> { get { return GetArrow("<#=name#>"); } }
+<#+
+}
+void Generate(string path, string categoryId, IList<string> categoryList) {
+	categoryList.Add(categoryId);
+    path = path + categoryId + ".xaml";
+	DefineCategory(categoryId);
+
+	IterateElements(path, shape => DefineShape(shape));
+	#>
+	}
+<#+
+}
+#>
+<#+
+void DefineShape(XmlNode shape) {
+    string shapeKey = shape.Attributes["x:Key"].Value;
+	MatchEvaluator evaluator = new MatchEvaluator(match => match.Groups[2].Value);
+    string shapeId = Regex.Replace(shapeKey, "({ShapeKey )([A-z0-9]*)(})", evaluator);
+    switch(GetShapeKind(shape.Name)) {
+        case ShapeKind.Reference:
+            DefineCodedShape(shapeId, shape);
+            break;
+        case ShapeKind.Template:
+            DefineTemplateShape(shapeId);
+            break;
+        default:
+            throw new NotImplementedException();
+    }
+}
+ShapeKind GetShapeKind(string elementName) {
+    if(elementName == "ShapeTemplate")
+        return ShapeKind.Template;
+    if(elementName == "ShapeReference")
+        return ShapeKind.Reference;
+    throw new NotImplementedException();
+}
+void DefineCodedShape(string shapeId, XmlNode shape) {
+	string defaultSize = shape.Attributes["DefaultSize"] != null ? shape.Attributes["DefaultSize"].Value : "100,100";
+	bool hasParams = shape.Attributes["HasParameters"] == null || shape.Attributes["HasParameters"].Value == "True";
+	bool hasEditorBounds = shape.Attributes["HasCustomEditorBounds"] != null && shape.Attributes["HasCustomEditorBounds"].Value == "True";
+	bool isQuick = shape.Attributes["IsQuick"] != null && shape.Attributes["IsQuick"].Value == "True";
+	bool useBackgroundAsForeground = shape.Attributes["UseBackgroundAsForeground"] != null && shape.Attributes["UseBackgroundAsForeground"].Value == "True";
+	DefineShape(shapeId, hasParams, defaultSize, hasEditorBounds, isQuick, useBackgroundAsForeground);
+}
+void DefineShape(string name, bool hasParameters, string size, bool hasEditorBounds, bool isQuick, bool useBackgroundAsForeground) {
+		DefineShapeCore(name, false);
+#>
+		public static ShapeDescription <#=name#> { get { return Stencil.GetShape("<#=name#>"); } }
+		internal static ShapeDescription Create<#=name#>Shape() {
+			return ShapeDescription.Create("<#=name#>", DiagramControlStringId.<#=categoryName#>_<#=name#>_Name, 
+				() => new Size(<#=size#>), Get<#=name#>Points, Get<#=name#>ConnectionPoints<#=hasParameters ? ", Get" + name + "Parameters()" : string.Empty#><#=hasEditorBounds ? ", Get" + name + "EditorBounds" : string.Empty#><#=isQuick ? ", isQuick: true" : string.Empty#><#=useBackgroundAsForeground ? ", useBackgroundAsForeground: true" : string.Empty#>, styleId: GetStyleId("<#=name#>"));
+		}
+
+<#+}#>
+<#+
+void DefineTemplateShape(string name) {
+		DefineShapeCore(name, true);
+#>
+		public static ShapeDescription <#=name#> { get { return Stencil.GetShape("<#=name#>"); } }
+<#+}#>

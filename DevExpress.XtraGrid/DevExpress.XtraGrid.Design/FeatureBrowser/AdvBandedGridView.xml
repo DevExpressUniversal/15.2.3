@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FeatureItems SourceType="AdvBandedGridView">
+
+	<FeatureItem ID="Layout_Columns_AdvBanded" Name="Columns" Category="Layout_Main" SelectedPropertyOnStart="OptionsView.ColumnAutoWidth">
+		<Properties>
+			<Item Name="OptionsView.ColumnAutoWidth"></Item>
+		</Properties>
+		<Pages>
+			<Columns>
+				<Properties>
+					<Item Name="Visible"></Item>
+					<Item Name="Width"></Item>
+					<Item Name="RowCount"></Item>
+					<Item Name="AutoFillDown"></Item>
+				</Properties>
+			</Columns>
+		</Pages>
+		<Description>
+			You can change the width and order of columns DIRECTLY IN THE PREVIEW WINDOW (Your View tab). Drag and resize column headers to do this.
+			
+			Auto width: 
+			[{OptionsView.ColumnAutoWidth}OptionsView.ColumnAutoWidth] option.
+			
+			Visibility: 
+			[{goto:Columns,Visible}Column.Visible] properties.
+			
+			Header size: 
+			[{goto:Columns,RowCount}Column.RowCount], [{goto:Columns,Width}Column.Width] property.
+		</Description>
+	</FeatureItem>
+
+	<FeatureItem ID="Layout_Columns_EndUser_AdvBanded" Category="Layout_Columns_AdvBanded" Name="End-user Actions" SelectedPropertyOnStart="OptionsCustomization.AllowColumnMoving">
+        <Properties>
+			<Item Name="OptionsCustomization.AllowColumnMoving"></Item>
+			<Item Name="OptionsCustomization.AllowColumnResizing"></Item>
+			<Item Name="OptionsCustomization.AllowChangeColumnParent"></Item>
+			<Item Name="BestFitMaxRowCount"></Item>
+			<Item Name="OptionsMenu.EnableColumnMenu"></Item>
+			<Item Name="ColumnChanged"></Item>
+			<Item Name="ColumnWidthChanged"></Item>
+		</Properties>
+		<Pages>
+			<Columns>
+				<Properties>
+					<Item Name="OptionsColumn.AllowMove"></Item>		
+					<Item Name="OptionsColumn.AllowSize"></Item>		
+					<Item Name="MinWidth"></Item>		
+					<Item Name="OptionsColumn.FixedWidth"></Item>		
+				</Properties>
+			</Columns>
+		</Pages>
+		<Description>
+			Allow moving columns:
+			[{(OptionsCustomization.AllowColumnMoving=False)}OptionsCustomization.AllowColumnMoving], [{goto:Columns,OptionsColumn.AllowMove}Column.OptionsColumn.AllowMove], [OptionsCustomization.AllowChangeColumnParent] properties.
+			
+			Allow resizing columns:
+			[{(OptionsCustomization.AllowColumnResizing=False)}OptionsCustomization.AllowColumnResizing], [{goto:Columns,OptionsColumn.AllowSize}Column.OptionsColumn.AllowSize] properties.
+			
+			Width: 
+			[{goto:Columns,MinWidth}Column.MinWidth,] [{goto:Columns,OptionsColumn.FixedWidth}Column.OptionsColumn.FixedWidth] properties.
+
+			Best Fit feature: 
+			[BestFitMaxRowCount] property.
+			
+			Column customization menu: 
+			[{(OptionsMenu.EnableColumnMenu=False)}OptionsMenu.EnableColumnMenu] option.
+			
+			Column layout changes notifications: 
+			[{ColumnChanged}ColumnChanged], [ColumnWidthChanged] events.
+		</Description>
+
+
+	</FeatureItem>	
+	<FeatureItem ID="Layout_Columns_CustomizationForm_Banded" Name="Customization Form" Category="Layout_Columns_AdvBanded" ExpandAll="False" SelectedPropertyOnStart="OptionsCustomization.ShowBandsInCustomizationForm" SampleSetupClass="">	
+		<Properties>
+			<Item Name="ShowCustomizationForm"></Item>
+			<Item Name="HideCustomizationForm"></Item>
+			<Item Name="OptionsMenu.EnableColumnMenu"></Item>
+			<Item Name="OptionsCustomization.ShowBandsInCustomizationForm"></Item>
+		</Properties>
+		<Pages>
+			<Columns>
+				<Properties>
+					<Item Name="OptionsColumn.ShowInCustomizationForm"></Item>
+					<Item Name="Visible"></Item>
+				</Properties>	
+			</Columns>
+			<Bands ExpandAll="False">
+				<Properties>
+					<Item Name="OptionsBand.ShowInCustomizationForm"></Item>
+					<Item Name="Visible"></Item>
+				</Properties>
+			</Bands>
+		</Pages>
+		<Description>
+			Available via context menu:
+			[{(OptionsMenu.EnableColumnMenu=False)}OptionsMenu.EnableColumnMenu] option.
+			
+			Content (hidden columns): 
+			[{goto:Columns,Visible}Column.Visible], [{goto:Columns,OptionsColumn.ShowInCustomizationForm}Column.OptionsColumn.ShowInCustomizationForm] properties.
+			
+			Content (hidden bands):
+			[{(OptionsCustomization.ShowBandsInCustomizationForm=False)}OptionsCustomization.ShowBandsInCustomizationForm], [{goto:Bands,Visible}Band.Visible], [{goto:Bands,OptionsBand.ShowInCustomizationForm}Band.OptionsBand.ShowInCustomizationForm] properties.
+
+			Before customization form is displayed
+			[ShowCustomizationForm] event.
+			
+			Hide notification: 
+			[HideCustomizationForm].
+		</Description>
+	</FeatureItem>
+
+	<FeatureItem ID="Layout_Rows_AdvBandedView" Name="Rows" Category="Layout_Main" ExpandAll="True" SelectedPropertyOnStart="RowHeight" SampleSetupClass="FeatureBrowserGridRowHeightCustomization">
+        <Properties>
+			<Item Name="OptionsCustomization.AllowRowSizing"></Item>
+			<Item Name="RowHeight"></Item>
+			<Item Name="GroupRowHeight"></Item>
+			<Item Name="CalcRowHeight"></Item>
+			<Item Name="RowSeparatorHeight"></Item>
+		</Properties>
+		<Description>
+			The main settings that affect row layout are:
+
+			Height: 
+			[RowHeight], [GroupRowHeight] properties and [CalcRowHeight] event.
+			
+			Row separator: 
+			[RowSeparatorHeight] property.
+			
+			End-user resizing: 
+			[{(OptionsCustomization.AllowRowSizing=False)}OptionsCustomization.AllowRowSizing] option.
+		</Description>
+	</FeatureItem>
+	<FeatureItem ID="VE_ColumnHeader_AdvBanded" Name="Column Header" Category="VE_Main">
+        <Properties>
+			<Item Name="OptionsView.ShowColumnHeaders"></Item>
+			<Item Name="Appearance.HeaderPanel"></Item>
+			<Item Name="Appearance.HeaderPanelBackground"></Item>
+			<Item Name="Images"></Item>
+			<Item Name="CustomDrawColumnHeader"></Item>
+			<Item Name="ColumnPanelRowHeight"></Item>
+			<Item Name="OptionsHint.ShowColumnHeaderHints"></Item>
+		</Properties>
+		<Pages>
+			<Columns>
+				<Properties>
+					<Item Name="AppearanceHeader"></Item>
+					<Item Name="RowCount"></Item>
+					<Item Name="AutoFillDown"></Item>
+					<Item Name="Caption"></Item>
+					<Item Name="ImageIndex"></Item>
+					<Item Name="ImageAlignment"></Item>
+					<Item Name="OptionsColumn.ShowCaption"></Item>
+					<Item Name="ToolTip"></Item>
+				</Properties>
+				<ExpandedPropertiesOnStart>
+					<ExpandedItem Name="OptionsColumn"></ExpandedItem>
+				</ExpandedPropertiesOnStart>
+			</Columns>
+		</Pages>
+        <ExpandedPropertiesOnStart>
+			<ExpandedItem Name="OptionsView"></ExpandedItem>
+			<ExpandedItem Name="Appearance"></ExpandedItem>
+		</ExpandedPropertiesOnStart>
+		<Description>
+			Visibility: 
+			[{(OptionsView.ShowColumnHeaders=False)}OptionsView.ShowColumnHeaders] option. 
+			
+			Appearance: 
+			[{Appearance.HeaderPanel}Appearance.HeaderPanel], [{goto:Columns,AppearanceHeader}Column.AppearanceHeader], [Appearance.HeaderPanelBackground] properties.
+			
+			Size: 
+			[{ColumnPanelRowHeight}ColumnPanelRowHeight], [{goto:Columns,RowCount}Column.RowCount], [{goto:Columns,AutoFillDown}Column.AutoFillDown] property.
+			
+			Content: 
+			[{goto:Columns,Caption}Column.Caption], [{Images}Images], [{goto:Columns,ImageIndex}Column.ImageIndex], [{goto:Columns,ImageAlignment}Column.ImageAlignment] properties.
+
+			Hints:
+			[{(OptionsHint.ShowColumnHeaderHints=False)}OptionsHint.ShowColumnHeaderHints], [{goto:Columns,ToolTip}Column.ToolTip] properties.
+			
+			Manual painting: 
+			[{CustomDrawColumnHeader}CustomDrawColumnHeader] event.
+			
+			Related Features: [{gotoFeature:Layout_Columns}Column Layout], [{gotoFeature:VE_ContextMenus}Context Menus].
+		</Description>
+	</FeatureItem>
+</FeatureItems>

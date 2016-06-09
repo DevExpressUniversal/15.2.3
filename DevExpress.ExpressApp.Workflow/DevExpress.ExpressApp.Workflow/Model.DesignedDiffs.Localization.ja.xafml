@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application>
+  <ActionDesign>
+    <Actions>
+      <Action Id="Activate" Caption="有効化" />
+      <Action Id="CancelWorkflowInstance" Caption="キャンセル" ConfirmationMessage="選択されたアイテムをキャンセルしようとしています。続行しますか？" />
+      <Action Id="Deactivate" Caption="無効化" />
+      <Action Id="ResumeWorkflowInstance" Caption="再開" ConfirmationMessage="選択されたアイテムを再開しようとしています。続行しますか？" />
+      <Action Id="ShowWorkflowInstances" Caption="ワークフロー インスタンスを表示" />
+      <Action Id="SuspendWorkflowInstance" ConfirmationMessage="選択されたアイテムを中断しようとしています。続行しますか？" Caption="中断" />
+      <Action Id="TerminateWorkflowInstance" Caption="終了" ConfirmationMessage="選択されたアイテムを終了しようとしています。続行しますか？" />
+    </Actions>
+  </ActionDesign>
+  <BOModel>
+    <Class Name="DevExpress.ExpressApp.Workflow.Versioning.IUserActivityVersion" Caption="IUser アクティビティ バージョン">
+      <OwnMembers>
+        <Member Name="Version" Caption="バージョン" />
+        <Member Name="WorkflowUniqueId" Caption="ワークフローの一意のID" />
+      </OwnMembers>
+    </Class>
+    <Class Name="DevExpress.ExpressApp.Workflow.Versioning.XpoUserActivityVersion" Caption="XPO ユーザー アクティビティ バージョン">
+      <OwnMembers>
+        <Member Name="Version" Caption="バージョン" />
+        <Member Name="WorkflowUniqueId" Caption="ワークフローの一意のID" />
+      </OwnMembers>
+    </Class>
+    <Class Name="DevExpress.ExpressApp.Workflow.Xpo.WFBaseObject" Caption="WFBase オブジェクト" />
+    <Class Name="DevExpress.ExpressApp.Workflow.Xpo.XpoRunningWorkflowInstanceInfo" Caption="実行中ワークフローのインスタンス情報">
+      <OwnMembers>
+        <Member Name="ActivityInstanceId" Caption="アクティビティ インスタンス ID" />
+        <Member Name="State" Caption="状態" />
+        <Member Name="TargetObjectHandle" Caption="ターゲット オブジェクト ハンドル" />
+        <Member Name="TrackingRecords" Caption="トラッキング レコード" />
+        <Member Name="TrackingRecordVisualizationInfo" Caption="トラッキング レコードの視覚化情報" />
+        <Member Name="WorkflowName" Caption="ワークフロー名" />
+        <Member Name="WorkflowUniqueId" Caption="ワークフローの一意のID" />
+      </OwnMembers>
+    </Class>
+    <Class Name="DevExpress.ExpressApp.Workflow.Xpo.XpoStartWorkflowRequest" Caption="Xpo ワークフロー リクエストを開始">
+      <OwnMembers>
+        <Member Name="TargetObjectKey" Caption="ターゲット オブジェクト キー" />
+        <Member Name="TargetWorkflowUniqueId" Caption="ターゲット ワークフローの一意のId" />
+      </OwnMembers>
+    </Class>
+    <Class Name="DevExpress.ExpressApp.Workflow.Xpo.XpoWorkflowDefinition" Caption="ワークフローの定義">
+      <OwnMembers>
+        <Member Name="AutoStartWhenObjectFitsCriteria" Caption="オブジェクトが基準を満たすと自動開始" />
+        <Member Name="AutoStartWhenObjectIsCreated" Caption="オブジェクトが作成されると自動開始" />
+        <Member Name="Criteria" Caption="基準" />
+        <Member Name="IsActive" Caption="有効" />
+        <Member Name="Name" Caption="名前" />
+        <Member Name="TargetObjectType" Caption="ターゲット オブジェクト タイプ" />
+      </OwnMembers>
+    </Class>
+    <Class Name="DevExpress.ExpressApp.Workflow.Xpo.XpoWorkflowInstanceControlCommandRequest" Caption="XPO ワークフロー インスタンス コントロール コマンドの要求">
+      <OwnMembers>
+        <Member Name="Command" Caption="コマンド" />
+        <Member Name="CreatedOn" Caption="作成日" />
+        <Member Name="Result" Caption="結果" />
+        <Member Name="TargetActivityInstanceId" Caption="ターゲット アクティビティ インスタンス ID" />
+        <Member Name="TargetWorkflowUniqueId" Caption="ターゲット ワークフローの一意のID" />
+      </OwnMembers>
+    </Class>
+    <Class Name="DevExpress.Workflow.Xpo.XpoInstanceKey" Caption="Xpo インスタンス キー">
+      <OwnMembers>
+        <Member Name="InstanceId" Caption="インスタンス ID" />
+        <Member Name="KeyId" Caption="キー ID" />
+      </OwnMembers>
+    </Class>
+    <Class Name="DevExpress.Workflow.Xpo.XpoTrackingRecord" Caption="XPO トラッキング レコード">
+      <OwnMembers>
+        <Member Name="ActivityId" Caption="アクティビティ ID" />
+        <Member Name="Data" Caption="データ" />
+        <Member Name="DateTime" Caption="日付 / 時刻" />
+        <Member Name="InstanceId" Caption="インスタンス ID" />
+      </OwnMembers>
+    </Class>
+    <Class Name="DevExpress.Workflow.Xpo.XpoWorkflowInstance" Caption="Xpo ワークフロー インスタンス">
+      <OwnMembers>
+        <Member Name="ExpirationDateTime" Caption="有効期限の日付 / 時刻" />
+        <Member Name="InstanceId" Caption="インスタンス ID" />
+        <Member Name="Owner" Caption="所有者" />
+        <Member Name="Status" Caption="ステータス" />
+      </OwnMembers>
+    </Class>
+  </BOModel>
+  <Localization>
+    <LocalizationGroup Name="Enums">
+      <LocalizationGroup Name="DevExpress.ExpressApp.Workflow.WorkflowControlCommand" Value="ワークフロー コントロール コマンド">
+        <LocalizationItem Name="Cancel" Value="キャンセル" />
+        <LocalizationItem Name="Resume" Value="再開" />
+        <LocalizationItem Name="Suspend" Value="中断" />
+        <LocalizationItem Name="Terminate" Value="終了" />
+      </LocalizationGroup>
+      <LocalizationGroup Name="System.Activities.ActivityInstanceState" Value="アクティビティ インスタンス状態">
+        <LocalizationItem Name="Canceled" Value="キャンセル済み" />
+        <LocalizationItem Name="Closed" Value="閉じている" />
+        <LocalizationItem Name="Executing" Value="実行中" />
+        <LocalizationItem Name="Faulted" Value="エラー状態" />
+      </LocalizationGroup>
+    </LocalizationGroup>
+  </Localization>
+  <Views>
+    <DetailView Id="XpoRunningWorkflowInstanceInfo_DetailView">
+      <Layout>
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="XpoRunningWorkflowInstanceInfo" Caption="実行中ワークフローのインスタンス情報" />
+          </LayoutGroup>
+          <LayoutGroup Id="TrackingRecords_Group" Caption="トラッキング レコード" />
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="XpoWorkflowDefinition_DetailView">
+      <Items>
+        <PropertyEditor Id="AutoStartWhenObjectFitsCriteria" Caption="オブジェクトが基準を満たしている" />
+        <PropertyEditor Id="AutoStartWhenObjectIsCreated" Caption="オブジェクトが作成された" />
+      </Items>
+      <Layout>
+        <LayoutGroup Id="Main_Copy">
+          <LayoutGroup Id="SizeableEditors">
+            <TabbedGroup Id="Item1">
+              <LayoutGroup Id="XpoWorkflowDefinition" Caption="プロパティ">
+                <LayoutGroup Id="Item2" Caption="自動開始のタイミング" />
+              </LayoutGroup>
+              <LayoutGroup Id="Item2" Caption="デザイナ" />
+            </TabbedGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+  </Views>
+</Application>

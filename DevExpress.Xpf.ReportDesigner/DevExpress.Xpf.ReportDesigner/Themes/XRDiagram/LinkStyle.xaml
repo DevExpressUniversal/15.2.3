@@ -1,0 +1,536 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+            xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
+            xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+            xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
+            xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+            xmlns:dxdo="http://schemas.devexpress.com/winfx/2008/xaml/docking"
+            xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
+            xmlns:designernative="clr-namespace:DevExpress.Xpf.Reports.UserDesigner.Native"
+            xmlns:designer="clr-namespace:DevExpress.Xpf.Reports.UserDesigner"
+            xmlns:designereditors="clr-namespace:DevExpress.Xpf.Reports.UserDesigner.Editors"
+            xmlns:designerextensions="clr-namespace:DevExpress.Xpf.Reports.UserDesigner.Extensions"
+            xmlns:designerthemes="clr-namespace:DevExpress.Xpf.Reports.UserDesigner.Themes"
+            xmlns:xrdiagram="clr-namespace:DevExpress.Xpf.Reports.UserDesigner.XRDiagram"
+            xmlns:dxdiag="clr-namespace:DevExpress.Xpf.Diagram;assembly=DevExpress.Xpf.Diagram.v15.2"
+            xmlns:printing="clr-namespace:DevExpress.XtraPrinting;assembly=DevExpress.Data.v15.2"
+            xmlns:printingcore="clr-namespace:DevExpress.XtraPrinting;assembly=DevExpress.Printing.v15.2.Core"
+            xmlns:printingcorereportsui="clr-namespace:DevExpress.XtraReports.UI;assembly=DevExpress.Printing.v15.2.Core"
+            xmlns:reportsui="clr-namespace:DevExpress.XtraReports.UI;assembly=DevExpress.XtraReports.v15.2"
+            xmlns:barcode="clr-namespace:DevExpress.XtraPrinting.BarCode;assembly=DevExpress.Printing.v15.2.Core"
+            xmlns:barcodenative="clr-namespace:DevExpress.XtraPrinting.BarCode.Native;assembly=DevExpress.Printing.v15.2.Core"
+            xmlns:drawing="clr-namespace:System.Drawing.Drawing2D;assembly=System.Drawing"
+            xmlns:forms="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms"
+            xmlns:sparkline="clr-namespace:DevExpress.Sparkline;assembly=DevExpress.Sparkline.v15.2.Core"
+            xmlns:diagram="clr-namespace:DevExpress.Diagram.Core;assembly=DevExpress.Diagram.v15.2.Core"
+            xmlns:dxda="clr-namespace:DevExpress.Xpf.DataAccess.DataSourceWizard;assembly=DevExpress.Xpf.DataAccess.v15.2"
+            xmlns:dxpivotgrid="clr-namespace:DevExpress.XtraPivotGrid;assembly=DevExpress.PivotGrid.v15.2.Core"
+            xmlns:gauges="clr-namespace:DevExpress.XtraGauges.Core.Customization;assembly=DevExpress.XtraGauges.v15.2.Core"
+            xmlns:wizard="clr-namespace:DevExpress.Xpf.Reports.UserDesigner.ReportWizard"
+            xmlns:reportexplorernative="clr-namespace:DevExpress.Xpf.Reports.UserDesigner.ReportExplorer.Native"
+            xmlns:model="clr-namespace:DevExpress.Xpf.Reports.UserDesigner.ReportModel"
+            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/DevExpress.Xpf.ReportDesigner.v15.2;component/Themes/XRDiagram/BaseStyles.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    <Style x:Key="ContextMenuBaseItem" TargetType="{x:Type dxb:BarItem}">
+        <Setter Property="ContentTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <Border Padding="0,5" MinWidth="150" Margin="0,0,15,0">
+                        <ContentPresenter Content="{Binding}" />
+                    </Border>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="ContextMenuSubMenuItem" TargetType="{x:Type dxb:BarItem}" BasedOn="{StaticResource ContextMenuBaseItem}">
+        <Setter Property="ContentTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <Border Padding="0,5" Margin="0,0,15,0">
+                        <ContentPresenter Content="{Binding}" />
+                    </Border>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="ContextMenuEditItem" TargetType="{x:Type dxb:BarEditItem}" BasedOn="{StaticResource ContextMenuBaseItem}">
+        <Setter Property="EditWidth" Value="170" />
+        <Setter Property="EditHorizontalAlignment" Value="Right" />
+    </Style>
+    <Style x:Key="ContextMenuLinkItem" TargetType="{x:Type dxb:BarButtonItem}" BasedOn="{StaticResource ContextMenuBaseItem}">
+        <Setter Property="ContentTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <DataTemplate.Resources>
+                        <Style x:Key="LinkStyle" TargetType="TextBlock">
+                            <Setter Property="Foreground" Value="Blue" />
+                            <Setter Property="Cursor" Value="Hand" />
+                            <Setter Property="Padding" Value="0,5" />
+                        </Style>
+                    </DataTemplate.Resources>
+                    <DataTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="TextBlock.TextDecorations" Value="Underline" TargetName="text" />
+                        </Trigger>
+                    </DataTemplate.Triggers>
+                    <TextBlock x:Name="text" Text="{TemplateBinding Content}" Style="{StaticResource LinkStyle}" />
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="{x:Static xrdiagram:XRDiagramControlBarItemNames.SmartTag}" TargetType="{x:Type dxb:BarButtonItem}" BasedOn="{StaticResource ContextMenuLinkItem}">
+        <Setter Property="dx:XamlHelper.Name" Value="{x:Static xrdiagram:XRDiagramControlBarItemNames.SmartTag}" />
+        <Setter Property="Content" Value="Edit..." />
+    </Style>
+    <Style x:Key="{x:Static xrdiagram:XRDiagramControlBarItemNames.Cut}" TargetType="dxb:BarButtonItem" BasedOn="{StaticResource ContextMenuBaseItem}">
+        <Setter Property="dx:XamlHelper.Name" Value="{x:Static xrdiagram:XRDiagramControlBarItemNames.Cut}" />
+        <Setter Property="Content" Value="Cut" />
+        <Setter Property="Glyph" Value="{dx:DXImage Image=Cut_16x16.png}" />
+        <Setter Property="Command" Value="{Binding Diagram.Commands.Cut}" />
+    </Style>
+    <Style x:Key="{x:Static xrdiagram:XRDiagramControlBarItemNames.Copy}" TargetType="dxb:BarButtonItem" BasedOn="{StaticResource ContextMenuBaseItem}">
+        <Setter Property="dx:XamlHelper.Name" Value="{x:Static xrdiagram:XRDiagramControlBarItemNames.Copy}" />
+        <Setter Property="Content" Value="Copy" />
+        <Setter Property="Glyph" Value="{dx:DXImage Image=Copy_16x16.png}" />
+        <Setter Property="Command" Value="{Binding Diagram.Commands.Copy}" />
+    </Style>
+    <Style x:Key="{x:Static xrdiagram:XRDiagramControlBarItemNames.Paste}" TargetType="dxb:BarButtonItem" BasedOn="{StaticResource ContextMenuBaseItem}">
+        <Setter Property="dx:XamlHelper.Name" Value="{x:Static xrdiagram:XRDiagramControlBarItemNames.Paste}" />
+        <Setter Property="Content" Value="Paste" />
+        <Setter Property="Glyph" Value="{dx:DXImage Image=Paste_16x16.png}" />
+        <Setter Property="Command" Value="{Binding Diagram.Commands.Paste}" />
+    </Style>
+    <Style x:Key="{x:Static xrdiagram:XRDiagramControlBarItemNames.Delete}" TargetType="dxb:BarButtonItem" BasedOn="{StaticResource ContextMenuBaseItem}">
+        <Setter Property="dx:XamlHelper.Name" Value="{x:Static xrdiagram:XRDiagramControlBarItemNames.Delete}" />
+        <Setter Property="Content" Value="Delete" />
+        <Setter Property="Glyph" Value="{dx:DXImage Image=Delete_16x16.png}" />
+        <Setter Property="Command" Value="{Binding Diagram.Commands.Delete}" />
+    </Style>
+    <Style x:Key="{x:Static xrdiagram:XRDiagramControlBarItemNames.Properties}" TargetType="dxb:BarButtonItem" BasedOn="{StaticResource ContextMenuBaseItem}">
+        <Setter Property="dx:XamlHelper.Name" Value="{x:Static xrdiagram:XRDiagramControlBarItemNames.Properties}" />
+        <Setter Property="Content" Value="Properties" />
+        <Setter Property="Glyph" Value="{dx:DXImage Image=Properties_16x16.png}" />
+        <Setter Property="Command" Value="{Binding Diagram.XRCommands.ShowProperties}" />
+    </Style>
+    <Style x:Key="{x:Static xrdiagram:XRDiagramControlBarItemNames.FormattingRules}" TargetType="dxb:BarButtonItem" BasedOn="{StaticResource ContextMenuLinkItem}">
+        <Setter Property="dx:XamlHelper.Name" Value="{x:Static xrdiagram:XRDiagramControlBarItemNames.FormattingRules}" />
+        <Setter Property="Content" Value="Edit Formatting Rules..." />
+        <Setter Property="IsEnabled" Value="{Binding Converter={designereditors:SelectionModelToIsEnabledConverter}}" />
+        <Setter Property="dxmvvm:Interaction.BehaviorsTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <ContentControl>
+                        <dxe:DialogServiceEditorBehavior Commands="{dxe:UICommandContainerGenerator Buttons=OKCancel}" Value="{Binding Diagram.SelectionToolsModel[FormattingRules]}" Content="{Binding Path=Diagram.(designer:ReportDesigner.Document).ReportModel}">
+                            <dxe:DialogServiceEditorBehavior.DialogServiceTemplate>
+                                <DataTemplate>
+                                    <ContentControl>
+                                        <dxdiag:CollectionDialogService DialogWindowStartupLocation="CenterOwner">
+                                            <dxdiag:CollectionDialogService.DialogStyle>
+                                                <Style TargetType="dx:DXDialogWindow" BasedOn="{StaticResource DXDialogWindowDialogStyleBase}">
+                                                    <Setter Property="Width" Value="600" />
+                                                    <Setter Property="Height" Value="350" />
+                                                    <Setter Property="MinWidth" Value="420" />
+                                                    <Setter Property="MinHeight" Value="240" />
+                                                    <Setter Property="Title" Value="Formatting Rules Editor" />
+                                                </Style>
+                                            </dxdiag:CollectionDialogService.DialogStyle>
+                                            <dxdiag:CollectionDialogService.ViewTemplate>
+                                                <DataTemplate>
+                                                    <designereditors:FormattingRulesUITypeEditor EditValue="{Binding Value}" ReportModel="{Binding Content}" />
+                                                </DataTemplate>
+                                            </dxdiag:CollectionDialogService.ViewTemplate>
+                                        </dxdiag:CollectionDialogService>
+                                    </ContentControl>
+                                </DataTemplate>
+                            </dxe:DialogServiceEditorBehavior.DialogServiceTemplate>
+                        </dxe:DialogServiceEditorBehavior>
+                    </ContentControl>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!--<Style x:Key="{x:Static xrdiagram:XRDiagramControlBarItemNames.EditAndReorderBands}" TargetType="dxb:BarButtonItem" BasedOn="{StaticResource ContextMenuLinkItem}">
+        <Setter Property="dx:XamlHelper.Name" Value="{x:Static xrdiagram:XRDiagramControlBarItemNames.EditAndReorderBands}" />
+        <Setter Property="Content" Value="Edit and Reorder Bands..." />
+    </Style>-->
+    <Style x:Key="{x:Static xrdiagram:XRDiagramControlBarItemNames.AddSubBand}" TargetType="dxb:BarButtonItem" BasedOn="{StaticResource ContextMenuBaseItem}">
+        <Setter Property="dx:XamlHelper.Name" Value="{x:Static xrdiagram:XRDiagramControlBarItemNames.AddSubBand}" />
+        <Setter Property="Content" Value="Add Sub-Band" />
+        <Setter Property="Command" Value="{Binding Diagram.XRCommands.InsertSubBand}" />
+    </Style>
+    <Style x:Key="{x:Static xrdiagram:XRDiagramControlBarItemNames.InsertBand}" TargetType="dxb:BarSubItem" BasedOn="{StaticResource ContextMenuBaseItem}">
+        <Setter Property="dx:XamlHelper.Name" Value="{x:Static xrdiagram:XRDiagramControlBarItemNames.InsertBand}" />
+        <Setter Property="Content" Value="Insert Band" />
+        <Setter Property="ItemLinksSource">
+            <Setter.Value>
+                <dxb:BarItemCollection>
+                    <dxb:BarButtonItem Content="Report Header" Command="{Binding Diagram.XRCommands.InsertBand}" CommandParameter="ReportHeader" Style="{StaticResource ContextMenuSubMenuItem}" />
+                    <dxb:BarButtonItem Content="Page Header" Command="{Binding Diagram.XRCommands.InsertBand}" CommandParameter="PageHeader" Style="{StaticResource ContextMenuSubMenuItem}" />
+                    <dxb:BarButtonItem Content="Group Header" Command="{Binding Diagram.XRCommands.InsertBand}" CommandParameter="GroupHeader" Style="{StaticResource ContextMenuSubMenuItem}" />
+                    <dxb:BarButtonItem Content="Group Footer" Command="{Binding Diagram.XRCommands.InsertBand}" CommandParameter="GroupFooter" Style="{StaticResource ContextMenuSubMenuItem}" />
+                    <dxb:BarButtonItem Content="Page Footer" Command="{Binding Diagram.XRCommands.InsertBand}" CommandParameter="PageFooter" Style="{StaticResource ContextMenuSubMenuItem}" />
+                    <dxb:BarButtonItem Content="Report Footer" Command="{Binding Diagram.XRCommands.InsertBand}" CommandParameter="ReportFooter" Style="{StaticResource ContextMenuSubMenuItem}" />
+                </dxb:BarItemCollection>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="{x:Static xrdiagram:XRDiagramControlBarItemNames.InsertDetailReport}" TargetType="dxb:BarSubItem" BasedOn="{StaticResource ContextMenuBaseItem}">
+        <Setter Property="dx:XamlHelper.Name" Value="{x:Static xrdiagram:XRDiagramControlBarItemNames.InsertDetailReport}" />
+        <Setter Property="Content" Value="Insert Detail Report" />
+        <Setter Property="ItemLinksSource">
+            <Setter.Value>
+                <dxb:BarItemCollection>
+                    <dxb:BarButtonItem Content="Unbound" Command="{Binding Diagram.XRCommands.InsertDetailReport}" Style="{StaticResource ContextMenuSubMenuItem}" />
+                    <dxb:BarItemSeparator />
+                </dxb:BarItemCollection>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="{x:Static xrdiagram:XRDiagramControlBarItemNames.FieldAreaForNewField}" TargetType="dxb:BarEditItem" BasedOn="{StaticResource ContextMenuEditItem}">
+        <Setter Property="dx:XamlHelper.Name" Value="{x:Static xrdiagram:XRDiagramControlBarItemNames.FieldAreaForNewField}" />
+        <Setter Property="Content" Value="Field Area for a New Field" />
+        <Setter Property="EditSettings" Value="{dxe:ComboBoxSettings IsTextEditable=False, ItemsSource={dxe:EnumItemsSource EnumType=dxpivotgrid:PivotArea}}" />
+    </Style>
+    <Style x:Key="{x:Static xrdiagram:XRDiagramControlBarItemNames.AddFieldToArea}" TargetType="dxb:BarButtonItem" BasedOn="{StaticResource ContextMenuBaseItem}">
+        <Setter Property="dx:XamlHelper.Name" Value="{x:Static xrdiagram:XRDiagramControlBarItemNames.AddFieldToArea}" />
+        <Setter Property="Content" Value="Add Field to Area" />
+    </Style>
+    <Style x:Key="{x:Static xrdiagram:XRDiagramControlBarItemNames.RunDesigner}" TargetType="dxb:BarButtonItem" BasedOn="{StaticResource ContextMenuLinkItem}">
+        <Setter Property="dx:XamlHelper.Name" Value="{x:Static xrdiagram:XRDiagramControlBarItemNames.RunDesigner}" />
+        <Setter Property="Content" Value="Run Designer..." />
+    </Style>
+    <Style x:Key="{x:Static xrdiagram:XRDiagramControlBarItemNames.Clear}" TargetType="dxb:BarButtonItem" BasedOn="{StaticResource ContextMenuBaseItem}">
+        <Setter Property="dx:XamlHelper.Name" Value="{x:Static xrdiagram:XRDiagramControlBarItemNames.Clear}" />
+        <Setter Property="Content" Value="Clear" />
+        <Setter Property="Command" Value="{Binding Diagram.XRCommands.Clear}" />
+    </Style>
+    <Style x:Key="{x:Static xrdiagram:XRDiagramControlBarItemNames.LoadFile}" TargetType="dxb:BarButtonItem" BasedOn="{StaticResource ContextMenuLinkItem}">
+        <Setter Property="dx:XamlHelper.Name" Value="{x:Static xrdiagram:XRDiagramControlBarItemNames.LoadFile}" />
+        <Setter Property="Content" Value="Load File..." />
+        <Setter Property="Command" Value="{Binding Diagram.XRCommands.LoadFile}" />
+        <Setter Property="CommandParameter" Value="{Binding Path=Diagram.(designer:ReportDesigner.Document)}" />
+    </Style>
+    <Style x:Key="{x:Static xrdiagram:XRDiagramControlBarItemNames.EditParameterBindings}" TargetType="dxb:BarButtonItem" BasedOn="{StaticResource ContextMenuLinkItem}">
+        <Setter Property="dx:XamlHelper.Name" Value="{x:Static xrdiagram:XRDiagramControlBarItemNames.EditParameterBindings}" />
+        <Setter Property="Content" Value="Edit Parameter Bindings..." />
+        <Setter Property="dxmvvm:Interaction.BehaviorsTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <ContentControl>
+                        <dxe:DialogServiceEditorBehavior Commands="{dxe:UICommandContainerGenerator Buttons=OKCancel}" Value="{Binding Diagram.SelectionToolsModel[ParameterBindings]}" Content="{Binding Diagram}">
+                            <dxe:DialogServiceEditorBehavior.DialogServiceTemplate>
+                                <DataTemplate>
+                                    <ContentControl>
+                                        <dxdiag:CollectionDialogService DialogWindowStartupLocation="CenterOwner">
+                                            <dxdiag:CollectionDialogService.DialogStyle>
+                                                <Style TargetType="dx:DXDialogWindow" BasedOn="{StaticResource DXDialogWindowDialogStyleBase}">
+                                                    <Setter Property="Width" Value="600" />
+                                                    <Setter Property="Height" Value="350" />
+                                                    <Setter Property="MinWidth" Value="420" />
+                                                    <Setter Property="MinHeight" Value="240" />
+                                                    <Setter Property="Title" Value="Parameter Binding Collection Editor" />
+                                                </Style>
+                                            </dxdiag:CollectionDialogService.DialogStyle>
+                                            <dxdiag:CollectionDialogService.ViewTemplate>
+                                                <DataTemplate>
+                                                    <designereditors:ParameterBindingCollectionUITypeEditor EditValue="{Binding Value}" />
+                                                </DataTemplate>
+                                            </dxdiag:CollectionDialogService.ViewTemplate>
+                                        </dxdiag:CollectionDialogService>
+                                    </ContentControl>
+                                </DataTemplate>
+                            </dxe:DialogServiceEditorBehavior.DialogServiceTemplate>
+                        </dxe:DialogServiceEditorBehavior>
+                    </ContentControl>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="{x:Static xrdiagram:XRDiagramControlBarItemNames.ConvertToLables}" TargetType="dxb:BarButtonItem" BasedOn="{StaticResource ContextMenuBaseItem}">
+        <Setter Property="dx:XamlHelper.Name" Value="{x:Static xrdiagram:XRDiagramControlBarItemNames.ConvertToLables}" />
+        <Setter Property="Content" Value="Convert To Lables" />
+    </Style>
+    <Style x:Key="{x:Static xrdiagram:XRDiagramControlBarItemNames.InsertTableCell}" TargetType="dxb:BarSubItem" BasedOn="{StaticResource ContextMenuBaseItem}">
+        <Setter Property="dx:XamlHelper.Name" Value="{x:Static xrdiagram:XRDiagramControlBarItemNames.InsertTableCell}" />
+        <Setter Property="Content" Value="Insert" />
+        <Setter Property="ItemLinksSource">
+            <Setter.Value>
+                <dxb:BarItemCollection>
+                    <dxb:BarButtonItem Content="Row Above" Command="{Binding Diagram.XRCommands.InsertTableRow}" Style="{StaticResource ContextMenuSubMenuItem}" />
+                    <dxb:BarButtonItem Content="Row Below" Command="{Binding Diagram.XRCommands.InsertTableRow}" Style="{StaticResource ContextMenuSubMenuItem}" />
+                    <dxb:BarButtonItem Content="Column To Left" Command="{Binding Diagram.XRCommands.InsertTableColumn}" Style="{StaticResource ContextMenuSubMenuItem}" />
+                    <dxb:BarButtonItem Content="Column To Right" Command="{Binding Diagram.XRCommands.InsertTableColumn}" Style="{StaticResource ContextMenuSubMenuItem}" />
+                    <dxb:BarButtonItem Content="Cell" Command="{Binding Diagram.XRCommands.InsertTableCell}" Style="{StaticResource ContextMenuSubMenuItem}" />
+                </dxb:BarItemCollection>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="{x:Static xrdiagram:XRDiagramControlBarItemNames.DeleteTableCell}" TargetType="dxb:BarSubItem" BasedOn="{StaticResource ContextMenuBaseItem}">
+        <Setter Property="dx:XamlHelper.Name" Value="{x:Static xrdiagram:XRDiagramControlBarItemNames.DeleteTableCell}" />
+        <Setter Property="Content" Value="Delete" />
+        <Setter Property="ItemLinksSource">
+            <Setter.Value>
+                <dxb:BarItemCollection>
+                    <dxb:BarButtonItem Content="Row" Command="{Binding Diagram.XRCommands.DeleteTableRow}" Style="{StaticResource ContextMenuSubMenuItem}" />
+                    <dxb:BarButtonItem Content="Column" Command="{Binding Diagram.XRCommands.DeleteTableColumn}" Style="{StaticResource ContextMenuSubMenuItem}" />
+                    <dxb:BarButtonItem Content="Cell" Command="{Binding Diagram.XRCommands.DeleteTableCell}" Style="{StaticResource ContextMenuSubMenuItem}" />
+                </dxb:BarItemCollection>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="{x:Static xrdiagram:XRDiagramControlBarItemNames.InsertTableRow}" TargetType="dxb:BarSubItem" BasedOn="{StaticResource ContextMenuBaseItem}">
+        <Setter Property="dx:XamlHelper.Name" Value="{x:Static xrdiagram:XRDiagramControlBarItemNames.DeleteTableRow}" />
+        <Setter Property="Content" Value="Insert" />
+        <Setter Property="ItemLinksSource">
+            <Setter.Value>
+                <dxb:BarItemCollection>
+                    <dxb:BarButtonItem Content="Row Above" Command="{Binding Diagram.XRCommands.InsertTableRow}" Style="{StaticResource ContextMenuSubMenuItem}" />
+                    <dxb:BarButtonItem Content="Row Below" Command="{Binding Diagram.XRCommands.InsertTableRow}" Style="{StaticResource ContextMenuSubMenuItem}" />
+                </dxb:BarItemCollection>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="{x:Static xrdiagram:XRDiagramControlBarItemNames.DeleteTableRow}" TargetType="dxb:BarSubItem" BasedOn="{StaticResource ContextMenuBaseItem}">
+        <Setter Property="dx:XamlHelper.Name" Value="{x:Static xrdiagram:XRDiagramControlBarItemNames.InsertTableRow}" />
+        <Setter Property="Content" Value="Delete" />
+        <Setter Property="ItemLinksSource">
+            <Setter.Value>
+                <dxb:BarItemCollection>
+                    <dxb:BarButtonItem Content="Row" Command="{Binding Diagram.XRCommands.DeleteTableRow}" Style="{StaticResource ContextMenuSubMenuItem}" />
+                </dxb:BarItemCollection>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="{x:Static xrdiagram:XRDiagramControlBarItemNames.Levels}" TargetType="dxb:BarButtonItem" BasedOn="{StaticResource ContextMenuLinkItem}">
+        <Setter Property="dx:XamlHelper.Name" Value="{x:Static xrdiagram:XRDiagramControlBarItemNames.Levels}" />
+        <Setter Property="Content" Value="Edit Levels..." />
+        <Setter Property="dxmvvm:Interaction.BehaviorsTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <ContentControl>
+                        <dxe:DialogServiceEditorBehavior Commands="{dxe:UICommandContainerGenerator Buttons=OKCancel}" Value="{Binding Diagram.SelectionToolsModel[Levels]}" Content="{Binding Diagram}">
+                            <dxe:DialogServiceEditorBehavior.DialogServiceTemplate>
+                                <DataTemplate>
+                                    <ContentControl>
+                                        <dxdiag:CollectionDialogService DialogWindowStartupLocation="CenterOwner">
+                                            <dxdiag:CollectionDialogService.DialogStyle>
+                                                <Style TargetType="dx:DXDialogWindow" BasedOn="{StaticResource DXDialogWindowDialogStyleBase}">
+                                                    <Setter Property="Width" Value="600" />
+                                                    <Setter Property="Height" Value="350" />
+                                                    <Setter Property="MinWidth" Value="420" />
+                                                    <Setter Property="MinHeight" Value="240" />
+                                                    <Setter Property="Title" Value="Table Of Contents Level Collection Editor" />
+                                                </Style>
+                                            </dxdiag:CollectionDialogService.DialogStyle>
+                                            <dxdiag:CollectionDialogService.ViewTemplate>
+                                                <DataTemplate>
+                                                    <designereditors:XRTableOfContentsLevelCollectionEditor EditValue="{Binding Value}" />
+                                                </DataTemplate>
+                                            </dxdiag:CollectionDialogService.ViewTemplate>
+                                        </dxdiag:CollectionDialogService>
+                                    </ContentControl>
+                                </DataTemplate>
+                            </dxe:DialogServiceEditorBehavior.DialogServiceTemplate>
+                        </dxe:DialogServiceEditorBehavior>
+                    </ContentControl>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="{x:Static xrdiagram:XRDiagramControlBarItemNames.EditBindings}" TargetType="dxb:BarButtonItem" BasedOn="{StaticResource ContextMenuLinkItem}">
+        <Setter Property="dx:XamlHelper.Name" Value="{x:Static xrdiagram:XRDiagramControlBarItemNames.EditBindings}" />
+        <Setter Property="Content" Value="Edit Bindings..." />
+    </Style>
+    <Style x:Key="{x:Static xrdiagram:XRDiagramControlBarItemNames.GroupFields}" TargetType="dxb:BarButtonItem" BasedOn="{StaticResource ContextMenuLinkItem}">
+        <Setter Property="dx:XamlHelper.Name" Value="{x:Static xrdiagram:XRDiagramControlBarItemNames.GroupFields}" />
+        <Setter Property="IsEnabled" Value="{Binding Converter={designereditors:SelectionModelToIsEnabledConverter}}" />
+        <Setter Property="Content" Value="Edit Group Fields..." />
+        <Setter Property="dxmvvm:Interaction.BehaviorsTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <ContentControl>
+                        <dxe:DialogServiceEditorBehavior Commands="{dxe:UICommandContainerGenerator Buttons=OKCancel}" Value="{Binding Diagram.SelectionToolsModel[GroupFields]}" Content="{Binding Diagram}">
+                            <dxe:DialogServiceEditorBehavior.DialogServiceTemplate>
+                                <DataTemplate>
+                                    <ContentControl>
+                                        <dxdiag:CollectionDialogService DialogWindowStartupLocation="CenterOwner">
+                                            <dxdiag:CollectionDialogService.DialogStyle>
+                                                <Style TargetType="dx:DXDialogWindow" BasedOn="{StaticResource DXDialogWindowDialogStyleBase}">
+                                                    <Setter Property="Width" Value="600" />
+                                                    <Setter Property="Height" Value="350" />
+                                                    <Setter Property="MinWidth" Value="420" />
+                                                    <Setter Property="MinHeight" Value="240" />
+                                                    <Setter Property="Title" Value="Group Field Collection Editor" />
+                                                </Style>
+                                            </dxdiag:CollectionDialogService.DialogStyle>
+                                            <dxdiag:CollectionDialogService.ViewTemplate>
+                                                <DataTemplate>
+                                                    <designereditors:GroupFieldCollectionUITypeEditor EditValue="{Binding Value}" />
+                                                </DataTemplate>
+                                            </dxdiag:CollectionDialogService.ViewTemplate>
+                                        </dxdiag:CollectionDialogService>
+                                    </ContentControl>
+                                </DataTemplate>
+                            </dxe:DialogServiceEditorBehavior.DialogServiceTemplate>
+                        </dxe:DialogServiceEditorBehavior>
+                    </ContentControl>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="{x:Static xrdiagram:XRDiagramControlBarItemNames.MoveUp}" TargetType="dxb:BarButtonItem" BasedOn="{StaticResource ContextMenuBaseItem}">
+        <Setter Property="dx:XamlHelper.Name" Value="{x:Static xrdiagram:XRDiagramControlBarItemNames.MoveUp}" />
+        <Setter Property="Content" Value="Move Up" />
+    </Style>
+    <Style x:Key="{x:Static xrdiagram:XRDiagramControlBarItemNames.MoveDown}" TargetType="dxb:BarButtonItem" BasedOn="{StaticResource ContextMenuBaseItem}">
+        <Setter Property="dx:XamlHelper.Name" Value="{x:Static xrdiagram:XRDiagramControlBarItemNames.MoveDown}" />
+        <Setter Property="Content" Value="Move Down" />
+    </Style>
+    <Style x:Key="{x:Static xrdiagram:XRDiagramControlBarItemNames.SortFields}" TargetType="dxb:BarButtonItem" BasedOn="{StaticResource ContextMenuLinkItem}">
+        <Setter Property="dx:XamlHelper.Name" Value="{x:Static xrdiagram:XRDiagramControlBarItemNames.SortFields}" />
+        <Setter Property="IsEnabled" Value="{Binding Converter={designereditors:SelectionModelToIsEnabledConverter}}" />
+        <Setter Property="Content" Value="Edit Sort Fields..." />
+        <Setter Property="dxmvvm:Interaction.BehaviorsTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <ContentControl>
+                        <dxe:DialogServiceEditorBehavior Commands="{dxe:UICommandContainerGenerator Buttons=OKCancel}" Value="{Binding Diagram.SelectionToolsModel[SortFields]}" Content="{Binding Diagram}">
+                            <dxe:DialogServiceEditorBehavior.DialogServiceTemplate>
+                                <DataTemplate>
+                                    <ContentControl>
+                                        <dxdiag:CollectionDialogService DialogWindowStartupLocation="CenterOwner">
+                                            <dxdiag:CollectionDialogService.DialogStyle>
+                                                <Style TargetType="dx:DXDialogWindow" BasedOn="{StaticResource DXDialogWindowDialogStyleBase}">
+                                                    <Setter Property="Width" Value="600" />
+                                                    <Setter Property="Height" Value="350" />
+                                                    <Setter Property="MinWidth" Value="420" />
+                                                    <Setter Property="MinHeight" Value="240" />
+                                                    <Setter Property="Title" Value="Group Field Collection Editor" />
+                                                </Style>
+                                            </dxdiag:CollectionDialogService.DialogStyle>
+                                            <dxdiag:CollectionDialogService.ViewTemplate>
+                                                <DataTemplate>
+                                                    <designereditors:GroupFieldCollectionUITypeEditor EditValue="{Binding Value}" />
+                                                </DataTemplate>
+                                            </dxdiag:CollectionDialogService.ViewTemplate>
+                                        </dxdiag:CollectionDialogService>
+                                    </ContentControl>
+                                </DataTemplate>
+                            </dxe:DialogServiceEditorBehavior.DialogServiceTemplate>
+                        </dxe:DialogServiceEditorBehavior>
+                    </ContentControl>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="{x:Static xrdiagram:XRDiagramControlBarItemNames.DesignInReportWizard}" TargetType="dxb:BarButtonItem" BasedOn="{StaticResource ContextMenuLinkItem}">
+        <Setter Property="dx:XamlHelper.Name" Value="{x:Static xrdiagram:XRDiagramControlBarItemNames.DesignInReportWizard}" />
+        <Setter Property="Content" Value="Design in Report Wizard..." />
+        <Setter Property="Glyph" Value="{dx:DXImage Image=Wizard_16x16.png}" />
+        <Setter Property="LargeGlyph" Value="{dx:DXImage Image=Wizard_32x32.png}" />
+        <Setter Property="Command" Value="{Binding Diagram.XRCommands.RunWizard}" />
+    </Style>
+    <Style x:Key="{x:Static xrdiagram:XRDiagramControlBarItemNames.FormattingRuleSheet}" TargetType="dxb:BarButtonItem" BasedOn="{StaticResource ContextMenuLinkItem}">
+        <Setter Property="dx:XamlHelper.Name" Value="{x:Static xrdiagram:XRDiagramControlBarItemNames.FormattingRuleSheet}" />
+        <Setter Property="Content" Value="Edit Formatting Rule Sheet..." />
+        <Setter Property="dxmvvm:Interaction.BehaviorsTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <ContentControl>
+                        <dxe:DialogServiceEditorBehavior Commands="{dxe:UICommandContainerGenerator Buttons=OKCancel}" Value="{Binding Diagram.SelectionToolsModel[FormattingRuleSheet]}" Content="{Binding Path=Diagram.(designer:ReportDesigner.Document).ReportModel}">
+                            <dxe:DialogServiceEditorBehavior.DialogServiceTemplate>
+                                <DataTemplate>
+                                    <ContentControl>
+                                        <dxdiag:CollectionDialogService DialogWindowStartupLocation="CenterOwner">
+                                            <dxdiag:CollectionDialogService.DialogStyle>
+                                                <Style TargetType="dx:DXDialogWindow" BasedOn="{StaticResource DXDialogWindowDialogStyleBase}">
+                                                    <Setter Property="Width" Value="600" />
+                                                    <Setter Property="Height" Value="350" />
+                                                    <Setter Property="MinWidth" Value="420" />
+                                                    <Setter Property="MinHeight" Value="240" />
+                                                    <Setter Property="Title" Value="Formatting Rule Sheet Editor" />
+                                                </Style>
+                                            </dxdiag:CollectionDialogService.DialogStyle>
+                                            <dxdiag:CollectionDialogService.ViewTemplate>
+                                                <DataTemplate>
+                                                    <designereditors:FormattingRuleSheetUITypeEditor EditValue="{Binding Value}" ReportModel="{Binding Content}" />
+                                                </DataTemplate>
+                                            </dxdiag:CollectionDialogService.ViewTemplate>
+                                        </dxdiag:CollectionDialogService>
+                                    </ContentControl>
+                                </DataTemplate>
+                            </dxe:DialogServiceEditorBehavior.DialogServiceTemplate>
+                        </dxe:DialogServiceEditorBehavior>
+                    </ContentControl>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="{x:Static xrdiagram:XRDiagramControlBarItemNames.StyleSheet}" TargetType="dxb:BarButtonItem" BasedOn="{StaticResource ContextMenuLinkItem}">
+        <Setter Property="dx:XamlHelper.Name" Value="{x:Static xrdiagram:XRDiagramControlBarItemNames.StyleSheet}" />
+        <Setter Property="Content" Value="Edit Style Sheet..." />
+        <Setter Property="IsEnabled" Value="{Binding Converter={designereditors:SelectionModelToIsEnabledConverter}}" />
+        <Setter Property="dxmvvm:Interaction.BehaviorsTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <ContentControl>
+                        <dxe:DialogServiceEditorBehavior Commands="{dxe:UICommandContainerGenerator Buttons=OKCancel}" Value="{Binding Diagram.SelectionToolsModel[StyleSheet]}" Content="{Binding Path=Diagram.(designer:ReportDesigner.Document).ReportModel}">
+                            <dxe:DialogServiceEditorBehavior.DialogServiceTemplate>
+                                <DataTemplate>
+                                    <ContentControl>
+                                        <dxdiag:CollectionDialogService DialogWindowStartupLocation="CenterOwner">
+                                            <dxdiag:CollectionDialogService.DialogStyle>
+                                                <Style TargetType="dx:DXDialogWindow" BasedOn="{StaticResource DXDialogWindowDialogStyleBase}">
+                                                    <Setter Property="Width" Value="600" />
+                                                    <Setter Property="Height" Value="350" />
+                                                    <Setter Property="MinWidth" Value="420" />
+                                                    <Setter Property="MinHeight" Value="240" />
+                                                    <Setter Property="Title" Value="Styles Editor" />
+                                                </Style>
+                                            </dxdiag:CollectionDialogService.DialogStyle>
+                                            <dxdiag:CollectionDialogService.ViewTemplate>
+                                                <DataTemplate>
+                                                    <designereditors:XRControlStyleSheetUITypeEditor EditValue="{Binding Value}" ReportModel="{Binding Content}" />
+                                                </DataTemplate>
+                                            </dxdiag:CollectionDialogService.ViewTemplate>
+                                        </dxdiag:CollectionDialogService>
+                                    </ContentControl>
+                                </DataTemplate>
+                            </dxe:DialogServiceEditorBehavior.DialogServiceTemplate>
+                        </dxe:DialogServiceEditorBehavior>
+                    </ContentControl>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="{x:Static xrdiagram:XRDiagramControlBarItemNames.Watermark}" TargetType="dxb:BarButtonItem" BasedOn="{StaticResource ContextMenuLinkItem}">
+        <Setter Property="dx:XamlHelper.Name" Value="{x:Static xrdiagram:XRDiagramControlBarItemNames.Watermark}" />
+        <Setter Property="Content" Value="Watermark..." />
+        <Setter Property="dxmvvm:Interaction.BehaviorsTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <ContentControl>
+                        <dxe:DialogServiceEditorBehavior Commands="{dxe:UICommandContainerGenerator Buttons=OKCancel}" Value="{Binding Diagram.SelectionToolsModel[Watermark], UpdateSourceTrigger=PropertyChanged}" Content="{Binding Path=Diagram.(designer:ReportDesigner.Document).ReportModel.XRObjectBase}">
+                            <dxe:DialogServiceEditorBehavior.DialogServiceTemplate>
+                                <DataTemplate>
+                                    <ContentControl>
+                                        <dx:DialogService DialogWindowStartupLocation="CenterOwner" DialogStyle="{StaticResource WatermarkDialogStyle}">
+                                            <dx:DialogService.ViewTemplate>
+                                                <DataTemplate>
+                                                    <designereditors:WatermarkUITypeEditor EditValue="{Binding Value}" Report="{Binding Content}" />
+                                                </DataTemplate>
+                                            </dx:DialogService.ViewTemplate>
+                                        </dx:DialogService>
+                                    </ContentControl>
+                                </DataTemplate>
+                            </dxe:DialogServiceEditorBehavior.DialogServiceTemplate>
+                        </dxe:DialogServiceEditorBehavior>
+                    </ContentControl>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

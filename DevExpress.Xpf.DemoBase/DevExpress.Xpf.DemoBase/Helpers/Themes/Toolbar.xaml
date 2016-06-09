@@ -1,0 +1,321 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:dxdb="clr-namespace:DevExpress.Xpf.DemoBase"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+                    xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+                    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                    xmlns:helpers="clr-namespace:DevExpress.Xpf.DemoBase.Helpers"
+                    xmlns:ddhelpers="clr-namespace:DevExpress.DemoData.Helpers;assembly=DevExpress.DemoData.v15.2.Core"
+                    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+                    xmlns:dxl="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
+                    xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
+                    xmlns:internal="clr-namespace:DevExpress.Xpf.DemoBase.Internal">
+    <Style TargetType="{x:Type helpers:Toolbar}">
+        <Style.Resources>
+            <ddhelpers:BoolInverter x:Key="BoolInverter" />
+            <ddhelpers:SelectConverter x:Key="ToolbarButtonMouseOverVisiblityConverter">
+                <ddhelpers:SelectState Key="False" Value="{ddhelpers:VisibilityValue S=Collapsed}" />
+                <ddhelpers:SelectState Key="True" Value="{ddhelpers:VisibilityValue S=Visible}" />
+            </ddhelpers:SelectConverter>
+            <Style x:Key="ToolbarButtonStyle" TargetType="ButtonBase">
+                <Setter Property="ddhelpers:IsMouseOverHelper.EnableIsMouseOver" Value="Enable" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="ButtonBase">
+                            <Grid Cursor="Hand" x:Name="root">
+                                <VisualStateManager.VisualStateGroups>
+                                    <VisualStateGroup x:Name="CommonStates">
+                                        <VisualState x:Name="Disabled">
+                                            <Storyboard>
+                                                <DoubleAnimation To="0.5" Storyboard.TargetName="root" Storyboard.TargetProperty="(UIElement.Opacity)" />
+                                            </Storyboard>
+                                        </VisualState>
+                                        <VisualState x:Name="Normal" />
+                                        <VisualState x:Name="MouseOver" />
+                                        <VisualState x:Name="Pressed">
+                                            <Storyboard>
+                                                <DoubleAnimation To="0.5" Storyboard.TargetName="root" Storyboard.TargetProperty="(UIElement.Opacity)" />
+                                            </Storyboard>
+                                        </VisualState>
+                                    </VisualStateGroup>
+                                    <VisualStateGroup x:Name="CheckStates">
+                                        <VisualState x:Name="Checked">
+                                            <Storyboard>
+                                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="hover" Storyboard.TargetProperty="Visibility">
+                                                    <DiscreteObjectKeyFrame KeyTime="0">
+                                                        <DiscreteObjectKeyFrame.Value>
+                                                            <Visibility>Visible</Visibility>
+                                                        </DiscreteObjectKeyFrame.Value>
+                                                    </DiscreteObjectKeyFrame>
+                                                </ObjectAnimationUsingKeyFrames>
+                                            </Storyboard>
+                                        </VisualState>
+                                        <VisualState x:Name="Unchecked" />
+                                    </VisualStateGroup>
+                                </VisualStateManager.VisualStateGroups>
+                                <StackPanel x:Name="general">
+                                    <ContentPresenter x:Name="contentPresenter" Content="{Binding Content, RelativeSource={RelativeSource TemplatedParent}}" />
+                                    <TextBlock x:Name="title" Text="{TemplateBinding AutomationProperties.Name}" Foreground="#FF3C3C3C" HorizontalAlignment="Center" />
+                                </StackPanel>
+                                <StackPanel x:Name="hover" Background="White" Visibility="Collapsed">
+                                    <Image Source="{Binding Path=Tag, RelativeSource={RelativeSource TemplatedParent}}" Width="22" Height="22" Stretch="None" HorizontalAlignment="Center" Focusable="False" />
+                                    <TextBlock x:Name="hoverTitle" Text="{TemplateBinding AutomationProperties.Name}" Foreground="#FFFC8127" HorizontalAlignment="Center" />
+                                </StackPanel>
+                                <StackPanel x:Name="mouseHover" Background="White" Visibility="{ddhelpers:SelectBinding Binding={Binding Path=(ddhelpers:IsMouseOverHelper.IsMouseOver), RelativeSource={RelativeSource TemplatedParent}}, Converter={StaticResource ToolbarButtonMouseOverVisiblityConverter}}">
+                                    <Image Source="{Binding Path=Tag, RelativeSource={RelativeSource TemplatedParent}}" Width="22" Height="22" Stretch="None" HorizontalAlignment="Center" Focusable="False" />
+                                    <TextBlock x:Name="mouseHoverTitle" Text="{TemplateBinding AutomationProperties.Name}" Foreground="#FFFC8127" HorizontalAlignment="Center" />
+                                </StackPanel>
+                            </Grid>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="dx:FocusHelper2.Focusable" Value="False" />
+                <Setter Property="Margin" Value="10,5" />
+            </Style>
+            <Style x:Key="ToolbarRadioButtonStyle" TargetType="ToggleButton" BasedOn="{StaticResource ToolbarButtonStyle}">
+                <Setter Property="IsHitTestVisible" Value="{Binding IsChecked, RelativeSource={RelativeSource Self}, Converter={StaticResource BoolInverter}}" />
+            </Style>
+            <Style x:Key="ToolbarSeparatorStyle" TargetType="Border">
+                <Setter Property="Margin" Value="10,5" />
+                <Setter Property="BorderBrush" Value="#d9d9d9" />
+                <Setter Property="BorderThickness" Value="1" />
+                <Setter Property="Width" Value="1" />
+            </Style>
+        </Style.Resources>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type helpers:Toolbar}">
+                    <dx:DXBorder Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="50" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <Grid HorizontalAlignment="Right" Grid.Column="2" Margin="0,3,0,-3">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="NAVIGATION" HorizontalAlignment="Center" Margin="0,0,0,3" Foreground="#FF9E9E9E" />
+                                <StackPanel Orientation="Horizontal" Grid.Row="1">
+                                    <Button Style="{StaticResource ToolbarButtonStyle}"
+                                            Command="{TemplateBinding PreviousCommand}"
+                                            IsEnabled="{TemplateBinding IsNavigationEnabled}"
+                                            AutomationProperties.Name="Prev"
+                                            Tag="/DevExpress.Xpf.DemoBase.v15.2;component/Images/ToolbarItems/PrevSelected.png">
+                                        <Image Source="/DevExpress.Xpf.DemoBase.v15.2;component/Images/ToolbarItems/Prev.png" Stretch="None" HorizontalAlignment="Center" Focusable="False" Width="22" Height="22" />
+                                    </Button>
+                                    <Button Style="{StaticResource ToolbarButtonStyle}"
+                                            Command="{TemplateBinding NextCommand}"
+                                            IsEnabled="{TemplateBinding IsNavigationEnabled}"
+                                            AutomationProperties.Name="Next"
+                                            Tag="/DevExpress.Xpf.DemoBase.v15.2;component/Images/ToolbarItems/NextSelected.png">
+                                        <Image Source="/DevExpress.Xpf.DemoBase.v15.2;component/Images/ToolbarItems/Next.png"
+                                               Stretch="None"
+                                               HorizontalAlignment="Center"
+                                               Focusable="False"
+                                               Width="22"
+                                               Height="22" />
+                                    </Button>
+                                </StackPanel>
+                                <dx:DXBorder Style="{StaticResource ToolbarSeparatorStyle}" Grid.Row="1" Grid.Column="1" />
+                                <TextBlock Text="VIEWS" HorizontalAlignment="Center" Margin="0,0,0,3" Foreground="#FF9E9E9E" Grid.Column="2" />
+                                <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="2">
+                                    <RadioButton x:Name="DemoButton"
+                                                 Style="{StaticResource ToolbarRadioButtonStyle}"
+                                                 IsChecked="{Binding IsDemoButtonChecked, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
+                                                 AutomationProperties.Name="Demo"
+                                                 GroupName="viewsGroup"
+                                                 Tag="/DevExpress.Xpf.DemoBase.v15.2;component/Images/ToolbarItems/DemoSelected.png">
+                                        <Image Source="/DevExpress.Xpf.DemoBase.v15.2;component/Images/ToolbarItems/Demo.png"
+                                               Stretch="None"
+                                               HorizontalAlignment="Center"
+                                               Focusable="False"
+                                               Width="22"
+                                               Height="22" />
+                                    </RadioButton>
+                                    <RadioButton x:Name="CodeButton"
+                                                 Style="{StaticResource ToolbarRadioButtonStyle}"
+                                                 AutomationProperties.Name="Code"
+                                                 GroupName="viewsGroup"
+                                                 IsChecked="{Binding IsCodeButtonChecked, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
+                                                 Tag="/DevExpress.Xpf.DemoBase.v15.2;component/Images/ToolbarItems/CodeSelected.png">
+                                        <Image Source="/DevExpress.Xpf.DemoBase.v15.2;component/Images/ToolbarItems/Code.png" Stretch="None" HorizontalAlignment="Center" Focusable="False" Width="22" Height="22" />
+                                    </RadioButton>
+                                </StackPanel>
+                                <dx:DXBorder Visibility="{TemplateBinding IsSolutionGroupVisible, Converter={dxmvvm:BooleanToVisibilityConverter}}" Style="{StaticResource ToolbarSeparatorStyle}" Grid.Row="1" Grid.Column="3" />
+                                <TextBlock Visibility="{TemplateBinding IsSolutionGroupVisible, Converter={dxmvvm:BooleanToVisibilityConverter}}" Text="SOLUTION" HorizontalAlignment="Center" Margin="0,0,0,3" Foreground="#FF9E9E9E" Grid.Column="4" />
+                                <StackPanel Visibility="{TemplateBinding IsSolutionGroupVisible, Converter={dxmvvm:BooleanToVisibilityConverter}}" Orientation="Horizontal" Grid.Row="1" Grid.Column="4">
+                                    <Button Style="{StaticResource ToolbarButtonStyle}"
+                                            Command="{TemplateBinding OpenCSSolutionCommand}"
+                                            AutomationProperties.Name="C#"
+                                            Tag="/DevExpress.Xpf.DemoBase.v15.2;component/Images/ToolbarItems/SolutionSelected.png">
+                                        <Image Source="/DevExpress.Xpf.DemoBase.v15.2;component/Images/ToolbarItems/Solution.png" Stretch="None" HorizontalAlignment="Center" Focusable="False" Width="22" Height="22" />
+                                    </Button>
+                                    <Button Style="{StaticResource ToolbarButtonStyle}"
+                                            Command="{TemplateBinding OpenVBSolutionCommand}"
+                                            AutomationProperties.Name="VB"
+                                            Tag="/DevExpress.Xpf.DemoBase.v15.2;component/Images/ToolbarItems/SolutionSelected.png">
+                                        <Image Source="/DevExpress.Xpf.DemoBase.v15.2;component/Images/ToolbarItems/Solution.png"
+                                               Stretch="None"
+                                               HorizontalAlignment="Center"
+                                               Focusable="False"
+                                               Width="22"
+                                               Height="22" />
+                                    </Button>
+                                </StackPanel>
+                                <dx:DXBorder Visibility="{TemplateBinding IsLayoutGroupVisible, Converter={dxmvvm:BooleanToVisibilityConverter}}" Style="{StaticResource ToolbarSeparatorStyle}" Grid.Row="1" Grid.Column="5" />
+                                <TextBlock Visibility="{TemplateBinding IsLayoutGroupVisible, Converter={dxmvvm:BooleanToVisibilityConverter}}" Text="LAYOUT" HorizontalAlignment="Center" Margin="0,0,0,3" Foreground="#FF9E9E9E" Grid.Column="6" />
+                                <StackPanel Visibility="{TemplateBinding IsLayoutGroupVisible, Converter={dxmvvm:BooleanToVisibilityConverter}}" Orientation="Horizontal" Grid.Row="1" Grid.Column="6">
+                                    <RadioButton x:Name="LTRButton"
+                                                 Style="{StaticResource ToolbarRadioButtonStyle}"
+                                                 IsChecked="{Binding IsLTRButtonChecked, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
+                                                 AutomationProperties.Name="LTR"
+                                                 GroupName="layoutGroup"
+                                                 Tag="/DevExpress.Xpf.DemoBase.v15.2;component/Images/ToolbarItems/FlowDirectionSelectedLTR.png">
+                                        <Image Source="/DevExpress.Xpf.DemoBase.v15.2;component/Images/ToolbarItems/FlowDirectionLTR.png"
+                                               Stretch="None"
+                                               HorizontalAlignment="Center"
+                                               Focusable="False"
+                                               Width="22"
+                                               Height="22" />
+                                    </RadioButton>
+                                    <RadioButton x:Name="RTLButton"
+                                                 Style="{StaticResource ToolbarRadioButtonStyle}"
+                                                 IsChecked="{Binding IsRTLButtonChecked, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
+                                                 IsEnabled="{TemplateBinding AllowRtl}"
+                                                 AutomationProperties.Name="RTL"
+                                                 GroupName="layoutGroup"
+                                                 Tag="/DevExpress.Xpf.DemoBase.v15.2;component/Images/ToolbarItems/FlowDirectionSelected.png">
+                                        <Image Source="/DevExpress.Xpf.DemoBase.v15.2;component/Images/ToolbarItems/FlowDirection.png"
+                                               Stretch="None"
+                                               HorizontalAlignment="Center"
+                                               Focusable="False"
+                                               Width="22"
+                                               Height="22" />
+                                    </RadioButton>
+                                </StackPanel>
+                                <dx:DXBorder Style="{StaticResource ToolbarSeparatorStyle}" Grid.Row="1" Grid.Column="7" />
+                                <TextBlock Text="THEMES" HorizontalAlignment="Center" Margin="0,0,0,3" Foreground="#FF9E9E9E" Grid.Column="8" />
+                                <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="8">
+                                    <StackPanel.Resources>
+                                        <dxmvvm:ObjectToObjectConverter x:Key="ThemedModeToTouchThemesButtonEnabledConverter">
+                                            <dxmvvm:MapItem Source="All" Target="True"/>
+                                            <dxmvvm:MapItem Source="ClassicOnly" Target="False"/>
+                                            <dxmvvm:MapItem Source="None" Target="False"/>
+                                        </dxmvvm:ObjectToObjectConverter>
+                                        <dxmvvm:ObjectToObjectConverter x:Key="ThemedModeToThemesButtonEnabledConverter">
+                                            <dxmvvm:MapItem Source="All" Target="True"/>
+                                            <dxmvvm:MapItem Source="ClassicOnly" Target="True"/>
+                                            <dxmvvm:MapItem Source="None" Target="False"/>
+                                        </dxmvvm:ObjectToObjectConverter>
+                                    </StackPanel.Resources>
+                                    <ToggleButton x:Name="ThemesButton"
+                                                  Style="{StaticResource ToolbarButtonStyle}"
+                                                  AutomationProperties.Name="Classic"
+                                                  IsEnabled="{TemplateBinding ThemesMode, Converter={StaticResource ThemedModeToThemesButtonEnabledConverter}}"
+                                                  IsChecked="{Binding IsThemesButtonChecked, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
+                                                  Tag="/DevExpress.Xpf.DemoBase.v15.2;component/Images/ToolbarItems/ThemesSelected.png">
+                                        <Image Source="/DevExpress.Xpf.DemoBase.v15.2;component/Images/ToolbarItems/Themes.png"
+                                               Stretch="None"
+                                               HorizontalAlignment="Center"
+                                               Focusable="False"
+                                               Width="22"
+                                               Height="22" />
+                                    </ToggleButton>
+                                    <ToggleButton x:Name="TouchThemesButton"
+                                                  Style="{StaticResource ToolbarButtonStyle}"
+                                                  IsEnabled="{TemplateBinding ThemesMode, Converter={StaticResource ThemedModeToTouchThemesButtonEnabledConverter}}"
+                                                  IsChecked="{Binding IsTouchThemesButtonChecked, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
+                                                  AutomationProperties.Name="Touch"
+                                                  Tag="/DevExpress.Xpf.DemoBase.v15.2;component/Images/ToolbarItems/ThemesSelected.png">
+                                        <Image Source="/DevExpress.Xpf.DemoBase.v15.2;component/Images/ToolbarItems/Themes.png"
+                                               Stretch="None"
+                                               HorizontalAlignment="Center"
+                                               Focusable="False"
+                                               Width="22"
+                                               Height="22" />
+                                    </ToggleButton>
+                                </StackPanel>
+                                <dx:DXBorder Style="{StaticResource ToolbarSeparatorStyle}" Grid.Row="1" Grid.Column="9" />
+                                <TextBlock Text="SIDEBAR" HorizontalAlignment="Center" Margin="0,0,0,3" Foreground="#FF9E9E9E" Grid.Column="10" />
+                                <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="10">
+                                    <ToggleButton x:Name="OptionsButton"
+                                                  Style="{StaticResource ToolbarButtonStyle}"
+                                                  IsEnabled="{TemplateBinding HasOptions}"
+                                                  IsChecked="{Binding IsOptionsButtonChecked, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
+                                                  AutomationProperties.Name="Options"
+                                                  Tag="/DevExpress.Xpf.DemoBase.v15.2;component/Images/ToolbarItems/OptionsSelected.png">
+                                        <Image Source="/DevExpress.Xpf.DemoBase.v15.2;component/Images/ToolbarItems/Options.png"
+                                               Stretch="None"
+                                               HorizontalAlignment="Center"
+                                               Focusable="False"
+                                               Width="22"
+                                               Height="22" />
+                                    </ToggleButton>
+                                    <ToggleButton x:Name="SidebarButton"
+                                                  Style="{StaticResource ToolbarButtonStyle}"
+                                                  IsChecked="{Binding IsSidebarButtonChecked, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
+                                                  IsEnabled="{TemplateBinding IsCustomSidebarEnabled}"
+                                                  Visibility="{TemplateBinding IsCustomSidebarButtonVisible, Converter={dxmvvm:BooleanToVisibilityConverter}}"
+                                                  AutomationProperties.Name="{TemplateBinding CustomSidebarButtonLabel}"
+                                                  Tag="{TemplateBinding CustomSidebarButtonHoveredIcon}">
+                                        <Image Source="{TemplateBinding CustomSidebarButtonIcon}"
+                                               Stretch="None"
+                                               HorizontalAlignment="Center"
+                                               Focusable="False"
+                                               Width="22"
+                                               Height="22" />
+                                    </ToggleButton>
+                                    <ToggleButton x:Name="Sidebar2Button"
+                                                  Style="{StaticResource ToolbarButtonStyle}"
+                                                  IsChecked="{Binding IsSidebar2ButtonChecked, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
+                                                  IsEnabled="{TemplateBinding IsCustomSidebar2Enabled}"
+                                                  Visibility="{TemplateBinding IsCustomSidebar2ButtonVisible, Converter={dxmvvm:BooleanToVisibilityConverter}}"
+                                                  AutomationProperties.Name="{TemplateBinding CustomSidebar2ButtonLabel}"
+                                                  Tag="{TemplateBinding CustomSidebar2ButtonHoveredIcon}">
+                                        <Image Source="{TemplateBinding CustomSidebar2ButtonIcon}"
+                                               Stretch="None"
+                                               HorizontalAlignment="Center"
+                                               Focusable="False"
+                                               Width="22"
+                                               Height="22" />
+                                    </ToggleButton>
+                                    <ToggleButton x:Name="AboutButton"
+                                                  Style="{StaticResource ToolbarButtonStyle}"
+                                                  IsChecked="{Binding IsAboutButtonChecked, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
+                                                  AutomationProperties.Name="About"
+                                                  Tag="/DevExpress.Xpf.DemoBase.v15.2;component/Images/ToolbarItems/AboutSelected.png">
+                                        <Image Source="/DevExpress.Xpf.DemoBase.v15.2;component/Images/ToolbarItems/About.png"
+                                               Stretch="None"
+                                               HorizontalAlignment="Center"
+                                               Focusable="False"
+                                               Width="22"
+                                               Height="22" />
+                                    </ToggleButton>
+                                </StackPanel>
+                            </Grid>
+                        </Grid>
+                    </dx:DXBorder>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

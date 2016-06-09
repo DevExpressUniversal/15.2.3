@@ -1,0 +1,70 @@
+﻿<UserControl x:Class="DevExpress.Xpf.Core.ConditionalFormattingManager.ManagerView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:dx="clr-namespace:DevExpress.Xpf.Core"
+             xmlns:dxe="clr-namespace:DevExpress.Xpf.Editors"
+             xmlns:dxmvvm="clr-namespace:DevExpress.Mvvm.UI"
+             xmlns:dxmvvmi="clr-namespace:DevExpress.Mvvm.UI.Interactivity"
+             xmlns:dxmvvminternal="clr-namespace:DevExpress.Mvvm.UI.Interactivity.Internal"
+             xmlns:dxc="clr-namespace:DevExpress.Xpf.Core.ConditionalFormatting"
+             xmlns:dxgcfm="clr-namespace:DevExpress.Xpf.Core.ConditionalFormattingManager"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="{dx:UtilsResource Core/ConditionalFormatting/Manager/Views/ManagerResources.xaml}"/>
+            </ResourceDictionary.MergedDictionaries>
+            <Style x:Key="CommandButtonStyle" TargetType="{x:Type Button}">
+                <Setter Property="MinWidth" Value="82"/>
+                <Setter Property="DockPanel.Dock" Value="Left"/>
+            </Style>
+            <Style x:Key="CommandButtonStyle2" TargetType="{x:Type Button}">
+                <Setter Property="MinWidth" Value="65"/>
+                <Setter Property="DockPanel.Dock" Value="Right"/>
+                <Setter Property="HorizontalAlignment" Value="Right"/>
+            </Style>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Border Padding="5" SnapsToDevicePixels="True">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="199"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <DockPanel Margin="0,7,0,7">
+                <Button Command="{Binding ShowAddDialogCommand}" Content="{dxc:DataControlStringId ConditionalFormatting_Manager_NewButtonDescription}" Style="{StaticResource CommandButtonStyle}"/>
+                <Button Command="{Binding ShowEditDialogCommand}" CommandParameter="{Binding SelectedItem}" Content="{dxc:DataControlStringIdExtension ConditionalFormatting_Manager_EditButtonDescription}" Style="{StaticResource CommandButtonStyle}" Margin="4,0,4,0"/>
+                <Button Command="{Binding RemoveFormatConditionCommand}" CommandParameter="{Binding SelectedItem}" Content="{dxc:DataControlStringIdExtension ConditionalFormatting_Manager_DeleteButtonDescription}" Style="{StaticResource CommandButtonStyle}"/>
+                <Button Command="{Binding MoveDownCommand}" CommandParameter="{Binding SelectedItem}" Content="{dxc:DataControlStringIdExtension ConditionalFormatting_Manager_Down}" Style="{StaticResource CommandButtonStyle2}" Margin="4,0,0,0"/>
+                <Button Command="{Binding MoveUpCommand}" CommandParameter="{Binding SelectedItem}" Content="{dxc:DataControlStringIdExtension ConditionalFormatting_Manager_Up}" Style="{StaticResource CommandButtonStyle2}"/>
+            </DockPanel>
+            <dxgcfm:GridContainer x:Name="gridContent" Width="600" Grid.Row="1"/>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,7,0,0" Grid.Row="2">
+                <TextBlock VerticalAlignment="Center" Text="{dxc:DataControlStringIdExtension ConditionalFormatting_Manager_ShowRulesFor}" Margin="0,0,4,0"/>
+                <dxe:ComboBoxEdit EditValue="{Binding FilterFieldName, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding FilterFieldNames}" Width="130" Margin="0,0,10,0" IsTextEditable="False"/>
+            </StackPanel>
+            <Separator Style="{x:Null}" Margin="0,7,0,0" Grid.Row="3"/>
+            <dxmvvmi:Interaction.Behaviors>
+                <dx:DialogService DialogWindowStartupLocation="CenterOwner" dxmvvminternal:InteractionHelper.BehaviorInDesignMode="AsWellAsNotInDesignMode">
+                    <dx:DialogService.ViewTemplate>
+                        <DataTemplate>
+                            <dxgcfm:AddConditionView/>
+                        </DataTemplate>
+                    </dx:DialogService.ViewTemplate>
+                    <dx:DialogService.DialogStyle>
+                        <Style TargetType="dx:DXDialogWindow" BasedOn="{StaticResource DialogStyleBase}">
+                            <Setter Property="Width" Value="630"/>
+                            <Setter Property="ResizeMode" Value="NoResize"/>
+                            <Setter Property="SizeToContent" Value="Height"/>
+                        </Style>
+                    </dx:DialogService.DialogStyle>
+                </dx:DialogService>
+            </dxmvvmi:Interaction.Behaviors>
+        </Grid>
+    </Border>
+</UserControl>

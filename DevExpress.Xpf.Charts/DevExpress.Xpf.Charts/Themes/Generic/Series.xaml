@@ -1,0 +1,447 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+                    xmlns:dxt="clr-namespace:DevExpress.Xpf.Charts.Themes"
+                    xmlns:local="clr-namespace:DevExpress.Xpf.Charts">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="{dx:ChartsResource themes/Generic/ToolTip.xaml}" />
+        <ResourceDictionary Source="{dx:ChartsResource themes/Generic/LegendMarker.xaml}" />
+    </ResourceDictionary.MergedDictionaries>
+
+    <Style TargetType="{x:Type local:SeriesPresentation}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:SeriesPresentation}">
+                    <local:PointsContainer x:Name="PART_PointsContainer" 
+                                             ItemsSource="{Binding Path=SeriesItem.VisiblePointItems, RelativeSource={RelativeSource TemplatedParent}}"
+                                             DataContext="{Binding Path=Series, RelativeSource={RelativeSource TemplatedParent}}">
+                        <local:ChartItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <local:SimplePanel x:Name="PART_PointsPanel"/>
+                            </ItemsPanelTemplate>
+                        </local:ChartItemsControl.ItemsPanel>
+                    </local:PointsContainer>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <local:XYSeries2DToAdditionalGeometryConverter x:Key="seriesToAdditionalGeometryConverter"/>
+
+    <Style TargetType="{x:Type local:LineAreaSeriesPresentation}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:LineAreaSeriesPresentation}">
+                    <Grid>
+                        <local:ChartContentPresenter x:Name="PART_AdditionalGeometryHolder" 
+                                                     Content="{Binding Path=Series, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource seriesToAdditionalGeometryConverter}}" />
+                        <local:PointsContainer x:Name="PART_PointsContainer"
+                                                 ItemsSource="{Binding Path=SeriesItem.VisiblePointItems, RelativeSource={RelativeSource TemplatedParent}}"
+                                                 DataContext="{Binding Path=Series, RelativeSource={RelativeSource TemplatedParent}}">
+                            <local:ChartItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <local:SimplePanel x:Name="PART_PointsPanel"/>
+                                </ItemsPanelTemplate>
+                            </local:ChartItemsControl.ItemsPanel>
+                        </local:PointsContainer>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="{x:Type local:AreaStackedSeriesPresentation}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:AreaStackedSeriesPresentation}">
+                    <Grid>
+                        <local:ChartContentPresenter x:Name="PART_AdditionalGeometryHolder" 
+                                                 Content="{Binding Path=Series, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource seriesToAdditionalGeometryConverter}}" />
+                        <local:PointsContainer x:Name="PART_PointsContainer" 
+                                             ItemsSource="{Binding Path=SeriesItem.VisiblePointItems, RelativeSource={RelativeSource TemplatedParent}}"
+                                             DataContext="{Binding Path=Series, RelativeSource={RelativeSource TemplatedParent}}">
+                            <local:ChartItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <local:SimplePanel x:Name="PART_PointsPanel"/>
+                                </ItemsPanelTemplate>
+                            </local:ChartItemsControl.ItemsPanel>
+                        </local:PointsContainer>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="series2DStyleBase" TargetType="{x:Type local:Series}">
+        <Setter Property="ToolTipSeriesPattern" Value="{}{S}"/>
+        <Setter Property="ToolTipSeriesTemplate" Value="{DynamicResource {dxt:ChartControlThemeKey ResourceKey=ToolTipTemplate}}"/>
+        <Setter Property="ToolTipPointTemplate" Value="{DynamicResource {dxt:ChartControlThemeKey ResourceKey=ToolTipTemplate}}"/>
+    </Style>
+
+    <Style x:Key="xySeries2DStyleBase" TargetType="{x:Type local:XYSeries2D}" BasedOn="{StaticResource series2DStyleBase}">
+        <Setter Property="CrosshairLabelTemplate" Value="{DynamicResource {dxt:ChartControlThemeKey ResourceKey=CrosshairSeriesLabelContentTemplate}}"/>
+    </Style>
+
+    <Style x:Key="BarSeries2DStyle" TargetType="local:BarSeries2D" BasedOn="{StaticResource xySeries2DStyleBase}">
+        <Setter Property="Model">
+            <Setter.Value>
+                <local:OutsetBar2DModel/>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="LegendMarkerTemplate" Value="{StaticResource BarSeriesLegendMarkerTemplate}"/>
+    </Style>
+    <Style TargetType="{x:Type local:BarSideBySideSeries2D}" BasedOn="{StaticResource BarSeries2DStyle}" />
+    <Style TargetType="{x:Type local:BarStackedSeries2D}" BasedOn="{StaticResource BarSeries2DStyle}" />
+    <Style TargetType="{x:Type local:BarFullStackedSeries2D}" BasedOn="{StaticResource BarSeries2DStyle}"/>
+    <Style TargetType="{x:Type local:BarSideBySideStackedSeries2D}" BasedOn="{StaticResource BarSeries2DStyle}"/>
+    <Style TargetType="{x:Type local:BarSideBySideFullStackedSeries2D}" BasedOn="{StaticResource BarSeries2DStyle}"/>
+    <Style x:Key="RangeBar2DStyle" TargetType="local:RangeBarSeries2D" BasedOn="{StaticResource xySeries2DStyleBase}">
+        <Setter Property="Model">
+            <Setter.Value>
+                <local:OutsetRangeBar2DModel/>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="LegendMarkerTemplate" Value="{StaticResource BarSeriesLegendMarkerTemplate}"/>
+        <Setter Property="MinMarkerModel">
+            <Setter.Value>
+                <local:CircleMarker2DModel/>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="MaxMarkerModel">
+            <Setter.Value>
+                <local:CircleMarker2DModel/>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style TargetType="{x:Type local:RangeBarOverlappedSeries2D}" BasedOn="{StaticResource RangeBar2DStyle}" />
+    <Style TargetType="{x:Type local:RangeBarSideBySideSeries2D}" BasedOn="{StaticResource RangeBar2DStyle}" />
+
+    <Style TargetType="{x:Type local:PointSeries2D}" BasedOn="{StaticResource xySeries2DStyleBase}">
+        <Setter Property="MarkerModel">
+            <Setter.Value>
+                <local:CircleMarker2DModel/>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="LegendMarkerTemplate" Value="{StaticResource ResourceKey=MarkerSeriesLegendMarkerTemplate}"/>
+    </Style>
+    <Style TargetType="{x:Type local:BubbleSeries2D}" BasedOn="{StaticResource xySeries2DStyleBase}">
+        <Setter Property="MarkerModel">
+            <Setter.Value>
+                <local:CircleMarker2DModel/>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="LegendMarkerTemplate" Value="{StaticResource ResourceKey=MarkerSeriesLegendMarkerTemplate}"/>
+    </Style>
+
+    <Style x:Key="LineSeries2DBaseStyle" TargetType="local:LineSeries2D" BasedOn="{StaticResource xySeries2DStyleBase}">
+        <Setter Property="MarkerModel">
+            <Setter.Value>
+                <local:CircleMarker2DModel/>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="LegendMarkerTemplate" Value="{StaticResource LineSeriesLegendMarkerTemplate}"/>
+    </Style>
+    <Style TargetType="{x:Type local:LineSeries2D}" BasedOn="{StaticResource LineSeries2DBaseStyle}" />
+    <Style TargetType="{x:Type local:SplineSeries2D}" BasedOn="{StaticResource LineSeries2DBaseStyle}">
+        <Setter Property="LegendMarkerTemplate" Value="{StaticResource ResourceKey=SplineSeriesLegendMarkerTemplate}"/>
+    </Style>
+    <Style TargetType="{x:Type local:LineStackedSeries2D}" BasedOn="{StaticResource LineSeries2DBaseStyle}" />
+    <Style TargetType="{x:Type local:LineFullStackedSeries2D}" BasedOn="{StaticResource LineSeries2DBaseStyle}"/>
+    <Style TargetType="{x:Type local:LineScatterSeries2D}" BasedOn="{StaticResource LineSeries2DBaseStyle}" />
+    <Style TargetType="{x:Type local:LineStepSeries2D}" BasedOn="{StaticResource xySeries2DStyleBase}">
+        <Setter Property="MarkerModel">
+            <Setter.Value>
+                <local:CircleMarker2DModel/>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="LegendMarkerTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <local:LineStepLegendItemPresentation InvertedStep="{Binding Path=RepresentedElement.InvertedStep}"/>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="{x:Type local:AreaSeries2D}" BasedOn="{StaticResource xySeries2DStyleBase}">
+        <Setter Property="MarkerModel">
+            <Setter.Value>
+                <local:CircleMarker2DModel/>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="LegendMarkerTemplate" Value="{StaticResource AreaSeriesLegendMarkerTemplate}"/>
+    </Style>
+    <Style TargetType="{x:Type local:AreaStepSeries2D}" BasedOn="{StaticResource xySeries2DStyleBase}">
+        <Setter Property="MarkerModel">
+            <Setter.Value>
+                <local:CircleMarker2DModel/>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="LegendMarkerTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <local:AreaStepLegendItemPresentation InvertedStep="{Binding Path=RepresentedElement.InvertedStep}"/>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style TargetType="{x:Type local:SplineAreaSeries2D}" BasedOn="{StaticResource xySeries2DStyleBase}">
+        <Setter Property="MarkerModel">
+            <Setter.Value>
+                <local:CircleMarker2DModel/>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="LegendMarkerTemplate" Value="{StaticResource AreaSplineSeriesLegendMarkerTemplate}"/>
+    </Style>
+    <Style TargetType="{x:Type local:RangeAreaSeries2D}" BasedOn="{StaticResource xySeries2DStyleBase}">
+        <Setter Property="Marker1Model">
+            <Setter.Value>
+                <local:CircleMarker2DModel/>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Marker2Model">
+            <Setter.Value>
+                <local:CircleMarker2DModel/>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="LegendMarkerTemplate" Value="{StaticResource RangeAreaSeriesLegendMarkerTemplate}"/>
+    </Style>
+
+    <Style TargetType="{x:Type local:AreaStackedSeries2D}" BasedOn="{StaticResource xySeries2DStyleBase}">
+        <Setter Property="LegendMarkerTemplate" Value="{StaticResource ResourceKey=AreaSeriesLegendMarkerTemplate}"/>
+    </Style>
+    <Style TargetType="{x:Type local:SplineAreaStackedSeries2D}" BasedOn="{StaticResource xySeries2DStyleBase}">
+        <Setter Property="LegendMarkerTemplate" Value="{StaticResource AreaSplineSeriesLegendMarkerTemplate}"/>
+    </Style>
+    <Style TargetType="{x:Type local:SplineAreaFullStackedSeries2D}" BasedOn="{StaticResource xySeries2DStyleBase}">
+        <Setter Property="LegendMarkerTemplate" Value="{StaticResource AreaSplineSeriesLegendMarkerTemplate}"/>
+    </Style>
+    <Style TargetType="{x:Type local:AreaFullStackedSeries2D}" BasedOn="{StaticResource xySeries2DStyleBase}">
+        <Setter Property="LegendMarkerTemplate" Value="{StaticResource ResourceKey=AreaSeriesLegendMarkerTemplate}"/>
+    </Style>
+
+    <Style TargetType="{x:Type local:CandleStickSeries2D}" BasedOn="{StaticResource xySeries2DStyleBase}">
+        <Setter Property="Model">
+            <Setter.Value>
+                <local:SimpleCandleStick2DModel/>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="LegendMarkerTemplate" Value="{StaticResource CandleStickSeriesLegendMarkerTemplate}"/>
+    </Style>
+    <Style TargetType="{x:Type local:StockSeries2D}" BasedOn="{StaticResource xySeries2DStyleBase}">
+        <Setter Property="Model">
+            <Setter.Value>
+                <local:ThinStock2DModel/>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="LegendMarkerTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <local:StockLegendItemPresentation ShowOpenClose="{Binding Path=RepresentedElement.ShowOpenClose}"/>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="circularSeries2DStyleBase" TargetType="{x:Type local:CircularSeries2D}" BasedOn="{StaticResource series2DStyleBase}">       
+        <Setter Property="MarkerModel">
+            <Setter.Value>
+                <local:CircleMarker2DModel/>
+            </Setter.Value>
+        </Setter>       
+    </Style>
+    <Style TargetType="{x:Type local:RadarPointSeries2D}" BasedOn="{StaticResource circularSeries2DStyleBase}">
+        <Setter Property="LegendMarkerTemplate" Value="{StaticResource ResourceKey=MarkerSeriesLegendMarkerTemplate}"/>
+    </Style>
+    <Style TargetType="{x:Type local:PolarPointSeries2D}" BasedOn="{StaticResource circularSeries2DStyleBase}">
+        <Setter Property="LegendMarkerTemplate" Value="{StaticResource ResourceKey=MarkerSeriesLegendMarkerTemplate}"/>
+    </Style>
+    <Style TargetType="{x:Type local:RadarLineSeries2D}" BasedOn="{StaticResource circularSeries2DStyleBase}">
+        <Setter Property="LegendMarkerTemplate" Value="{StaticResource ResourceKey=LineSeriesLegendMarkerTemplate}"/>
+    </Style>
+    <Style TargetType="{x:Type local:PolarLineSeries2D}" BasedOn="{StaticResource circularSeries2DStyleBase}">
+        <Setter Property="LegendMarkerTemplate" Value="{StaticResource ResourceKey=LineSeriesLegendMarkerTemplate}"/>
+    </Style>
+    <Style TargetType="{x:Type local:RadarLineScatterSeries2D}" BasedOn="{StaticResource circularSeries2DStyleBase}">
+        <Setter Property="LegendMarkerTemplate" Value="{StaticResource ResourceKey=LineSeriesLegendMarkerTemplate}"/>
+    </Style>
+    <Style TargetType="{x:Type local:PolarLineScatterSeries2D}" BasedOn="{StaticResource circularSeries2DStyleBase}">
+        <Setter Property="LegendMarkerTemplate" Value="{StaticResource ResourceKey=LineSeriesLegendMarkerTemplate}"/>
+    </Style>
+    <Style TargetType="{x:Type local:RadarAreaSeries2D}" BasedOn="{StaticResource circularSeries2DStyleBase}">
+        <Setter Property="LegendMarkerTemplate" Value="{StaticResource ResourceKey=AreaSeriesLegendMarkerTemplate}"/>
+    </Style>
+    <Style TargetType="{x:Type local:PolarAreaSeries2D}" BasedOn="{StaticResource circularSeries2DStyleBase}">
+        <Setter Property="LegendMarkerTemplate" Value="{StaticResource ResourceKey=AreaSeriesLegendMarkerTemplate}"/>
+    </Style>
+
+    <Style TargetType="{x:Type local:PieSeries2D}" 
+           BasedOn="{StaticResource series2DStyleBase}">
+        <Setter Property="Model">
+            <Setter.Value>
+                <local:SimplePie2DModel />
+            </Setter.Value>
+        </Setter>
+        <Setter
+            Property="LegendMarkerTemplate"
+            Value="{StaticResource PieSeriesLegendMarkerTemplate}" />
+    </Style>
+    <Style TargetType="{x:Type local:FunnelSeriesPresentation}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:FunnelSeriesPresentation}">
+                    <local:TitlesLayoutControl
+                        x:Name="FunnelSeries2DTitlesControl"
+                        Titles="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Series.Titles}">
+                        <local:TitlesLayoutControl.MasterElement>
+                            <local:FunnelSeries2DItemsControl
+                                x:Name="funnelSeries2DItemsControl"
+                                Series="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Series}"
+                                SeriesLabel="{Binding Path=Series.ActualLabel, RelativeSource={RelativeSource TemplatedParent}}"
+                                SeriesLabelItems="{Binding Path=Series.ActualLabel.Items, RelativeSource={RelativeSource TemplatedParent}}">
+                                <local:FunnelSeries2DItemsControl.PointsContainer>
+                                    <local:PointsContainer
+                                        x:Name="PART_PointsContainer"
+                                        ItemsSource="{Binding Path=SeriesItem.VisiblePointItems, RelativeSource={RelativeSource TemplatedParent}}"
+                                        DataContext="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Series}">
+                                        <local:ChartItemsControl.ItemsPanel>
+                                            <ItemsPanelTemplate>
+                                                <local:FunnelSeries2DPointsPanel
+                                                    x:Name="PART_PointsPanel" />
+                                            </ItemsPanelTemplate>
+                                        </local:ChartItemsControl.ItemsPanel>
+                                    </local:PointsContainer>
+                                </local:FunnelSeries2DItemsControl.PointsContainer>
+                                    <local:FunnelSeries2DItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <local:FunnelSeries2DPanel />
+                                    </ItemsPanelTemplate>
+                                    </local:FunnelSeries2DItemsControl.ItemsPanel>
+                            </local:FunnelSeries2DItemsControl>
+                        </local:TitlesLayoutControl.MasterElement>
+                    </local:TitlesLayoutControl>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style TargetType="{x:Type local:PieSeries2DPresentation}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:PieSeries2DPresentation}">
+                    <local:TitlesLayoutControl x:Name="PART_TitlesControl"
+                        Titles="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Series.Titles}">
+                        <local:TitlesLayoutControl.MasterElement>
+                            <local:PieSeries2DItemsControl x:Name="PART_ElementsContainer"
+                                Series="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Series}"
+                                SeriesLabel="{Binding Path=Series.ActualLabel, RelativeSource={RelativeSource TemplatedParent}}"
+                                SeriesLabelItems="{Binding Path=Series.ActualLabel.Items, RelativeSource={RelativeSource TemplatedParent}}">
+                                <local:PieSeries2DItemsControl.PointsContainer>
+                                    <local:PointsContainer x:Name="PART_PointsContainer"
+                                        ItemsSource="{Binding Path=SeriesItem.VisiblePointItems, RelativeSource={RelativeSource TemplatedParent}}"
+                                        DataContext="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Series}">
+                                        <local:ChartItemsControl.ItemsPanel>
+                                            <ItemsPanelTemplate>
+                                                <local:PieSeries2DPointsPanel x:Name="PART_PointsPanel" />
+                                            </ItemsPanelTemplate>
+                                        </local:ChartItemsControl.ItemsPanel>
+                                    </local:PointsContainer>
+                                </local:PieSeries2DItemsControl.PointsContainer>
+                                <local:PieSeries2DItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <local:PieSeries2DPanel />
+                                    </ItemsPanelTemplate>
+                                </local:PieSeries2DItemsControl.ItemsPanel>
+                            </local:PieSeries2DItemsControl>
+                        </local:TitlesLayoutControl.MasterElement>
+                    </local:TitlesLayoutControl>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>   
+    <Style TargetType="{x:Type local:NestedDonutSeries2D}"
+        BasedOn="{StaticResource series2DStyleBase}">
+        <Setter
+            Property="Model">
+            <Setter.Value>
+                <local:SimplePie2DModel />
+            </Setter.Value>
+        </Setter>
+        <Setter
+            Property="LegendMarkerTemplate"
+            Value="{StaticResource NestedDonutLegendMarkerTemplate}" />
+    </Style>    
+    <Style TargetType="{x:Type local:FunnelSeries2D}"
+        BasedOn="{StaticResource series2DStyleBase}">
+        <Setter
+            Property="Model">
+            <Setter.Value>
+                <local:Funnel2DModel />
+            </Setter.Value>
+        </Setter>
+        <Setter
+            Property="LegendMarkerTemplate"
+            Value="{StaticResource FunnelSeriesLegendMarkerTemplate}" />
+    </Style>
+    <Style TargetType="{x:Type local:NestedDonut2DGroupPresentation}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <local:TitlesLayoutControl 
+                        Titles="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Titles}">
+                        <local:TitlesLayoutControl.MasterElement>
+                            <local:NestedDonut2DGroupItemsControl 
+                                NestedDonutGroup ="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=NestedDonutGroup}">
+                                <local:NestedDonut2DGroupItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <local:NestedDonut2DGroupPanel/>
+                                    </ItemsPanelTemplate>
+                                </local:NestedDonut2DGroupItemsControl.ItemsPanel>
+                            </local:NestedDonut2DGroupItemsControl>
+                        </local:TitlesLayoutControl.MasterElement>
+                    </local:TitlesLayoutControl>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style TargetType="{x:Type local:PointsContainerPresenter}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:PointsContainerPresenter">
+                    <local:PointsContainer x:Name="PART_PointsContainer"
+                        ItemsSource="{Binding Path=ItemsSource, RelativeSource={RelativeSource TemplatedParent}}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <local:PieSeries2DPointsPanel x:Name="PART_PointsPanel" />
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                    </local:PointsContainer>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="BarSeries3DStyle" TargetType="{x:Type local:BarSeries3D}" BasedOn="{StaticResource series2DStyleBase}">
+        <Setter Property="LegendMarkerTemplate" Value="{StaticResource ResourceKey=BarSeriesLegendMarkerTemplate}"/>
+    </Style>
+    <Style TargetType="{x:Type local:BarSeries3D}" BasedOn="{StaticResource ResourceKey=BarSeries3DStyle}"/>
+    <Style TargetType="{x:Type local:BarSideBySideSeries3D}" BasedOn="{StaticResource ResourceKey=BarSeries3DStyle}"/>
+
+    <Style TargetType="{x:Type local:PointSeries3D}" BasedOn="{StaticResource series2DStyleBase}">
+        <Setter Property="LegendMarkerTemplate" Value="{StaticResource ResourceKey=MarkerSeriesLegendMarkerTemplate}"/>
+    </Style>
+    <Style TargetType="{x:Type local:BubbleSeries3D}" BasedOn="{StaticResource series2DStyleBase}">
+        <Setter Property="LegendMarkerTemplate" Value="{StaticResource ResourceKey=MarkerSeriesLegendMarkerTemplate}"/>
+    </Style>
+
+    <Style x:Key="AreaSeries3DStyle" TargetType="{x:Type local:AreaSeries3D}" BasedOn="{StaticResource series2DStyleBase}">
+        <Setter Property="LegendMarkerTemplate" Value="{StaticResource ResourceKey=AreaSeriesLegendMarkerTemplate}"/>
+    </Style>
+    <Style TargetType="{x:Type local:AreaSeries3D}" BasedOn="{StaticResource ResourceKey=AreaSeries3DStyle}"/>
+    <Style TargetType="{x:Type local:AreaStackedSeries3D}" BasedOn="{StaticResource ResourceKey=AreaSeries3DStyle}"/>
+    <Style TargetType="{x:Type local:AreaFullStackedSeries3D}" BasedOn="{StaticResource ResourceKey=AreaSeries3DStyle}"/>
+
+    <Style TargetType="{x:Type local:PieSeries3D}" BasedOn="{StaticResource series2DStyleBase}">
+        <Setter Property="LegendMarkerTemplate" Value="{StaticResource ResourceKey=PieSeriesLegendMarkerTemplate}"/>       
+    </Style>
+</ResourceDictionary>

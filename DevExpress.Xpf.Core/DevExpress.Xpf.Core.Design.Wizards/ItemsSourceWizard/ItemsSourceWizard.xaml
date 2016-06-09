@@ -1,0 +1,137 @@
+﻿<UserControl x:Class="DevExpress.Xpf.Core.Design.Wizards.ItemsSourceWizard.ItemsSourceWizard"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:DevExpress.Xpf.Core.Design.Wizards.ItemsSourceWizard"
+             xmlns:l="clr-namespace:DevExpress.Xpf.Core.Design.Wizards"
+             xmlns:lt="clr-namespace:DevExpress.Xpf.Core.Design.Wizards.ItemsSourceWizard.Templates"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             mc:Ignorable="d" x:Name="root">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Templates/ItemsSourceWizardResources.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <DataTemplate x:Key="TabItemSelectedTechnology">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="4*"/>
+                        <ColumnDefinition Width="6*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Label Content="{l:ItemsSourceWizardStringId StringId=TechnologyCaption}" Foreground="{StaticResource ColorSilverDark}" FontSize="16" Margin="-6,0,0,0"/>
+                    <ListView Grid.Column="0" Grid.Row="1" Style="{DynamicResource ListStyle}" Margin="0,0,10,10" ItemsSource="{Binding AvaliableTechnologies}" 
+                              SelectedItem="{Binding SelectedTechnology}" DisplayMemberPath="Technology.DisplayName">
+                    </ListView>
+                    <Label Foreground="{StaticResource ColorSilverDark}" FontSize="16" Grid.Column="1" Margin="-6,0,0,0" Content="{l:ItemsSourceWizardStringId StringId=DataSourcesCaption}"
+                           Visibility="{Binding IsAvaliableDataSourcesEnabled, Converter={StaticResource BoolToVisibilityConverter},Mode=OneWay}"/>
+                    <Grid Grid.Column="1" Grid.Row="1" Margin="0,0,0,10">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Border Margin="0,0,0,10" BorderThickness="1" BorderBrush="{StaticResource ColorLightSilver}">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <TextBlock Margin="20"  Foreground="{StaticResource ColorSilver}" TextAlignment="Justify" TextWrapping="Wrap" 
+                                       Text="{Binding HelpTextForTechWithoutSources}"/>
+                                <TextBlock Visibility="{Binding SelectedTechnology.CanCreateNewSource, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Inverse}" Grid.Row="1" 
+                                           VerticalAlignment="Bottom" Margin="20" TextAlignment="Justify" TextWrapping="Wrap" Text="{Binding SelectedTechnology.CreateNewSourceHelp}" />
+                            </Grid>
+                        </Border>
+                        <ListView  Style="{DynamicResource ListStyleWithCreateItemButton}" Margin="0,0,0,10" ItemsSource="{Binding AvaliableDataSources}" 
+                              SelectedItem="{Binding SelectedDataSource}" DisplayMemberPath="Name" 
+                                   Visibility="{Binding IsAvaliableDataSourcesEnabled, Converter={StaticResource BoolToVisibilityConverter},Mode=OneWay}">
+                        </ListView>
+                        <Border Grid.Row="1" BorderThickness="1" BorderBrush="{StaticResource ColorLightSilver}">
+                            <TextBlock Margin="20"  Foreground="{StaticResource ColorSilver}" TextAlignment="Justify" TextWrapping="Wrap">
+                                <Run Text="{l:ItemsSourceWizardStringId StringId=LearnMoreText}"/> 
+                                <Hyperlink Foreground="{StaticResource ColorOrange}" Command="{Binding HelpMeChooseCmd}">
+                                    <Run Text="{l:ItemsSourceWizardStringId StringId=HelpMeChooseLink}"/>
+                                </Hyperlink>.
+                            </TextBlock>
+                        </Border>
+                    </Grid>
+                </Grid>
+            </DataTemplate>
+            <DataTemplate x:Key="TabItemSelectedDataSourceType">
+                <Grid Margin="0,0,0,10" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="6*"/>
+                        <ColumnDefinition Width="4*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Label Foreground="{StaticResource ColorSilverDark}" FontSize="16" Margin="-6,0,0,0" Content="{l:ItemsSourceWizardStringId StringId=DataSourceTypeCaption}"/>
+                    <ListView Grid.Row="1" Style="{DynamicResource ListStyleBase}" ItemsSource="{Binding SelectedTechnology.Technology.DataSourceTypes}" 
+                              SelectedItem="{Binding SelectedDataSourceType}" Margin="0,0,20,0" DisplayMemberPath="DisplayName">
+                    </ListView>
+                    <lt:BindableRichTextBox Grid.Column="1" Grid.Row="1" Margin="0,10" IsDocumentEnabled="True" DocumentStream="{Binding SelectedDataSourceTypeHelp, Mode=OneWay}" 
+                                            BorderThickness="0" IsReadOnly="True" DocumentFontSize="12" DocumentFontFamily="Segoe UI"
+                                            Foreground="{StaticResource ColorSilver}" IsHitTestVisible="False" />
+                </Grid>
+            </DataTemplate>
+            <DataTemplate x:Key="TabItemDataSourceConfigurator">
+                <ItemsControl ItemsSource="{Binding Properties}" BorderThickness="0" Margin="0,0,0,2"
+                                  ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.CanContentScroll="False">
+                    <ItemsControl.Template>
+                        <ControlTemplate>
+                            <ScrollViewer Focusable="True" Padding="{TemplateBinding Padding}" Template="{StaticResource ScrollViewerControlTemplate}">
+                                <ItemsPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                            </ScrollViewer>
+                        </ControlTemplate>
+                    </ItemsControl.Template>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Margin="5" x:Name="grid">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="25*"/>
+                                    <ColumnDefinition Width="75*"/>
+                                </Grid.ColumnDefinitions>
+                                <!--<Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>-->
+                                <TextBlock Grid.Row="0" x:Name="Tb" Text="{Binding DisplayName}" FontSize="16" 
+                                           Foreground="{StaticResource ColorSilver}" TextWrapping="Wrap"/>
+                                <Popup x:Name="popup"  PlacementTarget="{Binding ElementName=part_content}"  Style="{StaticResource popupStyle}">
+                                    <ContentControl Visibility="{Binding Help, Converter={StaticResource NullableStreamToVisibilityConverter}, Mode=OneWay}" 
+                                                    Content="{Binding}" ContentTemplate="{StaticResource PropertyHelpTemplate}"/>
+                                </Popup>
+                                <!--<lt:MyPopup x:Name="popup"  PlacementTarget="{Binding ElementName=part_content}"  Style="{StaticResource popupStyle}">
+                                    <ContentControl Visibility="{Binding Help, Converter={StaticResource NullableStreamToVisibilityConverter}, Mode=OneWay}" 
+                                                    Content="{Binding}" ContentTemplate="{StaticResource PropertyHelpTemplate}"/>
+                                </lt:MyPopup>-->
+                                <ContentControl x:Name="part_content" Grid.Column="1" Grid.RowSpan="2" ContentTemplate="{Binding ContentTemplate}" Content="{Binding DataContext}"/>
+                            </Grid>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </DataTemplate>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <TabControl Grid.Row="1" Style="{DynamicResource TabControlWithoutHeader}" SelectedIndex="{Binding CurrentPageIndex}"
+                        IsSynchronizedWithCurrentItem="True">
+            <TabControl.Items>
+                <TabItem Content="{Binding SelectTechnologyViewModel}" 
+                             ContentTemplate="{StaticResource TabItemSelectedTechnology}"
+                             Header="Select Technology"/>
+                <TabItem Content="{Binding SelectTechnologyViewModel}" 
+                             ContentTemplate="{StaticResource TabItemSelectedDataSourceType}"/>
+                <TabItem Header="Configurate DataSource" Content="{Binding DataSourceConfigurationViewModel.ConfiguratedDataSourceType}" 
+                         ContentTemplate="{StaticResource TabItemDataSourceConfigurator}">
+                </TabItem>
+            </TabControl.Items>
+        </TabControl>
+    </Grid>
+</UserControl>

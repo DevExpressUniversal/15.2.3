@@ -1,0 +1,214 @@
+﻿#region Copyright (c) 2000-2015 Developer Express Inc.
+/*
+{*******************************************************************}
+{                                                                   }
+{       Developer Express .NET Component Library                    }
+{                                                                   }
+{                                                                   }
+{       Copyright (c) 2000-2015 Developer Express Inc.              }
+{       ALL RIGHTS RESERVED                                         }
+{                                                                   }
+{   The entire contents of this file is protected by U.S. and       }
+{   International Copyright Laws. Unauthorized reproduction,        }
+{   reverse-engineering, and distribution of all or any portion of  }
+{   the code contained in this file is strictly prohibited and may  }
+{   result in severe civil and criminal penalties and will be       }
+{   prosecuted to the maximum extent possible under the law.        }
+{                                                                   }
+{   RESTRICTIONS                                                    }
+{                                                                   }
+{   THIS SOURCE CODE AND ALL RESULTING INTERMEDIATE FILES           }
+{   ARE CONFIDENTIAL AND PROPRIETARY TRADE                          }
+{   SECRETS OF DEVELOPER EXPRESS INC. THE REGISTERED DEVELOPER IS   }
+{   LICENSED TO DISTRIBUTE THE PRODUCT AND ALL ACCOMPANYING .NET    }
+{   CONTROLS AS PART OF AN EXECUTABLE PROGRAM ONLY.                 }
+{                                                                   }
+{   THE SOURCE CODE CONTAINED WITHIN THIS FILE AND ALL RELATED      }
+{   FILES OR ANY PORTION OF ITS CONTENTS SHALL AT NO TIME BE        }
+{   COPIED, TRANSFERRED, SOLD, DISTRIBUTED, OR OTHERWISE MADE       }
+{   AVAILABLE TO OTHER INDIVIDUALS WITHOUT EXPRESS WRITTEN CONSENT  }
+{   AND PERMISSION FROM DEVELOPER EXPRESS INC.                      }
+{                                                                   }
+{   CONSULT THE END USER LICENSE AGREEMENT FOR INFORMATION ON       }
+{   ADDITIONAL RESTRICTIONS.                                        }
+{                                                                   }
+{*******************************************************************}
+*/
+#endregion Copyright (c) 2000-2015 Developer Express Inc.
+
+using DevExpress.Mvvm.Native;
+using DevExpress.Mvvm.UI.Interactivity;
+using System;
+using System.Linq;
+using System.Reflection;
+using System.Windows;
+using System.Windows.Input;
+namespace DevExpress.Mvvm.UI {
+	public class ConfirmationBehavior : Behavior<DependencyObject> {
+		#region Dependency Properties
+#if !SILVERLIGHT
+		static MessageBoxButton DefaultMessageBoxButton = MessageBoxButton.YesNo;
+#else
+		static MessageBoxButton DefaultMessageBoxButton = MessageBoxButton.OKCancel;
+#endif
+		public static readonly DependencyProperty EnableConfirmationMessageProperty =
+			DependencyProperty.Register("EnableConfirmationMessage", typeof(bool), typeof(ConfirmationBehavior), 
+			new PropertyMetadata(true));
+		public static readonly DependencyProperty CommandProperty =
+			DependencyProperty.Register("Command", typeof(ICommand), typeof(ConfirmationBehavior),
+			new PropertyMetadata(null, (d, e) => ((ConfirmationBehavior)d).OnCommandChanged((ICommand)e.OldValue, (ICommand)e.NewValue)));
+		public static readonly DependencyProperty CommandParameterProperty =
+			DependencyProperty.Register("CommandParameter", typeof(object), typeof(ConfirmationBehavior),
+			new PropertyMetadata(null, (d, e) => ((ConfirmationBehavior)d).OnCommandParameterChanged()));
+		public static readonly DependencyProperty CommandPropertyNameProperty =
+			DependencyProperty.Register("CommandPropertyName", typeof(string), typeof(ConfirmationBehavior),
+			new PropertyMetadata("Command"));
+		public static readonly DependencyProperty MessageBoxServiceProperty =
+			DependencyProperty.Register("MessageBoxService", typeof(IMessageBoxService), typeof(ConfirmationBehavior),
+			new PropertyMetadata(null));
+		public static readonly DependencyProperty MessageTitleProperty =
+			DependencyProperty.Register("MessageTitle", typeof(string), typeof(ConfirmationBehavior),
+			new PropertyMetadata("Confirmation"));
+		public static readonly DependencyProperty MessageTextProperty =
+			DependencyProperty.Register("MessageText", typeof(string), typeof(ConfirmationBehavior),
+			new PropertyMetadata("Do you want to perform this action?"));
+		public static readonly DependencyProperty MessageButtonProperty =
+			DependencyProperty.Register("MessageButton", typeof(MessageBoxButton), typeof(ConfirmationBehavior),
+			new PropertyMetadata(DefaultMessageBoxButton));
+		public static readonly DependencyProperty MessageDefaultResultProperty =
+			DependencyProperty.Register("MessageDefaultResult", typeof(MessageBoxResult), typeof(ConfirmationBehavior),
+			new PropertyMetadata(null));
+#if !SILVERLIGHT
+		public static readonly DependencyProperty MessageIconProperty =
+			DependencyProperty.Register("MessageIcon", typeof(MessageBoxImage), typeof(ConfirmationBehavior),
+			new PropertyMetadata(MessageBoxImage.None));
+#endif
+		public bool EnableConfirmationMessage {
+			get { return (bool)GetValue(EnableConfirmationMessageProperty); }
+			set { SetValue(EnableConfirmationMessageProperty, value); }
+		}
+		public ICommand Command {
+			get { return (ICommand)GetValue(CommandProperty); }
+			set { SetValue(CommandProperty, value); }
+		}
+		public object CommandParameter {
+			get { return (object)GetValue(CommandParameterProperty); }
+			set { SetValue(CommandParameterProperty, value); }
+		}
+		public string CommandPropertyName {
+			get { return (string)GetValue(CommandPropertyNameProperty); }
+			set { SetValue(CommandPropertyNameProperty, value); }
+		}
+		public IMessageBoxService MessageBoxService {
+			get { return (IMessageBoxService)GetValue(MessageBoxServiceProperty); }
+			set { SetValue(MessageBoxServiceProperty, value); }
+		}
+		public string MessageTitle {
+			get { return (string)GetValue(MessageTitleProperty); }
+			set { SetValue(MessageTitleProperty, value); }
+		}
+		public string MessageText {
+			get { return (string)GetValue(MessageTextProperty); }
+			set { SetValue(MessageTextProperty, value); }
+		}
+		public MessageBoxButton MessageButton {
+			get { return (MessageBoxButton)GetValue(MessageButtonProperty); }
+			set { SetValue(MessageButtonProperty, value); }
+		}
+		public MessageBoxResult MessageDefaultResult {
+			get { return (MessageBoxResult)GetValue(MessageDefaultResultProperty); }
+			set { SetValue(MessageDefaultResultProperty, value); }
+		}
+#if !SILVERLIGHT
+		public MessageBoxImage MessageIcon {
+			get { return (MessageBoxImage)GetValue(MessageIconProperty); }
+			set { SetValue(MessageIconProperty, value); }
+		}
+#endif
+		#endregion
+		internal DelegateCommand<object> ConfirmationCommand;
+		public ConfirmationBehavior() {
+#if !SILVERLIGHT
+			ConfirmationCommand = new DelegateCommand<object>(ConfirmationCommandExecute, ConfirmationCommandCanExecute, false);
+#else
+			ConfirmationCommand = new DelegateCommand<object>(ConfirmationCommandExecute, ConfirmationCommandCanExecute);
+#endif
+		}
+		protected override void OnAttached() {
+			base.OnAttached();
+			SetAssociatedObjectCommandProperty(ConfirmationCommand);
+			if(Command != null) {
+				Command.CanExecuteChanged -= OnCommandCanExecuteChanged;
+				Command.CanExecuteChanged += OnCommandCanExecuteChanged;
+			}
+		}
+		protected override void OnDetaching() {
+			if(Command != null)
+				Command.CanExecuteChanged -= OnCommandCanExecuteChanged;
+			base.OnDetaching();
+		}
+		void ConfirmationCommandExecute(object parameter) {
+			if(ShowConfirmation())
+				Command.Do(x => x.Execute(CommandParameter ?? parameter));
+		}
+		bool ConfirmationCommandCanExecute(object parameter) {
+			if(Command == null) return true;
+			return Command.CanExecute(CommandParameter ?? parameter);
+		}
+		void OnCommandCanExecuteChanged(object sender, EventArgs e) {
+			ConfirmationCommand.RaiseCanExecuteChanged();
+		}
+		void OnCommandChanged(ICommand oldValue, ICommand newValue) {
+			if(oldValue != null)
+				oldValue.CanExecuteChanged -= OnCommandCanExecuteChanged;
+			if(newValue != null)
+				newValue.CanExecuteChanged += OnCommandCanExecuteChanged;
+			ConfirmationCommand.RaiseCanExecuteChanged();
+		}
+		void OnCommandParameterChanged() {
+			ConfirmationCommand.RaiseCanExecuteChanged();
+		}
+		PropertyInfo GetCommandProperty() {
+			Type associatedObjectType = AssociatedObject.GetType();
+			PropertyInfo commandPropertyInfo = associatedObjectType.GetProperty(CommandPropertyName, BindingFlags.Public | BindingFlags.Instance | BindingFlags.SetProperty);
+			return commandPropertyInfo;
+		}
+		internal bool SetAssociatedObjectCommandProperty(object command) {
+			var pi = GetCommandProperty();
+			if(pi != null) {
+				pi.SetValue(AssociatedObject, command, null);
+				return true;
+			}
+			return false;
+		}
+		internal IMessageBoxService GetActualService() {
+			IMessageBoxService res = MessageBoxService;
+			if(res != null) return res;
+			ISupportServices viewModel = AssociatedObject.With(x => x as FrameworkElement).
+				Return(x => x.DataContext, null) as ISupportServices;
+			if(viewModel != null)
+				res = viewModel.ServiceContainer.GetService<IMessageBoxService>();
+			if(res != null) return res;
+#if !SILVERLIGHT
+#if !FREE
+			res = new DevExpress.Xpf.Core.DXMessageBoxService();
+#else
+			res = new MessageBoxService();
+#endif
+#else
+			res = new MessageBoxService();
+#endif
+			return res;
+		}
+		bool ShowConfirmation() {
+			if (!EnableConfirmationMessage) return true;
+			IMessageBoxService service = GetActualService();
+#if !SILVERLIGHT
+			MessageBoxResult res = service.Show(MessageText, MessageTitle, MessageButton, MessageIcon, MessageDefaultResult);
+#else
+			MessageBoxResult res = service.Show(MessageText, MessageTitle, MessageButton, MessageDefaultResult);
+#endif
+			return res == MessageBoxResult.OK || res == MessageBoxResult.Yes;
+		}
+	}
+}

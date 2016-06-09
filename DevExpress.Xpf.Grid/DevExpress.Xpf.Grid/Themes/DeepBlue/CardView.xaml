@@ -1,0 +1,457 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+    xmlns:dxgcore="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+    xmlns:dxg="clr-namespace:DevExpress.Xpf.Grid"
+    xmlns:dxgn="clr-namespace:DevExpress.Xpf.Grid.Native"  
+    xmlns:dxgt="clr-namespace:DevExpress.Xpf.Grid.Themes"
+    xmlns:dxght="clr-namespace:DevExpress.Xpf.Grid.HitTest"
+    xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
+	xmlns:sys="clr-namespace:System;assembly=mscorlib">
+
+    <dxg:SummaryToTextConverter x:Key="SummaryToTextConverter"/>
+    <dx:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    <sys:Double x:Key="{dxgt:CardViewThemeKey ResourceKey=SeparatorThickness}">5</sys:Double>
+    <Thickness x:Key="{dxgt:CardViewThemeKey ResourceKey=HorizontalCardMargin}">8,12,12,0</Thickness>
+    <Thickness x:Key="{dxgt:CardViewThemeKey ResourceKey=CellEditorMargin}">0,0,0,0</Thickness>
+	<Thickness x:Key="{dxgt:CardViewThemeKey ResourceKey=VerticalCardMargin}">12,12,0,12</Thickness>
+	<ControlTemplate x:Key="{dxgt:CardViewThemeKey ResourceKey=ShowHeadersButtonTemplate}" TargetType="{x:Type ToggleButton}">
+		<ControlTemplate.Resources>
+			<Storyboard x:Key="Timeline1">
+				<DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="hot" Storyboard.TargetProperty="(UIElement.Opacity)">
+					<SplineDoubleKeyFrame KeyTime="00:00:00.3000000" Value="1" />
+				</DoubleAnimationUsingKeyFrames>
+			</Storyboard>
+			<Storyboard x:Key="Timeline2">
+				<DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="hot" Storyboard.TargetProperty="(UIElement.Opacity)">
+					<SplineDoubleKeyFrame KeyTime="00:00:00.5000000" Value="0" />
+				</DoubleAnimationUsingKeyFrames>
+			</Storyboard>
+		</ControlTemplate.Resources>
+		<Grid x:Name="button">
+			<Border Padding="0,1,0,1" CornerRadius="3,3,3,3">
+				<Border.Background>
+					<LinearGradientBrush EndPoint="0.5,1.002" StartPoint="0.5,-0.002" SpreadMethod="Pad">
+						<GradientStop Color="#3E4C6EB3" Offset="0" />
+						<GradientStop Color="#80EDF4FF" Offset="1" />
+						<GradientStop Color="#3F7098DC" Offset="0.215" />
+					</LinearGradientBrush>
+				</Border.Background>
+				<Border CornerRadius="3,3,3,3" Width="Auto" Height="Auto" Padding="1,1,1,1">
+					<Border.Background>
+						<LinearGradientBrush EndPoint="0.5,1.003" StartPoint="0.5,-0.003">
+							<GradientStop Color="#FF233B6C" Offset="0" />
+							<GradientStop Color="#FF5077B3" Offset="1" />
+							<GradientStop Color="#FF22417C" Offset="0.178" />
+							<GradientStop Color="#FF264B85" Offset="0.692" />
+						</LinearGradientBrush>
+					</Border.Background>
+					<Grid Width="Auto" Height="Auto">
+						<Grid.RowDefinitions>
+							<RowDefinition Height=".5*" />
+							<RowDefinition Height=".5*" />
+						</Grid.RowDefinitions>
+						<Border CornerRadius="2,2,2,2" Grid.RowSpan="2" x:Name="border">
+							<Border.Background>
+								<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+									<GradientStop Color="#FF578BC8" Offset="0" />
+									<GradientStop Color="#FFBDD7FF" Offset="1" />
+									<GradientStop Color="#FF88B1F0" Offset="0.529" />
+								</LinearGradientBrush>
+							</Border.Background>
+						</Border>
+						<Border Margin="0,0,0,1" Grid.RowSpan="1" CornerRadius="2,2,0,0" x:Name="border1">
+							<Border.Background>
+								<LinearGradientBrush EndPoint="0.5,-0.002" StartPoint="0.5,1.002">
+									<GradientStop Color="#FFD5E1F6" Offset="0.865" />
+									<GradientStop Color="#FFE7F2FA" Offset="1" />
+									<GradientStop Color="#FFAAC4EC" Offset="0" />
+								</LinearGradientBrush>
+							</Border.Background>
+						</Border>
+						<Border Margin="0,0,0,0" Grid.RowSpan="2" CornerRadius="3,3,3,3" Opacity="0" x:Name="hot">
+							<Border.Background>
+								<RadialGradientBrush GradientOrigin="0.5,0.672">
+									<RadialGradientBrush.RelativeTransform>
+										<TransformGroup>
+											<ScaleTransform CenterX="0.5" CenterY="0.5" ScaleX="0.991" ScaleY="2.285" />
+											<SkewTransform AngleX="0" AngleY="0" CenterX="0.5" CenterY="0.5" />
+											<RotateTransform Angle="0" CenterX="0.5" CenterY="0.5" />
+											<TranslateTransform X="0.001" Y="0.439" />
+										</TransformGroup>
+									</RadialGradientBrush.RelativeTransform>
+									<GradientStop Color="#FFD0E5FF" Offset="0" />
+									<GradientStop Color="#00FFFFFF" Offset="1" />
+									<GradientStop Color="#DADCECFF" Offset="0.35" />
+								</RadialGradientBrush>
+							</Border.Background>
+						</Border>
+						<Path x:Name="Path" Stretch="Fill" Data="F1 M 469,549L 472,555L 473,555L 476,549L 469,549 Z " HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center" Width="7" Height="6" Grid.Row="0" Grid.RowSpan="2" SnapsToDevicePixels="True" RenderTransformOrigin="0.5,0.5">
+							<Path.Fill>
+								<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+									<GradientStop Color="#FF30487A" Offset="0" />
+									<GradientStop Color="#FF415684" Offset="1" />
+								</LinearGradientBrush>
+							</Path.Fill>
+						</Path>
+					</Grid>
+				</Border>
+			</Border>
+		</Grid>
+		<ControlTemplate.Triggers>
+			<MultiTrigger>
+				<MultiTrigger.Conditions>
+					<Condition Property="IsMouseOver" Value="True" />
+					<Condition Property="IsPressed" Value="False" />
+				</MultiTrigger.Conditions>
+				<MultiTrigger.EnterActions>
+					<BeginStoryboard Storyboard="{StaticResource Timeline1}" />
+				</MultiTrigger.EnterActions>
+				<MultiTrigger.ExitActions>
+					<BeginStoryboard Storyboard="{StaticResource Timeline2}" x:Name="Timeline2_BeginStoryboard" />
+				</MultiTrigger.ExitActions>
+			</MultiTrigger>
+			<Trigger Property="IsPressed" Value="True">
+				<Trigger.ExitActions>
+					<RemoveStoryboard BeginStoryboardName="Timeline2_BeginStoryboard" />
+				</Trigger.ExitActions>
+				<Setter Property="Background" TargetName="border">
+					<Setter.Value>
+						<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+							<GradientStop Color="#FF385FA1" Offset="0" />
+							<GradientStop Color="#FF6086BD" Offset="1" />
+							<GradientStop Color="#FF1F4685" Offset="0.529" />
+							<GradientStop Color="#FF4168A3" Offset="0.865" />
+						</LinearGradientBrush>
+					</Setter.Value>
+				</Setter>
+				<Setter Property="Background" TargetName="border1">
+					<Setter.Value>
+						<LinearGradientBrush EndPoint="0.5,-0.002" StartPoint="0.5,1.002">
+							<GradientStop Color="#FF5F83B6" Offset="0.862" />
+							<GradientStop Color="#FF384E76" Offset="1" />
+							<GradientStop Color="#FF385E99" Offset="0" />
+						</LinearGradientBrush>
+					</Setter.Value>
+				</Setter>
+				<Setter Property="Foreground" Value="#cee3fd" />
+				<Setter Property="Fill" TargetName="Path">
+					<Setter.Value>
+						<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+							<GradientStop Color="#FFBFD4FF" Offset="0" />
+							<GradientStop Color="#FFF8FAFF" Offset="1" />
+						</LinearGradientBrush>
+					</Setter.Value>
+				</Setter>
+			</Trigger>
+			<Trigger Property="IsChecked" Value="True">
+				<Setter Property="RenderTransform" TargetName="Path">
+					<Setter.Value>
+						<ScaleTransform ScaleY="-1" />
+					</Setter.Value>
+				</Setter>
+				<Setter Property="Margin" TargetName="Path" Value="0,0,0,1" />
+			</Trigger>
+		</ControlTemplate.Triggers>
+	</ControlTemplate>
+
+	<ControlTemplate x:Key="{dxgt:CardViewThemeKey ResourceKey=ScrollViewerTemplate}">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <ContentControl Grid.Row="0" x:Name="part_SearchControlContainer" 
+                            dxg:GridControl.CurrentView="{Binding Path=(dxg:GridControl.CurrentView), RelativeSource={RelativeSource TemplatedParent}}"
+                            Visibility="{Binding Path=(dxg:GridControl.CurrentView).ActualShowSearchPanel, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BooleanToVisibilityConverter}}"
+                            Style="{DynamicResource {dxgt:CardTemplatesThemeKey ResourceKey=SearchPanelContentTemplate}}"/>
+
+            <Border Grid.Row="1" HorizontalAlignment="Stretch" x:Name="PART_GroupPanel" Width="Auto" Grid.ColumnSpan="2" Background="#00FFFFFF" BorderThickness="1,1,1,1"
+                    dxg:GridControl.CurrentView="{Binding Path=(dxg:GridControl.CurrentView), RelativeSource={RelativeSource TemplatedParent}}">
+                <dxg:GridControl.CurrentViewChangedListener>
+                    <dxg:GroupPanelInitializer />
+                </dxg:GridControl.CurrentViewChangedListener>
+                <dxg:GridViewHitInfoBase.HitTestAcceptor>
+                    <dxght:GroupPanelTableViewHitTestAcceptor />
+                </dxg:GridViewHitInfoBase.HitTestAcceptor>
+                <Grid>
+                    <TextBlock Margin="13,8,8,10" x:Name="GroupPanelDragText" Style="{DynamicResource {dxgt:TableViewThemeKey ResourceKey=GroupPanelDragTextStyle}}" HorizontalAlignment="Stretch">
+                        <TextBlock.Text>
+                            <Binding Path="(dxg:GridControl.CurrentView).LocalizationDescriptor" RelativeSource="{RelativeSource TemplatedParent}" ConverterParameter="GridGroupPanelText">
+                                <Binding.Converter>
+                                    <dxg:DynamicLocalizationStringValueConvertor />
+                                </Binding.Converter>
+                            </Binding>
+                        </TextBlock.Text>
+                    </TextBlock>
+                    <dxg:ColumnItemsControl ItemsSource="{Binding Path=(dxg:GridControl.CurrentView).GroupedColumns, RelativeSource={RelativeSource TemplatedParent}}" x:Name="groupPanelItemsControl" Style="{DynamicResource {dxgt:GroupRowThemeKey IsVisibleInBlend=True, ResourceKey=GroupItemsControlStyle}}" dxb:BarManager.DXContextMenu="{Binding Path=(dxg:GridControl.ActiveView).GridMenu, RelativeSource={RelativeSource TemplatedParent}}" dxg:GridPopupMenu.GridMenuType="GroupPanel" />
+                </Grid>
+            </Border>
+            <Border Grid.Row="2" Grid.ColumnSpan="2" x:Name="PART_FooterItemsControlBorder" Background="Transparent" Margin="0,0,-2,1" VerticalAlignment="Top">
+                <dxg:GridViewHitInfoBase.HitTestAcceptor>
+                    <dxght:TotalSummaryPanelTableViewHitTestAcceptor />
+                </dxg:GridViewHitInfoBase.HitTestAcceptor>
+                <ItemsControl x:Name="footerItemsControl" Style="{DynamicResource {dxgt:CardViewThemeKey IsVisibleInBlend=True, ResourceKey=TotalSummaryItemsControlStyle}}" Height="Auto" Visibility="Collapsed" HorizontalAlignment="Right" />
+            </Border>
+
+            <Grid Grid.Row="3" Grid.ColumnSpan="2">
+                <Border BorderBrush="#FF668CC4" BorderThickness="1,1,1,1" CornerRadius="0,0,0,0">
+                    <Grid Margin="{TemplateBinding Padding}" dxg:GridControl.CurrentView="{Binding Path=(dxg:GridControl.CurrentView), RelativeSource={RelativeSource TemplatedParent}}">
+                        <dx:ScrollBarExtensions.ScrollBehavior>
+                            <Binding Path="(dxg:GridControl.CurrentView).UseExtendedMouseScrolling" RelativeSource="{RelativeSource Self}">
+                                <Binding.Converter>
+                                    <dx:BoolToObjectConverter FalseValue="{dx:NativeScrollBehavior}" TrueValue="{dxg:CardDataPresenterScrollBehavior}"/>
+                                </Binding.Converter>
+                            </Binding>
+                        </dx:ScrollBarExtensions.ScrollBehavior>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <ScrollContentPresenter x:Name="PART_ScrollContentPresenter" VerticalAlignment="Stretch" CanContentScroll="True" CanHorizontallyScroll="False" CanVerticallyScroll="False"
+                                                dxg:GridControl.CurrentView="{Binding Path=(dxg:GridControl.CurrentView), RelativeSource={RelativeSource TemplatedParent}}">
+                            <dxg:GridControl.CurrentViewChangedListener>
+                                <dxg:ScrollContentPresenterInitializer/>
+                            </dxg:GridControl.CurrentViewChangedListener>
+                            <Grid.RowSpan>
+                                <Binding Path="(dx:ScrollBarExtensions.ScrollBarMode)" RelativeSource="{RelativeSource TemplatedParent}">
+                                    <Binding.Converter>
+                                        <dx:EnumToObjectConverter DefaultValue="1">
+                                            <dx:EnumToObjectConverter.Values>
+                                                <dx:EnumObjectProvider x:Key="TouchOverlap" Value="2"/>
+                                            </dx:EnumToObjectConverter.Values>
+                                        </dx:EnumToObjectConverter>
+                                    </Binding.Converter>
+                                </Binding>
+                            </Grid.RowSpan>
+                            <Grid.ColumnSpan>
+                                <Binding Path="(dx:ScrollBarExtensions.ScrollBarMode)" RelativeSource="{RelativeSource TemplatedParent}">
+                                    <Binding.Converter>
+                                        <dx:EnumToObjectConverter DefaultValue="1">
+                                            <dx:EnumToObjectConverter.Values>
+                                                <dx:EnumObjectProvider x:Key="TouchOverlap" Value="2"/>
+                                            </dx:EnumToObjectConverter.Values>
+                                        </dx:EnumToObjectConverter>
+                                    </Binding.Converter>
+                                </Binding>
+                            </Grid.ColumnSpan>
+                            <dxgcore:FocusRectPresenter.IsVerticalScrollHost>True</dxgcore:FocusRectPresenter.IsVerticalScrollHost>
+                            <ScrollContentPresenter.Content>
+                                <dxg:CardDataPresenter dxg:GridControl.CurrentView="{Binding Path=(dxg:GridControl.CurrentView), RelativeSource={RelativeSource TemplatedParent}}" Background="#FFFFFFFF" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                            </ScrollContentPresenter.Content>
+                        </ScrollContentPresenter>
+                        <Grid Visibility="{TemplateBinding ScrollViewer.ComputedHorizontalScrollBarVisibility}" Grid.Row="1" VerticalAlignment="Bottom">
+                            <Grid.ColumnSpan>
+                                <MultiBinding>
+                                    <MultiBinding.Bindings>
+                                        <Binding Path="(dx:ScrollBarExtensions.ScrollBarMode)" RelativeSource="{RelativeSource Self}"/>
+                                        <Binding Path="(dx:ScrollBarExtensions.ScrollViewerOrientation)" RelativeSource="{RelativeSource TemplatedParent}"/>
+                                    </MultiBinding.Bindings>
+                                    <MultiBinding.Converter>
+                                        <dxg:HorizontalScrollBarColumnSpanConverter/>
+                                    </MultiBinding.Converter>
+                                </MultiBinding>
+                            </Grid.ColumnSpan>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <ScrollBar Cursor="Arrow" x:Name="PART_HorizontalScrollBar" Grid.Column="0" Orientation="Horizontal"
+                                       Value="{Binding HorizontalOffset, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}"
+                                       Maximum="{Binding ScrollableWidth, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}"
+                                       ViewportSize="{Binding ViewportWidth, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}"
+                                       Visibility="{Binding ComputedHorizontalScrollBarVisibility, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}"
+                                       dxgn:ScrollBarAttachedBehavior.UpdateThumbOrientation="{Binding Path=(dxg:GridControl.CurrentView).ScrollMode, RelativeSource={RelativeSource TemplatedParent}, Converter={dxgn:ScrollModeToBoolConverter Orientation=Horizontal}}">
+                                <dxg:GridViewHitInfoBase.HitTestAcceptor>
+                                    <dxght:HorizontalScrollBarTableViewHitTestAcceptor />
+                                </dxg:GridViewHitInfoBase.HitTestAcceptor>
+                            </ScrollBar>
+                            <Border Margin="0" x:Name="PART_HorizontalScrollCorner" Style="{DynamicResource {dxgt:ScrollBarThemeKey IsVisibleInBlend=True, ResourceKey=ScrollingCornerStyle}}" Width="13" Height="13" Grid.Column="1" >
+                                <Border.Visibility>
+                                    <MultiBinding>
+                                        <MultiBinding.Bindings>
+                                            <Binding Path="(dx:ScrollBarExtensions.ScrollBarMode)" RelativeSource="{RelativeSource TemplatedParent}"/>
+                                            <Binding Path="(ScrollViewer.ComputedVerticalScrollBarVisibility)" RelativeSource="{RelativeSource TemplatedParent}"/>
+                                        </MultiBinding.Bindings>
+                                        <MultiBinding.Converter>
+                                            <dxg:ScrollCornerCardViewConverter/>
+                                        </MultiBinding.Converter>
+                                    </MultiBinding>
+                                </Border.Visibility>
+                            </Border>
+                        </Grid>
+                        <ScrollBar Cursor="Arrow" Margin="0,0,0,0" x:Name="PART_VerticalScrollBar" Grid.Column="1" HorizontalAlignment="Right"
+                                   Value="{Binding VerticalOffset, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}"
+                                   Maximum="{Binding ScrollableHeight, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}"
+                                   ViewportSize="{Binding ViewportHeight, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}"
+                                   Visibility="{Binding ComputedVerticalScrollBarVisibility, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}"
+                                   dxgn:ScrollBarAttachedBehavior.UpdateThumbOrientation="{Binding Path=(dxg:GridControl.CurrentView).ScrollMode, RelativeSource={RelativeSource TemplatedParent}, Converter={dxgn:ScrollModeToBoolConverter Orientation=Vertical}}">
+                            <Grid.RowSpan>
+                                <MultiBinding>
+                                    <MultiBinding.Bindings>
+                                        <Binding Path="(dx:ScrollBarExtensions.ScrollBarMode)" RelativeSource="{RelativeSource Self}"/>
+                                        <Binding Path="(dx:ScrollBarExtensions.ScrollViewerOrientation)" RelativeSource="{RelativeSource TemplatedParent}"/>
+                                    </MultiBinding.Bindings>
+                                    <MultiBinding.Converter>
+                                        <dxg:VerticalScrollBarRowSpanCardViewConverter/>
+                                    </MultiBinding.Converter>
+                                </MultiBinding>
+                            </Grid.RowSpan>
+                            <dxg:GridViewHitInfoBase.HitTestAcceptor>
+                                <dxght:VerticalScrollBarTableViewHitTestAcceptor />
+                            </dxg:GridViewHitInfoBase.HitTestAcceptor>
+                        </ScrollBar>
+                    </Grid>
+                </Border>
+                <Grid HorizontalAlignment="Left" Margin="0,0,0,0" x:Name="corner_left_top" VerticalAlignment="Top" Width="4" Height="4">
+                    <Path Fill="#FF668CC4" Stretch="Fill" x:Name="Path_Copy3" Data="F1M610,471L610,472 609,472 609,468 613,468 613,469 612,469C610.896,469,610,469.896,610,471z" />
+                    <Path Fill="#FFB0D3FF" Stretch="Fill" Margin="0,0,1,1" x:Name="Path_Copy7" Data="F1M609,471L609,468 612,468C610.344,468,609,469.343,609,471z" />
+                </Grid>
+                <Grid HorizontalAlignment="Right" Margin="0,0,0,0" x:Name="corner_right_top" VerticalAlignment="Top" Width="4" Height="4">
+                    <Path Fill="#FF668CC4" Stretch="Fill" x:Name="Path_Copy" Data="F1M606,471L606,472 607,472 607,468 603,468 603,469 604,469C605.104,469,606,469.896,606,471z" />
+                    <Path Fill="#FFB0D3FF" Stretch="Fill" Margin="1,0,0,1" x:Name="Path_Copy2" Data="F1M607,471L607,468 604,468C605.657,468,607,469.343,607,471z" />
+                </Grid>
+                <Grid HorizontalAlignment="Right" Margin="0,0,0,0" x:Name="corner_right_bottom" VerticalAlignment="Bottom" Width="4" Height="4">
+                    <Path Fill="#FF668CC4" Stretch="Fill" x:Name="Path_Copy5" Data="F1M649,525L649,524 650,524 650,528 646,528 646,527 647,527C648.104,527,649,526.104,649,525z" />
+                    <Path Fill="#FF88A6CC" Stretch="Fill" Margin="1,1,0,0" x:Name="Path_Copy6" Data="F1M650,525L650,528 647,528C648.657,528,650,526.657,650,525z" />
+                </Grid>
+                <Grid HorizontalAlignment="Left" Margin="0,0,0,0" x:Name="corner_left_bottom" VerticalAlignment="Bottom" Width="4" Height="4">
+                    <Path Fill="#FF668CC4" Stretch="Fill" x:Name="Path_Copy1" Data="F1M635,525L635,524 634,524 634,528 638,528 638,527 637,527C635.896,527,635,526.104,635,525z" />
+                    <Path Fill="#FF7FA1D4" Stretch="Fill" Margin="0,1,1,0" x:Name="Path_Copy4" Data="F1M634,525L634,528 637,528C635.343,528,634,526.657,634,525z" />
+                </Grid>
+            </Grid>
+            <dx:DXExpander dx:DragManager.DropTargetFactory="{x:Static dx:EmptyDropTarget.Instance}" HorizontalAlignment="Right" 
+                           Margin="0,-9,0,0" MaxHeight="{Binding Path=(dx:OrderPanelBase.Panel).ActualHeight, Converter={dx:AddDoubleValueConverter}, ConverterParameter=66, ElementName=headerItemsControl}" 
+                           x:Name="headerItemsContainer" VerticalAlignment="Top" Grid.ColumnSpan="2" Grid.RowSpan="7" AnimationProgress="0" 
+                           HorizontalExpand="None" StretchChild="True" VerticalExpand="FromTopToBottom"
+                           dxg:GridControl.CurrentView="{Binding Path=(dxg:GridControl.CurrentView), RelativeSource={RelativeSource TemplatedParent}}">
+                <dxg:GridControl.CurrentViewChangedListener>
+                    <dxg:HeadersPanelInitializer />
+                </dxg:GridControl.CurrentViewChangedListener>
+                <dxg:GridViewHitInfoBase.HitTestAcceptor>
+                    <dxght:ColumnHeaderPanelTableViewHitTestAcceptor />
+                </dxg:GridViewHitInfoBase.HitTestAcceptor>
+                <Border Padding="10,10,0,10">
+                    <Grid>
+                        <Border HorizontalAlignment="Right" Margin="10,27,-4,0" x:Name="shadow" VerticalAlignment="Stretch" Width="{Binding Path=ActualWidth, ElementName=window}" Height="Auto" Background="#3F080C18" CornerRadius="10,0,10,10" Padding="0,0,0,0" />
+                        <Border HorizontalAlignment="Right" Margin="54,3,-4,0" x:Name="shadow_Copy" VerticalAlignment="Top" Width="25" Height="25" Background="#3F080C18" CornerRadius="0,4,0,0" Padding="0,0,0,0" />
+                        <Grid HorizontalAlignment="Right" Margin="6,24,0,5" x:Name="window">
+                            <Border HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="Auto" Height="Auto" Background="#FF244580" CornerRadius="8,0,8,8" Padding="1,1,1,1">
+                                <Border Width="Auto" Height="Auto" CornerRadius="7,0,7,7" Padding="6,6,6,6">
+                                    <Border.Background>
+                                        <LinearGradientBrush EndPoint="0.5,-0.013" StartPoint="0.5,1.013">
+                                            <GradientStop Color="#FFA9C8F0" Offset="0" />
+                                            <GradientStop Color="#FFB8D3F4" Offset="1" />
+                                        </LinearGradientBrush>
+                                    </Border.Background>
+                                    <Border Background="#FF618BBB" CornerRadius="4,4,4,4" Padding="1,1,1,1">
+                                        <Border Background="#FFFFFFFF" CornerRadius="3,3,3,3" Padding="1,1,1,0">
+                                            <dx:DXExpander HorizontalAlignment="Center" MinWidth="20" x:Name="headerItemsContainer1" VerticalAlignment="Top" AnimationProgress="0" HorizontalExpand="FromLeftToRight" VerticalExpand="None">
+                                                <ItemsControl MinWidth="200" x:Name="headerItemsControl" Style="{DynamicResource {dxgt:CardViewThemeKey IsVisibleInBlend=True, ResourceKey=HeaderItemsControlStyle}}" />
+                                            </dx:DXExpander>
+                                        </Border>
+                                    </Border>
+                                </Border>
+                            </Border>
+                        </Grid>
+                        <Grid HorizontalAlignment="Right" Margin="0,0,0,0" x:Name="window_Copy" VerticalAlignment="Top" Width="31" Height="26">
+                            <Border HorizontalAlignment="Stretch" Margin="1,-1,0,1" VerticalAlignment="Stretch" Width="Auto" Height="Auto" Background="#FF244580" CornerRadius="3,3,0,0" Padding="1,1,1,0">
+                                <Border Width="Auto" Height="Auto" CornerRadius="2,2,0,0" Padding="0,0,0,0">
+                                    <Border.Background>
+                                        <LinearGradientBrush EndPoint="0.5,-0.013" StartPoint="0.5,1.013">
+                                            <GradientStop Color="#FFB8D3F4" Offset="0" />
+                                            <GradientStop Color="#FFD3E7FF" Offset="1" />
+                                        </LinearGradientBrush>
+                                    </Border.Background>
+                                </Border>
+                            </Border>
+                        </Grid>
+                    </Grid>
+                </Border>
+            </dx:DXExpander>
+            <ToggleButton Template="{DynamicResource {dxgt:CardViewThemeKey IsVisibleInBlend=True, ResourceKey=ShowHeadersButtonTemplate}}" 
+                          Visibility="{Binding Path=(dxg:GridControl.CurrentView).ShowColumnHeaders, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BooleanToVisibilityConverter}}"
+                          HorizontalAlignment="Right" Margin="0,4,6,0" x:Name="ShowHeadersButton" 
+                          VerticalAlignment="Top" Width="19" Height="23" Grid.Column="1"
+                          IsChecked="{Binding RelativeSource={RelativeSource TemplatedParent}, Converter={dxgcore:IsDesignTimeConverter}, Mode=OneTime}">
+                <Grid.RowSpan>
+                    <MultiBinding>
+                        <MultiBinding.Bindings>
+                            <Binding Path="(dxg:GridControl.CurrentView).ShowGroupPanel" RelativeSource="{RelativeSource TemplatedParent}"/>
+                            <Binding Path="(dxg:GridControl.CurrentView).ActualShowSearchPanel" RelativeSource="{RelativeSource TemplatedParent}"/>
+                        </MultiBinding.Bindings>
+                        <MultiBinding.Converter>
+                            <dxg:CardViewTopContrlsIsVisibileToRowSpanCoverter/>
+                        </MultiBinding.Converter>
+                    </MultiBinding>
+                </Grid.RowSpan>
+                <dxg:GridViewHitInfoBase.HitTestAcceptor>
+                    <dxght:ColumnPanelShowButtonCardViewHitTestAcceptor />
+                </dxg:GridViewHitInfoBase.HitTestAcceptor>
+            </ToggleButton>
+
+            <dxg:FixedTotalSummaryContainerControl Grid.Row="4" Visibility="{Binding Path=(dxg:GridControl.CurrentView).ShowFixedTotalSummary, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BooleanToVisibilityConverter}}" Grid.ColumnSpan="2"
+                    DataContext="{Binding Path=(dxg:GridControl.CurrentView).HeadersData, RelativeSource={RelativeSource TemplatedParent}}"
+                    dxb:BarManager.DXContextMenu="{Binding Path=(dxg:GridControl.CurrentView).DataControlMenu, RelativeSource={RelativeSource TemplatedParent}}"
+                    dxg:GridControl.CurrentView="{Binding Path=(dxg:GridControl.CurrentView), RelativeSource={RelativeSource TemplatedParent}}"
+                    dxg:GridPopupMenu.GridMenuType="FixedTotalSummary">
+            </dxg:FixedTotalSummaryContainerControl>
+
+            <dxg:FilterPanelControl Grid.Row="5" Grid.ColumnSpan="2" x:Name="PART_FilterPanel"
+													DataContext="{Binding Path=(dxg:GridControl.ActiveView), RelativeSource={RelativeSource Self}}" Visibility="{Binding Path=ActualShowFilterPanel, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+
+            <dxgcore:FocusRectPresenter x:Name="PART_FocusRectPresenter" Grid.RowSpan="7" Grid.ColumnSpan="2" View="{Binding Path=(dxg:GridControl.CurrentView), RelativeSource={RelativeSource TemplatedParent}}" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        </Grid>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsChecked" SourceName="ShowHeadersButton" Value="True">
+                <Trigger.EnterActions>
+                    <BeginStoryboard>
+                        <Storyboard SpeedRatio="5">
+                            <DoubleAnimation Duration="00:00:01" Storyboard.TargetName="headerItemsContainer" Storyboard.TargetProperty="AnimationProgress" To="1" />
+                            <DoubleAnimation BeginTime="00:00:01" Duration="00:00:01" Storyboard.TargetName="headerItemsContainer1" Storyboard.TargetProperty="AnimationProgress" To="1" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </Trigger.EnterActions>
+                <Trigger.ExitActions>
+                    <BeginStoryboard>
+                        <Storyboard SpeedRatio="5">
+                            <DoubleAnimation Duration="00:00:01" Storyboard.TargetName="headerItemsContainer1" Storyboard.TargetProperty="AnimationProgress" To="0" />
+                            <DoubleAnimation BeginTime="00:00:01" Duration="00:00:01" Storyboard.TargetName="headerItemsContainer" Storyboard.TargetProperty="AnimationProgress" To="0" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </Trigger.ExitActions>
+            </Trigger>
+            <DataTrigger Binding="{Binding Path=ShowGroupPanel, RelativeSource={RelativeSource TemplatedParent}}" Value="false">
+                <Setter Property="Visibility" TargetName="PART_GroupPanel" Value="Collapsed" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Path=ShowColumnHeaders, RelativeSource={RelativeSource TemplatedParent}}" Value="false">
+                <Setter Property="Visibility" TargetName="headerItemsContainer" Value="Collapsed" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Path=ShowTotalSummary, RelativeSource={RelativeSource TemplatedParent}}" Value="true">
+                <Setter Property="Visibility" TargetName="footerItemsControl" Value="Visible" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Path=Grid.IsGrouped, RelativeSource={RelativeSource TemplatedParent}}" Value="true">
+                <Setter Property="Visibility" TargetName="GroupPanelDragText" Value="Collapsed" />
+                <Setter Property="Margin" TargetName="PART_GroupPanel" Value="8,8,8,8" />
+            </DataTrigger>
+            <Trigger Property="Opacity" SourceName="headerItemsContainer" Value="0">
+                <Setter Property="Visibility" TargetName="headerItemsContainer" Value="Collapsed" />
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+</ResourceDictionary>

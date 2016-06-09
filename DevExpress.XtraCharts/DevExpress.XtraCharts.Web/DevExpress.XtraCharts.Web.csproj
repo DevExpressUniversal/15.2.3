@@ -1,0 +1,240 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{6B30FA07-CD74-48FB-B7A7-7A8AAE6AEC86}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DevExpress.XtraCharts.Web</RootNamespace>
+    <AssemblyName>DevExpress.XtraCharts.v15.2.Web</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(MSBuildToolsVersion)' != '' ">
+    <LangVersion>ISO-2</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\..\Bin\Framework\</OutputPath>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>3</WarningLevel>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <LangVersion>default</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\..\Bin\Framework\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <LangVersion>default</LangVersion>
+  </PropertyGroup>
+  
+  <ItemGroup>
+    <Reference Include="DevExpress.Data.v15.2">
+      <Name>DevExpress.Data.v15.2</Name>
+      <Private>False</Private>
+    <HintPath>..\..\..\Bin\Framework\DevExpress.Data.v15.2.dll</HintPath></Reference>
+    <Reference Include="DevExpress.Charts.v15.2.Core">
+      <Name>DevExpress.Charts.v15.2.Core</Name>
+      <Private>False</Private>
+    <HintPath>..\..\..\Bin\Framework\DevExpress.Charts.v15.2.Core.dll</HintPath></Reference>
+    <Reference Include="DevExpress.Printing.v15.2.Core">
+      <SpecificVersion>False</SpecificVersion>
+    <HintPath>..\..\..\Bin\Framework\DevExpress.Printing.v15.2.Core.dll</HintPath><Private>False</Private></Reference>
+    <Reference Include="DevExpress.Utils.v15.2">
+      <Name>DevExpress.Utils.v15.2</Name>
+      <Private>False</Private>
+    <HintPath>..\..\..\Bin\Framework\DevExpress.Utils.v15.2.dll</HintPath></Reference>
+    <Reference Include="DevExpress.Web.v15.2">
+      <Name>DevExpress.Web.v15.2</Name>
+      <Private>False</Private>
+    <HintPath>..\..\..\Bin\Framework\DevExpress.Web.v15.2.dll</HintPath></Reference>
+    <Reference Include="DevExpress.XtraCharts.v15.2">
+      <Name>DevExpress.XtraCharts.v15.2</Name>
+      <Private>False</Private>
+    <HintPath>..\..\..\Bin\Framework\DevExpress.XtraCharts.v15.2.dll</HintPath></Reference>
+    
+    <Reference Include="System"><Private>False</Private></Reference>
+    <Reference Include="System.Data"><Private>False</Private></Reference>
+    <Reference Include="System.Design"><Private>False</Private></Reference>
+    <Reference Include="System.Drawing"><Private>False</Private></Reference>
+    <Reference Include="System.Runtime.Serialization"><Private>False</Private></Reference>
+    <Reference Include="System.Web"><Private>False</Private></Reference>
+    <Reference Include="System.Windows.Forms"><Private>False</Private></Reference>
+    <Reference Include="System.Xml"><Private>False</Private></Reference>
+    <Reference Include="System.Xml.Linq"><Private>False</Private></Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AttributesSubstituting.cs" />
+    <Compile Include="ChartToolTipController.cs" />
+    <Compile Include="ClientHitInfoSerializer.cs" />
+    <Compile Include="ClientObjectModel.cs" />
+    <Compile Include="ClientSideEvents.cs" />
+    <Compile Include="LicenseProvider.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RuntimeDesigner\ASPxChartDesigner.cs" />
+    <Compile Include="RuntimeDesigner\DataSource.cs" />
+    <Compile Include="RuntimeDesigner\DesignTime\ChartDesignerDesignModeImages.cs" />
+    <Compile Include="RuntimeDesigner\DesignTime\ChartDesignerDesignModeInfoGenerator.cs" />
+    <Compile Include="RuntimeDesigner\ChartHandler.cs" />
+    <Compile Include="RuntimeDesigner\ChartLayoutJsonSerializer.cs" />
+    <Compile Include="RuntimeDesigner\DesignerChartWrapper.cs" />
+    <Compile Include="RuntimeDesigner\DesignerMenu.cs" />
+    <Compile Include="RuntimeDesigner\JsAssignmentGenerator.cs" />
+    <Compile Include="RuntimeDesigner\ChartLayout.cs" />
+    <Compile Include="Styles.cs" />
+    
+    
+    
+    
+    <Compile Include="WebChartControl.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Bitmaps256\ChartControl.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Scripts\WebChartControl.js" />
+  </ItemGroup>
+  
+  
+  <ItemGroup>
+    <EmbeddedResource Include="Scripts\WebChartCore.js" />
+  </ItemGroup>
+  <ItemGroup>
+    
+  </ItemGroup>
+  <ItemGroup>
+    
+  </ItemGroup>
+  <ItemGroup>
+    
+  </ItemGroup>
+  <ItemGroup>
+    
+  </ItemGroup>
+  <ItemGroup>
+    
+  </ItemGroup>
+  <ItemGroup>
+    
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Css\default.css" />
+  </ItemGroup>
+  <ItemGroup>
+    
+  </ItemGroup>
+  <ItemGroup>
+    
+  </ItemGroup>
+  <ItemGroup>
+    
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Scripts\WebChartCrosshairRenderer.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Scripts\WebChartPatternEditor.js" />
+  </ItemGroup>
+  <ItemGroup>
+    
+  </ItemGroup>
+  <ItemGroup>
+    
+  </ItemGroup>
+  <ItemGroup>
+    
+  </ItemGroup>
+  <ItemGroup>
+    
+  </ItemGroup>
+  <ItemGroup>
+    
+  </ItemGroup>
+  <ItemGroup>
+    
+  </ItemGroup>
+  <ItemGroup>
+    
+  </ItemGroup>
+  <ItemGroup>
+    
+  </ItemGroup>
+  <ItemGroup>
+    
+  </ItemGroup>
+  <ItemGroup>
+    
+  </ItemGroup>
+  <ItemGroup>
+    
+  </ItemGroup>
+  <ItemGroup>
+    
+  </ItemGroup>
+  <ItemGroup>
+    
+  </ItemGroup>
+  <ItemGroup>
+    
+  </ItemGroup>
+  <ItemGroup>
+    
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Css\chart-designer-dark.css" />
+    <EmbeddedResource Include="Css\chart-designer-light.css" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Scripts\ASPxChartDesigner.js" />
+    <EmbeddedResource Include="Scripts\chart-designer.js" />
+    <EmbeddedResource Include="Scripts\dx-designer.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Content\chart-designer.html" />
+  </ItemGroup>
+  <ItemGroup>
+    
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Bitmaps256\ASPxChartDesigner.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\ASPxChartDesignerDesignTimeIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Content\ASPxChartDesignerDesignTimeView.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Scripts\chart-designer.min.js" />
+    <EmbeddedResource Include="Scripts\dx-designer.min.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Css\chart-designer-dark.min.css" />
+    <EmbeddedResource Include="Css\chart-designer-light.min.css" />
+  </ItemGroup>
+  <ItemGroup>
+    
+  </ItemGroup>
+  <ItemGroup>
+    
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <PropertyGroup>
+    
+  </PropertyGroup>
+<ItemGroup><EmbeddedResource Include="Descriptions.resx" /></ItemGroup><ItemGroup><Compile Include="Descriptions.cs" /></ItemGroup></Project>

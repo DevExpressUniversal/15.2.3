@@ -1,0 +1,110 @@
+#region Copyright (c) 2000-2015 Developer Express Inc.
+/*
+{*******************************************************************}
+{                                                                   }
+{       Developer Express .NET Component Library                    }
+{       eXpressApp Framework                                        }
+{                                                                   }
+{       Copyright (c) 2000-2015 Developer Express Inc.              }
+{       ALL RIGHTS RESERVED                                         }
+{                                                                   }
+{   The entire contents of this file is protected by U.S. and       }
+{   International Copyright Laws. Unauthorized reproduction,        }
+{   reverse-engineering, and distribution of all or any portion of  }
+{   the code contained in this file is strictly prohibited and may  }
+{   result in severe civil and criminal penalties and will be       }
+{   prosecuted to the maximum extent possible under the law.        }
+{                                                                   }
+{   RESTRICTIONS                                                    }
+{                                                                   }
+{   THIS SOURCE CODE AND ALL RESULTING INTERMEDIATE FILES           }
+{   ARE CONFIDENTIAL AND PROPRIETARY TRADE                          }
+{   SECRETS OF DEVELOPER EXPRESS INC. THE REGISTERED DEVELOPER IS   }
+{   LICENSED TO DISTRIBUTE THE PRODUCT AND ALL ACCOMPANYING .NET    }
+{   CONTROLS AS PART OF AN EXECUTABLE PROGRAM ONLY.                 }
+{                                                                   }
+{   THE SOURCE CODE CONTAINED WITHIN THIS FILE AND ALL RELATED      }
+{   FILES OR ANY PORTION OF ITS CONTENTS SHALL AT NO TIME BE        }
+{   COPIED, TRANSFERRED, SOLD, DISTRIBUTED, OR OTHERWISE MADE       }
+{   AVAILABLE TO OTHER INDIVIDUALS WITHOUT EXPRESS WRITTEN CONSENT  }
+{   AND PERMISSION FROM DEVELOPER EXPRESS INC.                      }
+{                                                                   }
+{   CONSULT THE END USER LICENSE AGREEMENT FOR INFORMATION ON       }
+{   ADDITIONAL RESTRICTIONS.                                        }
+{                                                                   }
+{*******************************************************************}
+*/
+#endregion Copyright (c) 2000-2015 Developer Express Inc.
+
+using System;
+using System.Linq;
+using System.Collections.Generic;
+using DevExpress.ExpressApp.Utils;
+namespace DevExpress.ExpressApp.DC {
+	public class NonPersistentEntityStore : BaseTypeInfoSource, IEntityStore {
+		private readonly TypesInfo typesInfo;
+		private readonly Dictionary<Type, Object> registeredTypeCache;
+		private readonly Dictionary<Type, Boolean> isKnownTypeCache;
+		private HashSet<Type> entityTypes;
+		private Boolean IsKnownType(Type type) {
+			Boolean result = false;
+			if(entityTypes != null) {
+				result = entityTypes.Contains(type);
+			}
+			else if(!isKnownTypeCache.TryGetValue(type, out result)) {
+				result = (type.IsClass || type.IsInterface) && !type.ContainsGenericParameters && type.IsDefined(typeof(DomainComponentAttribute), false);
+				isKnownTypeCache.Add(type, result);
+			}
+			return result;
+		}
+		private void UpdateTypeInfo(TypeInfo info) {
+			info.IsVisible = CalcTypeVisibility(info);
+			info.IsDomainComponent = CalcIsDomainComponent(info);
+			foreach(XafMemberInfo memberInfo in info.OwnMembers) {
+				memberInfo.IsVisible = CalcMemberVisibility(memberInfo);
+				HandleFieldSizeAttribute(memberInfo);
+			}
+		}
+		private Boolean CalcIsDomainComponent(TypeInfo info) {
+			return info.FindAttribute<DomainComponentAttribute>() != null;
+		}
+		public NonPersistentEntityStore(TypesInfo typesInfo, IList<Type> entityTypes)
+			: base() {
+			Guard.ArgumentNotNull(typesInfo, "typesInfo");
+			this.typesInfo = typesInfo;
+			registeredTypeCache = new Dictionary<Type, Object>();
+			isKnownTypeCache = new Dictionary<Type, Boolean>();
+			SetEntityTypes(entityTypes);
+		}
+		public NonPersistentEntityStore(TypesInfo typesInfo)
+			: this(typesInfo, null) {
+		}
+		public void SetEntityTypes(IList<Type> entityTypes) {
+			if(entityTypes != null) {
+				this.entityTypes = new HashSet<Type>();
+				foreach(Type entityType in entityTypes) {
+					this.entityTypes.Add(entityType);
+				}
+			}
+			else {
+				this.entityTypes = null;
+			}
+		}
+		public IEnumerable<Type> RegisteredEntities {
+			get { return registeredTypeCache.Keys; }
+		}
+		public Boolean CanRegister(Type type) {
+			return !registeredTypeCache.ContainsKey(type) && IsKnownType(type);
+		}
+		public void RegisterEntity(Type type) {
+			if(CanRegister(type)) {
+				registeredTypeCache.Add(type, null);
+				TypeInfo typeInfo = typesInfo.FindTypeInfo(type);
+				UpdateTypeInfo(typeInfo);
+			}
+		}
+		public void Reset() {
+			registeredTypeCache.Clear();
+		}
+	}
+}

@@ -1,0 +1,1318 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:dxc="http://schemas.devexpress.com/winfx/2008/xaml/core"
+    xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
+    xmlns:dxbt="http://schemas.devexpress.com/winfx/2008/xaml/bars/themekeys"
+    xmlns:dxr="clr-namespace:DevExpress.Xpf.Ribbon"
+    xmlns:dxrt="clr-namespace:DevExpress.Xpf.Ribbon.Themes">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/DevExpress.Xpf.Ribbon.v15.2;component/Themes/Generic/QuickAccessToolbar.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+    <BooleanToVisibilityConverter x:Key="boolToVisibilityConverter" />
+    <Thickness x:Key="{dxrt:QuickAccessToolbarThemeKey ResourceKey=RibbonToolbarFirstSeparatorMargin}">2,0,0,0</Thickness>
+    <Thickness x:Key="{dxrt:QuickAccessToolbarThemeKey ResourceKey=RibbonToolbarLastSeparatorMargin}">0,0,2,0</Thickness>
+    <!-- DeepBlue: Ribbon Quick Access Toolbar Control -->
+    <ControlTemplate x:Key="{dxrt:QuickAccessToolbarThemeKey ResourceKey=RibbonToolbarLeftContentTemplate}" TargetType="ContentControl">
+        <Grid Margin="-7,1,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="12" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="12" />
+            </Grid.ColumnDefinitions>
+            <Grid HorizontalAlignment="Left" Margin="-1,0,0,0" Width="18.079">
+                <Path Stretch="Fill" Data="F1 M 389,290L 389,300L 389,310L 381.995,310C 381.828,301.631 377.464,294.292 370.922,290L 389,290 Z " SnapsToDevicePixels="True">
+                    <Path.Fill>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#FF234884" Offset="0" />
+                            <GradientStop Color="#FF4469A3" Offset="1" />
+                        </LinearGradientBrush>
+                    </Path.Fill>
+                </Path>
+                <Path Stretch="Fill" Data="F1 M 388,291L 388,309L 382.98,309C 382.679,301.676 379.097,295.199 373.665,291L 388,291 Z " Margin="2,1,1,1" SnapsToDevicePixels="True">
+                    <Path.Fill>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#FFB2CBEE" Offset="0" />
+                            <GradientStop Color="#FF9CBAE4" Offset="1" />
+                            <GradientStop Color="#FFAAC5EC" Offset="0.5" />
+                            <GradientStop Color="#FF9CBAE4" Offset="0.5" />
+                        </LinearGradientBrush>
+                    </Path.Fill>
+                </Path>
+            </Grid>
+            <Rectangle StrokeDashArray="1 0" StrokeThickness="0" Margin="-1,0" Grid.Column="1" SnapsToDevicePixels="True">
+                <Rectangle.Fill>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FF4469A3" Offset="1" />
+                        <GradientStop Color="#FF234884" />
+                    </LinearGradientBrush>
+                </Rectangle.Fill>
+            </Rectangle>
+            <Path Stretch="Fill" Data="F1 M 46,16C 49.3137,16 52,18.9101 52,22.5C 52,26.0899 49.3137,29 46,29L 46,16 Z " StrokeDashArray="1 0" StrokeThickness="0" HorizontalAlignment="Left" Margin="0" Grid.Column="2" SnapsToDevicePixels="True">
+                <Path.Fill>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FF4469A3" Offset="1" />
+                        <GradientStop Color="#FF234884" />
+                    </LinearGradientBrush>
+                </Path.Fill>
+            </Path>
+            <Rectangle StrokeDashArray="1 0" StrokeThickness="0" Margin="-1,1,0,1" Grid.Column="1" SnapsToDevicePixels="True">
+                <Rectangle.Fill>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FFB4CCEF" Offset="0" />
+                        <GradientStop Color="#FF9CBAE4" Offset="1" />
+                        <GradientStop Color="#FFA8C3EB" Offset="0.5" />
+                        <GradientStop Color="#FF9CBAE4" Offset="0.5" />
+                    </LinearGradientBrush>
+                </Rectangle.Fill>
+            </Rectangle>
+            <Path Stretch="Fill" Data="F1 M 46,16C 49.3137,16 52,18.9101 52,22.5C 52,26.0899 49.3137,29 46,29L 46,16 Z " StrokeDashArray="1 0" StrokeThickness="0" HorizontalAlignment="Left" Margin="-1,1,1,1" Grid.Column="2" SnapsToDevicePixels="True">
+                <Path.Fill>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FFB4CCEF" Offset="0" />
+                        <GradientStop Color="#FF9CBAE4" Offset="1" />
+                        <GradientStop Color="#FFA8C3EB" Offset="0.5" />
+                        <GradientStop Color="#FF9CBAE4" Offset="0.5" />
+                    </LinearGradientBrush>
+                </Path.Fill>
+            </Path>
+            <ContentPresenter Margin="0,1,0,1" Grid.Column="1" Content="{TemplateBinding Content}" />
+        </Grid>
+    </ControlTemplate>
+
+    <!-- DeepBlue: Ribbon Toolbar Popup Left Content Template-->
+    <ControlTemplate x:Key="{dxrt:QuickAccessToolbarThemeKey ResourceKey=RibbonToolbarLeftContentTemplateInPopup}" TargetType="ContentControl">
+        <Grid>
+            <Border x:Name="Shadow" Margin="2,2,-2,-2" SnapsToDevicePixels="True" CornerRadius="3,0,0,3" Background="#FF3b5480" Opacity="0.15" />
+            <Border SnapsToDevicePixels="True" x:Name="Border" Margin="0" BorderThickness="0" CornerRadius="3,0,0,3">
+                <Border.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#ff7698c9" Offset="0" />
+                        <GradientStop Color="#FF4D6790" Offset="1" />
+                    </LinearGradientBrush>
+                </Border.Background>
+            </Border>
+            <Border SnapsToDevicePixels="True" x:Name="rBody2" Background="#FFCEDDF2" BorderThickness="0" CornerRadius="2,0,0,2" Margin="1,1,0,1" />
+            <Border SnapsToDevicePixels="True" x:Name="rBody1" Margin="2,2,0,1" BorderThickness="0" CornerRadius="2,0,0,2">
+                <Border.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FF9CBAE4" Offset="0" />
+                        <GradientStop Color="#FF98B6E1" Offset="1" />
+                        <GradientStop Color="#FF9CBAE4" Offset="0.35" />
+                        <GradientStop Color="#FF92B1DD" Offset="0.35" />
+                    </LinearGradientBrush>
+                </Border.Background>
+            </Border>
+            <ContentPresenter SnapsToDevicePixels="True" Content="{TemplateBinding Content}" Margin="1" />
+        </Grid>
+    </ControlTemplate>
+
+    <!-- DeepBlue: Ribbon Toolbar Popup Right Content Template-->
+    <ControlTemplate x:Key="{dxrt:QuickAccessToolbarThemeKey ResourceKey=RibbonToolbarRightContentTemplateInPopup}" TargetType="ContentControl">
+        <Grid>
+            <Border x:Name="Shadow1" Margin="2,2,-2,-2" SnapsToDevicePixels="True" CornerRadius="0,3,3,0" Background="#FF3b5480" Opacity="0.15" />
+            <Border SnapsToDevicePixels="True" x:Name="Border1" Margin="0" BorderThickness="0" CornerRadius="0,3,3,0">
+                <Border.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#ff7698c9" Offset="0" />
+                        <GradientStop Color="#FF4D6790" Offset="1" />
+                    </LinearGradientBrush>
+                </Border.Background>
+            </Border>
+            <Border SnapsToDevicePixels="True" x:Name="rBody3" Background="#FFCEDDF2" BorderThickness="0" CornerRadius="0,2,2,0" Margin="0,1,2,2" />
+            <Border SnapsToDevicePixels="True" x:Name="rBody4" Margin="0,2,1,1" BorderThickness="0" CornerRadius="0,2,2,0">
+                <Border.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FF9CBAE4" Offset="0" />
+                        <GradientStop Color="#FF98B6E1" Offset="1" />
+                        <GradientStop Color="#FF9CBAE4" Offset="0.35" />
+                        <GradientStop Color="#FF92B1DD" Offset="0.35" />
+                    </LinearGradientBrush>
+                </Border.Background>
+            </Border>
+            <ContentPresenter SnapsToDevicePixels="True" Content="{TemplateBinding Content}" Margin="1" />
+        </Grid>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="{dxrt:QuickAccessToolbarThemeKey ResourceKey=RibbonToolbarLeftContentTemplateInFooter}" TargetType="ContentControl">
+        <ContentPresenter Content="{TemplateBinding Content}" />
+    </ControlTemplate>
+    
+    <ControlTemplate x:Key="{dxrt:QuickAccessToolbarThemeKey ResourceKey=RibbonToolbarLeftContentTemplateInTitle}" TargetType="ContentControl">
+        <ContentPresenter Content="{TemplateBinding Content}" />
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="{dxrt:QuickAccessToolbarThemeKey ResourceKey=RibbonToolbarLeftContentTemplate2010}" TargetType="ContentControl">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Control x:Name="PART_FirstSeparator" Grid.Column="0" Margin="{DynamicResource {dxrt:QuickAccessToolbarThemeKey ResourceKey=RibbonToolbarFirstSeparatorMargin}}"
+                     Template="{DynamicResource {dxbt:BarItemSeparatorThemeKey ResourceKey=InRibbonQuickAccessToolbarCommonTemplate}}" />
+            <ContentPresenter Grid.Column="1" Content="{TemplateBinding Content}" />
+        </Grid>
+        <ControlTemplate.Triggers>
+            <DataTrigger Binding="{Binding Path=(dxr:RibbonControl.Ribbon).IsInRibbonWindow, RelativeSource={RelativeSource Self}}" Value="False">
+                <Setter TargetName="PART_FirstSeparator" Property="Visibility" Value="Collapsed"/>
+            </DataTrigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="{dxrt:QuickAccessToolbarThemeKey ResourceKey=RibbonToolbarRightContentTemplate}" TargetType="ContentControl">
+        <ContentPresenter Content="{TemplateBinding Content}" Margin="5,-1,0,-1" />
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="{dxrt:QuickAccessToolbarThemeKey ResourceKey=RibbonToolbarRightContentTemplateInFooter}" TargetType="ContentControl">
+        <ContentPresenter Content="{TemplateBinding Content}" Margin="2,0,0,0" />
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="{dxrt:QuickAccessToolbarThemeKey ResourceKey=RibbonToolbarRightContentTemplateInTitle}" TargetType="ContentControl">
+        <ContentPresenter Content="{TemplateBinding Content}" Margin="2,0,0,0" />
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="{dxrt:QuickAccessToolbarThemeKey ResourceKey=RibbonToolbarRightContentTemplate2010}" TargetType="ContentControl">
+        <Grid Margin="2,0,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <ContentPresenter Grid.Column="0" Content="{TemplateBinding Content}" />
+            <Control x:Name="PART_LastSeparator" Grid.Column="1" Margin="{DynamicResource {dxrt:QuickAccessToolbarThemeKey ResourceKey=RibbonToolbarLastSeparatorMargin}}"
+                     Visibility="{Binding Path=Toolbar.Ribbon.IsInRibbonWindow, RelativeSource={RelativeSource AncestorType={x:Type dxr:RibbonQuickAccessToolbarControl}}, Converter={StaticResource boolToVisibilityConverter}}"
+                     Template="{DynamicResource {dxbt:BarItemSeparatorThemeKey ResourceKey=InRibbonQuickAccessToolbarCommonTemplate}}" />
+        </Grid>
+    </ControlTemplate>
+
+    <!-- DeepBlue: Ribbon Quick Access Toolbar Button Template -->
+    <ControlTemplate x:Key="{dxrt:QuickAccessToolbarThemeKey ResourceKey=RibbonToolbarCustomizationButtonTemplate}" TargetType="{x:Type dxr:RibbonCheckedBorderControl}">
+        <Grid Width="17">
+            <Grid SnapsToDevicePixels="True" x:Name="PART_Normal" Visibility="Visible" Opacity="0">
+                <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <Border Background="Transparent" CornerRadius="2,2,2,2" Margin="2,2,0,0" Opacity="0.15" SnapsToDevicePixels="True" />
+                    <Border Background="Transparent" CornerRadius="2,2,2,2" Margin="1,1,1,1" Padding="1,1,1,1" SnapsToDevicePixels="True">
+                        <Border CornerRadius="1,1,1,1" Padding="1,1,1,1" SnapsToDevicePixels="True" Background="Transparent">
+                            <Border CornerRadius="1,1,1,1" SnapsToDevicePixels="True" Background="Transparent" />
+                        </Border>
+                    </Border>
+                    <Border Background="Transparent" CornerRadius="2,2,2,2" Margin="1,1,1,1" Padding="1,1,1,1" SnapsToDevicePixels="True" Opacity="0.0" Visibility="Visible">
+                        <Border CornerRadius="1,1,1,1" Padding="1,1,1,1" SnapsToDevicePixels="True" Background="Transparent">
+                            <Border CornerRadius="1,1,1,1" SnapsToDevicePixels="True" Background="Transparent" />
+                        </Border>
+                    </Border>
+                </Grid>
+            </Grid>
+            <Grid SnapsToDevicePixels="True" x:Name="PART_Hover" Visibility="Collapsed">
+                <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <Border x:Name="hover_shadow" Background="#FF000000" CornerRadius="2,2,2,2" Margin="2,2,0,0" Opacity="0.15" SnapsToDevicePixels="True" />
+                    <Border x:Name="hover_border1" Background="#FF5379AE" CornerRadius="2,2,2,2" Margin="1,1,1,1" Padding="1,1,1,1" SnapsToDevicePixels="True">
+                        <Border x:Name="hover_border2" CornerRadius="1,1,1,1" Padding="1,1,1,1" SnapsToDevicePixels="True">
+                            <Border.Background>
+                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                    <GradientStop Color="#FFD0E3FB" Offset="0" />
+                                    <GradientStop Color="#FFADD0F6" Offset="1" />
+                                    <GradientStop Color="#FFD5E6FA" Offset="0.5" />
+                                </LinearGradientBrush>
+                            </Border.Background>
+                            <Border x:Name="hover_border3" CornerRadius="1,1,1,1" SnapsToDevicePixels="True">
+                                <Border.Background>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FFD1E4FC" Offset="0" />
+                                        <GradientStop Color="#FFAED1F6" Offset="1" />
+                                        <GradientStop Color="#FFB5D0F1" Offset="0.5" />
+                                        <GradientStop Color="#FFA4C5ED" Offset="0.5" />
+                                    </LinearGradientBrush>
+                                </Border.Background>
+                            </Border>
+                        </Border>
+                    </Border>
+                    <Border x:Name="disabled_border1" Background="#FF5379AE" CornerRadius="2,2,2,2" Margin="1,1,1,1" Padding="1,1,1,1" SnapsToDevicePixels="True" Opacity="0.0" Visibility="Visible">
+                        <Border x:Name="disabled_border2" CornerRadius="1,1,1,1" Padding="1,1,1,1" SnapsToDevicePixels="True">
+                            <Border.Background>
+                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                    <GradientStop Color="#FFA9C4E5" Offset="0" />
+                                    <GradientStop Color="#FF96B8DE" Offset="1" />
+                                    <GradientStop Color="#FFA1BFE1" Offset="0.5" />
+                                </LinearGradientBrush>
+                            </Border.Background>
+                            <Border x:Name="disabled_border3" CornerRadius="1,1,1,1" SnapsToDevicePixels="True">
+                                <Border.Background>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FF9EBBDF" Offset="0" />
+                                        <GradientStop Color="#FF95B8DE" Offset="1" />
+                                        <GradientStop Color="#FF97B7DC" Offset="0.5" />
+                                        <GradientStop Color="#FF8AACD5" Offset="0.5" />
+                                    </LinearGradientBrush>
+                                </Border.Background>
+                            </Border>
+                        </Border>
+                    </Border>
+                </Grid>
+            </Grid>
+            <Grid x:Name="PART_Pressed" Visibility="Collapsed">
+                <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <Border x:Name="pressed_shadow" Background="#FFFFFFFF" CornerRadius="2,2,2,2" Margin="2,2,1,0" Opacity="0.15" SnapsToDevicePixels="True" />
+                    <Border x:Name="pressed_border1" Background="#FF5379AE" CornerRadius="2,2,2,2" Margin="1,1,1,1" Padding="1,1,1,1" SnapsToDevicePixels="True">
+                        <Border x:Name="pressed_border2" CornerRadius="1,1,1,1" Height="Auto" Padding="1,1,1,1" SnapsToDevicePixels="True" Width="Auto">
+                            <Border.Background>
+                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                    <GradientStop Color="#FF7B9CCB" Offset="0" />
+                                    <GradientStop Color="#FF7B9CCB" Offset="1" />
+                                    <GradientStop Color="#FF9EBBE1" Offset="0.5" />
+                                </LinearGradientBrush>
+                            </Border.Background>
+                            <Border x:Name="pressed_border3" Background="#FF7B9CCB" CornerRadius="1,1,1,1" Height="Auto" SnapsToDevicePixels="True" Width="Auto" />
+                        </Border>
+                    </Border>
+                </Grid>
+            </Grid>
+            <Grid SnapsToDevicePixels="True" x:Name="PART_Focused" Visibility="Collapsed">
+                <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <Border Background="#FF000000" CornerRadius="2,2,2,2" Margin="2,2,0,0" Opacity="0.15" SnapsToDevicePixels="True" />
+                    <Border Background="#FF5379AE" CornerRadius="2,2,2,2" Margin="1,1,1,1" Padding="1,1,1,1" SnapsToDevicePixels="True">
+                        <Border CornerRadius="1,1,1,1" Padding="1,1,1,1" SnapsToDevicePixels="True">
+                            <Border.Background>
+                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                    <GradientStop Color="#FFD0E3FB" Offset="0" />
+                                    <GradientStop Color="#FFADD0F6" Offset="1" />
+                                    <GradientStop Color="#FFD5E6FA" Offset="0.5" />
+                                </LinearGradientBrush>
+                            </Border.Background>
+                            <Border CornerRadius="1,1,1,1" SnapsToDevicePixels="True">
+                                <Border.Background>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FFD1E4FC" Offset="0" />
+                                        <GradientStop Color="#FFAED1F6" Offset="1" />
+                                        <GradientStop Color="#FFB5D0F1" Offset="0.5" />
+                                        <GradientStop Color="#FFA4C5ED" Offset="0.5" />
+                                    </LinearGradientBrush>
+                                </Border.Background>
+                            </Border>
+                        </Border>
+                    </Border>
+                    <Border Background="#FF5379AE" CornerRadius="2,2,2,2" Margin="1,1,1,1" Padding="1,1,1,1" SnapsToDevicePixels="True" Opacity="0.0" Visibility="Visible">
+                        <Border CornerRadius="1,1,1,1" Padding="1,1,1,1" SnapsToDevicePixels="True">
+                            <Border.Background>
+                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                    <GradientStop Color="#FFA9C4E5" Offset="0" />
+                                    <GradientStop Color="#FF96B8DE" Offset="1" />
+                                    <GradientStop Color="#FFA1BFE1" Offset="0.5" />
+                                </LinearGradientBrush>
+                            </Border.Background>
+                            <Border CornerRadius="1,1,1,1" SnapsToDevicePixels="True">
+                                <Border.Background>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FF9EBBDF" Offset="0" />
+                                        <GradientStop Color="#FF95B8DE" Offset="1" />
+                                        <GradientStop Color="#FF97B7DC" Offset="0.5" />
+                                        <GradientStop Color="#FF8AACD5" Offset="0.5" />
+                                    </LinearGradientBrush>
+                                </Border.Background>
+                            </Border>
+                        </Border>
+                    </Border>
+                </Grid>
+            </Grid>            
+            <Grid>
+                <Grid SnapsToDevicePixels="True" Margin="0" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <StackPanel SnapsToDevicePixels="True" HorizontalAlignment="Center" VerticalAlignment="Center" Width="5" Orientation="Vertical" Margin="0,0,0,1">
+                        <Grid SnapsToDevicePixels="True" Width="6" Height="4">
+                            <Rectangle SnapsToDevicePixels="True" Stretch="Fill" Fill="#99CCD8E5" HorizontalAlignment="Left" Margin="0" VerticalAlignment="Bottom" Width="6" Height="1" />
+                            <Rectangle SnapsToDevicePixels="True" Stretch="Fill" Fill="#FF30428B" HorizontalAlignment="Left" Margin="0,0,0,1" VerticalAlignment="Bottom" Width="6" Height="1" />
+                        </Grid>
+                        <Grid SnapsToDevicePixels="True" Margin="0,1,0,0" Width="Auto" Height="4">
+                            <Path SnapsToDevicePixels="True" Width="Auto" Height="Auto" Stretch="Fill" Fill="#99CCD8E5" Data="F1 M 3.05176e-005,1L 3.05176e-005,2L 1,2.00003L 1,3.00003L 2,3.00003L 2,4.00003L 3,4.00003L 3,3.00003L 4,3.00003L 4,2.00003L 5,2.00003L 5,1.00003L 3.05176e-005,1 Z " Margin="0,1,0,0" />
+                            <Path SnapsToDevicePixels="True" Width="Auto" Height="Auto" Stretch="Fill" Fill="#FF30428B" Data="F1 M 0,0L 0,1L 0.999969,1L 0.999969,2L 1.99997,2L 1.99997,3L 2.99997,3L 2.99997,2L 3.99997,2L 3.99997,1L 4.99997,1L 4.99997,0L 0,0 Z " Margin="0,0,0,1" />
+                        </Grid>
+                    </StackPanel>
+                </Grid>
+            </Grid>
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup x:Name="CommonStates">
+                    <VisualState x:Name="Normal">
+                        <Storyboard>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Hover" Storyboard.TargetProperty="Visibility">
+                                <DiscreteObjectKeyFrame KeyTime="0:0:0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <Visibility>Collapsed</Visibility>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Pressed" Storyboard.TargetProperty="Visibility">
+                                <DiscreteObjectKeyFrame KeyTime="0:0:0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <Visibility>Collapsed</Visibility>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Focused" Storyboard.TargetProperty="Visibility">
+                                <DiscreteObjectKeyFrame KeyTime="0:0:0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <Visibility>Collapsed</Visibility>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Checked">
+                        <Storyboard>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Hover" Storyboard.TargetProperty="Visibility">
+                                <DiscreteObjectKeyFrame KeyTime="0:0:0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <Visibility>Collapsed</Visibility>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Pressed" Storyboard.TargetProperty="Visibility">
+                                <DiscreteObjectKeyFrame KeyTime="0:0:0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <Visibility>Visible</Visibility>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Focused" Storyboard.TargetProperty="Visibility">
+                                <DiscreteObjectKeyFrame KeyTime="0:0:0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <Visibility>Collapsed</Visibility>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Hover">
+                        <Storyboard>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Hover" Storyboard.TargetProperty="Visibility">
+                                <DiscreteObjectKeyFrame KeyTime="0:0:0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <Visibility>Visible</Visibility>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Pressed" Storyboard.TargetProperty="Visibility">
+                                <DiscreteObjectKeyFrame KeyTime="0:0:0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <Visibility>Collapsed</Visibility>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Focused" Storyboard.TargetProperty="Visibility">
+                                <DiscreteObjectKeyFrame KeyTime="0:0:0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <Visibility>Collapsed</Visibility>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Pressed">
+                        <Storyboard>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Hover" Storyboard.TargetProperty="Visibility">
+                                <DiscreteObjectKeyFrame KeyTime="0:0:0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <Visibility>Collapsed</Visibility>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Pressed" Storyboard.TargetProperty="Visibility">
+                                <DiscreteObjectKeyFrame KeyTime="0:0:0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <Visibility>Visible</Visibility>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Focused" Storyboard.TargetProperty="Visibility">
+                                <DiscreteObjectKeyFrame KeyTime="0:0:0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <Visibility>Collapsed</Visibility>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Focused">
+                        <Storyboard>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Hover" Storyboard.TargetProperty="Visibility">
+                                <DiscreteObjectKeyFrame KeyTime="0:0:0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <Visibility>Collapsed</Visibility>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Pressed" Storyboard.TargetProperty="Visibility">
+                                <DiscreteObjectKeyFrame KeyTime="0:0:0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <Visibility>Collapsed</Visibility>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Focused" Storyboard.TargetProperty="Visibility">
+                                <DiscreteObjectKeyFrame KeyTime="0:0:0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <Visibility>Visible</Visibility>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+        </Grid>
+    </ControlTemplate>
+
+    <!-- DeepBlue: Ribbon Quick Access Toolbar Button Template In Footer -->
+    <ControlTemplate x:Key="{dxrt:QuickAccessToolbarThemeKey ResourceKey=RibbonToolbarCustomizationButtonTemplateInFooter}" TargetType="{x:Type dxr:RibbonCheckedBorderControl}">
+        <Grid Width="17">
+            <Grid SnapsToDevicePixels="True" x:Name="PART_Normal" Visibility="Visible" Opacity="0">
+                <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <Border Background="Transparent" CornerRadius="2,2,2,2" Margin="2,2,0,0" Opacity="0.15" SnapsToDevicePixels="True" />
+                    <Border Background="Transparent" CornerRadius="2,2,2,2" Margin="1,1,1,1" Padding="1,1,1,1" SnapsToDevicePixels="True">
+                        <Border CornerRadius="1,1,1,1" Padding="1,1,1,1" SnapsToDevicePixels="True" Background="Transparent">
+                            <Border CornerRadius="1,1,1,1" SnapsToDevicePixels="True" Background="Transparent" />
+                        </Border>
+                    </Border>
+                    <Border Background="Transparent" CornerRadius="2,2,2,2" Margin="1,1,1,1" Padding="1,1,1,1" SnapsToDevicePixels="True" Opacity="0.0" Visibility="Visible">
+                        <Border CornerRadius="1,1,1,1" Padding="1,1,1,1" SnapsToDevicePixels="True" Background="Transparent">
+                            <Border CornerRadius="1,1,1,1" SnapsToDevicePixels="True" Background="Transparent" />
+                        </Border>
+                    </Border>
+                </Grid>
+            </Grid>
+            <Grid SnapsToDevicePixels="True" x:Name="PART_Hover" Visibility="Collapsed">
+                <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <Border x:Name="hover_shadow" Background="#FF000000" CornerRadius="2,2,2,2" Margin="2,2,0,0" Opacity="0.15" SnapsToDevicePixels="True" />
+                    <Border x:Name="hover_border1" Background="#FF5379AE" CornerRadius="2,2,2,2" Margin="1,1,1,1" Padding="1,1,1,1" SnapsToDevicePixels="True">
+                        <Border x:Name="hover_border2" CornerRadius="1,1,1,1" Padding="1,1,1,1" SnapsToDevicePixels="True">
+                            <Border.Background>
+                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                    <GradientStop Color="#FFD0E3FB" Offset="0" />
+                                    <GradientStop Color="#FFADD0F6" Offset="1" />
+                                    <GradientStop Color="#FFD5E6FA" Offset="0.5" />
+                                </LinearGradientBrush>
+                            </Border.Background>
+                            <Border x:Name="hover_border3" CornerRadius="1,1,1,1" SnapsToDevicePixels="True">
+                                <Border.Background>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FFD1E4FC" Offset="0" />
+                                        <GradientStop Color="#FFAED1F6" Offset="1" />
+                                        <GradientStop Color="#FFB5D0F1" Offset="0.5" />
+                                        <GradientStop Color="#FFA4C5ED" Offset="0.5" />
+                                    </LinearGradientBrush>
+                                </Border.Background>
+                            </Border>
+                        </Border>
+                    </Border>
+                    <Border x:Name="disabled_border1" Background="#FF5379AE" CornerRadius="2,2,2,2" Margin="1,1,1,1" Padding="1,1,1,1" SnapsToDevicePixels="True" Opacity="0.0" Visibility="Visible">
+                        <Border x:Name="disabled_border2" CornerRadius="1,1,1,1" Padding="1,1,1,1" SnapsToDevicePixels="True">
+                            <Border.Background>
+                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                    <GradientStop Color="#FFA9C4E5" Offset="0" />
+                                    <GradientStop Color="#FF96B8DE" Offset="1" />
+                                    <GradientStop Color="#FFA1BFE1" Offset="0.5" />
+                                </LinearGradientBrush>
+                            </Border.Background>
+                            <Border x:Name="disabled_border3" CornerRadius="1,1,1,1" SnapsToDevicePixels="True">
+                                <Border.Background>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FF9EBBDF" Offset="0" />
+                                        <GradientStop Color="#FF95B8DE" Offset="1" />
+                                        <GradientStop Color="#FF97B7DC" Offset="0.5" />
+                                        <GradientStop Color="#FF8AACD5" Offset="0.5" />
+                                    </LinearGradientBrush>
+                                </Border.Background>
+                            </Border>
+                        </Border>
+                    </Border>
+                </Grid>
+            </Grid>
+            <Grid x:Name="PART_Pressed" Visibility="Collapsed">
+                <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <Border x:Name="pressed_shadow" Background="#FFFFFFFF" CornerRadius="2,2,2,2" Margin="2,2,1,0" Opacity="0.15" SnapsToDevicePixels="True" />
+                    <Border x:Name="pressed_border1" Background="#FF5379AE" CornerRadius="2,2,2,2" Margin="1,1,1,1" Padding="1,1,1,1" SnapsToDevicePixels="True">
+                        <Border x:Name="pressed_border2" CornerRadius="1,1,1,1" Height="Auto" Padding="1,1,1,1" SnapsToDevicePixels="True" Width="Auto">
+                            <Border.Background>
+                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                    <GradientStop Color="#FF7B9CCB" Offset="0" />
+                                    <GradientStop Color="#FF7B9CCB" Offset="1" />
+                                    <GradientStop Color="#FF9EBBE1" Offset="0.5" />
+                                </LinearGradientBrush>
+                            </Border.Background>
+                            <Border x:Name="pressed_border3" Background="#FF7B9CCB" CornerRadius="1,1,1,1" Height="Auto" SnapsToDevicePixels="True" Width="Auto" />
+                        </Border>
+                    </Border>
+                </Grid>
+            </Grid>
+            <Grid SnapsToDevicePixels="True" x:Name="PART_Focused" Visibility="Collapsed">
+                <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <Border Background="#FF000000" CornerRadius="2,2,2,2" Margin="2,2,0,0" Opacity="0.15" SnapsToDevicePixels="True" />
+                    <Border Background="#FF5379AE" CornerRadius="2,2,2,2" Margin="1,1,1,1" Padding="1,1,1,1" SnapsToDevicePixels="True">
+                        <Border CornerRadius="1,1,1,1" Padding="1,1,1,1" SnapsToDevicePixels="True">
+                            <Border.Background>
+                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                    <GradientStop Color="#FFD0E3FB" Offset="0" />
+                                    <GradientStop Color="#FFADD0F6" Offset="1" />
+                                    <GradientStop Color="#FFD5E6FA" Offset="0.5" />
+                                </LinearGradientBrush>
+                            </Border.Background>
+                            <Border CornerRadius="1,1,1,1" SnapsToDevicePixels="True">
+                                <Border.Background>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FFD1E4FC" Offset="0" />
+                                        <GradientStop Color="#FFAED1F6" Offset="1" />
+                                        <GradientStop Color="#FFB5D0F1" Offset="0.5" />
+                                        <GradientStop Color="#FFA4C5ED" Offset="0.5" />
+                                    </LinearGradientBrush>
+                                </Border.Background>
+                            </Border>
+                        </Border>
+                    </Border>
+                    <Border Background="#FF5379AE" CornerRadius="2,2,2,2" Margin="1,1,1,1" Padding="1,1,1,1" SnapsToDevicePixels="True" Opacity="0.0" Visibility="Visible">
+                        <Border CornerRadius="1,1,1,1" Padding="1,1,1,1" SnapsToDevicePixels="True">
+                            <Border.Background>
+                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                    <GradientStop Color="#FFA9C4E5" Offset="0" />
+                                    <GradientStop Color="#FF96B8DE" Offset="1" />
+                                    <GradientStop Color="#FFA1BFE1" Offset="0.5" />
+                                </LinearGradientBrush>
+                            </Border.Background>
+                            <Border CornerRadius="1,1,1,1" SnapsToDevicePixels="True">
+                                <Border.Background>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FF9EBBDF" Offset="0" />
+                                        <GradientStop Color="#FF95B8DE" Offset="1" />
+                                        <GradientStop Color="#FF97B7DC" Offset="0.5" />
+                                        <GradientStop Color="#FF8AACD5" Offset="0.5" />
+                                    </LinearGradientBrush>
+                                </Border.Background>
+                            </Border>
+                        </Border>
+                    </Border>
+                </Grid>
+            </Grid>
+            <Grid>
+                <Grid SnapsToDevicePixels="True" Margin="0" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <StackPanel SnapsToDevicePixels="True" HorizontalAlignment="Center" VerticalAlignment="Center" Width="5" Orientation="Vertical" Margin="0,0,0,1">
+                        <Grid SnapsToDevicePixels="True" Width="6" Height="4">
+                            <Rectangle SnapsToDevicePixels="True" Stretch="Fill" Fill="#99CCD8E5" HorizontalAlignment="Left" Margin="0" VerticalAlignment="Bottom" Width="6" Height="1" />
+                            <Rectangle SnapsToDevicePixels="True" Stretch="Fill" Fill="#FF30428B" HorizontalAlignment="Left" Margin="0,0,0,1" VerticalAlignment="Bottom" Width="6" Height="1" />
+                        </Grid>
+                        <Grid SnapsToDevicePixels="True" Margin="0,1,0,0" Width="Auto" Height="4">
+                            <Path SnapsToDevicePixels="True" Width="Auto" Height="Auto" Stretch="Fill" Fill="#99CCD8E5" Data="F1 M 3.05176e-005,1L 3.05176e-005,2L 1,2.00003L 1,3.00003L 2,3.00003L 2,4.00003L 3,4.00003L 3,3.00003L 4,3.00003L 4,2.00003L 5,2.00003L 5,1.00003L 3.05176e-005,1 Z " Margin="0,1,0,0" />
+                            <Path SnapsToDevicePixels="True" Width="Auto" Height="Auto" Stretch="Fill" Fill="#FF30428B" Data="F1 M 0,0L 0,1L 0.999969,1L 0.999969,2L 1.99997,2L 1.99997,3L 2.99997,3L 2.99997,2L 3.99997,2L 3.99997,1L 4.99997,1L 4.99997,0L 0,0 Z " Margin="0,0,0,1" />
+                        </Grid>
+                    </StackPanel>
+                </Grid>
+            </Grid>
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup x:Name="CommonStates">
+                    <VisualState x:Name="Normal">
+                        <Storyboard>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Hover" Storyboard.TargetProperty="Visibility">
+                                <DiscreteObjectKeyFrame KeyTime="0:0:0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <Visibility>Collapsed</Visibility>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Pressed" Storyboard.TargetProperty="Visibility">
+                                <DiscreteObjectKeyFrame KeyTime="0:0:0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <Visibility>Collapsed</Visibility>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Focused" Storyboard.TargetProperty="Visibility">
+                                <DiscreteObjectKeyFrame KeyTime="0:0:0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <Visibility>Collapsed</Visibility>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Checked">
+                        <Storyboard>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Hover" Storyboard.TargetProperty="Visibility">
+                                <DiscreteObjectKeyFrame KeyTime="0:0:0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <Visibility>Collapsed</Visibility>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Pressed" Storyboard.TargetProperty="Visibility">
+                                <DiscreteObjectKeyFrame KeyTime="0:0:0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <Visibility>Visible</Visibility>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Focused" Storyboard.TargetProperty="Visibility">
+                                <DiscreteObjectKeyFrame KeyTime="0:0:0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <Visibility>Collapsed</Visibility>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Hover">
+                        <Storyboard>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Hover" Storyboard.TargetProperty="Visibility">
+                                <DiscreteObjectKeyFrame KeyTime="0:0:0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <Visibility>Visible</Visibility>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Pressed" Storyboard.TargetProperty="Visibility">
+                                <DiscreteObjectKeyFrame KeyTime="0:0:0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <Visibility>Collapsed</Visibility>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Focused" Storyboard.TargetProperty="Visibility">
+                                <DiscreteObjectKeyFrame KeyTime="0:0:0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <Visibility>Collapsed</Visibility>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Pressed">
+                        <Storyboard>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Hover" Storyboard.TargetProperty="Visibility">
+                                <DiscreteObjectKeyFrame KeyTime="0:0:0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <Visibility>Collapsed</Visibility>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Pressed" Storyboard.TargetProperty="Visibility">
+                                <DiscreteObjectKeyFrame KeyTime="0:0:0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <Visibility>Visible</Visibility>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Focused" Storyboard.TargetProperty="Visibility">
+                                <DiscreteObjectKeyFrame KeyTime="0:0:0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <Visibility>Collapsed</Visibility>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Focused">
+                        <Storyboard>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Hover" Storyboard.TargetProperty="Visibility">
+                                <DiscreteObjectKeyFrame KeyTime="0:0:0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <Visibility>Collapsed</Visibility>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Pressed" Storyboard.TargetProperty="Visibility">
+                                <DiscreteObjectKeyFrame KeyTime="0:0:0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <Visibility>Collapsed</Visibility>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Focused" Storyboard.TargetProperty="Visibility">
+                                <DiscreteObjectKeyFrame KeyTime="0:0:0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <Visibility>Visible</Visibility>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+        </Grid>
+    </ControlTemplate>
+
+    <!-- DeepBlue: Ribbon Quick Access Toolbar Button Template -->
+    <ControlTemplate x:Key="{dxrt:QuickAccessToolbarThemeKey ResourceKey=RibbonToolbarDropDownButtonTemplate}" TargetType="{x:Type dxr:RibbonCheckedBorderControl}">
+        <Grid SnapsToDevicePixels="True" Width="17">
+            <Grid SnapsToDevicePixels="True" x:Name="PART_Normal" Opacity="0.0" Visibility="Visible">
+                <Grid SnapsToDevicePixels="True" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <Border SnapsToDevicePixels="True" Background="Transparent" CornerRadius="2,2,2,2" Margin="2,2,0,0" />
+                    <Border SnapsToDevicePixels="True" Background="Transparent" CornerRadius="2,2,2,2" Margin="1,1,1,1" Padding="1,1,1,1">
+                        <Border SnapsToDevicePixels="True" CornerRadius="1,1,1,1" Padding="1,1,1,1" Background="Transparent">
+                            <Border SnapsToDevicePixels="True" CornerRadius="1,1,1,1" Background="Transparent" />
+                        </Border>
+                    </Border>
+                    <Border SnapsToDevicePixels="True" Background="Transparent" CornerRadius="2,2,2,2" Margin="1,1,1,1" Padding="1,1,1,1" Visibility="Visible">
+                        <Border SnapsToDevicePixels="True" CornerRadius="1,1,1,1" Padding="1,1,1,1" Background="Transparent">
+                            <Border SnapsToDevicePixels="True" CornerRadius="1,1,1,1" Background="Transparent" />
+                        </Border>
+                    </Border>
+                </Grid>
+            </Grid>            
+            <Grid SnapsToDevicePixels="True" x:Name="PART_Hover" Visibility="Collapsed">
+                <Grid SnapsToDevicePixels="True" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <Border SnapsToDevicePixels="True" x:Name="hover_shadow" Background="#FF000000" CornerRadius="2,2,2,2" Margin="2,2,0,0" Opacity="0.15" />
+                    <Border SnapsToDevicePixels="True" x:Name="hover_border1" Background="#FF5379AE" CornerRadius="2,2,2,2" Margin="1,1,1,1" Padding="1,1,1,1">
+                        <Border SnapsToDevicePixels="True" x:Name="hover_border2" CornerRadius="1,1,1,1" Padding="1,1,1,1">
+                            <Border.Background>
+                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                    <GradientStop Color="#FFD0E3FB" Offset="0" />
+                                    <GradientStop Color="#FFADD0F6" Offset="1" />
+                                    <GradientStop Color="#FFD5E6FA" Offset="0.5" />
+                                </LinearGradientBrush>
+                            </Border.Background>
+                            <Border SnapsToDevicePixels="True" x:Name="hover_border3" CornerRadius="1,1,1,1">
+                                <Border.Background>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FFD1E4FC" Offset="0" />
+                                        <GradientStop Color="#FFAED1F6" Offset="1" />
+                                        <GradientStop Color="#FFB5D0F1" Offset="0.5" />
+                                        <GradientStop Color="#FFA4C5ED" Offset="0.5" />
+                                    </LinearGradientBrush>
+                                </Border.Background>
+                            </Border>
+                        </Border>
+                    </Border>
+                    <Border SnapsToDevicePixels="True" x:Name="disabled_border1" Background="#FF5379AE" CornerRadius="2,2,2,2" Margin="1,1,1,1" Padding="1,1,1,1" Opacity="0.0" Visibility="Visible">
+                        <Border SnapsToDevicePixels="True" x:Name="disabled_border2" CornerRadius="1,1,1,1" Padding="1,1,1,1">
+                            <Border.Background>
+                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                    <GradientStop Color="#FFA9C4E5" Offset="0" />
+                                    <GradientStop Color="#FF96B8DE" Offset="1" />
+                                    <GradientStop Color="#FFA1BFE1" Offset="0.5" />
+                                </LinearGradientBrush>
+                            </Border.Background>
+                            <Border SnapsToDevicePixels="True" x:Name="disabled_border3" CornerRadius="1,1,1,1">
+                                <Border.Background>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FF9EBBDF" Offset="0" />
+                                        <GradientStop Color="#FF95B8DE" Offset="1" />
+                                        <GradientStop Color="#FF97B7DC" Offset="0.5" />
+                                        <GradientStop Color="#FF8AACD5" Offset="0.5" />
+                                    </LinearGradientBrush>
+                                </Border.Background>
+                            </Border>
+                        </Border>
+                    </Border>
+                </Grid>
+            </Grid>
+            <Grid SnapsToDevicePixels="True" x:Name="PART_Pressed" Visibility="Collapsed">
+                <Grid SnapsToDevicePixels="True" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <Border SnapsToDevicePixels="True" x:Name="pressed_shadow" Background="#FFFFFFFF" CornerRadius="2,2,2,2" Margin="2,2,1,0" Opacity="0.15" />
+                    <Border SnapsToDevicePixels="True" x:Name="pressed_border1" Background="#FF5379AE" CornerRadius="2,2,2,2" Margin="1,1,1,1" Padding="1,1,1,1">
+                        <Border SnapsToDevicePixels="True" x:Name="pressed_border2" CornerRadius="1,1,1,1" Height="Auto" Padding="1,1,1,1" Width="Auto">
+                            <Border.Background>
+                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                    <GradientStop Color="#FF7B9CCB" Offset="0" />
+                                    <GradientStop Color="#FF7B9CCB" Offset="1" />
+                                    <GradientStop Color="#FF9EBBE1" Offset="0.5" />
+                                </LinearGradientBrush>
+                            </Border.Background>
+                            <Border SnapsToDevicePixels="True" x:Name="pressed_border3" Background="#FF7B9CCB" CornerRadius="1,1,1,1" Height="Auto" Width="Auto" />
+                        </Border>
+                    </Border>
+                </Grid>
+            </Grid>
+            <Grid SnapsToDevicePixels="True" x:Name="PART_Focused" Visibility="Collapsed">
+                <Grid SnapsToDevicePixels="True" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <Border SnapsToDevicePixels="True" Background="#FF000000" CornerRadius="2,2,2,2" Margin="2,2,0,0" Opacity="0.15" />
+                    <Border SnapsToDevicePixels="True" Background="#FF5379AE" CornerRadius="2,2,2,2" Margin="1,1,1,1" Padding="1,1,1,1">
+                        <Border SnapsToDevicePixels="True" CornerRadius="1,1,1,1" Padding="1,1,1,1">
+                            <Border.Background>
+                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                    <GradientStop Color="#FFD0E3FB" Offset="0" />
+                                    <GradientStop Color="#FFADD0F6" Offset="1" />
+                                    <GradientStop Color="#FFD5E6FA" Offset="0.5" />
+                                </LinearGradientBrush>
+                            </Border.Background>
+                            <Border SnapsToDevicePixels="True" CornerRadius="1,1,1,1">
+                                <Border.Background>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FFD1E4FC" Offset="0" />
+                                        <GradientStop Color="#FFAED1F6" Offset="1" />
+                                        <GradientStop Color="#FFB5D0F1" Offset="0.5" />
+                                        <GradientStop Color="#FFA4C5ED" Offset="0.5" />
+                                    </LinearGradientBrush>
+                                </Border.Background>
+                            </Border>
+                        </Border>
+                    </Border>
+                    <Border SnapsToDevicePixels="True" Background="#FF5379AE" CornerRadius="2,2,2,2" Margin="1,1,1,1" Padding="1,1,1,1" Opacity="0.0" Visibility="Visible">
+                        <Border SnapsToDevicePixels="True" CornerRadius="1,1,1,1" Padding="1,1,1,1">
+                            <Border.Background>
+                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                    <GradientStop Color="#FFA9C4E5" Offset="0" />
+                                    <GradientStop Color="#FF96B8DE" Offset="1" />
+                                    <GradientStop Color="#FFA1BFE1" Offset="0.5" />
+                                </LinearGradientBrush>
+                            </Border.Background>
+                            <Border SnapsToDevicePixels="True" CornerRadius="1,1,1,1">
+                                <Border.Background>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FF9EBBDF" Offset="0" />
+                                        <GradientStop Color="#FF95B8DE" Offset="1" />
+                                        <GradientStop Color="#FF97B7DC" Offset="0.5" />
+                                        <GradientStop Color="#FF8AACD5" Offset="0.5" />
+                                    </LinearGradientBrush>
+                                </Border.Background>
+                            </Border>
+                        </Border>
+                    </Border>
+                </Grid>
+            </Grid>            
+            <Grid SnapsToDevicePixels="True" HorizontalAlignment="Center" Margin="1,0,0,0" VerticalAlignment="Center" Width="8" Height="6">
+                <Path SnapsToDevicePixels="True" Stretch="Fill" Fill="#99CCD8E5" Data="F1 M 151,112L 148,115L 147,115L 150,112L 147,109L 148,109L 151,112 Z " HorizontalAlignment="Right" Width="4" />
+                <Path SnapsToDevicePixels="True" Stretch="Fill" Fill="#ff30428B" Data="F1 M 147,109L 150,112L 147,115L 147,109 Z " HorizontalAlignment="Right" Margin="0,0,1,0" Width="3" />
+                <Path SnapsToDevicePixels="True" Stretch="Fill" Fill="#99CCD8E5" Data="F1 M 147,112L 144,115L 143,115L 146,112L 143,109L 144,109L 147,112 Z " HorizontalAlignment="Left" Width="4" />
+                <Path SnapsToDevicePixels="True" Stretch="Fill" Fill="#ff30428B" Data="F1 M 143,109L 146,112L 143,115L 143,109 Z " HorizontalAlignment="Left" Width="3" />
+            </Grid>
+
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup x:Name="CommonStates">
+                    <VisualState x:Name="Normal">
+                        <Storyboard>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Hover" Storyboard.TargetProperty="Visibility">
+                                <DiscreteObjectKeyFrame KeyTime="0:0:0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <Visibility>Collapsed</Visibility>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Pressed" Storyboard.TargetProperty="Visibility">
+                                <DiscreteObjectKeyFrame KeyTime="0:0:0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <Visibility>Collapsed</Visibility>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Focused" Storyboard.TargetProperty="Visibility">
+                                <DiscreteObjectKeyFrame KeyTime="0:0:0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <Visibility>Collapsed</Visibility>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Checked">
+                        <Storyboard>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Hover" Storyboard.TargetProperty="Visibility">
+                                <DiscreteObjectKeyFrame KeyTime="0:0:0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <Visibility>Collapsed</Visibility>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Pressed" Storyboard.TargetProperty="Visibility">
+                                <DiscreteObjectKeyFrame KeyTime="0:0:0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <Visibility>Visible</Visibility>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Focused" Storyboard.TargetProperty="Visibility">
+                                <DiscreteObjectKeyFrame KeyTime="0:0:0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <Visibility>Collapsed</Visibility>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Hover">
+                        <Storyboard>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Hover" Storyboard.TargetProperty="Visibility">
+                                <DiscreteObjectKeyFrame KeyTime="0:0:0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <Visibility>Visible</Visibility>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Pressed" Storyboard.TargetProperty="Visibility">
+                                <DiscreteObjectKeyFrame KeyTime="0:0:0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <Visibility>Collapsed</Visibility>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>                                
+                            </ObjectAnimationUsingKeyFrames>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Focused" Storyboard.TargetProperty="Visibility">
+                                <DiscreteObjectKeyFrame KeyTime="0:0:0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <Visibility>Collapsed</Visibility>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Pressed">
+                        <Storyboard>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Hover" Storyboard.TargetProperty="Visibility">
+                                <DiscreteObjectKeyFrame KeyTime="0:0:0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <Visibility>Collapsed</Visibility>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Pressed" Storyboard.TargetProperty="Visibility">
+                                <DiscreteObjectKeyFrame KeyTime="0:0:0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <Visibility>Visible</Visibility>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Focused" Storyboard.TargetProperty="Visibility">
+                                <DiscreteObjectKeyFrame KeyTime="0:0:0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <Visibility>Collapsed</Visibility>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Focused">
+                        <Storyboard>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Hover" Storyboard.TargetProperty="Visibility">
+                                <DiscreteObjectKeyFrame KeyTime="0:0:0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <Visibility>Collapsed</Visibility>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Pressed" Storyboard.TargetProperty="Visibility">
+                                <DiscreteObjectKeyFrame KeyTime="0:0:0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <Visibility>Collapsed</Visibility>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Focused" Storyboard.TargetProperty="Visibility">
+                                <DiscreteObjectKeyFrame KeyTime="0:0:0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <Visibility>Visible</Visibility>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+
+        </Grid>        
+        
+    </ControlTemplate>
+
+    <!-- DeepBlue: Ribbon Quick Access Toolbar Button Template In Footer -->
+    <ControlTemplate x:Key="{dxrt:QuickAccessToolbarThemeKey ResourceKey=RibbonToolbarDropDownButtonTemplateInFooter}" TargetType="{x:Type dxr:RibbonCheckedBorderControl}">
+        <Grid SnapsToDevicePixels="True" Width="17">
+            <Grid SnapsToDevicePixels="True" x:Name="PART_Normal" Opacity="0.0" Visibility="Visible">
+                <Grid SnapsToDevicePixels="True" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <Border SnapsToDevicePixels="True" Background="Transparent" CornerRadius="2,2,2,2" Margin="2,2,0,0" />
+                    <Border SnapsToDevicePixels="True" Background="Transparent" CornerRadius="2,2,2,2" Margin="1,1,1,1" Padding="1,1,1,1">
+                        <Border SnapsToDevicePixels="True" CornerRadius="1,1,1,1" Padding="1,1,1,1" Background="Transparent">
+                            <Border SnapsToDevicePixels="True" CornerRadius="1,1,1,1" Background="Transparent" />
+                        </Border>
+                    </Border>
+                    <Border SnapsToDevicePixels="True" Background="Transparent" CornerRadius="2,2,2,2" Margin="1,1,1,1" Padding="1,1,1,1" Visibility="Visible">
+                        <Border SnapsToDevicePixels="True" CornerRadius="1,1,1,1" Padding="1,1,1,1" Background="Transparent">
+                            <Border SnapsToDevicePixels="True" CornerRadius="1,1,1,1" Background="Transparent" />
+                        </Border>
+                    </Border>
+                </Grid>
+            </Grid>
+            <Grid SnapsToDevicePixels="True" x:Name="PART_Hover" Visibility="Collapsed">
+                <Grid SnapsToDevicePixels="True" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <Border SnapsToDevicePixels="True" x:Name="hover_shadow" Background="#FF000000" CornerRadius="2,2,2,2" Margin="2,2,0,0" Opacity="0.15" />
+                    <Border SnapsToDevicePixels="True" x:Name="hover_border1" Background="#FF5379AE" CornerRadius="2,2,2,2" Margin="1,1,1,1" Padding="1,1,1,1">
+                        <Border SnapsToDevicePixels="True" x:Name="hover_border2" CornerRadius="1,1,1,1" Padding="1,1,1,1">
+                            <Border.Background>
+                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                    <GradientStop Color="#FFD0E3FB" Offset="0" />
+                                    <GradientStop Color="#FFADD0F6" Offset="1" />
+                                    <GradientStop Color="#FFD5E6FA" Offset="0.5" />
+                                </LinearGradientBrush>
+                            </Border.Background>
+                            <Border SnapsToDevicePixels="True" x:Name="hover_border3" CornerRadius="1,1,1,1">
+                                <Border.Background>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FFD1E4FC" Offset="0" />
+                                        <GradientStop Color="#FFAED1F6" Offset="1" />
+                                        <GradientStop Color="#FFB5D0F1" Offset="0.5" />
+                                        <GradientStop Color="#FFA4C5ED" Offset="0.5" />
+                                    </LinearGradientBrush>
+                                </Border.Background>
+                            </Border>
+                        </Border>
+                    </Border>
+                    <Border SnapsToDevicePixels="True" x:Name="disabled_border1" Background="#FF5379AE" CornerRadius="2,2,2,2" Margin="1,1,1,1" Padding="1,1,1,1" Opacity="0.0" Visibility="Visible">
+                        <Border SnapsToDevicePixels="True" x:Name="disabled_border2" CornerRadius="1,1,1,1" Padding="1,1,1,1">
+                            <Border.Background>
+                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                    <GradientStop Color="#FFA9C4E5" Offset="0" />
+                                    <GradientStop Color="#FF96B8DE" Offset="1" />
+                                    <GradientStop Color="#FFA1BFE1" Offset="0.5" />
+                                </LinearGradientBrush>
+                            </Border.Background>
+                            <Border SnapsToDevicePixels="True" x:Name="disabled_border3" CornerRadius="1,1,1,1">
+                                <Border.Background>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FF9EBBDF" Offset="0" />
+                                        <GradientStop Color="#FF95B8DE" Offset="1" />
+                                        <GradientStop Color="#FF97B7DC" Offset="0.5" />
+                                        <GradientStop Color="#FF8AACD5" Offset="0.5" />
+                                    </LinearGradientBrush>
+                                </Border.Background>
+                            </Border>
+                        </Border>
+                    </Border>
+                </Grid>
+            </Grid>
+            <Grid SnapsToDevicePixels="True" x:Name="PART_Pressed" Visibility="Collapsed">
+                <Grid SnapsToDevicePixels="True" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <Border SnapsToDevicePixels="True" x:Name="pressed_shadow" Background="#FFFFFFFF" CornerRadius="2,2,2,2" Margin="2,2,1,0" Opacity="0.15" />
+                    <Border SnapsToDevicePixels="True" x:Name="pressed_border1" Background="#FF5379AE" CornerRadius="2,2,2,2" Margin="1,1,1,1" Padding="1,1,1,1">
+                        <Border SnapsToDevicePixels="True" x:Name="pressed_border2" CornerRadius="1,1,1,1" Height="Auto" Padding="1,1,1,1" Width="Auto">
+                            <Border.Background>
+                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                    <GradientStop Color="#FF7B9CCB" Offset="0" />
+                                    <GradientStop Color="#FF7B9CCB" Offset="1" />
+                                    <GradientStop Color="#FF9EBBE1" Offset="0.5" />
+                                </LinearGradientBrush>
+                            </Border.Background>
+                            <Border SnapsToDevicePixels="True" x:Name="pressed_border3" Background="#FF7B9CCB" CornerRadius="1,1,1,1" Height="Auto" Width="Auto" />
+                        </Border>
+                    </Border>
+                </Grid>
+            </Grid>
+            <Grid SnapsToDevicePixels="True" x:Name="PART_Focused" Visibility="Collapsed">
+                <Grid SnapsToDevicePixels="True" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <Border SnapsToDevicePixels="True" Background="#FF000000" CornerRadius="2,2,2,2" Margin="2,2,0,0" Opacity="0.15" />
+                    <Border SnapsToDevicePixels="True" Background="#FF5379AE" CornerRadius="2,2,2,2" Margin="1,1,1,1" Padding="1,1,1,1">
+                        <Border SnapsToDevicePixels="True" CornerRadius="1,1,1,1" Padding="1,1,1,1">
+                            <Border.Background>
+                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                    <GradientStop Color="#FFD0E3FB" Offset="0" />
+                                    <GradientStop Color="#FFADD0F6" Offset="1" />
+                                    <GradientStop Color="#FFD5E6FA" Offset="0.5" />
+                                </LinearGradientBrush>
+                            </Border.Background>
+                            <Border SnapsToDevicePixels="True" CornerRadius="1,1,1,1">
+                                <Border.Background>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FFD1E4FC" Offset="0" />
+                                        <GradientStop Color="#FFAED1F6" Offset="1" />
+                                        <GradientStop Color="#FFB5D0F1" Offset="0.5" />
+                                        <GradientStop Color="#FFA4C5ED" Offset="0.5" />
+                                    </LinearGradientBrush>
+                                </Border.Background>
+                            </Border>
+                        </Border>
+                    </Border>
+                    <Border SnapsToDevicePixels="True" Background="#FF5379AE" CornerRadius="2,2,2,2" Margin="1,1,1,1" Padding="1,1,1,1" Opacity="0.0" Visibility="Visible">
+                        <Border SnapsToDevicePixels="True" CornerRadius="1,1,1,1" Padding="1,1,1,1">
+                            <Border.Background>
+                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                    <GradientStop Color="#FFA9C4E5" Offset="0" />
+                                    <GradientStop Color="#FF96B8DE" Offset="1" />
+                                    <GradientStop Color="#FFA1BFE1" Offset="0.5" />
+                                </LinearGradientBrush>
+                            </Border.Background>
+                            <Border SnapsToDevicePixels="True" CornerRadius="1,1,1,1">
+                                <Border.Background>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FF9EBBDF" Offset="0" />
+                                        <GradientStop Color="#FF95B8DE" Offset="1" />
+                                        <GradientStop Color="#FF97B7DC" Offset="0.5" />
+                                        <GradientStop Color="#FF8AACD5" Offset="0.5" />
+                                    </LinearGradientBrush>
+                                </Border.Background>
+                            </Border>
+                        </Border>
+                    </Border>
+                </Grid>
+            </Grid>
+            <Grid SnapsToDevicePixels="True" HorizontalAlignment="Center" Margin="1,0,0,0" VerticalAlignment="Center" Width="8" Height="6">
+                <Path SnapsToDevicePixels="True" Stretch="Fill" Fill="#99CCD8E5" Data="F1 M 151,112L 148,115L 147,115L 150,112L 147,109L 148,109L 151,112 Z " HorizontalAlignment="Right" Width="4" />
+                <Path SnapsToDevicePixels="True" Stretch="Fill" Fill="#ff30428B" Data="F1 M 147,109L 150,112L 147,115L 147,109 Z " HorizontalAlignment="Right" Margin="0,0,1,0" Width="3" />
+                <Path SnapsToDevicePixels="True" Stretch="Fill" Fill="#99CCD8E5" Data="F1 M 147,112L 144,115L 143,115L 146,112L 143,109L 144,109L 147,112 Z " HorizontalAlignment="Left" Width="4" />
+                <Path SnapsToDevicePixels="True" Stretch="Fill" Fill="#ff30428B" Data="F1 M 143,109L 146,112L 143,115L 143,109 Z " HorizontalAlignment="Left" Width="3" />
+            </Grid>
+
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup x:Name="CommonStates">
+                    <VisualState x:Name="Normal">
+                        <Storyboard>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Hover" Storyboard.TargetProperty="Visibility">
+                                <DiscreteObjectKeyFrame KeyTime="0:0:0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <Visibility>Collapsed</Visibility>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Pressed" Storyboard.TargetProperty="Visibility">
+                                <DiscreteObjectKeyFrame KeyTime="0:0:0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <Visibility>Collapsed</Visibility>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Focused" Storyboard.TargetProperty="Visibility">
+                                <DiscreteObjectKeyFrame KeyTime="0:0:0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <Visibility>Collapsed</Visibility>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Checked">
+                        <Storyboard>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Hover" Storyboard.TargetProperty="Visibility">
+                                <DiscreteObjectKeyFrame KeyTime="0:0:0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <Visibility>Collapsed</Visibility>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Pressed" Storyboard.TargetProperty="Visibility">
+                                <DiscreteObjectKeyFrame KeyTime="0:0:0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <Visibility>Visible</Visibility>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Focused" Storyboard.TargetProperty="Visibility">
+                                <DiscreteObjectKeyFrame KeyTime="0:0:0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <Visibility>Collapsed</Visibility>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Hover">
+                        <Storyboard>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Hover" Storyboard.TargetProperty="Visibility">
+                                <DiscreteObjectKeyFrame KeyTime="0:0:0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <Visibility>Visible</Visibility>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Pressed" Storyboard.TargetProperty="Visibility">
+                                <DiscreteObjectKeyFrame KeyTime="0:0:0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <Visibility>Collapsed</Visibility>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Focused" Storyboard.TargetProperty="Visibility">
+                                <DiscreteObjectKeyFrame KeyTime="0:0:0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <Visibility>Collapsed</Visibility>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Pressed">
+                        <Storyboard>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Hover" Storyboard.TargetProperty="Visibility">
+                                <DiscreteObjectKeyFrame KeyTime="0:0:0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <Visibility>Collapsed</Visibility>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Pressed" Storyboard.TargetProperty="Visibility">
+                                <DiscreteObjectKeyFrame KeyTime="0:0:0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <Visibility>Visible</Visibility>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Focused" Storyboard.TargetProperty="Visibility">
+                                <DiscreteObjectKeyFrame KeyTime="0:0:0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <Visibility>Collapsed</Visibility>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Focused">
+                        <Storyboard>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Hover" Storyboard.TargetProperty="Visibility">
+                                <DiscreteObjectKeyFrame KeyTime="0:0:0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <Visibility>Collapsed</Visibility>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Pressed" Storyboard.TargetProperty="Visibility">
+                                <DiscreteObjectKeyFrame KeyTime="0:0:0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <Visibility>Collapsed</Visibility>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Focused" Storyboard.TargetProperty="Visibility">
+                                <DiscreteObjectKeyFrame KeyTime="0:0:0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <Visibility>Visible</Visibility>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+
+        </Grid>
+
+    </ControlTemplate>
+
+    <!-- DeepBlue: ... -->
+    <ControlTemplate x:Key="{dxrt:QuickAccessToolbarThemeKey ResourceKey=RibbonToolbarPopupBorderTemplate}" TargetType="{x:Type dxr:RibbonQuickAccessToolbarPopupBorderControl}">
+        <Border Background="Black">
+            <ContentPresenter Content="{TemplateBinding Content}" />
+        </Border>
+    </ControlTemplate>
+    <!-- Aero -->
+    <ControlTemplate x:Key="{dxrt:QuickAccessToolbarThemeKey ResourceKey=RibbonToolbarLeftContentTemplateInAeroHeader}" TargetType="ContentControl">
+        <ContentPresenter Content="{TemplateBinding Content}" />
+    </ControlTemplate>
+    <ControlTemplate x:Key="{dxrt:QuickAccessToolbarThemeKey ResourceKey=RibbonToolbarLeftContentTemplate2010InAeroHeader}" TargetType="ContentControl">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Control x:Name="PART_FirstSeparator" Grid.Column="0" Margin="{DynamicResource {dxrt:QuickAccessToolbarThemeKey ResourceKey=RibbonToolbarFirstSeparatorMargin}}"
+                     Template="{DynamicResource {dxbt:BarItemSeparatorThemeKey ResourceKey=InRibbonQuickAccessToolbarCommonTemplate}}" />
+            <ContentPresenter Grid.Column="1" Content="{TemplateBinding Content}" />
+        </Grid>
+        <ControlTemplate.Triggers>
+            <DataTrigger Binding="{Binding Path=(dxr:RibbonControl.Ribbon).IsInRibbonWindow, RelativeSource={RelativeSource Self}}" Value="False">
+                <Setter TargetName="PART_FirstSeparator" Property="Visibility" Value="Collapsed"/>
+            </DataTrigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="{dxrt:QuickAccessToolbarThemeKey ResourceKey=RibbonToolbarRightContentTemplateInAeroHeader}" TargetType="ContentControl">
+        <ContentPresenter Content="{TemplateBinding Content}" Margin="5,-1,0,-1" />
+    </ControlTemplate>
+    <ControlTemplate x:Key="{dxrt:QuickAccessToolbarThemeKey ResourceKey=RibbonToolbarRightContentTemplate2010InAeroHeader}" TargetType="ContentControl">
+        <Grid Margin="2,0,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <ContentPresenter Grid.Column="0" Content="{TemplateBinding Content}" />
+            <Control x:Name="PART_LastSeparator" Grid.Column="1" Margin="{DynamicResource {dxrt:QuickAccessToolbarThemeKey ResourceKey=RibbonToolbarLastSeparatorMargin}}"
+                     Visibility="{Binding Path=Toolbar.Ribbon.IsInRibbonWindow, RelativeSource={RelativeSource AncestorType={x:Type dxr:RibbonQuickAccessToolbarControl}}, Converter={StaticResource boolToVisibilityConverter}}"
+                     Template="{DynamicResource {dxbt:BarItemSeparatorThemeKey ResourceKey=InRibbonQuickAccessToolbarCommonTemplate}}" />
+        </Grid>
+    </ControlTemplate>
+</ResourceDictionary>

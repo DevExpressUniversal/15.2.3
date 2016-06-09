@@ -1,0 +1,107 @@
+﻿<UserControl
+    x:Class="DevExpress.Xpf.Docking.Design.LayoutGroupNewElementAdorner"
+    x:ClassModifier="internal"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:system="clr-namespace:System;assembly=mscorlib"
+    xmlns:di="clr-namespace:Microsoft.Windows.Design.Interaction;assembly=Microsoft.Windows.Design.Interaction"
+    Margin="2">
+    <UserControl.Resources>
+        <ItemsPanelTemplate x:Key="itemsPanelTemplate">
+            <StackPanel x:Name="itemsControlPanel" />
+        </ItemsPanelTemplate>
+        <Style x:Key="buttonStyle" TargetType="Button">
+            <Setter Property="Background" Value="{x:Static di:AdornerColors.HandleFillBrush}"/>
+            <Setter Property="BorderBrush" Value="{x:Static di:AdornerColors.HandleBorderBrush}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="ToolTipService.HasDropShadow" Value="False"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}"
+                                CornerRadius="2" Background="{TemplateBinding Background}">
+                            <ContentPresenter Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" HorizontalAlignment="Center" VerticalAlignment="Center"
+                                              RenderOptions.BitmapScalingMode="NearestNeighbor"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="buttonPlusStyle" TargetType="Button" BasedOn="{StaticResource buttonStyle}">
+            <Setter Property="Foreground" Value="{x:Static di:AdornerColors.HandleBorderBrush}"/>
+            <Setter Property="Width" Value="15"/>
+            <Setter Property="Height" Value="15"/>
+            <Setter Property="Content">
+                <Setter.Value>
+                    <Path Width="5" Height="5"
+                          StrokeThickness="1" Stroke="{Binding Foreground, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Button}}"
+                          Data="M 0,2.5 H 5 M 2.5,0 V 5"/>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <system:Double x:Key="buttonSize">22</system:Double>
+        <system:Double x:Key="buttonSizeNegative">-22</system:Double>
+        <Style x:Key="buttonNewElementStyle" TargetType="Button" BasedOn="{StaticResource buttonStyle}">
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="{x:Static di:AdornerColors.HandleFillHoverBrush}"/>
+                </Trigger>
+                <Trigger Property="IsMouseCaptured" Value="True">
+                    <Setter Property="Background" Value="{x:Static di:AdornerColors.HandleBorderBrush}"/>
+                </Trigger>
+            </Style.Triggers>
+            <Setter Property="Width" Value="{StaticResource buttonSize}"/>
+            <Setter Property="Height" Value="{StaticResource buttonSize}"/>
+            <Setter Property="ContentTemplate">
+                <Setter.Value>
+                    <DataTemplate>
+                        <Border ToolTip="{Binding ToolTip}">
+                            <Image Source="{Binding Image}" Stretch="None" />
+                        </Border>
+                    </DataTemplate>
+                </Setter.Value>
+            </Setter>
+            <!--<Setter Property="ToolTipService.ToolTip" Value="{Binding ToolTip}" />
+            <Setter Property="Command" Value="{Binding Command}" />-->
+        </Style>
+
+        <Storyboard x:Key="animationHorizontal">
+            <DoubleAnimation Storyboard.TargetName="ButtonGroup" Storyboard.TargetProperty="(RenderTransform).X" From="{StaticResource buttonSize}" Duration="0:0:0.1"/>
+            <DoubleAnimation Storyboard.TargetName="ButtonTabbedGroup" Storyboard.TargetProperty="(RenderTransform).X" From="{StaticResource buttonSizeNegative}" Duration="0:0:0.1"/>
+        </Storyboard>
+        <Storyboard x:Key="animationHorizontalReverse" Completed="OnReverseAnimationCompleted">
+            <DoubleAnimation Storyboard.TargetName="ButtonGroup" Storyboard.TargetProperty="(RenderTransform).X" To="{StaticResource buttonSize}" Duration="0:0:0.1"/>
+            <DoubleAnimation Storyboard.TargetName="ButtonTabbedGroup" Storyboard.TargetProperty="(RenderTransform).X" To="{StaticResource buttonSizeNegative}" Duration="0:0:0.1"/>
+        </Storyboard>
+        <Storyboard x:Key="animationVertical">
+            <DoubleAnimation Storyboard.TargetName="ButtonGroup" Storyboard.TargetProperty="(RenderTransform).Y" From="{StaticResource buttonSize}" Duration="0:0:0.1"/>
+            <DoubleAnimation Storyboard.TargetName="ButtonTabbedGroup" Storyboard.TargetProperty="(RenderTransform).Y" From="{StaticResource buttonSizeNegative}" Duration="0:0:0.1"/>
+        </Storyboard>
+        <Storyboard x:Key="animationVerticalReverse" Completed="OnReverseAnimationCompleted">
+            <DoubleAnimation Storyboard.TargetName="ButtonGroup" Storyboard.TargetProperty="(RenderTransform).Y" To="{StaticResource buttonSize}" Duration="0:0:0.1"/>
+            <DoubleAnimation Storyboard.TargetName="ButtonTabbedGroup" Storyboard.TargetProperty="(RenderTransform).Y" To="{StaticResource buttonSizeNegative}" Duration="0:0:0.1"/>
+        </Storyboard>
+    </UserControl.Resources>
+
+    <StackPanel Name="LayoutRoot" Background="Transparent">
+        <Button Name="ButtonPlus" Style="{StaticResource buttonPlusStyle}" />
+        <Button Name="ButtonGroup" Style="{StaticResource buttonNewElementStyle}"
+            Tag="Group" Click="OnButtonClick">
+            <Button.RenderTransform>
+                <TranslateTransform/>
+            </Button.RenderTransform>
+        </Button>
+        <Rectangle Width="1" Height="1"/>
+        <Button Name="ButtonItem" Style="{StaticResource buttonNewElementStyle}"
+             Tag="Item" Click="OnButtonClick">
+        </Button>
+        <Rectangle Width="1" Height="1"/>
+        <Button Name="ButtonTabbedGroup" Style="{StaticResource buttonNewElementStyle}"
+             Tag="TabbedGroup" Click="OnButtonClick">
+            <Button.RenderTransform>
+                <TranslateTransform/>
+            </Button.RenderTransform>
+        </Button>
+        <Rectangle Width="1" Height="1"/>
+    </StackPanel>
+</UserControl>

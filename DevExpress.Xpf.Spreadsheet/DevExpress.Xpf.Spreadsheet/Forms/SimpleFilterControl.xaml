@@ -1,0 +1,29 @@
+﻿<UserControl x:Class="DevExpress.Xpf.Spreadsheet.Forms.SimpleFilterControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+             xmlns:dxsps="clr-namespace:DevExpress.Xpf.Spreadsheet"
+             xmlns:dxsf="clr-namespace:DevExpress.Xpf.Spreadsheet.Forms"
+             mc:Ignorable="d" 
+             Height="300" 
+             Width="300">
+    <UserControl.Resources>
+        <HierarchicalDataTemplate DataType="{x:Type dxsf:Node}" ItemsSource="{Binding Children}">
+            <StackPanel Orientation="Horizontal">
+                <CheckBox IsChecked="{Binding IsChecked}" Uid="{Binding Id}" PreviewMouseLeftButtonDown="OnMouseLeftButtonDown"/>
+                <TextBlock Text="{Binding Text}"/>
+            </StackPanel>
+        </HierarchicalDataTemplate>
+        <Style TargetType="TreeViewItem">
+            <Setter Property="IsExpanded" Value="{Binding Path=IsExpanded, Mode=TwoWay}" />
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="300"/>
+        </Grid.RowDefinitions>
+        <TreeView x:Name="treeView" Grid.Row="1" Height="300" Margin="5, 10, 5, 0" />
+    </Grid>
+</UserControl>

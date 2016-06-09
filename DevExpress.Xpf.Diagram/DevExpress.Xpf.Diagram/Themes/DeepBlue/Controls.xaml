@@ -1,0 +1,39 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:dxdiag="clr-namespace:DevExpress.Xpf.Diagram"
+                    xmlns:dxdiagt="clr-namespace:DevExpress.Xpf.Diagram.Themes"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+
+    <Thickness x:Key="{dxdiagt:ControlsThemeKeys ResourceKey=PageBorderThickness}">1</Thickness>
+    <sys:Double x:Key="{dxdiagt:RulerThemeKey ResourceKey=Size}">20</sys:Double>
+    
+    <ControlTemplate x:Key="{dxdiagt:DiagramControlThemeKeys ResourceKey=PageBackgroundTemplate}" TargetType="ContentControl">
+        <Grid>
+            <Border Background="#59101421" CornerRadius="4" Margin="3,3,-4,-4" Opacity="0.5"/>
+            <Border Background="#FF383F5E" Opacity="0.5" CornerRadius="3"/>
+            <Border Name="border" CornerRadius="2" Margin="{TemplateBinding BorderThickness}"
+                    Background="{TemplateBinding Background}">
+                <ContentPresenter ClipToBounds="True"/>
+            </Border>
+        </Grid>
+    </ControlTemplate>
+    <ControlTemplate x:Key="{dxdiagt:DiagramControlThemeKeys ResourceKey=BackgroundTemplate}" TargetType="ContentControl">
+        <Border Background="{TemplateBinding Background}">
+            <ContentPresenter/>
+        </Border>
+    </ControlTemplate>
+    <DataTemplate x:Key="{dxdiagt:AdornersThemeKeys ResourceKey=SizeSnapLineTemplate}">
+        <Grid>
+            <Path Stroke="{DynamicResource {dxdiagt:AdornersThemeKeys ResourceKey=SnapLineBrush}}" 
+                  Fill="{DynamicResource {dxdiagt:AdornersThemeKeys ResourceKey=SnapLineBrush}}" VerticalAlignment="Center" HorizontalAlignment="Left" 
+                  Margin="1,3,0,0" 
+                  Data="M0,0 L6,-3 L6,3 z"/>
+            <Path Stroke="{DynamicResource {dxdiagt:AdornersThemeKeys ResourceKey=SnapLineBrush}}" 
+                  Fill="{DynamicResource {dxdiagt:AdornersThemeKeys ResourceKey=SnapLineBrush}}" VerticalAlignment="Center" HorizontalAlignment="Right" 
+                  Margin="0,3,1,0" Data="M0,0 L-6,-3 L-6,3 z"/>
+            <Border Height="1" Background="{DynamicResource {dxdiagt:AdornersThemeKeys ResourceKey=SnapLineBrush}}" VerticalAlignment="Center"/>
+            <Border BorderBrush="{DynamicResource {dxdiagt:AdornersThemeKeys ResourceKey=SnapLineBrush}}" VerticalAlignment="Stretch" 
+                    BorderThickness="1,0,1,0"/>
+        </Grid>
+    </DataTemplate>
+</ResourceDictionary>

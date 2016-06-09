@@ -1,0 +1,57 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+    xmlns:dxsch="clr-namespace:DevExpress.Xpf.Scheduler" 
+    xmlns:dxschd="clr-namespace:DevExpress.Xpf.Scheduler.Drawing" 
+    xmlns:dxscht="clr-namespace:DevExpress.Xpf.Scheduler.ThemeKeys"
+    xmlns:dxschcore="clr-namespace:DevExpress.XtraScheduler;assembly=DevExpress.XtraScheduler.v15.2.Core">
+
+    <!--BEGIN WPF-->
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="{dx:UtilsResource Themes/TransferStyles.xaml}" />
+    </ResourceDictionary.MergedDictionaries>
+    <!--END WPF-->
+
+    <Style TargetType="{x:Type dxschd:SchedulerPreviewControl}" x:Shared="True">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <dxsch:SchedulerControl ActiveViewType="Gantt">
+                        <!--<dxsch:SchedulerControl.DayView>
+                            <dxsch:DayView Enabled="false"/>
+                        </dxsch:SchedulerControl.DayView>
+                        <dxsch:SchedulerControl.WorkWeekView>
+                            <dxsch:WorkWeekView Enabled="False"/>
+                        </dxsch:SchedulerControl.WorkWeekView>
+                        <dxsch:SchedulerControl.WeekView>
+                            <dxsch:WeekView Enabled="False"/>
+                        </dxsch:SchedulerControl.WeekView>
+                        <dxsch:SchedulerControl.MonthView>
+                            <dxsch:MonthView Enabled="False"/>
+                        </dxsch:SchedulerControl.MonthView>
+                        <dxsch:SchedulerControl.TimelineView>
+                            <dxsch:TimelineView Enabled="False"/>
+                        </dxsch:SchedulerControl.TimelineView>-->
+                        <dxsch:SchedulerControl.OptionsBehavior>
+                            <dxsch:OptionsBehavior ShowRemindersForm="False" />
+                        </dxsch:SchedulerControl.OptionsBehavior>
+                        <dxsch:SchedulerControl.OptionsCustomization>
+                            <dxsch:OptionsCustomization AllowAppointmentCopy="None" 
+                                AllowAppointmentDelete="None"
+                                AllowAppointmentCreate="None"
+                                AllowAppointmentDrag="None"
+                                AllowAppointmentEdit="None"
+                                AllowAppointmentDragBetweenResources="None"
+                                AllowAppointmentMultiSelect="False"
+                                AllowAppointmentResize="None"
+                                AllowDisplayAppointmentForm="Never"
+                                AllowInplaceEditor="None" />
+                        </dxsch:SchedulerControl.OptionsCustomization>
+                    </dxsch:SchedulerControl>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+</ResourceDictionary>

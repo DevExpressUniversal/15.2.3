@@ -1,0 +1,40 @@
+﻿<UserControl x:Class="DevExpress.Xpf.Core.Design.SmartTags.BindingEditorControlResourceBindingEditorView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+        xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+        xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+        xmlns:local="clr-namespace:DevExpress.Xpf.Core.Design.SmartTags"
+        mc:Ignorable="d" 
+        d:DesignHeight="300" d:DesignWidth="300">
+
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <local:DesignTimeListBoxResources/>
+            </ResourceDictionary.MergedDictionaries>
+            <Style TargetType="ListBoxItem" />
+            <Style TargetType="ListBox" />
+            <Style TargetType="GroupItem" />
+            <GridLength x:Key="PropertyNameColumnWidth">150</GridLength>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="9" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <local:DesignTimeListBox Height="130" ItemsSource="{Binding Path=Resources}"
+                SelectedValue="{Binding Path=SelectedResource, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                SelectedValuePath="Resource">
+            <local:DesignTimeListBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Path=Key}" />
+                </DataTemplate>
+            </local:DesignTimeListBox.ItemTemplate>
+        </local:DesignTimeListBox>
+        <local:BindingEditorControlPropertySelectorView Grid.Row="2" DataContext="{Binding Path=PropertySelector}" />
+    </Grid>
+</UserControl>

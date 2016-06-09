@@ -1,0 +1,53 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+    xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
+    xmlns:dxr="http://schemas.devexpress.com/winfx/2008/xaml/ribbon"
+    xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+    xmlns:local="clr-namespace:DevExpress.Charts.Designer.Native">
+
+    <DataTemplate x:Key="BarButtonViewModelTemplate">
+        <ContentControl>
+            <dxb:BarButtonItem
+                Content="{Binding Caption}"
+                Glyph="{Binding Glyph}"
+                LargeGlyph="{Binding LargeGlyph}"
+                Command="{Binding Command}"
+                IsVisible="{Binding IsVisible}"/>
+        </ContentControl>
+    </DataTemplate>
+
+    <DataTemplate
+        x:Key="BarCheckButtonViewModelViewModelTemplate">
+        <ContentControl>
+            <dxb:BarCheckItem
+                Content="{Binding Caption}"
+                Glyph="{Binding Glyph}"
+                LargeGlyph="{Binding LargeGlyph}"
+                Command="{Binding Command}"
+                IsChecked="{Binding Checked, Mode=TwoWay}"
+                IsVisible="{Binding IsVisible}"
+                RibbonStyle="{Binding Path=RibbonStyle, Mode=OneWay}"
+                />
+        </ContentControl>
+    </DataTemplate>
+
+
+    <DataTemplate x:Key="BarItemSeparatorViewModelTemplate">
+        <ContentControl>
+            <dxb:BarItemSeparator />
+        </ContentControl>
+    </DataTemplate>
+
+    
+    
+    <DataTemplate x:Key="BarStaticTextViewModelTemplate">
+        <ContentControl
+            HorizontalAlignment="Center">
+            <dxb:BarStaticItem
+                Content="{Binding Caption}" 
+                IsVisible="{Binding Path=IsVisible}"/>
+        </ContentControl>
+    </DataTemplate>
+</ResourceDictionary>

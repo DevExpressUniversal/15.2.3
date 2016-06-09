@@ -1,0 +1,435 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <Import Project="..\..\..\Bin\Analyzers\System.Runtime.Analyzers\build\System.Runtime.Analyzers.props" Condition="Exists('..\..\..\Bin\Analyzers\System.Runtime.Analyzers\build\System.Runtime.Analyzers.props')" />
+  <PropertyGroup>
+    <ProjectType>Local</ProjectType>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{DB0741CD-4113-4564-BDB0-EB1156F222F5}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ApplicationIcon>
+    </ApplicationIcon>
+    <AssemblyKeyContainerName>
+    </AssemblyKeyContainerName>
+    <AssemblyName>DevExpress.Diagram.v15.2.Core</AssemblyName>
+    <AssemblyOriginatorKeyFile>..\..\DevExpress.Key\StrongKey.snk</AssemblyOriginatorKeyFile>
+    <DefaultClientScript>JScript</DefaultClientScript>
+    <DefaultHTMLPageLayout>Flow</DefaultHTMLPageLayout>
+    <DefaultTargetSchema>IE32Nav30</DefaultTargetSchema>
+    <DelaySign>false</DelaySign>
+    <OutputType>Library</OutputType>
+    <RootNamespace>DevExpress.Diagram.Core</RootNamespace>
+    <StartupObject>
+    </StartupObject>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>..\..\..\Bin\Framework\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>DXWhidbey;DEBUG;TRACE</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>true</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <Optimize>false</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>full</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>..\..\..\Bin\Framework\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>DXWhidbey;TRACE</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>false</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <Optimize>true</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>none</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  
+  <ItemGroup>
+    <Reference Include="Accessibility">
+      <Name>Accessibility</Name>
+    <Private>False</Private></Reference>
+    <Reference Include="DevExpress.Data.v15.2">
+      <Name>DevExpress.Data.v15.2</Name>
+      <Private>False</Private>
+    <HintPath>..\..\..\Bin\Framework\DevExpress.Data.v15.2.dll</HintPath></Reference>
+    <Reference Include="System">
+      <Name>System</Name>
+    <Private>False</Private></Reference>
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    <Private>False</Private></Reference>
+    <Reference Include="System.Data">
+      <Name>System.Data</Name>
+    <Private>False</Private></Reference>
+    <Reference Include="System.Drawing">
+      <Name>System.Drawing</Name>
+    <Private>False</Private></Reference>
+    <Reference Include="System.Xml">
+      <Name>System.XML</Name>
+    <Private>False</Private></Reference>
+    <Reference Include="System.Xml.Linq"><Private>False</Private></Reference>
+    <Reference Include="WindowsBase">
+      <Name>WindowsBase</Name>
+    <Private>False</Private></Reference>
+    <Reference Include="PresentationFramework">
+      <Name>PresentationFramework</Name>
+    <Private>False</Private></Reference>
+    <Reference Include="PresentationCore">
+      <Name>PresentationCore</Name>
+    <Private>False</Private></Reference>
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    <Private>False</Private></Reference>
+    <Reference Include="System.Windows.Forms"><Private>False</Private></Reference>
+    
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Actions\ArrangeActions.cs" />
+    <Compile Include="Actions\DiagramConnectorActions.cs" />
+    <Compile Include="Actions\DiagramControlActions.cs" />
+    <Compile Include="Actions\DiagramLayoutActions.cs" />
+    <Compile Include="Actions\DiagramFontActions.cs" />
+    <Compile Include="Actions\DiagramLayoutExtensions.cs" />
+    <Compile Include="Actions\DiagramPropertyActions.cs" />
+    <Compile Include="Actions\MoveHelper.cs" />
+    <Compile Include="Actions\MoveHelper2.cs" />
+    <Compile Include="Actions\ScrollingActions.cs" />
+    <Compile Include="Actions\TabNavigationActions.cs" />
+    <Compile Include="Actions\ZoomActions.cs" />
+    <Compile Include="Base\DiagramItemTypeRegistrator.cs" />
+    <Compile Include="Base\DiagramCommandsBase.cs" />
+    <Compile Include="Base\DiagramShapeController.cs" />
+    <Compile Include="Connectors\DiagramConnector.cs" />
+    <Compile Include="Base\DiagramController.cs" />
+    <Compile Include="Base\DiagramItemController.cs" />
+    <Compile Include="Base\IDiagramControl.cs" />
+    <Compile Include="Base\ILayersHost.cs" />
+    <Compile Include="Base\ScrollController.cs" />
+    <Compile Include="Connectors\ConnectorArrow.cs" />
+    <Compile Include="Connectors\ConnectorController.cs" />
+    <Compile Include="Connectors\ConnectorsController.cs" />
+    <Compile Include="Connectors\IntersectionHelper.cs" />
+    <Compile Include="Connectors\Routing\CurvedRoutingStrategy.cs" />
+    <Compile Include="Connectors\Routing\OrgChartRoutingStrategy.cs" />
+    <Compile Include="Connectors\Routing\RightAngleRoutingStrategy.cs" />
+    <Compile Include="Connectors\Routing\StraightRoutingStrategy.cs" />
+    <Compile Include="DiagramPropertiesGeneration\Generators.cs" />
+    <Compile Include="Helpers\DiagramCursor.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DiagramCursor.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Helpers\DiagramMultiModelContext.cs" />
+    <Compile Include="Input\BaseInputStates.cs" />
+    <Compile Include="Input\InputElements.cs" />
+    <Compile Include="Input\PointerToolStates.cs" />
+    <Compile Include="Input\ResizeStates.cs" />
+    <Compile Include="Input\ShapeToolStates.cs" />
+    <Compile Include="ItemCollectionController.cs" />
+    <Compile Include="Layout\GraphOperations.cs" />
+    <Compile Include="Layout\TreeLayout.cs" />
+    <Compile Include="Native\Win32.cs" />
+    <Compile Include="OrgChart\HierarchyDataProvider.cs" />
+    <Compile Include="OrgChart\OrgChartController.cs" />
+    <Compile Include="SelectionLayer.cs" />
+    <Compile Include="Serialization\Clipboard.cs" />
+    <Compile Include="Serialization\CustomObjects.cs" />
+    <Compile Include="Serialization\DiagramSerializer.cs" />
+    <Compile Include="Shapes\BasicFlowchartShapes.cs" />
+    <Compile Include="Shapes\BasicShapes.cs" />
+    <Compile Include="Shapes\DiagramArrowDescription.cs" />
+    <Compile Include="Shapes\DiagramShapeDescription.cs" />
+    <Compile Include="Shapes\DiagramSvgParser.cs" />
+    <Compile Include="Shapes\Segments.cs" />
+    <Compile Include="Shapes\ShapeRepository.cs" />
+    <Compile Include="Shapes\ShapesRegistration.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ShapesRegistration.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Shapes\Templates\ShapeContextTemplate.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ShapeContextTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Shapes\Templates\ShapeLayoutCalculator.cs" />
+    <Compile Include="Shapes\Templates\ShapeTemplate.cs" />
+    <Compile Include="Shapes\Templates\ShapeSegments.cs" />
+    <Compile Include="Shapes\Templates\Utils.cs" />
+    <Compile Include="List\IDiagramListItem.cs" />
+    
+    
+    
+    
+    
+    
+    
+    
+    <Compile Include="Themes\ColorPalette.cs" />
+    <Compile Include="Themes\Effect.cs" />
+    <Compile Include="Themes\ShapeStyleEnum.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ShapeStyleEnum.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Themes\Styles.cs" />
+    <Compile Include="Themes\Theme.cs" />
+    <Compile Include="Themes\ThemeRegistration.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ThemeRegistration.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Themes\ThemeTemplate.cs" />
+    <Compile Include="TypeConverters\ConnectorTypeConverter.cs" />
+    <Compile Include="TypeConverters\DiagramThemeTypeConverter.cs" />
+    <Compile Include="TypeConverters\ItemFinderConverter.cs" />
+    <Compile Include="TypeConverters\ObjectListConverter.cs" />
+    <Compile Include="TypeConverters\CustomObjectConverter.cs" />
+    <Compile Include="TypeConverters\TextDecorationCollectionConverter.cs" />
+    <Compile Include="TypeConverters\DiagramItemStyleIdConverter.cs" />
+    <Compile Include="TypeConverters\ConnectorPointsCollectionConverter.cs" />
+    <Compile Include="TypeConverters\UnitCollectionConverter.cs" />
+    <Compile Include="TypeConverters\CriteriaOperatorConverter.cs" />
+    <Compile Include="TypeConverters\ShapeDescriptionConverter.cs" />
+    <Compile Include="TypeConverters\ArrowDescriptionTypeConverter.cs" />
+    <Compile Include="UndoActions\AddRemoveActions.cs" />
+    <Compile Include="UndoActions\ChangeItemOwnerAction.cs" />
+    <Compile Include="UndoActions\SelectionActions.cs" />
+    <Compile Include="AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Base\IDiagramItem.cs" />
+    <Compile Include="Helpers\Input.cs" />
+    <Compile Include="Helpers\RulerRenderInfo.cs" />
+    <Compile Include="Helpers\SnapInfo.cs" />
+    <Compile Include="Helpers\ZoomHelper.cs" />
+    <Compile Include="IAdorner.cs" />
+    <Compile Include="SelectionController.cs" />
+    
+    
+    
+    <Compile Include="Tools.cs" />
+    <Compile Include="Utils\Enums.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    
+    <Compile Include="UndoManager\PropertyActions.cs" />
+    <Compile Include="UndoManager\Transaction.cs" />
+    <Compile Include="UndoManager\UndoManager.cs" />
+    <Compile Include="Utils\EquatableObject.cs" />
+    <Compile Include="Utils\ExpressionHelper.cs" />
+    <Compile Include="Utils\Extensions.cs" />
+    <Compile Include="Utils\ImmutableObject.cs" />
+    <Compile Include="Utils\ImmutableStack.cs" />
+    <Compile Include="Utils\Locker.cs" />
+    <Compile Include="Utils\MathHelper.cs" />
+    <Compile Include="Utils\MayBe.cs" />
+    <Compile Include="Utils\MeasureUnit.cs" />
+    <Compile Include="Utils\ProxyPropertyDescriptor.cs" />
+    <Compile Include="Utils\SelectionModel.cs" />
+    <Compile Include="Localization\DiagramLocalizerGenerator.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DiagramLocalizerGenerator.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Localization\Localization.cs" />
+    <Compile Include="ViewModels\DiagramToolboxControlViewModel.cs" />
+    <EmbeddedResource Include="Localization\LocalizationRes.resx">
+      <DependentUpon>DiagramLocalizerGenerator.tt</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\Cursors\Arrow.cur" />
+    <EmbeddedResource Include="Images\Cursors\Cross.cur" />
+    <EmbeddedResource Include="Images\Cursors\HoverRotation.cur" />
+    <EmbeddedResource Include="Images\Cursors\Move.cur" />
+    <EmbeddedResource Include="Images\Cursors\SizeNESW.cur" />
+    <EmbeddedResource Include="Images\Cursors\SizeNS.cur" />
+    <EmbeddedResource Include="Images\Cursors\SizeNWSE.cur" />
+    <EmbeddedResource Include="Images\Cursors\Rotation.cur" />
+    <EmbeddedResource Include="Images\Cursors\SizeWE.cur" />
+    <Content Include="Helpers\DiagramCursor.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>DiagramCursor.cs</LastGenOutput>
+    </Content>
+    <EmbeddedResource Include="Images\Cursors\DrawFreeConnector.cur" />
+    <EmbeddedResource Include="Images\Cursors\No.cur" />
+    <EmbeddedResource Include="Images\Cursors\SizeAll.cur" />
+    <EmbeddedResource Include="Images\Cursors\DrawConnectedConnector.cur" />
+    <EmbeddedResource Include="Images\RotateIcon.png" />
+    <EmbeddedResource Include="Images\Menu\AlignCenter_16x16.png" />
+    <EmbeddedResource Include="Images\Menu\AlignHorizontalBottom_16x16.png" />
+    <EmbeddedResource Include="Images\Menu\AlignHorizontalCenter_16x16.png" />
+    <EmbeddedResource Include="Images\Menu\AlignHorizontalTop_16x16.png" />
+    <EmbeddedResource Include="Images\Menu\AlignJustify_16x16.png" />
+    <EmbeddedResource Include="Images\Menu\AlignLeft_16x16.png" />
+    <EmbeddedResource Include="Images\Menu\AlignRight_16x16.png" />
+    <EmbeddedResource Include="Images\Menu\Bold_16x16.png" />
+    <EmbeddedResource Include="Images\Menu\BringForward_16x16.png" />
+    <EmbeddedResource Include="Images\Menu\BringToFront_16x16.png" />
+    <EmbeddedResource Include="Images\Menu\ConnectorTool_16x16.png" />
+    <EmbeddedResource Include="Images\Menu\Copy_16x16.png" />
+    <EmbeddedResource Include="Images\Menu\Cut_16x16.png" />
+    <EmbeddedResource Include="Images\Menu\Delete_16x16.png" />
+    <EmbeddedResource Include="Images\Menu\FillBackground_16x16.png" />
+    <EmbeddedResource Include="Images\Menu\FillForeground_16x16.png" />
+    <EmbeddedResource Include="Images\Menu\FillStroke_16x16.png" />
+    <EmbeddedResource Include="Images\Menu\FontSizeDecrease_16x16.png" />
+    <EmbeddedResource Include="Images\Menu\FontSizeIncrease_16x16.png" />
+    <EmbeddedResource Include="Images\Menu\Italic_16x16.png" />
+    <EmbeddedResource Include="Images\Menu\PaperSize_32x32.png" />
+    <EmbeddedResource Include="Images\Menu\Paste_32x32.png" />
+    <EmbeddedResource Include="Images\Menu\PointerTool_16x16.png" />
+    <EmbeddedResource Include="Images\Menu\RectangleTool_16x16.png" />
+    <EmbeddedResource Include="Images\Menu\Redo_16x16.png" />
+    <EmbeddedResource Include="Images\Menu\ReLayoutPage_32x32.png" />
+    <EmbeddedResource Include="Images\Menu\SendBackward_16x16.png" />
+    <EmbeddedResource Include="Images\Menu\SendToBack_16x16.png" />
+    <EmbeddedResource Include="Images\Menu\SnapToGrid_16x16.png" />
+    <EmbeddedResource Include="Images\Menu\SnapToItems_16x16.png" />
+    <EmbeddedResource Include="Images\Menu\Strikeout_16x16.png" />
+    <EmbeddedResource Include="Images\Menu\Underline_16x16.png" />
+    <EmbeddedResource Include="Images\Menu\Undo_16x16.png" />
+    <EmbeddedResource Include="Images\Menu\New_16x16.png" />
+    <EmbeddedResource Include="Images\Menu\New_32x32.png" />
+    <EmbeddedResource Include="Images\Menu\Open_16x16.png" />
+    <EmbeddedResource Include="Images\Menu\Open_32x32.png" />
+    <EmbeddedResource Include="Images\Menu\SaveAs_16x16.png" />
+    <EmbeddedResource Include="Images\Menu\SaveAs_32x32.png" />
+    <EmbeddedResource Include="Images\Menu\Save_16x16.png" />
+    <EmbeddedResource Include="Images\Menu\Save_32x32.png" />
+    <EmbeddedResource Include="Images\Menu\PaperSize_16x16.png" />
+    <EmbeddedResource Include="Images\Menu\Paste_16x16.png" />
+    <EmbeddedResource Include="Images\Menu\ReLayoutPage_16x16.png" />
+    <EmbeddedResource Include="Images\Menu\EllipseTool_16x16.png" />
+    <EmbeddedResource Include="Images\Menu\HexagonTool_16x16.png" />
+    <EmbeddedResource Include="Images\Menu\RightTriangleTool_16x16.png" />
+    <EmbeddedResource Include="Images\Menu\BottomUp_16x16.png" />
+    <EmbeddedResource Include="Images\Menu\LeftRight_16x16.png" />
+    <EmbeddedResource Include="Images\Menu\RightLeft_16x16.png" />
+    <EmbeddedResource Include="Images\Menu\TopDown_16x16.png" />
+    <EmbeddedResource Include="Images\Menu\CompactView_16x16.png" />
+    <EmbeddedResource Include="Images\Menu\IconsAndNames_16x16.png" />
+    <EmbeddedResource Include="Images\Menu\IconsOnly_16x16.png" />
+    <EmbeddedResource Include="Images\Menu\NamesOnly_16x16.png" />
+    <EmbeddedResource Include="Images\Menu\NamesUnderIcons_16x16.png" />
+    <EmbeddedResource Include="Images\Menu\CompactView_32x32.png" />
+    <EmbeddedResource Include="Images\Menu\PageSizes\SizeLarge_16x16.png" />
+    <EmbeddedResource Include="Images\Menu\PageSizes\SizeMiddle_16x16.png" />
+    <EmbeddedResource Include="Images\Menu\PageSizes\SizeSmall_16x16.png" />
+    <EmbeddedResource Include="Images\Menu\PageSizes\SizeEmpty_16x16.png" />
+    <EmbeddedResource Include="Images\Menu\AutoSize_16x16.png" />
+    <EmbeddedResource Include="Images\Menu\AutoSize_32x32.png" />
+    <EmbeddedResource Include="Images\Menu\NoneAutoSize_16x16.png" />
+    <EmbeddedResource Include="Images\Menu\ChangeOrientation_16x16.png" />
+    <EmbeddedResource Include="Images\Menu\ChangeOrientation_32x32.png" />
+    <EmbeddedResource Include="Images\Menu\Landscape_16x16.png" />
+    <EmbeddedResource Include="Images\Menu\Landscape_32x32.png" />
+    <EmbeddedResource Include="Images\Menu\Portrait_16x16.png" />
+    <EmbeddedResource Include="Images\Menu\Portrait_32x32.png" />
+    <Content Include="Shapes\ShapesRegistration.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ShapesRegistration.cs</LastGenOutput>
+    </Content>
+    <Content Include="Shapes\Templates\ShapeContextTemplate.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ShapeContextTemplate.cs</LastGenOutput>
+    </Content>
+    
+    
+    
+    <Content Include="Themes\ShapeStyleEnum.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ShapeStyleEnum.cs</LastGenOutput>
+    </Content>
+    <Content Include="Themes\ThemeRegistration.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ThemeRegistration.cs</LastGenOutput>
+    </Content>
+    <EmbeddedResource Include="Images\Cursors\Copy.cur" />
+    <Content Include="Localization\DiagramLocalizerGenerator.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>DiagramLocalizerGenerator.cs</LastGenOutput>
+    </Content>
+    
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Shapes\Resources\Arrows.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Shapes\Resources\ArrowShapes.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Shapes\Resources\BasicFlowchartShapes.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Shapes\Resources\BasicShapes.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Shapes\Resources\DecorativeShapes.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Shapes\Resources\SDLDiagramShapes.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Shapes\Resources\SoftwareIcons.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Themes.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  
+  <ItemGroup>
+    <Folder Include="Services\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    
+    
+  </PropertyGroup>
+</Project>

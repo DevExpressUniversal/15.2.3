@@ -1,0 +1,212 @@
+﻿<UserControl x:Class="DevExpress.Xpf.Spreadsheet.Forms.DocumentPropertiesControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:dxc="http://schemas.devexpress.com/winfx/2008/xaml/core"
+             xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+             xmlns:dxsps="clr-namespace:DevExpress.Xpf.Spreadsheet" 
+             mc:Ignorable="d" Width="425"
+             d:DesignHeight="450" d:DesignWidth="500">
+  <UserControl.Resources>
+    <dxc:BooleanToVisibilityConverter x:Key="boolToVisibilityConverter" />
+    <dxsps:SpreadsheetControlStringIdConverter x:Key="stringIdConverter" />
+  </UserControl.Resources>
+    <Grid Margin="10,10,12,0" FocusManager.FocusedElement="{Binding ElementName=edtFileName}">
+        <dxc:DXTabControl x:Name="tabControl" MinHeight="350">
+            <dxc:DXTabControl.Items>
+                <dxc:DXTabItem x:Name="tabGeneral" Header="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_DocumentPropertiesFormGeneralPage, Converter={StaticResource stringIdConverter}}">
+                    <Grid Margin="6,6,6,6">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <TextBlock VerticalAlignment="Center" Margin="0,6,12,0" Grid.Row="0" Grid.Column="0" Text="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_DocumentPropertiesFormFileName, Converter={StaticResource stringIdConverter}}" />
+                        <dxe:TextEdit x:Name="edtFileName" VerticalAlignment="Center" Grid.Row="0" Grid.Column="1" Margin="0,6,0,0" IsReadOnly="True" ShowBorder="False" EditValue="{Binding FileName, Mode=OneTime}" />
+
+                        <TextBlock VerticalAlignment="Center" Margin="0,12,12,0" Grid.Row="1" Grid.Column="0" Text="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_DocumentPropertiesFormFileLocation, Converter={StaticResource stringIdConverter}}" />
+                        <dxe:TextEdit x:Name="edtLocation" VerticalAlignment="Center" Grid.Row="1" Grid.Column="1" Margin="0,12,0,0" IsReadOnly="True" ShowBorder="False" EditValue="{Binding FilePath, Mode=OneTime}" />
+
+                        <TextBlock VerticalAlignment="Center" Margin="0,6,12,0" Grid.Row="2" Grid.Column="0" Text="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_DocumentPropertiesFormFileSize, Converter={StaticResource stringIdConverter}}" />
+                        <dxe:TextEdit x:Name="edtFileSize" VerticalAlignment="Center" Grid.Row="2" Grid.Column="1" Margin="0,6,0,0" IsReadOnly="True" ShowBorder="False" EditValue="{Binding FileSize, Mode=OneTime}" />
+
+                        <TextBlock VerticalAlignment="Center" Margin="0,12,12,0" Grid.Row="3" Grid.Column="0" Text="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_DocumentPropertiesFormFileShortName, Converter={StaticResource stringIdConverter}}" />
+                        <dxe:TextEdit x:Name="edtFileShortName" VerticalAlignment="Center" Grid.Row="3" Grid.Column="1" Margin="0,12,0,0" IsReadOnly="True" ShowBorder="False" EditValue="{Binding FileShortName, Mode=OneTime}" />
+
+                        <TextBlock VerticalAlignment="Center" Margin="0,6,12,0" Grid.Row="4" Grid.Column="0" Text="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_DocumentPropertiesFormFileCreated, Converter={StaticResource stringIdConverter}}" />
+                        <dxe:TextEdit x:Name="edtFileCreated" VerticalAlignment="Center" Grid.Row="4" Grid.Column="1" Margin="0,6,0,0" IsReadOnly="True" ShowBorder="False" EditValue="{Binding FileCreated, Mode=OneTime}" />
+
+                        <TextBlock VerticalAlignment="Center" Margin="0,6,12,0" Grid.Row="5" Grid.Column="0" Text="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_DocumentPropertiesFormFileModified, Converter={StaticResource stringIdConverter}}" />
+                        <dxe:TextEdit x:Name="edtFileModified" VerticalAlignment="Center" Grid.Row="5" Grid.Column="1" Margin="0,6,0,0" IsReadOnly="True" ShowBorder="False" EditValue="{Binding FileModified, Mode=OneTime}" />
+
+                        <TextBlock VerticalAlignment="Center" Margin="0,6,12,0" Grid.Row="6" Grid.Column="0" Text="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_DocumentPropertiesFormFileAccessed, Converter={StaticResource stringIdConverter}}" />
+                        <dxe:TextEdit x:Name="edtFileAccessed" VerticalAlignment="Center" Grid.Row="6" Grid.Column="1" Margin="0,6,0,0" IsReadOnly="True" ShowBorder="False" EditValue="{Binding FileAccessed, Mode=OneTime}" />
+
+                        <TextBlock VerticalAlignment="Top" Margin="0,12,12,0" Grid.Row="7" Grid.Column="0" Text="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_DocumentPropertiesFormFileAttributes, Converter={StaticResource stringIdConverter}}" />
+                        <Grid VerticalAlignment="Top" Margin="0,12,12,0" Grid.Row="7" Grid.Column="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <dxe:CheckEdit VerticalAlignment="Center" Grid.Row="0" Grid.Column="0" IsEnabled="False" EditValue="{Binding IsFileAttributeReadonly, Mode=OneTime}" Content="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_DocumentPropertiesFormFileAttributeReadOnly, Converter={StaticResource stringIdConverter}}" />
+                            <dxe:CheckEdit VerticalAlignment="Center" Grid.Row="0" Grid.Column="1" IsEnabled="False" Margin="12,0,0,0" EditValue="{Binding IsFileAttributeHidden, Mode=OneTime}" Content="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_DocumentPropertiesFormFileAttributeHidden, Converter={StaticResource stringIdConverter}}" />
+                            <dxe:CheckEdit VerticalAlignment="Center" Grid.Row="1" Grid.Column="0" IsEnabled="False" Margin="0,6,0,0" EditValue="{Binding IsFileAttributeArchive, Mode=OneTime}" Content="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_DocumentPropertiesFormFileAttributeArchive, Converter={StaticResource stringIdConverter}}" />
+                            <dxe:CheckEdit VerticalAlignment="Center" Grid.Row="1" Grid.Column="1" IsEnabled="False" Margin="12,6,0,0" EditValue="{Binding IsFileAttributeSystem, Mode=OneTime}" Content="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_DocumentPropertiesFormFileAttributeSystem, Converter={StaticResource stringIdConverter}}" />
+                        </Grid>
+                    </Grid>
+                </dxc:DXTabItem>
+                <dxc:DXTabItem x:Name="tabSummary" Header="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_DocumentPropertiesFormSummaryPage, Converter={StaticResource stringIdConverter}}">
+                    <Grid Margin="6,6,6,6">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <TextBlock VerticalAlignment="Center" Margin="0,6,12,0" Grid.Row="0" Grid.Column="0" Text="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_DocumentPropertiesFormDocumentTitle, Converter={StaticResource stringIdConverter}}" />
+                        <dxe:TextEdit x:Name="edtTitle" VerticalAlignment="Center" Grid.Row="0" Grid.Column="1" Margin="0,6,0,0" EditValue="{Binding Title}" />
+
+                        <TextBlock VerticalAlignment="Center" Margin="0,6,12,0" Grid.Row="1" Grid.Column="0" Text="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_DocumentPropertiesFormSubject, Converter={StaticResource stringIdConverter}}" />
+                        <dxe:TextEdit x:Name="edtSubject" VerticalAlignment="Center" Grid.Row="1" Grid.Column="1" Margin="0,6,0,0" EditValue="{Binding Subject}" />
+
+                        <TextBlock VerticalAlignment="Center" Margin="0,6,12,0" Grid.Row="2" Grid.Column="0" Text="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_DocumentPropertiesFormAuthor, Converter={StaticResource stringIdConverter}}" />
+                        <dxe:TextEdit x:Name="edtAuthor" VerticalAlignment="Center" Grid.Row="2" Grid.Column="1" Margin="0,6,0,0" EditValue="{Binding Creator}" />
+
+                        <TextBlock VerticalAlignment="Center" Margin="0,6,12,0" Grid.Row="3" Grid.Column="0" Text="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_DocumentPropertiesFormManager, Converter={StaticResource stringIdConverter}}" />
+                        <dxe:TextEdit x:Name="edtManager" VerticalAlignment="Center" Grid.Row="3" Grid.Column="1" Margin="0,6,0,0" EditValue="{Binding Manager}" />
+
+                        <TextBlock VerticalAlignment="Center" Margin="0,6,12,0" Grid.Row="4" Grid.Column="0" Text="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_DocumentPropertiesFormCompany, Converter={StaticResource stringIdConverter}}" />
+                        <dxe:TextEdit x:Name="edtCompany" VerticalAlignment="Center" Grid.Row="4" Grid.Column="1" Margin="0,6,0,0" EditValue="{Binding Company}" />
+
+                        <TextBlock VerticalAlignment="Center" Margin="0,12,12,0" Grid.Row="5" Grid.Column="0" Text="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_DocumentPropertiesFormCategory, Converter={StaticResource stringIdConverter}}" />
+                        <dxe:TextEdit x:Name="edtCategory" VerticalAlignment="Center" Grid.Row="5" Grid.Column="1" Margin="0,12,0,0" EditValue="{Binding Category}" />
+
+                        <TextBlock VerticalAlignment="Center" Margin="0,6,12,0" Grid.Row="6" Grid.Column="0" Text="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_DocumentPropertiesFormKeywords, Converter={StaticResource stringIdConverter}}" />
+                        <dxe:TextEdit x:Name="edtKeywords" VerticalAlignment="Center" Grid.Row="6" Grid.Column="1" Margin="0,6,0,0" EditValue="{Binding Keywords}" />
+
+                        <TextBlock VerticalAlignment="Center" Margin="0,6,12,0" Grid.Row="7" Grid.Column="0" Text="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_DocumentPropertiesFormComments, Converter={StaticResource stringIdConverter}}" />
+                        <dxe:TextEdit x:Name="edtComments" VerticalAlignment="Center" Grid.Row="7" Grid.Column="1" TextWrapping="Wrap" MinHeight="50" Margin="0,6,0,0" EditValue="{Binding Description}" />
+                    </Grid>
+                </dxc:DXTabItem>
+                <dxc:DXTabItem x:Name="tabStatistics" Header="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_DocumentPropertiesFormStatisticsPage, Converter={StaticResource stringIdConverter}}">
+                    <Grid Margin="6,6,6,6">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <TextBlock VerticalAlignment="Center" Margin="0,6,12,0" Grid.Row="0" Grid.Column="0" Text="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_DocumentPropertiesFormCreated, Converter={StaticResource stringIdConverter}}" />
+                        <dxe:TextEdit x:Name="edtCreated" VerticalAlignment="Center" Grid.Row="0" Grid.Column="1" Margin="0,6,0,0" IsReadOnly="True" ShowBorder="False" EditValue="{Binding Created, Mode=OneTime}" />
+
+                        <TextBlock VerticalAlignment="Center" Margin="0,6,12,0" Grid.Row="1" Grid.Column="0" Text="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_DocumentPropertiesFormModified, Converter={StaticResource stringIdConverter}}" />
+                        <dxe:TextEdit x:Name="edtModified" VerticalAlignment="Center" Grid.Row="1" Grid.Column="1" Margin="0,6,0,0" IsReadOnly="True" ShowBorder="False" EditValue="{Binding Modified, Mode=OneTime}" />
+
+                        <TextBlock VerticalAlignment="Center" Margin="0,6,12,0" Grid.Row="2" Grid.Column="0" Text="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_DocumentPropertiesFormAccessed, Converter={StaticResource stringIdConverter}}" />
+                        <dxe:TextEdit x:Name="edtAccessed" VerticalAlignment="Center" Grid.Row="2" Grid.Column="1" Margin="0,6,0,0" IsReadOnly="True" ShowBorder="False" EditValue="{Binding FileAccessed, Mode=OneTime}" />
+
+                        <TextBlock VerticalAlignment="Center" Margin="0,6,12,0" Grid.Row="3" Grid.Column="0" Text="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_DocumentPropertiesFormPrinted, Converter={StaticResource stringIdConverter}}" />
+                        <dxe:TextEdit x:Name="edtPrinted" VerticalAlignment="Center" Grid.Row="3" Grid.Column="1" Margin="0,6,0,0" IsReadOnly="True" ShowBorder="False" EditValue="{Binding Printed, Mode=OneTime}" />
+
+                        <TextBlock VerticalAlignment="Center" Margin="0,12,12,0" Grid.Row="4" Grid.Column="0" Text="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_DocumentPropertiesFormLastSavedBy, Converter={StaticResource stringIdConverter}}" />
+                        <dxe:TextEdit x:Name="edtLastSavedBy" VerticalAlignment="Center" Grid.Row="4" Grid.Column="1" Margin="0,12,0,0" IsReadOnly="True" ShowBorder="False" EditValue="{Binding LastModifiedBy, Mode=OneTime}" />
+                    </Grid>
+                </dxc:DXTabItem>
+                <dxc:DXTabItem x:Name="tabCustom" Header="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_DocumentPropertiesFormCustomPage, Converter={StaticResource stringIdConverter}}">
+                    <Grid Margin="6,6,6,6">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <TextBlock VerticalAlignment="Center" Margin="0,6,12,0" Grid.Row="0" Grid.Column="0" Text="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_DocumentPropertiesFormPropertyName, Converter={StaticResource stringIdConverter}}" />
+                        <TextBlock VerticalAlignment="Center" Margin="0,6,12,0" Grid.Row="2" Grid.Column="0" Text="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_DocumentPropertiesFormPropertyType, Converter={StaticResource stringIdConverter}}" />
+                        <TextBlock VerticalAlignment="Center" Margin="0,6,12,0" Grid.Row="3" Grid.Column="0" Text="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_DocumentPropertiesFormPropertyValue, Converter={StaticResource stringIdConverter}}" />
+                        <TextBlock VerticalAlignment="Top" Margin="0,6,12,0" Grid.Row="4" Grid.Column="0" Text="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_DocumentPropertiesFormProperties, Converter={StaticResource stringIdConverter}}" />
+
+                        <dxe:TextEdit x:Name="edtName" VerticalAlignment="Center" Grid.Row="0" Grid.Column="1" Margin="0,6,6,0" EditValue="{Binding PropertyName, UpdateSourceTrigger=PropertyChanged}" />
+                        <dxe:ListBoxEdit x:Name="lstPredefinedProperties" Grid.Row="1" Grid.Column="1" Margin="0,6,6,0" ItemsSource="{Binding PredefinedCustomPropertiesDataSource}" Height="100" DisplayMember="Name" SelectedIndexChanged="lstPredefinedProperties_SelectedIndexChanged" />
+                        <dxe:ComboBoxEdit VerticalAlignment="Center" Margin="0,6,6,0" Grid.Row="2" Grid.Column="1" IsTextEditable="False" EditValue="{Binding PropertyType, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding PropertyTypesDataSource}" />
+                        <dxe:TextEdit x:Name="edtPropertyValue" VerticalAlignment="Center" Grid.Row="3" Grid.Column="1" Margin="0,6,6,0" EditValue="{Binding PropertyValue, UpdateSourceTrigger=PropertyChanged}"  Visibility="{Binding ShowValueEditor, Converter={StaticResource ResourceKey=boolToVisibilityConverter}, ConverterParameter=HiddenOnFalse}" />
+                        <dxe:ListBoxEdit x:Name="edtYesNoSelector" VerticalAlignment="Center" Grid.Row="3" Grid.Column="1" Margin="0,6,6,0"  Visibility="{Binding ShowYesNoSelector, Converter={StaticResource ResourceKey=boolToVisibilityConverter}, ConverterParameter=HiddenOnFalse}" SelectedIndex="{Binding PropertyYesNoIndex}">
+                            <dxe:ListBoxEdit.StyleSettings>
+                                <dxe:RadioListBoxEditStyleSettings />
+                            </dxe:ListBoxEdit.StyleSettings>
+                            <dxe:ListBoxEdit.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <VirtualizingStackPanel Orientation="Horizontal" />
+                                </ItemsPanelTemplate>
+                            </dxe:ListBoxEdit.ItemsPanel>
+                            <dxe:ListBoxEditItem Content="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_DocumentPropertiesFormYes, Converter={StaticResource stringIdConverter}}" />
+                            <dxe:ListBoxEditItem Content="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_DocumentPropertiesFormNo, Converter={StaticResource stringIdConverter}}" />
+                        </dxe:ListBoxEdit>
+                        <ListView x:Name="grid" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" MinHeight="200" Margin="0,6,6,0" ItemsSource="{Binding CustomPropertiesDataSource}" SelectionChanged="grid_SelectionChanged">
+                            <ListView.ItemContainerStyle>
+                                <Style TargetType="ListViewItem">
+                                    <EventSetter Event="PreviewMouseLeftButtonUp" Handler="ListViewItem_PreviewMouseLeftButtonUp" />
+                                </Style>
+                            </ListView.ItemContainerStyle>
+                            <ListView.View>
+                                <GridView AllowsColumnReorder="False">
+                                    <GridViewColumn DisplayMemberBinding="{Binding Name}" Header="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_DocumentPropertiesFormColumnName, Converter={StaticResource stringIdConverter}}" />
+                                    <GridViewColumn DisplayMemberBinding="{Binding Text}" Header="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_DocumentPropertiesFormColumnValue, Converter={StaticResource stringIdConverter}}" />
+                                    <GridViewColumn DisplayMemberBinding="{Binding TypeText}" Header="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_DocumentPropertiesFormColumnType, Converter={StaticResource stringIdConverter}}" />
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+
+                        <Grid Grid.Row="0" Grid.Column="2" Grid.RowSpan="4" Margin="6,0,0,0" MinWidth="75">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Button x:Name="btnAdd" Margin="0,6,0,0" Visibility="{Binding ShowAddPropertyButton, Converter={StaticResource ResourceKey=boolToVisibilityConverter}, ConverterParameter=HiddenOnFalse}" IsEnabled="{Binding CanAddProperty}" Click="btnAdd_Click" Content="Add" />
+                            <Button x:Name="btnModify" Margin="0,6,0,0" Visibility="{Binding ShowModifyPropertyButton, Converter={StaticResource ResourceKey=boolToVisibilityConverter}, ConverterParameter=HiddenOnFalse}" IsEnabled="{Binding CanModifyProperty}" Click="btnModify_Click" Content="Modify" />
+                            <Button x:Name="btnDelete" Margin="0,6,0,0" Grid.Row="1" IsEnabled="{Binding CanDeleteProperty}" Click="btnDelete_Click" Content="Delete" />
+                        </Grid>
+                    </Grid>
+                </dxc:DXTabItem>
+            </dxc:DXTabControl.Items>
+        </dxc:DXTabControl>
+    </Grid>
+</UserControl>

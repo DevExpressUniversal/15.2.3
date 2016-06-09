@@ -1,0 +1,503 @@
+﻿<#@ template language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="DevExpress.Design.Mvvm" #>
+<#@ import namespace="DevExpress.Xpf.Core.Design.Wizards.Mvvm.EntityFramework" #>
+<#@ import namespace="DevExpress.Xpf.Core.Design.Wizards.Mvvm" #>
+<#@ import namespace="DevExpress.Xpf.Core.Design.Wizards.Mvvm.ViewModelData" #>
+<#@ import namespace="DevExpress.Xpf.Core.Native" #>
+<#
+	T4TemplateInfo templateInfo = this.GetTemplateInfo();
+	DocumentManagerViewModelInfo viewModelData = templateInfo.Properties["IViewModelInfo"] as DocumentManagerViewModelInfo;
+	UIType uiType = (UIType)templateInfo.Properties["UIType"];
+    string viewName = templateInfo.Properties["ViewName"].ToString();    
+    string localNamespace = templateInfo.Properties["Namespace"].ToString();
+	string viewFullName = localNamespace +"." + viewName;
+	string mvvmContextFullName = viewModelData.Namespace+"."+viewModelData.Name;
+	string bindingSourceName = Char.ToLowerInvariant(viewName[0]) + viewName.Substring(1) + "BindingSource";
+	bool IsVisualBasic = (bool)templateInfo.Properties["IsVisualBasic"];
+#>
+<#
+if(!IsVisualBasic){
+#>
+namespace <#=viewFullName#> {
+    partial class <#=viewName#> {
+        /// <summary> 
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary> 
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing) {
+            if(disposing && (components != null)) {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+		 #region Component Designer generated code
+
+        /// <summary> 
+        /// Required method for Designer support - do not modify 
+        /// the contents of this method with the code editor.
+        /// </summary>
+		private void InitializeComponent() {
+			this.components = new System.ComponentModel.Container();
+			this.documentManager = new DevExpress.XtraBars.Docking2010.DocumentManager();
+            this.tabbedView = new DevExpress.XtraBars.Docking2010.Views.Tabbed.TabbedView();
+			this.mvvmContext = new DevExpress.Utils.MVVM.MVVMContext(this.components);
+			this.ribbonControl = new DevExpress.XtraBars.Ribbon.RibbonControl();
+			this.ribbonPage = new DevExpress.XtraBars.Ribbon.RibbonPage();
+            this.ribbonPageGroup = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+			this.ribbonStatusBar = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
+			this.skinRibbonGalleryBarItem = new DevExpress.XtraBars.SkinRibbonGalleryBarItem();
+			this.dockManager = new DevExpress.XtraBars.Docking.DockManager(this.components);
+            this.dockPanel = new DevExpress.XtraBars.Docking.DockPanel();
+            this.dockPanel_Container = new DevExpress.XtraBars.Docking.ControlContainer();
+            this.accordionControl = new DevExpress.XtraBars.Navigation.AccordionControl();
+			this.accordionItemTables = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+			this.accordionItemViews = new DevExpress.XtraBars.Navigation.AccordionControlElement(); 
+			<#foreach(var item in viewModelData.Tables){
+					string nameForItem = "accordionItem" + item.ViewName;
+				#>
+			this.<#=nameForItem#> = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+			<#}	#>
+			<#foreach(var item in viewModelData.Views){
+					string nameForItem = "accordionItem" + item.ViewName;
+				#>
+			this.<#=nameForItem#> = new DevExpress.XtraBars.Navigation.AccordionControlElement(); 
+			<#}	#>
+			((System.ComponentModel.ISupportInitialize)(this.documentManager)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tabbedView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mvvmContext)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dockManager)).BeginInit();
+            this.dockPanel.SuspendLayout();
+            this.dockPanel_Container.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.accordionControl)).BeginInit();
+            this.SuspendLayout();
+			// 
+            // ribbonControl
+            // 
+            this.ribbonControl.ExpandCollapseItem.Id = 0;
+            this.ribbonControl.MaxItemId = 14;
+            this.ribbonControl.Name = "ribbonControl";
+			this.ribbonControl.Items.AddRange(new DevExpress.XtraBars.BarItem[] {this.skinRibbonGalleryBarItem});
+			this.ribbonControl.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
+            this.ribbonPage});
+            this.ribbonControl.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonControlStyle.Office2013;
+            this.ribbonControl.ShowApplicationButton = DevExpress.Utils.DefaultBoolean.False;
+			this.ribbonControl.MdiMergeStyle = DevExpress.XtraBars.Ribbon.RibbonMdiMergeStyle.Always;
+            this.ribbonControl.ToolbarLocation = DevExpress.XtraBars.Ribbon.RibbonQuickAccessToolbarLocation.Hidden;
+			this.ribbonControl.StatusBar = this.ribbonStatusBar;
+            // 
+            // ribbonPage
+            // 
+            this.ribbonPage.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
+            this.ribbonPageGroup});
+			this.ribbonPage.MergeOrder = -1;
+            this.ribbonPage.Name = "ribbonPage";
+            this.ribbonPage.Text = "View";
+            // 
+            // ribbonPageGroup
+            // 
+            this.ribbonPageGroup.AllowTextClipping = false;
+			this.ribbonPageGroup.ItemLinks.Add(this.skinRibbonGalleryBarItem);
+            this.ribbonPageGroup.Name = "ribbonPageGroup";
+            this.ribbonPageGroup.ShowCaptionButton = false;
+            this.ribbonPageGroup.Text = "Appearance";
+			// 
+            // ribbonStatusBar
+            // 
+			this.ribbonStatusBar.Name = "ribbonStatusBar";
+            this.ribbonStatusBar.Ribbon = this.ribbonControl;
+			// 
+            // documentManager
+            // 
+            this.documentManager.ContainerControl = this;
+            this.documentManager.RibbonAndBarsMergeStyle = DevExpress.XtraBars.Docking2010.Views.RibbonAndBarsMergeStyle.Always;
+            this.documentManager.View = this.tabbedView;
+            this.documentManager.ViewCollection.AddRange(new DevExpress.XtraBars.Docking2010.Views.BaseView[] {
+            this.tabbedView});
+			// 
+            // dockManager
+            // 
+            this.dockManager.Form = this;
+            this.dockManager.RootPanels.AddRange(new DevExpress.XtraBars.Docking.DockPanel[] {
+            this.dockPanel});
+			this.dockManager.TopZIndexControls.AddRange(new string[] {
+            "DevExpress.XtraBars.BarDockControl",
+            "DevExpress.XtraBars.StandaloneBarDockControl",
+            "System.Windows.Forms.StatusBar",
+            "System.Windows.Forms.MenuStrip",
+            "System.Windows.Forms.StatusStrip",
+            "DevExpress.XtraBars.Ribbon.RibbonStatusBar",
+            "DevExpress.XtraBars.Ribbon.RibbonControl",
+            "DevExpress.XtraBars.Navigation.OfficeNavigationBar",
+            "DevExpress.XtraBars.Navigation.TileNavPane"});
+			// 
+            // dockPanel
+            // 
+            this.dockPanel.Controls.Add(this.dockPanel_Container);
+            this.dockPanel.Dock = DevExpress.XtraBars.Docking.DockingStyle.Left;
+            this.dockPanel.Name = "dockPanel";
+            this.dockPanel.OriginalSize = new System.Drawing.Size(200, 200);
+            this.dockPanel.Text = "Navigation";
+			// 
+            // dockPanel_Container
+            // 
+            this.dockPanel_Container.Controls.Add(this.accordionControl);
+            this.dockPanel_Container.Name = "dockPanel_Container";
+			// 
+            // accordionControl
+            // 
+            this.accordionControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.accordionControl.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] {
+            this.accordionItemTables,
+            this.accordionItemViews});
+            this.accordionControl.Name = "accordionControl";
+            this.accordionControl.TabIndex = 0;
+            this.accordionControl.Text = "accordionControl";
+			// 
+            // accordionItemTables
+            // 
+            this.accordionItemTables.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] {
+            <#foreach(var item in viewModelData.Tables){
+				string nameForItem = "accordionItem" + item.ViewName;
+			#>
+			this.<#=nameForItem#>,
+			<#}	#>			
+			});
+            this.accordionItemTables.Expanded = true;
+            this.accordionItemTables.Text = "Tables";
+			
+			<#foreach(var item in viewModelData.Tables){
+				string nameForItem = "accordionItem" + item.ViewName;
+			#>
+			// 
+            // <#=nameForItem#>
+            // 
+			this.<#=nameForItem#>.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+			this.<#=nameForItem#>.Text = "<#=item.Caption#>";
+			<#}	#>		
+			// 
+            // accordionItemViews
+            // 
+            this.accordionItemViews.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] {
+             <#foreach(var item in viewModelData.Views){
+				string nameForItem = "accordionItem" + item.ViewName;
+			#>
+			this.<#=nameForItem#>,
+			<#}	#>			
+			});
+            this.accordionItemViews.Expanded = true;
+            this.accordionItemViews.Text = "Views";
+			<#foreach(var item in viewModelData.Views){
+				string nameForItem = "accordionItem" + item.ViewName;
+			#>
+			// 
+            // <#=nameForItem#>
+            // 
+			this.<#=nameForItem#>.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+			this.<#=nameForItem#>.Text = "<#=item.Caption#>";
+			<#}	#>	
+			// 
+            // mvvmContext
+            // 
+            this.mvvmContext.ContainerControl = this;
+            this.mvvmContext.ViewModelType = typeof(<#=mvvmContextFullName#>);
+			// 
+            // <#=viewName#>
+            // 
+			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.Controls.Add(this.dockPanel);
+            this.Controls.Add(this.ribbonStatusBar);
+            this.Controls.Add(this.ribbonControl);
+			this.Size = new System.Drawing.Size(1024, 768);
+            this.Name = "<#=viewName#>";
+			((System.ComponentModel.ISupportInitialize)(this.documentManager)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tabbedView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mvvmContext)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dockManager)).EndInit();
+            this.dockPanel.ResumeLayout(false);
+            this.dockPanel_Container.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.accordionControl)).EndInit();
+            this.ResumeLayout(false);
+            this.PerformLayout();
+		}
+		
+        #endregion
+
+		private DevExpress.XtraBars.Docking2010.DocumentManager documentManager;
+        private DevExpress.XtraBars.Docking2010.Views.Tabbed.TabbedView tabbedView;
+		private DevExpress.Utils.MVVM.MVVMContext mvvmContext;
+		private DevExpress.XtraBars.Ribbon.RibbonControl ribbonControl;
+		private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPage;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup;
+		private DevExpress.XtraBars.Ribbon.RibbonStatusBar ribbonStatusBar;
+		private DevExpress.XtraBars.SkinRibbonGalleryBarItem skinRibbonGalleryBarItem;
+		private DevExpress.XtraBars.Docking.DockManager dockManager;
+		private DevExpress.XtraBars.Docking.DockPanel dockPanel;
+        private DevExpress.XtraBars.Docking.ControlContainer dockPanel_Container;
+        private DevExpress.XtraBars.Navigation.AccordionControl accordionControl;
+		private DevExpress.XtraBars.Navigation.AccordionControlElement accordionItemTables; 
+		private DevExpress.XtraBars.Navigation.AccordionControlElement accordionItemViews; 
+
+		<#foreach(var item in viewModelData.Tables){
+				string nameForItem = "accordionItem" + item.ViewName;
+			#>
+		private DevExpress.XtraBars.Navigation.AccordionControlElement <#=nameForItem#>;
+		<#}	#>
+		<#foreach(var item in viewModelData.Views){
+				string nameForItem = "accordionItem" + item.ViewName;
+			#>
+		private DevExpress.XtraBars.Navigation.AccordionControlElement <#=nameForItem#>;
+		<#}	#>
+	}
+}
+<#
+}
+if(IsVisualBasic){
+#>
+Namespace Global.<#=viewFullName#>
+	Partial Public Class <#=viewName#>
+		''' <summary> 
+		''' Required designer variable.
+		''' </summary>
+		Private components As System.ComponentModel.IContainer = Nothing
+
+		''' <summary> 
+		''' Clean up any resources being used.
+		''' </summary>
+		''' <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+		Protected Overrides Sub Dispose(ByVal disposing As Boolean)
+			If disposing AndAlso (components IsNot Nothing) Then
+				components.Dispose()
+			End If
+			MyBase.Dispose(disposing)
+		End Sub
+		#Region "Component Designer generated code"
+
+		''' <summary> 
+		''' Required method for Designer support - do not modify 
+		''' the contents of this method with the code editor.
+		''' </summary>
+		Private Sub InitializeComponent()
+			Me.components = New System.ComponentModel.Container()
+			Me.documentManager = New DevExpress.XtraBars.Docking2010.DocumentManager()
+            Me.tabbedView = New DevExpress.XtraBars.Docking2010.Views.Tabbed.TabbedView()
+			Me.mvvmContext = New DevExpress.Utils.MVVM.MVVMContext(Me.components)
+			Me.ribbonControl = New DevExpress.XtraBars.Ribbon.RibbonControl()
+			Me.ribbonPage = New DevExpress.XtraBars.Ribbon.RibbonPage()
+            Me.ribbonPageGroup = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
+			Me.ribbonStatusBar = New DevExpress.XtraBars.Ribbon.RibbonStatusBar()
+			Me.skinRibbonGalleryBarItem = New DevExpress.XtraBars.SkinRibbonGalleryBarItem()
+			Me.dockManager = New DevExpress.XtraBars.Docking.DockManager(Me.components)
+            Me.dockPanel = New DevExpress.XtraBars.Docking.DockPanel()
+            Me.dockPanel_Container = New DevExpress.XtraBars.Docking.ControlContainer()
+            Me.accordionControl = New DevExpress.XtraBars.Navigation.AccordionControl()
+			Me.accordionItemTables = New DevExpress.XtraBars.Navigation.AccordionControlElement()
+			Me.accordionItemViews = New DevExpress.XtraBars.Navigation.AccordionControlElement()
+			<#foreach(var item in viewModelData.Tables){
+					string nameForItem = "accordionItem" + item.ViewName;
+				#>
+			Me.<#=nameForItem#> = New DevExpress.XtraBars.Navigation.AccordionControlElement()
+			<#}	#>
+			<#foreach(var item in viewModelData.Views){
+					string nameForItem = "accordionItem" + item.ViewName;
+				#>
+			Me.<#=nameForItem#> = New DevExpress.XtraBars.Navigation.AccordionControlElement() 
+			<#}#> 
+			CType(Me.documentManager, System.ComponentModel.ISupportInitialize).BeginInit()
+			CType(Me.tabbedView, System.ComponentModel.ISupportInitialize).BeginInit()
+			CType(Me.mvvmContext, System.ComponentModel.ISupportInitialize).BeginInit()
+			CType(Me.ribbonControl, System.ComponentModel.ISupportInitialize).BeginInit()
+			CType(Me.dockManager, System.ComponentModel.ISupportInitialize).BeginInit()
+			Me.dockPanel.SuspendLayout()
+            Me.dockPanel_Container.SuspendLayout()
+			CType(Me.accordionControl, System.ComponentModel.ISupportInitialize).BeginInit()
+			Me.SuspendLayout()
+			' 
+            ' ribbonControl
+            ' 
+            Me.ribbonControl.ExpandCollapseItem.Id = 0
+            Me.ribbonControl.MaxItemId = 14
+            Me.ribbonControl.Name = "ribbonControl"
+			Me.ribbonControl.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.skinRibbonGalleryBarItem})
+			Me.ribbonControl.Pages.AddRange(New DevExpress.XtraBars.Ribbon.RibbonPage() {
+            Me.ribbonPage})
+            Me.ribbonControl.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonControlStyle.Office2013
+            Me.ribbonControl.ShowApplicationButton = DevExpress.Utils.DefaultBoolean.False
+			Me.ribbonControl.MdiMergeStyle = DevExpress.XtraBars.Ribbon.RibbonMdiMergeStyle.Always
+            Me.ribbonControl.ToolbarLocation = DevExpress.XtraBars.Ribbon.RibbonQuickAccessToolbarLocation.Hidden
+			Me.ribbonControl.StatusBar = Me.ribbonStatusBar
+            ' 
+            ' ribbonPage
+            ' 
+            Me.ribbonPage.Groups.AddRange(New DevExpress.XtraBars.Ribbon.RibbonPageGroup() {
+            Me.ribbonPageGroup})
+			Me.ribbonPage.MergeOrder = -1
+            Me.ribbonPage.Name = "ribbonPage"
+            Me.ribbonPage.Text = "View"
+            ' 
+            ' ribbonPageGroup
+            ' 
+            Me.ribbonPageGroup.AllowTextClipping = false
+			Me.ribbonPageGroup.ItemLinks.Add(Me.skinRibbonGalleryBarItem)
+            Me.ribbonPageGroup.Name = "ribbonPageGroup"
+            Me.ribbonPageGroup.ShowCaptionButton = false
+            Me.ribbonPageGroup.Text = "Appearance"
+			' 
+            ' ribbonStatusBar
+            ' 
+			Me.ribbonStatusBar.Name = "ribbonStatusBar"
+            Me.ribbonStatusBar.Ribbon = Me.ribbonControl
+			' 
+            ' documentManager
+            ' 
+            Me.documentManager.ContainerControl = Me
+            Me.documentManager.RibbonAndBarsMergeStyle = DevExpress.XtraBars.Docking2010.Views.RibbonAndBarsMergeStyle.Always
+            Me.documentManager.View = Me.tabbedView
+            Me.documentManager.ViewCollection.AddRange(New DevExpress.XtraBars.Docking2010.Views.BaseView() {
+            Me.tabbedView})
+			' 
+            ' dockManager
+            ' 
+            Me.dockManager.Form = Me
+            Me.dockManager.RootPanels.AddRange(New DevExpress.XtraBars.Docking.DockPanel() {
+            Me.dockPanel})
+			Me.dockManager.TopZIndexControls.AddRange(New String() {
+            "DevExpress.XtraBars.BarDockControl",
+            "DevExpress.XtraBars.StandaloneBarDockControl",
+            "System.Windows.Forms.StatusBar",
+            "System.Windows.Forms.MenuStrip",
+            "System.Windows.Forms.StatusStrip",
+            "DevExpress.XtraBars.Ribbon.RibbonStatusBar",
+            "DevExpress.XtraBars.Ribbon.RibbonControl",
+            "DevExpress.XtraBars.Navigation.OfficeNavigationBar",
+            "DevExpress.XtraBars.Navigation.TileNavPane"})
+			' 
+            ' dockPanel
+            ' 
+            Me.dockPanel.Controls.Add(Me.dockPanel_Container)
+            Me.dockPanel.Dock = DevExpress.XtraBars.Docking.DockingStyle.Left
+            Me.dockPanel.Name = "dockPanel"
+            Me.dockPanel.OriginalSize = New System.Drawing.Size(200, 200)
+            Me.dockPanel.Text = "Navigation"
+			' 
+            ' dockPanel_Container
+            ' 
+            Me.dockPanel_Container.Controls.Add(Me.accordionControl)
+            Me.dockPanel_Container.Name = "dockPanel_Container"
+			' 
+            ' accordionControl
+            ' 
+            Me.accordionControl.Dock = System.Windows.Forms.DockStyle.Fill
+            Me.accordionControl.Elements.AddRange(New DevExpress.XtraBars.Navigation.AccordionControlElement() {
+            Me.accordionItemTables,
+            Me.accordionItemViews})
+            Me.accordionControl.Name = "accordionControl"
+            Me.accordionControl.TabIndex = 0
+            Me.accordionControl.Text = "accordionControl"
+			' 
+            ' accordionItemTables
+            ' 
+            <#foreach(var item in viewModelData.Tables){
+				string nameForItem = "accordionItem" + item.ViewName;
+			#>
+			Me.accordionItemTables.Elements.Add(Me.<#=nameForItem#>)
+			<#}	#>			
+            Me.accordionItemTables.Expanded = True
+            Me.accordionItemTables.Text = "Tables"
+			<#foreach(var item in viewModelData.Tables){
+				string nameForItem = "accordionItem" + item.ViewName;
+			#>
+			' 
+            ' <#=nameForItem#>
+            ' 
+			Me.<#=nameForItem#>.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item
+			Me.<#=nameForItem#>.Text = "<#=item.Caption#>"
+			<#}	#>	
+			' 
+            ' accordionItemViews
+            ' 
+            <#foreach(var item in viewModelData.Views){
+				string nameForItem = "accordionItem" + item.ViewName;
+			#>
+			Me.accordionItemViews.Elements.Add(Me.<#=nameForItem#>)
+			<#}	#>			
+            Me.accordionItemViews.Expanded = True
+            Me.accordionItemViews.Text = "Views"
+			<#foreach(var item in viewModelData.Views){
+				string nameForItem = "accordionItem" + item.ViewName;
+			#>
+			' 
+            ' <#=nameForItem#>
+            ' 
+			Me.<#=nameForItem#>.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item
+			Me.<#=nameForItem#>.Text = "<#=item.Caption#>"
+			<#}	#>	
+			' 
+            ' mvvmContext
+            ' 
+            Me.mvvmContext.ContainerControl = Me
+            Me.mvvmContext.ViewModelType = GetType(Global.<#=mvvmContextFullName#>)
+			' 
+            ' <#=viewName#>
+            ' 
+			Me.AutoScaleDimensions = New System.Drawing.SizeF(6F, 13F)
+            Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+			Me.Controls.Add(Me.dockPanel)
+            Me.Controls.Add(Me.ribbonStatusBar)
+            Me.Controls.Add(Me.ribbonControl)
+			Me.Size = New System.Drawing.Size(1024, 768)
+            Me.Name = "<#=viewName#>"
+			CType(Me.documentManager, System.ComponentModel.ISupportInitialize).EndInit()
+			CType(Me.tabbedView, System.ComponentModel.ISupportInitialize).EndInit()
+			CType(Me.mvvmContext, System.ComponentModel.ISupportInitialize).EndInit()
+			CType(Me.ribbonControl, System.ComponentModel.ISupportInitialize).EndInit()
+			CType(Me.dockManager, System.ComponentModel.ISupportInitialize).EndInit()
+            Me.dockPanel.ResumeLayout(false)
+            Me.dockPanel_Container.ResumeLayout(false)
+			CType(Me.accordionControl, System.ComponentModel.ISupportInitialize).EndInit()
+			Me.ResumeLayout(false)
+            Me.PerformLayout()
+		End Sub
+
+		#End Region
+		Private documentManager As DevExpress.XtraBars.Docking2010.DocumentManager
+        Private tabbedView As DevExpress.XtraBars.Docking2010.Views.Tabbed.TabbedView
+		Private mvvmContext As DevExpress.Utils.MVVM.MVVMContext 
+		Private ribbonControl As DevExpress.XtraBars.Ribbon.RibbonControl
+		Private ribbonPage As DevExpress.XtraBars.Ribbon.RibbonPage
+        Private ribbonPageGroup As DevExpress.XtraBars.Ribbon.RibbonPageGroup
+		Private ribbonStatusBar As DevExpress.XtraBars.Ribbon.RibbonStatusBar
+		Private skinRibbonGalleryBarItem As DevExpress.XtraBars.SkinRibbonGalleryBarItem
+		Private dockManager As DevExpress.XtraBars.Docking.DockManager
+		Private dockPanel As DevExpress.XtraBars.Docking.DockPanel
+        Private dockPanel_Container As DevExpress.XtraBars.Docking.ControlContainer
+        Private accordionControl As DevExpress.XtraBars.Navigation.AccordionControl
+		Private accordionItemTables As DevExpress.XtraBars.Navigation.AccordionControlElement
+		Private accordionItemViews As DevExpress.XtraBars.Navigation.AccordionControlElement
+
+		<#foreach(var item in viewModelData.Tables){
+				string nameForItem = "accordionItem" + item.ViewName;
+			#>
+		Private <#=nameForItem#> As DevExpress.XtraBars.Navigation.AccordionControlElement
+		<#}	#>
+		<#foreach(var item in viewModelData.Views){
+				string nameForItem = "accordionItem" + item.ViewName;
+			#>
+		Private <#=nameForItem#> As DevExpress.XtraBars.Navigation.AccordionControlElement
+		<#}	#>
+	End Class
+End Namespace
+<#
+}
+#>

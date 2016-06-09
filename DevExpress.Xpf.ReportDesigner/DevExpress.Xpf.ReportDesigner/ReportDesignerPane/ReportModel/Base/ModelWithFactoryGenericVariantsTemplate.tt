@@ -1,0 +1,41 @@
+﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ output extension=".cs" #>
+using System;
+using System.ComponentModel;
+using System.Linq;
+using System.Windows.Media;
+using DevExpress.Xpf.Diagram;
+using DevExpress.Xpf.Reports.UserDesigner.XRDiagram;
+using DevExpress.XtraCharts;
+using DevExpress.XtraReports.UI;
+
+namespace DevExpress.Xpf.Reports.UserDesigner.ReportModel {
+<#foreach(string modelNameAndParameters in new string[] { "Control/Control/XRControl/DiagramItem", "ChartElement/ChartElement/ChartElement/XRDiagramLogicItem", "Control/CrossBandControl/XRCrossBandControl/XRCrossBandControlDiagramItem", "Control/Component/IComponent/XRDiagramLogicItem" }) {#>
+<#
+    string factoryName = modelNameAndParameters.Split('/')[0];
+    string modelName = modelNameAndParameters.Split('/')[1];
+    string xrObjectType = modelNameAndParameters.Split('/')[2];
+    string diagramItem = modelNameAndParameters.Split('/')[3];
+	string casting = xrObjectType[0] == 'I' ? "(XR" + factoryName + "ModelFactory.ISource<" + xrObjectType + ">)" : string.Empty;
+	bool hasIcon = new string[] { "Control", "Component" }.Contains(factoryName);
+	string iconParamInternal = hasIcon ? ", ImageSource icon" : "";
+	string iconArg = hasIcon ? ", icon" : "";
+#>
+    public partial class XR<#=modelName#>ModelBase<TXRObject, TDiagramItem> : XR<#=modelName#>ModelBase
+        where TXRObject : <#=xrObjectType#>
+        where TDiagramItem : <#=diagramItem#>, new() {
+
+        protected internal XR<#=modelName#>ModelBase(XR<#=factoryName#>ModelFactory.ISource<TXRObject> source<#=iconParamInternal#>) : base(<#=casting#>source<#=iconArg#>) { }
+        public new TXRObject XRObject { get { return (TXRObject)base.XRObject; } }
+
+        public new TDiagramItem DiagramItem { get { return (TDiagramItem)base.DiagramItem; } }
+        protected override DiagramItem CreateDiagramItem() {
+            return new TDiagramItem();
+        }
+    }
+<#}#>
+}

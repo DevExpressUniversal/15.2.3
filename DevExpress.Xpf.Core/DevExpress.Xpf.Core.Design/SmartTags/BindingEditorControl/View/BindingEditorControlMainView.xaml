@@ -1,0 +1,115 @@
+﻿<UserControl x:Class="DevExpress.Xpf.Core.Design.SmartTags.BindingEditorControlMainView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+        xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+        xmlns:dxi="http://schemas.devexpress.com/winfx/2008/xaml/core/internal"
+        xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+        xmlns:local="clr-namespace:DevExpress.Xpf.Core.Design.SmartTags"
+        xmlns:design="clr-namespace:DevExpress.Xpf.Core.Design"
+        xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
+        mc:Ignorable="d" 
+        MaxWidth="450" MaxHeight="400">
+
+    <UserControl.Resources>
+        <Style TargetType="ListBoxItem" />
+        <Style TargetType="ListBox" />
+        <Style TargetType="GroupItem" />
+        <Style x:Key="EditorSelectorItemStyleBase" TargetType="ListBoxItem">
+            <Setter Property="Foreground" Value="#FFFFFFFF"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="BorderBrush" Value="White"/>
+            <Setter Property="Background" Value="#FFB9B9B9"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="7"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                        <Grid SnapsToDevicePixels="true">
+                            <Border x:Name="Bd" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="1,1,1,0" Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}">
+                                <ContentPresenter x:Name="Content" ContentSource="Content" HorizontalAlignment="Center" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="Center"/>
+                            </Border>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Foreground" Value="White"/>
+                                <Setter Property="Background" TargetName="Bd" Value="#FF4F97D1"/>
+                            </Trigger>
+                            <Trigger Property="IsSelected" Value="true">
+                                <Setter Property="Panel.ZIndex" Value="1"/>
+                                <Setter Property="Foreground" Value="White"/>
+                                <Setter Property="Background" TargetName="Bd" Value="#FF4F97D1"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Opacity" Value="0.35"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="EditorSelectorItemStyle" TargetType="ListBoxItem" BasedOn="{StaticResource EditorSelectorItemStyleBase}">
+            <Setter Property="Content" Value="{Binding Path=Header}" />
+        </Style>
+        <Style x:Key="EditorSelectorStyleBase" TargetType="ListBox">
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Margin" Value="-1,0" />
+            <Setter Property="ItemContainerStyle" Value="{StaticResource EditorSelectorItemStyleBase}" />
+        </Style>
+        <Style x:Key="EditorSelectorStyle" TargetType="ListBox" BasedOn="{StaticResource EditorSelectorStyleBase}">
+            <Setter Property="ItemContainerStyle" Value="{StaticResource EditorSelectorItemStyle}" />
+        </Style>
+
+        <dxi:TypeTemplateSelector x:Key="TabItemTemplateSelector">
+            <dxi:TemplatesDictionary>
+                <DataTemplate x:Key="BindingEditorControlDataContextBindingEditorViewModel">
+                    <local:BindingEditorControlPropertyBasedBindingEditorView />
+                </DataTemplate>
+                <DataTemplate x:Key="BindingEditorControlElementBindingEditorViewModel">
+                    <local:BindingEditorControlElementBindingEditorView />
+                </DataTemplate>
+                <DataTemplate x:Key="BindingEditorControlRelativeSourceBindingEditorViewModel">
+                    <local:BindingEditorControlPropertyBasedBindingEditorView />
+                </DataTemplate>
+                <DataTemplate x:Key="BindingEditorControlResourceBindingEditorViewModel">
+                    <local:BindingEditorControlResourceBindingEditorView />
+                </DataTemplate>
+            </dxi:TemplatesDictionary>
+        </dxi:TypeTemplateSelector>
+    </UserControl.Resources>
+
+    <local:DesignTimeAdaptablePanel>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="9" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="9" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <ListBox Style="{StaticResource EditorSelectorStyle}" ItemsSource="{Binding Path=BindingEditors}"
+                SelectedItem="{Binding Path=SelectedEditor, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                <ListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <local:HorizontalGridPanel />
+                    </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
+            </ListBox>
+            <dx:DXTabControl Grid.Row="2" ItemsSource="{Binding Path=BindingEditors}" TabContentCacheMode="CacheTabsOnSelecting"
+                             ItemTemplateSelector="{StaticResource TabItemTemplateSelector}"
+                             SelectedItem="{Binding Path=SelectedEditor, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Padding="0">
+                <dx:DXTabControl.Resources>
+                    <DataTemplate x:Key="{dxt:DXTabControlThemeKey ThemeName=MetropolisLight, ResourceKey=Background}">
+                    </DataTemplate>
+                </dx:DXTabControl.Resources>
+                <dx:DXTabControl.View>
+                    <dx:TabControlScrollView HeaderLocation="None"  />
+                </dx:DXTabControl.View>
+            </dx:DXTabControl>
+            <local:BindingEditorControlCommonParametersView Grid.Row="4"/>
+        </Grid>
+    </local:DesignTimeAdaptablePanel>
+</UserControl>

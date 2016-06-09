@@ -1,0 +1,107 @@
+#region Copyright (c) 2000-2015 Developer Express Inc.
+/*
+{*******************************************************************}
+{                                                                   }
+{       Developer Express .NET Component Library                    }
+{       eXpressApp Framework                                        }
+{                                                                   }
+{       Copyright (c) 2000-2015 Developer Express Inc.              }
+{       ALL RIGHTS RESERVED                                         }
+{                                                                   }
+{   The entire contents of this file is protected by U.S. and       }
+{   International Copyright Laws. Unauthorized reproduction,        }
+{   reverse-engineering, and distribution of all or any portion of  }
+{   the code contained in this file is strictly prohibited and may  }
+{   result in severe civil and criminal penalties and will be       }
+{   prosecuted to the maximum extent possible under the law.        }
+{                                                                   }
+{   RESTRICTIONS                                                    }
+{                                                                   }
+{   THIS SOURCE CODE AND ALL RESULTING INTERMEDIATE FILES           }
+{   ARE CONFIDENTIAL AND PROPRIETARY TRADE                          }
+{   SECRETS OF DEVELOPER EXPRESS INC. THE REGISTERED DEVELOPER IS   }
+{   LICENSED TO DISTRIBUTE THE PRODUCT AND ALL ACCOMPANYING .NET    }
+{   CONTROLS AS PART OF AN EXECUTABLE PROGRAM ONLY.                 }
+{                                                                   }
+{   THE SOURCE CODE CONTAINED WITHIN THIS FILE AND ALL RELATED      }
+{   FILES OR ANY PORTION OF ITS CONTENTS SHALL AT NO TIME BE        }
+{   COPIED, TRANSFERRED, SOLD, DISTRIBUTED, OR OTHERWISE MADE       }
+{   AVAILABLE TO OTHER INDIVIDUALS WITHOUT EXPRESS WRITTEN CONSENT  }
+{   AND PERMISSION FROM DEVELOPER EXPRESS INC.                      }
+{                                                                   }
+{   CONSULT THE END USER LICENSE AGREEMENT FOR INFORMATION ON       }
+{   ADDITIONAL RESTRICTIONS.                                        }
+{                                                                   }
+{*******************************************************************}
+*/
+#endregion Copyright (c) 2000-2015 Developer Express Inc.
+
+using System;
+using System.Collections.Generic;
+using System.Text;
+using DevExpress.Xpo.Metadata;
+using System.ComponentModel.Design.Serialization;
+using System.CodeDom;
+using System.Reflection;
+using System.ComponentModel.Design;
+using System.ComponentModel;
+namespace DevExpress.ExpressApp.Design {
+	public class XafModuleSerializer : CodeDomSerializer {
+		public override object Serialize(IDesignerSerializationManager manager, object value) {
+			return ((CodeDomSerializer)manager.GetSerializer(typeof(ModuleBase).BaseType, typeof(CodeDomSerializer))).Serialize(manager, value);
+		}
+		public override object Deserialize(IDesignerSerializationManager manager, object codeObject) {
+			try {
+				return ((CodeDomSerializer)manager.GetSerializer(typeof(ModuleBase).BaseType, typeof(CodeDomSerializer))).Deserialize(manager, codeObject);
+			}
+			finally{
+				DesignerSerializationManager designerSerializationManager = manager as DesignerSerializationManager;
+				if(designerSerializationManager != null) {
+					if(designerSerializationManager.Errors.Count > 0) {
+						RootDesignerService service = (RootDesignerService)((IServiceProvider)(designerSerializationManager).Container).GetService(typeof(RootDesignerService));
+						service.Designer.ProcessDeserializationErrors(this, designerSerializationManager.Errors);
+					}
+					designerSerializationManager.Errors.Clear();
+				}
+			}
+		}
+	}
+	public class XafApplicationSerializer : CodeDomSerializer {
+		public override object Serialize(IDesignerSerializationManager manager, object value) {
+			return ((CodeDomSerializer)manager.GetSerializer(typeof(XafApplication).BaseType, typeof(CodeDomSerializer))).Serialize(manager, value);
+		}
+		public override object Deserialize(IDesignerSerializationManager manager, object codeObject) {
+			try {
+				ISupportInitialize component = null;
+				IServiceProvider serviceProvider = manager as IServiceProvider;
+				if(serviceProvider != null) {
+					IDesignerHost designerHost = (IDesignerHost)serviceProvider.GetService(typeof(IDesignerHost));
+					if(designerHost != null) {
+						component = designerHost.RootComponent as ISupportInitialize;
+					}
+				}
+				if(component != null) {
+					component.BeginInit();
+				}
+				try {
+					return ((CodeDomSerializer)manager.GetSerializer(typeof(XafApplication).BaseType, typeof(CodeDomSerializer))).Deserialize(manager, codeObject);
+				}
+				finally {
+					if(component != null) {
+						component.EndInit();
+					}
+				}
+			}
+			finally {
+				DesignerSerializationManager designerSerializationManager = manager as DesignerSerializationManager;
+				if(designerSerializationManager != null) {
+					if(designerSerializationManager.Errors.Count > 0) {
+						RootDesignerService service = (RootDesignerService)((IServiceProvider)(designerSerializationManager).Container).GetService(typeof(RootDesignerService));
+						service.Designer.ProcessDeserializationErrors(this, designerSerializationManager.Errors);
+					}
+					designerSerializationManager.Errors.Clear();
+				}
+			}
+		}
+	}
+}

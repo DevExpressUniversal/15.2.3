@@ -1,0 +1,153 @@
+EofCode = EOF;
+TokenKind = Type;
+TokenValue = Value;
+
+SCANNER CssScanner
+
+FRAME
+-->begin
+using System;
+using System.IO;
+using System.Collections;
+using System.Collections.Specialized;
+
+#if DXCORE
+namespace DevExpress.CodeRush.StructuralParser.Css
+#else
+namespace DevExpress.CodeParser.Css
+#endif
+{
+	using Xml;
+
+	partial class CssScanner
+	{
+	-->declarations
+		
+		// protected methods...
+		protected override void InitializeIgnoreTable()
+		{
+			ignore = new BitArray(charSetSize + 1);
+			ignore[' '] = true;  // blanks are always white space
+			-->initialization
+		}
+		protected override void NextChCasing()
+		{
+			-->casing1
+		}
+		protected override void AddCh()
+		{
+			base.AddCh();
+			-->casing2
+			NextCh();
+		}
+
+	-->comments
+
+		void CheckLiteral()
+		{
+			-->literals
+		}
+		protected override void NextTokenComments()
+		{
+			-->scan1
+		}
+
+		protected override void NextTokenScan(int state)
+		{
+      int recKind = noSym;
+		  int recEnd = pos;
+      int recPrevLineStart = prevLineStart;
+
+			AddCh();		
+			switch (state)
+			{
+				case -1: { t.Type = eofSym; break; } // NextCh already done
+				case 0:
+        {
+
+				  if (recKind != noSym)
+          {
+					  tlen = recEnd - t.StartPosition;
+            prevLineStart = recPrevLineStart;
+					  BackTrackScannerToToken();
+				  }
+				  t.Type = recKind;
+          break;
+			  }
+			  -->scan2
+			}
+		}
+	} // end Scanner
+}
+$$$
+ENDFRAME
+
+IGNORECASE
+
+CHARACTERS
+	cr															= '\r'.
+	lf															= '\n'.
+	whitespace													= ' '.
+	tab															= '\t'.
+	stringchar1													= ANY - "\"".
+	stringchar2													= ANY - "'".
+	numchar														= "0123456789".
+	hexnumchar													= "0123456789abcdef".
+	urlchar														= ANY - ")".
+	idfirstchar													= "QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm_-" + UnicodeLetter.
+	idchar														= idfirstchar + numchar.
+	multilinecommentschar										= ANY -"*"-"/".
+	singlelinecommentschar										= ANY - cr -lf -"/".
+TOKENS
+  AT = "@".
+	CDO = "<!--".
+	CDC = "-->".
+	STRING = ("\""{stringchar1}"\"")|("'"{stringchar2}"'"). 
+	SEMICOLON = ";".
+	URI = "url("
+			(
+				("\""{stringchar1}"\"")
+			|	("'"{stringchar2}"'")
+			|	(urlchar{urlchar})
+			)
+			")".
+	COMMA = ",".
+	CURLYOPEN = "{".
+	CURLYCLOSE = "}".
+	IDENT = (idfirstchar |("\\"hexnumchar{hexnumchar})){idchar|("\\"hexnumchar{hexnumchar})}.
+	COLON = ":".
+	SLASH = "/".
+	PLUS = "+".
+	GREATER = ">".
+	MINUS = "-".
+  TILDE = "~".
+	HASH = "#"((idchar |("\\"hexnumchar{hexnumchar})){idchar|("\\"hexnumchar{hexnumchar})}).
+	DOT = ".".
+	STAR = "*".
+	BRACKETOPEN = "[".
+	EQUALSIGN = "=".
+	INCLUDES = "~=".
+	DASHMATCH = "|=".
+  BEGINSWITH = "^=".
+  ENDSWITH = "$=".
+  CONTAINS = "*=".
+	BRACKETCLOSE = "]".
+	FUNCTION = ((idfirstchar |("\\"hexnumchar{hexnumchar})){idchar|("\\"hexnumchar{hexnumchar})})"(".
+  PARENOPEN = "(".
+	PARENCLOSE = ")".
+	IMPORTANTSYM = "!". // "important". //("i" | "I") ("m", "M") ("p" | "P") ("o" | "O") ("r" | "R") ("T" | "t") ("A" | "a") ("N" | "n") ("T" | "t").
+  NOT = "not".
+  ONLY = "only".
+  AND = "and".
+	NUMBER = (numchar{numchar})|(numchar{numchar}"."numchar{numchar})|("."numchar{numchar}).
+	PERCENTAGE = ["-"]((numchar{numchar})|(numchar{numchar}"."numchar{numchar})|("."numchar{numchar}))"%".
+	LENGTH = ((numchar{numchar})|(numchar{numchar}"."numchar{numchar})|("."numchar{numchar}))("px"|"cm"|"mm"|"in"|"pt"|"pc").
+	EMS =        ((numchar{numchar})|(numchar{numchar}"."numchar{numchar})|("."numchar{numchar}))"em".
+	EXS = ((numchar{numchar})|(numchar{numchar}"."numchar{numchar})|("."numchar{numchar}))"ex".
+	ANGLE = ((numchar{numchar})|(numchar{numchar}"."numchar{numchar})|("."numchar{numchar}))("deg"|"rad"|"grad").
+	TIME = ((numchar{numchar})|(numchar{numchar}"."numchar{numchar})|("."numchar{numchar}))("ms"|"s").
+	FREQ = ((numchar{numchar})|(numchar{numchar}"."numchar{numchar})|("."numchar{numchar}))("hz"|"khz").
+	SINGLELINECOMMENT ="/" "/" {singlelinecommentschar| "/"} .
+	MULTILINECOMMENT = "/*" {"/" | multilinecommentschar | "*" {"*"} multilinecommentschar} "*" {"*"} "/".
+IGNORE  tab + cr + lf + whitespace
+END CssScanner.

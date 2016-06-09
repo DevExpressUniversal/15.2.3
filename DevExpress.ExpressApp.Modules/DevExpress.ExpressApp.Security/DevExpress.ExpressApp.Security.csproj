@@ -1,0 +1,390 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{25727F30-5C1A-43D9-A1F9-AEA8A087D746}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DevExpress.ExpressApp.Security</RootNamespace>
+    <AssemblyName>DevExpress.ExpressApp.Security.v15.2</AssemblyName>
+    <AssemblyOriginatorKeyFile>..\..\DevExpress.Key\StrongKey.snk</AssemblyOriginatorKeyFile>
+    <SignAssembly>true</SignAssembly>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>4.0</OldToolsVersion>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\..\Bin\Framework\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\..\Bin\Framework\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  
+  
+  
+  <ItemGroup>
+    <Reference Include="DevExpress.Printing.v15.2.Core">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Bin\Framework\DevExpress.Printing.v15.2.Core.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DevExpress.Data.v15.2">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Bin\Framework\DevExpress.Data.v15.2.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DevExpress.Xpo.v15.2">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Bin\Framework\DevExpress.Xpo.v15.2.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    
+    <Reference Include="System"><Private>False</Private></Reference>
+    <Reference Include="System.configuration"><Private>False</Private></Reference>
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    <Private>False</Private></Reference>
+    <Reference Include="System.Data"><Private>False</Private></Reference>
+    <Reference Include="System.Design"><Private>False</Private></Reference>
+    <Reference Include="System.Drawing"><Private>False</Private></Reference>
+    <Reference Include="System.Runtime.Serialization">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    <Private>False</Private></Reference>
+    <Reference Include="System.ServiceModel">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    <Private>False</Private></Reference>
+    <Reference Include="System.Windows.Forms"><Private>False</Private></Reference>
+    <Reference Include="System.Xml"><Private>False</Private></Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AssemblyVersionInfo.cs">
+      
+    </Compile>
+    <Compile Include="Adapters\DataManipulationRight_IsGrantedAdapter.cs" />
+    <Compile Include="Adapters\IsGrantedAdapterHelper.cs" />
+    <Compile Include="Adapters\SecurityAdapterDictionaryEntryLifetimeManager.cs" />
+    <Compile Include="Authentication\AuthenticationActiveDirectory.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Authentication\AuthenticationBase.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Authentication\AuthenticationException.cs" />
+    <Compile Include="Authentication\AuthenticationStandard.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ClientServer\SecuredObjectSpace.cs" />
+    <Compile Include="ClientServer\SerializablePermissionRequest.cs" />
+    <Compile Include="Controllers\ChangePasswordController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ClientServer\ClientInfo.cs" />
+    <Compile Include="ClientServer\CacheBase.cs" />
+    <Compile Include="ClientServer\MemberPermissionsMatrix.cs" />
+    <Compile Include="ClientServer\v2\ISecuredSerializableObjectLayer2.cs" />
+    <Compile Include="ClientServer\v2\Remoting\RemoteSecuredDataServer2.cs" />
+    <Compile Include="ClientServer\v2\SecuredDataServer2.cs" />
+    <Compile Include="ClientServer\v2\SecuredDataServerObjectSpaceProvider2.cs" />
+    <Compile Include="ClientServer\v2\SecuredSerializableObjectLayer2.cs" />
+    <Compile Include="ClientServer\InternalSecurityBehaviorLogHelper.cs" />
+    <Compile Include="ClientServer\SecuredSerializableObjectLayerLogger.cs" />
+    <Compile Include="ClientServer\SecurityRuleLogger.cs" />
+    <Compile Include="ClientServer\ServerSecurityLogger.cs" />
+    <Compile Include="ClientServer\LoggerBase.cs" />
+    <Compile Include="ClientServer\v2\SecuredSerializableObjectLayerClient2.cs" />
+    <Compile Include="ClientServer\v2\ServerSecurity2.cs" />
+    <Compile Include="ClientServer\v2\Wcf\IWcfSecuredDataServer2.cs" />
+    <Compile Include="ClientServer\v2\Wcf\WcfSecuredDataServer2.cs" />
+    <Compile Include="ClientServer\v2\Wcf\WcfSecuredDataServerClient2.cs" />
+    <Compile Include="ClientServer\Wcf\IWcfSecuredDataServer.cs" />
+    <Compile Include="ClientServer\Remoting\RemoteSecuredDataServer.cs" />
+    <Compile Include="ClientServer\ServerSecurity.cs" />
+    <Compile Include="ClientServer\ServerSecurityBase.cs" />
+    <Compile Include="ClientServer\SecuredSerializableObjectLayerBase.cs" />
+    <Compile Include="ClientServer\SecuredSerializableObjectLayer.cs" />
+    <Compile Include="ClientServer\ISecuredSerializableObjectLayer.cs" />
+    <Compile Include="ClientServer\IServerSecurity.cs" />
+    <Compile Include="ClientServer\SecuredDataServer.cs" />
+    <Compile Include="ClientServer\SecuredDataServerObjectSpaceProvider.cs" />
+    <Compile Include="ClientServer\SecuredSerializableObjectLayerClient.cs" />
+    <Compile Include="ClientServer\ServerSecurityClient.cs" />
+    <Compile Include="ClientServer\SecurityRule.cs" />
+    <Compile Include="ClientServer\SecuredObjectSpaceProvider.cs" />
+    <Compile Include="ClientServer\Old\ServerSecurityLogLocalizer.cs" />
+    <Compile Include="ClientServer\Wcf\WcfSecuredDataServerClient.cs" />
+    <Compile Include="ClientServer\Wcf\WcfSecuredDataServer.cs" />
+    <Compile Include="Controllers\MemberPermissionsViewItemStateController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="IsCurrentUserInRoleOperator.cs" />
+    <Compile Include="Controllers\OwnerInitializingController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\RefreshSecurityController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\HasRightsToModifyMemberController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ExceptionLocalization.cs">
+    </Compile>
+    <Compile Include="Controllers\MyDetailsController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\PermissionsController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="SecurityStrategy\NavigatePermissionRequestProcessor.cs" />
+    <Compile Include="Resources\ServerDataLogLocalizer.cs" />
+    <Compile Include="Resources\ServerSecurityLogMessages.Designer.cs" />
+    <Compile Include="SecurityStrategy\PermissionMatrix\BindingListEx.cs" />
+    <Compile Include="SecurityStrategy\PermissionMatrix\EventArgs.cs" />
+    <Compile Include="SecurityStrategy\PermissionMatrix\IPermissionMatrixTypePermissionsOwner.cs" />
+    <Compile Include="SecurityStrategy\PermissionMatrix\ListViewProcessMatrixTypePermissionObjectController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="SecurityStrategy\PermissionMatrix\MembersPermissionMatrixDisableLinkUnlinkController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="SecurityStrategy\PermissionMatrix\ObjectsPermissionMatrixDisableLinkUnlinkController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="SecurityStrategy\PermissionMatrix\PermissionMatrixDisableLinkUnlinkController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="SecurityStrategy\PermissionMatrix\PermissionMatrixGrantDenyController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="SecurityStrategy\PermissionMatrix\TypePermissionMatrix.cs" />
+    <Compile Include="SecurityStrategy\PermissionMatrix\TypePermissionMatrixItem.cs" />
+    <Compile Include="SecurityStrategy\Strategy\SecuritySystemNavigatePermissionsObject.cs" />
+    <Compile Include="SecurityStrategy\Strategy\TypeAssociationPermissionsOwnerHelper.cs" />
+    <Compile Include="SecurityStrategy\Strategy\Interfaces.cs" />
+    <Compile Include="SecurityStrategy\Strategy\SecurityStrategyTargetTypeConverter.cs" />
+    <Compile Include="SecurityStrategy\Strategy\SecuritySystemMemberPermissionsObject.cs" />
+    <Compile Include="SecurityStrategy\Strategy\SecuritySystemObjectPermissionsObject.cs" />
+    <Compile Include="SecurityStrategy\Strategy\SecuritySystemRole.cs" />
+    <Compile Include="SecurityStrategy\Strategy\SecuritySystemRoleBase.cs" />
+    <Compile Include="SecurityStrategy\Strategy\SecuritySystemTypePermissionObject.cs" />
+    <Compile Include="SecurityStrategy\Strategy\SecuritySystemTypePermissionsObjectBase.cs" />
+    <Compile Include="SecurityStrategy\Strategy\SecuritySystemTypePermissionsObjectOwner.cs" />
+    <Compile Include="SecurityStrategy\Strategy\SecuritySystemUser.cs" />
+    <Compile Include="SecurityStrategy\Strategy\SecuritySystemUserBase.cs" />
+    <Compile Include="SecurityStrategy\SelectDataSecurity.cs" />
+    <Compile Include="SecurityStrategy\ServerPermissionRequestProcessorLogger.cs" />
+    <Compile Include="SecurityStrategy\Strategy\TypePermissionsObjectOwnerHelper.cs" />
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <Compile Include="SecurityBase.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="SecurityComplex.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\LastAdminController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Module.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SecurityStrategy\ClientPermissionRequestProcessor.cs" />
+    <Compile Include="SecurityStrategy\OperationPermissions.cs" />
+    <Compile Include="SecurityStrategy\PermissionDictionary.cs" />
+    <Compile Include="SecurityStrategy\PermissionMatrix\MemberOperationPermissionDescriptor.cs" />
+    <Compile Include="SecurityStrategy\PermissionMatrix\ShowTypePermissionDetailsController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="SecurityStrategy\PermissionRequestProcessor.cs" />
+    <Compile Include="SecurityStrategy\SecurityStrategy.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="SecurityStrategy\SecurityStrategyComplex.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="SecurityStrategy\ServerPermissionRequestProcessor.cs" />
+    <Compile Include="SecurityStrategy\User.cs" />
+    <Compile Include="SecuritySimple.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\ResetPasswordController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="SecurityStrategyBase.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <Compile Include="UserVisibleExceptions.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>UserVisibleExceptions.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Utils\ExtensionMethods.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Controllers\ResetPasswordController.resx">
+      <DependentUpon>ResetPasswordController.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Controllers\ChangePasswordController.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ChangePasswordController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Model.DesignedDiffs.xafml" />
+    <EmbeddedResource Include="Model.DesignedDiffs.Localization.ru.xafml" />
+    <EmbeddedResource Include="Model.DesignedDiffs.Localization.ja.xafml" />
+    <EmbeddedResource Include="Model.DesignedDiffs.Localization.es.xafml" />
+    <EmbeddedResource Include="Model.DesignedDiffs.Localization.de.xafml" />
+    <EmbeddedResource Include="UserVisibleExceptions.resx">
+      <SubType>Designer</SubType>
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>UserVisibleExceptions.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserVisibleExceptions.ru.resx" />
+    <EmbeddedResource Include="UserVisibleExceptions.ja.resx" />
+    <EmbeddedResource Include="UserVisibleExceptions.es.resx" />
+    <EmbeddedResource Include="UserVisibleExceptions.de.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="DevExpress.ExpressApp.Xpo.v15.2"><Name>DevExpress.ExpressApp.Xpo.v15.2</Name><HintPath>..\..\..\Bin\Framework\DevExpress.ExpressApp.Xpo.v15.2.dll</HintPath></Reference>
+    <Reference Include="DevExpress.ExpressApp.v15.2"><Name>DevExpress.ExpressApp.v15.2</Name><HintPath>..\..\..\Bin\Framework\DevExpress.ExpressApp.v15.2.dll</HintPath></Reference>
+    <Reference Include="DevExpress.Persistent.BaseImpl.v15.2"><Name>DevExpress.Persistent.BaseImpl.v15.2</Name><HintPath>..\..\..\Bin\Framework\DevExpress.Persistent.BaseImpl.v15.2.dll</HintPath></Reference>
+    <Reference Include="DevExpress.Persistent.Base.v15.2"><Name>DevExpress.Persistent.Base.v15.2</Name><HintPath>..\..\..\Bin\Framework\DevExpress.Persistent.Base.v15.2.dll</HintPath></Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Toolbox_Authentication_AuthenticationBase.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Toolbox_Authentication_ActiveDirectory.ico" />
+    <EmbeddedResource Include="Resources\Toolbox_Authentication_Standard.ico" />
+    <EmbeddedResource Include="Resources\Toolbox_Security_Complex.ico" />
+    <EmbeddedResource Include="Resources\Toolbox_Security_Simple.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Toolbox_SecurityProxy.ico" />
+    <EmbeddedResource Include="Resources\Toolbox_SecurityStrategyProxy.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Toolbox_ClientConfigurator.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\ServerLogMessages.resx" />
+    <EmbeddedResource Include="Resources\ServerLogMessages.ru.resx" />
+    <EmbeddedResource Include="Resources\ServerLogMessages.ja.resx" />
+    <EmbeddedResource Include="Resources\ServerSecurityLogMessages.resx" />
+    <EmbeddedResource Include="Resources\ServerSecurityLogMessages.ru.resx" />
+    <EmbeddedResource Include="Resources\ServerSecurityLogMessages.ja.resx" />
+    <EmbeddedResource Include="Resources\ServerSecurityLogMessages.de.resx" />
+    <EmbeddedResource Include="Resources\Toolbox_SecurityStrategyComplex.ico" />
+    <EmbeddedResource Include="Resources\Toolbox_SecurityStrategySimple.ico" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Toolbox_Module_Security.ico" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

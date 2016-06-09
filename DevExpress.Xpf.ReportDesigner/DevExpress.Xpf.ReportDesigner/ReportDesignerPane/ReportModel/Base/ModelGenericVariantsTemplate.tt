@@ -1,0 +1,75 @@
+﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ output extension=".cs" #>
+using System;
+using System.ComponentModel;
+using System.Windows.Media;
+using DevExpress.Xpf.Diagram;
+using DevExpress.Xpf.Reports.UserDesigner.XRDiagram;
+using DevExpress.XtraCharts;
+using DevExpress.XtraReports.UI;
+
+<#
+string[] models = new string[] {
+    "-/Control///XRControlModelFactory/XRControl/XRDiagramItem",
+	"-/Container/TItemModel/\r\n        where TItemModel : XRControlModelBase/XRControlModelFactory/XRControl/XRDiagramContainer",
+	"-/Text///XRControlModelFactory/XRControl/XRDiagramTextItem",
+	"-/ContainerText/TItemModel/\r\n        where TItemModel : XRControlModelBase/XRControlModelFactory/XRControl/XRDiagramTextContainer",
+	"-/ChartElement///XRChartElementModelFactory/ChartElement/XRDiagramLogicItem",
+	"-/Component///XRControlModelFactory/IComponent/XRDiagramLogicItem",
+	"A/CrossBandControl///XRControlModelFactory/XRCrossBandControl/XRCrossBandControlDiagramItem",
+};
+#>
+<#foreach(var baseNameAndParameters in models) {#>
+<#
+    bool isAbstract = baseNameAndParameters.Split('/')[0] == "A";
+	string baseName = baseNameAndParameters.Split('/')[1];
+	string parameters = baseNameAndParameters.Split('/')[2];
+	string parameterTypes = baseNameAndParameters.Split('/')[3];
+	string commaParameters = string.IsNullOrEmpty(parameters) ? string.Empty : ", " + parameters;
+	string parametersComma = string.IsNullOrEmpty(parameters) ? string.Empty : parameters +  ", ";
+	string genericParameters = string.IsNullOrEmpty(parameters) ? string.Empty : "<" + parameters + ">";
+	string defaultDiagramItemName = baseNameAndParameters.Split('/')[6];
+	string baseDiagramItemName
+	    =  string.Equals(defaultDiagramItemName, "XRDiagramItem", StringComparison.Ordinal)
+		   ? "DiagramItem"
+		   : string.Equals(defaultDiagramItemName, "XRDiagramContainer", StringComparison.Ordinal)
+		       ? "DiagramContainerBase"
+			   : defaultDiagramItemName;
+	string factory = baseNameAndParameters.Split('/')[4];
+	string xrObjectType = baseNameAndParameters.Split('/')[5];
+	bool hasIcon = new string[] { "XRControlModelFactory", "XRComponentModelFactory" }.Contains(factory);
+	string iconParam = hasIcon ? ", ImageSource icon" : "";
+	string iconArg = hasIcon ? ", icon" : "";
+#>
+namespace DevExpress.Xpf.Reports.UserDesigner.ReportModel {
+<#if(!isAbstract) {#>
+    public static class XR<#=baseName#>Model<#=genericParameters#><#=parameterTypes#> {
+        public static XR<#=baseName#>ModelBase<TXRObject<#=commaParameters#>> New<TXRObject>(<#=factory#>.ISource<TXRObject> source<#=iconParam#>)
+            where TXRObject : <#=xrObjectType#> {
+
+            return new XR<#=baseName#>ModelBase<TXRObject<#=commaParameters#>>(source<#=iconArg#>);
+        }
+    }
+<#}#>
+    public static class XR<#=baseName#>Model<<#=parametersComma#>TDiagramItem><#=parameterTypes#>
+        where TDiagramItem : <#=baseDiagramItemName#>, new() {
+
+        public static XR<#=baseName#>ModelBase<TXRObject<#=commaParameters#>, TDiagramItem> New<TXRObject>(<#=factory#>.ISource<TXRObject> source<#=iconParam#>)
+            where TXRObject : <#=xrObjectType#> {
+
+            return new XR<#=baseName#>ModelBase<TXRObject<#=commaParameters#>, TDiagramItem>(source<#=iconArg#>);
+        }
+    }
+<#if(!isAbstract) {#>
+    public class XR<#=baseName#>ModelBase<TXRObject<#=commaParameters#>> : XR<#=baseName#>ModelBase<TXRObject<#=commaParameters#>, <#=defaultDiagramItemName#>>
+        where TXRObject : <#=xrObjectType#><#=parameterTypes#> {
+
+        protected internal XR<#=baseName#>ModelBase(<#=factory#>.ISource<TXRObject> source<#=iconParam#>) : base(source<#=iconArg#>) { }
+    }
+<#}#>
+}
+<#}#>

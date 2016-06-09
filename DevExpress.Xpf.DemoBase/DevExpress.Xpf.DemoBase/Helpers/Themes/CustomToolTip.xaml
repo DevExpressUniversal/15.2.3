@@ -1,0 +1,46 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+    xmlns:local="clr-namespace:DevExpress.Xpf.DemoBase.Helpers">
+
+    <Style TargetType="local:CustomToolTip">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:CustomToolTip">
+                    <Grid>
+                        <dx:DXBorder x:Name="shadow" Background="Black" Opacity="0.25" CornerRadius="4" Margin="6,6,0,0" />
+                        <dx:DXBorder x:Name="Border" Background="#8F2B2D5C" CornerRadius="3" Margin="3" />
+                        <dx:DXBorder x:Name="background" Margin="4" CornerRadius="2">
+                            <dx:DXBorder.Background>
+                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                    <GradientStop Color="White" Offset="0" />
+                                    <GradientStop Color="#FFDFE0F2" Offset="0.4" />
+                                    <GradientStop Color="White" Offset="1" />
+                                </LinearGradientBrush>
+                            </dx:DXBorder.Background>
+                        </dx:DXBorder>
+                        <dx:DXBorder x:Name="contentBorder" Margin="5" CornerRadius="1">
+                            <dx:DXBorder.Background>
+                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                    <GradientStop Color="#FFDFE0F2" Offset="0" />
+                                    <GradientStop Color="#FFCACCE0" Offset="0.4" />
+                                    <GradientStop Color="#FFE4E6F6" Offset="1" />
+                                </LinearGradientBrush>
+                            </dx:DXBorder.Background>
+                            <TextBlock Foreground="Black" Text="{TemplateBinding StringContent}" Margin="16,4,16,5" />
+                        </dx:DXBorder>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <DataTrigger xmlns:interop="clr-namespace:System.Windows.Interop;assembly=PresentationFramework" Binding="{Binding Source={x:Static interop:BrowserInteropHelper.IsBrowserHosted}}" Value="True">
+                            <Setter TargetName="shadow" Property="Visibility" Value="Collapsed" />
+                            <Setter TargetName="Border" Property="CornerRadius" Value="0,0,0,0" />
+                            <Setter TargetName="Border" Property="Margin" Value="0,0,0,0" />
+                            <Setter TargetName="background" Property="Margin" Value="1,1,1,1" />
+                            <Setter TargetName="contentBorder" Property="Margin" Value="2,2,2,2" />
+                        </DataTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

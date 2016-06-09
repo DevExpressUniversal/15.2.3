@@ -1,0 +1,1510 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{503EBA86-7856-4365-8FDA-601E40B00E40}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DevExpress.CodeParser</RootNamespace>
+    <AssemblyName>DevExpress.CodeParser.v15.2</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\Bin\Framework\</OutputPath>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+  
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\Bin\Framework\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>..\DevExpress.Key\StrongKey.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DevExpress.Data.v15.2"><HintPath>..\..\Bin\Framework\DevExpress.Data.v15.2.dll</HintPath><Private>False</Private></Reference>
+    
+    <Reference Include="System"><Private>False</Private></Reference>
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    <Private>False</Private></Reference>
+    <Reference Include="System.Data"><Private>False</Private></Reference>
+    <Reference Include="System.Xml"><Private>False</Private></Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ChildrenEnumerator.cs" />
+    <Compile Include="CodeGen\BraceSettings.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CodeGen\GeneratingContexts.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\LineBreaks\Attributes\PlaceEnumElementAttributeOnSeparateLine.cs" />
+    <Compile Include="CodeGen\Generator\LanguageElementCodeGenBase.cs" />
+    <Compile Include="CodeGen\Generator\TokenSourceFileCodeGenBase.cs" />
+    <Compile Include="CodeGen\Generator\TokenCSnippetCodeGen.cs" />
+    <Compile Include="CodeGen\Generator\CSnippetCodeGen.cs" />
+    <Compile Include="CodeGen\Generator\TokenCStatementCodeGenBase.cs" />
+    <Compile Include="CodeGen\CodeGen.cs" />
+    <Compile Include="CodeGenFactory.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\General\KeepExpressionsIndent.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\WrappingAlignment\Expressions\WrapQueryExpression.cs" />
+    <Compile Include="CodeGen\Generator\CStatementCodeGenBase.cs" />
+    <Compile Include="CodeGen\CurlyBraceOption.cs" />
+    <Compile Include="CodeGen\Formatting\FormattingElementsWriter.cs" />
+    <Compile Include="CodeGen\Formatting\FormattingHelper.cs" />
+    <Compile Include="CodeGen\Formatting\TokenList.cs" />
+    <Compile Include="CodeGen\CodeGenObject.cs" />
+    <Compile Include="CodeGen\CodeGenOptions.cs" />
+    <Compile Include="CodeGen\CodeStyle\BaseFormattingRule.cs" />
+    <Compile Include="CodeGen\CodeStyle\BlankLinesFormattingOptions.cs" />
+    <Compile Include="CodeGen\CodeStyle\Enums.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingOptions.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRulesCollection.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\BlankLines\AfterImportedNamespaceSection.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\BlankLines\BlankLinesBaseRule.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\BlankLines\AfterNamespaces.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\BlankLines\AfterTypeDeclarations.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\BlankLines\AfterSingleLineMemebers.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\BlankLines\AfterMultilineMembers.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\BlankLines\AroundRegionDirectives.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\BlankLines\AfterFileOptionsSection.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\BlankLines\AfterGlobalAttributes.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\BlankLines\AfterProcessingInstructions.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\BlankLines\InsideRegionDirectives.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\General\AdjustCodeStyleOnAutoformat.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\General\KeepExistingWhiteSpace.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\General\KeepExistingLineBreaks.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\General\GeneralBaseRule.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\Indentation\IndentCommentsStartedAtFristColumn.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\Indentation\IndentLabelsToLeftmostColumn.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\Indentation\IndentNestedUsingStatements.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\Indentation\IndentCaseStatementContents.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\Indentation\IndentCaseStatementFromSwitchStatement.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\Indentation\IndentArrayObjectAndCollectionInitializerContents.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\Indentation\IndentAnonymousMethodContents.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\Indentation\IndentCodeBlockContents.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\Indentation\IndentOpenAndCloseBraces.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\Indentation\IndentationBaseRule.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\LineBreaks\Attributes\AttributesLineBreaksBaseRule.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\LineBreaks\Attributes\PlaceMultipleAttributesOnTheirOwnLine.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\LineBreaks\Attributes\PlaceFieldConstantAttributeOnSeparateLine.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\LineBreaks\Attributes\PlaceEventAttributeOnSeparateLine.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\LineBreaks\Attributes\PlacePropertyAttributeOnSeparateLine.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\LineBreaks\Attributes\PlaceMethodAttributeOnSeparateLine.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\LineBreaks\Attributes\PlaceTypeAttributeOnSeparateLine.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\LineBreaks\CloseBrace\CloseBraceLineBreaksBaseRule.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\LineBreaks\CloseBrace\PlaceCloseBraceOnNewLineForAnonymousMethods.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\LineBreaks\CloseBrace\PlaceCloseBraceOnNewLineForAnonymousTypes.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\LineBreaks\CloseBrace\PlaceCloseBraceOnNewLineForArrayObjectAndColletionInitializers.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\LineBreaks\CloseBrace\PlaceCloseBraceOnNewLineForBlockUnderCaseStatement.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\LineBreaks\CloseBrace\PlaceCloseBraceOnNewLineForCodeBlocks.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\LineBreaks\CloseBrace\PlaceCloseBraceOnNewLineForLambdaExpressions.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\LineBreaks\CloseBrace\PlaceCloseBraceOnNewLineForMethods.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\LineBreaks\CloseBrace\PlaceCloseBraceOnNewLineForNamespaces.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\LineBreaks\CloseBrace\PlaceCloseBraceOnNewLineForProperties.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\LineBreaks\CloseBrace\PlaceCloseBraceOnNewLineForTypeDeclarations.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\LineBreaks\Members\PlaceConstructorInitializerOnSameLine.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\LineBreaks\Members\PlaceSimpleAnonymousMethodOnSingleLine.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\LineBreaks\Members\PlaceSimpleAccessorOnSingleLine.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\LineBreaks\Members\PlaceSimpleMemberOnSingleLine.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\LineBreaks\Members\PlaceAutoImplementedPropertyOnSingleLine.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\LineBreaks\Members\PlaceAbstractInterfaceMemberOnSingleLine.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\LineBreaks\LineBreaksBaseRule.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\LineBreaks\OpenBrace\PlaceOpenBraceOnNewLineForProperties.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\LineBreaks\OpenBrace\PlaceOpenBraceOnNewLineForBlocksUnderCaseStatement.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\LineBreaks\OpenBrace\PlaceOpenBraceOnNewLineForLambdaExpressions.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\LineBreaks\OpenBrace\PlaceOpenBraceOnNewLineForArrayObjectAndColletionInitializers.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\LineBreaks\OpenBrace\PlaceOpenBraceOnNewLineForAnonymousTypes.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\LineBreaks\OpenBrace\PlaceOpenBraceOnNewLineForCodeBlocks.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\LineBreaks\OpenBrace\PlaceOpenBraceOnNewLineForAnonymousMethods.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\LineBreaks\OpenBrace\PlaceOpenBraceOnNewLineForMethods.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\LineBreaks\OpenBrace\PlaceOpenBraceOnNewLineForTypeDeclarations.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\LineBreaks\OpenBrace\PlaceOpenBraceOnNewLineForNamespaces.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\LineBreaks\OpenBrace\OpenBraceLineBreaksBaseRule.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\LineBreaks\Statements\PlaceIfStatementFollowedByElseOnNewLine.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\LineBreaks\Statements\PlaceFinallyStatementOnNewLine.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\LineBreaks\Statements\PlaceCatchStatementOnNewLine.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\LineBreaks\Statements\PlaceWhileStatementOnNewLine.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\LineBreaks\Statements\PlaceElseStatementOnNewLine.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\LineBreaks\Statements\PlaceSimpleEmbeddedStatementOnSingleLine.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\LineBreaks\Members\MembersLineBreaksBaseRule.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\LineBreaks\Statements\StatementsLineBreaksBaseRule.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\OtherAndLanguageSpecific\OtherBaseRule.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\OtherAndLanguageSpecific\Other\AddLineFeedAtEndOfFile.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\OtherAndLanguageSpecific\Other\OtherLanguageSpecificBaseRule.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\Spacing\AroundEqualsInNamespaceAliasDeclaration.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\Spacing\Array\BeforeArrayRankBrackets.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\Spacing\Array\ArraySpacingBaseRule.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\Spacing\Array\WithinArrayRankBrackets.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\Spacing\Array\WithinArrayRankEmptyBrackets.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\Spacing\Array\BeforeArrayRankParentheses.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\Spacing\Array\WithinArrayRankParentheses.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\Spacing\Array\WithinArrayRankEmptyParentheses.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\Spacing\Array\WithinArrayInitializerBraces.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\Spacing\Attributes\BeforeAttributeTargetColon.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\Spacing\Attributes\AfterAttributeTargetColon.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\Spacing\Attributes\WithinAttributeBrackets.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\Spacing\Attributes\AttributesSpacingBaseRule.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\Spacing\BeforeOpenCurlyBraceOnTheSameLine.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\Spacing\Delimiters\BeforeComma.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\Spacing\Delimiters\AfterComma.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\Spacing\Delimiters\BeforeDot.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\Spacing\Delimiters\AfterDot.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\Spacing\Delimiters\BeforeColon.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\Spacing\Delimiters\AfterColon.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\Spacing\Delimiters\AroundColonStatement.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\Spacing\Delimiters\BeforeColonInLabels.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\Spacing\Delimiters\AfterColonForAncestorsListInTypeDeclaration.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\Spacing\Delimiters\BeforeColonForAncestorsListInTypeDeclaration.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\Spacing\Delimiters\AfterSemicolonInForStatement.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\Spacing\Delimiters\BeforeSemicolonInForStatement.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\Spacing\Delimiters\BeforeSemicolon.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\Spacing\Delimiters\AfterSemicolon.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\Spacing\Delimiters\BeforeColonInCaseStatement.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\Spacing\Delimiters\DelimitersSpacingBaseRule.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\Spacing\MethodCalls\BeforeOpeningParenthesisOfAMethodCallWithArguments.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\Spacing\MethodCalls\BeforeOpeningParenthesisOfAMethodCallWithoutArguments.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\Spacing\MethodCalls\WithinArgumentsListParentheses.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\Spacing\MethodCalls\WithinEmptyArgumentsListParentheses.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\Spacing\MethodCalls\MethodCallSpacingBaseRule.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\Spacing\Methods\BeforeOpeningParenthesisOfAMethodWithParameters.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\Spacing\Methods\BeforeOpeningParenthesisOfAMethodWithoutParameters.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\Spacing\Methods\WithinMethodDeclarationParentheses.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\Spacing\Methods\WithinEmptyMethodDeclarationParentheses.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\Spacing\Methods\MethodSpacingBaseRule.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\Spacing\Operators\AroundOneCharOperators.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\Spacing\Operators\AroundUnsafeOperators.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\Spacing\Operators\AroundTernaryQuestionOperator.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\Spacing\Operators\AroundTernaryColonOperator.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\Spacing\Operators\AroundLambdaExpressionOperator.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\Spacing\Operators\BeforeUnsafePointerDeclarationOperator.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\Spacing\Operators\BeforeNullableTypeOperator.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\Spacing\Operators\AroundTwoCharOperators.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\Spacing\Operators\OperatorsSpacingBaseRule.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\Spacing\Parentheses\AfterTypeCastParentheses.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\Spacing\Parentheses\Before\BeforeForForeachParentheses.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\Spacing\Parentheses\Before\BeforeWhileParentheses.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\Spacing\Parentheses\Before\BeforeSwitchParentheses.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\Spacing\Parentheses\Before\BeforeCatchParentheses.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\Spacing\Parentheses\Before\BeforeUsingLockParentheses.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\Spacing\Parentheses\Before\BeforeFixedParentheses.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\Spacing\Parentheses\Before\BeforeCheckedUncheckedParentheses.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\Spacing\Parentheses\Before\BeforeTypeofSizeofParentheses.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\Spacing\Parentheses\Before\BeforeDefaultParentheses.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\Spacing\Parentheses\Before\BeforeIfParentheses.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\Spacing\Parentheses\Before\ParenthesesBeforeSpacingBaseRule.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\Spacing\Parentheses\ParenthesesSpacingBaseRule.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\Spacing\Parentheses\Within\WithinTypeCastParentheses.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\Spacing\Parentheses\Within\WithinIfParentheses.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\Spacing\Parentheses\Within\WithinForForeachParentheses.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\Spacing\Parentheses\Within\WithinWhileParentheses.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\Spacing\Parentheses\Within\WithinSwitchParentheses.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\Spacing\Parentheses\Within\WithinCatchParentheses.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\Spacing\Parentheses\Within\WithinUsingLockParentheses.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\Spacing\Parentheses\Within\WithinTypeofSizeofParentheses.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\Spacing\Parentheses\Within\WithinFixedParentheses.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\Spacing\Parentheses\Within\WithinCheckedUncheckedParentheses.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\Spacing\Parentheses\Within\WithinDefaultParentheses.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\Spacing\Parentheses\Within\WithinExpressionParentheses.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\Spacing\Parentheses\Within\ParenthesesWithinSpacingBaseRule.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\Spacing\Properties\BeforeOpeningBraceInAccessor.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\Spacing\Properties\WithinBracesInDeclaration.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\Spacing\Properties\WithinBracesInAccessor.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\Spacing\Properties\PropertiesSpacingBaseRule.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\Spacing\Properties\BeforeOpeningBraceInDeclaration.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\Spacing\SquareBracket\BeforeOpenSquareBracket.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\Spacing\SquareBracket\WithinSquareBrackets.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\Spacing\SquareBracket\WithinEmptySquareBrackets.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\Spacing\SquareBracket\SquareBracketSpacingBaseRule.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\Spacing\TypeArguments\BeforeTypeArgumentAngles.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\Spacing\TypeArguments\WithinTypeArgumentAngles.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\Spacing\TypeArguments\BeforeTypeArgumentParenthesis.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\Spacing\TypeArguments\WithinTypeArgumentParenthesis.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\Spacing\TypeArguments\TypeArgumentsSpacingBaseRule.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\Spacing\TypeParameters\WithinTypeParameterAngles.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\Spacing\TypeParameters\AfterTypeParameterConstraintColon.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\Spacing\TypeParameters\BeforeTypeParameterParenthesis.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\Spacing\TypeParameters\WithinTypeParameterParenthesis.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\Spacing\TypeParameters\BeforeTypeParameterConstraintColon.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\Spacing\TypeParameters\TypeParametersSpacingBaseRule.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\Spacing\TypeParameters\BeforeTypeParameterAngles.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\Spacing\WithinSingleLineAnonymousMethod.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\Spacing\WithinSingleLineMethod.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\Spacing\WithinSingleLineAccessor.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\Spacing\SpacingBaseRule.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\WrappingAlignment\Expressions\AlignWithFirstBinaryExpressionItem.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\WrappingAlignment\Expressions\AlignWithFirstLogicalExpressionItem.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\WrappingAlignment\Expressions\AlignWithFirstQueryExpressionItem.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\WrappingAlignment\Expressions\WrapBeforeOperatorInBinaryExpression.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\WrappingAlignment\Expressions\WrapBeforeOperatorInLogicalExpression.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\WrappingAlignment\Expressions\WrapBinaryOperatorExpression.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\WrappingAlignment\Expressions\WrapLogicalOperatorExpression.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\WrappingAlignment\Expressions\ExpressionsWrappingAlignmentBaseRule.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\WrappingAlignment\Expressions\WrapTernaryExpression.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\WrappingAlignment\Other\WrapAlignTypeAncestors.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\WrappingAlignment\Other\WrapAlignAnonymousTypes.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\WrappingAlignment\Other\WrapAlignImplementsHandles.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\WrappingAlignment\Statements\WrapAlignMultiVariable.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\WrappingAlignment\Statements\WrapAlignArrayAndObjectInitializers.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\WrappingAlignment\TypeParameters\WrapAlignTypeParametersConstraints.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\WrappingAlignment\TypeParameters\WrapAlignTypeParameters.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\WrappingAlignment\WrapForStatementHeader.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\WrappingAlignment\WrapBeforeCloseBraceInInvocation.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\WrappingAlignment\WrapBeforeOpenBraceInInvocation.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\WrappingAlignment\WrapBeforeCloseBraceInDeclaration.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\WrappingAlignment\WrapBeforeOpenBraceInDeclaration.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\WrappingAlignment\WrapAlignInvocationArguments.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\WrappingAlignment\WrapAlignFormalParameters.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\WrappingAlignment\RightMarginColumnSize.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\WrappingAlignment\WrapLongLines.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\WrappingAlignment\WrappingAlignmentBaseLogic.cs" />
+    <Compile Include="CodeGen\CodeStyle\FormattingRules\WrappingAlignment\WrappingAlignmentBaseRule.cs" />
+    <Compile Include="CodeGen\CodeStyle\GeneralFormattingOptions.cs" />
+    <Compile Include="CodeGen\CodeStyle\IndentionFormattingOptions.cs" />
+    <Compile Include="CodeGen\CodeStyle\IFormattingService.cs" />
+    <Compile Include="CodeGen\CodeStyle\LineBreaksFormattingOptions.cs" />
+    <Compile Include="CodeGen\CodeStyle\OtherLanguageSpecificFormattingOptions.cs" />
+    <Compile Include="CodeGen\CodeStyle\SortingOrderingFormattingOptions.cs" />
+    <Compile Include="CodeGen\CodeStyle\SpacingFormattingOptions.cs" />
+    <Compile Include="CodeGen\CodeStyle\WrappingAlignmentFormattingOptions.cs" />
+    <Compile Include="CodeGen\CodeWriter.cs" />
+    <Compile Include="CodeGen\Generator\DirectiveCodeGenBase.cs" />
+    <Compile Include="CodeGen\Generator\CExpressionCodeGenBase.cs" />
+    <Compile Include="CodeGen\Generator\TokenCExpressionCodeGenBase.cs" />
+    <Compile Include="CodeGen\Generator\ExpressionCodeGenBase.cs" />
+    <Compile Include="CodeGen\Generator\TokenExpressionCodeGenBase.cs" />
+    <Compile Include="CodeGen\Formatting\FormattingTokenGen.cs" />
+    <Compile Include="CodeGen\CodeStyle\Helpers\CurlyBraceHelper.cs" />
+    <Compile Include="CodeGen\GenArgs.cs" />
+    <Compile Include="CodeGen\Generator\HtmlXmlCodeGenBase.cs" />
+    <Compile Include="CodeGen\Generator\MemberCodeGenBase.cs" />
+    <Compile Include="CodeGen\ElementsGenerationRules.cs" />
+    <Compile Include="CodeGen\Generator\SnippetCodeGenBase.cs" />
+    <Compile Include="CodeGen\Generator\SourceFileCodeGenBase.cs" />
+    <Compile Include="CodeGen\Generator\StatementCodeGenBase.cs" />
+    <Compile Include="CodeGen\Styles\CodeGenStyle.cs" />
+    <Compile Include="CodeGen\Styles\ElementCodeGenStyle.cs" />
+    <Compile Include="CodeGen\Styles\ElementCodeGenStyleCollection.cs" />
+    <Compile Include="CodeGen\Styles\IfCodeGenStyle.cs" />
+    <Compile Include="CodeGen\Generator\CSupportElementCodeGen.cs" />
+    <Compile Include="CodeGen\Generator\NamespaceGenBase.cs" />
+    <Compile Include="CodeGen\Generator\NamespaceReferenceGenBase.cs" />
+    <Compile Include="CodeGen\Generator\TokenSupportElementCodeGenBase.cs" />
+    <Compile Include="CodeGen\Generator\SupportElementCodeGenBase.cs" />
+    <Compile Include="CodeGen\TabSettings.cs" />
+    <Compile Include="CodeGen\Formatting\GenTextArgs.cs" />
+    <Compile Include="CodeGen\Formatting\TokenGenArgs.cs" />
+    <Compile Include="CodeGen\Generator\TemplateCodeGenBase.cs" />
+    <Compile Include="CodeGen\Generator\TemplateParameterCodeGenBase.cs" />
+    <Compile Include="CodeGen\Generator\TypeDeclarationCodeGenBase.cs" />
+    <Compile Include="CodeGen\Generator\XmlCodeGenBase.cs" />
+    <Compile Include="Collections\FriendAssemblies.cs" />
+    <Compile Include="Collections\HybridObjectStorage.cs" />
+    <Compile Include="Collections\IElementCollection.cs" />
+    <Compile Include="Collections\LinkedList.cs" />
+    <Compile Include="Collections\LiteAttributeElementCollection.cs" />
+    <Compile Include="Collections\LiteCaseClauseCollection.cs" />
+    <Compile Include="Collections\LiteCaseStatementCollection.cs" />
+    <Compile Include="Collections\LiteCssElementCollection.cs" />
+    <Compile Include="Collections\LiteCssExpressionCollection.cs" />
+    <Compile Include="Collections\LiteCssPropertyDeclarationCollection.cs" />
+    <Compile Include="Collections\LiteCssSelectorCollection.cs" />
+    <Compile Include="Collections\LiteCssTermCollection.cs" />
+    <Compile Include="Collections\LiteExpressionCollection.cs" />
+    <Compile Include="Collections\LiteHtmlAttributeCollection.cs" />
+    <Compile Include="Collections\LiteJoinExpressionCollection.cs" />
+    <Compile Include="Collections\LiteMemberElementCollection.cs" />
+    <Compile Include="Collections\LiteNamespaceElementCollection.cs" />
+    <Compile Include="Collections\LiteParameterElementCollection.cs" />
+    <Compile Include="Collections\LiteProjectElementCollection.cs" />
+    <Compile Include="Collections\LiteQueryIdentCollection.cs" />
+    <Compile Include="Collections\LiteSourceFileCollection.cs" />
+    <Compile Include="Collections\LiteTypeElementCollection.cs" />
+    <Compile Include="Collections\LiteTypeParameterCollection.cs" />
+    <Compile Include="Collections\LiteTypeParameterConstraintCollection.cs" />
+    <Compile Include="Collections\LiteTypeReferenceExpressionCollection.cs" />
+    <Compile Include="Collections\LiteVariableDeclarationStatementCollection.cs" />
+    <Compile Include="Collections\LiteXmlAttributeDeclarationCollection.cs" />
+    <Compile Include="Collections\LiteXmlContentParticleCollection.cs" />
+    <Compile Include="Collections\NodeList.cs" />
+    <Compile Include="Collections\ReadOnlyHashtable.cs" />
+    <Compile Include="Collections\ReadOnlyNameValueCollection.cs" />
+    <Compile Include="Collections\ReadOnlySortedList.cs" />
+    <Compile Include="Collections\ReadOnlyStringCollection.cs" />
+    <Compile Include="Collections\TextRangeCollection.cs" />
+    <Compile Include="Coordinates\DocumentHistory.cs" />
+    <Compile Include="Coordinates\FileSourceRange.cs" />
+    <Compile Include="Coordinates\FileSourceRangeCollection.cs" />
+    <Compile Include="Coordinates\LineRange.cs" />
+    <Compile Include="Coordinates\RangeTransform.cs" />
+    <Compile Include="Coordinates\SourcePoint.cs" />
+    <Compile Include="Coordinates\SourceRange.cs" />
+    <Compile Include="Coordinates\SourceRangeComparer.cs" />
+    <Compile Include="Coordinates\SourceRangeWrapper.cs" />
+    <Compile Include="Coordinates\SourceTextRange.cs" />
+    <Compile Include="Coordinates\TextRange.cs" />
+    <Compile Include="CSharp\CodeGen\CodeGenHelper.cs" />
+    <Compile Include="CSharp\CodeGen\CSharpCodeGen.cs" />
+    <Compile Include="CSharp\CodeGen\CSharpDirectiveCodeGen.cs" />
+    <Compile Include="CSharp\CodeGen\CSharpExpressionCodeGen.cs" />
+    <Compile Include="CSharp\CodeGen\CSharpMemberCodeGen.cs" />
+    <Compile Include="CSharp\CodeGen\CSharpNamespaceGen.cs" />
+    <Compile Include="CSharp\CodeGen\CSharpNamespaceReferenceGen.cs" />
+    <Compile Include="CSharp\CodeGen\CSharpSnippetCodeGen.cs" />
+    <Compile Include="CSharp\CodeGen\CSharpStatementCodeGen.cs" />
+    <Compile Include="CSharp\CodeGen\CSharpSupportElementCodeGen.cs" />
+    <Compile Include="CSharp\CodeGen\CSharpTypeDeclarationCodeGen.cs" />
+    <Compile Include="CSharp\CodeGen\CSharpXmlCodeGen.cs" />
+    <Compile Include="CSharp\CSharp10\CSharp10KeyWords.cs" />
+    <Compile Include="CSharp\CSharp10\CSharp10Tokens.cs" />
+    <Compile Include="CSharp\CSharp20\CSharp20KeyWords.cs" />
+    <Compile Include="CSharp\CSharp20\CSharp20Tokens.cs" />
+    <Compile Include="CSharp\CSharp30\CSharp30Parser.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CSharp30Parser.atg</DependentUpon>
+    </Compile>
+    <Compile Include="CSharp\CSharp30\CSharp30ParserBase.cs" />
+    <Compile Include="CSharp\CSharp30\CSharpScanner.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CSharpScanner.atg</DependentUpon>
+    </Compile>
+    <Compile Include="CSharp\CSharp30\CSharpScannerBase.cs" />
+    <Compile Include="CSharp\CSharp30\Preprocessor\CSharp30Preprocessor.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CSharp30Preprocessor.atg</DependentUpon>
+    </Compile>
+    <Compile Include="CSharp\CSharp30\Preprocessor\CSharpPreprocessorBase.cs" />
+    <Compile Include="CSharp\CSharpExpressionInverter.cs" />
+    <Compile Include="CSharp\CSharpLanguageUtils.cs" />
+    <Compile Include="CSharp\CSharpOperatorHelper.cs" />
+    <Compile Include="CSharp\CSharpPrimitiveTypeUtils.cs" />
+    <Compile Include="CSharp\CSharpPunctuators.cs" />
+    <Compile Include="CSharp\CSharpTokensBase.cs" />
+    <Compile Include="CSharp\Language\File\SourceFile.cs" />
+    <Compile Include="CSharp\TokenCategoryHelper.cs" />
+    <Compile Include="CSharp\TokenType.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Css\CssLanguageUtils.cs" />
+    <Compile Include="Css\CssParser.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CssParser.atg</DependentUpon>
+    </Compile>
+    <Compile Include="Css\CssParserBase.cs" />
+    <Compile Include="Css\CssScanner.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CssScanner.atg</DependentUpon>
+    </Compile>
+    <Compile Include="Css\CssScannerBase.cs" />
+    <Compile Include="Css\CssTokensCategoryHelper.cs" />
+    <Compile Include="DemandObjectManager.cs" />
+    <Compile Include="Diagnostics\ILogger.cs" />
+    <Compile Include="Diagnostics\NullLogger.cs" />
+    <Compile Include="ElementBuilders\AspElementBuilder.cs" />
+    <Compile Include="ElementBuilders\CommentBuilder.cs" />
+    <Compile Include="ElementBuilders\ElementBuilder.cs" />
+    <Compile Include="ElementBuilders\ElementBuilderFactory.cs" />
+    <Compile Include="ElementBuilders\VBElementBuilder.cs" />
+    <Compile Include="EmbededLanguageKind.cs" />
+    <Compile Include="EmptyLiteElements.cs" />
+    <Compile Include="Enums.cs" />
+    <Compile Include="ExpressionInverterBase.cs" />
+    <Compile Include="FilteredSourceFile.cs" />
+    <Compile Include="Filters\ComplexAndFilter.cs" />
+    <Compile Include="Filters\ComplexOrFilter.cs" />
+    <Compile Include="Filters\ConstructorFilter.cs" />
+    <Compile Include="Filters\ConstStaticMembersOrTypesFilter.cs" />
+    <Compile Include="Filters\DefaultElementFilters.cs" />
+    <Compile Include="Filters\DestructorFilter.cs" />
+    <Compile Include="Filters\ElementFilterBase.cs" />
+    <Compile Include="Filters\ElementFilters.cs" />
+    <Compile Include="Filters\ElementTypeFilter.cs" />
+    <Compile Include="Filters\EventFilter.cs" />
+    <Compile Include="Filters\ExpressionFilter.cs" />
+    <Compile Include="Filters\FieldFilter.cs" />
+    <Compile Include="Filters\FirstLevelReferenceFilter.cs" />
+    <Compile Include="Filters\InversionFilter.cs" />
+    <Compile Include="Filters\MemberFilter.cs" />
+    <Compile Include="Filters\MemberVisibilityFilter.cs" />
+    <Compile Include="Filters\MethodFilter.cs" />
+    <Compile Include="Filters\NamespaceFilter.cs" />
+    <Compile Include="Filters\NonPrivateMemberFilter.cs" />
+    <Compile Include="Filters\PredicateElementFilter.cs" />
+    <Compile Include="Filters\PropertyFilter.cs" />
+    <Compile Include="Filters\TypeDeclarationFilter.cs" />
+    <Compile Include="Filters\TypeElementsFilter.cs" />
+    <Compile Include="Filters\TypeOrNamespaceFilter.cs" />
+    <Compile Include="Filters\UsingDeclarationFilter.cs" />
+    <Compile Include="Filters\VariableFilter.cs" />
+    <Compile Include="Helpers\CharUtils.cs" />
+    <Compile Include="Helpers\CodeDomGeneratorHelper.cs" />
+    <Compile Include="Helpers\DeclarationTester.cs" />
+    <Compile Include="Helpers\ElementCollector.cs" />
+    <Compile Include="Helpers\ElementLocation.cs" />
+    <Compile Include="Helpers\ElementRangeHelper.cs" />
+    <Compile Include="Helpers\FrameworkHelper.cs" />
+    <Compile Include="Helpers\FullDirective.cs" />
+    <Compile Include="Helpers\FullIfDirective.cs" />
+    <Compile Include="Helpers\FullRegionDirective.cs" />
+    <Compile Include="Helpers\HashtableUtils.cs" />
+    <Compile Include="Helpers\MemoryHelper.cs" />
+    <Compile Include="Helpers\PrimitiveTypeUtils.cs" />
+    <Compile Include="Helpers\QualifiedExpressionHelper.cs" />
+    <Compile Include="Helpers\SiblingHelper.cs" />
+    <Compile Include="Helpers\ParserUtils.cs" />
+    <Compile Include="Helpers\SourceRangeUtils.cs" />
+    <Compile Include="Helpers\StringUtils.cs" />
+    <Compile Include="Helpers\XmlNodeComparer.cs" />
+    <Compile Include="Html\AspHelper.cs" />
+    <Compile Include="Html\HtmlLanguageUtils.cs" />
+    <Compile Include="Html\HTMLParser.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HTMLParser.atg</DependentUpon>
+    </Compile>
+    <Compile Include="Html\HtmlParserBase.cs" />
+    <Compile Include="Html\HTMLScanner.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HTMLScanner.atg</DependentUpon>
+    </Compile>
+    <Compile Include="Html\HtmlScannerBase.cs" />
+    <Compile Include="Html\MarkupExtensionParserBase.cs" />
+    <Compile Include="Html\MarkupExtensionScannerBase.cs" />
+    <Compile Include="Html\TokenCategoryHelper.cs" />
+    <Compile Include="Html\XamlLanguageUtils.cs" />
+    <Compile Include="ImageIndex.cs" />
+    <Compile Include="Interfaces\Expressions\IMarkupExtensionExpression.cs" />
+    <Compile Include="Interfaces\Expressions\IAddressOfExpression.cs" />
+    <Compile Include="Interfaces\Expressions\IAnonymousConstructorExpression.cs" />
+    <Compile Include="Interfaces\Expressions\IAnonymousMethodExpression.cs" />
+    <Compile Include="Interfaces\Expressions\IArgumentDirectionExpression.cs" />
+    <Compile Include="Interfaces\Expressions\IArrayCreateExpression.cs" />
+    <Compile Include="Interfaces\Expressions\IArrayInitializerExpression.cs" />
+    <Compile Include="Interfaces\Expressions\IAssignmentExpression.cs" />
+    <Compile Include="Interfaces\Expressions\IAttributeVariableInitializer.cs" />
+    <Compile Include="Interfaces\Expressions\IAwaitExpression.cs" />
+    <Compile Include="Interfaces\Expressions\IBaseReferenceExpression.cs" />
+    <Compile Include="Interfaces\Expressions\IBinaryOperatorExpression.cs" />
+    <Compile Include="Interfaces\Expressions\ICastTargetExpression.cs" />
+    <Compile Include="Interfaces\Expressions\ICheckedExpression.cs" />
+    <Compile Include="Interfaces\Expressions\IComplexExpression.cs" />
+    <Compile Include="Interfaces\Expressions\IConditionalExpression.cs" />
+    <Compile Include="Interfaces\Expressions\IConditionalTypeCast.cs" />
+    <Compile Include="Interfaces\Expressions\ICppQualifiedElementReferenceExpression.cs" />
+    <Compile Include="Interfaces\Expressions\ICTypeExpression.cs" />
+    <Compile Include="Interfaces\Expressions\IDefaultValueExpression.cs" />
+    <Compile Include="Interfaces\Expressions\IDeleteExpression.cs" />
+    <Compile Include="Interfaces\Expressions\IDirectCastExpression.cs" />
+    <Compile Include="Interfaces\Expressions\IElementReferenceExpression.cs" />
+    <Compile Include="Interfaces\Expressions\IEmptyArgumentExpression.cs" />
+    <Compile Include="Interfaces\Expressions\IExpression.cs" />
+    <Compile Include="Interfaces\Expressions\IFunctionPointerTypeReference.cs" />
+    <Compile Include="Interfaces\Expressions\IGenericExpression.cs" />
+    <Compile Include="Interfaces\Expressions\IIfOperatorExpression.cs" />
+    <Compile Include="Interfaces\Expressions\IIndexerExpression.cs" />
+    <Compile Include="Interfaces\Expressions\IIsExpression.cs" />
+    <Compile Include="Interfaces\Expressions\IIsNotExpression.cs" />
+    <Compile Include="Interfaces\Expressions\ILogicalInversionExpression.cs" />
+    <Compile Include="Interfaces\Expressions\ILogicalOperationExpression.cs" />
+    <Compile Include="Interfaces\Expressions\IMemberAccessExpression.cs" />
+    <Compile Include="Interfaces\Expressions\IMethodCallExpression.cs" />
+    <Compile Include="Interfaces\Expressions\IMethodReferenceExpression.cs" />
+    <Compile Include="Interfaces\Expressions\IMyClassExpression.cs" />
+    <Compile Include="Interfaces\Expressions\INullCoalescingExpression.cs" />
+    <Compile Include="Interfaces\Expressions\IObjectCreationExpression.cs" />
+    <Compile Include="Interfaces\Expressions\IOperatorExpression.cs" />
+    <Compile Include="Interfaces\Expressions\IParenthesizedExpression.cs" />
+    <Compile Include="Interfaces\Expressions\IPointerElementReference.cs" />
+    <Compile Include="Interfaces\Expressions\IPrimitiveExpression.cs" />
+    <Compile Include="Interfaces\Expressions\IQualifiedAliasExpression.cs" />
+    <Compile Include="Interfaces\Expressions\IQualifiedElementReferenceExpression.cs" />
+    <Compile Include="Interfaces\Expressions\IQualifiedNestedReference.cs" />
+    <Compile Include="Interfaces\OrcasInterfaces\IQueryableCollectionReferenceExpression.cs" />
+    <Compile Include="Interfaces\Expressions\IReDimExpression.cs" />
+    <Compile Include="Interfaces\Expressions\IReferenceExpression.cs" />
+    <Compile Include="Interfaces\Expressions\IRelationalOperationExpression.cs" />
+    <Compile Include="Interfaces\Expressions\IShortInitializeExpression.cs" />
+    <Compile Include="Interfaces\Expressions\ISizeOfExpression.cs" />
+    <Compile Include="Interfaces\Expressions\IThisReferenceExpression.cs" />
+    <Compile Include="Interfaces\Expressions\ITypeCastExpression.cs" />
+    <Compile Include="Interfaces\Expressions\ITypeCheckExpression.cs" />
+    <Compile Include="Interfaces\Expressions\ITypedElementReferenceExpression.cs.cs" />
+    <Compile Include="Interfaces\Expressions\ITypeOfExpression.cs" />
+    <Compile Include="Interfaces\Expressions\ITypeOfIsExpression.cs" />
+    <Compile Include="Interfaces\Expressions\ITypeReferenceExpression.cs" />
+    <Compile Include="Interfaces\Expressions\IUnaryDecrementExpression.cs" />
+    <Compile Include="Interfaces\Expressions\IUnaryIncrementExpression.cs" />
+    <Compile Include="Interfaces\Expressions\IUnaryOperatorExpression.cs" />
+    <Compile Include="Interfaces\Expressions\IUncheckedExpression.cs" />
+    <Compile Include="Interfaces\Expressions\IWithSource.cs" />
+    <Compile Include="Interfaces\HtmlInterfaces\Attributes\IHtmlAttribute.cs" />
+    <Compile Include="Interfaces\HtmlInterfaces\Attributes\IXmlAttribute.cs" />
+    <Compile Include="Interfaces\HtmlInterfaces\BaseXmlInterfaces\IBaseXmlNode.cs" />
+    <Compile Include="Interfaces\HtmlInterfaces\BaseXmlInterfaces\INewExternalIDLinkInterfaces\INewExternalIDLink.cs" />
+    <Compile Include="Interfaces\HtmlInterfaces\BaseXmlInterfaces\INewExternalIDLinkInterfaces\INewExternalIDSystemLink.cs" />
+    <Compile Include="Interfaces\HtmlInterfaces\BaseXmlInterfaces\INewExternalIDLinkInterfaces\INewExternalPublicLink.cs" />
+    <Compile Include="Interfaces\HtmlInterfaces\BaseXmlInterfaces\IXmlAttributeDeclaration.cs" />
+    <Compile Include="Interfaces\HtmlInterfaces\BaseXmlInterfaces\IXmlAttributeListDeclaration.cs" />
+    <Compile Include="Interfaces\HtmlInterfaces\BaseXmlInterfaces\IXmlBaseContentSpecsInterfaces\IXmlAnyContentSpec.cs" />
+    <Compile Include="Interfaces\HtmlInterfaces\BaseXmlInterfaces\IXmlBaseContentSpecsInterfaces\IXmlBaseContentSpec.cs" />
+    <Compile Include="Interfaces\HtmlInterfaces\BaseXmlInterfaces\IXmlBaseContentSpecsInterfaces\IXmlChildrenContentSpec.cs" />
+    <Compile Include="Interfaces\HtmlInterfaces\BaseXmlInterfaces\IXmlBaseContentSpecsInterfaces\IXmlEmptyContentSpec.cs" />
+    <Compile Include="Interfaces\HtmlInterfaces\BaseXmlInterfaces\IXmlBaseContentSpecsInterfaces\IXmlMixedContentSpec.cs" />
+    <Compile Include="Interfaces\HtmlInterfaces\BaseXmlInterfaces\IXmlCharacterData.cs" />
+    <Compile Include="Interfaces\HtmlInterfaces\BaseXmlInterfaces\IXmlCharReference.cs" />
+    <Compile Include="Interfaces\HtmlInterfaces\BaseXmlInterfaces\IXmlContentParticleInterfaces\IXmlContentParticle.cs" />
+    <Compile Include="Interfaces\HtmlInterfaces\BaseXmlInterfaces\IXmlContentParticleInterfaces\IXmlNamedContentParticle.cs" />
+    <Compile Include="Interfaces\HtmlInterfaces\BaseXmlInterfaces\IXmlContentParticleInterfaces\IXmlSequenceContentParticles\IXmlChoiceContentParticle.cs" />
+    <Compile Include="Interfaces\HtmlInterfaces\BaseXmlInterfaces\IXmlContentParticleInterfaces\IXmlSequenceContentParticles\IXmlSequenceContentParticle.cs" />
+    <Compile Include="Interfaces\HtmlInterfaces\BaseXmlInterfaces\IXmlContentParticleInterfaces\IXmlSequenceContentParticles\IXmlSequencedContentParticle.cs" />
+    <Compile Include="Interfaces\HtmlInterfaces\BaseXmlInterfaces\IXmlNameInterfaces\IXmlName.cs" />
+    <Compile Include="Interfaces\HtmlInterfaces\CssElements\ICssAngleLiteral.cs" />
+    <Compile Include="Interfaces\HtmlInterfaces\CssElements\ICssAttributeSelector.cs" />
+    <Compile Include="Interfaces\HtmlInterfaces\CssElements\ICssCharsetDeclaration.cs" />
+    <Compile Include="Interfaces\HtmlInterfaces\CssElements\ICssColorReference.cs" />
+    <Compile Include="Interfaces\HtmlInterfaces\CssElements\ICssCommentTag.cs" />
+    <Compile Include="Interfaces\HtmlInterfaces\CssElements\ICssElement.cs" />
+    <Compile Include="Interfaces\HtmlInterfaces\CssElements\ICssExpression.cs" />
+    <Compile Include="Interfaces\HtmlInterfaces\CssElements\ICssFrequencyLiteral.cs" />
+    <Compile Include="Interfaces\HtmlInterfaces\CssElements\ICssFunctionReference.cs" />
+    <Compile Include="Interfaces\HtmlInterfaces\CssElements\ICssIdentifierReference.cs" />
+    <Compile Include="Interfaces\HtmlInterfaces\CssElements\ICssImportDirective.cs" />
+    <Compile Include="Interfaces\HtmlInterfaces\CssElements\ICssLengthLiteral.cs" />
+    <Compile Include="Interfaces\HtmlInterfaces\CssElements\ICssMeasuredNumber.cs" />
+    <Compile Include="Interfaces\HtmlInterfaces\CssElements\ICssMediaDirective.cs" />
+    <Compile Include="Interfaces\HtmlInterfaces\CssElements\ICssNumberLiteral.cs" />
+    <Compile Include="Interfaces\HtmlInterfaces\CssElements\ICssPageStyle.cs" />
+    <Compile Include="Interfaces\HtmlInterfaces\CssElements\ICssPercentLiteral.cs" />
+    <Compile Include="Interfaces\HtmlInterfaces\CssElements\ICssPropertyDeclaration.cs" />
+    <Compile Include="Interfaces\HtmlInterfaces\CssElements\ICssPseudoFunctionSelector.cs" />
+    <Compile Include="Interfaces\HtmlInterfaces\CssElements\ICssPseudoSelector.cs" />
+    <Compile Include="Interfaces\HtmlInterfaces\CssElements\ICssSelector.cs" />
+    <Compile Include="Interfaces\HtmlInterfaces\CssElements\ICssStringLiteral.cs" />
+    <Compile Include="Interfaces\HtmlInterfaces\CssElements\ICssStyleRule.cs" />
+    <Compile Include="Interfaces\HtmlInterfaces\CssElements\ICssStyleSheet.cs" />
+    <Compile Include="Interfaces\HtmlInterfaces\CssElements\ICssTerm.cs" />
+    <Compile Include="Interfaces\HtmlInterfaces\CssElements\ICssTimeLiteral.cs" />
+    <Compile Include="Interfaces\HtmlInterfaces\CssElements\ICssURIReference.cs" />
+    <Compile Include="Interfaces\HtmlInterfaces\IXmlNode.cs" />
+    <Compile Include="Interfaces\HtmlInterfaces\XmlElements\IHtmlStyleDefinition.cs" />
+    <Compile Include="Interfaces\HtmlInterfaces\XmlElements\IAspDirective.cs" />
+    <Compile Include="Interfaces\HtmlInterfaces\XmlElements\IHtmlScriptDefinition.cs" />
+    <Compile Include="Interfaces\HtmlInterfaces\XmlElements\IAspCodeEmbedding.cs" />
+    <Compile Include="Interfaces\HtmlInterfaces\XmlElements\IHtmlElement.cs" />
+    <Compile Include="Interfaces\HtmlInterfaces\XmlElements\IXmlElement.cs" />
+    <Compile Include="Interfaces\IAliasList.cs" />
+    <Compile Include="Interfaces\IAspSourceFile.cs" />
+    <Compile Include="Interfaces\IBaseVariable.cs" />
+    <Compile Include="Interfaces\ICollapsibleRegion.cs" />
+    <Compile Include="Interfaces\IComments.cs" />
+    <Compile Include="Interfaces\ICompilerDirectives.cs" />
+    <Compile Include="Interfaces\IDisposableEditPoint.cs" />
+    <Compile Include="Interfaces\IDisposableEditPointFactory.cs" />
+    <Compile Include="Interfaces\IDocument.cs" />
+    <Compile Include="Interfaces\IDteProjectItem.cs" />
+    <Compile Include="Interfaces\IDXCoreTextView.cs" />
+    <Compile Include="Interfaces\IElement.cs" />
+    <Compile Include="Interfaces\IElementModifier.cs" />
+    <Compile Include="Interfaces\IElementVisitor.cs" />
+    <Compile Include="Interfaces\IExternAlias.cs" />
+    <Compile Include="Interfaces\IGenericElement.cs" />
+    <Compile Include="Interfaces\IHasArguments.cs" />
+    <Compile Include="Interfaces\IHasArrayNameModifier.cs" />
+    <Compile Include="Interfaces\IHasAttributes.cs" />
+    <Compile Include="Interfaces\IHasParameters.cs" />
+    <Compile Include="Interfaces\IHasParens.cs" />
+    <Compile Include="Interfaces\IHasResolvePoint.cs" />
+    <Compile Include="Interfaces\IHasType.cs" />
+    <Compile Include="Interfaces\IIntoContainingElement.cs" />
+    <Compile Include="Interfaces\ILanguageElementCollectionFilter.cs" />
+    <Compile Include="Interfaces\ILanguageElementFilter.cs" />
+    <Compile Include="Interfaces\ILexer.cs" />
+    <Compile Include="Interfaces\ILocalDeclaration.cs" />
+    <Compile Include="Interfaces\INamespaceElement.cs" />
+    <Compile Include="Interfaces\INamespaceReference.cs" />
+    <Compile Include="Interfaces\IRegions.cs" />
+    <Compile Include="Interfaces\ISnippetCodeElement.cs" />
+    <Compile Include="Interfaces\ISourceFileManager.cs" />
+    <Compile Include="Interfaces\ISourceReader.cs" />
+    <Compile Include="Interfaces\ISourceTreeResolver.cs" />
+    <Compile Include="Interfaces\ISourceTreeResolverOptions.cs" />
+    <Compile Include="Interfaces\IStructuralParserServices.cs" />
+    <Compile Include="Interfaces\ITextStrings.cs" />
+    <Compile Include="Interfaces\ITokenCategoryHelper.cs" />
+    <Compile Include="Interfaces\ITypeParameterModifier.cs" />
+    <Compile Include="Interfaces\ITypeReferenceExpressionModifier.cs" />
+    <Compile Include="Interfaces\IUsingList.cs" />
+    <Compile Include="Interfaces\IVariableDeclaration.cs" />
+    <Compile Include="Interfaces\IWithArguments.cs" />
+    <Compile Include="Interfaces\IWithParameters.cs" />
+    <Compile Include="Interfaces\IXmlDocComments.cs" />
+    <Compile Include="Interfaces\IXmlDocParser.cs" />
+    <Compile Include="Interfaces\Members\IConstElement.cs" />
+    <Compile Include="Interfaces\Members\IConstructorInitializerElement.cs" />
+    <Compile Include="Interfaces\Members\IEnumElement.cs" />
+    <Compile Include="Interfaces\Members\IEventElement.cs" />
+    <Compile Include="Interfaces\Members\IFieldElement.cs" />
+    <Compile Include="Interfaces\Members\IMemberElement.cs" />
+    <Compile Include="Interfaces\Members\IMethodElement.cs" />
+    <Compile Include="Interfaces\Members\IParameterElement.cs" />
+    <Compile Include="Interfaces\Members\IPropertyElement.cs" />
+    <Compile Include="Interfaces\OrcasInterfaces\IAggregateExpression.cs" />
+    <Compile Include="Interfaces\OrcasInterfaces\IAnonymousTypeReferenceExpression.cs" />
+    <Compile Include="Interfaces\OrcasInterfaces\IDistinctExpression.cs" />
+    <Compile Include="Interfaces\OrcasInterfaces\IEqualsExpression.cs" />
+    <Compile Include="Interfaces\OrcasInterfaces\IExtensionMethodParam.cs" />
+    <Compile Include="Interfaces\OrcasInterfaces\IFromExpression.cs" />
+    <Compile Include="Interfaces\OrcasInterfaces\IGroupByExpression.cs" />
+    <Compile Include="Interfaces\OrcasInterfaces\IGroupExpression.cs" />
+    <Compile Include="Interfaces\OrcasInterfaces\IImplicitVariable.cs" />
+    <Compile Include="Interfaces\OrcasInterfaces\IInExpression.cs" />
+    <Compile Include="Interfaces\OrcasInterfaces\IIntoExpression.cs" />
+    <Compile Include="Interfaces\OrcasInterfaces\IJoinExpression.cs" />
+    <Compile Include="Interfaces\OrcasInterfaces\IJoinIntoExpression.cs" />
+    <Compile Include="Interfaces\OrcasInterfaces\ILambdaExpression.cs" />
+    <Compile Include="Interfaces\OrcasInterfaces\ILambdaImplicitlyTypedParam.cs" />
+    <Compile Include="Interfaces\OrcasInterfaces\ILetExpression.cs" />
+    <Compile Include="Interfaces\OrcasInterfaces\IMemberInitializerExpression.cs" />
+    <Compile Include="Interfaces\OrcasInterfaces\IObjectInitializerExpression.cs" />
+    <Compile Include="Interfaces\OrcasInterfaces\IOrderByExpression.cs" />
+    <Compile Include="Interfaces\OrcasInterfaces\IOrderingExpression.cs" />
+    <Compile Include="Interfaces\OrcasInterfaces\IQueryExpression.cs" />
+    <Compile Include="Interfaces\OrcasInterfaces\IQueryExpressionBase.cs" />
+    <Compile Include="Interfaces\OrcasInterfaces\IQueryIdent.cs" />
+    <Compile Include="Interfaces\OrcasInterfaces\ISelectExpression.cs" />
+    <Compile Include="Interfaces\OrcasInterfaces\IWhereExpression.cs" />
+    <Compile Include="Interfaces\OrcasInterfaces\IXmlAttributeReferenceExpression.cs" />
+    <Compile Include="Interfaces\OrcasInterfaces\IXmlElementReferenceExpression.cs" />
+    <Compile Include="Interfaces\OrcasInterfaces\IXmlExpression.cs" />
+    <Compile Include="Interfaces\ProjectModel\IAssemblyModel.cs" />
+    <Compile Include="Interfaces\ProjectModel\IAssemblyReference.cs" />
+    <Compile Include="Interfaces\ProjectModel\IProjectElement.cs" />
+    <Compile Include="Interfaces\ProjectModel\IProjectSourceModelCache.cs" />
+    <Compile Include="Interfaces\ProjectModel\IResolvingCache.cs" />
+    <Compile Include="Interfaces\ProjectModel\ISolutionElement.cs" />
+    <Compile Include="Interfaces\ProjectModel\ISourceFile.cs" />
+    <Compile Include="Interfaces\Statements\IBlockStatement.cs" />
+    <Compile Include="Interfaces\Statements\ICallStatement.cs" />
+    <Compile Include="Interfaces\Statements\IFakeStatement.cs" />
+    <Compile Include="Interfaces\Statements\IAbortStatement.cs" />
+    <Compile Include="Interfaces\Statements\IAddHandlerStatement.cs" />
+    <Compile Include="Interfaces\Statements\IAssignmentStatement.cs" />
+    <Compile Include="Interfaces\Statements\IBreakStatement.cs" />
+    <Compile Include="Interfaces\Statements\ICaseClausesList.cs" />
+    <Compile Include="Interfaces\Statements\ICaseClauseStatement.cs" />
+    <Compile Include="Interfaces\Statements\ICaseStatement.cs" />
+    <Compile Include="Interfaces\Statements\ICatchStatement.cs" />
+    <Compile Include="Interfaces\Statements\IConditionalStatement.cs" />
+    <Compile Include="Interfaces\Statements\IContinueStatement.cs" />
+    <Compile Include="Interfaces\Statements\IDoStatement.cs" />
+    <Compile Include="Interfaces\Statements\IElseIfStatement.cs" />
+    <Compile Include="Interfaces\Statements\IElseStatement.cs" />
+    <Compile Include="Interfaces\Statements\IFinallyStatement.cs" />
+    <Compile Include="Interfaces\Statements\IFixedStatement.cs" />
+    <Compile Include="Interfaces\Statements\IFlowBreak.cs" />
+    <Compile Include="Interfaces\Statements\IForEachStatement.cs" />
+    <Compile Include="Interfaces\Statements\IForStatement.cs" />
+    <Compile Include="Interfaces\Statements\IHandlerStatement.cs" />
+    <Compile Include="Interfaces\Statements\IIfStatement.cs" />
+    <Compile Include="Interfaces\Statements\ILockStatement.cs" />
+    <Compile Include="Interfaces\Statements\IMethodCallStatement.cs" />
+    <Compile Include="Interfaces\Statements\IRemoveHandlerStatement.cs" />
+    <Compile Include="Interfaces\Statements\IReturnStatement.cs" />
+    <Compile Include="Interfaces\Statements\IStatement.cs" />
+    <Compile Include="Interfaces\Statements\ISwitchStatement.cs" />
+    <Compile Include="Interfaces\Statements\IThrowStatement.cs" />
+    <Compile Include="Interfaces\Statements\ITryStatement.cs" />
+    <Compile Include="Interfaces\Statements\IUncheckedStatement.cs" />
+    <Compile Include="Interfaces\Statements\IUsingDeclarationStatement.cs" />
+    <Compile Include="Interfaces\Statements\IUsingStatement.cs" />
+    <Compile Include="Interfaces\Statements\IWhileStatement.cs" />
+    <Compile Include="Interfaces\Statements\IWithStatement.cs" />
+    <Compile Include="Interfaces\Statements\IYieldBreakStatement.cs" />
+    <Compile Include="Interfaces\Statements\IYieldReturnStatement.cs" />
+    <Compile Include="Interfaces\Statements\IYieldStatement.cs" />
+    <Compile Include="Interfaces\Types\IAnonymousTypeElement.cs" />
+    <Compile Include="Interfaces\Types\IArrayNameModifier.cs" />
+    <Compile Include="Interfaces\Types\IArrayTypeElement.cs" />
+    <Compile Include="Interfaces\Types\IAttributeElement.cs" />
+    <Compile Include="Interfaces\Types\IAttributeSectionElement.cs" />
+    <Compile Include="Interfaces\Types\IClassElement.cs" />
+    <Compile Include="Interfaces\Types\IDelegateElement.cs" />
+    <Compile Include="Interfaces\Types\IDynamicTypeElement.cs" />
+    <Compile Include="Interfaces\Types\IElaboratedTypeElement.cs" />
+    <Compile Include="Interfaces\Types\IEnumerationElement.cs" />
+    <Compile Include="Interfaces\Types\IInterfaceClassElement.cs" />
+    <Compile Include="Interfaces\Types\IInterfaceElement.cs" />
+    <Compile Include="Interfaces\Types\IInterfaceStructElement.cs" />
+    <Compile Include="Interfaces\Types\IModuleElement.cs" />
+    <Compile Include="Interfaces\Types\IRefClassElement.cs" />
+    <Compile Include="Interfaces\Types\IRefStructElement.cs" />
+    <Compile Include="Interfaces\Types\IStructElement.cs" />
+    <Compile Include="Interfaces\Types\ITypeElement.cs" />
+    <Compile Include="Interfaces\Types\IUnionElement.cs" />
+    <Compile Include="Interfaces\Types\IValueClassElement.cs" />
+    <Compile Include="Interfaces\Types\IValueStructElement.cs" />
+    <Compile Include="Interfaces\Types\TemplateParameters\IClassTemplateParameter.cs" />
+    <Compile Include="Interfaces\Types\TemplateParameters\INamedTemplateParameter.cs" />
+    <Compile Include="Interfaces\Types\TemplateParameters\INestedTemplateParameter.cs" />
+    <Compile Include="Interfaces\Types\TemplateParameters\ITemplateParameter.cs" />
+    <Compile Include="Interfaces\Types\TypeParameters\IClassTypeParameterConstraint.cs" />
+    <Compile Include="Interfaces\Types\TypeParameters\INamedTypeParameterConstraint.cs" />
+    <Compile Include="Interfaces\Types\TypeParameters\INewTypeParameterConstraint.cs" />
+    <Compile Include="Interfaces\Types\TypeParameters\IStructTypeParameterConstraint.cs" />
+    <Compile Include="Interfaces\Types\TypeParameters\ITypeParameter.cs" />
+    <Compile Include="Interfaces\Types\TypeParameters\ITypeParameterConstraint.cs" />
+    <Compile Include="JavaScript\CodeGen\JavaScriptCodeGen.cs" />
+    <Compile Include="JavaScript\CodeGen\JavaScriptExpressionCodegen.cs" />
+    <Compile Include="JavaScript\CodeGen\JavaScriptMemberCodegen.cs" />
+    <Compile Include="JavaScript\CodeGen\JavaScriptStatementCodeGen.cs" />
+    <Compile Include="JavaScript\CodeGen\JavaScriptSupportElementCodeGen.cs" />
+    <Compile Include="JavaScript\CodeGen\JavaScriptXmlCodeGen.cs" />
+    <Compile Include="JavaScript\ExpressionParser.cs" />
+    <Compile Include="JavaScript\JavaScriptLanguageUtils.cs" />
+    <Compile Include="JavaScript\JavaScriptTokensHelper.cs" />
+    <Compile Include="JavaScript\Parser.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Parser.atg</DependentUpon>
+    </Compile>
+    <Compile Include="JavaScript\ParserBase.cs" />
+    <Compile Include="JavaScript\PrimitveUtils.cs" />
+    <Compile Include="JavaScript\Scanner.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Scanner.atg</DependentUpon>
+    </Compile>
+    <Compile Include="JavaScript\ScannerBase.cs" />
+    <Compile Include="LanguageElementRestorer.cs" />
+    <Compile Include="LanguageUtils.cs" />
+    <Compile Include="Language\AtgLanguageElements.cs" />
+    <Compile Include="Language\Base Classes\BaseElement.cs" />
+    <Compile Include="Language\Base Classes\CodeElement.cs" />
+    <Compile Include="Language\Base Classes\CompilerDirectiveCollection.cs" />
+    <Compile Include="Language\Base Classes\ConditionalParentingStatement.cs" />
+    <Compile Include="Language\Base Classes\ConditionalParentToSingleStatement.cs" />
+    <Compile Include="Language\Base Classes\DelimiterCapableBlock.cs" />
+    <Compile Include="Language\Base Classes\DocumentElement.cs" />
+    <Compile Include="Language\Base Classes\ElementCloneOptions.cs" />
+    <Compile Include="Language\Base Classes\ElementEnumerable.cs" />
+    <Compile Include="Language\Base Classes\ElementList.cs" />
+    <Compile Include="Language\Base Classes\LanguageElement.cs" />
+    <Compile Include="Language\Base Classes\LanguageElementCollection.cs" />
+    <Compile Include="Language\Base Classes\LanguageElementCollectionBase.cs" />
+    <Compile Include="Language\Base Classes\LanguageElementList.cs" />
+    <Compile Include="Language\Base Classes\LanguageElementType.cs" />
+    <Compile Include="Language\Base Classes\MemberVisibility.cs" />
+    <Compile Include="Language\Base Classes\ParentingStatement.cs" />
+    <Compile Include="Language\Base Classes\ParentToSingleStatement.cs" />
+    <Compile Include="Language\Base Classes\PostponedParsingData.cs" />
+    <Compile Include="Language\Base Classes\ReadOnlyLanguageElementCollection.cs" />
+    <Compile Include="Language\Base Classes\RegionDirectiveCollection.cs" />
+    <Compile Include="Language\Base Classes\SupportElement.cs" />
+    <Compile Include="Language\Base Classes\SupportElements.cs" />
+    <Compile Include="Language\Base Classes\TextString.cs" />
+    <Compile Include="Language\Base Classes\TextStringCollection.cs" />
+    <Compile Include="Language\Comments\Comment.cs" />
+    <Compile Include="Language\Comments\CommentCollection.cs" />
+    <Compile Include="Language\Comments\XMLDocComment.cs" />
+    <Compile Include="Language\Css\BaseCssElement.cs" />
+    <Compile Include="Language\Css\CssAngleLiteral.cs" />
+    <Compile Include="Language\Css\CssAttributeSelector.cs" />
+    <Compile Include="Language\Css\CssCharsetDeclaration.cs" />
+    <Compile Include="Language\Css\CssColorReference.cs" />
+    <Compile Include="Language\Css\CssCommentTag.cs" />
+    <Compile Include="Language\Css\CssExpression.cs" />
+    <Compile Include="Language\Css\CssExpressionCollection.cs" />
+    <Compile Include="Language\Css\CssFrequencyLiteral.cs" />
+    <Compile Include="Language\Css\CssFunctionReference.cs" />
+    <Compile Include="Language\Css\CssIdentifierReference.cs" />
+    <Compile Include="Language\Css\CssImportDirective.cs" />
+    <Compile Include="Language\Css\CssLengthLiteral.cs" />
+    <Compile Include="Language\Css\CssMeasuredNumber.cs" />
+    <Compile Include="Language\Css\CssMediaDirective.cs" />
+    <Compile Include="Language\Css\CssNumberLiteral.cs" />
+    <Compile Include="Language\Css\CssPageStyle.cs" />
+    <Compile Include="Language\Css\CssPercentLiteral.cs" />
+    <Compile Include="Language\Css\CssPropertyDeclaration.cs" />
+    <Compile Include="Language\Css\CssPropertyDeclarationCollection.cs" />
+    <Compile Include="Language\Css\CssPseudoFunctionSelector.cs" />
+    <Compile Include="Language\Css\CssPseudoSelector.cs" />
+    <Compile Include="Language\Css\CssSelector.cs" />
+    <Compile Include="Language\Css\CssSelectorCollection.cs" />
+    <Compile Include="Language\Css\CssStringLiteral.cs" />
+    <Compile Include="Language\Css\CssStyleRule.cs" />
+    <Compile Include="Language\Css\CssStyleSheet.cs" />
+    <Compile Include="Language\Css\CssTerm.cs" />
+    <Compile Include="Language\Css\CssTermCollection.cs" />
+    <Compile Include="Language\Css\CssTimeLiteral.cs" />
+    <Compile Include="Language\Css\CssURIReference.cs" />
+    <Compile Include="Language\Css\Enums\AttributeSelectorEqualityType.cs" />
+    <Compile Include="Language\Css\Enums\CommentTagKind.cs" />
+    <Compile Include="Language\Css\Enums\CssMeasureUnit.cs" />
+    <Compile Include="Language\Css\Enums\CssSelectorType.cs" />
+    <Compile Include="Language\Css\Enums\ExpressionDelimiter.cs" />
+    <Compile Include="Language\Css\Enums\PrecedingSign.cs" />
+    <Compile Include="Language\Directives\CompilerDirective.cs" />
+    <Compile Include="Language\Directives\PragmaDirective.cs" />
+    <Compile Include="Language\Directives\ConstDirective.cs" />
+    <Compile Include="Language\Directives\DefineDirective.cs" />
+    <Compile Include="Language\Directives\ElifDirective.cs" />
+    <Compile Include="Language\Directives\ElseDirective.cs" />
+    <Compile Include="Language\Directives\EndifDirective.cs" />
+    <Compile Include="Language\Directives\EndRegionDirective.cs" />
+    <Compile Include="Language\Directives\ErrorDirective.cs" />
+    <Compile Include="Language\Directives\IfDefDirective.cs" />
+    <Compile Include="Language\Directives\IfDirective.cs" />
+    <Compile Include="Language\Directives\IfnDefDirective.cs" />
+    <Compile Include="Language\Directives\ImportDirective.cs" />
+    <Compile Include="Language\Directives\IncludeDirective.cs" />
+    <Compile Include="Language\Directives\LineDirective.cs" />
+    <Compile Include="Language\Directives\OptionDirective.cs" />
+    <Compile Include="Language\Directives\PreprocessorDirective.cs" />
+    <Compile Include="Language\Directives\RegionDirective.cs" />
+    <Compile Include="Language\Directives\UndefDirective.cs" />
+    <Compile Include="Language\Directives\WarningDirective.cs" />
+    <Compile Include="Language\Expressions\AddressOfExpression.cs" />
+    <Compile Include="Language\Expressions\AggregateElementReferenceExpression.cs" />
+    <Compile Include="Language\Expressions\AggregateMethodCallExpression.cs" />
+    <Compile Include="Language\Expressions\AncestorTypeReference.cs" />
+    <Compile Include="Language\Expressions\AnonymousConstructorExpression.cs" />
+    <Compile Include="Language\Expressions\AnonymousMethodExpression.cs" />
+    <Compile Include="Language\Expressions\ArgumentDirectionExpression.cs" />
+    <Compile Include="Language\Expressions\ArrayCreateExpression.cs" />
+    <Compile Include="Language\Expressions\ArrayInitializerExpression.cs" />
+    <Compile Include="Language\Expressions\AssignmentExpression.cs" />
+    <Compile Include="Language\Expressions\AssociativeContainerExpression.cs" />
+    <Compile Include="Language\Expressions\AttributeVariableInitializer.cs" />
+    <Compile Include="Language\Expressions\AwaitExpression.cs" />
+    <Compile Include="Language\Expressions\BaseReferenceExpression.cs" />
+    <Compile Include="Language\Expressions\BinaryOperatorExpression.cs" />
+    <Compile Include="Language\Expressions\CastTargetExpression.cs" />
+    <Compile Include="Language\Expressions\CheckedExpression.cs" />
+    <Compile Include="Language\Expressions\ComplexExpression.cs" />
+    <Compile Include="Language\Expressions\ConditionalExpression.cs" />
+    <Compile Include="Language\Expressions\ConditionalTypeCast.cs" />
+    <Compile Include="Language\Expressions\CPrimitiveExpression.cs" />
+    <Compile Include="Language\Expressions\CTypeExpression.cs" />
+    <Compile Include="Language\Expressions\DefaultValueExpression.cs" />
+    <Compile Include="Language\Expressions\DeleteExpression.cs" />
+    <Compile Include="Language\Expressions\DirectCastExpression.cs" />
+    <Compile Include="Language\Expressions\ElaboratedTypeReference.cs" />
+    <Compile Include="Language\Expressions\ElementReferenceExpression.cs" />
+    <Compile Include="Language\Expressions\EmptyArgumentExpression.cs" />
+    <Compile Include="Language\Expressions\EmptyArrayElementExpression.cs" />
+    <Compile Include="Language\Expressions\Expression.cs" />
+    <Compile Include="Language\Expressions\ExpressionCollection.cs" />
+    <Compile Include="Language\Expressions\ExpressionCollectionBase.cs" />
+    <Compile Include="Language\Expressions\FunctionPointerTypeReference.cs" />
+    <Compile Include="Language\Expressions\IfOperatorExpression.cs" />
+    <Compile Include="Language\Expressions\IHasSource.cs" />
+    <Compile Include="Language\Expressions\IndexerExpression.cs" />
+    <Compile Include="Language\Expressions\Is.cs" />
+    <Compile Include="Language\Expressions\IsNot.cs" />
+    <Compile Include="Language\Expressions\LambdaFunctionExpression.cs" />
+    <Compile Include="Language\Expressions\LogicalInversion.cs" />
+    <Compile Include="Language\Expressions\LogicalOperation.cs" />
+    <Compile Include="Language\Expressions\MacroExpressionCall.cs" />
+    <Compile Include="Language\Expressions\ManagedArrayCreateExpression.cs" />
+    <Compile Include="Language\Expressions\MemberAccessExpression.cs" />
+    <Compile Include="Language\Expressions\MethodCallExpression.cs" />
+    <Compile Include="Language\Expressions\MethodReferenceExpression.cs" />
+    <Compile Include="Language\Expressions\MyClassExpression.cs" />
+    <Compile Include="Language\Expressions\NullCoalescingExpression.cs" />
+    <Compile Include="Language\Expressions\ObjectCollectionInitializer.cs" />
+    <Compile Include="Language\Expressions\ObjectCreationExpression.cs" />
+    <Compile Include="Language\Expressions\OperatorExpression.cs" />
+    <Compile Include="Language\Expressions\ParametrizedObjectCreationExpression.cs" />
+    <Compile Include="Language\Expressions\ParenthesizedExpression.cs" />
+    <Compile Include="Language\Expressions\ParenthesizedTypeReferenceExpression.cs" />
+    <Compile Include="Language\Expressions\PrimitiveExpression.cs" />
+    <Compile Include="Language\Expressions\QualifiedAliasExpression.cs" />
+    <Compile Include="Language\Expressions\QualifiedElementReference.cs" />
+    <Compile Include="Language\Expressions\QualifiedTypeReferenceExpression.cs" />
+    <Compile Include="Language\Expressions\RazorInlineHtmlExpression.cs" />
+    <Compile Include="Language\Expressions\ReDimExpression.cs" />
+    <Compile Include="Language\Expressions\ReferenceExpressionBase.cs" />
+    <Compile Include="Language\Expressions\RelationalOperation.cs" />
+    <Compile Include="Language\Expressions\ShortInitializeExpression.cs" />
+    <Compile Include="Language\Expressions\SizeOfExpression.cs" />
+    <Compile Include="Language\Expressions\ThisReferenceExpression.cs" />
+    <Compile Include="Language\Expressions\TypeCastExpression.cs" />
+    <Compile Include="Language\Expressions\TypeCheck.cs" />
+    <Compile Include="Language\Expressions\TypedElementReferenceExpression.cs" />
+    <Compile Include="Language\Expressions\TypeOfExpression.cs" />
+    <Compile Include="Language\Expressions\TypeOfIsExpression.cs" />
+    <Compile Include="Language\Expressions\TypeReferenceExpression.cs" />
+    <Compile Include="Language\Expressions\TypeReferenceExpressionCollection.cs" />
+    <Compile Include="Language\Expressions\UnaryDecrement.cs" />
+    <Compile Include="Language\Expressions\UnaryIncrement.cs" />
+    <Compile Include="Language\Expressions\UnaryOperatorExpression.cs" />
+    <Compile Include="Language\Expressions\UncheckedExpression.cs" />
+    <Compile Include="Language\File\ExternAlias.cs" />
+    <Compile Include="Language\File\Namespace.cs" />
+    <Compile Include="Language\File\NamespaceCollection.cs" />
+    <Compile Include="Language\File\NamespaceReference.cs" />
+    <Compile Include="Language\Flow Break\Abort.cs" />
+    <Compile Include="Language\Flow Break\Break.cs" />
+    <Compile Include="Language\Flow Break\Continue.cs" />
+    <Compile Include="Language\Flow Break\End.cs" />
+    <Compile Include="Language\Flow Break\Exit.cs" />
+    <Compile Include="Language\Flow Break\FlowBreak.cs" />
+    <Compile Include="Language\Flow Break\Goto.cs" />
+    <Compile Include="Language\Flow Break\Label.cs" />
+    <Compile Include="Language\Flow Break\Resume.cs" />
+    <Compile Include="Language\Flow Break\Return.cs" />
+    <Compile Include="Language\Flow Break\Stop.cs" />
+    <Compile Include="Language\Flow Break\Throw.cs" />
+    <Compile Include="Language\Flow Break\Yield.cs" />
+    <Compile Include="Language\Flow Break\YieldBreak.cs" />
+    <Compile Include="Language\Flow Break\YieldReturn.cs" />
+    <Compile Include="Language\Generics\ClassTypeParameterConstraint.cs" />
+    <Compile Include="Language\Generics\GenericModifier.cs" />
+    <Compile Include="Language\Generics\NamedTypeParameterConstraint.cs" />
+    <Compile Include="Language\Generics\NewTypeParameterConstraint.cs" />
+    <Compile Include="Language\Generics\StructTypeParameterConstraint.cs" />
+    <Compile Include="Language\Generics\TypeParameter.cs" />
+    <Compile Include="Language\Generics\TypeParameterCollection.cs" />
+    <Compile Include="Language\Generics\TypeParameterConstraint.cs" />
+    <Compile Include="Language\Generics\TypeParameterConstraintCollection.cs" />
+    <Compile Include="Language\Generics\TypeReferenceExpressionWrapper.cs" />
+    <Compile Include="Language\Html\AspCodeEmbedding.cs" />
+    <Compile Include="Language\Html\AspDirective.cs" />
+    <Compile Include="Language\Html\AspImportDirective.cs" />
+    <Compile Include="Language\Html\ContentPlaceHolder.cs" />
+    <Compile Include="Language\Html\ControlDirective.cs" />
+    <Compile Include="Language\Html\FictiveAspComment.cs" />
+    <Compile Include="Language\Html\HtmlAttribute.cs" />
+    <Compile Include="Language\Html\HtmlAttributeCollection.cs" />
+    <Compile Include="Language\Html\HtmlElement.cs" />
+    <Compile Include="Language\Html\HtmlScriptDefinition.cs" />
+    <Compile Include="Language\Html\HtmlStyleDefinition.cs" />
+    <Compile Include="Language\Html\HtmlText.cs" />
+    <Compile Include="Language\Html\MasterDirective.cs" />
+    <Compile Include="Language\Html\PageDirective.cs" />
+    <Compile Include="Language\Html\RegisterDirective.cs" />
+    <Compile Include="Language\Html\ServerControlElement.cs" />
+    <Compile Include="Language\Members\AccessSpecifiedElement.cs" />
+    <Compile Include="Language\Members\AccessSpecifiers.cs" />
+    <Compile Include="Language\Members\Const.cs" />
+    <Compile Include="Language\Members\Member.cs" />
+    <Compile Include="Language\Methods\ConstructorInitializer.cs" />
+    <Compile Include="Language\Methods\MemberWithParameters.cs" />
+    <Compile Include="Language\Methods\Method.cs" />
+    <Compile Include="Language\Methods\MethodCall.cs" />
+    <Compile Include="Language\Methods\MethodPrototype.cs" />
+    <Compile Include="Language\Methods\Param.cs" />
+    <Compile Include="Language\NewElements.cs" />
+    <Compile Include="Language\OrcasElements\DistinctExpression.cs" />
+    <Compile Include="Language\OrcasElements\EqualsExpression.cs" />
+    <Compile Include="Language\OrcasElements\ExtensionMethodParam.cs" />
+    <Compile Include="Language\OrcasElements\FromExpression.cs" />
+    <Compile Include="Language\OrcasElements\GroupByExpression.cs" />
+    <Compile Include="Language\OrcasElements\ImplicitVariable.cs" />
+    <Compile Include="Language\OrcasElements\InExpression.cs" />
+    <Compile Include="Language\OrcasElements\IntoExpression.cs" />
+    <Compile Include="Language\OrcasElements\JoinExpression.cs" />
+    <Compile Include="Language\OrcasElements\JoinExpressionBase.cs" />
+    <Compile Include="Language\OrcasElements\JoinIntoExpression.cs" />
+    <Compile Include="Language\OrcasElements\LambdaExpression.cs" />
+    <Compile Include="Language\OrcasElements\LambdaImplicitlyTypedParam.cs" />
+    <Compile Include="Language\OrcasElements\LetExpression.cs" />
+    <Compile Include="Language\OrcasElements\MemberInitializerExpression.cs" />
+    <Compile Include="Language\OrcasElements\ObjectInitializerExpression.cs" />
+    <Compile Include="Language\OrcasElements\OrderByExpression.cs" />
+    <Compile Include="Language\OrcasElements\OrderingExpression.cs" />
+    <Compile Include="Language\OrcasElements\QueryExpression.cs" />
+    <Compile Include="Language\OrcasElements\QueryExpressionBase.cs" />
+    <Compile Include="Language\OrcasElements\QueryIdent.cs" />
+    <Compile Include="Language\OrcasElements\SelectExpression.cs" />
+    <Compile Include="Language\OrcasElements\VBQueryElements\AggregateExpression.cs" />
+    <Compile Include="Language\OrcasElements\VBQueryElements\QueryableCollectionReferenceExpression.cs" />
+    <Compile Include="Language\OrcasElements\VBQueryElements\SkipExpression.cs" />
+    <Compile Include="Language\OrcasElements\VBQueryElements\SkipExpressionBase.cs" />
+    <Compile Include="Language\OrcasElements\VBQueryElements\SkipWhileExpression.cs" />
+    <Compile Include="Language\OrcasElements\VBQueryElements\TakeExpression.cs" />
+    <Compile Include="Language\OrcasElements\VBQueryElements\TakeExpressionBase.cs" />
+    <Compile Include="Language\OrcasElements\VBQueryElements\TakeWhileExpression.cs" />
+    <Compile Include="Language\OrcasElements\WhereExpression.cs" />
+    <Compile Include="Language\OrcasElements\XmlAttributeReferenceExpression.cs" />
+    <Compile Include="Language\OrcasElements\XmlElementReferenceExpression.cs" />
+    <Compile Include="Language\OrcasElements\XmlExpression.cs" />
+    <Compile Include="Language\Preprocessor\DefineBase.cs" />
+    <Compile Include="Language\Preprocessor\DefineBaseCollection.cs" />
+    <Compile Include="Language\Preprocessor\DefineConst.cs" />
+    <Compile Include="Language\Preprocessor\DefineMacro.cs" />
+    <Compile Include="Language\Preprocessor\FloatNum.cs" />
+    <Compile Include="Language\Preprocessor\IntNum.cs" />
+    <Compile Include="Language\Preprocessor\Nothing.cs" />
+    <Compile Include="Language\Preprocessor\Number.cs" />
+    <Compile Include="Language\Preprocessor\ParamsStringCollection.cs" />
+    <Compile Include="Language\Preprocessor\PreprocessingValueType.cs" />
+    <Compile Include="Language\Properties\Accessor.cs" />
+    <Compile Include="Language\Properties\Event.cs" />
+    <Compile Include="Language\Properties\EventAccessor.cs" />
+    <Compile Include="Language\Properties\EventAdd.cs" />
+    <Compile Include="Language\Properties\EventRaise.cs" />
+    <Compile Include="Language\Properties\EventRemove.cs" />
+    <Compile Include="Language\Properties\Get.cs" />
+    <Compile Include="Language\Properties\Property.cs" />
+    <Compile Include="Language\Properties\PropertyAccessor.cs" />
+    <Compile Include="Language\Properties\Set.cs" />
+    <Compile Include="Language\QueuedEdits\QueuedDelete.cs" />
+    <Compile Include="Language\QueuedEdits\QueuedEdit.cs" />
+    <Compile Include="Language\QueuedEdits\QueuedInsert.cs" />
+    <Compile Include="Language\QueuedEdits\QueuedReplace.cs" />
+    <Compile Include="Language\Snippets\SnippetCodeElement.cs" />
+    <Compile Include="Language\Snippets\SnippetCodeMember.cs" />
+    <Compile Include="Language\Snippets\SnippetCodeStatement.cs" />
+    <Compile Include="Language\Snippets\SnippetCodeStatementBlock.cs" />
+    <Compile Include="Language\Snippets\SnippetExpression.cs" />
+    <Compile Include="Language\Statements\AddHandler.cs" />
+    <Compile Include="Language\Statements\Assignment.cs" />
+    <Compile Include="Language\Statements\BaseVariable.cs" />
+    <Compile Include="Language\Statements\BitFieldConst.cs" />
+    <Compile Include="Language\Statements\BitFieldVariable.cs" />
+    <Compile Include="Language\Statements\BitFieldVolatile.cs" />
+    <Compile Include="Language\Statements\Block.cs" />
+    <Compile Include="Language\Statements\CallStatement.cs" />
+    <Compile Include="Language\Statements\Case.cs" />
+    <Compile Include="Language\Statements\CaseClause.cs" />
+    <Compile Include="Language\Statements\CaseClausesList.cs" />
+    <Compile Include="Language\Statements\Catch.cs" />
+    <Compile Include="Language\Statements\Checked.cs" />
+    <Compile Include="Language\Statements\Do.cs" />
+    <Compile Include="Language\Statements\Else.cs" />
+    <Compile Include="Language\Statements\ElseIf.cs" />
+    <Compile Include="Language\Statements\EmptyStatement.cs" />
+    <Compile Include="Language\Statements\Erase.cs" />
+    <Compile Include="Language\Statements\Finally.cs" />
+    <Compile Include="Language\Statements\Fixed.cs" />
+    <Compile Include="Language\Statements\For.cs" />
+    <Compile Include="Language\Statements\ForEach.cs" />
+    <Compile Include="Language\Statements\HandlerStatement.cs" />
+    <Compile Include="Language\Statements\If.cs" />
+    <Compile Include="Language\Statements\IfElse.cs" />
+    <Compile Include="Language\Statements\InitializedValue.cs" />
+    <Compile Include="Language\Statements\InitializedVariable.cs" />
+    <Compile Include="Language\Statements\InitializedVolatile.cs" />
+    <Compile Include="Language\Statements\Lock.cs" />
+    <Compile Include="Language\Statements\OnError.cs" />
+    <Compile Include="Language\Statements\OptionStatement.cs" />
+    <Compile Include="Language\Statements\RaiseEvent.cs" />
+    <Compile Include="Language\Statements\ReDim.cs" />
+    <Compile Include="Language\Statements\RemoveHandler.cs" />
+    <Compile Include="Language\Statements\Statement.cs" />
+    <Compile Include="Language\Statements\Switch.cs" />
+    <Compile Include="Language\Statements\Try.cs" />
+    <Compile Include="Language\Statements\Unchecked.cs" />
+    <Compile Include="Language\Statements\Unsafe.cs" />
+    <Compile Include="Language\Statements\UsingStatement.cs" />
+    <Compile Include="Language\Statements\Variable.cs" />
+    <Compile Include="Language\Statements\Volatile.cs" />
+    <Compile Include="Language\Statements\While.cs" />
+    <Compile Include="Language\Statements\With.cs" />
+    <Compile Include="Language\Types\Attribute.cs" />
+    <Compile Include="Language\Types\AttributeCollection.cs" />
+    <Compile Include="Language\Types\AttributeSection.cs" />
+    <Compile Include="Language\Types\Class.cs" />
+    <Compile Include="Language\Types\DelegateDefinition.cs" />
+    <Compile Include="Language\Types\EmptyCommaDelimiter.cs" />
+    <Compile Include="Language\Types\EmptyParens.cs" />
+    <Compile Include="Language\Types\EnumElement.cs" />
+    <Compile Include="Language\Types\Enumeration.cs" />
+    <Compile Include="Language\Types\Interface.cs" />
+    <Compile Include="Language\Types\InterfaceClass.cs" />
+    <Compile Include="Language\Types\InterfaceStruct.cs" />
+    <Compile Include="Language\Types\ManagedClass.cs" />
+    <Compile Include="Language\Types\ManagedStruct.cs" />
+    <Compile Include="Language\Types\Module.cs" />
+    <Compile Include="Language\Types\Struct.cs" />
+    <Compile Include="Language\Types\TypeDeclaration.cs" />
+    <Compile Include="Language\Types\TypeElements.cs" />
+    <Compile Include="Language\Types\Union.cs" />
+    <Compile Include="Language\Types\ValueClass.cs" />
+    <Compile Include="Language\Types\ValueStruct.cs" />
+    <Compile Include="Language\Xaml\MarkupExtensionExpression.cs" />
+    <Compile Include="Language\XmlLanguageElements.cs" />
+    <Compile Include="Language\Xml\XmlAttribute.cs" />
+    <Compile Include="Language\Xml\XmlElement.cs" />
+    <Compile Include="Language\Xml\XmlNode.cs" />
+    <Compile Include="Language\Xml\XmlText.cs" />
+    <Compile Include="Diagnostics\Log.cs" />
+    <Compile Include="MacroInfo.cs" />
+    <Compile Include="MacroInfoCollection.cs" />
+    <Compile Include="ParserFactory.cs" />
+    <Compile Include="ParserLanguage.cs" />
+    <Compile Include="ParserVersion.cs" />
+    <Compile Include="Parser\BackoutMode.cs" />
+    <Compile Include="Parser\CategorizedToken.cs" />
+    <Compile Include="Parser\CharProvider.cs" />
+    <Compile Include="Parser\ElementFactoryBase.cs" />
+    <Compile Include="Parser\EmbeddedCodeParserBase.cs" />
+    <Compile Include="Parser\ExpressionParserBase.cs" />
+    <Compile Include="Parser\Formatting\Element\CheckedIndent.cs" />
+    <Compile Include="Parser\Formatting\Element\FormattingElements.cs" />
+    <Compile Include="Parser\Formatting\Element\FormattingElements\DeadCode.cs" />
+    <Compile Include="Parser\Formatting\Element\FormattingElements\InsignificantText.cs" />
+    <Compile Include="Parser\Formatting\Element\FormattingElements\SourceFileStartText.cs" />
+    <Compile Include="Parser\Formatting\Parsing\FormattingParserBase.cs" />
+    <Compile Include="Parser\Formatting\Parsing\FormattingParsingElementCollection.cs" />
+    <Compile Include="Parser\Formatting\Token\FormattingToken.cs" />
+    <Compile Include="CSharp\CSharpFormattingTable.cs" />
+    <Compile Include="Parser\Formatting\Element\FormattingElement.cs" />
+    <Compile Include="Parser\Formatting\Element\FormattingElementCollection.cs" />
+    <Compile Include="Parser\Formatting\Element\FormattingElementType.cs" />
+    <Compile Include="Parser\Formatting\Token\FormattingTokenType.cs" />
+    <Compile Include="Parser\Formatting\Parsing\FormattingParsingElement.cs" />
+    <Compile Include="Parser\Formatting\Element\IFormattingElement.cs" />
+    <Compile Include="Parser\Formatting\Token\LanguageElementTokens.cs" />
+    <Compile Include="Parser\GeneratedParserBase.cs" />
+    <Compile Include="Parser\GeneratedScannerBase.cs" />
+    <Compile Include="Parser\GlobalStringStorage.cs" />
+    <Compile Include="Parser\Formatting\Token\FormattingTable.cs" />
+    <Compile Include="Parser\ITokenReader.cs" />
+    <Compile Include="Parser\LanguageElementParserBase.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Parser\LanguageTokensBase.cs" />
+    <Compile Include="Parser\ParserBase.cs" />
+    <Compile Include="Parser\ParserContext.cs" />
+    <Compile Include="Parser\ParserErrorsBase.cs" />
+    <Compile Include="Parser\ParserException.cs" />
+    <Compile Include="Parser\ParsingMode.cs" />
+    <Compile Include="Parser\ScannerExtension.cs" />
+    <Compile Include="Parser\SourceLine.cs" />
+    <Compile Include="Parser\SourceLineCollection.cs" />
+    <Compile Include="Parser\SourceLinesReader.cs" />
+    <Compile Include="Parser\SourceReader.cs" />
+    <Compile Include="Parser\SourceStringReader.cs" />
+    <Compile Include="Parser\SourceTreeCommenter.cs" />
+    <Compile Include="Parser\Token.cs" />
+    <Compile Include="Parser\TokenCategorizedParserBase.cs" />
+    <Compile Include="Parser\TokenCollection.cs" />
+    <Compile Include="Parser\TokenizerBase.cs" />
+    <Compile Include="Parser\TokenQueueBase.cs" />
+    <Compile Include="Parser\TokenType.cs" />
+    <Compile Include="PathElement.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Signatures\ExpressionSignatureBuilder.cs" />
+    <Compile Include="Signatures\MemberSignatureBuilder.cs" />
+    <Compile Include="Signatures\SignatureBuilder.cs" />
+    <Compile Include="Signatures\XmlSignatureBuilder.cs" />
+    <Compile Include="SourceFile.cs" />
+    <Compile Include="EmptyStructuralParserServices.cs" />
+    <Compile Include="SourceTreeEnumerator.cs" />
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <Compile Include="Tokenizer.cs" />
+    <Compile Include="VB\CodeGen\VB90CodeGen\VB90CodeGen.cs" />
+    <Compile Include="VB\CodeGen\VB90CodeGen\VB90ExpressionCodeGen.cs" />
+    <Compile Include="VB\CodeGen\VBCodeGen.cs" />
+    <Compile Include="VB\CodeGen\VBDirectiveCodeGen.cs" />
+    <Compile Include="VB\CodeGen\VBExpressionCodeGen.cs" />
+    <Compile Include="VB\CodeGen\VBMemberCodeGen.cs" />
+    <Compile Include="VB\CodeGen\VBNamespaceGen.cs" />
+    <Compile Include="VB\CodeGen\VBNamespaceReferenceGen.cs" />
+    <Compile Include="VB\CodeGen\VBSnippetCodeGen.cs" />
+    <Compile Include="VB\CodeGen\VBStatementCodeGen.cs" />
+    <Compile Include="VB\CodeGen\VBSupportElementCodeGen.cs" />
+    <Compile Include="VB\CodeGen\VBTypeDeclarationCodeGen.cs" />
+    <Compile Include="VB\CodeGen\VBXmlCodeGen.cs" />
+    <Compile Include="VB\CorruptedElements\CorruptedLanguageElement.cs" />
+    <Compile Include="VB\CorruptedElements\Interface\ICorruptedElement.cs" />
+    <Compile Include="VB\VB90\VBScanner.cs">
+      <DependentUpon>VBScanner.atg</DependentUpon>
+      <SubType>Code</SubType>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Include="VB\VBFormattingTable.cs" />
+    <Compile Include="VB\Language\Comments\XMLDocComment.cs" />
+    <Compile Include="VB\Language\File\File.cs" />
+    <Compile Include="VB\Language\Flow Break\Continue.cs" />
+    <Compile Include="VB\Language\Flow Break\Exit.cs" />
+    <Compile Include="VB\Language\Methods\VBMethod.cs" />
+    <Compile Include="VB\Language\Properties\Property.cs" />
+    <Compile Include="VB\Language\Statements\Error.cs" />
+    <Compile Include="VB\Language\Statements\For.cs" />
+    <Compile Include="VB\Language\Statements\ForEach.cs" />
+    <Compile Include="VB\Language\Types\Event.cs" />
+    <Compile Include="VB\VB10\Vb10KeyWords.cs" />
+    <Compile Include="VB\VB10\VB10Parser.cs" />
+    <Compile Include="VB\VB10\Vb10Tokens.cs" />
+    <Compile Include="VB\VB71\VB71ExpressionInverter.cs" />
+    <Compile Include="VB\VB71\VB71ExpressionParser.cs" />
+    <Compile Include="VB\VB71\VB71KeyWords.cs" />
+    <Compile Include="VB\VB71\VB71Parser.cs" />
+    <Compile Include="VB\VB71\VB71Tokens.cs" />
+    <Compile Include="VB\VB8\VB80KeyWords.cs" />
+    <Compile Include="VB\VB8\VB80Tokens.cs" />
+    <Compile Include="VB\VB90\MemberModifier.cs" />
+    <Compile Include="VB\VB90\ParserTreeHelper.cs" />
+    <Compile Include="VB\VB90\PpEvaluator\CommonEvaluatorUtils.cs" />
+    <Compile Include="VB\VB90\PpEvaluator\Evaluator.cs" />
+    <Compile Include="VB\VB90\PpEvaluator\NumberEvalUtils.cs" />
+    <Compile Include="VB\VB90\PpEvaluator\StringEvalUtils.cs" />
+    <Compile Include="VB\VB90\Preprocessor\PpConditionDirectiveUtils.cs" />
+    <Compile Include="VB\VB90\Preprocessor\PreprocessorBase.cs" />
+    <Compile Include="VB\VB90\Preprocessor\VB90Preprocessor.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VB90Preprocessor.atg</DependentUpon>
+    </Compile>
+    <Compile Include="VB\VB90\QualifiedIdentifier.cs" />
+    <Compile Include="VB\VB90\Scanner\AdaptedScannerBase.cs" />
+    <Compile Include="VB\VB90\Scanner\VBScannerBase.cs" />
+    <Compile Include="VB\VB90\Scanner\XmlString.cs" />
+    <Compile Include="VB\VB90\VB90 Parser\VbParserUtils.cs" />
+    <Compile Include="VB\VB90\VB90ExpressionInverter.cs" />
+    <Compile Include="VB\VB90\VB90ExpressionParser.cs" />
+    <Compile Include="VB\VB90\VB90KeyWords.cs" />
+    <Compile Include="VB\VB90\VB90Scanner.cs" />
+    <Compile Include="VB\VB90\VB90SpecifiersHelper.cs" />
+    <Compile Include="VB\VB90\VB90Tokens.cs" />
+    <Compile Include="VB\VB90\VB90_Parser.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VB90_Parser.atg</DependentUpon>
+    </Compile>
+    <Compile Include="VB\VB90\VBParserBase.cs" />
+    <Compile Include="VB\VB90\VBSpecifiersHelper.cs" />
+    <Compile Include="VB\VBExpressionParserBase.cs" />
+    <Compile Include="VB\VBLanguageUtils.cs" />
+    <Compile Include="VB\VBOperatorHelper.cs" />
+    <Compile Include="VB\VBParserBase.cs" />
+    <Compile Include="VB\VBPrimitiveTypeUtils.cs" />
+    <Compile Include="VB\VBPunctuators.cs" />
+    <Compile Include="VB\VBTokensBase.cs" />
+    <Compile Include="VB\VBTokensCategoryHelper.cs" />
+    <Compile Include="VB\VBTokenType.cs" />
+    <Compile Include="VisualStudioDocument.cs" />
+    <Compile Include="Xml\CodeGen\HtmlCodeGen.cs" />
+    <Compile Include="Xml\CodeGen\HtmlXmlCodeGen.cs" />
+    <Compile Include="Xml\CodeGen\HtmlXmlNodesCodeGen.cs" />
+    <Compile Include="Xml\CodeGen\HtmlXmlSnippetCodeGen.cs" />
+    <Compile Include="Xml\NewXmlParser.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NewXmlParser.atg</DependentUpon>
+    </Compile>
+    <Compile Include="Xml\TokenType.cs" />
+    <Compile Include="Xml\XmlLanguageParserBase.cs" />
+    <Compile Include="Xml\XmlLanguageUtils.cs" />
+    <Compile Include="Xml\XmlParserBase.cs" />
+    <Compile Include="Xml\XmlScanner.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>XmlScanner.atg</DependentUpon>
+    </Compile>
+    <Compile Include="Xml\XmlScannerBase.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    
+    
+    
+    
+    
+    
+    
+    
+    <Compile Include="Html\MarkupExtensionParser.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MarkupExtensionParser.atg</DependentUpon>
+    </Compile>
+    
+    <Compile Include="Html\MarkupExtensionScanner.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MarkupExtensionScanner.atg</DependentUpon>
+    </Compile>
+    
+    
+    
+    
+    
+    
+    
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <PropertyGroup>
+    
+  </PropertyGroup>
+</Project>

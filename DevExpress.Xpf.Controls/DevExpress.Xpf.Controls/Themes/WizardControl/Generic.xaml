@@ -1,0 +1,76 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:dxco="clr-namespace:DevExpress.Xpf.Controls"
+                    xmlns:dxcoi="clr-namespace:DevExpress.Xpf.Controls.Native"
+                    xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
+                    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+                    xmlns:dxwui="clr-namespace:DevExpress.Xpf.WindowsUI"
+                    xmlns:dxwuin="clr-namespace:DevExpress.Xpf.WindowsUI.Navigation"
+                    xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
+                    xmlns:dxi="http://schemas.devexpress.com/winfx/2008/xaml/core/internal">
+
+    <Style TargetType="dxco:WizardControl">
+        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+        <Setter Property="VerticalContentAlignment" Value="Stretch"/>
+        <Setter Property="ContentHostTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <dx:ContentHost/>
+                        <dx:FooterHost Grid.Row="1" Margin="0,12,0,12"/>
+                    </Grid>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="dxco:WizardControl">
+                    <Grid>
+                        <ItemsPresenter/>
+                        <dxi:ContentAndFooterHostPresenter x:Name="PART_ContentAndFooterHostPresenter" Content="{TemplateBinding ContentHost}"
+                                                           ContentCacheMode="{TemplateBinding ContentCacheMode}" FooterCacheMode="None">
+                            <dxi:ContentHostPresenter.RegularContentPresenter>
+                                <ContentPresenter  
+    Content="{TemplateBinding SelectedItemContent}" ContentTemplate="{TemplateBinding SelectedItemContentTemplate}" ContentTemplateSelector="{TemplateBinding SelectedItemContentTemplateSelector}" ContentStringFormat="{TemplateBinding SelectedItemContentStringFormat}"
+    KeyboardNavigation.TabNavigation="Local" KeyboardNavigation.DirectionalNavigation="Contained" KeyboardNavigation.TabIndex="2"
+    TextBlock.Foreground="{TemplateBinding Foreground}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+    dxb:BarNameScope.IsScopeOwner="True"/>
+                            </dxi:ContentHostPresenter.RegularContentPresenter>
+                            <dxi:ContentHostPresenter.FastContentPresenter>
+                                <dxi:FastRenderPanel 
+    ContentCacheMode="{TemplateBinding ContentCacheMode}" KeyboardNavigation.TabNavigation="Local" KeyboardNavigation.DirectionalNavigation="Contained" KeyboardNavigation.TabIndex="2"
+    TextBlock.Foreground="{TemplateBinding Foreground}" dxb:BarNameScope.IsScopeOwner="True"/>
+                            </dxi:ContentHostPresenter.FastContentPresenter>
+
+                            <dxi:ContentAndFooterHostPresenter.RegularFooterPresenter>
+                                <ContentPresenter 
+    Content="{TemplateBinding SelectedItemFooter}" ContentTemplate="{TemplateBinding SelectedItemFooterTemplate}" ContentTemplateSelector="{TemplateBinding SelectedItemFooterTemplateSelector}" ContentStringFormat="{TemplateBinding SelectedItemFooterStringFormat}"
+    KeyboardNavigation.TabNavigation="Local" KeyboardNavigation.DirectionalNavigation="Contained" KeyboardNavigation.TabIndex="3"
+    TextBlock.Foreground="{TemplateBinding Foreground}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+    dxb:BarNameScope.IsScopeOwner="True"/>
+                            </dxi:ContentAndFooterHostPresenter.RegularFooterPresenter>
+                        </dxi:ContentAndFooterHostPresenter>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="ItemsPanel">
+            <Setter.Value>
+                <ItemsPanelTemplate>
+                    <dxcoi:WizardControlInvisiblePanel/>
+                </ItemsPanelTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style TargetType="dxco:WizardItem">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="dxco:WizardItem"/>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

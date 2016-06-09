@@ -1,0 +1,31 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+    xmlns:dxdiag="clr-namespace:DevExpress.Xpf.Diagram;assembly=DevExpress.Xpf.Diagram.v15.2"
+    xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+    xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
+    xmlns:designernative="clr-namespace:DevExpress.Xpf.Reports.UserDesigner.Native"
+    xmlns:xrdiagram="clr-namespace:DevExpress.Xpf.Reports.UserDesigner.XRDiagram">
+    <Style TargetType="xrdiagram:BandMarginAdorner">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="xrdiagram:BandMarginAdorner">
+                    <Grid>
+                        <Border Background="Transparent" Width="{Binding Path=(dxdiag:AdornerLayer.AdornerMargin), RelativeSource={RelativeSource TemplatedParent}, Converter={dxmvvm:ReflectionConverter ConvertMethodOwner=xrdiagram:BandMarginAdorner, ConvertMethod=GetMarginWidth}}" HorizontalAlignment="Left" />
+                        <Border MinHeight="{Binding DiagramItem.Height, RelativeSource={RelativeSource TemplatedParent}}"
+                                Background="#EEEEEF" HorizontalAlignment="Stretch">
+                            <Border.Visibility>
+                                <MultiBinding Converter="{designernative:CollapsedBandTitleToVisibilityConverter}">
+                                    <Binding Path="DiagramItem.(xrdiagram:XRDiagramItemBase.BandCollapsed)" RelativeSource="{RelativeSource TemplatedParent}" />
+                                    <Binding Path="DiagramItem.(xrdiagram:XRDiagramItemBase.BandHeaderVisible)" RelativeSource="{RelativeSource TemplatedParent}" />
+                                </MultiBinding>
+                            </Border.Visibility>
+                            <TextBlock Padding="10 0 0 0" Text="{Binding DiagramItem.BandName, RelativeSource={RelativeSource TemplatedParent}, Converter={designernative:StringToUpperConverter}}" Foreground="#747474" VerticalAlignment="Center" FontWeight="Bold" />
+                        </Border>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Visibility" Value="{Binding Path=DiagramItem.(xrdiagram:XRDiagramItemBase.BandHeaderVisible), RelativeSource={RelativeSource Self}, Converter={dxmvvm:BooleanToVisibilityConverter}}" />
+    </Style>
+</ResourceDictionary>

@@ -1,0 +1,156 @@
+﻿<#@ template language="C#" #>
+<#@ import namespace="System" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.Diagnostics" #>
+<#@ import namespace="System.IO" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Xml" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="DevExpress.Design.Mvvm" #>
+<#@ import namespace="DevExpress.Xpf.Core.Design.Wizards.Mvvm.EntityFramework" #>
+<#@ import namespace="DevExpress.Xpf.Core.Design.Wizards.Mvvm" #>
+<#@ import namespace="DevExpress.Xpf.Core.Design.Wizards.Mvvm.ViewModelData" #>
+<#@ import namespace="DevExpress.Xpf.Core.Native" #>
+<#    
+    T4TemplateInfo templateInfo = this.GetTemplateInfo();
+    CollectionViewModelData viewModelData = templateInfo.Properties["IViewModelInfo"] as CollectionViewModelData;
+    UIType uiType = (UIType)templateInfo.Properties["UIType"];
+    string viewName = templateInfo.Properties["ViewName"].ToString();    
+    string localNamespace = templateInfo.Properties["Namespace"].ToString();
+    string viewFullName = localNamespace +"." + viewName;    
+    var generatedFieldsBase64 = ((string)templateInfo.Properties["GeneratedFieldsBase64"]).Split('\n').Select(x => x.Trim()).Where(x => x != null).ToList();
+    string generatedBandsBase64 = (string)templateInfo.Properties["GeneratedBandsBase64"];
+    
+    XamlNamespaces xamlNamespaces = templateInfo.Properties["XamlNamespaces"] as XamlNamespaces;
+    string viewModelPrefix = templateInfo.Properties["viewModelPrefix"].ToString();
+#>
+<UserControl x:Class="<#=viewFullName#>"
+<#
+    PasteXamlNamespaces(xamlNamespaces);
+    this.ExecuteCollectionViewHook(TemplatesCodeGen.STR_CollectionViewHook_GenerateCustomXmlNamespaces);
+#>
+    mc:Ignorable="<#=xamlNamespaces.GetPrefix(XamlNamespaces.xmlns_blend)#>"
+    d:DesignHeight="400" d:DesignWidth="600"
+<#if(viewModelData.UseProxyFactory) {#>
+    DataContext="{dxmvvm:ViewModelSource <#=viewModelPrefix#>:<#=viewModelData.Name#>}"
+<#}#>>
+<#if(!viewModelData.UseProxyFactory) {#>
+    <UserControl.DataContext>
+        <<#=viewModelPrefix#>:<#=viewModelData.Name#>/>
+    </UserControl.DataContext>
+<#}#>      
+<#if(viewModelData.SupportServices) {#>
+    <dxmvvm:Interaction.Behaviors>
+        <dx:DXMessageBoxService/>
+        <dxmvvm:EventToCommand Event="Loaded" Command="{Binding OnLoadedCommand}" />
+        <dxmvvm:EventToCommand Event="Unloaded" Command="{Binding OnUnloadedCommand}" />
+        <dx:WindowedDocumentUIService<#if(uiType == UIType.Standard || uiType == UIType.Browser) {#> YieldToParent="True"<#}#><#if(uiType == UIType.OutlookInspired) {#> DocumentShowMode="Dialog" WindowType="dxr:DXRibbonWindow"<#}#> />
+    </dxmvvm:Interaction.Behaviors>
+<#}#>
+    <Grid>
+        <DockPanel>
+            <dxr:RibbonControl RibbonStyle="Office2010" DockPanel.Dock="Top" AllowCustomization="False" <#if(uiType == UIType.Browser) {#> MDIMergeStyle="Always"<#}#>>
+                <dxr:RibbonDefaultPageCategory Caption="defaultCategory">
+                    <dxr:RibbonPage Caption="<#if(uiType == UIType.OutlookInspired) {#>HOME<#} else {#>Home<#}#>">
+                        <dxr:RibbonPageGroup <#if(viewModelData.HasEntityPropertyName()){#>Caption="<#=TemplatesCodeGen.GetCaption(viewModelData.EntityTypeName)#> Tasks"<#}#>>
+<#foreach(CommandInfo command in viewModelData.Commands) {#>
+                            <dxb:BarButtonItem Content="<#=command.Caption#>" Command="{Binding <#=command.CommandPropertyName#>}" <#if(command.HasParameter()){#>CommandParameter="{Binding <#=command.ParameterPropertyName#>}"<#}#> <#if(command.HasGlyphs()){#>LargeGlyph="<#=command.LargeGlyph#>" Glyph="<#=command.SmallGlyph#>"<#}#>/>
+<#}#>
+                            <dxb:BarSplitButtonItem Content="Reports" ActAsDropDown="True" LargeGlyph="{dx:DXImage Image=Print_32x32.png}" Glyph="{dx:DXImage Image=Print_16x16.png}">
+                                <dxmvvm:Interaction.Behaviors>
+                                    <dxrudex:ReportManagerBehavior Service="{Binding ElementName=<#=viewName#>ReportService}"/>
+                                </dxmvvm:Interaction.Behaviors>
+                            </dxb:BarSplitButtonItem>
+                        </dxr:RibbonPageGroup>
+<#this.ExecuteCollectionViewHook(TemplatesCodeGen.STR_CollectionViewHook_GenerateAdditionalRibbonPageGroups);#>
+                    </dxr:RibbonPage>
+                </dxr:RibbonDefaultPageCategory>
+            </dxr:RibbonControl>
+            <dxr:RibbonStatusBarControl DockPanel.Dock="Bottom">
+                <dxr:RibbonStatusBarControl.LeftItems>
+                    <dxb:BarStaticItem Content="{Binding <#=viewModelData.CollectionPropertyName#>.Count, Converter={dxmvvm:FormatStringConverter FormatString='RECORDS: {0}'}}" />
+                </dxr:RibbonStatusBarControl.LeftItems>
+            </dxr:RibbonStatusBarControl>
+<#if(!this.ExecuteCollectionViewHook(TemplatesCodeGen.STR_CollectionViewHook_GenerateCustomContent)) {#>
+            <Grid>
+                <dxmvvm:Interaction.Behaviors>
+                    <dxmvvm:LayoutSerializationService/>
+                </dxmvvm:Interaction.Behaviors>
+                <dxg:GridControl Name="gridControl"
+                                 ItemsSource="{Binding <#=viewModelData.CollectionPropertyName#>}"
+<#if(uiType == UIType.Standard || uiType == UIType.Browser) {#>
+                                 ShowBorder="False"
+<#} else {#>
+                                 Margin="1"
+<#}#>
+<#if(viewModelData.HasEntityPropertyName()){#>
+                                 CurrentItem="{Binding <#=viewModelData.EntityPropertyName#>}"
+<#}#>
+<#if(viewModelData.UseIsLoadingBinding){#>
+                                 ShowLoadingPanel="{Binding IsLoading}"
+<#}#>
+                                 <#this.ExecuteCollectionViewHook(TemplatesCodeGen.STR_CollectionViewHook_GenerateAdditionalGridProperties);#>>
+<#if(viewModelData.HasEntityEditProperty()) {#>
+                    <dxmvvm:Interaction.Behaviors>
+                        <dxmvvm:EventToCommand PassEventArgsToCommand="True" Command="{Binding EditCommand}" EventName="MouseDoubleClick" MarkRoutedEventsAsHandled="True">
+                            <dxmvvm:EventToCommand.EventArgsConverter>
+                                <dx:EventArgsToDataRowConverter/>
+                            </dxmvvm:EventToCommand.EventArgsConverter>
+                        </dxmvvm:EventToCommand>
+                    </dxmvvm:Interaction.Behaviors>
+<#}#>
+<#if(!this.ExecuteCollectionViewHook(TemplatesCodeGen.STR_CollectionViewHook_GenerateCustomGridColumns)) {#>
+<#if(generatedFieldsBase64.Any()) {#>
+                <dxg:GridControl.Columns>
+<#foreach(var line in generatedFieldsBase64) {
+	WriteLine("					" + line);
+}#>
+                </dxg:GridControl.Columns>
+<#}#>
+<#if(!string.IsNullOrEmpty(generatedBandsBase64)) {#>
+                    <dxg:GridControl.Bands>
+                        <#=generatedBandsBase64#>
+                    </dxg:GridControl.Bands>
+<#}}#>
+                    <dxg:GridControl.TotalSummary>
+                        <dxg:GridSummaryItem SummaryType="Count" Alignment="Right"/>
+                    </dxg:GridControl.TotalSummary>
+                    <dxg:GridControl.GroupSummary>
+                        <dxg:GridSummaryItem SummaryType="Count"/>
+                    </dxg:GridControl.GroupSummary>
+                    <dxg:GridControl.View>
+                        <dxg:TableView Name="tableView" AllowEditing="False" ShowFixedTotalSummary="True" AllowPerPixelScrolling="True" <#this.ExecuteCollectionViewHook(TemplatesCodeGen.STR_CollectionViewHook_GenerateAdditionalViewProperties);#>>
+                            <dxmvvm:Interaction.Behaviors>
+                                <dxrudex:GridReportManagerService x:Name="<#=viewName#>ReportService" />
+                            </dxmvvm:Interaction.Behaviors>
+                            <dxg:TableView.RowCellMenuCustomizations>
+<#foreach(CommandInfo command in viewModelData.Commands) {#>
+								<dxb:BarButtonItem Content="<#=command.Caption#>" Command="{Binding View.DataContext.<#=command.CommandPropertyName#>}"<#if(command.HasParameter()){#> CommandParameter="{Binding Row.Row}"<#}#><#if(command.HasGlyphs()){#> Glyph="<#=command.SmallGlyph#>"<#}#>/>
+<#}#>
+							</dxg:TableView.RowCellMenuCustomizations>
+                        </dxg:TableView>
+                    </dxg:GridControl.View>
+                </dxg:GridControl>
+            </Grid>
+<#}#>
+        </DockPanel>
+    </Grid>
+</UserControl>
+    
+    
+    
+<#+
+void PasteXamlNamespaces(XamlNamespaces xamlNamespaces) {
+    string[] toAdd = new string[]{
+        XmlNamespaceConstants.RibbonNamespaceDefinition,
+        XmlNamespaceConstants.EditorsNamespaceDefinition,
+        XmlNamespaceConstants.LayoutControlNamespaceDefinition,
+        XmlNamespaceConstants.BarsNamespaceDefinition,
+        XmlNamespaceConstants.UtilsNamespaceDefinition,
+        XmlNamespaceConstants.GridNamespaceDefinition,
+        XmlNamespaceConstants.MvvmNamespaceDefinition,
+        XmlNamespaceConstants.ReportDesignerExtensionsNamespaceDefinition
+    };
+    xamlNamespaces.AddDevExpressXamlNamespaces(toAdd);
+    this.WriteLine(xamlNamespaces.GetXaml());
+}#>

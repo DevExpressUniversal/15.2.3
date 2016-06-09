@@ -1,0 +1,110 @@
+﻿#region Copyright (c) 2000-2015 Developer Express Inc.
+/*
+{*******************************************************************}
+{                                                                   }
+{       Developer Express .NET Component Library                    }
+{                                                                   }
+{                                                                   }
+{       Copyright (c) 2000-2015 Developer Express Inc.              }
+{       ALL RIGHTS RESERVED                                         }
+{                                                                   }
+{   The entire contents of this file is protected by U.S. and       }
+{   International Copyright Laws. Unauthorized reproduction,        }
+{   reverse-engineering, and distribution of all or any portion of  }
+{   the code contained in this file is strictly prohibited and may  }
+{   result in severe civil and criminal penalties and will be       }
+{   prosecuted to the maximum extent possible under the law.        }
+{                                                                   }
+{   RESTRICTIONS                                                    }
+{                                                                   }
+{   THIS SOURCE CODE AND ALL RESULTING INTERMEDIATE FILES           }
+{   ARE CONFIDENTIAL AND PROPRIETARY TRADE                          }
+{   SECRETS OF DEVELOPER EXPRESS INC. THE REGISTERED DEVELOPER IS   }
+{   LICENSED TO DISTRIBUTE THE PRODUCT AND ALL ACCOMPANYING .NET    }
+{   CONTROLS AS PART OF AN EXECUTABLE PROGRAM ONLY.                 }
+{                                                                   }
+{   THE SOURCE CODE CONTAINED WITHIN THIS FILE AND ALL RELATED      }
+{   FILES OR ANY PORTION OF ITS CONTENTS SHALL AT NO TIME BE        }
+{   COPIED, TRANSFERRED, SOLD, DISTRIBUTED, OR OTHERWISE MADE       }
+{   AVAILABLE TO OTHER INDIVIDUALS WITHOUT EXPRESS WRITTEN CONSENT  }
+{   AND PERMISSION FROM DEVELOPER EXPRESS INC.                      }
+{                                                                   }
+{   CONSULT THE END USER LICENSE AGREEMENT FOR INFORMATION ON       }
+{   ADDITIONAL RESTRICTIONS.                                        }
+{                                                                   }
+{*******************************************************************}
+*/
+#endregion Copyright (c) 2000-2015 Developer Express Inc.
+
+namespace DevExpress.Xpf.Gauges {
+	public class DefaultGaugeBackgroundLayerControl : PresentationControl {
+		public DefaultGaugeBackgroundLayerControl() {
+			DefaultStyleKey = typeof(DefaultGaugeBackgroundLayerControl);
+		}
+	}
+	public class CleanWhiteGaugeBackgroundLayerControl : PresentationControl {
+		public CleanWhiteGaugeBackgroundLayerControl() {
+			DefaultStyleKey = typeof(CleanWhiteGaugeBackgroundLayerControl);
+		}
+	}
+	public class CosmicGaugeBackgroundLayerControl : PresentationControl {
+		public CosmicGaugeBackgroundLayerControl() {
+			DefaultStyleKey = typeof(CosmicGaugeBackgroundLayerControl);
+		}
+	}
+	public class SmartGaugeBackgroundLayerControl : PresentationControl {
+		public SmartGaugeBackgroundLayerControl() {
+			DefaultStyleKey = typeof(SmartGaugeBackgroundLayerControl);
+		}
+	}
+	public class RedThermometerGaugeBackgroundLayerControl : PresentationControl {
+		public RedThermometerGaugeBackgroundLayerControl() {
+			DefaultStyleKey = typeof(RedThermometerGaugeBackgroundLayerControl);
+		}
+	}
+	public class ProgressiveGaugeBackgroundLayerControl : PresentationControl {
+		public ProgressiveGaugeBackgroundLayerControl() {
+			DefaultStyleKey = typeof(ProgressiveGaugeBackgroundLayerControl);
+		}
+	}
+	public class EcoGaugeBackgroundLayerControl : PresentationControl {
+		public EcoGaugeBackgroundLayerControl() {
+			DefaultStyleKey = typeof(EcoGaugeBackgroundLayerControl);
+		}
+	}
+	public class FutureGaugeBackgroundLayerControl : PresentationControl {
+		public FutureGaugeBackgroundLayerControl() {
+			DefaultStyleKey = typeof(FutureGaugeBackgroundLayerControl);
+		}
+	}
+	public class ClassicGaugeBackgroundLayerControl : PresentationControl {
+		public ClassicGaugeBackgroundLayerControl() {
+			DefaultStyleKey = typeof(ClassicGaugeBackgroundLayerControl);
+		}
+	}
+	public class IStyleGaugeBackgroundLayerControl : PresentationControl {
+		public IStyleGaugeBackgroundLayerControl() {
+			DefaultStyleKey = typeof(IStyleGaugeBackgroundLayerControl);
+		}
+	}
+	public class YellowSubmarineGaugeBackgroundLayerControl : PresentationControl {
+		public YellowSubmarineGaugeBackgroundLayerControl() {
+			DefaultStyleKey = typeof(YellowSubmarineGaugeBackgroundLayerControl);
+		}
+	}
+	public class MagicLightGaugeBackgroundLayerControl : PresentationControl {
+		public MagicLightGaugeBackgroundLayerControl() {
+			DefaultStyleKey = typeof(MagicLightGaugeBackgroundLayerControl);
+		}
+	}
+	public class FlatLightGaugeBackgroundLayerControl : PresentationControl {
+		public FlatLightGaugeBackgroundLayerControl() {
+			DefaultStyleKey = typeof(FlatLightGaugeBackgroundLayerControl);
+		}
+	}
+	public class FlatDarkGaugeBackgroundLayerControl : PresentationControl {
+		public FlatDarkGaugeBackgroundLayerControl() {
+			DefaultStyleKey = typeof(FlatDarkGaugeBackgroundLayerControl);
+		}
+	}
+}

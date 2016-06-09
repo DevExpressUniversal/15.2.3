@@ -1,0 +1,213 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:dxgcore="http://schemas.devexpress.com/winfx/2008/xaml/grid" xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid" xmlns:dxgt="http://schemas.devexpress.com/winfx/2008/xaml/grid/themekeys" xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys">
+    <!--
+          removed Color x:Key =BaseColor#FFFFBE73-->
+    <!--
+          removed Color x:Key =BaseColor#FFDDEBFF-->
+    <!--
+          removed Color x:Key =BaseColor#FFFFD39F-->
+    <!--
+          removed Color x:Key =BaseColor#FFFFEFBE-->
+    <!--
+          removed Color x:Key =BaseColor#FFC7DFFF-->
+    <!--
+          removed Color x:Key =BaseColor#FFF7D879-->
+    <!--
+          removed SolidColorBrush x:Key =BaseBrush#FF567DB1-->
+    <!--
+          removed Color x:Key =BaseColor#FFFFD9A7-->
+    <!--
+          removed Color x:Key =BaseColor#FFFFE9D0-->
+    <!--
+          removed SolidColorBrush x:Key =BaseBrush#FFF4F7FA-->
+    <!--
+          removed Color x:Key =BaseColor#FFADD1FF-->
+    <!--
+          removed Color x:Key =BaseColor#FFE87F08-->
+    <!--
+          removed Color x:Key =BaseColor#FFFFE1BE-->
+    <!--
+          removed SolidColorBrush x:Key =BaseBrush#FFFFBD69-->
+    <!--
+          removed SolidColorBrush x:Key =BaseBrush#FF6593CF-->
+    <!--
+          removed SolidColorBrush x:Key =BaseBrush#FF204D89-->
+    <!--
+          removed Color x:Key =BaseColor#FFFFFFDC-->
+    <!--
+          removed Color x:Key =BaseColor#FFFEDE77-->
+    <!--
+          removed Color x:Key =BaseColor#FFBFDAFF-->
+    <!--
+          removed Color x:Key =BaseColor#FF759BD2-->
+    <!--
+          removed Color x:Key =BaseColor#FFF7C15E-->
+    <!--
+          removed SolidColorBrush x:Key =BaseBrush#FF000000-->
+    <!--
+          removed SolidColorBrush x:Key =BaseBrush#5AFFFFFF-->
+    <!--
+          removed Color x:Key =BaseColor#FF6488BC-->
+    <!--
+          removed Color x:Key =BaseColor#FFFFAB3F-->
+    <dx:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+    <dx:BoolToObjectConverter x:Key="ExpandButtonMarginConverter">
+        <dx:BoolToObjectConverter.TrueValue>
+            <Thickness>0,4,8,4</Thickness>
+        </dx:BoolToObjectConverter.TrueValue>
+        <dx:BoolToObjectConverter.FalseValue>
+            <Thickness>8,4,8,4</Thickness>
+        </dx:BoolToObjectConverter.FalseValue>
+    </dx:BoolToObjectConverter>
+    <LinearGradientBrush x:Key="hottrack-item" EndPoint="0.5,-0.002" StartPoint="0.5,1.002">
+        <GradientStop Color="#FF6488BC " Offset="0" />
+        <GradientStop Color="#FF759BD2 " Offset="1" />
+    </LinearGradientBrush>
+    <ControlTemplate x:Key="{dxgt:GridCardThemeKey ResourceKey=ExpandButtonTemplate}" TargetType="{x:Type dx:ToggleStateButton}">
+        <Grid Background="Transparent" x:Name="root">
+            <Grid.Resources>
+                <Storyboard FillBehavior="HoldEnd" x:Key="expand">
+                    <DoubleAnimation Storyboard.TargetName="ExpandButtonRotate" Storyboard.TargetProperty="Angle" To="90" Duration="0:0:0.2" />
+                </Storyboard>
+                <Storyboard FillBehavior="HoldEnd" x:Key="collapse">
+                    <DoubleAnimation Storyboard.TargetName="ExpandButtonRotate" Storyboard.TargetProperty="Angle" To="0" Duration="0:0:0.2" />
+                </Storyboard>
+            </Grid.Resources>
+
+            <Border x:Name="hover" Visibility="Hidden" BorderBrush="#FFFFBD69 ">
+                <Border.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FFFFFFDC " Offset="0" />
+                        <GradientStop Color="#FFF7C15E " Offset="1" />
+                    </LinearGradientBrush>
+                </Border.Background>
+            </Border>
+            <Border BorderBrush="#FFFFBD69 " x:Name="pressed" Visibility="Hidden">
+                <Border.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FFE87F08 " Offset="0" />
+                        <GradientStop Color="#FFF7D879 " Offset="1" />
+                    </LinearGradientBrush>
+                </Border.Background>
+            </Border>
+            <Path x:Name="path" Stretch="Fill" Fill="#FFFFFFFF" Data="F1 M 106,201L 106,207L 113,204L 106,201 Z " HorizontalAlignment="Center" Height="8" Margin="8,4,4,4" UseLayoutRounding="False" VerticalAlignment="Center" Width="8" RenderTransformOrigin="0.5,0.5">
+                <Path.RenderTransform>
+                    <RotateTransform x:Name="ExpandButtonRotate" Angle="90" />
+                </Path.RenderTransform>
+            </Path>
+        </Grid>
+    </ControlTemplate>
+    <Style x:Key="{dxgt:CardTemplatesThemeKey ResourceKey=CardStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Style.Triggers>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsMouseOver" Value="True" />
+                    <Condition Property="dxg:GridViewBase.IsFocusedRow" Value="False" />
+                </MultiTrigger.Conditions>
+            </MultiTrigger>
+            <Trigger Property="dxg:GridViewBase.IsFocusedRow" Value="True" />
+        </Style.Triggers>
+    </Style>
+    <ControlTemplate x:Key="{dxgt:GridCardThemeKey ResourceKey=ContainerTemplate}" TargetType="{x:Type ContentControl}">
+        <Grid>
+            <Border Margin="3" x:Name="border" Grid.RowSpan="1" Padding="1" BorderThickness="1" CornerRadius="4">
+                <ContentPresenter />
+            </Border> 
+        </Grid>
+        <ControlTemplate.Triggers>
+            <DataTrigger Binding="{Binding Path=(dxgcore:RowData.RowData).SelectionState, RelativeSource={RelativeSource TemplatedParent}}" Value="Focused">
+                <Setter TargetName="border" Property="BorderBrush" Value="#FF6DA1DE" />
+            </DataTrigger>    
+            <DataTrigger Binding="{Binding Path=(dxgcore:RowData.RowData).SelectionState, RelativeSource={RelativeSource TemplatedParent}}" Value="Selected">
+                <Setter TargetName="border" Property="BorderBrush" Value="#FFB9BABF" />
+            </DataTrigger>                        
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+    <Style x:Key="{dxgt:GridCardThemeKey ResourceKey=HeaderPresenterStyle}" TargetType="{x:Type dxg:GridCardHeaderContentPresenter}">
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="TextBlock.Foreground" Value="White" />
+    </Style>
+    <Style x:Key="{dxgt:GridCardThemeKey ResourceKey=ContentExpandButtonStyle}" TargetType="{x:Type dxg:GridCardExpandButton}">
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="Margin" Value="0,0,3,0" />
+    </Style>
+    <Style x:Key="{dxgt:GridCardThemeKey ResourceKey=ContentPresenterStyle}" TargetType="{x:Type dxg:GridCardContentPresenter}">
+        <Setter Property="Margin" Value="11" />
+    </Style>
+    <ControlTemplate x:Key="{dxgt:GridCardThemeKey ResourceKey=HeaderContentTemplate}" TargetType="{x:Type ContentControl}">
+        <ContentPresenter Margin="{Binding Path=(dxg:GridControl.ActiveView).ShowCardExpandButton, Converter={StaticResource ExpandButtonMarginConverter}, RelativeSource={RelativeSource TemplatedParent}}" />
+    </ControlTemplate>
+    <ControlTemplate x:Key="{dxgt:GridCardThemeKey ResourceKey=ExpanderContentTemplate}" TargetType="{x:Type ContentControl}">
+        <ContentPresenter />
+    </ControlTemplate>
+    <ControlTemplate x:Key="{dxgt:GridCardThemeKey ResourceKey=DataContentTemplate}" TargetType="{x:Type ContentControl}">
+        <Border x:Name="border" Background="#FFE9EDF2" CornerRadius="0,0,3,3" BorderThickness="0,1,0,0">
+            <ContentPresenter />
+        </Border>
+        <ControlTemplate.Triggers>
+            <DataTrigger Binding="{Binding Path=IsExpanded}" Value="False" />
+            <DataTrigger Binding="{Binding Path=(dxgcore:RowData.RowData).SelectionState, RelativeSource={RelativeSource TemplatedParent}}" Value="Focused">
+                <Setter Property="Background" TargetName="border" Value="Transparent" />
+            </DataTrigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+    <ControlTemplate x:Key="{dxgt:GridCardThemeKey ResourceKey=HeaderPanelTemplate}" TargetType="{x:Type ContentControl}">
+        <Border x:Name="border">
+            <Border.CornerRadius>
+                <Binding Path="IsExpanded">
+                    <Binding.Converter>
+                        <dx:BoolToObjectConverter TrueValue="3,3,0,0" FalseValue="3" />
+                    </Binding.Converter>
+                </Binding>
+            </Border.CornerRadius>
+            <Border.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF90B9E6" Offset="0" />
+                    <GradientStop Color="#FF6DA1DE" Offset="1" />
+                </LinearGradientBrush>
+            </Border.Background>
+            <ContentPresenter />
+        </Border>
+        <ControlTemplate.Triggers>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsMouseOver" Value="True" />
+                    <Condition Property="dxg:GridViewBase.IsFocusedRow" Value="False" />
+                </MultiTrigger.Conditions>
+            </MultiTrigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+    <ControlTemplate x:Key="{dxgt:GridCardThemeKey ResourceKey=ControlTemplate}">
+        <ContentControl x:Name="card" Template="{DynamicResource {dxgt:GridCardThemeKey ResourceKey=ContainerTemplate}}" Style="{Binding Path=(dxg:GridControl.ActiveView).CardStyle, RelativeSource={RelativeSource TemplatedParent}}">
+            <dxg:GridCardPanel x:Name="gridCardPanel" IsExpanded="{Binding Path=IsExpanded}">
+                <dxg:GridCardPanel.Header>
+                    <dxg:GridCardHeaderControl>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <ContentControl Grid.Column="1" Template="{DynamicResource {dxgt:GridCardThemeKey ResourceKey=HeaderContentTemplate}}">
+                                <dxg:GridCardHeaderContentPresenter Style="{DynamicResource {dxgt:GridCardThemeKey ResourceKey=HeaderPresenterStyle}}" />
+                            </ContentControl>
+                            <ContentControl Grid.Column="0" Visibility="{Binding Path=View.ShowCardExpandButton, Converter={StaticResource BoolToVisibilityConverter}}" Template="{DynamicResource {dxgt:GridCardThemeKey ResourceKey=ExpanderContentTemplate}}">
+                                <dxg:GridCardExpandButton Style="{DynamicResource {dxgt:GridCardThemeKey ResourceKey=ContentExpandButtonStyle}}" />
+                            </ContentControl>
+                        </Grid>
+                    </dxg:GridCardHeaderControl>
+                </dxg:GridCardPanel.Header>
+                <dxg:GridCardPanel.Body>
+                    <ContentControl Template="{DynamicResource {dxgt:GridCardThemeKey ResourceKey=DataContentTemplate}}">
+                        <dxg:GridCardContentPresenter x:Name="presenter" Style="{DynamicResource {dxgt:GridCardThemeKey ResourceKey=ContentPresenterStyle}}" />
+                    </ContentControl>
+                </dxg:GridCardPanel.Body>
+            </dxg:GridCardPanel>
+        </ContentControl>
+        <ControlTemplate.Triggers>
+            <DataTrigger Binding="{Binding Path=View.CollapsedCardOrientation}" Value="Vertical">
+                <Setter Property="RotateOnCollapse" Value="True" TargetName="gridCardPanel" />
+            </DataTrigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+</ResourceDictionary>

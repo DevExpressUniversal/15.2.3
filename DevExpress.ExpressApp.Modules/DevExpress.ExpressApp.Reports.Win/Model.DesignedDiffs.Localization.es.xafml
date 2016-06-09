@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application>
+  <ActionDesign>
+    <Actions>
+      <Action Id="EditReportController.Edit" Caption="Editar" />
+      <Action Id="ExecuteReport" Caption="Ejecutar informe" />
+      <Action Id="PreviewReport" Caption="Prevista" />
+      <Action Id="ShowReportDesigner" Caption="Mostrar el Diseñador de informes" />
+    </Actions>
+  </ActionDesign>
+  <BOModel>
+    <Class Name="DevExpress.ExpressApp.Reports.Win.NewReportParams" Caption="Nuevos Parámetros Informe" />
+    <Class Name="DevExpress.ExpressApp.Reports.Win.NewXafReportWizardParameters" Caption="Nueva XAF parámetros de informe Asistente">
+      <OwnMembers>
+        <Member Name="DataType" Caption="Tipo de datos" />
+        <Member Name="ReportName" Caption="Nombre del informe" />
+        <Member Name="ReportType" Caption="Tipo de informe" />
+      </OwnMembers>
+    </Class>
+  </BOModel>
+  <Localization>
+    <LocalizationGroup Name="Captions">
+      <LocalizationItem Name="AllFiles" Value="Todos los archivos" />
+      <LocalizationItem Name="ExportLayout" Value="diseño Exportar a archivo ..." />
+      <LocalizationItem Name="ImportLayout" Value="Importar desde un archivo de diseño ..." />
+      <LocalizationItem Name="ReportDesignerWarning" Value="Advertencia" />
+      <LocalizationItem Name="ReportFiles" Value="Informe de Archivos" />
+    </LocalizationGroup>
+    <LocalizationGroup Name="Enums">
+      <LocalizationGroup Name="DevExpress.ExpressApp.Reports.Win.ReportType">
+        <LocalizationItem Name="Label" Value="Etiqueta" />
+        <LocalizationItem Name="Standard" Value="Norma" />
+      </LocalizationGroup>
+    </LocalizationGroup>
+    <LocalizationGroup Name="Messages">
+      <LocalizationItem Name="ReportPreviewFilter" Value="El filtro que ha configurado no puede ser utilizado como un tiempo de diseño del filtro, ya que utiliza los campos consultables.\r\nUna variación automática del filtro se creará para el uso en tiempo de diseño,\r\ny se puede modificar este mismo filtro estableciendo la propiedad FilterForDesignPreview." />
+      <LocalizationItem Name="WrongReportPreviewFilter" Value="Los filtros con campos consultables no se puede utilizar para la propiedad FilterForDesignPreview." />
+    </LocalizationGroup>
+  </Localization>
+  <Views>
+    <DetailView Id="NewXafReportWizardParameters_DetailView" Caption="Nuevo Asistente para informes">
+      <Items>
+        <StaticText Id="ReportText" Text="Para crear un nuevo informe, por favor, introduzca un nombre en el campo de abajo y seleccione el tipo de datos principal del informe de la lista." />
+      </Items>
+      <Layout>
+        <LayoutGroup Id="Main" Caption="Principales">
+          <LayoutGroup Id="Static" Caption="Estática (11)">
+            <LayoutGroup Id="NewReportParams" Caption="Nuevos Parámetros Informe">
+              <LayoutGroup Id="SimpleEditors" Caption="Editores simple" />
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+  </Views>
+</Application>

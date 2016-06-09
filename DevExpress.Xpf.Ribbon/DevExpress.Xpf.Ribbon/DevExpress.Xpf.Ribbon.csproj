@@ -1,0 +1,583 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{EBDCE707-3950-4FA5-A45F-DE50FFD95EB6}</ProjectGuid>
+    <OutputType>library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DevExpress.Xpf.Ribbon</RootNamespace>
+    <AssemblyName>DevExpress.Xpf.Ribbon.v15.2</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <BaseIntermediateOutputPath>obj.Wpf</BaseIntermediateOutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\..\Bin\Framework\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;WPF;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <NoWarn>1762</NoWarn>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\..\Bin\Framework\</OutputPath>
+    <DefineConstants>TRACE;WPF;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <NoWarn>1762</NoWarn>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+  </PropertyGroup>
+  
+  
+  <PropertyGroup>
+    <ApplicationIcon>
+    </ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Accessibility">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    <Private>False</Private></Reference>
+    <Reference Include="DevExpress.Printing.v15.2.Core"><HintPath>..\..\..\Bin\Framework\DevExpress.Printing.v15.2.Core.dll</HintPath><Private>False</Private></Reference>
+    <Reference Include="DevExpress.Data.v15.2"><HintPath>..\..\..\Bin\Framework\DevExpress.Data.v15.2.dll</HintPath><Private>False</Private></Reference>
+    <Reference Include="DevExpress.Xpf.Core.v15.2"><HintPath>..\..\..\Bin\Framework\DevExpress.Xpf.Core.v15.2.dll</HintPath><Private>False</Private></Reference>
+    <Reference Include="DevExpress.Mvvm.v15.2"><HintPath>..\..\..\Bin\Framework\DevExpress.Mvvm.v15.2.dll</HintPath><Private>False</Private></Reference>
+    
+    <Reference Include="PresentationFramework.Luna">
+    <Private>False</Private></Reference>
+    <Reference Include="PresentationUI, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35"><Private>False</Private></Reference>
+    <Reference Include="System"><Private>False</Private></Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations"><Private>False</Private></Reference>
+    <Reference Include="System.Configuration"><Private>False</Private></Reference>
+    <Reference Include="System.Core">
+    <Private>False</Private></Reference>
+    <Reference Include="System.Drawing"><Private>False</Private></Reference>
+    <Reference Include="System.Windows.Forms"><Private>False</Private></Reference>
+    <Reference Include="System.Xaml"><Private>False</Private></Reference>
+    <Reference Include="System.Xml.Linq">
+    <Private>False</Private></Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+    <Private>False</Private></Reference>
+    <Reference Include="System.Data"><Private>False</Private></Reference>
+    <Reference Include="System.Xml"><Private>False</Private></Reference>
+    <Reference Include="UIAutomationProvider">
+    <Private>False</Private></Reference>
+    <Reference Include="UIAutomationTypes"><Private>False</Private></Reference>
+    <Reference Include="WindowsBase">
+    <Private>False</Private></Reference>
+    <Reference Include="PresentationCore">
+    <Private>False</Private></Reference>
+    <Reference Include="PresentationFramework">
+    <Private>False</Private></Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ApplicationMenu\ApplicationMenu.cs" />
+    <Compile Include="ApplicationMenu\ApplicationMenuBarControl.cs" />
+    <Compile Include="ApplicationMenu\ApplicationMenuBorderControl.cs" />
+    <Compile Include="ApplicationMenu\ApplicationMenuContentControl.cs" />
+    <Compile Include="ApplicationMenu\ApplicationMenuStrategy.cs" />
+    <Compile Include="Automation\BackstageViewAutomationPeers.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Automation\RibbonAutomationPeers.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Automation\RibbonStatusBarAutomationPeer.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BackstageView\BackstageButtonItem.cs" />
+    <Compile Include="BackstageView\BackstageItem.cs" />
+    <Compile Include="BackstageView\BackstageSeparatorItem.cs" />
+    <Compile Include="BackstageView\BackstageTabItem.cs" />
+    <Compile Include="BackstageView\BackstageViewControl.cs" />
+    <Compile Include="BackstageView\BackstageViewPanel.cs" />
+    <Compile Include="BarButtonGroup\BarButtonGroupItemsControl.cs" />
+    <Compile Include="BarButtonGroup\BarButtonGroupItemsPanel.cs" />
+    <Compile Include="BarButtonGroup\BarButtonGroupLayoutCalculator.cs" />
+    <Compile Include="BarButtonGroup\ButtonGroupSetLayoutCalculator.cs" />
+    <Compile Include="BarItems\BarButtonGroup.cs" />
+    <Compile Include="BarItems\BarButtonGroupLink.cs" />
+    <Compile Include="BarItems\BarButtonGroupLinkControl.cs" />
+    <Compile Include="BarItems\RibbonGalleryBarItem.cs" />
+    <Compile Include="BarItems\RibbonGalleryBarItemLink.cs" />
+    <Compile Include="BarItems\RibbonGalleryBarItemLinkControl.cs" />
+    <Compile Include="BarItems\RibbonShowModeSelectorItem.cs" />
+    <Compile Include="BarItems\RibbonSpacingSelectorItem.cs" />
+    <Compile Include="BarItems\RibbonSpacingSelectorItemLink.cs" />
+    <Compile Include="BarItems\RibbonSpacingSelectorItemLinkControl.cs" />
+    <Compile Include="BaseDependencyObjectCollection.cs" />
+    <Compile Include="Behaviors\RibbonAutoHideModeBehavior.cs" />
+    <Compile Include="Behaviors\RibbonGalleryItemThemeSelectorBehavior.cs" />
+    <Compile Include="Customization\CustomizationControl.xaml.cs">
+      <DependentUpon>CustomizationControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Events\Events.cs" />
+    <Compile Include="Helpers\HierarchicalMergingHelper.cs" />
+    <Compile Include="Helpers\ImageHelper.cs" />
+    <Compile Include="Helpers\RibbonSelectionHelper.cs" />
+    <Compile Include="Internal\Controls\RibbonAutoHideControl.cs" />
+    <Compile Include="Internal\Controls\RibbonControlView.cs" />
+    <Compile Include="Internal\Helpers\RibbonSpacingModeHelper.cs" />
+    <Compile Include="ItemsGenerator.cs" />
+    <Compile Include="RibbonAutoHide.cs" />
+    <Compile Include="RibbonControl\Ribbon.cs" />
+    <Compile Include="RibbonMergingHelper.cs" />
+    <Compile Include="RibbonPageGroup\RibbonPageGroupLayoutCalculator.cs" />
+    <Compile Include="RibbonPage\RibbonPageHeadersPanel.cs" />
+    <Compile Include="RibbonWindow\DXRibbonWindowPanel.cs" />
+    
+    
+    
+    <Compile Include="Customization\TabsCustomizationControl.xaml.cs">
+      <DependentUpon>TabsCustomizationControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="RibbonWindow\DXRibbonWindow.cs" />
+    <Compile Include="DXTreeView\DXTreeView.cs" />
+    <Compile Include="DXTreeView\DXTreeViewItem.cs" />
+    <Compile Include="DXTreeView\DXTreeViewItemItemsPanel.cs" />
+    <Compile Include="DXTreeView\DXTreeViewItemsPanel.cs" />
+    <Compile Include="Gallery\GalleryDropDownControl.cs" />
+    <Compile Include="Localization.cs" />
+    <Compile Include="Merging.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="QuickAccessToolbar\QuickAccessToolbar.cs" />
+    <Compile Include="QuickAccessToolbar\QuickAccessToolbarControl.cs" />
+    <Compile Include="QuickAccessToolbar\QuickAccessToolbarLayoutCalculator.cs" />
+    <Compile Include="QuickAccessToolbar\QuickAccessToolbarPanel.cs" />
+    <Compile Include="QuickAccessToolbar\QuickAccessToolbarPopup.cs" />
+    <Compile Include="QuickAccessToolbar\QuickAccessToolbarPopupBorderControl.cs" />
+    <Compile Include="RibbonApplicationButtonControl.cs" />
+    <Compile Include="RibbonCheckedBorderControl.cs" />
+    <Compile Include="RibbonControlHelper.cs" />
+    <Compile Include="RibbonController.cs" />
+    <Compile Include="RibbonCustomizationHelper.cs" />
+    <Compile Include="RibbonHeader\RibbonHeaderControl.cs" />
+    <Compile Include="RibbonHeader\RibbonHeaderItemsPanel.cs" />
+    <Compile Include="RibbonItemsPanel.cs" />
+    <Compile Include="RibbonLayoutCalculator.cs" />
+    <Compile Include="RibbonNavigationManager.cs" />
+    <Compile Include="RibbonPageCategoriesPane.cs" />
+    <Compile Include="RibbonPageCategory\RibbonPageCategory.cs" />
+    <Compile Include="RibbonPageCategory\RibbonPageCategoryCollection.cs" />
+    <Compile Include="RibbonPageCategory\RibbonPageCategoryControl.cs" />
+    <Compile Include="RibbonPageCategory\RibbonPageCategoryHeaderControl.cs" />
+    <Compile Include="RibbonPageCategory\RibbonPageCategoryItemsPanel.cs" />
+    <Compile Include="RibbonPageGroupsControl.cs" />
+    <Compile Include="RibbonPageGroup\RibbonPageGroup.cs" />
+    <Compile Include="RibbonPageGroup\RibbonPageGroupCollection.cs" />
+    <Compile Include="RibbonPageGroup\RibbonPageGroupControl.cs" />
+    <Compile Include="RibbonPageGroup\RibbonPageGroupItemsPanel.cs" />
+    <Compile Include="RibbonPageGroup\RibbonPageGroupPopup.cs" />
+    <Compile Include="RibbonPageGroup\RibbonPageGroupPopupBorderControl.cs" />
+    <Compile Include="RibbonPageHeaderLinks\RibbonPageHeaderLinksControl.cs" />
+    <Compile Include="RibbonPagesControl.cs" />
+    <Compile Include="RibbonPage\RibbonCaptionContentPanel.cs" />
+    <Compile Include="RibbonPage\RibbonPage.cs" />
+    <Compile Include="RibbonPage\RibbonPageCaptionControl.cs" />
+    <Compile Include="RibbonPage\RibbonPageCollection.cs" />
+    <Compile Include="RibbonPage\RibbonPageHeaderContentPresenter.cs" />
+    <Compile Include="RibbonPage\RibbonPageHeaderControl.cs" />
+    <Compile Include="RibbonPage\RibbonPageItemsPanel.cs" />
+    <Compile Include="RibbonSelectedPagePopup.cs" />
+    <Compile Include="RibbonPopup.cs" />
+    <Compile Include="RibbonPopupBorderControl.cs" />
+    <Compile Include="RibbonSelectedPageControl.cs" />
+    <Compile Include="RibbonStatusBar\RibbonStatusBarControl.cs" />
+    <Compile Include="RibbonStatusBar\RibbonStatusBarLayoutCalculator.cs" />
+    <Compile Include="RibbonStatusBar\RibbonStatusBarLeftPartControl.cs" />
+    <Compile Include="RibbonStatusBar\RibbonStatusBarLeftPartItemsPanel.cs" />
+    <Compile Include="RibbonStatusBar\RibbonStatusBarLeftPartLayoutCalculator.cs" />
+    <Compile Include="RibbonStatusBar\RibbonStatusBarPartControl.cs" />
+    <Compile Include="RibbonStatusBar\RibbonStatusBarRightPartControl.cs" />
+    <Compile Include="RibbonStatusBar\RibbonStatusBarRightPartItemsPanel.cs" />
+    <Compile Include="RibbonStatusBar\RibbonStatusBarRightPartLayoutCalculator.cs" />
+    <Compile Include="RibbonWindow\RibbonWindowHelper.cs" />
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <Compile Include="ThemeKeys\ApplicationButtonThemeKeys.cs" />
+    <Compile Include="ThemeKeys\BackstageButtonItemThemeKeys.cs" />
+    <Compile Include="ThemeKeys\BackstageSeparatorItemThemeKeys.cs" />
+    <Compile Include="ThemeKeys\BackstageTabItemThemeKeys.cs" />
+    <Compile Include="ThemeKeys\BackstageViewThemeKeys.cs" />
+    <Compile Include="ThemeKeys\BarItemThemeKeys.cs" />
+    <Compile Include="ThemeKeys\DXRibbonAeroWindowThemeKeys.cs" />
+    <Compile Include="ThemeKeys\DXTreeViewThemeKeys.cs" />
+    <Compile Include="ThemeKeys\GalleryDropDownControlThemeKeys.cs" />
+    <Compile Include="ThemeKeys\InRibbonGalleryThemeKeys.cs" />
+    <Compile Include="ThemeKeys\QuickAccessToolbarThemeKeys.cs" />
+    <Compile Include="ThemeKeys\RibbonAutoHideThemeKeys.cs" />
+    <Compile Include="ThemeKeys\RibbonHeaderThemeKeys.cs" />
+    <Compile Include="ThemeKeys\RibbonPageCategoriesPaneThemeKeys.cs" />
+    <Compile Include="ThemeKeys\RibbonPageCategoryThemeKeys.cs" />
+    <Compile Include="ThemeKeys\RibbonPageGroupThemeKeys.cs" />
+    <Compile Include="ThemeKeys\RibbonPageHeaderLinksControlThemeKeys.cs" />
+    <Compile Include="ThemeKeys\RibbonPageThemeKeys.cs" />
+    <Compile Include="ThemeKeys\RibbonStatusBarThemeKeys.cs" />
+    <Compile Include="ThemeKeys\RibbonThemeKeys.cs" />
+    <Compile Include="TitlePanel.cs" />
+    <EmbeddedResource Include="LocalizationRes.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LocalizationRes.ru.resx" />
+    <EmbeddedResource Include="LocalizationRes.ja.resx" />
+    <EmbeddedResource Include="LocalizationRes.es.resx" />
+    <EmbeddedResource Include="LocalizationRes.de.resx" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ApplicationButtonLargeIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Customization\CustomizationControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Customization\TabsCustomizationControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    
+    
+    
+    <Page Include="Themes\DeepBlue.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\DeepBlue\ApplicationButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\DeepBlue\ApplicationMenu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\DeepBlue\BackstageButtonItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\DeepBlue\BackstageSeparatorItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\DeepBlue\BackstageTabItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\DeepBlue\BackstageView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\DeepBlue\BarItems.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\DeepBlue\DropDownGallery.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\DeepBlue\DXTreeView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\DeepBlue\DXTreeViewItem.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\DeepBlue\InRibbonGallery.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\DeepBlue\QuickAccessToolbar.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\DeepBlue\Ribbon.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\DeepBlue\RibbonAeroWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\DeepBlue\RibbonHeader.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\DeepBlue\RibbonPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\DeepBlue\RibbonPageCategory.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\DeepBlue\RibbonPageGroup.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\DeepBlue\RibbonStatusBar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\DeepBlue\RibbonWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Fake.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Generic\ApplicationButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Generic\ApplicationMenu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Generic\BackstageButtonItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Generic\BackstageSeparatorItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Generic\BackstageTabItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Generic\BackstageView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Generic\BarItems.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Generic\DropDownGallery.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Generic\DXTreeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Generic\DXTreeViewItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Generic\InRibbonGallery.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Generic\QuickAccessToolbar.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Generic\Ribbon.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Generic\RibbonAeroWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Generic\RibbonAutoHide.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Generic\RibbonHeader.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Generic\RibbonPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Generic\RibbonPageCategory.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Generic\RibbonPageGroup.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Generic\RibbonStatusBar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Generic\RibbonWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Generic\IndependentPart.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ApplicationButtonSmallIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\BackstageBackgroundGlyph.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\DXWindowIcon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\barEditItemCustomizationIcon.png" />
+    <Resource Include="Images\barSplitButtonItemCustomizationIcon.png" />
+    <Resource Include="Images\barSubItemCustomizationIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\arrow_32x32.png" />
+    <EmbeddedResource Include="Images\touchMode_16x16.png" />
+    <EmbeddedResource Include="Images\touch_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\color_1.png" />
+    <EmbeddedResource Include="Images\color_2.png" />
+    <EmbeddedResource Include="Images\color_3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\mono_1.png" />
+    <EmbeddedResource Include="Images\mono_2.png" />
+    <EmbeddedResource Include="Images\mono_3.png" />
+    <EmbeddedResource Include="Images\off2013_1.png" />
+    <EmbeddedResource Include="Images\off2013_2.png" />
+    <EmbeddedResource Include="Images\off2013_3.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <PropertyGroup>
+    
+    
+  </PropertyGroup>
+<ItemGroup><EmbeddedResource Include="Descriptions.resx" /></ItemGroup><ItemGroup><Compile Include="Descriptions.cs" /></ItemGroup></Project>

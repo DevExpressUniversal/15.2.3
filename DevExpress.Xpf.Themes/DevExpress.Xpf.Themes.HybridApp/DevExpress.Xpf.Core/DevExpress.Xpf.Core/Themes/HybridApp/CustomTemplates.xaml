@@ -1,0 +1,23 @@
+﻿<ResourceDictionary mc:Ignorable="cs" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:dxet="http://schemas.devexpress.com/winfx/2008/xaml/editors/themekeys" xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors" xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:cs="colorscheme_ignorable_uri" xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys">
+    <!--BEGIN WPF-->
+    <ResourceDictionary.MergedDictionaries>
+        <dxdst:ResourceDictionaryEx Source="/DevExpress.Xpf.Themes.HybridApp.v15.2;component/DevExpress.Xpf.Core/DevExpress.Xpf.Core/Themes/Generic/CustomTemplates.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+    <!--END WPF-->
+    <ControlTemplate x:Key="{dxet:SearchControlThemeKey ResourceKey=ClearButtonTemplate}" TargetType="{x:Type dxe:ButtonClose}">
+        <Grid Background="#00000000" Width="32" Height="32">
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup x:Name="CommonStates">
+                    <VisualState x:Name="Normal" />
+                    <VisualState x:Name="Disabled" />
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+            <Grid Width="16" Height="16" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Border x:Name="Round" Background="#FF7F7F7F" Width="16" Height="16" CornerRadius="16">
+                    <Path x:Name="Glyph" Stretch="Fill" Fill="#FFFFFFFF" Data="F1 M 0,1L 1,0L 4,3L 7,4.76837e-007L 8,1L 5,4L 8,7L 7,8L 4,5L 1,8L 1.4803e-016,7L 3,4L 0,1 Z " Width="8" Height="8" />
+                </Border>
+            </Grid>
+        </Grid>
+    </ControlTemplate>
+    <!--#include ..\Generic\CustomTemplates.xaml-->
+</ResourceDictionary>

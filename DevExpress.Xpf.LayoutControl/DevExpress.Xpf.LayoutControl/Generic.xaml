@@ -1,0 +1,362 @@
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:core="http://schemas.devexpress.com/winfx/2008/xaml/core"
+    xmlns:local="clr-namespace:DevExpress.Xpf.LayoutControl">
+    <Style TargetType="local:LayerSeparator">
+        <Setter Property="IsTabStop" Value="False"/>
+        <Setter Property="Thickness" Value="5"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:LayerSeparator">
+                    <core:Container>
+                        <core:Container.Resources>
+                            <Color x:Key="NormalColor1">#FFC7DCF7</Color>
+                            <Color x:Key="NormalColor2">#FFDCECFF</Color>
+                            <Color x:Key="NormalColor3">#FFC7DCF7</Color>
+                            <Color x:Key="MouseOverColor1">#FF698ACA</Color>
+                            <Color x:Key="MouseOverColor2">#FFAECAEE</Color>
+                            <Color x:Key="MouseOverColor3">#FF5272B1</Color>
+                            <SolidColorBrush x:Key="Brush1" Color="{StaticResource NormalColor1}"/>
+                            <SolidColorBrush x:Key="Brush2" Color="{StaticResource NormalColor2}"/>
+                            <SolidColorBrush x:Key="Brush3" Color="{StaticResource NormalColor3}"/>
+                        </core:Container.Resources>
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualStateGroup.Transitions>
+                                    <VisualTransition To="MouseOver" GeneratedDuration="0:0:0.25"/>
+                                    <VisualTransition To="Normal" GeneratedDuration="0:0:0.5"/>
+                                </VisualStateGroup.Transitions>
+
+                                <VisualState x:Name="Normal"/>
+                                <VisualState x:Name="MouseOver">
+                                    <Storyboard>
+                                        <ColorAnimation Storyboard.TargetName="HorizontalRootElement" Storyboard.TargetProperty="(Background).Color"
+                                                        To="{StaticResource MouseOverColor1}"/>
+                                        <ColorAnimation Storyboard.TargetName="HorizontalElement1" Storyboard.TargetProperty="(Background).Color"
+                                                        To="{StaticResource MouseOverColor2}"/>
+                                        <ColorAnimation Storyboard.TargetName="HorizontalElement2" Storyboard.TargetProperty="(Fill).Color"
+                                                        To="{StaticResource MouseOverColor3}"/>
+                                        <ColorAnimation Storyboard.TargetName="VerticalRootElement" Storyboard.TargetProperty="(Background).Color"
+                                                        To="{StaticResource MouseOverColor1}"/>
+                                        <ColorAnimation Storyboard.TargetName="VerticalElement1" Storyboard.TargetProperty="(Background).Color"
+                                                        To="{StaticResource MouseOverColor2}"/>
+                                        <ColorAnimation Storyboard.TargetName="VerticalElement2" Storyboard.TargetProperty="(Fill).Color"
+                                                        To="{StaticResource MouseOverColor3}"/>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+
+                        <Border x:Name="HorizontalRootElement" Height="{TemplateBinding Thickness}" CornerRadius="2" Padding="1"
+                                Cursor="SizeNS" Background="{StaticResource Brush1}">
+                            <Border x:Name="HorizontalElement1" CornerRadius="1" Background="{StaticResource Brush2}">
+                                <Rectangle x:Name="HorizontalElement2" Width="16" Height="1" Fill="{StaticResource Brush3}"/>
+                            </Border>
+                        </Border>
+
+                        <Border x:Name="VerticalRootElement" Width="{TemplateBinding Thickness}" CornerRadius="2" Padding="1"
+                                Cursor="SizeWE" Background="{StaticResource Brush1}">
+                            <Border x:Name="VerticalElement1" CornerRadius="1" Background="{StaticResource Brush2}">
+                                <Rectangle x:Name="VerticalElement2" Width="1" Height="16" Fill="{StaticResource Brush3}"/>
+                            </Border>
+                        </Border>
+                    </core:Container>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="local:ElementSizer">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="IsTabStop" Value="False"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:ElementSizer">
+                    <core:Container Background="{TemplateBinding Background}" UseLayoutRounding="True">
+                        <core:Container.Resources>
+                            <Color x:Key="GlyphNormalColor">#FF2F4C8A</Color>
+                            <Color x:Key="GlyphMouseOverColor">#FF6289C4</Color>
+                            <Color x:Key="GlyphBackgroundColor">#40FFFFFF</Color>
+
+                            <SolidColorBrush x:Key="GlyphBrush" x:Name="GlyphBrush" Color="{StaticResource GlyphNormalColor}"/>
+                            <SolidColorBrush x:Key="GlyphBackgroundBrush" Color="{StaticResource GlyphBackgroundColor}"/>
+                        </core:Container.Resources>
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal"/>
+                                <VisualState x:Name="MouseOver">
+                                    <Storyboard>
+                                        <ColorAnimation Storyboard.TargetName="GlyphBrush" Storyboard.TargetProperty="Color"
+                                                        To="{StaticResource GlyphMouseOverColor}" Duration="0"/>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+
+                        <core:Container x:Name="HorizontalRootElement" Width="16" Height="4" Cursor="SizeNS">
+                            <Path Stretch="Fill" Fill="{StaticResource GlyphBackgroundBrush}" Margin="2,2,0,0"
+                                  Data="F1 M 559,365L 559,367L 557,367L 557,365L 559,365 Z M 555,365L 555,367L 553,367L 553,365L 555,365 Z M 551,365L 551,367L 549,367L 549,365L 551,365 Z M 547,365L 547,367L 545,367L 545,365L 547,365 Z "/>
+                            <Path Stretch="Fill" Fill="{StaticResource GlyphBrush}" Margin="1"
+                                  Data="F1 M 558,364L 558,366L 556,366L 556,364L 558,364 Z M 554,364L 554,366L 552,366L 552,364L 554,364 Z M 550,364L 550,366L 548,366L 548,364L 550,364 Z M 546,364L 546,366L 544,366L 544,364L 546,364 Z "/>
+                        </core:Container>
+
+                        <core:Container x:Name="VerticalRootElement" Width="4" Height="16" Cursor="SizeWE">
+                            <Path Stretch="Fill" Fill="{StaticResource GlyphBackgroundBrush}" Margin="2,2,0,0"
+                                  Data="F1 M 539,358L 541,358L 541,360L 539,360L 539,358 Z M 539,362L 541,362L 541,364L 539,364L 539,362 Z M 539,366L 541,366L 541,368L 539,368L 539,366 Z M 539,370L 541,370L 541,372L 539,372L 539,370 Z "/>
+                            <Path Stretch="Fill" Fill="{StaticResource GlyphBrush}" Margin="1"
+                                  Data="F1 M 538,357L 540,357L 540,359L 538,359L 538,357 Z M 538,361L 540,361L 540,363L 538,363L 538,361 Z M 538,365L 540,365L 540,367L 538,367L 538,365 Z M 538,369L 540,369L 540,371L 538,371L 538,369 Z "/>
+                        </core:Container>
+                    </core:Container>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="local:GroupBoxButton">
+        <Setter Property="IsTabStop" Value="False"/>
+        <Setter Property="Width" Value="13"/>
+        <Setter Property="Height" Value="13"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:GroupBoxButton">
+                    <core:Container Background="Transparent" Opacity="0.75">
+                        <core:Container.Resources>
+                            <Color x:Key="NormalColor">#FF557ABD</Color>
+                            <Color x:Key="MouseOverColor">#FF2F4C8A</Color>
+                            <Color x:Key="PressedColor">#FF1A305C</Color>
+                            <SolidColorBrush x:Key="ElementBrush" x:Name="ElementBrush" Color="{StaticResource NormalColor}"/>
+                        </core:Container.Resources>
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal"/>
+                                <VisualState x:Name="MouseOver">
+                                    <Storyboard>
+                                        <ColorAnimation Storyboard.TargetName="ElementBrush" Storyboard.TargetProperty="Color"
+                                                        To="{StaticResource MouseOverColor}" Duration="0"/>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Pressed">
+                                    <Storyboard>
+                                        <ColorAnimation Storyboard.TargetName="ElementBrush" Storyboard.TargetProperty="Color"
+                                                        To="{StaticResource PressedColor}" Duration="0"/>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+
+                        <Path x:Name="MinimizeElement" Stretch="Fill" Fill="{StaticResource ElementBrush}" RenderTransformOrigin="0.5,0.5"
+                              Data="F1 M 379.5,270C 383.642,270 387,273.358 387,277.5C 387,281.642 383.642,285 379.5,285C 375.358,285 372,281.642 372,277.5C 372,273.358 375.358,270 379.5,270 Z M 380,281L 383,275L 376,275L 379,281L 380,281 Z ">
+                            <Path.RenderTransform>
+                                <ScaleTransform ScaleY="-1"/>
+                            </Path.RenderTransform>
+                        </Path>
+
+                        <Path x:Name="UnminimizeElement" Stretch="Fill" Fill="{StaticResource ElementBrush}"
+                              Data="F1 M 379.5,270C 383.642,270 387,273.358 387,277.5C 387,281.642 383.642,285 379.5,285C 375.358,285 372,281.642 372,277.5C 372,273.358 375.358,270 379.5,270 Z M 380,281L 383,275L 376,275L 379,281L 380,281 Z "/>
+
+                        <Path x:Name="MaximizeElement" Stretch="Fill" Fill="{StaticResource ElementBrush}"
+                              Data="F1 M 23.5005,1.90735e-005C 27.0906,1.90735e-005 30.0007,2.91018 30.0007,6.50014C 30.0007,10.0901 27.0906,13.0003 23.5005,13.0003C 19.9106,13.0003 17.0004,10.0901 17.0004,6.50014C 17.0004,2.91018 19.9106,1.90735e-005 23.5005,1.90735e-005 Z M 26.9995,8.00014L 27.0002,3.00008L 21.9995,3.00014L 26.9995,8.00014 Z M 19.9995,5.00026L 19.9995,10.0003L 25,10.0001L 19.9995,5.00026 Z "/>
+
+                        <Path x:Name="UnmaximizeElement" Stretch="Fill" Fill="{StaticResource ElementBrush}"
+                              Data="F1 M 6.50024,0.000324249C 10.0902,0.000324249 13.0004,2.91048 13.0004,6.50051C 13.0004,10.0904 10.0902,13.0006 6.50024,13.0006C 2.9104,13.0006 0,10.0904 0,6.50051C 0,2.91048 2.9104,0.000324249 6.50024,0.000324249 Z M 7.00024,2.00039L 7.00049,6.00039L 11.0002,6.00039L 7.00024,2.00039 Z M 6.00024,11.0004L 6.00073,7.00039L 2.00024,7.00039L 6.00024,11.0004 Z "/>
+                    </core:Container>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <ControlTemplate x:Key="groupBoxNormalTemplate" TargetType="local:GroupBox">
+        <core:Container>
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup x:Name="LayoutStates">
+                    <VisualState x:Name="NormalLayout"/>
+                    <VisualState x:Name="MinimizedLayout">
+                        <Storyboard>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="TitleElement" Storyboard.TargetProperty="VerticalAlignment" Duration="0">
+                                <DiscreteObjectKeyFrame KeyTime="0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <VerticalAlignment>Stretch</VerticalAlignment>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SeparatorElement" Storyboard.TargetProperty="Visibility" Duration="0">
+                                <DiscreteObjectKeyFrame KeyTime="0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <Visibility>Collapsed</Visibility>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentElement" Storyboard.TargetProperty="Visibility" Duration="0">
+                                <DiscreteObjectKeyFrame KeyTime="0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <Visibility>Collapsed</Visibility>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="MaximizedLayout"/>
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+
+            <local:GroupBoxShadow CornerRadius="{TemplateBinding CornerRadius}" Offset="{TemplateBinding ShadowOffset}"
+                                              Visibility="{Binding ShadowVisibility, RelativeSource={RelativeSource TemplatedParent}}"/>
+
+            <Border x:Name="BorderElement" CornerRadius="{TemplateBinding CornerRadius}" BorderThickness="{TemplateBinding BorderThickness}"
+                                BorderBrush="{TemplateBinding BorderBrush}" Background="{TemplateBinding Background}"
+                                core:BorderExtensions.ClipChild="True">
+                <local:LayoutControl Orientation="Vertical" Padding="0" ItemSpace="0" ScrollBars="None" core:DXSerializer.Enabled="False" >
+                    <core:Container x:Name="TitleElement" VerticalAlignment="Top" Visibility="{TemplateBinding TitleVisibility}">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="0.5*"/>
+                                <RowDefinition Height="0.5*"/>
+                            </Grid.RowDefinitions>
+
+                            <Border Grid.RowSpan="2">
+                                <Border.Background>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FF8AB3E2" Offset="0"/>
+                                        <GradientStop Color="#FFB2CDF8" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Border.Background>
+                            </Border>
+                            <Border Grid.RowSpan="1" CornerRadius="0,0,4,4">
+                                <Border.Background>
+                                    <LinearGradientBrush EndPoint="0.5,0" StartPoint="0.5,1">
+                                        <GradientStop Color="#FFB9D4F6" Offset="1"/>
+                                        <GradientStop Color="#FFAACAF8" Offset="0"/>
+                                    </LinearGradientBrush>
+                                </Border.Background>
+                            </Border>
+                        </Grid>
+
+                        <local:LayoutControl Padding="4,2" ItemSpace="4" ScrollBars="None" Background="{TemplateBinding TitleBackground}" core:DXSerializer.Enabled="False" >
+                            <core:DXContentPresenter Content="{TemplateBinding Header}" ContentTemplate="{TemplateBinding HeaderTemplate}"
+                                                                 Margin="7,0" VerticalAlignment="Center"/>
+                            <local:GroupBoxButton x:Name="MinimizeElement" HorizontalAlignment="Right" VerticalAlignment="Center"
+                                                              Visibility="{TemplateBinding MinimizeElementVisibility}"/>
+                            <local:GroupBoxButton x:Name="MaximizeElement" HorizontalAlignment="Right" VerticalAlignment="Center"
+                                                              Visibility="{TemplateBinding MaximizeElementVisibility}"/>
+                        </local:LayoutControl>
+                    </core:Container>
+
+                    <Rectangle x:Name="SeparatorElement" Height="1" Fill="{TemplateBinding SeparatorBrush}"
+                                           Visibility="{TemplateBinding TitleVisibility}"/>
+
+                    <core:DXContentPresenter x:Name="ContentElement" Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding CurrentContentTemplate}"
+                                                         Margin="{TemplateBinding Padding}"/>
+                </local:LayoutControl>
+            </Border>
+        </core:Container>
+    </ControlTemplate>
+    <ControlTemplate x:Key="groupBoxLightTemplate" TargetType="local:GroupBox">
+        <core:Container>
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup x:Name="LayoutStates">
+                    <VisualState x:Name="NormalLayout"/>
+                    <VisualState x:Name="MinimizedLayout">
+                        <Storyboard>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="TitleElement" Storyboard.TargetProperty="VerticalAlignment" Duration="0">
+                                <DiscreteObjectKeyFrame KeyTime="0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <VerticalAlignment>Stretch</VerticalAlignment>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentElement" Storyboard.TargetProperty="Visibility" Duration="0">
+                                <DiscreteObjectKeyFrame KeyTime="0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <Visibility>Collapsed</Visibility>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="MaximizedLayout"/>
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+            <Border x:Name="BorderElement" CornerRadius="{TemplateBinding CornerRadius}" BorderThickness="{TemplateBinding BorderThickness}"
+                    BorderBrush="{TemplateBinding BorderBrush}" Background="{TemplateBinding Background}"
+                    core:BorderExtensions.ClipChild="True">
+                <local:LayoutControl Orientation="Vertical" Padding="0" ItemSpace="0" ScrollBars="None" core:DXSerializer.Enabled="False" >
+                    <core:Container x:Name="TitleElement" VerticalAlignment="Top" Visibility="{TemplateBinding TitleVisibility}">
+                        <local:LayoutControl Padding="11,2,4,2" ItemSpace="4" ScrollBars="None" core:DXSerializer.Enabled="False" >
+                            <local:GroupBoxButton x:Name="MinimizeElement" Margin="0,2" HorizontalAlignment="Left" VerticalAlignment="Center"
+                                                  Visibility="{TemplateBinding MinimizeElementVisibility}"/>
+                            <core:DXContentPresenter Content="{TemplateBinding Header}" ContentTemplate="{TemplateBinding HeaderTemplate}"
+                                                     VerticalAlignment="Center"/>
+                            <local:GroupBoxButton x:Name="MaximizeElement" Margin="0,2" HorizontalAlignment="Right" VerticalAlignment="Center"
+                                                  Visibility="{TemplateBinding MaximizeElementVisibility}"/>
+                        </local:LayoutControl>
+                    </core:Container>
+                    <core:DXContentPresenter x:Name="ContentElement" Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding CurrentContentTemplate}"
+                                             Margin="{TemplateBinding Padding}"/>
+                </local:LayoutControl>
+            </Border>
+        </core:Container>
+    </ControlTemplate>
+    <Style TargetType="local:GroupBox">
+        <Setter Property="Background" Value="#FFB1CEF3"/>
+        <Setter Property="BorderBrush" Value="#FF7897D0"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="CornerRadius" Value="3"/>
+        <!--ONLY SL<Setter Property="Foreground" Value="Black"/>ONLY SL-->
+        <Setter Property="IsTabStop" Value="False"/>
+        <Setter Property="MinimizationDirection" Value="Vertical"/>
+        <Setter Property="Padding" Value="11"/>
+        <Setter Property="SeparatorBrush" Value="#FF7897D0"/>
+        <Setter Property="ShadowOffset" Value="3"/>
+        <Setter Property="TitleBackground" Value="{x:Null}"/>
+        <Setter Property="NormalTemplate" Value="{StaticResource groupBoxNormalTemplate}"/>
+        <Setter Property="LightTemplate" Value="{StaticResource groupBoxLightTemplate}"/>
+        <Style.Triggers>
+            <Trigger Property="DisplayMode" Value="Light">
+                <Setter Property="CornerRadius" Value="0"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style TargetType="local:GroupSeparator">
+        <Setter Property="IsTabStop" Value="False"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:GroupSeparator">
+                    <core:Container>
+                        <core:Container.Resources>
+                            <SolidColorBrush x:Key="Brush1" Color="#FF8AACDC"/>
+                            <SolidColorBrush x:Key="Brush2" Color="#40FFFFFF"/>
+                        </core:Container.Resources>
+                        
+                        <Border x:Name="HorizontalRootElement" Height="2" Margin="0,3"
+                                Background="{StaticResource Brush1}" BorderThickness="0,0,0,1" BorderBrush="{StaticResource Brush2}"/>
+
+                        <Border x:Name="VerticalRootElement" Width="2" Margin="3,0"
+                                Background="{StaticResource Brush1}" BorderThickness="0,0,1,0" BorderBrush="{StaticResource Brush2}"/>
+                    </core:Container>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <ControlTemplate x:Key="LayoutItemCustomizationToolbar.RenamingEditElement" TargetType="TextBox">
+        <Border BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="3"
+                Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}">
+            <ScrollViewer x:Name="PART_ContentHost" Padding="{TemplateBinding Padding}" BorderThickness="0" IsTabStop="False"/>
+        </Border>
+    </ControlTemplate>
+
+    <Style x:Key="TileGroupHeader.EditorElement" TargetType="TextBox">
+        <Setter Property="Margin" Value="-4"/>
+        <Setter Property="Padding" Value="2,4"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="TextBox">
+                    <ScrollViewer x:Name="PART_ContentHost" Padding="{TemplateBinding Padding}" BorderThickness="0" IsTabStop="False"
+                                  Background="{TemplateBinding Background}" />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

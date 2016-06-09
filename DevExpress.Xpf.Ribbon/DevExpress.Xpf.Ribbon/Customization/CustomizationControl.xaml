@@ -1,0 +1,30 @@
+﻿<UserControl x:Class="DevExpress.Xpf.Ribbon.Customization.CustomizationControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+             xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:DevExpress.Xpf.Ribbon.Customization"
+                       xmlns:dxr="clr-namespace:DevExpress.Xpf.Ribbon"             
+    x:Name="customizationControl">
+    
+    <UserControl.Resources>
+        <dxr:RibbonControlStringIdConverter x:Key="RibbonControlStringIdConverter"/>
+        <DataTemplate x:Key="itemContentTemplate">
+            <ContentPresenter Content="{Binding}" Margin="24,2,24,2"/>
+        </DataTemplate>
+    </UserControl.Resources>
+    <Grid>        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <local:TabsCustomizationControl x:Name="tabsCustomizationControl" Margin="12,12,12,0"></local:TabsCustomizationControl>
+        <dxr:CustomizationSeparatorControl Grid.Row="1"/>
+            <dxb:ToolBarControl ShowBackground="False" AllowQuickCustomization="False" Grid.Row="2" HorizontalAlignment="Stretch" BarItemHorizontalIndent="12">
+                <dxb:BarLinkContainerItem x:Name="leftPartItems"/>
+            <dxb:BarButtonItem Content="OK" ItemClick="OnOkButtonClick" IsPrivate="True" Alignment="Far" ContentTemplate="{StaticResource itemContentTemplate}"/>
+            <dxb:BarButtonItem Content="Cancel" ItemClick="OnCloseButtonClick" IsPrivate="True" Alignment="Far" ContentTemplate="{StaticResource itemContentTemplate}"/>
+            </dxb:ToolBarControl>
+    </Grid>
+</UserControl>

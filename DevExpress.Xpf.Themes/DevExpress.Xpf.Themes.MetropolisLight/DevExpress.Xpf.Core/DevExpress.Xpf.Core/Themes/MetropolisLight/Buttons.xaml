@@ -1,0 +1,45 @@
+﻿<ResourceDictionary mc:Ignorable="cs" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:cs="colorscheme_ignorable_uri" xmlns:dxcn="http://schemas.devexpress.com/winfx/2008/xaml/core/internal" xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys">
+    <ResourceDictionary.MergedDictionaries>
+        <dxdst:ResourceDictionaryEx Source="/DevExpress.Xpf.Themes.MetropolisLight.v15.2;component/DevExpress.Xpf.Core/DevExpress.Xpf.Core/Themes/StandardControls/Brushes.xaml" />
+        <dxdst:ResourceDictionaryEx Source="/DevExpress.Xpf.Themes.MetropolisLight.v15.2;component/DevExpress.Xpf.Core/DevExpress.Xpf.Core/Themes/StandardControls/SharedResources.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+    <SolidColorBrush Color="#FFF78A09" x:Key="buttonFocusBorder" cs:Name="SolidColorBrush_0001" />
+    <Visibility x:Key="Visible">Visible</Visibility>
+    <Visibility x:Key="Collapsed">Collapsed</Visibility>
+    <SolidColorBrush x:Key="{dxdst:DropDownButtonThemeKey ResourceKey=Foreground}" Color="#FFCEE3FD" cs:Name="SolidColorBrush_0002" />
+    <SolidColorBrush x:Key="{dxdst:DropDownButtonThemeKey ResourceKey=ArrowForeground}" Color="#FFCEE3FD" cs:Name="SolidColorBrush_0003" />
+    <SolidColorBrush x:Key="{dxdst:DropDownButtonThemeKey ResourceKey=PressedForeground}" Color="#FFCEE3FD" cs:Name="SolidColorBrush_0004" />
+    <SolidColorBrush x:Key="{dxdst:DropDownButtonThemeKey ResourceKey=ArrowPressedForeground}" Color="#FFCEE3FD" cs:Name="SolidColorBrush_0005" />
+    <SolidColorBrush x:Key="{dxdst:DropDownButtonThemeKey ResourceKey=MouseOverForeground}" Color="#FFCEE3FD" cs:Name="SolidColorBrush_0006" />
+    <SolidColorBrush x:Key="{dxdst:DropDownButtonThemeKey ResourceKey=ArrowMouseOverForeground}" Color="#FFCEE3FD" cs:Name="SolidColorBrush_0007" />
+    <dxcn:RenderTemplate x:Key="{dxdst:DropDownButtonThemeKey ResourceKey=BorderTemplate}">
+        <dxcn:RenderPanel>
+            <dxcn:RenderBorder Name="Border" Background="{StaticResource Button.DefaultState.Border2}" BorderBrush="{StaticResource Button.DefaultState.Border1}" BorderThickness="1" />
+            <dxcn:RenderBorder Name="FocusBorder" BorderBrush="{StaticResource buttonFocusBorder}" BorderThickness="1" Visibility="Collapsed" />
+        </dxcn:RenderPanel>
+        <dxcn:RenderTemplate.Triggers>
+            <dxcn:RenderStateGroup Name="VisualStates">
+                <dxcn:RenderStateTrigger Name="Normal" />
+                <dxcn:RenderStateTrigger Name="MouseOver">
+                    <dxcn:RenderSetter Property="BorderBrush" TargetName="Border" Value="{StaticResource Button.HoverState.Border1}" />
+                    <dxcn:RenderSetter Property="Background" TargetName="Border" Value="{StaticResource Button.HoverState.Border2}" />
+                </dxcn:RenderStateTrigger>
+                <dxcn:RenderStateTrigger Name="Pressed">
+                    <dxcn:RenderSetter Property="BorderBrush" TargetName="Border" Value="{StaticResource Button.PressedState.Border1}" />
+                    <dxcn:RenderSetter Property="Background" TargetName="Border" Value="{StaticResource Button.PressedState.Border2}" />
+                </dxcn:RenderStateTrigger>
+            </dxcn:RenderStateGroup>
+            <dxcn:RenderStateGroup Name="PlacementStates">
+                <dxcn:RenderStateTrigger Name="Default"></dxcn:RenderStateTrigger>
+                <dxcn:RenderStateTrigger Name="Left">
+                    <dxcn:RenderSetter Property="BorderThickness" TargetName="Border" Value="1,1,0,1" />
+                </dxcn:RenderStateTrigger>
+                <dxcn:RenderStateTrigger Name="Right"></dxcn:RenderStateTrigger>
+                <dxcn:RenderStateTrigger Name="Top">
+                    <dxcn:RenderSetter Property="BorderThickness" TargetName="Border" Value="1,1,1,0" />
+                </dxcn:RenderStateTrigger>
+                <dxcn:RenderStateTrigger Name="Bottom"></dxcn:RenderStateTrigger>
+            </dxcn:RenderStateGroup>
+        </dxcn:RenderTemplate.Triggers>
+    </dxcn:RenderTemplate>
+</ResourceDictionary>

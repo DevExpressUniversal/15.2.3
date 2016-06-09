@@ -1,0 +1,296 @@
+<internal:DemoBaseControlPartView x:Class="DevExpress.Xpf.DemoBase.Internal.DemoBaseControlModuleWrapperView"
+    xmlns:dxdb="clr-namespace:DevExpress.Xpf.DemoBase"
+    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+    xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:helpers="clr-namespace:DevExpress.Xpf.DemoBase.Helpers"
+    xmlns:ddhelpers="clr-namespace:DevExpress.DemoData.Helpers;assembly=DevExpress.DemoData.v15.2.Core"
+    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+    xmlns:dxl="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
+    xmlns:internal="clr-namespace:DevExpress.Xpf.DemoBase.Internal"
+    xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
+    mc:Ignorable="d"
+    d:DesignHeight="300" d:DesignWidth="300">
+
+    <internal:DemoBaseControlPartView.Template>
+        <ControlTemplate TargetType="{x:Type UserControl}">
+            <dx:DXBorder BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}" SnapsToDevicePixels="True">
+                <ContentPresenter ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+            </dx:DXBorder>
+        </ControlTemplate>
+    </internal:DemoBaseControlPartView.Template>
+    
+    <internal:DemoBaseControlPartView.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/DevExpress.Xpf.DemoBase.v15.2;component/Helpers/Themes/InvisibleBorder.xaml" />
+                <ResourceDictionary Source="/DevExpress.DemoData.v15.2.Core;component/DemoWindow/DemoScrollBar.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <helpers:ThemeSelectorHelper x:Key="ThemeSelectorHelper" />
+            <ddhelpers:BoolInverter x:Key="BoolInverter" />
+            <dx:VisibilityInverseConverter x:Key="VisibilityInverseConverter" />
+            <ddhelpers:EmptyConverter x:Key="EmptyConverter" />
+            <dx:NullableToVisibilityConverter x:Key="NullableToVisibilityConverter" />
+            <dx:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+            <dxmvvm:ObjectToObjectConverter x:Key="ModuleBorderBrushConverter" DefaultTarget="#FF484848">
+                <dxmvvm:MapItem Source="Office2007Silver" Target="#FF6F7074" />
+                <dxmvvm:MapItem Source="Office2007Black" Target="#FF4C535C" />
+                <dxmvvm:MapItem Source="Office2007Blue" Target="#FF6593CF" />
+                <dxmvvm:MapItem Source="Office2010Black" Target="#FF484848" />
+                <dxmvvm:MapItem Source="Office2010Blue" Target="#FF9EB1C6" />
+                <dxmvvm:MapItem Source="Office2010Silver" Target="#FFB5B9BE" />
+                <dxmvvm:MapItem Source="Office2013" Target="#FFACACAC" />
+                <dxmvvm:MapItem Source="DeepBlue" Target="#FF062B63" />
+                <dxmvvm:MapItem Source="LightGray" Target="#FF6E6E6E" />
+                <dxmvvm:MapItem Source="Seven" Target="#FF979797" />
+                <dxmvvm:MapItem Source="MetropolisDark" Target="#FF333333" />
+                <dxmvvm:MapItem Source="VS2010" Target="#FF8591A2" />
+                <dxmvvm:MapItem Source="DXStyle" Target="#FF9DA0AA" />
+                <dxmvvm:MapItem Source="MetropolisLight" Target="#FFB9B9B9" />
+            </dxmvvm:ObjectToObjectConverter>
+            <dxmvvm:ObjectToObjectConverter x:Key="CodeTextViewerVisiblityConverter">
+                <dxmvvm:MapItem Source="Demo" Target="Collapsed"/>
+                <dxmvvm:MapItem Source="Code" Target="Visible"/>
+            </dxmvvm:ObjectToObjectConverter>
+            <dxmvvm:ObjectToObjectConverter x:Key="DemoIsHitTestVisibleConverter">
+                <dxmvvm:MapItem Source="Demo" Target="True"/>
+                <dxmvvm:MapItem Source="Code" Target="False"/>
+            </dxmvvm:ObjectToObjectConverter>
+            <dxmvvm:ObjectToObjectConverter x:Key="DemoVisibilityConverter">
+                <dxmvvm:MapItem Source="Demo" Target="Visible"/>
+                <dxmvvm:MapItem Source="Code" Target="Collapsed"/>
+            </dxmvvm:ObjectToObjectConverter>
+            <dxmvvm:ObjectToObjectConverter x:Key="GroupFramePaddingInOptionsConverter">
+                <dxmvvm:MapItem Source="True" Target="0"/>
+                <dxmvvm:MapItem Source="False" Target="3"/>
+            </dxmvvm:ObjectToObjectConverter>
+            <helpers:ObjectToStringCallbackConverter x:Key="ObjectToStringCallbackConverter" />
+            <helpers:ThemeAsNoTouchlineConverter x:Key="ThemeAsNoTouchlineConverter" />
+            <helpers:ThemeAsTouchlineConverter x:Key="ThemeAsTouchlineConverter" />
+            <DataTemplate x:Key="CodeViewItemTemplate">
+                <helpers:CodeViewItem CodeText="{Binding Path=CodeText.Value, Converter={StaticResource ObjectToStringCallbackConverter}}" FileName="{Binding Path=FileName}" />
+            </DataTemplate>
+
+            <ddhelpers:GlobalResource x:Key="DemoScrollViewerResource" Assembly="DevExpress.DemoData.v15.2.Core" XamlPath="DemoWindow/DemoScrollBar.xaml" Key="DemoScrollViewer" />
+
+            <Style x:Key="DemoModuleControl" TargetType="dxdb:DemoModuleControl">
+                <Style.Resources>
+                    <dxdb:RightExpanderContentTemplateSelector x:Key="RightExpanderContentTemplateSelector">
+                        <dxdb:RightExpanderContentTemplateSelector.NoneTemplate>
+                            <DataTemplate>
+                                <dx:DXBorder/>
+                            </DataTemplate>
+                        </dxdb:RightExpanderContentTemplateSelector.NoneTemplate>
+                        <dxdb:RightExpanderContentTemplateSelector.OptionsTemplate>
+                            <DataTemplate>
+                                <helpers:TopTextPanel DataContext="{Binding RelativeSource={RelativeSource AncestorType={x:Type dxdb:DemoModuleControl}}}">
+                                    <helpers:TopTextPanel.TopChild>
+                                        <Grid x:Name="OptionsTopTextContainer" Visibility="{Binding OptionsTopText, Converter={StaticResource NullableToVisibilityConverter}}">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="Auto" />
+                                            </Grid.RowDefinitions>
+                                            <TextBlock x:Name="OptionsTopText" VerticalAlignment="Top" HorizontalAlignment="Stretch" TextWrapping="Wrap" Foreground="Black" Text="{Binding OptionsTopText}" />
+                                            <Grid x:Name="PanelHeaderSeparator" Height="2" Margin="-12,5" Grid.Row="1">
+                                                <Rectangle Height="1" VerticalAlignment="Top" Opacity="0.3">
+                                                    <Rectangle.Fill>
+                                                        <LinearGradientBrush EndPoint="0,0.5" StartPoint="1,0.5">
+                                                            <GradientStop Color="#00221B4A" Offset="0" />
+                                                            <GradientStop Color="#00221B4A" Offset="1" />
+                                                            <GradientStop Color="#FF221B4A" Offset="0.5" />
+                                                        </LinearGradientBrush>
+                                                    </Rectangle.Fill>
+                                                </Rectangle>
+                                                <Rectangle Height="1" VerticalAlignment="Bottom" Opacity="0.1">
+                                                    <Rectangle.Fill>
+                                                        <LinearGradientBrush EndPoint="0,0.5" StartPoint="1,0.5">
+                                                            <GradientStop Color="#00FFFFFF" />
+                                                            <GradientStop Color="#00FFFFFF" Offset="1" />
+                                                            <GradientStop Color="White" Offset="0.5" />
+                                                        </LinearGradientBrush>
+                                                    </Rectangle.Fill>
+                                                </Rectangle>
+                                            </Grid>
+                                        </Grid>
+                                    </helpers:TopTextPanel.TopChild>
+                                    <helpers:TopTextPanel.MainChild>
+                                        <Grid DataContext="{Binding RelativeSource={RelativeSource AncestorType={x:Type dxdb:DemoModuleControl}}}">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="*" />
+                                            </Grid.RowDefinitions>
+                                            <dx:DXBorder Style="{StaticResource InvisibleBorder}"
+                                                            Height="{Binding SupressGroupFramePaddingInOptions, Converter={StaticResource GroupFramePaddingInOptionsConverter}}"
+                                                            Visibility="{Binding Visibility, ElementName=OptionsTopTextContainer, Converter={StaticResource VisibilityInverseConverter}}" />
+                                            <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="{Binding OptionsContentVerticalScrollVisibility}" Foreground="Black"
+                                                                Style="{Binding Path=Resource, Source={StaticResource DemoScrollViewerResource}}"
+                                                                MinWidth="230">
+                                                <ContentPresenter Content="{Binding OptionsContent}" UseLayoutRounding="True" helpers:ThemeHelper.ApplyTextForegroundToContent="True" helpers:ThemeHelper.ContentThemeName="Demo,Options:DemoModule" Margin="0,0,10,0">
+                                                    <TextElement.Foreground>
+                                                        <SolidColorBrush Color="Black" />
+                                                    </TextElement.Foreground>
+                                                </ContentPresenter>
+                                            </ScrollViewer>
+                                        </Grid>
+                                    </helpers:TopTextPanel.MainChild>
+                                </helpers:TopTextPanel>
+                            </DataTemplate>
+                        </dxdb:RightExpanderContentTemplateSelector.OptionsTemplate>
+                        <dxdb:RightExpanderContentTemplateSelector.AboutTemplate>
+                            <DataTemplate>
+                                <dx:GroupFrame x:Name="DescriptionContentContainer" Width="230" Header="About" DataContext="{Binding RelativeSource={RelativeSource AncestorType={x:Type dxdb:DemoModuleControl}}}">
+                                    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalAlignment="Stretch" BorderThickness="0" UseLayoutRounding="True" Foreground="#FF3C3C3C"
+                                                                FontFamily="Segoe UI, Tahoma" FontSize="13"
+                                                                Style="{Binding Path=Resource, Source={StaticResource DemoScrollViewerResource}}">
+                                        <Grid Margin="1,1,11,1">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="Auto" />
+                                            </Grid.RowDefinitions>
+                                            <dx:DocumentPresenter IsTabStop="False" Background="Transparent" dx:FocusHelper2.Focusable="False" Document="{Binding Parent.Owner.Description.TextAsync}" VerticalAlignment="Top" />
+                                            <Grid Grid.Row="1" Visibility="{Binding Parent.Owner.ShowLinks, Converter={StaticResource BoolToVisibilityConverter}}" VerticalAlignment="Top">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                </Grid.RowDefinitions>
+                                                <TextBlock Text="Related Links:" FontWeight="Bold" Margin="0,12,0,0" />
+                                                <dxdb:RelatedLinkControl Grid.Row="1" Links="{Binding Parent.Owner.Links}" />
+                                            </Grid>
+                                        </Grid>
+                                    </ScrollViewer>
+                                </dx:GroupFrame>
+                            </DataTemplate>
+                        </dxdb:RightExpanderContentTemplateSelector.AboutTemplate>
+                        <dxdb:RightExpanderContentTemplateSelector.ThemesTemplate>
+                            <DataTemplate>
+                                <dx:GroupFrame MinWidth="230" Header="Themes" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                                    <dx:GroupFrame.Resources>
+                                        <ResourceDictionary>
+                                            <ResourceDictionary.MergedDictionaries>
+                                                <ResourceDictionary Source="/DevExpress.Xpf.DemoBase.v15.2;component/Helpers/Themes/ThemesListboxEditResources.xaml" />
+                                            </ResourceDictionary.MergedDictionaries>
+                                            <Style TargetType="ScrollBar" BasedOn="{StaticResource DemoScrollBar}">
+                                                <Setter Property="Margin" Value="4,0,-10,0"/>
+                                            </Style>
+                                        </ResourceDictionary>
+                                    </dx:GroupFrame.Resources>
+                                    <dxe:ListBoxEdit dx:FocusHelper2.Focusable="False" x:Name="ThemeSelector" ShowBorder="False" ItemContainerStyle="{StaticResource ThemesListboEditItemStyle}"
+                                                            Margin="0,0,10,0" ValueMember="Theme"
+                                                            EditValue="{Binding Path=ApplicationTheme, Source={StaticResource ThemeSelectorHelper}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource ThemeAsNoTouchlineConverter}}"
+                                                            ItemsSource="{Binding Path=ThemesWithoutTouchlines, Source={StaticResource ThemeSelectorHelper}}"
+                                                            HorizontalContentAlignment="Stretch"
+                                                            ItemTemplate="{StaticResource ThemeTemplate}"
+                                                            HorizontalAlignment="Stretch" />
+                                </dx:GroupFrame>
+                            </DataTemplate>
+                        </dxdb:RightExpanderContentTemplateSelector.ThemesTemplate>
+                        <dxdb:RightExpanderContentTemplateSelector.TouchThemesTemplate>
+                            <DataTemplate>
+                                <dx:GroupFrame MinWidth="230" Header="Touch Themes" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                                    <dx:GroupFrame.Resources>
+                                        <ResourceDictionary>
+                                            <ResourceDictionary.MergedDictionaries>
+                                                <ResourceDictionary Source="/DevExpress.Xpf.DemoBase.v15.2;component/Helpers/Themes/ThemesListboxEditResources.xaml" />
+                                            </ResourceDictionary.MergedDictionaries>
+                                            <Style TargetType="ScrollBar" BasedOn="{StaticResource DemoScrollBar}">
+                                                <Setter Property="Margin" Value="4,0,-10,0"/>
+                                            </Style>
+                                        </ResourceDictionary>
+                                    </dx:GroupFrame.Resources>
+                                    <dxe:ListBoxEdit ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Visible" dx:FocusHelper2.Focusable="False" x:Name="TouchlineThemeSelector" ShowBorder="False" ItemContainerStyle="{StaticResource ThemesListboEditItemStyle}"
+                                                            Margin="0,0,10,0" ValueMember="Theme"
+                                                            EditValue="{Binding Path=ApplicationTheme, Source={StaticResource ThemeSelectorHelper}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource ThemeAsTouchlineConverter}}"
+                                                            ItemsSource="{Binding Path=TouchlineThemes, Source={StaticResource ThemeSelectorHelper}}"
+                                                            HorizontalContentAlignment="Stretch"
+                                                            ItemTemplate="{StaticResource ThemeTemplate}"
+                                                            HorizontalAlignment="Stretch" />
+                                </dx:GroupFrame>
+                            </DataTemplate>
+                        </dxdb:RightExpanderContentTemplateSelector.TouchThemesTemplate>
+                        <dxdb:RightExpanderContentTemplateSelector.SidebarTemplate>
+                            <DataTemplate>
+                                <ContentPresenter Margin="0,6,0,0"
+                                                  Content="{Binding SidebarContent, RelativeSource={RelativeSource AncestorType={x:Type dxdb:DemoModuleControl}}}"
+                                                  VerticalAlignment="Stretch"
+                                                  HorizontalAlignment="Stretch"
+                                                  MinWidth="230" />
+                            </DataTemplate>
+                        </dxdb:RightExpanderContentTemplateSelector.SidebarTemplate>
+                        <dxdb:RightExpanderContentTemplateSelector.Sidebar2Template>
+                            <DataTemplate>
+                                <ContentPresenter Margin="0,6,0,0"
+                                                  Content="{Binding Sidebar2Content, RelativeSource={RelativeSource AncestorType={x:Type dxdb:DemoModuleControl}}}"
+                                                  VerticalAlignment="Stretch"
+                                                  HorizontalAlignment="Stretch"
+                                                  MinWidth="230" />
+                            </DataTemplate>
+                        </dxdb:RightExpanderContentTemplateSelector.Sidebar2Template>
+                    </dxdb:RightExpanderContentTemplateSelector>
+                </Style.Resources>
+                <Setter Property="BorderThickness" Value="1"/>
+                <Setter Property="AboutPanelMargin" Value="0,-7,0,0"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="dxdb:DemoModuleControl">
+                            <Grid FlowDirection="LeftToRight">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+                                <TextBlock Foreground="#FF505050" Opacity="1" FontSize="16" TextWrapping="Wrap" helpers:TextTrimmingHelper.TextTrimming="CharacterEllipsis" Text="{Binding Parent.Owner.ShortDescription.TextAsync, RelativeSource={RelativeSource TemplatedParent}}" Margin="0,0,0,6" />
+                                <Grid Grid.Row="1">
+                                    <Grid.Resources>
+                                        <dxmvvm:ObjectToObjectConverter x:Key="ToolbarSidebarViewToOptionsExpandedConverter" DefaultTarget="True">
+                                            <dxmvvm:MapItem Source="None" Target="False"/>
+                                        </dxmvvm:ObjectToObjectConverter>
+                                    </Grid.Resources>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <dx:DXBorder BorderThickness="{TemplateBinding BorderThickness}"
+                                        BorderBrush="{Binding ApplicationTheme.Name, Source={StaticResource ThemeSelectorHelper}, Converter={StaticResource ModuleBorderBrushConverter}}" />
+                                    <Grid x:Name="ContentContainer">
+                                        <dx:BackgroundPanel Margin="1" FlowDirection="{TemplateBinding FlowDirection}" x:Name="DemoContentElement" Content="{TemplateBinding Content}" DataContext="{Binding RelativeSource={RelativeSource AncestorType=dxdb:DemoModuleControl}, Path=DataContext}"
+                                            IsHitTestVisible="{Binding View, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource DemoIsHitTestVisibleConverter}}" />
+                                        <helpers:CornerPopup x:Name="CornerPopup" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" dx:FocusHelper2.Focusable="False" IsTabStop="False"
+                                            Visibility="{Binding View, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource DemoVisibilityConverter}}" />
+                                        <Grid x:Name="CodeOwner" helpers:ThemeHelper.ThemeName="Demo,Code:DemoModule">
+                                            <helpers:CodeViewControl x:Name="CodeTextViewer" Focusable="True" HorizontalAlignment="Stretch"
+                                                    Visibility="{Binding View, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource CodeTextViewerVisiblityConverter}}"
+                                                    ItemsSource="{Binding Path=Parent.Owner.CodeTexts, RelativeSource={RelativeSource TemplatedParent}}" ItemTemplate="{StaticResource CodeViewItemTemplate}" />
+                                            <dxdb:DemoBaseLoadingControl LoadingInProgress="{Binding Parent.Owner.LoadingInProgress, RelativeSource={RelativeSource TemplatedParent}}" LoadingBackground="{Binding Parent.Owner.LoadingBackground, RelativeSource={RelativeSource TemplatedParent}}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                            <dxdb:ThemeSelectingLoadingControl LoadingInProgress="{Binding LoadingInProgress, Source={StaticResource ThemeSelectorHelper}}" LoadingBackground="{Binding Parent.Owner.LoadingBackground, RelativeSource={RelativeSource TemplatedParent}}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                        </Grid>
+                                    </Grid>
+                                    <dx:DXExpander Grid.Column="1" x:Name="OptionsContentContainer" helpers:ThemeHelper.ThemeName="Demo,Options1:DemoModule" HorizontalExpand="FromRightToLeft" VerticalExpand="None"
+                                                   IsExpanded="{Binding OptionsView, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource ToolbarSidebarViewToOptionsExpandedConverter}}" Margin="{Binding AboutPanelMargin, RelativeSource={RelativeSource TemplatedParent}}">
+                                        <ContentControl x:Name="RightExpanderContent" MinWidth="230" Margin="20,0,0,0"
+                                                        ContentTemplateSelector="{StaticResource RightExpanderContentTemplateSelector}"
+                                                        Content="{Binding OptionsView, RelativeSource={RelativeSource TemplatedParent}}"
+                                                        HorizontalContentAlignment="Stretch"/>
+                                    </dx:DXExpander>
+                                </Grid>
+                            </Grid>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </ResourceDictionary>
+    </internal:DemoBaseControlPartView.Resources>
+    <helpers:DemoTransferControl IsDemoGone="{Binding IsDemoGone}" IsNextDemoRequested="{Binding CurrentIsNextDemoRequested}">
+        <dxmvvm:Interaction.Triggers>
+            <dxmvvm:EventToCommand EventName="DemoGone" Command="{Binding OnDemoGoneCommand}" ProcessEventsFromDisabledEventOwner="True" />
+            <dxmvvm:EventToCommand EventName="DemoCame" Command="{Binding OnDemoCameCommand}" ProcessEventsFromDisabledEventOwner="True" />
+        </dxmvvm:Interaction.Triggers>
+        <helpers:DemoTransferControl.Content>
+            <Grid>
+                <ContentPresenter x:Name="DemoModule1Presenter" />
+                <ContentPresenter x:Name="DemoModule2Presenter" />
+            </Grid>
+        </helpers:DemoTransferControl.Content>
+    </helpers:DemoTransferControl>
+</internal:DemoBaseControlPartView>

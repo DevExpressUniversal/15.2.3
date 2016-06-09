@@ -1,0 +1,21 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+    xmlns:local="clr-namespace:DevExpress.Xpf.DemoBase">
+
+    <Style TargetType="local:IndexViewer">
+        <Setter Property="Background" Value="#ffbdbdbd" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:IndexViewer">
+                    <dx:DXBorder Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" >
+                        <local:IndexViewerPanel ItemsCount="{TemplateBinding ItemsCount}" SelectedIndex="{TemplateBinding SelectedIndex}">
+                            <dx:DXBorder Background="#ff3d3d3d" Margin="0" />
+                        </local:IndexViewerPanel>
+                    </dx:DXBorder>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

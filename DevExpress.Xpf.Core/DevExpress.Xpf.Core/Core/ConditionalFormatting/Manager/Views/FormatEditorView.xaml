@@ -1,0 +1,36 @@
+﻿<UserControl x:Class="DevExpress.Xpf.Core.ConditionalFormattingManager.FormatEditorView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:dx="clr-namespace:DevExpress.Xpf.Core"
+             xmlns:dxc="clr-namespace:DevExpress.Xpf.Core.ConditionalFormatting"
+             xmlns:dxmvvm="clr-namespace:DevExpress.Mvvm.UI.Interactivity"
+             xmlns:dxmvvminternal="clr-namespace:DevExpress.Mvvm.UI.Interactivity.Internal"
+             xmlns:dxgcfm="clr-namespace:DevExpress.Xpf.Core.ConditionalFormattingManager"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="{dx:UtilsResource Core/ConditionalFormatting/Manager/Views/ManagerResources.xaml}"/>
+            </ResourceDictionary.MergedDictionaries>
+            <DataTemplate x:Key="formatEditorView">
+                <dxc:CustomFormatEditorView/>
+            </DataTemplate>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Button Style="{x:Null}" Content="{dxc:DataControlStringId ConditionalFormatting_Manager_FormatButtonDescription}" Command="{Binding ShowFormatEditorCommand}">
+        <dxmvvm:Interaction.Behaviors>
+            <dx:DialogService DialogWindowStartupLocation="CenterOwner" ViewTemplate="{StaticResource formatEditorView}" dxmvvminternal:InteractionHelper.BehaviorInDesignMode="AsWellAsNotInDesignMode">
+                <dx:DialogService.DialogStyle>
+                    <Style TargetType="{x:Type dx:DXWindow}" BasedOn="{StaticResource DialogStyleBase}">
+                        <Setter Property="Width" Value="520"/>
+                        <Setter Property="Height" Value="450"/>
+                        <Setter Property="ResizeMode"  Value="NoResize"/>
+                    </Style>
+                </dx:DialogService.DialogStyle>
+            </dx:DialogService>
+        </dxmvvm:Interaction.Behaviors>
+    </Button>
+</UserControl>

@@ -1,0 +1,7654 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{BEEBE9EA-DEC8-4D07-936D-F9EDCC1BA35C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DevExpress.Web</RootNamespace>
+    <AssemblyName>DevExpress.Web.v15.2</AssemblyName>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(MSBuildToolsVersion)' != '' ">
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\Bin\Framework\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;ASP</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\Bin\Framework\</OutputPath>
+    <DefineConstants>TRACE;DXCommon;ASP</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  
+  
+  
+  <ItemGroup>
+    <Reference Include="DevExpress.Data.v15.2">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+    <HintPath>..\..\Bin\Framework\DevExpress.Data.v15.2.dll</HintPath></Reference>
+    <Reference Include="DevExpress.Printing.v15.2.Core">
+      <SpecificVersion>False</SpecificVersion>
+    <HintPath>..\..\Bin\Framework\DevExpress.Printing.v15.2.Core.dll</HintPath><Private>False</Private></Reference>
+    <Reference Include="DevExpress.RichEdit.v15.2.Core">
+      <SpecificVersion>False</SpecificVersion>
+    <HintPath>..\..\Bin\Framework\DevExpress.RichEdit.v15.2.Core.dll</HintPath><Private>False</Private></Reference>
+    
+    <Reference Include="System"><Private>False</Private></Reference>
+    <Reference Include="System.configuration"><Private>False</Private></Reference>
+    <Reference Include="System.Configuration.Install"><Private>False</Private></Reference>
+    <Reference Include="System.Core">
+    <Private>False</Private></Reference>
+    <Reference Include="System.Data"><Private>False</Private></Reference>
+    <Reference Include="System.Data.DataSetExtensions"><Private>False</Private></Reference>
+    <Reference Include="System.Data.Linq">
+    <Private>False</Private></Reference>
+    <Reference Include="System.Design"><Private>False</Private></Reference>
+    <Reference Include="System.Drawing"><Private>False</Private></Reference>
+    <Reference Include="System.Management"><Private>False</Private></Reference>
+    <Reference Include="System.Runtime.Serialization"><Private>False</Private></Reference>
+    <Reference Include="System.Web"><Private>False</Private></Reference>
+    <Reference Include="System.Web.Entity"><Private>False</Private></Reference>
+    <Reference Include="System.Web.Extensions">
+    <Private>False</Private></Reference>
+    <Reference Include="System.Windows.Forms"><Private>False</Private></Reference>
+    <Reference Include="System.Xml"><Private>False</Private></Reference>
+    <Reference Include="System.Xml.Linq"><Private>False</Private></Reference>
+    <Reference Include="WindowsBase">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    <Private>False</Private></Reference>
+  </ItemGroup>
+  
+  
+  <ItemGroup>
+    <Compile Include="CallbackPanel\ClientSideEvents.cs" />
+    <Compile Include="CallbackPanel\Images.cs" />
+    <Compile Include="Classes\Design.cs" />
+    <Compile Include="Classes\Utils\CloudUtils.cs" />
+    <Compile Include="Grid\CardView\ConditionalFormatting.cs" />
+    <Compile Include="Grid\CardView\Export\ASPxCardViewExporter.cs" />
+    <Compile Include="Grid\CardView\Export\CardViewPrinter.cs" />
+    <Compile Include="Grid\CardView\Export\Styles.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Grid\ConditionalFormatting.cs" />
+    <Compile Include="Grid\Export\FormatConditionRules.cs" />
+    <Compile Include="Grid\Export\GridExporter.cs" />
+    <Compile Include="Grid\Export\GridPrinter.cs" />
+    <Compile Include="Grid\GridView\ConditionalFormatting.cs" />
+    <Compile Include="ImageControls\ImageZoomNavigator\EventHandlers.cs" />
+    <Compile Include="Office\AutoSave\AutoSave.cs" />
+    <Compile Include="Office\AutoSave\AutoSaveSettings.cs" />
+    <Compile Include="Office\Controls.cs" />
+    <Compile Include="Office\Hibernation\HibernationProviderBase.cs" />
+    <Compile Include="Office\Hibernation\HibernationChamber.cs" />
+    <Compile Include="Office\Hibernation\HibernationSettings.cs" />
+    <Compile Include="Office\Hibernation\LocalFSHibernationProvider.cs" />
+    <Compile Include="Office\WorkSessionFactory.cs" />
+    <Compile Include="Office\WorkSessionsProcessing.cs" />
+    <Compile Include="Office\DocumentRequestManager.cs" />
+    <Compile Include="Office\EventHandlers.cs" />
+    <Compile Include="Office\WorkSession.cs" />
+    <Compile Include="Office\WorkSessionAdminTools.cs" />
+    <Compile Include="Classes\MaskInput\Mask.cs" />
+    <Compile Include="Classes\MaskInput\MaskParts.cs" />
+    <Compile Include="Office\WorkSessionStateController.cs" />
+    <Compile Include="Office\WorkSessionStrategies.cs" />
+    <Compile Include="DropDownEdit\ColorNestedControl.cs" />
+    <Compile Include="FileManager\Providers\AmazonRemoteFileSystemProvider.cs" />
+    <Compile Include="FileManager\Providers\AzureRemoteFileSystemProvider.cs" />
+    <Compile Include="FileManager\Providers\DropboxRemoteFileSystemProvider.cs" />
+    <Compile Include="FileManager\Providers\RemoteFileSystemProviderBase.cs" />
+    <Compile Include="FileManager\Templates.cs" />
+    <Compile Include="Button\ASPxButton.cs" />
+    <Compile Include="Button\ClientSideEvents.cs" />
+    <Compile Include="Button\Controls.cs" />
+    <Compile Include="Button\Images.cs" />
+    <Compile Include="Button\Styles.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Calendar\ASPxCalendar.cs" />
+    <Compile Include="Calendar\ClientSideEvents.cs" />
+    <Compile Include="Calendar\Controls.cs" />
+    <Compile Include="Calendar\EventHandlers.cs" />
+    <Compile Include="CallbackPanel\ASPxCallbackPanel.cs" />
+    <Compile Include="CallbackPanel\Styles.cs">
+    </Compile>
+    <Compile Include="Captcha\ASPxCaptcha.cs" />
+    <Compile Include="Captcha\ChallengeImageFactory.cs" />
+    <Compile Include="Captcha\CodeGenerators.cs" />
+    <Compile Include="Captcha\Controls.cs" />
+    <Compile Include="Captcha\Events.cs" />
+    <Compile Include="Captcha\Images.cs" />
+    <Compile Include="Captcha\Interfaces.cs" />
+    <Compile Include="Captcha\Properties.cs" />
+    <Compile Include="Captcha\RandomAdapter.cs" />
+    <Compile Include="Captcha\Styles.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Captcha\ValidationSettings.cs" />
+    <Compile Include="CheckEdit\ASPxCheckBox.cs" />
+    <Compile Include="CheckEdit\ASPxRadioButton.cs" />
+    <Compile Include="CheckEdit\ClientSideEvents.cs" />
+    <Compile Include="CheckEdit\Controls.cs" />
+    <Compile Include="Classes\InternalClock.cs" />
+    <Compile Include="Classes\LocalizationRes.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LocalizationRes.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\Utils\ColorUtils.cs" />
+    <Compile Include="Classes\Utils\DemoUtils.cs" />
+    <Compile Include="DataView\EndlessPagingHelper.cs" />
+    <Compile Include="DropDownEdit\ASPxColorEdit.cs" />
+    <Compile Include="DropDownEdit\ASPxComboBox.cs" />
+    <Compile Include="DropDownEdit\ASPxDateEdit.cs" />
+    <Compile Include="DropDownEdit\ASPxDropDownEdit.cs" />
+    <Compile Include="DropDownEdit\ASPxTokenBox.cs" />
+    <Compile Include="DropDownEdit\Buttons.cs" />
+    <Compile Include="DropDownEdit\ClientSideEvents.cs" />
+    <Compile Include="DropDownEdit\ColorPicker.cs" />
+    <Compile Include="DropDownEdit\ColorSelectorControl.cs" />
+    <Compile Include="DropDownEdit\ColorTable.cs" />
+    <Compile Include="DropDownEdit\Controls.cs" />
+    <Compile Include="DropDownEdit\EventHandlers.cs" />
+    <Compile Include="DropDownEdit\ItemPicker.cs" />
+    <Compile Include="DropDownEdit\ColorTablesControl.cs" />
+    <Compile Include="DropDownEdit\CustomColorTable.cs" />
+    <Compile Include="Edit\ASPxEdit.cs" />
+    <Compile Include="Edit\ClientSideEvents.cs" />
+    <Compile Include="Edit\Converters.cs" />
+    <Compile Include="Edit\DateTimeEditUtils.cs" />
+    <Compile Include="Edit\HeaderFilterPopup.cs" />
+    <Compile Include="Edit\Images.cs" />
+    <Compile Include="Edit\LicenseProvider.cs" />
+    <Compile Include="Edit\Localization.cs" />
+    <Compile Include="Edit\Styles.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Edit\Validation.cs" />
+    <Compile Include="Edit\WebColumn.cs" />
+    <Compile Include="FileManager\TreeView.cs" />
+    <Compile Include="FilterControl\ClientSideEvents.cs" />
+    <Compile Include="FilterControl\ColumnEditors.cs" />
+    <Compile Include="FilterControl\Columns.cs" />
+    <Compile Include="FilterControl\Controls.cs" />
+    <Compile Include="FilterControl\Events.cs" />
+    <Compile Include="FilterControl\FilterControl.cs" />
+    <Compile Include="FilterControl\FilterControlOperations.cs" />
+    <Compile Include="FilterControl\Images.cs" />
+    <Compile Include="FilterControl\Settings.cs" />
+    <Compile Include="FilterControl\Models.cs" />
+    <Compile Include="FilterControl\PopupControls.cs" />
+    <Compile Include="FilterControl\PopupFilterControl.cs" />
+    <Compile Include="FilterControl\PopupMenus.cs" />
+    <Compile Include="FilterControl\RenderHelper.cs" />
+    <Compile Include="FilterControl\Styles.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="FilterControl\WebFilterTreeModel.cs" />
+    <Compile Include="FormLayout\EventHandlers.cs" />
+    <Compile Include="FormLayout\RuntimeHelpers.cs" />
+    <Compile Include="GridLookup\ASPxGridLookup.cs" />
+    <Compile Include="GridLookup\ClientSideEvents.cs" />
+    <Compile Include="GridLookup\Controls.cs" />
+    <Compile Include="Grid\CardView\ASPxCardView.cs" />
+    <Compile Include="Grid\CardView\CardLayout.cs" />
+    <Compile Include="Grid\CardView\ClientSideEvents.cs" />
+    <Compile Include="Grid\CardView\Columns.cs" />
+    <Compile Include="Grid\CardView\DataProxy.cs" />
+    <Compile Include="Grid\CardView\Events.cs" />
+    <Compile Include="Grid\CardView\Helpers\Common.cs" />
+    <Compile Include="Grid\CardView\Helpers\RenderHelper.cs" />
+    <Compile Include="Grid\CardView\Rendering\CustomizationWindow.cs" />
+    <Compile Include="Grid\CardView\Rendering\RootControls.cs" />
+    <Compile Include="Grid\CardView\Helpers\ScriptHelper.cs" />
+    <Compile Include="Grid\CardView\Settings.cs" />
+    <Compile Include="Grid\CardView\Styles.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Grid\CardView\Summary.cs" />
+    <Compile Include="Grid\CardView\Templates.cs" />
+    <Compile Include="Grid\ClientSideEvents.cs" />
+    <Compile Include="Grid\Columns.cs" />
+    <Compile Include="Grid\Controls.cs" />
+    <Compile Include="Grid\Events.cs" />
+    <Compile Include="Grid\GridView\Columns.cs" />
+    <Compile Include="Grid\Grid.cs" />
+    <Compile Include="Grid\GridView\Events.cs" />
+    <Compile Include="Grid\GridView\Helpers\Common.cs" />
+    <Compile Include="Grid\GridView\Helpers\Cookies.cs" />
+    <Compile Include="Grid\GridView\Helpers\RenderHelper.cs" />
+    <Compile Include="Grid\GridView\EditLayout.cs" />
+    <Compile Include="Grid\Helpers\FilterHelper.cs" />
+    <Compile Include="Grid\Helpers\ScriptHelper.cs" />
+    <Compile Include="Grid\GridView\ASPxGridView.cs" />
+    <Compile Include="Grid\GridView\Helpers\ContextMenu.cs" />
+    <Compile Include="Grid\GridView\Rendering\InnerControls.cs" />
+    <Compile Include="Grid\GridView\Templates.cs" />
+    <Compile Include="Grid\Helpers\BatchEditHelper.cs" />
+    <Compile Include="Grid\Helpers\CallbackState.cs" />
+    <Compile Include="Grid\Helpers\ColumnHelper.cs" />
+    <Compile Include="Grid\Helpers\EndlessPagingHelper.cs" />
+    <Compile Include="Grid\Helpers\CallBackReader.cs" />
+    <Compile Include="Grid\Helpers\RenderHelper.cs" />
+    <Compile Include="Grid\Helpers\Cookies.cs" />
+    <Compile Include="Grid\Layout.cs" />
+    <Compile Include="Grid\Settings.cs" />
+    <Compile Include="Grid\GridView\Summary.cs" />
+    <Compile Include="Grid\Summary.cs" />
+    <Compile Include="Grid\Utils.cs" />
+    <Compile Include="Grid\GridView\Export\ASPxGridViewExporter.cs" />
+    <Compile Include="Grid\GridView\Export\BrickResolver.cs" />
+    <Compile Include="Grid\GridView\Export\GridViewExcelDataExporter.cs" />
+    <Compile Include="Grid\GridView\Export\GridViewExportColumnHelper.cs" />
+    <Compile Include="Grid\GridView\Export\GridViewLink.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Grid\GridView\Export\GridViewPrinter.cs" />
+    <Compile Include="Grid\GridView\Export\GridViewPrintInfoCalculator.cs" />
+    <Compile Include="Grid\GridView\Export\Styles.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Grid\GridView\Rendering\GridViewEditFormLayout.cs" />
+    <Compile Include="Grid\GridView\Rendering\EditTableClasses.cs" />
+    <Compile Include="Grid\GridView\Rendering\GridViewHtmlFilterPopup.cs" />
+    <Compile Include="Grid\GridView\Rendering\MainTable.cs" />
+    <Compile Include="Grid\GridView\Rendering\TableClasses.cs" />
+    <Compile Include="Grid\GridView\Settings.cs" />
+    <Compile Include="Grid\Images.cs" />
+    <Compile Include="Grid\LicenseProvider.cs" />
+    <Compile Include="Grid\Localization.cs" />
+    <Compile Include="Grid\Styles.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Grid\Templates.cs" />
+    <Compile Include="Grid\WebDataController.cs" />
+    <Compile Include="Grid\WebDataSelection.cs" />
+    <Compile Include="ImageControls\BinaryImage\ASPxBinaryImage.cs" />
+    <Compile Include="ImageControls\BinaryImage\ClientSideEvents.cs" />
+    <Compile Include="ImageControls\BinaryImage\Controls.cs" />
+    <Compile Include="ImageControls\BinaryImage\Settings.cs" />
+    <Compile Include="ImageControls\BinaryImage\Storage.cs" />
+    <Compile Include="ImageControls\FolderBinding.cs" />
+    <Compile Include="ImageControls\ImageGallery\ASPxImageGallery.cs" />
+    <Compile Include="ImageControls\ImageGallery\ClientSideEvents.cs" />
+    <Compile Include="ImageControls\ImageGallery\Controls.cs" />
+    <Compile Include="ImageControls\ImageGallery\EventHandlers.cs" />
+    <Compile Include="ImageControls\ImageGallery\Helpers.cs" />
+    <Compile Include="ImageControls\ImageSlider\ASPxImageSliderBase.cs" />
+    <Compile Include="ImageControls\ImageSlider\ControlsDesignMode.cs" />
+    <Compile Include="ImageControls\ImageUtils.cs" />
+    <Compile Include="ImageControls\ImageGallery\Items.cs" />
+    <Compile Include="ImageControls\ImageGallery\Settings.cs" />
+    <Compile Include="ImageControls\ImageGallery\Styles.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ImageControls\ImageGallery\Templates.cs" />
+    <Compile Include="ImageControls\ImageSlider\ClientSideEvents.cs" />
+    <Compile Include="ImageControls\ImageSlider\EventHandlers.cs" />
+    <Compile Include="FormLayout\ASPxFormLayout.cs" />
+    <Compile Include="FormLayout\Controls.cs" />
+    <Compile Include="FormLayout\Items.cs" />
+    <Compile Include="FormLayout\Settings.cs" />
+    <Compile Include="FormLayout\Styles.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ImageControls\ImageSlider\Helpers.cs" />
+    <Compile Include="ImageControls\ImageSlider\Settings.cs" />
+    <Compile Include="ImageControls\ImageSlider\Templates.cs" />
+    <Compile Include="ImageControls\ImageZoomNavigator\ImageZoomNavigator.cs" />
+    <Compile Include="ImageControls\ImageZoomNavigator\Items.cs" />
+    <Compile Include="ImageControls\ImageZoomNavigator\Settings.cs" />
+    <Compile Include="ImageControls\ImageZoomNavigator\Styles.cs" />
+    <Compile Include="ImageControls\ImageZoom\ASPxImageZoom.cs" />
+    <Compile Include="ImageControls\ImageZoom\Controls.cs" />
+    <Compile Include="ImageControls\ImageZoom\Settings.cs" />
+    <Compile Include="ImageControls\ImageZoom\Styles.cs" />
+    <Compile Include="ImageControls\Styles.cs" />
+    <Compile Include="ListEdit\ASPxCheckBoxList.cs" />
+    <Compile Include="ListEdit\ASPxListBox.cs" />
+    <Compile Include="ListEdit\ASPxListEdit.cs" />
+    <Compile Include="ListEdit\ASPxRadioButtonList.cs" />
+    <Compile Include="ListEdit\ClientSideEvents.cs" />
+    <Compile Include="ListEdit\Columns.cs" />
+    <Compile Include="ListEdit\Controls.cs" />
+    <Compile Include="ListEdit\Data.cs" />
+    <Compile Include="ListEdit\Items.cs" />
+    <Compile Include="MediaFileSelector\Controls.cs" />
+    <Compile Include="MediaFileSelector\EventHandlers.cs" />
+    <Compile Include="MediaFileSelector\MediaFileSelector.cs" />
+    <Compile Include="MediaFileSelector\Settings.cs" />
+    <Compile Include="Panel\ClientSideEvents.cs" />
+    <Compile Include="Panel\Controls.cs" />
+    <Compile Include="Panel\Images.cs" />
+    <Compile Include="Panel\Settings.cs" />
+    <Compile Include="ResourceManagers\ASPxScriptManager.cs" />
+    <Compile Include="ResourceManagers\RegistratingControlsFactory.cs" />
+    <Compile Include="Ribbon\ASPxRibbon.cs" />
+    <Compile Include="Ribbon\ClientSideEvents.cs" />
+    <Compile Include="Ribbon\Controls.cs" />
+    <Compile Include="Ribbon\EventHandlers.cs" />
+    <Compile Include="Ribbon\Helpers.cs" />
+    <Compile Include="Ribbon\Images.cs" />
+    <Compile Include="Ribbon\Items.cs" />
+    <Compile Include="Ribbon\SampleData.cs" />
+    <Compile Include="Ribbon\Settings.cs" />
+    <Compile Include="Ribbon\Styles.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Ribbon\Templates.cs" />
+    <Compile Include="RoundPanel\ClientSideEvents.cs" />
+    <Compile Include="RoundPanel\EventHandlers.cs" />
+    <Compile Include="ServerMode\Entity\EntityServerModeDataSource.cs" />
+    <Compile Include="ServerMode\Entity\EntityServerModeTests.cs" />
+    <Compile Include="ServerMode\Linq\LinqServerModeDataSource.cs" />
+    <Compile Include="ServerMode\Linq\LinqServerModeTests.cs" />
+    <Compile Include="SpinEdit\ASPxSpinEdit.cs" />
+    <Compile Include="SpinEdit\ASPxSpinEditBase.cs" />
+    <Compile Include="SpinEdit\ASPxTimeEdit.cs" />
+    <Compile Include="SpinEdit\Buttons.cs" />
+    <Compile Include="SpinEdit\ClientSideEvents.cs" />
+    <Compile Include="SpinEdit\Controls.cs" />
+    <Compile Include="StaticEdit\ASPxHyperLink.cs" />
+    <Compile Include="StaticEdit\ASPxImage.cs" />
+    <Compile Include="StaticEdit\ASPxLabel.cs" />
+    <Compile Include="StaticEdit\ASPxStaticEdit.cs" />
+    <Compile Include="StaticEdit\ClientSideEvents.cs" />
+    <Compile Include="StaticEdit\Controls.cs" />
+    <Compile Include="ResourceManagers\ASPxStyleSheetManager.cs" />
+    <Compile Include="ResourceManagers\Items.cs" />
+    
+    
+    
+    <Compile Include="Callback\ASPxCallback.cs" />
+    <Compile Include="Callback\ClientSideEvents.cs" />
+    <Compile Include="Callback\EventHandlers.cs" />
+    
+    
+    <Compile Include="Classes\ASPxHttpHandlerModule.cs" />
+    <Compile Include="Classes\ASPxDataWebControl.cs" />
+    <Compile Include="Classes\ASPxWebComponent.cs" />
+    <Compile Include="Classes\ASPxWebControl.cs" />
+    <Compile Include="Classes\BaseClasses.cs" />
+    <Compile Include="Classes\BaseControls.cs" />
+    <Compile Include="Classes\BaseTemplates.cs" />
+    <Compile Include="Classes\BinaryStorage.cs" />
+    <Compile Include="Classes\BrowserInfo.cs" />
+    <Compile Include="Classes\Utils\CodeFormatter.cs" />
+    <Compile Include="Classes\Configuration.cs" />
+    <Compile Include="Classes\SampleData.cs" />
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <Compile Include="Classes\Themes\ThemedProductsElementsCss.cs" />
+    <Compile Include="Classes\Utils\HtmlConvertor.cs" />
+    <Compile Include="Classes\Utils\HttpUtils.cs" />
+    <Compile Include="Classes\Utils\MvcUtils.cs" />
+    <Compile Include="Classes\Utils\StateControllerUtils.cs" />
+    
+    
+    
+    
+    <Compile Include="Classes\Themes\ThemedProducts.cs" />
+    <Compile Include="Classes\Utils\HtmlTextWriterAdapter.cs" />
+    <Compile Include="Classes\ResourceData.cs" />
+    
+    
+    
+    <Compile Include="Classes\Themes\ThemesHelper.cs" />
+    <Compile Include="Classes\Themes\ThemesProvider.cs" />
+    <Compile Include="Classes\MasterRelated.cs" />
+    <Compile Include="Classes\ClientSideEvents.cs" />
+    <Compile Include="Classes\Data.cs" />
+    <Compile Include="Classes\EventHandlers.cs" />
+    <Compile Include="Classes\Images.cs" />
+    <Compile Include="Classes\Localization.cs" />
+    <Compile Include="Classes\Utils\RenderUtils.cs" />
+    <Compile Include="Classes\ResourceManager.cs" />
+    <Compile Include="Classes\SR.cs" />
+    <Compile Include="Classes\Styles.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <Compile Include="ValidationSummary\ASPxValidationSummary.cs" />
+    <Compile Include="ValidationSummary\ClientSideEvents.cs" />
+    <Compile Include="ValidationSummary\Controls.cs" />
+    <Compile Include="ValidationSummary\Styles.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="WebClientUIControl\ASPxWebClientUIControl.cs" />
+    <Compile Include="WebClientUIControl\Internal\ClientControlsDesignModeControl.cs" />
+    <Compile Include="WebClientUIControl\Internal\ClientControlsDesignModeImages.cs" />
+    <Compile Include="WebClientUIControl\Internal\ClientControlsDesignModeInfo.cs" />
+    <Compile Include="WebClientUIControl\Internal\DesignModeControlEventArgs.cs" />
+    <Compile Include="WebClientUIControl\Internal\DevExtremeFontProviderSubscriber.cs" />
+    <EmbeddedResource Include="Edit\LocalizationRes.resx" />
+    <EmbeddedResource Include="Edit\LocalizationRes.ru.resx" />
+    <EmbeddedResource Include="Edit\LocalizationRes.ja.resx" />
+    <EmbeddedResource Include="Edit\LocalizationRes.es.resx" />
+    <EmbeddedResource Include="Edit\LocalizationRes.de.resx" />
+    <EmbeddedResource Include="Grid\LocalizationRes.resx" />
+    <EmbeddedResource Include="Grid\LocalizationRes.ru.resx" />
+    <EmbeddedResource Include="Grid\LocalizationRes.ja.resx" />
+    <EmbeddedResource Include="Grid\LocalizationRes.es.resx" />
+    <EmbeddedResource Include="Grid\LocalizationRes.de.resx" />
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <Compile Include="Classes\Utils\Utils.cs" />
+    <Compile Include="Classes\Utils\ViewStateUtils.cs" />
+    <Compile Include="Classes\WebDataEvents.cs" />
+    <Compile Include="CloudControl\ASPxCloudControl.cs" />
+    <Compile Include="CloudControl\Controls.cs" />
+    <Compile Include="CloudControl\EventHandlers.cs" />
+    <Compile Include="CloudControl\Items.cs" />
+    <Compile Include="CloudControl\RankProperties.cs" />
+    <Compile Include="CloudControl\SampleData.cs" />
+    <Compile Include="CloudControl\Styles.cs" />
+    
+    
+    
+    
+    
+    <Compile Include="Classes\CustomCssJsManager.cs" />
+    <Compile Include="DataView\ASPxDataView.cs" />
+    <Compile Include="DataView\Controls.cs" />
+    <Compile Include="DataView\EventHandlers.cs" />
+    <Compile Include="DataView\Items.cs" />
+    <Compile Include="DataView\Settings.cs" />
+    <Compile Include="DataView\Styles.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="DataView\Templates.cs" />
+    
+    
+    
+    
+    
+    
+    <Compile Include="Docking\DockManager\ASPxDockManager.cs" />
+    <Compile Include="Docking\DockManager\ClientSideEvents.cs" />
+    <Compile Include="Docking\DockManager\Events.cs" />
+    <Compile Include="Docking\DockPanel\ASPxDockPanel.cs" />
+    <Compile Include="Docking\DockPanel\ClientSideEvents.cs" />
+    <Compile Include="Docking\DockPanel\Events.cs" />
+    <Compile Include="Docking\DockPanel\ForbiddenZonesCollection.cs" />
+    <Compile Include="Docking\DockPanel\Styles.cs" />
+    <Compile Include="Docking\DockZone\ASPxDockZone.cs" />
+    <Compile Include="Docking\DockZone\ClientSideEvents.cs" />
+    <Compile Include="Docking\DockZone\Controls.cs" />
+    <Compile Include="Docking\DockZone\Events.cs" />
+    <Compile Include="Docking\DockZone\PanelCollection.cs" />
+    <Compile Include="Docking\DockZone\Styles.cs" />
+    <Compile Include="Docking\PanelZoneRelationsMediator.cs" />
+    
+    
+    
+    
+    
+    <Compile Include="FileManager\ASPxFileManager.cs" />
+    <Compile Include="FileManager\CallbackCommands.cs" />
+    <Compile Include="FileManager\ClientSideEvents.cs" />
+    <Compile Include="FileManager\Controls.cs" />
+    <Compile Include="FileManager\EventHandlers.cs" />
+    <Compile Include="FileManager\Exceptions.cs" />
+    <Compile Include="FileManager\Helpers.cs" />
+    <Compile Include="FileManager\Images.cs" />
+    <Compile Include="FileManager\Items.cs" />
+    <Compile Include="FileManager\Providers\RestrictedAccessFileSystemProvider.cs" />
+    <Compile Include="FileManager\Providers\DataSourceFileSystemProvider.cs" />
+    <Compile Include="FileManager\Providers\PhysicalFileSystemProvider.cs" />
+    <Compile Include="FileManager\AccessRules.cs" />
+    <Compile Include="FileManager\Providers\FileSystemProviderBase.cs" />
+    
+    
+    
+    
+    
+    <Compile Include="FileManager\Settings.cs" />
+    <Compile Include="FileManager\Styles.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <Compile Include="Headline\Images.cs" />
+    
+    
+    <Compile Include="HiddenField\ASPxHiddenField.cs" />
+    <Compile Include="HiddenField\ClientSideEvents.cs" />
+    <Compile Include="HiddenField\Controls.cs" />
+    <Compile Include="HiddenField\KnownTypeRepository.cs" />
+    
+    
+    <Compile Include="HiddenField\Utils.cs" />
+    <Compile Include="Classes\InternalCheckBox.cs" />
+    <Compile Include="ImageControls\ImageSlider\ASPxImageSlider.cs" />
+    <Compile Include="ImageControls\ImageSlider\Controls.cs" />
+    <Compile Include="ImageControls\ImageSlider\Items.cs" />
+    <Compile Include="ImageControls\ImageSlider\Styles.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="LoadingPanel\ASPxLoadingPanel.cs" />
+    <Compile Include="LoadingPanel\Styles.cs" />
+    
+    
+    <Compile Include="Menu\RenderHelper.cs" />
+    <Compile Include="Menu\Images.cs" />
+    <Compile Include="Menu\ControlsLite.cs" />
+    <Compile Include="Menu\SampleData.cs" />
+    
+    
+    
+    
+    
+    <Compile Include="NavBar\SampleData.cs" />
+    <Compile Include="NavBar\Images.cs" />
+    
+    <Compile Include="NewsControl\Images.cs" />
+    <Compile Include="NewsControl\SampleData.cs" />
+    
+    
+    
+    
+    <Compile Include="Headline\Appearance.cs" />
+    <Compile Include="Headline\ASPxHeadline.cs" />
+    <Compile Include="Headline\Controls.cs" />
+    <Compile Include="Headline\HeadlineSettings.cs" />
+    <Compile Include="Headline\Styles.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    
+    
+    
+    <Compile Include="Menu\ASPxMenu.cs" />
+    <Compile Include="Menu\ASPxPopupMenu.cs" />
+    <Compile Include="Menu\ClientSideEvents.cs" />
+    <Compile Include="Menu\EventHandlers.cs" />
+    <Compile Include="Menu\Items.cs" />
+    <Compile Include="Menu\Styles.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Menu\Templates.cs" />
+    
+    
+    
+    
+    
+    
+    
+    
+    <Compile Include="NavBar\ASPxNavBar.cs" />
+    <Compile Include="NavBar\ClientSideEvents.cs" />
+    <Compile Include="NavBar\EventHandlers.cs" />
+    <Compile Include="NavBar\Groups.cs" />
+    <Compile Include="NavBar\Items.cs" />
+    <Compile Include="NavBar\Styles.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="NavBar\Templates.cs" />
+    
+    
+    
+    
+    
+    
+    
+    
+    <Compile Include="NewsControl\ASPxNewsControl.cs" />
+    <Compile Include="NewsControl\ClientSideEvents.cs" />
+    <Compile Include="NewsControl\Controls.cs" />
+    <Compile Include="NewsControl\EventHandlers.cs" />
+    <Compile Include="NewsControl\Items.cs" />
+    <Compile Include="NewsControl\PagerSettings.cs" />
+    <Compile Include="NewsControl\Styles.cs">
+    </Compile>
+    
+    <Compile Include="ObjectContainer\ASPxObjectContainer.cs" />
+    <Compile Include="ObjectContainer\ClientSideEvents.cs" />
+    <Compile Include="ObjectContainer\Images.cs" />
+    <Compile Include="ObjectContainer\ObjectProperties.cs" />
+    <Compile Include="ObjectContainer\ObjectTypeManager.cs" />
+    
+    
+    
+    
+    <Compile Include="Pager\ASPxPager.cs" />
+    <Compile Include="Pager\ControlsLite.cs" />
+    <Compile Include="Pager\EventHandlers.cs" />
+    <Compile Include="Pager\Images.cs" />
+    <Compile Include="Pager\Model.cs" />
+    <Compile Include="Pager\PagerProperties.cs" />
+    <Compile Include="Pager\Styles.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <Compile Include="Panel\ASPxPanel.cs" />
+    <Compile Include="Panel\Styles.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    
+    
+    
+    <Compile Include="PopupControl\ASPxPopupControl.cs" />
+    <Compile Include="PopupControl\ClientSideEvents.cs" />
+    <Compile Include="PopupControl\ControlsLite.cs" />
+    <Compile Include="PopupControl\EventHandlers.cs" />
+    <Compile Include="PopupControl\Images.cs" />
+    <Compile Include="PopupControl\PopupWindow.cs" />
+    <Compile Include="PopupControl\Styles.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PopupControl\Templates.cs" />
+    
+    
+    
+    
+    
+    
+    
+    <Compile Include="ProgressBar\ASPxProgressBar.cs" />
+    <Compile Include="ProgressBar\Controls.cs" />
+    <Compile Include="ProgressBar\ProgressBarProperties.cs" />
+    <Compile Include="ProgressBar\Styles.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    
+    
+    
+    
+    
+    
+    <Compile Include="RatingControl\ASPxRatingControl.cs" />
+    <Compile Include="RatingControl\ClientSideEvents.cs" />
+    <Compile Include="RatingControl\EventHandlers.cs" />
+    
+    
+    
+    <Compile Include="RoundPanel\ASPxRoundPanel.cs" />
+    <Compile Include="RoundPanel\Controls.cs" />
+    <Compile Include="RoundPanel\Images.cs" />
+    <Compile Include="RoundPanel\Parts.cs" />
+    <Compile Include="RoundPanel\Style.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="RoundPanel\Templates.cs" />
+    
+    
+    
+    <Compile Include="GlobalEvents\ASPxGlobalEvents.cs" />
+    <Compile Include="GlobalEvents\ClientSideEvents.cs" />
+    <Compile Include="GlobalEvents\Events.cs" />
+    
+    <Compile Include="GlobalEvents\Utils.cs" />
+    <Compile Include="SiteMapControl\ASPxSiteMapControl.cs" />
+    <Compile Include="SiteMapControl\ASPxSiteMapDataSource.cs" />
+    <Compile Include="SiteMapControl\Columns.cs" />
+    <Compile Include="SiteMapControl\Controls.cs" />
+    <Compile Include="SiteMapControl\EventHandlers.cs" />
+    <Compile Include="SiteMapControl\LevelProperties.cs" />
+    <Compile Include="SiteMapControl\Providers.cs" />
+    <Compile Include="SiteMapControl\Styles.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="SiteMapControl\Templates.cs" />
+    
+    
+    
+    
+    
+    
+    
+    
+    <Compile Include="Splitter\ASPxSplitter.cs" />
+    <Compile Include="Splitter\ClientSideEvents.cs" />
+    <Compile Include="Splitter\Controls.cs" />
+    <Compile Include="Splitter\Images.cs" />
+    <Compile Include="Splitter\Panes.cs" />
+    <Compile Include="Splitter\RenderHelper.cs" />
+    <Compile Include="Splitter\Separator.cs" />
+    <Compile Include="Splitter\Styles.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    
+    
+    
+    
+    
+    
+    
+    
+    <Compile Include="TabControl\ASPxPageControl.cs" />
+    <Compile Include="TabControl\ASPxTabControl.cs" />
+    <Compile Include="TabControl\ClientSideEvents.cs" />
+    <Compile Include="TabControl\ControlsLite.cs" />
+    <Compile Include="TabControl\EventHandlers.cs" />
+    <Compile Include="TabControl\Images.cs" />
+    <Compile Include="TabControl\SampleData.cs" />
+    <Compile Include="TabControl\Styles.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="TabControl\TabPages.cs" />
+    <Compile Include="TabControl\Tabs.cs" />
+    <Compile Include="TabControl\Templates.cs" />
+    
+    
+    
+    
+    
+    
+    
+    
+    <Compile Include="TextEdit\ASPxButtonEdit.cs" />
+    <Compile Include="TextEdit\ASPxMemo.cs" />
+    <Compile Include="TextEdit\ASPxTextBox.cs" />
+    <Compile Include="TextEdit\ASPxTextEdit.cs" />
+    <Compile Include="TextEdit\Buttons.cs" />
+    <Compile Include="TextEdit\ClientSideEvents.cs" />
+    <Compile Include="TextEdit\Controls.cs" />
+    <Compile Include="TextEdit\EventHandlers.cs" />
+    <Compile Include="TextEdit\MaskSettings.cs" />
+    <Compile Include="Timer\ASPxTimer.cs" />
+    <Compile Include="Timer\ClientSideEvents.cs" />
+    
+    
+    <Compile Include="TitleIndex\ASPxTitleIndex.cs" />
+    <Compile Include="TitleIndex\ClientSideEvents.cs" />
+    <Compile Include="TitleIndex\Columns.cs" />
+    <Compile Include="TitleIndex\Controls.cs" />
+    <Compile Include="TitleIndex\EventHandlers.cs" />
+    <Compile Include="TitleIndex\Images.cs" />
+    <Compile Include="TitleIndex\Items.cs" />
+    <Compile Include="TitleIndex\SampleData.cs" />
+    <Compile Include="TitleIndex\Styles.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="TitleIndex\Templates.cs" />
+    
+    
+    
+    
+    
+    <Compile Include="TitleIndex\Utils.cs" />
+    <Compile Include="TrackBar\ASPxTrackBar.cs" />
+    <Compile Include="TrackBar\ClientSideEvents.cs" />
+    <Compile Include="TrackBar\Controls.cs" />
+    <Compile Include="TrackBar\Properties.cs" />
+    <Compile Include="TrackBar\TrackBarItemCollection.cs" />
+    <Compile Include="TreeView\ASPxTreeView.cs" />
+    <Compile Include="TreeView\ClientSideEvents.cs" />
+    <Compile Include="TreeView\Controls.cs" />
+    <Compile Include="TreeView\DataMediators.cs" />
+    <Compile Include="TreeView\Events.cs" />
+    <Compile Include="TreeView\Images.cs" />
+    <Compile Include="TreeView\Nodes.cs" />
+    <Compile Include="TreeView\Settings.cs" />
+    <Compile Include="TreeView\Styles.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="TreeView\Templates.cs" />
+    
+    
+    
+    
+    
+    
+    <Compile Include="Classes\Converters.cs" />
+    <Compile Include="UploadControl\ClientSideEvents.cs" />
+    <Compile Include="UploadControl\Controls.cs" />
+    <Compile Include="UploadControl\ASPxUploadControl.cs" />
+    <Compile Include="UploadControl\Events.cs" />
+    <Compile Include="UploadControl\Images.cs" />
+    <Compile Include="UploadControl\PartialUploadModule.cs" />
+    <Compile Include="UploadControl\ProgressModule.cs" />
+    <Compile Include="UploadControl\RequestParser.cs" />
+    <Compile Include="UploadControl\Styles.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    
+    
+    
+    
+    
+    
+    <Compile Include="UploadControl\ButtonProperties.cs" />
+    <Compile Include="UploadControl\UploadedFiles.cs" />
+    <Compile Include="UploadControl\ValidationSettings.cs" />
+    <Compile Include="UploadControl\WorkerRequest.cs" />
+    <Compile Include="Classes\LicenseProvider.cs" />
+    <Compile Include="NavBar\ControlsLite.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Scripts\Classes.js" />
+    <EmbeddedResource Include="Scripts\PopupUtils.js" />
+    <EmbeddedResource Include="Scripts\DragAndDropUtils.js" />
+    <EmbeddedResource Include="Scripts\DialogUtils.js" />
+    <EmbeddedResource Include="Scripts\DateFormatter.js" />
+    <EmbeddedResource Include="Scripts\Debug.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\1x1.gif" />
+    <EmbeddedResource Include="Images\Loading.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Scripts\Menu.js" />
+    <EmbeddedResource Include="Scripts\PopupMenu.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Scripts\TabControl.js" />
+    <EmbeddedResource Include="Scripts\NavBar.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Scripts\Callback.js" />
+    <EmbeddedResource Include="Images\ocAudioObjectProperties.gif" />
+    <EmbeddedResource Include="Images\ocErrorObjectProperties.gif" />
+    <EmbeddedResource Include="Images\ocFlashObjectProperties.gif" />
+    <EmbeddedResource Include="Images\ocImageObjectProperties.gif" />
+    <EmbeddedResource Include="Images\ocVideoObjectProperties.gif" />
+    <EmbeddedResource Include="Images\ocHtml5VideoObjectProperties.gif" />
+    <EmbeddedResource Include="Scripts\ObjectContainer.js" />
+    <EmbeddedResource Include="Scripts\PopupControl.js" />
+    <EmbeddedResource Include="Scripts\TitleIndex.js" />
+    <EmbeddedResource Include="Scripts\Timer.js" />
+  </ItemGroup>
+  <ItemGroup>
+    
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Scripts\DataView.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Scripts\CloudControl.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Scripts\NewsControl.js" />
+  </ItemGroup>
+  <ItemGroup>
+    
+    
+  </ItemGroup>
+  <ItemGroup>
+    
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Css\Default.css" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Scripts\RelatedControlManager.js" />
+  </ItemGroup>
+  <ItemGroup>
+    
+  </ItemGroup>
+  <ItemGroup>
+    
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Scripts\Pager.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\pcModalBack.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Scripts\CallbackPanel.js" />
+  </ItemGroup>
+  <ItemGroup>
+    
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Scripts\Upload.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Scripts\Panel.js" />
+    <EmbeddedResource Include="Scripts\RoundPanel.js" />
+  </ItemGroup>
+  <ItemGroup>
+    
+  </ItemGroup>
+  <ItemGroup>
+    
+  </ItemGroup>
+  <ItemGroup>
+    
+  </ItemGroup>
+  <ItemGroup>
+    
+  </ItemGroup>
+  <ItemGroup>
+    
+  </ItemGroup>
+  <ItemGroup>
+    
+  </ItemGroup>
+  <ItemGroup>
+    
+  </ItemGroup>
+  <ItemGroup>
+    
+  </ItemGroup>
+  <ItemGroup>
+    
+  </ItemGroup>
+  <ItemGroup>
+    
+  </ItemGroup>
+  <ItemGroup>
+    
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\ocQuickTimeObjectProperties.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    
+  </ItemGroup>
+  <ItemGroup>
+    
+  </ItemGroup>
+  <ItemGroup>
+    
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Scripts\GlobalEvents.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Classes\SSLSecureBlank.htm" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Scripts\LoadingPanel.js" />
+  </ItemGroup>
+  <ItemGroup>
+    
+  </ItemGroup>
+  <ItemGroup>
+    
+  </ItemGroup>
+  <ItemGroup>
+    
+  </ItemGroup>
+  <ItemGroup>
+    
+  </ItemGroup>
+  <ItemGroup>
+    
+  </ItemGroup>
+  <ItemGroup>
+    
+  </ItemGroup>
+  <ItemGroup>
+    
+    <EmbeddedResource Include="Scripts\HiddenField.js" />
+  </ItemGroup>
+  <ItemGroup>
+    
+  </ItemGroup>
+  <ItemGroup>
+    
+  </ItemGroup>
+  <ItemGroup>
+    
+  </ItemGroup>
+  <ItemGroup>
+    
+  </ItemGroup>
+  <ItemGroup>
+    
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Scripts\Progress.js" />
+  </ItemGroup>
+  <ItemGroup>
+    
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Scripts\RatingControl.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Scripts\Formatter.js" />
+  </ItemGroup>
+  <ItemGroup>
+    
+  </ItemGroup>
+  <ItemGroup>
+    
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\rcMapImage.gif" />
+    <EmbeddedResource Include="Images\rcMapImage.png" />
+  </ItemGroup>
+  <ItemGroup>
+    
+  </ItemGroup>
+  <ItemGroup>
+    
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\splResizingPointer.gif" />
+    <EmbeddedResource Include="Scripts\Splitter.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\sprite.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Css\Sprite.css" />
+  </ItemGroup>
+  <ItemGroup>
+    
+    <EmbeddedResource Include="Scripts\OfficeControls.js" />
+    
+    <EmbeddedResource Include="Scripts\Frameworks\jquery-1.11.3.min.js" />
+    
+    
+    
+    <EmbeddedResource Include="Scripts\Editors\BinaryImage.js" />
+    <EmbeddedResource Include="Scripts\GridView\GridView.js" />
+    <EmbeddedResource Include="Scripts\GridView\CardView.js" />
+    <EmbeddedResource Include="Scripts\Editors\Image.js" />
+    
+    <EmbeddedResource Include="Scripts\DevExtreme\dx.module-core.js" />
+    <EmbeddedResource Include="Scripts\DevExtreme\dx.module-viz-charts.js" />
+    <EmbeddedResource Include="Scripts\DevExtreme\dx.module-viz-core.js" />
+    <EmbeddedResource Include="Scripts\DevExtreme\dx.module-viz-gauges.js" />
+    <EmbeddedResource Include="Scripts\DevExtreme\dx.module-viz-rangeselector.js" />
+    <EmbeddedResource Include="Scripts\DevExtreme\dx.module-viz-sparklines.js" />
+    <EmbeddedResource Include="Scripts\DevExtreme\dx.module-viz-vectormap.js" />
+    <EmbeddedResource Include="Scripts\DevExtreme\dx.module-widgets-base.js" />
+    <EmbeddedResource Include="Scripts\DevExtreme\dx.module-widgets-web.js" />
+    <EmbeddedResource Include="Scripts\MediaFileSelector.js" />
+    
+    
+    
+    
+    
+    
+    <EmbeddedResource Include="Scripts\Frameworks\jquery.validate.min.js" />
+    <EmbeddedResource Include="Scripts\Frameworks\jquery.validate.unobtrusive.min.js" />
+    <EmbeddedResource Include="Scripts\Frameworks\jquery.unobtrusive-ajax.min.js" />
+    
+    <EmbeddedResource Include="Scripts\Frameworks\globalize.cultures.js" />
+    <EmbeddedResource Include="Scripts\Frameworks\globalize.js" />
+    <EmbeddedResource Include="Scripts\Frameworks\jquery-ui-1.10.3.custom.min.js" />
+    <EmbeddedResource Include="Scripts\Frameworks\knockout-3.3.0.js" />
+    <EmbeddedResource Include="Scripts\Editors\ColorNestedControl.js" />
+    <EmbeddedResource Include="Scripts\_references.js" />
+    <EmbeddedResource Include="Scripts\ImageZoom.js" />
+    <EmbeddedResource Include="Scripts\GridView\BatchEditing.js" />
+    <EmbeddedResource Include="Scripts\GridView\EndlessPaging.js" />
+    <EmbeddedResource Include="Images\cpColorArea.png" />
+    <EmbeddedResource Include="Images\cpHueArea.png" />
+    <EmbeddedResource Include="Images\cpColorPointer.gif" />
+    <EmbeddedResource Include="Images\cpHuePointer.gif" />
+    <EmbeddedResource Include="Scripts\Editors\ColorPicker.js" />
+    
+    <EmbeddedResource Include="Scripts\Ribbon.js" />
+    <EmbeddedResource Include="Scripts\ImageControlUtils.js" />
+    <EmbeddedResource Include="Scripts\ImageGallery.js" />
+    
+    
+    <EmbeddedResource Include="Scripts\InternalClock.js" />
+    
+    
+    <EmbeddedResource Include="Scripts\FormLayout.js" />
+    
+    <EmbeddedResource Include="Scripts\GridView\GridLookup.js" />
+    <EmbeddedResource Include="Scripts\GridView\Grid.js" />
+    <EmbeddedResource Include="Scripts\GridView\TableColumnResizing.js" />
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <EmbeddedResource Include="Scripts\Editors\Button.js" />
+    <EmbeddedResource Include="Scripts\Editors\Calendar.js" />
+    <EmbeddedResource Include="Scripts\Editors\Captcha.js" />
+    <EmbeddedResource Include="Scripts\Editors\CheckEdit.js" />
+    <EmbeddedResource Include="Scripts\Editors\ColorEdit.js" />
+    <EmbeddedResource Include="Scripts\Editors\ColorTable.js" />
+    <EmbeddedResource Include="Scripts\Editors\DropDownEdit.js" />
+    <EmbeddedResource Include="Scripts\Editors\ComboBox.js" />
+    <EmbeddedResource Include="Scripts\Editors\DateEdit.js" />
+    <EmbeddedResource Include="Scripts\Editors\TokenBox.js" />
+    <EmbeddedResource Include="Scripts\Editors\Edit.js" />
+    <EmbeddedResource Include="Scripts\Editors\FilterControl.js" />
+    <EmbeddedResource Include="Scripts\Editors\ListEdit.js" />
+    <EmbeddedResource Include="Scripts\Editors\Mask.js" />
+    <EmbeddedResource Include="Scripts\Editors\ProgressBar.js" />
+    <EmbeddedResource Include="Scripts\Editors\SpinEdit.js" />
+    <EmbeddedResource Include="Scripts\Editors\StaticEdit.js" />
+    <EmbeddedResource Include="Scripts\Editors\TextEdit.js" />
+    <EmbeddedResource Include="Scripts\Editors\TrackBar.js" />
+    <EmbeddedResource Include="Scripts\Editors\ValidationSummary.js" />
+    <EmbeddedResource Include="Scripts\Utils.js" />
+    <EmbeddedResource Include="Scripts\Animation.js" />
+    <EmbeddedResource Include="Scripts\ImageSlider.js" />
+    <EmbeddedResource Include="Scripts\TableScrollUtils.js" />
+    <EmbeddedResource Include="Classes\LocalizationRes.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>LocalizationRes.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Classes\LocalizationRes.ru.resx" />
+    <EmbeddedResource Include="Classes\LocalizationRes.ja.resx" />
+    <EmbeddedResource Include="Classes\LocalizationRes.es.resx" />
+    <EmbeddedResource Include="Classes\LocalizationRes.de.resx" />
+    <EmbeddedResource Include="Scripts\Mobile.js" />
+    <EmbeddedResource Include="Scripts\DockManager.js" />
+    <EmbeddedResource Include="Scripts\DockZone.js" />
+    <EmbeddedResource Include="Scripts\DockPanel.js" />
+    <EmbeddedResource Include="Images\ucButtonBack.gif" />
+    <EmbeddedResource Include="Images\ucButtonHoverBack.gif" />
+    <EmbeddedResource Include="Scripts\FileManager.js" />
+    <EmbeddedResource Include="Images\tvElbowRtl.gif" />
+    
+    
+    
+    <EmbeddedResource Include="Images\fmSplitterSeparator.gif" />
+    <EmbeddedResource Include="Images\fmFile.png" />
+    <EmbeddedResource Include="Css\System.css" />
+    <EmbeddedResource Include="UploadControl\Helpers\SL\ASPxUploadHelper.xap" />
+    <EmbeddedResource Include="Images\fmFilePdf.png" />
+    <EmbeddedResource Include="Images\fmFilePlainText.png" />
+    <EmbeddedResource Include="Images\fmFilePresentation.png" />
+    <EmbeddedResource Include="Images\fmFileRichText.png" />
+    <EmbeddedResource Include="Images\fmFileSpreadsheet.png" />
+    <EmbeddedResource Include="Images\pDropDownButtonBack.gif" />
+    <EmbeddedResource Include="Images\pDropDownButtonHoverBack.gif" />
+    
+    <EmbeddedResource Include="Css\Editors\Default.css" />
+    <EmbeddedResource Include="Css\Editors\Sprite.css" />
+    <EmbeddedResource Include="Css\Editors\System.css" />
+    <EmbeddedResource Include="Images\Editors\edtBinaryImageDesign.gif" />
+    <EmbeddedResource Include="Images\Editors\edtButtonBack.gif" />
+    <EmbeddedResource Include="Images\Editors\edtButtonHoverBack.gif" />
+    <EmbeddedResource Include="Images\Editors\edtCalendarButtonBack.gif" />
+    <EmbeddedResource Include="Images\Editors\edtCalendarButtonHBack.gif" />
+    <EmbeddedResource Include="Images\Editors\edtDropDownBack.gif" />
+    <EmbeddedResource Include="Images\Editors\edtDropDownButtonHoverBack.gif" />
+    <EmbeddedResource Include="Images\Editors\edtSpinDecBtnBack.gif" />
+    <EmbeddedResource Include="Images\Editors\edtSpinIncBtnBack.gif" />
+    <EmbeddedResource Include="Images\Editors\edtTrackBarBarHighlightH.gif" />
+    <EmbeddedResource Include="Images\Editors\edtTrackBarBarHighlightV.gif" />
+    <EmbeddedResource Include="Images\Editors\edtTrackBarDoubleLargeTickH.gif" />
+    <EmbeddedResource Include="Images\Editors\edtTrackBarDoubleLargeTickV.gif" />
+    <EmbeddedResource Include="Images\Editors\edtTrackBarDoubleSmallTickH.gif" />
+    <EmbeddedResource Include="Images\Editors\edtTrackBarDoubleSmallTickV.gif" />
+    <EmbeddedResource Include="Images\Editors\edtTrackBarLargeTickH.gif" />
+    <EmbeddedResource Include="Images\Editors\edtTrackBarLargeTickV.gif" />
+    <EmbeddedResource Include="Images\Editors\edtTrackBarSmallTickH.gif" />
+    <EmbeddedResource Include="Images\Editors\edtTrackBarSmallTickV.gif" />
+    <EmbeddedResource Include="Images\Editors\edtTrackBarTrackH.gif" />
+    <EmbeddedResource Include="Images\Editors\edtTrackBarTrackV.gif" />
+    <EmbeddedResource Include="Images\Editors\Loading.gif" />
+    <EmbeddedResource Include="Images\Editors\sprite.png" />
+    <EmbeddedResource Include="Images\GridView\gvLoadingOnStatusBar.gif" />
+    <EmbeddedResource Include="Images\GridView\Loading.gif" />
+    <EmbeddedResource Include="Images\GridView\sprite.png" />
+    <EmbeddedResource Include="Css\GridView\default.css" />
+    <EmbeddedResource Include="Css\GridView\sprite.css" />
+    <EmbeddedResource Include="Bitmaps256\ASPxBinaryImage.bmp" />
+    <EmbeddedResource Include="Bitmaps256\ASPxButton.bmp" />
+    <EmbeddedResource Include="Bitmaps256\ASPxButtonEdit.bmp" />
+    <EmbeddedResource Include="Bitmaps256\ASPxCalendar.bmp" />
+    <EmbeddedResource Include="Bitmaps256\ASPxCaptcha.bmp" />
+    <EmbeddedResource Include="Bitmaps256\ASPxCheckBox.bmp" />
+    <EmbeddedResource Include="Bitmaps256\ASPxCheckBoxList.bmp" />
+    <EmbeddedResource Include="Bitmaps256\ASPxColorEdit.bmp" />
+    <EmbeddedResource Include="Bitmaps256\ASPxComboBox.bmp" />
+    <EmbeddedResource Include="Bitmaps256\ASPxDateEdit.bmp" />
+    <EmbeddedResource Include="Bitmaps256\ASPxDropDownEdit.bmp" />
+    <EmbeddedResource Include="Bitmaps256\ASPxFilterControl.bmp" />
+    <EmbeddedResource Include="Bitmaps256\ASPxHyperLink.bmp" />
+    <EmbeddedResource Include="Bitmaps256\ASPxImage.bmp" />
+    <EmbeddedResource Include="Bitmaps256\ASPxLabel.bmp" />
+    <EmbeddedResource Include="Bitmaps256\ASPxListBox.bmp" />
+    <EmbeddedResource Include="Bitmaps256\ASPxMemo.bmp" />
+    <EmbeddedResource Include="Bitmaps256\ASPxProgressBar.bmp" />
+    <EmbeddedResource Include="Bitmaps256\ASPxRadioButton.bmp" />
+    <EmbeddedResource Include="Bitmaps256\ASPxRadioButtonList.bmp" />
+    <EmbeddedResource Include="Bitmaps256\ASPxSpinEdit.bmp" />
+    <EmbeddedResource Include="Bitmaps256\ASPxTextBox.bmp" />
+    <EmbeddedResource Include="Bitmaps256\ASPxTimeEdit.bmp" />
+    <EmbeddedResource Include="Bitmaps256\ASPxTrackBar.bmp" />
+    <EmbeddedResource Include="Bitmaps256\ASPxValidationSummary.bmp" />
+    <EmbeddedResource Include="Bitmaps256\ASPxCallback.bmp" />
+    <EmbeddedResource Include="Bitmaps256\ASPxCallbackPanel.bmp" />
+    <EmbeddedResource Include="Bitmaps256\ASPxCloudControl.bmp" />
+    <EmbeddedResource Include="Bitmaps256\ASPxDataView.bmp" />
+    <EmbeddedResource Include="Bitmaps256\ASPxDockManager.bmp" />
+    <EmbeddedResource Include="Bitmaps256\ASPxDockPanel.bmp" />
+    <EmbeddedResource Include="Bitmaps256\ASPxDockZone.bmp" />
+    <EmbeddedResource Include="Bitmaps256\ASPxFileManager.bmp" />
+    <EmbeddedResource Include="Bitmaps256\ASPxGlobalEvents.bmp" />
+    <EmbeddedResource Include="Bitmaps256\ASPxGridLookup.bmp" />
+    <EmbeddedResource Include="Bitmaps256\ASPxGridView.bmp" />
+    <EmbeddedResource Include="Bitmaps256\ASPxGridViewExporter.bmp" />
+    <EmbeddedResource Include="Bitmaps256\ASPxGridViewTemplateReplacement.bmp" />
+    <EmbeddedResource Include="Bitmaps256\ASPxHeadline.bmp" />
+    <EmbeddedResource Include="Bitmaps256\ASPxHiddenField.bmp" />
+    <EmbeddedResource Include="Bitmaps256\ASPxLoadingPanel.bmp" />
+    <EmbeddedResource Include="Bitmaps256\ASPxMenu.bmp" />
+    <EmbeddedResource Include="Bitmaps256\ASPxNavBar.bmp" />
+    <EmbeddedResource Include="Bitmaps256\ASPxNewsControl.bmp" />
+    <EmbeddedResource Include="Bitmaps256\ASPxObjectContainer.bmp" />
+    <EmbeddedResource Include="Bitmaps256\ASPxPageControl.bmp" />
+    <EmbeddedResource Include="Bitmaps256\ASPxPager.bmp" />
+    <EmbeddedResource Include="Bitmaps256\ASPxPanel.bmp" />
+    <EmbeddedResource Include="Bitmaps256\ASPxPopupControl.bmp" />
+    <EmbeddedResource Include="Bitmaps256\ASPxPopupMenu.bmp" />
+    <EmbeddedResource Include="Bitmaps256\ASPxRatingControl.bmp" />
+    <EmbeddedResource Include="Bitmaps256\ASPxRoundPanel.bmp" />
+    <EmbeddedResource Include="Bitmaps256\ASPxSiteMapControl.bmp" />
+    <EmbeddedResource Include="Bitmaps256\ASPxSplitter.bmp" />
+    <EmbeddedResource Include="Bitmaps256\ASPxTabControl.bmp" />
+    <EmbeddedResource Include="Bitmaps256\ASPxTimer.bmp" />
+    <EmbeddedResource Include="Bitmaps256\ASPxTitleIndex.bmp" />
+    <EmbeddedResource Include="Bitmaps256\ASPxTreeView.bmp" />
+    <EmbeddedResource Include="Bitmaps256\ASPxUploadControl.bmp" />
+    <EmbeddedResource Include="Bitmaps256\LinqServerModeDataSource.ico" />
+    <EmbeddedResource Include="Images\fmFileCheck.png" />
+    <EmbeddedResource Include="Images\isLoading.gif" />
+    <EmbeddedResource Include="Images\isDesignTimeSprite.png" />
+    <EmbeddedResource Include="Bitmaps256\ASPxImageSlider.bmp" />
+    <EmbeddedResource Include="Images\Close.png" />
+    <EmbeddedResource Include="Bitmaps256\EntityServerModeDataSource.ico" />
+    <EmbeddedResource Include="Css\SystemHtml5.css" />
+    <EmbeddedResource Include="Images\igLoading.gif" />
+    <EmbeddedResource Include="Images\igNavBtnsBack.png" />
+    <EmbeddedResource Include="Bitmaps256\ASPxImageGallery.bmp" />
+    <EmbeddedResource Include="Images\iLoading.gif" />
+    <EmbeddedResource Include="Css\SystemDesignMode.css" />
+    <EmbeddedResource Include="Css\DevExtreme\icons\dxicons.eot" />
+    <EmbeddedResource Include="Css\DevExtreme\icons\dxicons.ttf" />
+    <EmbeddedResource Include="Css\DevExtreme\icons\dxicons.woff" />
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <EmbeddedResource Include="Images\icDesignTimeItem.png" />
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <EmbeddedResource Include="Bitmaps256\ASPxRibbon.bmp" />
+    
+    
+    
+    
+    
+    <EmbeddedResource Include="Images\rFileTabBack.png" />
+    <EmbeddedResource Include="Images\rFileTabHoverBack.png" />
+    
+    <EmbeddedResource Include="Images\Editors\edtTokenBoxTokenBackground.png" />
+    <EmbeddedResource Include="Bitmaps256\ASPxTokenBox.bmp" />
+    <EmbeddedResource Include="Css\HESprite.css" />
+    <EmbeddedResource Include="Css\Frameworks\jquery-ui-1.10.3.custom.min.css" />
+    <EmbeddedResource Include="Bitmaps256\ASPxImageZoom.bmp" />
+    <EmbeddedResource Include="Css\SSSprite.css" />
+    <EmbeddedResource Include="Css\RESprite.css" />
+    <EmbeddedResource Include="Css\HEGSprite.css" />
+    <EmbeddedResource Include="Css\HEGWSprite.css" />
+    <EmbeddedResource Include="Images\DVSprite.png" />
+    <EmbeddedResource Include="Css\REGSprite.css" />
+    <EmbeddedResource Include="Css\REGWSprite.css" />
+    <EmbeddedResource Include="Css\SSGSprite.css" />
+    <EmbeddedResource Include="Css\SSGWSprite.css" />
+    <EmbeddedResource Include="Css\DVSprite.css" />
+    <EmbeddedResource Include="Css\DVGSprite.css" />
+    <EmbeddedResource Include="Css\DVGWSprite.css" />
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <EmbeddedResource Include="Images\DVGSprite.png" />
+    <EmbeddedResource Include="Images\DVGWSprite.png" />
+    <EmbeddedResource Include="Css\WebClientUIControlSystemDesignMode.css" />
+    <EmbeddedResource Include="Css\DevExtreme\dx.common.css" />
+    <EmbeddedResource Include="Css\DevExtreme\dx.dark.css" />
+    <EmbeddedResource Include="Css\DevExtreme\dx.light.css" />
+    <EmbeddedResource Include="Css\CardView\default.css" />
+    <EmbeddedResource Include="Css\CardView\sprite.css" />
+    <EmbeddedResource Include="Css\DevExtreme\dx.dark.compact.css" />
+    <EmbeddedResource Include="Css\DevExtreme\dx.light.compact.css" />
+    <EmbeddedResource Include="Images\CardView\cvLoadingOnStatusBar.gif" />
+    <EmbeddedResource Include="Images\CardView\Loading.gif" />
+    <EmbeddedResource Include="Images\CardView\sprite.png" />
+    
+    
+    
+    
+    
+    <EmbeddedResource Include="Bitmaps256\ASPxCardView.bmp" />
+    <EmbeddedResource Include="Bitmaps256\ASPxSiteMapDataSource.bmp" />
+    <EmbeddedResource Include="Bitmaps256\EntityServerModeDataSource.bmp" />
+    <EmbeddedResource Include="Bitmaps256\LinqServerModeDataSource.bmp" />
+    <EmbeddedResource Include="Css\DevExtreme\dx.common-overrides.css" />
+    <EmbeddedResource Include="Css\FCISprite.css" />
+    
+    <Content Include="Images\Editors\Sprite\.dxeButtonEditButtonHover .dxEditors_edtClear.png" />
+    
+    
+    <Content Include="Images\Editors\Sprite\.dxEditors_edtClear.png" />
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <EmbeddedResource Include="Images\HESprite.png" />
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <EmbeddedResource Include="Images\Editors\fcElbow.gif" />
+    <EmbeddedResource Include="Images\Editors\fcLine.gif" />
+    
+    
+    <EmbeddedResource Include="Images\fmFolderBig.png" />
+    <EmbeddedResource Include="Images\fmFolderLockedBig.png" />
+    <EmbeddedResource Include="Images\fmFolderUp.png" />
+    
+    
+    
+    <EmbeddedResource Include="Images\FCISprite.png" />
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <Content Include="Images\GridView\Sprite\.dxGridView_gvCMClearGroupingDisabled.png" />
+    <Content Include="Images\GridView\Sprite\.dxGridView_gvCMCollapseDetailRow.png" />
+    <Content Include="Images\GridView\Sprite\.dxGridView_gvCMCollapseDetailRowDisabled.png" />
+    <Content Include="Images\GridView\Sprite\.dxGridView_gvCMFullCollapseDisabled.png" />
+    <Content Include="Images\GridView\Sprite\.dxGridView_gvCMFullExpandDisabled.png" />
+    <Content Include="Images\GridView\Sprite\.dxGridView_gvCMShowSearchPanel.png" />
+    <Content Include="Images\GridView\Sprite\.dxGridView_gvCMShowSearchPanelDisabled.png" />
+    <Content Include="Images\GridView\Sprite\.dxGridView_gvCMShowGroupPanelDisabled.png" />
+    <Content Include="Images\GridView\Sprite\.dxGridView_gvCMSortAscendingDisabled.png" />
+    <Content Include="Images\GridView\Sprite\.dxGridView_gvCMSortDescendingDisabled.png" />
+    <Content Include="Images\GridView\Sprite\.dxGridView_gvCMSummarySum.png" />
+    <Content Include="Images\GridView\Sprite\.dxGridView_gvCMSummarySumDisabled.png" />
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <EmbeddedResource Include="Images\HEGSprite.png" />
+    <EmbeddedResource Include="Images\HEGWSprite.png" />
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <EmbeddedResource Include="Images\REGSprite.png" />
+    <EmbeddedResource Include="Images\REGWSprite.png" />
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <EmbeddedResource Include="Images\ocHtml5AudioObjectProperties.gif" />
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <Content Include="Images\Sprite\.dxrpCollapsed .dxWeb_rpCollapseButton.png" />
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <Content Include="Images\Sprite\.dxTouchUI .dxWeb_igCloseButton.png" />
+    <Content Include="Images\Sprite\.dxTouchUI .dxWeb_igPauseButton.png" />
+    <Content Include="Images\Sprite\.dxTouchUI .dxWeb_igPlayButton.png" />
+    
+    
+    
+    
+    
+    <Content Include="Images\Sprite\.dxWeb_izEWCloseButton.png" />
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <Content Include="Images\Sprite\.dxWeb_rGlrDown.png" />
+    <Content Include="Images\Sprite\.dxWeb_rGlrDownDisabled.png" />
+    <Content Include="Images\Sprite\.dxWeb_rGlrPopOut.png" />
+    <Content Include="Images\Sprite\.dxWeb_rGlrPopOutDisabled.png" />
+    <Content Include="Images\Sprite\.dxWeb_rGlrUp.png" />
+    <Content Include="Images\Sprite\.dxWeb_rGlrUpDisabled.png" />
+    <Content Include="Images\Sprite\.dxWeb_rpCollapseButton.png" />
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <EmbeddedResource Include="Images\SSSprite.png" />
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <EmbeddedResource Include="Images\RESprite.png" />
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <EmbeddedResource Include="Images\SSSprite\.dxWeb_ssRibbonIcons_PageOrientationLandscape.png" />
+    <EmbeddedResource Include="Images\SSSprite\.dxWeb_ssRibbonIcons_PageOrientationLandscapeLarge.png" />
+    <EmbeddedResource Include="Images\SSSprite\.dxWeb_ssRibbonIcons_PageOrientationPortrait.png" />
+    <EmbeddedResource Include="Images\SSSprite\.dxWeb_ssRibbonIcons_PageOrientationPortraitLarge.png" />
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <EmbeddedResource Include="Images\SSGSprite.png" />
+    <EmbeddedResource Include="Images\SSGWSprite.png" />
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <Content Include="Images\tcScrollBtnBack.gif" />
+    <Content Include="Images\tcScrollBtnDisabledBack.gif" />
+    <Content Include="Images\tcScrollBtnHoverBack.gif" />
+    <EmbeddedResource Include="Bitmaps256\ASPxFormLayout.bmp" />
+    <EmbeddedResource Include="Images\tvNodeLoading.gif" />
+    <EmbeddedResource Include="Scripts\ControlResizeManager.js" />
+    <EmbeddedResource Include="Scripts\TreeView.js" />
+    <EmbeddedResource Include="Scripts\StateController.js" />
+    <EmbeddedResource Include="Images\tvElbow.gif" />
+    <EmbeddedResource Include="Images\tvLine.gif" />
+    <EmbeddedResource Include="Scripts\ScrollUtils.js" />
+    <EmbeddedResource Include="Images\mPopupBack.gif" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <PropertyGroup>
+    
+  </PropertyGroup>
+<ItemGroup><EmbeddedResource Include="Descriptions.resx" /></ItemGroup><ItemGroup><Compile Include="Descriptions.cs" /></ItemGroup></Project>

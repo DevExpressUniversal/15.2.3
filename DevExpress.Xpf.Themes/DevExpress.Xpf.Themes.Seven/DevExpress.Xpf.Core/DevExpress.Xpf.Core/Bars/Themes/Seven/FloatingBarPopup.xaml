@@ -1,0 +1,188 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+                    xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
+                    xmlns:dxbt="http://schemas.devexpress.com/winfx/2008/xaml/bars/themekeys"
+                    xmlns:dxcn="http://schemas.devexpress.com/winfx/2008/xaml/core/internal">
+
+    <ControlTemplate x:Key="{dxbt:FloatingBarPopupThemeKey ResourceKey=BorderTemplate}" TargetType="{x:Type ContentControl}">
+        <Grid x:Name="Root" SnapsToDevicePixels="True">
+            <Border x:Name="Shadow" Background="#FF000000" Margin="3,3,0,0" Opacity="0.10"/>
+            <Border x:Name="Border" Margin="0,0,3,3" Background="#FF585858">
+                <Border Background="#FFEEF4FB" Margin="1">
+                    <ContentPresenter Content="{TemplateBinding Content}"/>
+                </Border>
+            </Border>
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup x:Name="AppType">
+                    <VisualState x:Name="Standalone"/>
+                    <VisualState x:Name="BrowserHosted">
+                        <Storyboard>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Shadow"
+                                                           Storyboard.TargetProperty="Visibility"
+                                                           dxcn:ValueSetter.Visibility="Collapsed"/>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Border"
+                                                           Storyboard.TargetProperty="Margin"
+                                                           dxcn:ValueSetter.Thickness="0"/>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Root"
+                                                           Storyboard.TargetProperty="Margin"
+                                                           dxcn:ValueSetter.Thickness="0"/>
+                        </Storyboard>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+        </Grid>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="{dxbt:FloatingBarPopupThemeKey ResourceKey=CaptionBackgroundTemplate}" TargetType="{x:Type ContentControl}">
+        <!--BEGIN WPF-->
+        <Border Cursor="SizeAll" Background="#FFEEF4FB">
+        <!--END WPF-->
+        <!--ONLY SL
+            <Border Background="#FFEEF4FB">
+        ONLY SL-->
+            <ContentPresenter/>
+        </Border>
+    </ControlTemplate>
+
+    <!--BEGIN WPF-->
+    <ControlTemplate x:Key="{dxbt:FloatingBarPopupThemeKey ResourceKey=SizeGripTemplate}" TargetType="{x:Type Thumb}">
+        <Border Width="2" HorizontalAlignment="Right"/>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="{dxbt:FloatingBarPopupThemeKey ResourceKey=ContentTemplate}" TargetType="{x:Type dxb:FloatingBarPopupContentControl}">
+        <ContentControl x:Name="PART_Border"
+                        Template="{DynamicResource {dxbt:FloatingBarPopupThemeKey ResourceKey=BorderTemplate}}">
+            <StackPanel>
+                <ContentControl x:Name="PART_Caption"
+                                Template="{DynamicResource {dxbt:FloatingBarPopupThemeKey ResourceKey=CaptionBackgroundTemplate}}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <dxb:DragWidget x:Name="PART_DragWidget"
+                                        Style="{DynamicResource {dxbt:FloatingBarPopupThemeKey ResourceKey=DragWidgetStyle}}"
+                                        Grid.ColumnSpan="2" OwnerPoint="0,0"/>
+                        <Border ClipToBounds="True">
+                            <TextBlock Text="{Binding Path=DataContext.Caption, RelativeSource={RelativeSource TemplatedParent}}"
+                                       Style="{DynamicResource {dxbt:FloatingBarPopupThemeKey ResourceKey=CaptionStyle}}"
+                                       Grid.Column="0" Grid.ColumnSpan="3"/>
+                        </Border>
+                        <Button x:Name="PART_CloseButton"
+                                Style="{DynamicResource {dxbt:FloatingBarPopupThemeKey ResourceKey=CloseButtonStyle}}"
+                                VerticalAlignment="Top" Grid.Column="1"/>
+                    </Grid>
+                </ContentControl>
+                <Grid Grid.Row="1">
+                    <dxb:FloatingBarContainerControl x:Name="PART_FloatingBarContainer"/>
+                    <Thumb x:Name="PART_SizeGrip"
+                           Style="{DynamicResource {dxbt:FloatingBarPopupThemeKey ResourceKey=SizeGripStyle}}"
+                           HorizontalAlignment="Right"/>
+                </Grid>
+            </StackPanel>
+        </ContentControl>
+    </ControlTemplate>
+
+    <!--END WPF-->
+    <ControlTemplate x:Key="{dxbt:FloatingBarPopupThemeKey ResourceKey=CloseButtonTemplate}" TargetType="{x:Type Button}">
+        <Grid Margin="2">
+           <Border x:Name="HoverState" Background="#FF9DC4F3" CornerRadius="2" Visibility="Collapsed">
+                <Border Margin="1" CornerRadius="1">
+                    <Border.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#FFFDFEFF" Offset="0"/>
+                            <GradientStop Color="#FFEEF3F9" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Border.Background>
+                    <Border Margin="1" CornerRadius="1">
+                        <Border.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="#FFF2F7FE" Offset="0"/>
+                                <GradientStop Color="#FFE0EDFD" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Border.Background>
+                    </Border>
+                </Border>
+            </Border>
+           <Border x:Name="PressedState" Background="#FF7DA2CE" CornerRadius="2" Padding="1" Visibility="Collapsed">
+                <Border CornerRadius="1">
+                    <Border.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#FFEBF4FD" Offset="0"/>
+                            <GradientStop Color="#FFDBEAFD" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Border.Background>
+                    <Border Margin="1" CornerRadius="1">
+                        <Border.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="#FFDCEBFC" Offset="0"/>
+                                <GradientStop Color="#FFC1DBFC" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Border.Background>
+                    </Border>
+                </Border>
+            </Border>
+            <Border Background="Transparent" Cursor="Hand" Width="17" Height="17">
+                <Path x:Name="Path"
+                      Stretch="Fill" Fill="#FF535666"
+                      Data="F1 M 168,57L 168,58L 169,58L 169,59L 170,59L 170,60L 171,60L 171,61L 170,61L 170,62L 169,62L 169,63L 168,63L 168,64L 171,64L 171,63L 172,63L 172,62L 173,62L 173,63L 174,63L 174,64L 177,64L 177,63L 176,63L 176,62L 175,62L 175,61L 174,61L 174,60L 175,60L 175,59L 176,59L 176,58L 177,58L 177,57L 174,57L 174,58L 173,58L 173,59L 172,59L 172,58L 171,58L 171,57L 168,57 Z"
+                      Width="9" Height="7"/>
+            </Border>
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup x:Name="CommonStates">
+                    <VisualState x:Name="Normal"/>
+                    <VisualState x:Name="MouseOver">
+                        <Storyboard>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="HoverState"
+                                                           Storyboard.TargetProperty="Visibility"
+                                                           dxcn:ValueSetter.Visibility="Visible"/>
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Pressed">
+                        <Storyboard>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PressedState"
+                                                           Storyboard.TargetProperty="Visibility"
+                                                           dxcn:ValueSetter.Visibility="Visible"/>
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Disabled">
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetName="Path" Storyboard.TargetProperty="Opacity" Duration="0" To="0.35"/>
+                        </Storyboard>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+        </Grid>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="{dxbt:FloatingBarPopupThemeKey ResourceKey=QuickCustomizationButtonTemplate}" TargetType="{x:Type Button}">
+        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+    </ControlTemplate>
+
+    <Style x:Key="{dxbt:FloatingBarPopupThemeKey ResourceKey=CaptionStyle}" TargetType="{x:Type TextBlock}">
+        <Setter Property="IsHitTestVisible" Value="False"/>
+        <Setter Property="Foreground" Value="#FF585858"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="TextWrapping" Value="NoWrap"/>
+        <Setter Property="Margin" Value="5,0,5,0"/>
+    </Style>
+
+    <Style x:Key="{dxbt:FloatingBarPopupThemeKey ResourceKey=CloseButtonStyle}" TargetType="{x:Type Button}">
+        <Setter Property="Template" Value="{DynamicResource {dxbt:FloatingBarPopupThemeKey ResourceKey=CloseButtonTemplate}}"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
+
+    <Style x:Key="{dxbt:FloatingBarPopupThemeKey ResourceKey=QuickCustomizationButtonStyle}" TargetType="{x:Type Button}">
+        <Setter Property="Template" Value="{DynamicResource {dxbt:FloatingBarPopupThemeKey ResourceKey=QuickCustomizationButtonTemplate}}"/>
+        <Setter Property="Foreground" Value="#FF000000"/>
+        <Setter Property="Width" Value="16"/>
+        <Setter Property="Height" Value="16"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="Content" Value="Y"/>
+    </Style>
+
+</ResourceDictionary>

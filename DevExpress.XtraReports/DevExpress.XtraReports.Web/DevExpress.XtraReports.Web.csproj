@@ -1,0 +1,878 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{0E38C48C-0C16-4624-B621-F6AB9BA2F7F8}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DevExpress.XtraReports.Web</RootNamespace>
+    <AssemblyName>DevExpress.XtraReports.v15.2.Web</AssemblyName>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>..\..\DevExpress.Key\StrongKey.snk</AssemblyOriginatorKeyFile>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>..\..\..\Bin\Framework\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>TRACE;DEBUG;DXWhidbey;CODE_ANALYSIS</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>true</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <Optimize>false</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>full</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>..\..\..\Bin\Framework\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>TRACE;DXWhidbey</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>false</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <Optimize>true</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>none</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+  
+  
+  
+  <ItemGroup>
+    <Reference Include="DevExpress.Data.v15.2">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+    <HintPath>..\..\..\Bin\Framework\DevExpress.Data.v15.2.dll</HintPath></Reference>
+    <Reference Include="DevExpress.DataAccess.v15.2">
+      <SpecificVersion>False</SpecificVersion>
+    <HintPath>..\..\..\Bin\Framework\DevExpress.DataAccess.v15.2.dll</HintPath><Private>False</Private></Reference>
+    <Reference Include="DevExpress.Printing.v15.2.Core">
+      <SpecificVersion>False</SpecificVersion>
+    <HintPath>..\..\..\Bin\Framework\DevExpress.Printing.v15.2.Core.dll</HintPath><Private>False</Private></Reference>
+    <Reference Include="DevExpress.Sparkline.v15.2.Core">
+      <SpecificVersion>False</SpecificVersion>
+    <HintPath>..\..\..\Bin\Framework\DevExpress.Sparkline.v15.2.Core.dll</HintPath><Private>False</Private></Reference>
+    <Reference Include="DevExpress.Utils.v15.2, Version=15.2.0.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    <Private>False</Private></Reference>
+    <Reference Include="DevExpress.Web.v15.2">
+      <SpecificVersion>False</SpecificVersion>
+    <HintPath>..\..\..\Bin\Framework\DevExpress.Web.v15.2.dll</HintPath><Private>False</Private></Reference>
+    <Reference Include="DevExpress.Charts.v15.2.Core">
+      <SpecificVersion>False</SpecificVersion>
+    <HintPath>..\..\..\Bin\Framework\DevExpress.Charts.v15.2.Core.dll</HintPath><Private>False</Private></Reference>
+    <Reference Include="DevExpress.Xpo.v15.2">
+      <SpecificVersion>False</SpecificVersion>
+    <HintPath>..\..\..\Bin\Framework\DevExpress.Xpo.v15.2.dll</HintPath><Private>False</Private></Reference>
+    <Reference Include="DevExpress.XtraCharts.v15.2">
+      <SpecificVersion>False</SpecificVersion>
+    <HintPath>..\..\..\Bin\Framework\DevExpress.XtraCharts.v15.2.dll</HintPath><Private>False</Private></Reference>
+    <Reference Include="DevExpress.PivotGrid.v15.2.Core">
+      <SpecificVersion>False</SpecificVersion>
+    <HintPath>..\..\..\Bin\Framework\DevExpress.PivotGrid.v15.2.Core.dll</HintPath><Private>False</Private></Reference>
+    <Reference Include="DevExpress.XtraGauges.v15.2.Core">
+      <SpecificVersion>False</SpecificVersion>
+    <HintPath>..\..\..\Bin\Framework\DevExpress.XtraGauges.v15.2.Core.dll</HintPath><Private>False</Private></Reference>
+    <Reference Include="DevExpress.XtraReports.v15.2">
+      <SpecificVersion>False</SpecificVersion>
+    <HintPath>..\..\..\Bin\Framework\DevExpress.XtraReports.v15.2.dll</HintPath><Private>False</Private></Reference>
+    
+    <Reference Include="System"><Private>False</Private></Reference>
+    <Reference Include="System.Configuration"><Private>False</Private></Reference>
+    <Reference Include="System.Core"><Private>False</Private></Reference>
+    <Reference Include="System.Data"><Private>False</Private></Reference>
+    <Reference Include="System.Design"><Private>False</Private></Reference>
+    <Reference Include="System.Drawing"><Private>False</Private></Reference>
+    <Reference Include="System.Runtime.Serialization"><Private>False</Private></Reference>
+    <Reference Include="System.ServiceModel"><Private>False</Private></Reference>
+    <Reference Include="System.Web"><Private>False</Private></Reference>
+    <Reference Include="System.Windows.Forms"><Private>False</Private></Reference>
+    <Reference Include="System.Xml"><Private>False</Private></Reference>
+    <Reference Include="System.Runtime.Serialization"><Private>False</Private></Reference>
+    <Reference Include="System.Xml.Linq"><Private>False</Private></Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ASPxDocumentViewer.cs" />
+    <Compile Include="ASPxQueryBuilder.cs" />
+    <Compile Include="ASPxReportDesigner.cs" />
+    <Compile Include="ASPxWebDocumentViewer.cs" />
+    <Compile Include="BitmapSuffixInSameAssemblyAttribute.cs" />
+    <Compile Include="ClientControls\CanProcessHandlerRequestEventArgs.cs" />
+    <Compile Include="ClientControls\ClientControlsMenuItem.cs" />
+    <Compile Include="ClientControls\ClientControlsMenuItemCollection.cs" />
+    <Compile Include="ClientControls\DataContracts\EnumInfo.cs" />
+    <Compile Include="ClientControls\DataContracts\EnumInfoValue.cs" />
+    <Compile Include="ClientControls\DataContracts\MenuAction.cs" />
+    <Compile Include="ClientControls\WebClientUIControlHelper.cs" />
+    <Compile Include="DocumentMap\BookmarkFiller.cs" />
+    <Compile Include="DocumentMap\BookmarkFillerBase.cs" />
+    <Compile Include="DocumentMap\ReportDocumentMapStyles.cs" />
+    <Compile Include="DocumentMap\SiteMapBookmarkFiller.cs" />
+    <Compile Include="DocumentViewer\DocumentViewerParametersPanelButtonControlStyles.cs" />
+    <Compile Include="DocumentViewer\ReportToolbarAlignment.cs" />
+    <Compile Include="Localization.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Localization.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Localization\ASPxReportsLocalizer.cs" />
+    <Compile Include="Localization\ASPxReportsResLocalizer.cs" />
+    <Compile Include="Native\AspNavigationService.cs" />
+    <Compile Include="Native\ClientControls\ActionHelper.cs" />
+    <Compile Include="Native\ClientControls\ClientControlsMenuItemModel.cs" />
+    <Compile Include="Native\ClientControls\CommonModel.cs" />
+    <Compile Include="DeserializeClientParameterEventArgs.cs" />
+    <Compile Include="DocumentViewer\DocumentViewerViewerStyles.cs" />
+    <Compile Include="DocumentViewer\ITokenStorage.cs" />
+    <Compile Include="DocumentViewer\Ribbon\Commands\DocumentViewerDocumentMapToggleCommand.cs" />
+    <Compile Include="DocumentViewer\Ribbon\Commands\DocumentViewerParametersPanelToggleCommand.cs" />
+    <Compile Include="DocumentViewer\Ribbon\DocumentViewerRibbonStyles.cs" />
+    <Compile Include="DocumentViewer\Ribbon\DocumentViewerRibbonToggleButtonBase.cs" />
+    <Compile Include="DocumentViewer\SessionTokenStorage.cs" />
+    <Compile Include="DocumentViewer\TokenStorageMode.cs" />
+    <Compile Include="Native\AspCellImageContentCreator.cs" />
+    <Compile Include="Native\BookmarkChecker.cs" />
+    <Compile Include="Native\ClientControls\ContractConverter.cs" />
+    <Compile Include="Native\ClientControls\DefaultContainerHelper.cs" />
+    <Compile Include="Native\ClientControls\ExportedDocument.cs" />
+    <Compile Include="Native\ClientControls\IHttpResponse.cs" />
+    <Compile Include="Native\ClientControls\ILocalizationInfoProvider.cs" />
+    <Compile Include="Native\ClientControls\JsonSerializer.cs" />
+    <Compile Include="Native\ClientControls\LocalizationInitializer.cs" />
+    <Compile Include="Native\ClientControls\ReportLayoutJsonSerializer.cs" />
+    <Compile Include="Native\ClientControls\EnumInfoProvider.cs" />
+    <Compile Include="Native\ClientControls\Services\IServiceContainerRegistrator.cs" />
+    <Compile Include="Native\ClientControls\SystemWebHttpResponse.cs" />
+    <Compile Include="Native\ClientControls\WebApiHttpActionAttribute.cs" />
+    <Compile Include="Native\ClientControls\WebHttpActionAttribute.cs" />
+    <Compile Include="Native\ClientParameterValueNormalizer.cs" />
+    <Compile Include="Native\ContentBase.cs" />
+    <Compile Include="Native\ContentDispositionUtil.cs" />
+    <Compile Include="Native\ContentUseDiv.cs" />
+    <Compile Include="Native\ContentUseIFrame.cs" />
+    <Compile Include="Native\Constants.cs" />
+    <Compile Include="Native\DefaultXRWebLoggingService.cs" />
+    <Compile Include="Native\DictionaryJSON.cs" />
+    <Compile Include="Native\DocumentViewer\DesignModeSwitcher.cs" />
+    <Compile Include="Native\DocumentViewer\ParametersPanel\CallbackEventProcessor.cs" />
+    <Compile Include="Native\DocumentViewer\ParametersPanel\CallbackEventProcessorBase.cs" />
+    <Compile Include="Native\DocumentViewer\ParametersPanel\CallbackEventState.cs" />
+    <Compile Include="Native\DocumentViewer\ParametersPanel\CascadeLookupEventArgument.cs" />
+    <Compile Include="Native\DocumentViewer\ParametersPanel\ICallbackEventProcessor.cs" />
+    <Compile Include="Native\DocumentViewer\ParametersPanel\RemoteCallbackEventProcessor.cs" />
+    <Compile Include="Native\DocumentViewer\Remote\ClientTokenStorage.cs" />
+    <Compile Include="Native\DocumentViewer\Remote\CookieReceivedEventArgs.cs" />
+    <Compile Include="Native\DocumentViewer\ParametersPanel\WebParameterEditorValueProvider.cs" />
+    <Compile Include="Native\DrillDownServiceExtensions.cs" />
+    <Compile Include="Native\DXHtmlTextWriterEx.cs" />
+    <Compile Include="Native\FileImageCache.cs" />
+    <Compile Include="Native\HtmlPageWebExportContext.cs" />
+    <Compile Include="Native\ImageCache.cs" />
+    <Compile Include="Native\LocalParameterTypeProvider.cs" />
+    <Compile Include="Native\Methods.cs" />
+    <Compile Include="Native\NestedParameterPathCollectorExtension.cs" />
+    <Compile Include="Native\ParametersPanel\ASPxParameterInfo.cs" />
+    <Compile Include="Native\ParametersPanel\ComboboxDateTimeLookupFix.cs" />
+    <Compile Include="Native\ParametersPanel\DesignTimeParametersProvider.cs" />
+    <Compile Include="Native\ParametersPanel\IParametersProvider.cs" />
+    <Compile Include="Native\ParametersPanel\MultiValueEditorFactory.cs" />
+    <Compile Include="Native\ParametersPanel\MultiValue\DateTimeTokenConverter.cs" />
+    <Compile Include="Native\ParametersPanel\MultiValue\ITokenConverter.cs" />
+    <Compile Include="Native\ParametersPanel\MultiValue\SimpleTokenConverter.cs" />
+    <Compile Include="Native\ParametersPanel\MultiValue\StringTokenConverter.cs" />
+    <Compile Include="Native\ParametersPanel\ParametersASPxEditorCreator.cs" />
+    <Compile Include="Native\ParametersPanel\ParametersEditorCreatorBase.cs" />
+    <Compile Include="Native\ParametersPanel\RemoteParametersProvider.cs" />
+    <Compile Include="Native\ParametersPanel\ReportParametersProvider.cs" />
+    <Compile Include="Native\ParametersPanel\WebParameterInfo.cs" />
+    <Compile Include="Native\ParametersPanel\WebReportParameterHelper.cs" />
+    <Compile Include="Native\RemoteParameterTypeProvider.cs" />
+    <Compile Include="Native\ReportMultiplePageWebControl.cs" />
+    <Compile Include="Native\ReportsHtmlPageLayoutBuilder.cs" />
+    <Compile Include="Native\ReportsPageWebControl.cs" />
+    <Compile Include="Extensions\ReportStorageWebExtension.cs" />
+    <Compile Include="Extensions\ReportStorageWebService.cs" />
+    <Compile Include="Native\ReportWebControl.cs" />
+    <Compile Include="Native\RSRemoteDocumentInformation.cs" />
+    <Compile Include="Native\ClientControls\BinaryHttpActionResult.cs" />
+    <Compile Include="Native\ClientControls\DataContracts\JsonResultWrapper.cs" />
+    <Compile Include="Native\ClientControls\ErrorHttpActionResult.cs" />
+    <Compile Include="Native\ClientControls\HttpActionResultBase.cs" />
+    <Compile Include="Native\ClientControls\JsAssignmentGenerator.cs" />
+    <Compile Include="Native\ClientControls\JsonHttpActionResult.cs" />
+    <Compile Include="Native\ClientControls\ManagerSubscriber.cs" />
+    <Compile Include="Native\ClientControls\Services\DefaultLoggingService.cs" />
+    <Compile Include="Native\ClientControls\Services\IHtmlContentGenerator.cs" />
+    <Compile Include="Native\ClientControls\Services\IJSContentGenerator.cs" />
+    <Compile Include="Native\ClientControls\Services\ILoggingService.cs" />
+    <Compile Include="Native\ClientControls\Services\IRequestManager.cs" />
+    <Compile Include="Native\ClientControls\Services\LoggingService.cs" />
+    <Compile Include="Native\ClientControls\Services\RequestManagerBase.cs" />
+    <Compile Include="Native\ClientControls\Services\ServiceIntegrityContainer.cs" />
+    <Compile Include="Native\WebImageRepository.cs" />
+    <Compile Include="Native\WebParameterTypeInfo.cs" />
+    <Compile Include="Native\WebResourceNames.cs" />
+    <Compile Include="Native\WebScriptBlockControl.cs" />
+    <Compile Include="Native\XRStorageStrategy.cs" />
+    <Compile Include="ParametersPanel\ReportParametersPanelEditorCaptionSettings.cs" />
+    <Compile Include="ParametersPanel\ReportParametersPanelEditorStyles.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CacheReportDocumentEventArgs.cs" />
+    <Compile Include="DocumentViewer\DocumentViewerClientSideEvents.cs" />
+    <Compile Include="DocumentViewer\DocumentViewerDocumentMapSettings.cs" />
+    <Compile Include="DocumentViewer\DocumentViewerRemoteSourceConfiguration.cs" />
+    <Compile Include="DocumentViewer\DocumentViewerRemoteSourceSettings.cs" />
+    <Compile Include="DocumentViewer\DocumentViewerReportToolbarProperties.cs" />
+    <Compile Include="DocumentViewer\DocumentViewerReportToolbarStyles.cs" />
+    <Compile Include="DocumentViewer\DocumentViewerReportViewerSettings.cs" />
+    <Compile Include="DocumentViewer\DocumentViewerRibbonSettings.cs" />
+    <Compile Include="DocumentViewer\DocumentViewerSidePanePosition.cs" />
+    <Compile Include="DocumentViewer\DocumentViewerSplitterPaneStyle.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="DocumentViewer\DocumentViewerSplitterSettings.cs" />
+    <Compile Include="DocumentViewer\DocumentViewerSplitterStyles.cs" />
+    <Compile Include="DocumentViewer\DocumentViewerToolbarMode.cs" />
+    <Compile Include="DocumentViewer\RequestParametersEventArgs.cs" />
+    <Compile Include="DocumentViewer\Ribbon\Commands\DocumentViewerPageNumbersTemplateRibbonCommand.cs" />
+    <Compile Include="DocumentViewer\Ribbon\Commands\DocumentViewerRibbonPageCountLabel.cs" />
+    <Compile Include="DocumentViewer\Ribbon\Commands\DocumentViewerRibbonPagesComboBox.cs" />
+    <Compile Include="DocumentViewer\Ribbon\Commands\DocumentViewerRibbonCurrentPageLabel.cs" />
+    <Compile Include="DocumentViewer\Ribbon\DocumentViewerRibbonContent.cs" />
+    <Compile Include="DocumentViewer\Ribbon\Commands\DropDownCommands\RibbonCsvFormatCommand.cs" />
+    <Compile Include="DocumentViewer\Ribbon\Commands\DropDownCommands\RibbonHtmlFormatCommand.cs" />
+    <Compile Include="DocumentViewer\Ribbon\Commands\DropDownCommands\RibbonMhtFormatCommand.cs" />
+    <Compile Include="DocumentViewer\Ribbon\Commands\DropDownCommands\RibbonPdfFormatCommand.cs" />
+    <Compile Include="DocumentViewer\Ribbon\Commands\DropDownCommands\RibbonPngFormatCommand.cs" />
+    <Compile Include="DocumentViewer\Ribbon\Commands\DropDownCommands\RibbonRtfFormatCommand.cs" />
+    <Compile Include="DocumentViewer\Ribbon\Commands\DropDownCommands\RibbonTextFormatCommand.cs" />
+    <Compile Include="DocumentViewer\Ribbon\Commands\DropDownCommands\RibbonXlsFormatCommand.cs" />
+    <Compile Include="DocumentViewer\Ribbon\Commands\DropDownCommands\RibbonXlsxFormatCommand.cs" />
+    <Compile Include="DocumentViewer\Ribbon\Commands\DocumentViewerFirstPageRibbonCommand.cs" />
+    <Compile Include="DocumentViewer\Ribbon\Commands\DocumentViewerLastPageRibbonCommand.cs" />
+    <Compile Include="DocumentViewer\Ribbon\Commands\DocumentViewerNextPageRibbonCommand.cs" />
+    <Compile Include="DocumentViewer\Ribbon\Commands\DocumentViewerPreviousPageRibbonCommand.cs" />
+    <Compile Include="DocumentViewer\Ribbon\Commands\DocumentViewerPrintPageRibbonCommand.cs" />
+    <Compile Include="DocumentViewer\Ribbon\Commands\DocumentViewerPrintReportRibbonCommand.cs" />
+    <Compile Include="DocumentViewer\Ribbon\Commands\DocumentViewerSaveToDiskDropDownRibbonCommand.cs" />
+    <Compile Include="DocumentViewer\Ribbon\Commands\DocumentViewerSaveToWindowDropDownRibbonCommand.cs" />
+    <Compile Include="DocumentViewer\Ribbon\Commands\DocumentViewerSearchRibbonCommand.cs" />
+    <Compile Include="DocumentViewer\Ribbon\DocumentViewerRibbonButtonBase.cs" />
+    <Compile Include="DocumentViewer\Ribbon\DocumentViewerRibbonDropDownButtonBase.cs" />
+    <Compile Include="DocumentViewer\Ribbon\DocumentViewerRibbonDropDownButtonItemBase.cs" />
+    <Compile Include="DocumentViewer\Ribbon\DocumentViewerRibbonTemplateItemBase.cs" />
+    <Compile Include="DocumentViewer\Ribbon\Native\DocumentViewerDefaultRibbon.cs" />
+    <Compile Include="DocumentViewer\Ribbon\Native\DocumentViewerRibbonHelper.cs" />
+    <Compile Include="DocumentViewer\Ribbon\Native\RibbonWrappedTemplate.cs" />
+    <Compile Include="DocumentViewer\Ribbon\Native\RibbonCommandService.cs" />
+    <Compile Include="DocumentViewer\WebAuthenticatorLoginEventArgs.cs" />
+    <Compile Include="DocumentViewer\WebCredential.cs" />
+    <Compile Include="QueryBuilder\DefaultQueryBuilderContainer.cs" />
+    <Compile Include="QueryBuilder\Native\QueryBuilderBootstrapper.cs" />
+    <Compile Include="QueryBuilder\Native\QueryBuilderDesignModeImages.cs" />
+    <Compile Include="QueryBuilder\Native\QueryBuilderDesignModeInfoGenerator.cs" />
+    <Compile Include="QueryBuilder\Native\QueryBuilderInput.cs" />
+    <Compile Include="QueryBuilder\Native\QueryBuilderInputLoader.cs" />
+    <Compile Include="QueryBuilder\Native\Services\IQueryBuilderHtmlContentGenerator.cs" />
+    <Compile Include="QueryBuilder\Native\Services\IQueryBuilderModelGenerator.cs" />
+    <Compile Include="QueryBuilder\Native\Services\IQueryBuilderRequestManager.cs" />
+    <Compile Include="QueryBuilder\Native\Services\IQueryBuilderRequestController.cs" />
+    <Compile Include="QueryBuilder\Native\Services\QueryBuilderHtmlContentGenerator.cs" />
+    <Compile Include="QueryBuilder\Native\Services\QueryBuilderJSContentGenerator.cs" />
+    <Compile Include="QueryBuilder\Native\Services\QueryBuilderModelGenerator.cs" />
+    <Compile Include="QueryBuilder\Native\Services\QueryBuilderRequestManager.cs" />
+    <Compile Include="QueryBuilder\Native\Services\QueryBuilderRequestController.cs" />
+    <Compile Include="QueryBuilder\QueryBuilderClientSideEvents.cs" />
+    <Compile Include="QueryBuilder\QueryBuilderModel.cs" />
+    <Compile Include="ReportDesigner\ICompletion.cs" />
+    <Compile Include="ReportDesigner\IIntelliSenseContext.cs" />
+    <Compile Include="ReportDesigner\IIntelliSenseProvider.cs" />
+    <Compile Include="ReportDesigner\IntelliSense.cs" />
+    <Compile Include="ReportDesigner\Native\DataContracts\DataSourceModel.cs" />
+    <Compile Include="ReportDesigner\Native\DataContracts\DBSchemaModel.cs" />
+    <Compile Include="ReportDesigner\Native\DataContracts\DBSchemaRequest.cs" />
+    <Compile Include="ReportDesigner\Native\DataContracts\FieldListRequest.cs" />
+    <Compile Include="ReportDesigner\Native\DataContracts\OpenSubreportContract.cs" />
+    <Compile Include="ReportDesigner\Native\DataContracts\OpenSubreportResponse.cs" />
+    <Compile Include="ReportDesigner\Native\DataContracts\ReportScriptsIntellisenseContract.cs" />
+    <Compile Include="ReportDesigner\Native\DataContracts\RichRequest.cs" />
+    <Compile Include="ReportDesigner\Native\DataContracts\SaveSubreportContract.cs" />
+    <Compile Include="ReportDesigner\Native\DataContracts\ScriptsCompleteModel.cs" />
+    <Compile Include="ReportDesigner\Native\DataContracts\SelectStatementModel.cs" />
+    <Compile Include="ReportDesigner\Native\DataContracts\SelectStatementRequest.cs" />
+    <Compile Include="ReportDesigner\Native\DataContracts\SqlDataSourceStructure.cs" />
+    <Compile Include="ReportDesigner\Native\DataContracts\WizardDataConnection.cs" />
+    <Compile Include="ReportDesigner\Native\DataContracts\WizardSqlDataSourceModel.cs" />
+    <Compile Include="Native\ClientControls\EnumInfoCollector.cs" />
+    <Compile Include="ReportDesigner\Native\DataSourceWizardEnableCustomQueryService.cs" />
+    <Compile Include="ReportDesigner\Native\DesignerRichWrapper.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportDesigner\Native\Services\DataSourceFieldListServiceLogic.cs" />
+    <Compile Include="ReportDesigner\Native\Services\ISqlDataSourceWizardService.cs" />
+    <Compile Include="ReportDesigner\Native\Services\ISubreportService.cs" />
+    <Compile Include="ReportDesigner\Native\Services\SqlDataSourceWizardService.cs" />
+    <Compile Include="ReportDesigner\Native\Services\StubDataSourceWizardConnectionStringsProvider.cs" />
+    <Compile Include="ReportDesigner\Native\Services\SubreportService.cs" />
+    <Compile Include="ReportDesigner\Native\SqlQueryJsonSerializer.cs" />
+    <Compile Include="ReportDesigner\ReportDesignerClientSideEvents.cs" />
+    <Compile Include="ReportDesigner\ReportDesignerModelInternals.cs" />
+    <Compile Include="ReportDesigner\ReportIntelliSenseContext.cs" />
+    <Compile Include="ReportDesigner\SaveReportLayoutEventArgs.cs" />
+    <Compile Include="ReportDesigner\Services\DataSourceWizardDBSchemaProviderFactory.cs" />
+    <Compile Include="ReportDesigner\Services\IDataSourceWizardConnectionStringsProvider.cs" />
+    <Compile Include="ReportDesigner\Services\IDataSourceWizardDBSchemaProviderFactory.cs" />
+    <Compile Include="ReportDesigner\Services\ISqlDataSourceWizardCustomizationService.cs" />
+    <Compile Include="ReportDesigner\Services\SqlDataSourceWizardCustomizationService.cs" />
+    <Compile Include="ReportDesigner\Services\WizardConnectionStringsProvider.cs" />
+    <Compile Include="ReportViewer\ImagesDialogForm.cs" />
+    <Compile Include="ReportViewer\ImagesEmbeddingMode.cs" />
+    <Compile Include="ReportViewer\ReportViewerClientSideEvents.cs" />
+    <Compile Include="ReportViewer\ReportViewerStyle.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <Compile Include="Toolbar\ListElement.cs" />
+    <Compile Include="Toolbar\ListElementCollection.cs" />
+    <Compile Include="Toolbar\ReportToolbarBoxStyle.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Toolbar\ReportToolbarButton.cs" />
+    <Compile Include="Toolbar\ReportToolbarButtonStyle.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Toolbar\ReportToolbarClientSideEvents.cs" />
+    <Compile Include="Toolbar\ReportToolbarComboBox.cs" />
+    <Compile Include="Toolbar\ReportToolbarComboBoxStyle.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Toolbar\ReportToolbarEditorCaptionSettings.cs" />
+    <Compile Include="Toolbar\ReportToolbarImages.cs" />
+    <Compile Include="Toolbar\ReportToolbarItem.cs" />
+    <Compile Include="Toolbar\ReportToolbarItemCollection.cs" />
+    <Compile Include="Toolbar\ReportToolbarItemKind.cs" />
+    <Compile Include="Toolbar\ReportToolbarLabel.cs" />
+    <Compile Include="Toolbar\ReportToolbarLabelStyle.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Toolbar\ReportToolbarMenuStyle.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Toolbar\ReportToolbarSeparator.cs" />
+    <Compile Include="Toolbar\ReportToolbarStyles.cs" />
+    <Compile Include="Toolbar\ReportToolbarTemplateItem.cs" />
+    <Compile Include="Toolbar\ReportToolbarTextBox.cs" />
+    <Compile Include="Toolbar\ToolbarWebImageResource.cs" />
+    <Compile Include="WebDocumentViewer\IDocumentStorage.cs" />
+    <Compile Include="WebDocumentViewer\IDocumentStorageCachable.cs" />
+    <Compile Include="WebDocumentViewer\IExportedDocumentStorage.cs" />
+    <Compile Include="WebDocumentViewer\IReportHashCodeGenerator.cs" />
+    <Compile Include="WebDocumentViewer\IWebDocumentViewerReportResolver.cs" />
+    <Compile Include="WebDocumentViewer\IWebPreviewWritableDocument.cs" />
+    <Compile Include="WebDocumentViewer\Native\DataContracts\BrickMapNode.cs" />
+    <Compile Include="WebDocumentViewer\Native\DataContracts\BrickMapNodeNavigation.cs" />
+    <Compile Include="WebDocumentViewer\Native\DataContracts\ExportResultRequest.cs" />
+    <Compile Include="WebDocumentViewer\Native\DataContracts\FindTextRequest.cs" />
+    <Compile Include="WebDocumentViewer\Native\DataContracts\FindTextResponse.cs" />
+    <Compile Include="WebDocumentViewer\Native\DataContracts\FoundText.cs" />
+    <Compile Include="WebDocumentViewer\Native\DataContracts\DocumentDataResponse.cs" />
+    <Compile Include="WebDocumentViewer\Native\DataContracts\OperationProgressRequest.cs" />
+    <Compile Include="WebDocumentViewer\Native\DataContracts\ProgressResponse.cs" />
+    <Compile Include="WebDocumentViewer\Native\DataContracts\ReportIdDocumentIdPair.cs" />
+    <Compile Include="WebDocumentViewer\Native\DataContracts\StartBuildResponse.cs" />
+    <Compile Include="WebDocumentViewer\Native\DataContracts\BuildStatusRequest.cs" />
+    <Compile Include="WebDocumentViewer\Native\DataContracts\BuildStatusResponse.cs" />
+    <Compile Include="WebDocumentViewer\Native\DocumentInfo.cs" />
+    <Compile Include="WebDocumentViewer\Native\DocumentManagerRequest.cs" />
+    <Compile Include="WebDocumentViewer\Native\EnumTextBrickViewData.cs" />
+    <Compile Include="WebDocumentViewer\Native\ExportDocumentProgressObservable.cs" />
+    <Compile Include="WebDocumentViewer\Native\ExportedDocumentInfo.cs" />
+    <Compile Include="WebDocumentViewer\Native\ExportingNamingInfo.cs" />
+    <Compile Include="WebDocumentViewer\Native\ExportingStrategy.cs" />
+    <Compile Include="WebDocumentViewer\Native\HotWebDocumentProgressObservable.cs" />
+    <Compile Include="WebDocumentViewer\Native\DocumentProgressObservableBase.cs" />
+    <Compile Include="WebDocumentViewer\Native\IDocumentManagerRequest.cs" />
+    <Compile Include="WebDocumentViewer\Native\IOperationProgress.cs" />
+    <Compile Include="WebDocumentViewer\Native\IWebDocumentViewerMapNode.cs" />
+    <Compile Include="WebDocumentViewer\Native\IWebPreviewDocument.cs" />
+    <Compile Include="WebDocumentViewer\Native\OperationProgress.cs" />
+    <Compile Include="WebDocumentViewer\Native\DocumentProgressObserver.cs" />
+    <Compile Include="WebDocumentViewer\Native\PSExportingStrategy.cs" />
+    <Compile Include="WebDocumentViewer\Native\ReportInfo.cs" />
+    <Compile Include="WebDocumentViewer\Native\Services\DocumentBuilder.cs" />
+    <Compile Include="WebDocumentViewer\Native\Services\DocumentManagementService.cs" />
+    <Compile Include="WebDocumentViewer\Native\Services\DocumentManagementServiceLogic.cs" />
+    <Compile Include="WebDocumentViewer\Native\Services\EmptyStoragesCleaner.cs" />
+    <Compile Include="WebDocumentViewer\Native\Services\ExportedDocumentStorage.cs" />
+    <Compile Include="WebDocumentViewer\Native\Services\FileDocumentStorage.cs" />
+    <Compile Include="WebDocumentViewer\Native\Services\FileDocumentStorageSettings.cs" />
+    <Compile Include="WebDocumentViewer\Native\Services\IDocumentBuilder.cs" />
+    <Compile Include="WebDocumentViewer\Native\Services\IDocumentManagementService.cs" />
+    <Compile Include="WebDocumentViewer\Native\Services\InMemoryDocumentStorage.cs" />
+    <Compile Include="WebDocumentViewer\Native\Services\IPollingOperationService.cs" />
+    <Compile Include="WebDocumentViewer\Native\Services\IReportManagementService.cs" />
+    <Compile Include="WebDocumentViewer\Native\Services\IStoragesCleaner.cs" />
+    <Compile Include="WebDocumentViewer\Native\Services\ExportPollingOperationService.cs" />
+    <Compile Include="WebDocumentViewer\Native\Services\ReportHashCodeGeneratorLogic.cs" />
+    <Compile Include="WebDocumentViewer\Native\Services\EmptyReportHashCodeGenerator.cs" />
+    <Compile Include="WebDocumentViewer\Native\Services\ReportManagementService.cs" />
+    <Compile Include="WebDocumentViewer\Native\Services\ReportManagementServiceLogic.cs" />
+    <Compile Include="WebDocumentViewer\Native\Services\StoragesCleanerSettings.cs" />
+    <Compile Include="WebDocumentViewer\Native\Services\ThreadingTimerStoragesCleaner.cs" />
+    <Compile Include="WebDocumentViewer\Native\Services\WebBackgroundPageBuildEngineStrategy.cs" />
+    <Compile Include="WebDocumentViewer\Native\Services\WebBackgroundService.cs" />
+    <Compile Include="WebDocumentViewer\Native\Services\WebDocumentViewerReportResolver.cs" />
+    <Compile Include="WebDocumentViewer\Native\Services\WebDocumentViewerUrlResolver.cs" />
+    <Compile Include="WebDocumentViewer\Native\WebClientParameterValueNormalizer.cs" />
+    <Compile Include="WebDocumentViewer\Native\HotWebPreviewDocumentProgress.cs" />
+    <Compile Include="WebDocumentViewer\ReportHashCodeGeneratorBase.cs" />
+    <Compile Include="WebDocumentViewer\WebDocumentViewerClientSideEvents.cs" />
+    <Compile Include="WebDocumentViewer\WebDocumentViewerMenuItem.cs" />
+    <Compile Include="WebDocumentViewer\WebPreviewReadableDocument.cs" />
+    <EmbeddedResource Include="Forms\CS\WebSearchDialog.ascx.cs">
+      <DependentUpon>WebSearchDialog.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </EmbeddedResource>
+    <Compile Include="Forms\WebSearchDialog.ascx.cs">
+      <DependentUpon>WebSearchDialog.ascx.generated.cs</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\WebSearchDialog.ascx.generated.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Native\AsmHelper.cs" />
+    <Compile Include="Native\DocumentMap\DocumentViewerReportProvider.cs" />
+    <Compile Include="Native\DocumentMap\IBookmarkFiller.cs" />
+    <Compile Include="Native\DocumentMap\InternalBookmarkFillerBase.cs" />
+    <Compile Include="Native\DocumentMap\IReportProvider.cs" />
+    <Compile Include="Native\DocumentMap\ReportDocumentMapFiller.cs" />
+    <Compile Include="Native\DocumentMap\ReportViewerReportProvider.cs" />
+    <Compile Include="Native\DocumentMap\RemoteBookmarkFiller.cs" />
+    <Compile Include="Native\DocumentViewer\DocumentViewerControl.cs" />
+    <Compile Include="Native\DocumentViewer\DocumentViewerImages.cs" />
+    <Compile Include="Native\DocumentViewer\DocumentViewerManagementService.cs" />
+    <Compile Include="Native\DocumentViewer\DocumentViewerReportDocumentMap.cs" />
+    <Compile Include="Native\DocumentViewer\DocumentViewerReportParametersPanel.cs" />
+    <Compile Include="Native\DocumentViewer\DocumentViewerReportViewer.cs" />
+    <Compile Include="Native\DocumentViewer\DocumentViewerReportWebRemoteMediator.cs" />
+    <Compile Include="Native\DocumentViewer\EndpointAddress.cs" />
+    <Compile Include="Native\DocumentViewer\IDocumentViewerManagementService.cs" />
+    <Compile Include="Native\DocumentViewer\IReportWebRemoteMediator.cs" />
+    <Compile Include="Native\DocumentViewer\PageInformation.cs" />
+    <Compile Include="Native\DocumentViewer\RemoteReportRenderHelper.cs" />
+    <Compile Include="Native\DocumentViewer\Remote\ClientFactory.cs" />
+    <Compile Include="Native\DocumentViewer\Remote\IReportWebRemoteMediatorFactory.cs" />
+    <Compile Include="Native\DocumentViewer\Remote\ReportWebRemoteMediatorFactory.cs" />
+    <Compile Include="Native\DocumentViewer\Remote\RSClientMessageInspector.cs" />
+    <Compile Include="Native\DocumentViewer\Remote\RSEndpointBehavior.cs" />
+    <Compile Include="Native\DocumentViewer\TaskCompletionSourceResultHandler.cs" />
+    <Compile Include="Native\DocumentViewer\WebRemoteBrickPagePairFactory.cs" />
+    <Compile Include="Native\DocumentViewer\WebRemoteDocument.cs" />
+    <Compile Include="Native\DocumentViewer\WebRemotePrintBrickPagePairFactory.cs" />
+    <Compile Include="Native\DocumentViewer\WebRemotePrintingSystem.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Native\IPrintingSystemProvider.cs" />
+    <Compile Include="Native\NullPrintingSystemProvider.cs" />
+    <Compile Include="Native\PrintingSystemProvider.cs" />
+    <Compile Include="Native\RemoteDocumentInformation.cs" />
+    <Compile Include="Native\RemoteReportWebMediator.cs" />
+    <Compile Include="Native\ReportToolbarResources.cs" />
+    <Compile Include="Native\Toolbar\AssociatedControlWrapper.cs" />
+    <Compile Include="Native\Toolbar\ReportToolbarItemTemplate.cs" />
+    <Compile Include="Native\Toolbar\ToolbarTextBoxControl.cs" />
+    <Compile Include="Native\Toolbar\ToolbarASPxMenu.cs" />
+    <Compile Include="Native\Toolbar\ToolbarASPxTextBox.cs" />
+    <Compile Include="Native\Toolbar\WrappedTemplate.cs" />
+    <Compile Include="ReportDesigner\DataContracts\DataSourceRefInfo.cs" />
+    <Compile Include="ReportDesigner\DefaultReportDesignerContainer.cs" />
+    <Compile Include="ReportDesigner\Native\DataContracts\RenderedXRChart.cs" />
+    <Compile Include="ReportDesigner\Native\DataContracts\ReportToPreview.cs" />
+    <Compile Include="ReportDesigner\Native\DataContracts\RequestState.cs" />
+    <Compile Include="ReportDesigner\Native\DataContracts\ScriptsErrorModel.cs" />
+    <Compile Include="ReportDesigner\Native\DataContracts\WizardGeneratedDataSourceModel.cs" />
+    <Compile Include="ReportDesigner\Native\DataContracts\WizardGeneratedReportDesignerModel.cs" />
+    <Compile Include="ReportDesigner\Native\DataContracts\WizardReportModel.cs" />
+    <Compile Include="ReportDesigner\Native\DataContracts\XRChartLayout.cs" />
+    <Compile Include="ReportDesigner\Native\DataContracts\XRReportLayout.cs" />
+    <Compile Include="ReportDesigner\Native\DataContracts\XRShapeLayout.cs" />
+    <Compile Include="ReportDesigner\Native\DataSourceJson.cs" />
+    <Compile Include="ReportDesigner\Native\DefaultDataSerializer.cs" />
+    <Compile Include="ReportDesigner\Native\DesignerChartWrapper.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportDesigner\Native\DictionaryExtensions.cs" />
+    <Compile Include="Native\ReportResolver.cs" />
+    <Compile Include="ReportDesigner\Native\IntegrityContainerRegistrator.cs" />
+    <Compile Include="ReportDesigner\Native\ObservableDictionary.cs" />
+    <Compile Include="ReportDesigner\Native\ReportDataSources.cs" />
+    <Compile Include="ReportDesigner\Native\ReportDesignerBootstrapper.cs" />
+    <Compile Include="ReportDesigner\Native\ReportDesignerDesignModeImages.cs" />
+    <Compile Include="ReportDesigner\Native\ReportDesignerDesignModeInfoGenerator.cs" />
+    <Compile Include="ReportDesigner\Native\ReportDesignerInput.cs" />
+    <Compile Include="ReportDesigner\Native\ReportDesignerInputLoader.cs" />
+    <Compile Include="ReportDesigner\Native\ReportDesignerModelSettings.cs" />
+    <Compile Include="ReportDesigner\Native\ReportRestorer.cs" />
+    <Compile Include="ReportDesigner\Native\Services\DataSourceFieldListService.cs" />
+    <Compile Include="ReportDesigner\Native\Services\DataSourcesJSContentGenerator.cs" />
+    <Compile Include="ReportDesigner\Native\Services\DataSourcesJSContentGeneratorLogic.cs" />
+    <Compile Include="ReportDesigner\Native\Services\IDataSourceFieldListService.cs" />
+    <Compile Include="ReportDesigner\Native\Services\IDataSourcesJSContentGenerator.cs" />
+    <Compile Include="ReportDesigner\Native\Services\IPreviewReportLayoutService.cs" />
+    <Compile Include="ReportDesigner\Native\Services\IReportDesignerHtmlContentGenerator.cs" />
+    <Compile Include="ReportDesigner\Native\Services\IReportDesignerModelGenerator.cs" />
+    <Compile Include="ReportDesigner\Native\Services\IReportDesignerRequestController.cs" />
+    <Compile Include="ReportDesigner\Native\Services\IReportDesignerRequestManager.cs" />
+    <Compile Include="ReportDesigner\Native\Services\IReportScriptsService.cs" />
+    <Compile Include="ReportDesigner\Native\Services\IReportWizardService.cs" />
+    <Compile Include="ReportDesigner\Native\Services\IXRControlRenderService.cs" />
+    <Compile Include="ReportDesigner\Native\Services\PreviewReportLayoutService.cs" />
+    <Compile Include="ReportDesigner\Native\Services\ReportDesignerHtmlContentGenerator.cs" />
+    <Compile Include="ReportDesigner\Native\Services\ReportDesignerJSContentGenerator.cs" />
+    <Compile Include="ReportDesigner\Native\Services\ReportDesignerModelGenerator.cs" />
+    <Compile Include="ReportDesigner\Native\Services\ReportDesignerRequestController.cs" />
+    <Compile Include="ReportDesigner\Native\Services\ReportDesignerRequestManager.cs" />
+    <Compile Include="ReportDesigner\Native\Services\ReportDesignerLocalizationInfoProvider.cs" />
+    <Compile Include="ReportDesigner\Native\Services\ReportScriptsService.cs" />
+    <Compile Include="ReportDesigner\Native\Services\ReportWizardService.cs" />
+    <Compile Include="ReportDesigner\Native\Services\XRControlRenderService.cs" />
+    <Compile Include="ReportDesigner\ReportDesignerModel.cs" />
+    <Compile Include="CustomizeParameterEditorsEventArgs.cs" />
+    <Compile Include="Native\ActionBuilder.cs" />
+    <Compile Include="Native\CacheImageCacheLogic.cs" />
+    <Compile Include="Native\ExportStreamCache.cs" />
+    <Compile Include="Native\ExportStreamInfo.cs" />
+    <Compile Include="Native\HttpResponseWrapper.cs" />
+    <Compile Include="Native\HttpSessionStateProxy.cs" />
+    <Compile Include="Native\IHttpSessionProxy.cs" />
+    <Compile Include="Native\IImageCacheLogic.cs" />
+    <Compile Include="Native\HtmlWebExportContext.cs" />
+    <Compile Include="Native\ReportWebMediator.cs" />
+    <Compile Include="Native\ReportRenderHelper.cs" />
+    <Compile Include="Native\SessionImageCacheLogic.cs" />
+    <Compile Include="Native\WebCompressedHtmlTextWriter.cs" />
+    <Compile Include="Native\WebEventInfo.cs" />
+    <Compile Include="Native\XRBinaryStorageData.cs" />
+    <Compile Include="Native\XRFileStore.cs" />
+    <Compile Include="ReportDocumentMap.cs" />
+    <Compile Include="ReportParametersPanel.cs" />
+    <Compile Include="ReportToolbar.cs" />
+    <Compile Include="ReportViewer.cs" />
+    <Compile Include="ResFinder.cs" />
+    <Compile Include="RestoreReportDocumentFromCacheEventArgs.cs" />
+    <EmbeddedResource Include="LocalizationRes.resx">
+      <DependentUpon>Localization.tt</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LocalizationRes.ru.resx"><DependentUpon>Localization.tt</DependentUpon></EmbeddedResource>
+    <EmbeddedResource Include="LocalizationRes.ja.resx"><DependentUpon>Localization.tt</DependentUpon></EmbeddedResource>
+    <EmbeddedResource Include="LocalizationRes.es.resx"><DependentUpon>Localization.tt</DependentUpon></EmbeddedResource>
+    <EmbeddedResource Include="LocalizationRes.de.resx"><DependentUpon>Localization.tt</DependentUpon></EmbeddedResource>
+    <EmbeddedResource Include="Scripts\Searcher.js" />
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <Compile Include="ClientControls\MenuItemContainer.cs" />
+    <Compile Include="WebDocumentViewer\DefaultWebDocumentViewerContainer.cs" />
+    <Compile Include="WebDocumentViewer\Native\BrickBuilder.cs" />
+    <Compile Include="WebDocumentViewer\Native\DataContracts\StartBuildRequest.cs" />
+    <Compile Include="WebDocumentViewer\Native\DataContracts\DocumentExportRequest.cs" />
+    <Compile Include="WebDocumentViewer\Native\DataContracts\BrickMapResponse.cs" />
+    <Compile Include="WebDocumentViewer\Native\DataContracts\BrickMapRequest.cs" />
+    <Compile Include="WebDocumentViewer\Native\DataContracts\DocumentMapNode.cs" />
+    <Compile Include="WebDocumentViewer\Native\DataContracts\DocumentPageRequest.cs" />
+    <Compile Include="Native\ClientControls\DataContracts\IKnownTypes.cs" />
+    <Compile Include="WebDocumentViewer\Native\DataContracts\ReportParametersInfo.cs" />
+    <Compile Include="WebDocumentViewer\Native\DataContracts\TypedReportParameter.cs" />
+    <Compile Include="WebDocumentViewer\Native\DataContracts\LookUpValuesRequest.cs" />
+    <Compile Include="WebDocumentViewer\Native\DataContracts\LookUpValuesResponse.cs" />
+    <Compile Include="WebDocumentViewer\Native\IReportModelInfo.cs" />
+    <Compile Include="WebDocumentViewer\Native\MapNode.cs" />
+    <Compile Include="WebDocumentViewer\Native\WebDocumentViewerDesignModeImages.cs" />
+    <Compile Include="WebDocumentViewer\Native\WebDocumentViewerDesignModeInfoGenerator.cs" />
+    <Compile Include="WebDocumentViewer\Native\ReportModelInfo.cs" />
+    <Compile Include="WebDocumentViewer\Native\Services\IWebDocumentViewerHtmlContentGenerator.cs" />
+    <Compile Include="WebDocumentViewer\Native\Services\IWebDocumentViewerModelGenerator.cs" />
+    <Compile Include="WebDocumentViewer\Native\Services\IWebDocumentViewerRequestController.cs" />
+    <Compile Include="WebDocumentViewer\Native\Services\IWebDocumentViewerRequestManager.cs" />
+    <Compile Include="WebDocumentViewer\Native\Services\WebDocumentViewerHtmlContentGenerator.cs" />
+    <Compile Include="WebDocumentViewer\Native\Services\WebDocumentViewerJSContentGenerator.cs" />
+    <Compile Include="WebDocumentViewer\Native\Services\WebDocumentViewerModelGenerator.cs" />
+    <Compile Include="WebDocumentViewer\Native\Services\WebDocumentViewerRequestController.cs" />
+    <Compile Include="WebDocumentViewer\Native\Services\WebDocumentViewerRequestManager.cs" />
+    <Compile Include="WebDocumentViewer\Native\Services\WebDocumentViewerLocalizationInfoProvider.cs" />
+    <Compile Include="WebDocumentViewer\Native\WebDocumentViewerBootstrapper.cs" />
+    <Compile Include="WebDocumentViewer\Native\WebDocumentViewerParameterValueProvider.cs" />
+    <Compile Include="WebDocumentViewer\ReportSourceKind.cs" />
+    <Compile Include="WebDocumentViewer\WebDocumentViewerModel.cs" />
+    <Compile Include="WebResource.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Bitmaps256\ReportToolbar.bmp" />
+    <EmbeddedResource Include="Bitmaps256\ReportViewer.bmp" />
+    <EmbeddedResource Include="Scripts\report-designer.js" />
+    <EmbeddedResource Include="Scripts\report-designer.min.js" />
+    
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Bitmaps256\ReportParametersPanel.bmp" />
+    <EmbeddedResource Include="Bitmaps256\ReportDocumentMap.bmp" />
+    <EmbeddedResource Include="Bitmaps256\ASPxDocumentViewer.bmp" />
+    <EmbeddedResource Include="Forms\CS\WebSearchDialog.ascx" />
+    
+    
+    
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Forms\VB\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Bitmaps256\ASPxReportDesigner.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Css\DocumentViewer\System.css" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Css\Default.css" />
+    <EmbeddedResource Include="Css\dxxrdvSprite.css" />
+    <EmbeddedResource Include="Css\Sprite.css" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Scripts\DocumentViewer.js" />
+    <EmbeddedResource Include="Scripts\PrintHelper.js" />
+    <EmbeddedResource Include="Scripts\ReportDocumentMap.js" />
+    <EmbeddedResource Include="Scripts\ReportParametersPanel.js" />
+    <EmbeddedResource Include="Scripts\ReportToolbar.js" />
+    <EmbeddedResource Include="Scripts\ReportViewer.js" />
+    <EmbeddedResource Include="Scripts\ReportViewerOpera.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\dxxrdvSprite.png" />
+    <EmbeddedResource Include="Images\pageBottomBorder.png" />
+    <EmbeddedResource Include="Images\pageLeftBorder.png" />
+    <EmbeddedResource Include="Images\pageRightBorder.png" />
+    <EmbeddedResource Include="Images\pageTopBorder.png" />
+    <EmbeddedResource Include="Images\PermanentDocumentViewerSprite\.dxXtraReports.css" />
+    <EmbeddedResource Include="Images\PermanentDocumentViewerSprite\.dxXtraReports_PageBorder_blc.png" />
+    <EmbeddedResource Include="Images\PermanentDocumentViewerSprite\.dxXtraReports_PageBorder_brc.png" />
+    <EmbeddedResource Include="Images\PermanentDocumentViewerSprite\.dxXtraReports_PageBorder_tlc.png" />
+    <EmbeddedResource Include="Images\PermanentDocumentViewerSprite\.dxXtraReports_PageBorder_trc.png" />
+    <EmbeddedResource Include="Images\sprite.png" />
+    <EmbeddedResource Include="Images\Sprite\.dxXtraReports_BtnFirstPage.png" />
+    <EmbeddedResource Include="Images\Sprite\.dxXtraReports_BtnFirstPageDisabled.png" />
+    <EmbeddedResource Include="Images\Sprite\.dxXtraReports_BtnLastPage.png" />
+    <EmbeddedResource Include="Images\Sprite\.dxXtraReports_BtnLastPageDisabled.png" />
+    <EmbeddedResource Include="Images\Sprite\.dxXtraReports_BtnNextPage.png" />
+    <EmbeddedResource Include="Images\Sprite\.dxXtraReports_BtnNextPageDisabled.png" />
+    <EmbeddedResource Include="Images\Sprite\.dxXtraReports_BtnPrevPage.png" />
+    <EmbeddedResource Include="Images\Sprite\.dxXtraReports_BtnPrevPageDisabled.png" />
+    <EmbeddedResource Include="Images\Sprite\.dxXtraReports_BtnPrint.png" />
+    <EmbeddedResource Include="Images\Sprite\.dxXtraReports_BtnPrintDisabled.png" />
+    <EmbeddedResource Include="Images\Sprite\.dxXtraReports_BtnPrintPage.png" />
+    <EmbeddedResource Include="Images\Sprite\.dxXtraReports_BtnPrintPageDisabled.png" />
+    <EmbeddedResource Include="Images\Sprite\.dxXtraReports_BtnSave.png" />
+    <EmbeddedResource Include="Images\Sprite\.dxXtraReports_BtnSaveDisabled.png" />
+    <EmbeddedResource Include="Images\Sprite\.dxXtraReports_BtnSaveWindow.png" />
+    <EmbeddedResource Include="Images\Sprite\.dxXtraReports_BtnSaveWindowDisabled.png" />
+    <EmbeddedResource Include="Images\Sprite\.dxXtraReports_BtnSearch.png" />
+    <EmbeddedResource Include="Images\Sprite\.dxXtraReports_BtnSearchDisabled.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Scripts\ReportDesigner.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Css\ParametersPanel\System.css" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Scripts\web-document-viewer.js" />
+    <EmbeddedResource Include="Scripts\web-document-viewer.min.js" />
+    <EmbeddedResource Include="Scripts\WebDocumentViewer.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Scripts\dx-designer.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Scripts\dx-designer.min.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Css\report-designer-dark.css" />
+    <EmbeddedResource Include="Css\report-designer-dark.min.css" />
+    <EmbeddedResource Include="Css\report-designer-light.css" />
+    <EmbeddedResource Include="Css\report-designer-light.min.css" />
+    <EmbeddedResource Include="Css\web-document-viewer-light.min.css" />
+    <EmbeddedResource Include="Css\web-document-viewer-dark.css" />
+    <EmbeddedResource Include="Css\web-document-viewer-dark.min.css" />
+    <EmbeddedResource Include="Css\web-document-viewer-light.css" />
+  </ItemGroup>
+  <ItemGroup>
+    
+    
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Scripts\WebClientUIControl.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Css\WebClientUIControl.css" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\ReportDesignerDesignModeIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Html\ReportDesignerDesignMode.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Html\WebDocumentViewerDesignMode.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Html\report-designer.html" />
+    <EmbeddedResource Include="Html\web-document-viewer.html" />
+  </ItemGroup>
+  <ItemGroup>
+    
+    
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\WebDocumentViewerDesignModeIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Scripts\Frameworks\ace.js" />
+    <EmbeddedResource Include="Scripts\Frameworks\ext-language_tools.js" />
+    <EmbeddedResource Include="Scripts\Frameworks\mode-csharp.js" />
+    <EmbeddedResource Include="Scripts\Frameworks\mode-vbscript.js" />
+    <EmbeddedResource Include="Scripts\Frameworks\theme-ambiance.js" />
+    <EmbeddedResource Include="Scripts\Frameworks\theme-dreamweaver.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Css\report-designer-dark.compact.css" />
+    <EmbeddedResource Include="Css\report-designer-dark.compact.min.css" />
+    <EmbeddedResource Include="Css\report-designer-light.compact.css" />
+    <EmbeddedResource Include="Css\report-designer-light.compact.min.css" />
+    <EmbeddedResource Include="Css\web-document-viewer-dark.compact.css" />
+    <EmbeddedResource Include="Css\web-document-viewer-dark.compact.min.css" />
+    <EmbeddedResource Include="Css\web-document-viewer-light.compact.css" />
+    <EmbeddedResource Include="Css\web-document-viewer-light.compact.min.css" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Scripts\Frameworks\snippets\csharp.js" />
+    <EmbeddedResource Include="Scripts\Frameworks\snippets\text.js" />
+    <EmbeddedResource Include="Scripts\Frameworks\snippets\vbscript.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Bitmaps256\ASPxDocumentViewer.VisualStudio.11.0.bmp" />
+    <EmbeddedResource Include="Bitmaps256\ASPxReportDesigner.VisualStudio.11.0.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Css\query-builder-dark.compact.css" />
+    <EmbeddedResource Include="Css\query-builder-dark.compact.min.css" />
+    <EmbeddedResource Include="Css\query-builder-dark.css" />
+    <EmbeddedResource Include="Css\query-builder-dark.min.css" />
+    <EmbeddedResource Include="Css\query-builder-light.compact.css" />
+    <EmbeddedResource Include="Css\query-builder-light.compact.min.css" />
+    <EmbeddedResource Include="Css\query-builder-light.css" />
+    <EmbeddedResource Include="Css\query-builder-light.min.css" />
+    <EmbeddedResource Include="Html\query-builder.html" />
+    <EmbeddedResource Include="Scripts\query-builder.js" />
+    <EmbeddedResource Include="Scripts\query-builder.min.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Scripts\QueryBuilder.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Bitmaps256\ASPxQueryBuilder.bmp" />
+    <EmbeddedResource Include="Bitmaps256\ASPxQueryBuilder.VisualStudio.11.0.bmp" />
+    <EmbeddedResource Include="Html\QueryBuilderDesignMode.html" />
+    <EmbeddedResource Include="Images\QueryBuilderDesignModeIcon.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    
+    
+  </PropertyGroup>
+  <ProjectExtensions>
+    <VisualStudio>
+    </VisualStudio>
+  </ProjectExtensions>
+<ItemGroup><EmbeddedResource Include="Descriptions.resx" /></ItemGroup><ItemGroup><Compile Include="Descriptions.cs" /></ItemGroup></Project>

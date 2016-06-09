@@ -1,0 +1,22 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+    xmlns:local="clr-namespace:DevExpress.Xpf.DemoBase.Helpers">
+
+    <Style TargetType="local:CornerPopup">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:CornerPopup">
+                    <Grid x:Name="LayoutRoot">
+                        <Canvas HorizontalAlignment="Left" VerticalAlignment="Top" Width="{TemplateBinding PopupViewPortWidth}" Height="{TemplateBinding PopupViewPortHeight}">
+                            <Canvas.Clip>
+                                <RectangleGeometry x:Name="ClipRectangle" />
+                            </Canvas.Clip>
+                            <ContentPresenter x:Name="PopupContentPresenter" Content="{TemplateBinding PopupContent}" Canvas.Left="{TemplateBinding PopupLeft}" Canvas.Top="{TemplateBinding PopupTop}" />
+                        </Canvas>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

@@ -1,0 +1,232 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:dxc="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:local="http://schemas.devexpress.com/winfx/2008/xaml/docking" xmlns:sys="clr-namespace:System;assembly=mscorlib" xmlns:collections="clr-namespace:System.Collections;assembly=mscorlib" xmlns:ve="http://schemas.devexpress.com/winfx/2008/xaml/docking/visualelements" xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/docking/themekeys" xmlns:dxp="http://schemas.devexpress.com/winfx/2008/xaml/docking/platform" xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys">
+    <!-- AutoHide Theme Elements -->
+    <Thickness x:Key="{dxt:AutoHideTrayHeadersGroupElementsThemeKey ResourceKey=LeftMargin}">0,3</Thickness>
+    <Thickness x:Key="{dxt:AutoHideTrayHeadersGroupElementsThemeKey ResourceKey=TopMargin}">3,0</Thickness>
+    <Thickness x:Key="{dxt:AutoHideTrayHeadersGroupElementsThemeKey ResourceKey=RightMargin}">0,3</Thickness>
+    <Thickness x:Key="{dxt:AutoHideTrayHeadersGroupElementsThemeKey ResourceKey=BottomMargin}">3,0</Thickness>
+    <ControlTemplate x:Key="{dxt:AutoHideTrayElementsThemeKey ResourceKey=Caption}" TargetType="ve:AutoHidePaneHeaderItem">
+        <Grid x:Name="itemHeader" Background="#00000000" ve:DockPane.HitTestType="Header" Visibility="{Binding Path=Visibility}">
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup x:Name="CommonStates">
+                    <VisualState x:Name="MouseOver">
+                        <Storyboard>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Control.Background)" Storyboard.TargetName="border">
+                                <DiscreteObjectKeyFrame KeyTime="0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
+                                            <GradientStop Color="#FFCEE1F9" Offset="0" />
+                                            <GradientStop Color="#FFBFDAF7" Offset="1" />
+                                        </LinearGradientBrush>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Selected">
+                        <Storyboard>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Control.Background)" Storyboard.TargetName="border">
+                                <DiscreteObjectKeyFrame KeyTime="0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <SolidColorBrush Color="#FFA5A8B0" />
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Control.Background)" Storyboard.TargetName="back">
+                                <DiscreteObjectKeyFrame KeyTime="0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <SolidColorBrush Color="#FF858890" />
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Normal" />
+                </VisualStateGroup>
+                <VisualStateGroup x:Name="LocationStates">
+                    <VisualState x:Name="Left">
+                        <Storyboard>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Control.Margin)" Storyboard.TargetName="itemHeader">
+                                <DiscreteObjectKeyFrame KeyTime="0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <Thickness>0,0,0,-1</Thickness>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Border.Padding)" Storyboard.TargetName="back">
+                                <DiscreteObjectKeyFrame KeyTime="0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <Thickness>0,1,1,1</Thickness>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Border.CornerRadius)" Storyboard.TargetName="border">
+                                <DiscreteObjectKeyFrame KeyTime="0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <CornerRadius>0,3,3,0</CornerRadius>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Border.CornerRadius)" Storyboard.TargetName="back">
+                                <DiscreteObjectKeyFrame KeyTime="0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <CornerRadius>0,2,2,0</CornerRadius>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Right">
+                        <Storyboard>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Control.Margin)" Storyboard.TargetName="itemHeader">
+                                <DiscreteObjectKeyFrame KeyTime="0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <Thickness>0,0,0,-1</Thickness>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Border.Padding)" Storyboard.TargetName="back">
+                                <DiscreteObjectKeyFrame KeyTime="0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <Thickness>1,1,0,1</Thickness>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Border.CornerRadius)" Storyboard.TargetName="border">
+                                <DiscreteObjectKeyFrame KeyTime="0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <CornerRadius>3,0,0,3</CornerRadius>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Border.CornerRadius)" Storyboard.TargetName="back">
+                                <DiscreteObjectKeyFrame KeyTime="0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <CornerRadius>2,0,0,2</CornerRadius>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Top">
+                        <Storyboard>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Control.Margin)" Storyboard.TargetName="itemHeader">
+                                <DiscreteObjectKeyFrame KeyTime="0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <Thickness>0,0,-1,0</Thickness>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Border.Padding)" Storyboard.TargetName="back">
+                                <DiscreteObjectKeyFrame KeyTime="0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <Thickness>1,0,1,1</Thickness>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Border.CornerRadius)" Storyboard.TargetName="border">
+                                <DiscreteObjectKeyFrame KeyTime="0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <CornerRadius>0,0,3,3</CornerRadius>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Border.CornerRadius)" Storyboard.TargetName="back">
+                                <DiscreteObjectKeyFrame KeyTime="0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <CornerRadius>0,0,2,2</CornerRadius>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Bottom">
+                        <Storyboard>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Control.Margin)" Storyboard.TargetName="itemHeader">
+                                <DiscreteObjectKeyFrame KeyTime="0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <Thickness>0,0,-1,0</Thickness>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Border.Padding)" Storyboard.TargetName="back">
+                                <DiscreteObjectKeyFrame KeyTime="0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <Thickness>1,1,1,0</Thickness>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Border.CornerRadius)" Storyboard.TargetName="border">
+                                <DiscreteObjectKeyFrame KeyTime="0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <CornerRadius>3,3,0,0</CornerRadius>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Border.CornerRadius)" Storyboard.TargetName="back">
+                                <DiscreteObjectKeyFrame KeyTime="0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <CornerRadius>2,2,0,0</CornerRadius>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+            <Border x:Name="back" Opacity="1" Background="#FFB9BABF" Padding="1,1,1,1">
+                <Border x:Name="border" Background="#FFD5D8E0" />
+            </Border>
+            <ve:AutoHideTransformPanel x:Name="PART_TransformPanel">
+                <ve:AutoHideTransformPanel.Orientation>
+                    <Binding Path="(ve:AutoHideTray.Orientation)" RelativeSource="{RelativeSource TemplatedParent}">
+                        <Binding.Converter>
+                            <ve:OrientationInvertConverter />
+                        </Binding.Converter>
+                    </Binding>
+                </ve:AutoHideTransformPanel.Orientation>
+                <Border x:Name="front">
+                    <ve:TemplatedTabCaptionControl x:Name="PART_CaptionControlPresenter" LayoutItem="{Binding}" Padding="5,3" />
+                </Border>
+            </ve:AutoHideTransformPanel>
+        </Grid>
+    </ControlTemplate>
+    <sys:Double x:Key="{dxt:AutoHidePaneElementsThemeKey ResourceKey=SizerThickness}">6</sys:Double>
+    <sys:Double x:Key="{dxt:AutoHidePaneElementsThemeKey ResourceKey=TouchSizerThickness}">24</sys:Double>
+    <ControlTemplate x:Key="{dxt:AutoHidePaneElementsThemeKey ResourceKey=Template}" TargetType="ve:AutoHidePane">
+        <!--BEGIN WPF-->
+        <ve:AutoHidePanePresenter x:Name="PART_Presenter">
+            <!--END WPF-->
+            <DockPanel Background="Transparent">
+                <DockPanel.Resources>
+                    <ve:DockToVerticalAlignmentConverter x:Key="dockToVerticalAlignmentConverter" />
+                    <ve:DockToHorizontalAlignmentConverter x:Key="dockToHorizontalAlignmentConverter" />
+                    <ve:DockTypeToThicknessConverter x:Key="dockTypeToThicknessConverter" All="7" Inverted="True" />
+                    <dx:BoolToVisibilityConverter x:Key="boolToVisibilityConverter" />
+                    <dx:BoolToVisibilityInverseConverter x:Key="boolToVisibilityInverseConverter" />
+                    <ve:DockInverseConverter x:Key="dockInverseConverter" />
+                </DockPanel.Resources>
+                <Grid DockPanel.Dock="{Binding DockType,RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource dockInverseConverter}}" Background="Transparent" Visibility="{Binding IsSizerVisible,RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource boolToVisibilityConverter}}" HorizontalAlignment="{Binding DockType, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource ResourceKey=dockToHorizontalAlignmentConverter}}" VerticalAlignment="{Binding DockType, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource ResourceKey=dockToVerticalAlignmentConverter}}" ve:DockPane.HitTestType="Border" Cursor="{Binding ElementName=PART_Sizer, Path=Cursor}">
+                    <ve:ElementSizer x:Name="PART_Sizer" Thickness="{DynamicResource {dxt:AutoHidePaneElementsThemeKey ResourceKey=SizerThickness}}" Orientation="{Binding Path=(ve:AutoHideTray.Orientation), RelativeSource={RelativeSource TemplatedParent}}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                </Grid>
+                <Grid x:Name="PART_PaneContent" Background="Transparent">
+                    <Grid ve:DockPane.HitTestType="Border">
+                        <Border Margin="5,5,1,1" Opacity="0.15" Background="#FF000000" CornerRadius="2" IsHitTestVisible="False" Visibility="{Binding IsSizerVisible,RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource boolToVisibilityInverseConverter}}" />
+                        <ContentPresenter Content="{TemplateBinding Content}" Cursor="Arrow" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="2" />
+                    </Grid>
+                    <Border x:Name="PART_PaneBorder" BorderBrush="Transparent" ve:DockPane.HitTestType="Border" Visibility="{Binding IsSizerVisible,RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource boolToVisibilityInverseConverter}}" BorderThickness="{Binding DockType, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource ResourceKey=dockTypeToThicknessConverter}}">
+                    </Border>
+                </Grid>
+            </DockPanel>
+            <!--BEGIN WPF-->
+        </ve:AutoHidePanePresenter>
+        <!--END WPF-->
+    </ControlTemplate>
+    <!-- AutoHide Theme Elements -->
+    <ControlTemplate TargetType="ve:ElementSizer" x:Key="{dxt:DockElementsThemeKey ResourceKey=ElementSizer}">
+        <dx:Container Background="{TemplateBinding Background}">
+            <dx:Container x:Name="HorizontalRootElement" Width="16" Height="{TemplateBinding Thickness}" Cursor="SizeNS" Visibility="Collapsed" />
+            <dx:Container x:Name="VerticalRootElement" Width="{TemplateBinding Thickness}" Height="16" Cursor="SizeWE" />
+        </dx:Container>
+    </ControlTemplate>
+    <!-- AutoHide Theme Elements -->
+</ResourceDictionary>

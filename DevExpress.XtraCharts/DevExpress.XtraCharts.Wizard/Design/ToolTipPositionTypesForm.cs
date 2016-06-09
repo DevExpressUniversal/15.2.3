@@ -1,0 +1,85 @@
+#region Copyright (c) 2000-2015 Developer Express Inc.
+/*
+{*******************************************************************}
+{                                                                   }
+{       Developer Express .NET Component Library                    }
+{                                                                   }
+{                                                                   }
+{       Copyright (c) 2000-2015 Developer Express Inc.              }
+{       ALL RIGHTS RESERVED                                         }
+{                                                                   }
+{   The entire contents of this file is protected by U.S. and       }
+{   International Copyright Laws. Unauthorized reproduction,        }
+{   reverse-engineering, and distribution of all or any portion of  }
+{   the code contained in this file is strictly prohibited and may  }
+{   result in severe civil and criminal penalties and will be       }
+{   prosecuted to the maximum extent possible under the law.        }
+{                                                                   }
+{   RESTRICTIONS                                                    }
+{                                                                   }
+{   THIS SOURCE CODE AND ALL RESULTING INTERMEDIATE FILES           }
+{   ARE CONFIDENTIAL AND PROPRIETARY TRADE                          }
+{   SECRETS OF DEVELOPER EXPRESS INC. THE REGISTERED DEVELOPER IS   }
+{   LICENSED TO DISTRIBUTE THE PRODUCT AND ALL ACCOMPANYING .NET    }
+{   CONTROLS AS PART OF AN EXECUTABLE PROGRAM ONLY.                 }
+{                                                                   }
+{   THE SOURCE CODE CONTAINED WITHIN THIS FILE AND ALL RELATED      }
+{   FILES OR ANY PORTION OF ITS CONTENTS SHALL AT NO TIME BE        }
+{   COPIED, TRANSFERRED, SOLD, DISTRIBUTED, OR OTHERWISE MADE       }
+{   AVAILABLE TO OTHER INDIVIDUALS WITHOUT EXPRESS WRITTEN CONSENT  }
+{   AND PERMISSION FROM DEVELOPER EXPRESS INC.                      }
+{                                                                   }
+{   CONSULT THE END USER LICENSE AGREEMENT FOR INFORMATION ON       }
+{   ADDITIONAL RESTRICTIONS.                                        }
+{                                                                   }
+{*******************************************************************}
+*/
+#endregion Copyright (c) 2000-2015 Developer Express Inc.
+
+using System;
+using System.Windows.Forms;
+using DevExpress.XtraCharts.Native;
+using System.Drawing;
+using DevExpress.Utils;
+using System.Reflection;
+namespace DevExpress.XtraCharts.Design {
+	public partial class ToolTipPositionTypesForm : ItemKindChoosingForm {
+		ToolTipPosition currentPosition;
+		public ToolTipPosition EditValue { 
+			get { return currentPosition; } 
+			set { 
+				currentPosition = value;
+				foreach (ListViewItem item in listView.Items)
+					item.Selected = item.Text == StringResourcesUtils.GetStringId(currentPosition);
+			} 
+		}
+		public ToolTipPositionTypesForm() {
+			InitializeComponent();
+		}
+		void AddItem(ToolTipPosition position) {
+			Image image = ImageResourcesUtils.GetImageFromResources(position);
+			imageList.Images.Add(image);
+			listView.Items.Add(new ListViewItem(StringResourcesUtils.GetStringId(position), imageList.Images.Count - 1));
+		}
+		protected override void CloseForm() {
+			ListView.SelectedListViewItemCollection coll = listView.SelectedItems;
+			if (coll.Count > 0) 
+				DialogResult = DialogResult.OK;			
+		}
+		protected override void Initialize() {
+			AddItem(new ToolTipMousePosition());
+			AddItem(new ToolTipFreePosition());
+			AddItem(new ToolTipRelativePosition());			
+		}
+		protected override void SelectedIndexChanged() {
+			if (listView.SelectedItems.Count > 0) {
+				if (listView.SelectedIndices[0] == 0)
+					currentPosition = new ToolTipMousePosition();
+				else if (listView.SelectedIndices[0] == 1)
+					currentPosition = new ToolTipFreePosition();
+				else if (listView.SelectedIndices[0] == 2)
+					currentPosition = new ToolTipRelativePosition();
+			}
+		}
+	}
+}

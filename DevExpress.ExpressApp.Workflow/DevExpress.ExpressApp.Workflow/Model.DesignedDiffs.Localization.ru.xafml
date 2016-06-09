@@ -1,0 +1,162 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application>
+	<ActionDesign>
+		<Actions>
+			<Action Id="Activate" Caption="Активировать" />
+			<Action Id="CancelWorkflowInstance" Caption="Отменить" ConfirmationMessage="Выбранные элементы будут отменены. Продолжить действие?" />
+			<Action Id="Deactivate" Caption="Деактивировать" />
+			<Action Id="ResumeWorkflowInstance" Caption="Возобновить" ConfirmationMessage="Выбранные элементы будут возобновлены. Продолжить действие?" />
+			<Action Id="ShowWorkflowInstances" Caption="Показать экземпляры рабочих процессов" />
+			<Action Id="SuspendWorkflowInstance" Caption="Приостановить" ConfirmationMessage="Выбранные элементы будут приостановлены. Продолжить действие?" />
+			<Action Id="TerminateWorkflowInstance" Caption="Прекратить" ConfirmationMessage="Выбранные элементы будут прекращены. Продолжить действие?" />
+		</Actions>
+	</ActionDesign>
+	<BOModel>
+		<Class Name="DevExpress.ExpressApp.Workflow.DC.IDCWorkflowDefinition">
+			<OwnMembers>
+				<Member Name="AutoStartWhenObjectFitsCriteria" Caption="Запустить при соответствии объекта критерию" />
+				<Member Name="AutoStartWhenObjectIsCreated" Caption="Запустить при создании объекта" />
+				<Member Name="Criteria" Caption="Критерий" />
+				<Member Name="IsActive" Caption="Активен" />
+				<Member Name="Name" Caption="Имя" />
+				<Member Name="TargetObjectType" Caption="Тип целевого объекта" />
+			</OwnMembers>
+		</Class>
+		<Class Name="DevExpress.ExpressApp.Workflow.Versioning.IUserActivityVersion" Caption="Версия мероприятия">
+			<OwnMembers>
+				<Member Name="Version" Caption="Версия" />
+				<Member Name="WorkflowUniqueId" Caption="Уникальный идентификатор рабочего процесса" />
+			</OwnMembers>
+		</Class>
+		<Class Name="DevExpress.ExpressApp.Workflow.Versioning.XpoUserActivityVersion" Caption="Версия действия пользователя">
+			<OwnMembers>
+				<Member Name="Version" Caption="Версия" />
+				<Member Name="WorkflowUniqueId" Caption="Уникальный идентификатор рабочего процесса" />
+			</OwnMembers>
+		</Class>
+		<Class Name="DevExpress.ExpressApp.Workflow.Xpo.WFBaseObject" Caption="Базовый рабочий процесс" />
+		<Class Name="DevExpress.ExpressApp.Workflow.Xpo.XpoRunningWorkflowInstanceInfo" Caption="Информация о запущенном экземпляре рабочего процесса">
+			<OwnMembers>
+				<Member Name="ActivityInstanceId" Caption="Идентификатор экземпляра мероприятия" />
+				<Member Name="State" Caption="Состояние" />
+				<Member Name="TargetObjectHandle" Caption="Дескриптор целевого объекта" />
+				<Member Name="TrackingRecords" Caption="Записи журнала" />
+				<Member Name="TrackingRecordVisualizationInfo" Caption="Информация о визуализации отслеживаемых записей" />
+				<Member Name="WorkflowName" Caption="Имя рабочего процесса" />
+				<Member Name="WorkflowUniqueId" Caption="Уникальный идентификатор рабочего процесса" />
+			</OwnMembers>
+		</Class>
+		<Class Name="DevExpress.ExpressApp.Workflow.Xpo.XpoStartWorkflowRequest" Caption="Запрос на запуск рабочего процесса">
+			<OwnMembers>
+				<Member Name="TargetObjectKey" Caption="Ключ целевого объекта" />
+				<Member Name="TargetWorkflowUniqueId" Caption="Уникальный идентификатор целевого рабочего процесса" />
+			</OwnMembers>
+		</Class>
+		<Class Name="DevExpress.ExpressApp.Workflow.Xpo.XpoWorkflowDefinition" Caption="Описание рабочего процесса">
+			<OwnMembers>
+				<Member Name="AutoStartWhenObjectFitsCriteria" Caption="Запустить при соответствии объекта критерию" />
+				<Member Name="AutoStartWhenObjectIsCreated" Caption="Запустить при создании объекта" />
+				<Member Name="Criteria" Caption="Критерий" />
+				<Member Name="IsActive" Caption="Активен" />
+				<Member Name="Name" Caption="Имя" />
+				<Member Name="TargetObjectType" Caption="Тип целевого объекта" />
+			</OwnMembers>
+		</Class>
+		<Class Name="DevExpress.ExpressApp.Workflow.Xpo.XpoWorkflowInstanceControlCommandRequest" Caption="Запрос команды управления экземпляром рабочего процесса">
+			<OwnMembers>
+				<Member Name="Command" Caption="Команда" />
+				<Member Name="CreatedOn" Caption="Дата создания" />
+				<Member Name="Result" Caption="Результат" />
+				<Member Name="TargetActivityInstanceId" Caption="Идентификатор экземпляра целевого мероприятия" />
+				<Member Name="TargetWorkflowUniqueId" Caption="Уникальный идентификатор целевого рабочего процесса" />
+			</OwnMembers>
+		</Class>
+		<Class Name="DevExpress.Workflow.Xpo.XpoInstanceKey" Caption="Ключ экземпляра">
+			<OwnMembers>
+				<Member Name="InstanceId" Caption="Иденификатор экземпляра" />
+				<Member Name="KeyId" Caption="Идентификатор ключа" />
+			</OwnMembers>
+		</Class>
+		<Class Name="DevExpress.Workflow.Xpo.XpoTrackingRecord" Caption="Запись журнала">
+			<OwnMembers>
+				<Member Name="ActivityId" Caption="Идентификатор мероприятия" />
+				<Member Name="Data" Caption="Данные" />
+				<Member Name="DateTime" Caption="Дата/Время" />
+				<Member Name="InstanceId" Caption="Идентификатор экземпляра" />
+			</OwnMembers>
+		</Class>
+		<Class Name="DevExpress.Workflow.Xpo.XpoWorkflowInstance" Caption="Экземпляр рабочего процесса">
+			<OwnMembers>
+				<Member Name="ExpirationDateTime" Caption="Действительно до" />
+				<Member Name="InstanceId" Caption="Идентификатор экземпляра" />
+				<Member Name="Owner" Caption="Владелец" />
+				<Member Name="Status" Caption="Статус" />
+			</OwnMembers>
+		</Class>
+	</BOModel>
+	<Localization>
+		<LocalizationGroup Name="Enums">
+			<LocalizationGroup Name="DevExpress.ExpressApp.Workflow.WorkflowControlCommand" Value="Команда управления рабочим процессом">
+				<LocalizationItem Name="Cancel" Value="Отменить" />
+				<LocalizationItem Name="Resume" Value="Возобновить" />
+				<LocalizationItem Name="Suspend" Value="Приостановить" />
+				<LocalizationItem Name="Terminate" Value="Прекратить" />
+			</LocalizationGroup>
+			<LocalizationGroup Name="System.Activities.ActivityInstanceState" Value="Состояние экземпляра мероприятия">
+				<LocalizationItem Name="Canceled" Value="Отменено" />
+				<LocalizationItem Name="Closed" Value="Закрыто" />
+				<LocalizationItem Name="Executing" Value="Выполняется" />
+				<LocalizationItem Name="Faulted" Value="Произошел сбой" />
+			</LocalizationGroup>
+		</LocalizationGroup>
+	</Localization>
+	<Views>
+		<DetailView Id="IDCWorkflowDefinition_DetailView">
+			<Items>
+				<PropertyEditor Id="AutoStartWhenObjectFitsCriteria" Caption="Объект соответствует критерию" />
+				<PropertyEditor Id="AutoStartWhenObjectIsCreated" Caption="Объект создан" />
+			</Items>
+			<Layout>
+				<LayoutGroup Id="Main_Copy">
+					<LayoutGroup Id="SizeableEditors">
+						<TabbedGroup Id="Item1">
+							<LayoutGroup Id="XpoWorkflowDefinition" Caption="Свойства">
+								<LayoutGroup Id="Item2" Caption="Автоматический запуск когда:" />
+							</LayoutGroup>
+							<LayoutGroup Id="Item2" Caption="Дизайнер" />
+						</TabbedGroup>
+					</LayoutGroup>
+				</LayoutGroup>
+			</Layout>
+		</DetailView>
+		<DetailView Id="XpoInstanceKey_DetailView" Caption="Идентификатор экземпляра" />
+		<DetailView Id="XpoRunningWorkflowInstanceInfo_DetailView">
+			<Layout>
+				<LayoutGroup Id="Main">
+					<LayoutGroup Id="SimpleEditors">
+						<LayoutGroup Id="XpoRunningWorkflowInstanceInfo" Caption="Информация o выполняющемся экземпляре рабочего процесса" />
+					</LayoutGroup>
+					<LayoutGroup Id="TrackingRecords_Group" Caption="Записи журнала" />
+				</LayoutGroup>
+			</Layout>
+		</DetailView>
+		<DetailView Id="XpoWorkflowDefinition_DetailView">
+			<Items>
+				<PropertyEditor Id="AutoStartWhenObjectFitsCriteria" Caption="Объект соответствует критерию" />
+				<PropertyEditor Id="AutoStartWhenObjectIsCreated" Caption="Объект создан" />
+			</Items>
+			<Layout>
+				<LayoutGroup Id="Main_Copy">
+					<LayoutGroup Id="SizeableEditors">
+						<TabbedGroup Id="Item1">
+							<LayoutGroup Id="XpoWorkflowDefinition" Caption="Свойства">
+								<LayoutGroup Id="Item2" Caption="Автоматический запуск при:" />
+							</LayoutGroup>
+							<LayoutGroup Id="Item2" Caption="Дизайнер" />
+						</TabbedGroup>
+					</LayoutGroup>
+				</LayoutGroup>
+			</Layout>
+		</DetailView>
+	</Views>
+</Application>

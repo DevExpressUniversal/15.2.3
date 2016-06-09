@@ -1,0 +1,878 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{34A2BB76-EBA6-4741-A28B-E670A2F8FC34}</ProjectGuid>
+    <OutputType>library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DevExpress.Xpf.Printing</RootNamespace>
+    <AssemblyName>DevExpress.Xpf.Printing.v15.2</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>..\..\DevExpress.Key\StrongKey.snk</AssemblyOriginatorKeyFile>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation />
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <BaseIntermediateOutputPath>obj.wpf</BaseIntermediateOutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\..\Bin\Framework\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;CODE_ANALYSIS</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <WarningsAsErrors>114,108,612,618</WarningsAsErrors>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\..\Bin\Framework\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <WarningsAsErrors>
+    </WarningsAsErrors>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+  
+  <ItemGroup>
+    <Reference Include="DevExpress.Data.v15.2">
+      <SpecificVersion>False</SpecificVersion>
+    <HintPath>..\..\..\Bin\Framework\DevExpress.Data.v15.2.dll</HintPath><Private>False</Private></Reference>
+    <Reference Include="DevExpress.Printing.v15.2.Core">
+      <SpecificVersion>False</SpecificVersion>
+    <HintPath>..\..\..\Bin\Framework\DevExpress.Printing.v15.2.Core.dll</HintPath><Private>False</Private></Reference>
+    <Reference Include="DevExpress.RichEdit.v15.2.Core">
+      <SpecificVersion>False</SpecificVersion>
+    <HintPath>..\..\..\Bin\Framework\DevExpress.RichEdit.v15.2.Core.dll</HintPath><Private>False</Private></Reference>
+    <Reference Include="DevExpress.Xpf.Core.v15.2">
+      <SpecificVersion>False</SpecificVersion>
+    <HintPath>..\..\..\Bin\Framework\DevExpress.Xpf.Core.v15.2.dll</HintPath><Private>False</Private></Reference>
+    <Reference Include="DevExpress.Mvvm.v15.2">
+      <SpecificVersion>False</SpecificVersion>
+    <HintPath>..\..\..\Bin\Framework\DevExpress.Mvvm.v15.2.dll</HintPath><Private>False</Private></Reference>
+    <Reference Include="DevExpress.Xpf.Docking.v15.2">
+      <SpecificVersion>False</SpecificVersion>
+    <HintPath>..\..\..\Bin\Framework\DevExpress.Xpf.Docking.v15.2.dll</HintPath><Private>False</Private></Reference>
+    <Reference Include="DevExpress.Xpf.DocumentViewer.v15.2.Core">
+      <SpecificVersion>False</SpecificVersion>
+    <HintPath>..\..\..\Bin\Framework\DevExpress.Xpf.DocumentViewer.v15.2.Core.dll</HintPath><Private>False</Private></Reference>
+    <Reference Include="DevExpress.Xpf.Layout.v15.2.Core">
+      <SpecificVersion>False</SpecificVersion>
+    <HintPath>..\..\..\Bin\Framework\DevExpress.Xpf.Layout.v15.2.Core.dll</HintPath><Private>False</Private></Reference>
+    <Reference Include="DevExpress.Xpf.LayoutControl.v15.2">
+      <SpecificVersion>False</SpecificVersion>
+    <HintPath>..\..\..\Bin\Framework\DevExpress.Xpf.LayoutControl.v15.2.dll</HintPath><Private>False</Private></Reference>
+    <Reference Include="DevExpress.Xpf.Ribbon.v15.2">
+      <SpecificVersion>False</SpecificVersion>
+    <HintPath>..\..\..\Bin\Framework\DevExpress.Xpf.Ribbon.v15.2.dll</HintPath><Private>False</Private></Reference>
+    
+    <Reference Include="ReachFramework">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    <Private>False</Private></Reference>
+    <Reference Include="System"><Private>False</Private></Reference>
+    <Reference Include="System.configuration"><Private>False</Private></Reference>
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    <Private>False</Private></Reference>
+    <Reference Include="System.Drawing"><Private>False</Private></Reference>
+    <Reference Include="System.Printing">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    <Private>False</Private></Reference>
+    <Reference Include="System.Runtime.Serialization"><Private>False</Private></Reference>
+    <Reference Include="System.ServiceModel"><Private>False</Private></Reference>
+    <Reference Include="System.Windows.Forms"><Private>False</Private></Reference>
+    <Reference Include="System.Xaml"><Private>False</Private></Reference>
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    <Private>False</Private></Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    <Private>False</Private></Reference>
+    <Reference Include="System.Data"><Private>False</Private></Reference>
+    <Reference Include="System.Xml"><Private>False</Private></Reference>
+    <Reference Include="UIAutomationProvider">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    <Private>False</Private></Reference>
+    <Reference Include="WindowsBase">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    <Private>False</Private></Reference>
+    <Reference Include="PresentationCore">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    <Private>False</Private></Reference>
+    <Reference Include="PresentationFramework">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    <Private>False</Private></Reference>
+  </ItemGroup>
+  
+  <ItemGroup>
+    <Compile Include="BackstageDocumentPreview.cs" />
+    <Compile Include="Bars\BarItemBehavior.cs" />
+    <Compile Include="Bars\BarManagerCustomization.cs" />
+    <Compile Include="Bars\DisabledCommand.cs" />
+    <Compile Include="Bars\DocumentPreviewRibbonController.cs" />
+    <Compile Include="Bars\PageNumberBehavior.cs" />
+    <Compile Include="Bars\RibbonCustomization.cs" />
+    <Compile Include="BrickCollection\BrickCreator.cs" />
+    <Compile Include="BrickCollection\CheckBoxBrickCreator.cs" />
+    <Compile Include="BrickCollection\EffectiveBooleanExportSettings.cs" />
+    <Compile Include="BrickCollection\EffectiveImageExportSettings.cs" />
+    <Compile Include="BrickCollection\EffectivePageNumberExportSettings.cs" />
+    <Compile Include="BrickCollection\EffectiveProgressBarExportSettings.cs" />
+    <Compile Include="BrickCollection\EffectiveTrackBarExportSettings.cs" />
+    <Compile Include="BrickCollection\ImageBrickCreator.cs" />
+    <Compile Include="BrickCollection\NoneBrickCreator.cs" />
+    <Compile Include="BrickCollection\PageInfoBrickCreator.cs" />
+    <Compile Include="BrickCollection\PanelBrickCreator.cs" />
+    <Compile Include="BrickCollection\ProgressBarBrickCreator.cs" />
+    <Compile Include="BrickCollection\TextBrickCreator.cs" />
+    <Compile Include="BrickCollection\BrickTextDecorations.cs" />
+    <Compile Include="BrickCollection\TrackBarBrickCreator.cs" />
+    <Compile Include="BrickCollection\VisualTreeWalker.cs" />
+    <Compile Include="CustomCursor.cs" />
+    <Compile Include="DataNodes\DataNodeBase.cs" />
+    <Compile Include="DataNodes\GroupVisualNode.cs" />
+    <Compile Include="DataNodes\VisualNode.cs" />
+    <Compile Include="DataNodes\VisualNodeBase.cs" />
+    <Compile Include="DataNodes\VisualRootNode.cs" />
+    <Compile Include="DocumentPreviewBase.cs" />
+    <Compile Include="Exports\ClipboardExportManager.cs" />
+    <Compile Include="Exports\ExportOptionsContainer.cs" />
+    <Compile Include="Links\CompositeLink.cs" />
+    <Compile Include="Native\BackgroundWorkerWrapper.cs" />
+    <Compile Include="Native\BrickResolver.cs" />
+    <Compile Include="Native\Converters.cs" />
+    <Compile Include="Native\DocumentMapSelectionBehavior.cs" />
+    <Compile Include="Native\Lines\LinesGrid.cs" />
+    <Compile Include="Native\PdfSecurityOptionsControl.cs" />
+    <Compile Include="Native\ExportFormatConverter.cs" />
+    <Compile Include="Native\IBackgroundWorkerWrapper.cs" />
+    <Compile Include="Native\IDocumentFactory.cs" />
+    <Compile Include="Native\MarkupExtensions\RibbonItemBinding.cs" />
+    <Compile Include="Native\PaperKindToDisplayNameConverter.cs" />
+    <Compile Include="Native\PrintingDocumentFactory.cs" />
+    <Compile Include="Native\PSLinkDocumentFactory.cs" />
+    <Compile Include="Native\SearchPanelBehavior.cs" />
+    <Compile Include="Native\WatermarkControl.cs" />
+    <Compile Include="Parameters\BooleanValuesHelper.cs" />
+    <Compile Include="Parameters\Extensions.cs" />
+    <Compile Include="Parameters\LookUpValuesUpdateStrategy.cs" />
+    <Compile Include="Parameters\Models\ModelsCreator.cs" />
+    <Compile Include="Parameters\Models\ParameterModel.cs" />
+    <Compile Include="Parameters\Models\ParametersModel.cs" />
+    <Compile Include="Parameters\Models\ValidateEventArgs.cs" />
+    <Compile Include="Parameters\MultiValueBindingProvider.cs" />
+    <Compile Include="Parameters\ParameterDescriptionConverter.cs" />
+    <Compile Include="Parameters\ParameterLine.cs" />
+    <Compile Include="Parameters\ParametersPanel.cs" />
+    <Compile Include="Parameters\ParameterTemplateSelector.cs" />
+    <Compile Include="Parameters\ParameterValueProvider.cs" />
+    <Compile Include="Parameters\StringToGuidConverter.cs" />
+    <Compile Include="Platform\Wpf\Native\BackgroundService.cs" />
+    <Compile Include="Platform\Wpf\Native\PdfSignatureOptionsEditor.cs" />
+    <Compile Include="Platform\Wpf\Native\PdfSignatureEditorWindow.xaml.cs">
+      <DependentUpon>PdfSignatureEditorWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Platform\Wpf\RibbonDocumentPreviewWindow.xaml.cs">
+      <DependentUpon>RibbonDocumentPreviewWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Platform\Wpf\ZoomComboBoxTemplateSelector.cs" />
+    <Compile Include="Platform\Wpf\ZoomSubItemTemplateSelector.cs" />
+    <Compile Include="PreviewControl\Bars\BarItems.cs" />
+    <Compile Include="PreviewControl\Bars\DefaultBarItemNames.cs" />
+    <Compile Include="PreviewControl\CommandProvider.cs" />
+    <Compile Include="PreviewControl\DocumentPresenterControl.cs" />
+    <Compile Include="PreviewControl\DocumentPreviewControl.cs" />
+    <Compile Include="PreviewControl\IDocumentPresenter.cs" />
+    <Compile Include="PreviewControl\Native\Behaviors.cs" />
+    <Compile Include="PreviewControl\Native\BookmarkNode.cs" />
+    <Compile Include="PreviewControl\Native\Converters.cs" />
+    <Compile Include="PreviewControl\Native\DocumentMap.cs" />
+    <Compile Include="PreviewControl\Native\DocumentMapSettings.cs" />
+    <Compile Include="PreviewControl\Native\DocumentNavigationStrategy.cs" />
+    <Compile Include="PreviewControl\Native\DocumentViewModel.cs" />
+    <Compile Include="PreviewControl\Native\Extensions.cs" />
+    <Compile Include="PreviewControl\Native\IDocument.cs" />
+    <Compile Include="PreviewControl\Native\PageControl.cs" />
+    <Compile Include="PreviewControl\Native\PageSelector.cs" />
+    <Compile Include="PreviewControl\Native\PageViewModel.cs" />
+    <Compile Include="PreviewControl\Native\PreviewScrollViewer.cs" />
+    <Compile Include="PreviewControl\Native\PreviewSettingsViewModels.cs" />
+    <Compile Include="PreviewControl\Native\PreviewSettingsDialogTemplateSelector.cs" />
+    <Compile Include="PreviewControl\Native\ProgressViewModel.cs" />
+    <Compile Include="PreviewControl\Native\SearchControlContainer.cs" />
+    <Compile Include="PreviewControl\Native\SearchHelper.cs" />
+    <Compile Include="PreviewControl\Native\SelectionCanvas.cs" />
+    <Compile Include="PreviewControl\Native\SelectionService.cs" />
+    <Compile Include="PreviewControl\Native\UserInputController.cs" />
+    <Compile Include="PreviewControl\PreviewMouseEventArgs.cs" />
+    <Compile Include="PreviewControl\Native\PrintOptionsViewModel.cs" />
+    <Compile Include="PreviewControl\Rendering\NativeRendererImplementation.cs" />
+    <Compile Include="PreviewControl\Rendering\RenderedContent.cs" />
+    <Compile Include="PreviewControl\Rendering\RenderedPage.cs" />
+    <Compile Include="PreviewControl\Rendering\Renderer.cs" />
+    <Compile Include="PreviewControl\Rendering\RenderItem.cs" />
+    <Compile Include="PreviewControl\Rendering\WinFormsCompatibility.cs" />
+    <Compile Include="ReportServicePreviewModel.cs" />
+    <Compile Include="RibbonDocumentPreview.cs">
+    </Compile>
+    <Compile Include="Services\DialogService.cs" />
+    <Compile Include="DocumentViewer.cs" />
+    <Compile Include="DocumentPreview.cs">
+    </Compile>
+    <Compile Include="DocumentPreviewInputController.cs" />
+    <Compile Include="DocumentPreviewModelBase.cs" />
+    <Compile Include="GroupInfo.cs" />
+    <Compile Include="GroupInfoCollection.cs" />
+    <Compile Include="HighlightingPriority.cs" />
+    <Compile Include="Services\HighlightingService.cs" />
+    <Compile Include="Services\IDialogService.cs" />
+    <Compile Include="IDocumentPreviewModel.cs" />
+    <Compile Include="Services\IHighlightingService.cs" />
+    <Compile Include="InputController.cs" />
+    <Compile Include="IPreviewModel.cs" />
+    <Compile Include="LinkPreviewModel.cs" />
+    <Compile Include="Links\CollectionViewLink.cs" />
+    <Compile Include="Links\CreateAreaEventArgs.cs" />
+    <Compile Include="Links\LegacyPrintableComponentLink.cs" />
+    <Compile Include="Links\LinkBase.cs" />
+    <Compile Include="Links\PrintableControlLink.cs" />
+    <Compile Include="Links\SimpleLink.cs" />
+    <Compile Include="Links\SimpleLinkPlainDataDetailNode.cs" />
+    <Compile Include="Links\SimpleLinkPlainDataRootNode.cs" />
+    <Compile Include="BrickCollection\BrickCollector.cs" />
+    <Compile Include="Links\TemplatedLink.cs" />
+    <Compile Include="Localization\PrintingStringIdExtension.cs" />
+    <Compile Include="Native\MarkupExtensions\BarItemBinding.cs" />
+    <Compile Include="Native\MarkupExtensions\BarManagerDocumentPreviewControlBindingExtension.cs" />
+    <Compile Include="Native\MarkupExtensions\BarManagerPreviewControlBindingExtensionBase.cs" />
+    <Compile Include="Native\MarkupExtensions\BindingExtensionBase.cs" />
+    <Compile Include="Native\ContentAlignmentHelper.cs" />
+    <Compile Include="Native\CursorContainer.xaml.cs">
+      <DependentUpon>CursorContainer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Native\DesignerPropertiesService.cs" />
+    <Compile Include="Native\DocumentMapBuilder.cs" />
+    <Compile Include="Native\MarkupExtensions\FindAncestorBindingExtension.cs" />
+    <Compile Include="Native\IDesignerPropertiesService.cs" />
+    <Compile Include="Native\PageDraggingImplementer.cs" />
+    <Compile Include="Native\PageLocationChangedEventArgs.cs" />
+    <Compile Include="Native\PageVisualSizeChangedEventArgs.cs" />
+    <Compile Include="Native\WatermarkLocalizers.cs" />
+    
+    
+    
+    <Compile Include="PreviewCustomCursors.cs" />
+    <Compile Include="PreviewInputController.cs" />
+    
+    <Compile Include="Services\CursorService.cs" />
+    <Compile Include="Native\OnLoadedScheduler.cs" />
+    <Compile Include="Native\BrickInfo.cs" />
+    <Compile Include="Native\BrickPageVisualizer.cs" />
+    <Compile Include="BrickCollection\BrickStyleKey.cs" />
+    <Compile Include="Native\DocumentPreviewDockLayoutManager.cs" />
+    <Compile Include="Native\GdiColorToMediaColorConverter.cs" />
+    <Compile Include="Native\GoToPageEditBehavior.cs" />
+    <Compile Include="InputShortcut.cs" />
+    <Compile Include="Native\LocalizedEnumWrapper.cs" />
+    <Compile Include="Native\PaginatorBase.cs" />
+    <Compile Include="Native\PrintingSearchPanel.cs" />
+    <Compile Include="Native\SearchPanelViewModel.cs" />
+    <Compile Include="Native\WatermarkEditor.xaml.cs">
+      <DependentUpon>WatermarkEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Native\WatermarkEditorViewModel.cs" />
+    <Compile Include="Native\XamlDocumentPaginator.cs" />
+    <Compile Include="Native\XamlReaderHelper.cs" />
+    <Compile Include="FaultEventArgs.cs" />
+    <Compile Include="Native\DocumentPrinterCompletedEventArgs.cs" />
+    <Compile Include="Native\OverlayWindow.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ParametersMergingErrorEventArgs.cs" />
+    <Compile Include="Native\ExportOptionsConfiguratorService.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Native\IExportOptionsConfiguratorService.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LegacyLinkPreviewModel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PreviewModelBase.cs" />
+    <Compile Include="PrintingResourceImageExtension.cs" />
+    <Compile Include="Services\ICursorService.cs" />
+    <Compile Include="Services\UIPrintingServices.cs" />
+    <Compile Include="Services\IWatermarkService.cs" />
+    <Compile Include="Services\WatermarkService.cs" />
+    <Compile Include="Services\WatermarkServiceEventArgs.cs" />
+    <Compile Include="SimpleFaultEventArgs.cs" />
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <Compile Include="Platform\Wpf\Native\LinkPreviewHelper.cs" />
+    <Compile Include="Platform\Wpf\Native\PreviewHelper.cs" />
+    <Compile Include="Platform\Wpf\Native\ReportPreviewHelper.cs" />
+    <Compile Include="PreviewClickEventArgs.cs" />
+    <Compile Include="Services\IScaleService.cs" />
+    <Compile Include="Native\PageBorderControl.cs" />
+    <Compile Include="Native\DispatcherPageBuildStrategy.cs" />
+    <Compile Include="Native\DockLayoutManagerBehavior.cs" />
+    <Compile Include="Native\DrawingConverter.cs" />
+    <Compile Include="Native\DXPrintingDocument.cs" />
+    <Compile Include="BrickCollection\EffectiveExportSettings.cs" />
+    <Compile Include="BrickCollection\EffectiveTextExportSettings.cs" />
+    <Compile Include="Native\ExpandRootNodeConverter.cs" />
+    <Compile Include="Native\FontWeightHelper.cs" />
+    <Compile Include="Native\GraphicsUnitConverter2.cs" />
+    <Compile Include="BrickCollection\IBrickCreator.cs" />
+    <Compile Include="Native\NullScrollInfo.cs" />
+    <Compile Include="Native\PageSetupViewModel.cs" />
+    <Compile Include="Native\ScaleWindowViewModel.cs" />
+    <Compile Include="Native\ScaleModeToBooleanConverter.cs" />
+    <Compile Include="Native\ScaleModeToVisibilityConverter.cs" />
+    <Compile Include="Services\ScaleService.cs" />
+    <Compile Include="Native\ScaleWindow.xaml.cs">
+      <DependentUpon>ScaleWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Native\ScrollInfo.cs" />
+    <Compile Include="Native\ScrollInfoBase.cs" />
+    <Compile Include="Native\SimpleScrollInfo.cs" />
+    <Compile Include="Native\TreeViewBehavior.cs" />
+    <Compile Include="Native\Lines\BooleanLine.cs" />
+    <Compile Include="Native\Lines\ButtonEditPropertyLine.cs" />
+    <Compile Include="Native\Lines\ComboBoxItemWrapper.cs" />
+    <Compile Include="Native\Lines\ComboBoxPropertyLine.cs" />
+    <Compile Include="Native\Lines\CustomEditorPropertyLine.cs" />
+    <Compile Include="Native\Lines\DateTimePropertyLine.cs" />
+    <Compile Include="Native\Lines\DesignLine.cs" />
+    <Compile Include="Native\Lines\EditorPropertyLine.cs" />
+    <Compile Include="Native\Lines\EditorPropertyLineBase.cs" />
+    <Compile Include="Native\Lines\EmptyLine.cs" />
+    <Compile Include="Native\Lines\LineBase.cs" />
+    <Compile Include="Native\Lines\LineFactory.cs" />
+    <Compile Include="Native\Lines\LinesContainer.cs" />
+    <Compile Include="Native\Lines\LinesWindow.xaml.cs">
+      <DependentUpon>LinesWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Native\Lines\NumericPropertyLine.cs" />
+    <Compile Include="Native\Lines\PropertyLine.cs" />
+    <Compile Include="Native\NumberToVisibilityConverter.cs" />
+    <Compile Include="Native\ObjectToCollectionConverter.cs" />
+    <Compile Include="Native\PageNumberKindConverter.cs" />
+    <Compile Include="Native\PagesCache.cs" />
+    <Compile Include="Native\PageSetupWindow.xaml.cs">
+      <DependentUpon>PageSetupWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Native\PageVisualizer.cs" />
+    <Compile Include="Native\PageWithRedCross.xaml.cs">
+      <DependentUpon>PageWithRedCross.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Native\PreviewSurface.cs" />
+    <Compile Include="Native\RowViewBuilder.cs" />
+    <Compile Include="Native\ScrollablePageView.cs" />
+    <Compile Include="Native\SharedSizeGroup.cs" />
+    <Compile Include="Native\DocumentBandInitializer.cs" />
+    <Compile Include="Native\VisualDataNodeBandManager.cs" />
+    <Compile Include="Platform\Wpf\Native\MessageBoxHelper.cs" />
+    <Compile Include="Native\ServiceContainerExtensions.cs" />
+    <Compile Include="PrintingStringIdConverter.cs" />
+    <Compile Include="Services\NonInteractiveDialogService.cs" />
+    <Compile Include="Bars\AddDocumentPreviewToolBarAction.cs" />
+    <Compile Include="Bars\DocumentPreviewBarManagerController.cs" />
+    <Compile Include="Platform\Wpf\DocumentPreviewWindow.xaml.cs">
+      <DependentUpon>DocumentPreviewWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Platform\Wpf\Exports\XpsExporter.cs" />
+    <Compile Include="Platform\Wpf\Exports\XpsExportService.cs" />
+    <Compile Include="Platform\Wpf\Native\PageRangeCustomPaginator.cs" />
+    <Compile Include="Platform\Wpf\XtraReportPreviewModel.cs" />
+    <Compile Include="Platform\Wpf\Exports\EmailSender.cs" />
+    <Compile Include="Platform\Wpf\GlobalSuppressions.cs" />
+    <Compile Include="Platform\Wpf\Links\LinkBase_Helpers.cs" />
+    <Compile Include="Platform\Wpf\Native\DocumentPrinter.cs" />
+    <Compile Include="Native\DXTypeEditorHelper.cs" />
+    <Compile Include="Platform\Wpf\Native\PageNumberConverter.cs" />
+    <Compile Include="Localization\PrintingLocalizer.cs" />
+    <Compile Include="Localization\PrintingResXLocalizer.cs" />
+    <Compile Include="Localization\PrintingStringId.cs" />
+    <Compile Include="Platform\Wpf\Native\GdiColorToBrushConverter.cs" />
+    <Compile Include="Native\PdfPasswordSecurityOptionsEditor.cs" />
+    <Compile Include="Native\DelegatePaginator.cs" />
+    <Compile Include="Platform\Wpf\Reports\ReportPrintToolWpf.cs" />
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <Compile Include="ThemeKeys\PrintingThemeKeys.cs" />
+    <Compile Include="Themes\Generic\EditorTemplates.xaml.cs">
+      <DependentUpon>EditorTemplates.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ZoomFitModeItem.cs" />
+    <Compile Include="PrintingSystem.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PrintingSystemPreviewModel.cs" />
+    <Compile Include="Services\ExportSendService.cs" />
+    <Compile Include="Services\IExportSendService.cs" />
+    <Compile Include="Services\IPageSettingsConfiguratorService.cs" />
+    <Compile Include="Services\IPrintService.cs" />
+    <Compile Include="Services\PageSettingsConfiguratorService.cs" />
+    <Compile Include="Services\PrintService.cs" />
+    
+    
+    
+    
+    
+    
+    <Compile Include="ZoomItemBase.cs" />
+    <Compile Include="Platform\Wpf\ZoomSeparatorItem.cs" />
+    <Compile Include="ZoomValueItem.cs" />
+    <Compile Include="Platform\Wpf\PrintHelper.cs" />
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <Compile Include="Native\ExportFileHelper.cs" />
+    <Compile Include="Native\LobControl.cs" />
+    <Compile Include="Native\PdfPasswordSecurityOptionsView.xaml.cs">
+      <DependentUpon>PdfPasswordSecurityOptionsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ResFinder.cs" />
+    
+    
+    
+    
+    
+    
+    <Compile Include="Native\RepeatPasswordWindow.xaml.cs">
+      <DependentUpon>RepeatPasswordWindow.xaml</DependentUpon>
+    </Compile>
+    <AppDesigner Include="Properties\" />
+    
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Native\CursorContainer.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Native\Lines\LinesWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Native\PageSetupWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Native\PageWithRedCross.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Native\ScaleWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Native\WatermarkEditor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Platform\Wpf\DocumentPreviewWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Platform\Wpf\Native\PdfSignatureEditorWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Platform\Wpf\RibbonDocumentPreviewWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    
+    
+    
+    
+    
+    
+    <Page Include="Themes\DeepBlue.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\DeepBlue\BackstageDocumentPreview.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\DeepBlue\DocumentPreviewControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\DeepBlue\EditorStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\DeepBlue\PageBorderControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Generic\Constants.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Generic\DialogsTemplates.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Generic\DocumentPreview.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Generic\DocumentPreviewBarManagerController.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\DeepBlue\PreviewSurface.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Native\PdfPasswordSecurityOptionsView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Native\RepeatPasswordWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Generic\DocumentPreviewControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Generic\DocumentViewer.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Generic\DocumentPreviewRibbonController.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Generic\EditorTemplates.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Generic\LobControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Generic\OverlayWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Generic\ParametersPanel.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Generic\PdfSecurityOptionsControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Generic\RibbonDocumentPreview.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Generic\ScrollablePageView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Generic\WatermarkControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    
+  </ItemGroup>
+  <ItemGroup>
+    
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\DXPrinting.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="LocalizationRes.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LocalizationRes.ru.resx" />
+    <EmbeddedResource Include="LocalizationRes.ja.resx" />
+    <EmbeddedResource Include="LocalizationRes.es.resx" />
+    <EmbeddedResource Include="LocalizationRes.de.resx" />
+    
+    
+  </ItemGroup>
+  <ItemGroup>
+    
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\BarItems\DocumentMap_16x16.png" />
+    <Resource Include="Images\BarItems\DocumentMap_32x32.png" />
+    <Resource Include="Images\BarItems\ExportToCSV_16x16.png" />
+    <Resource Include="Images\BarItems\ExportToCSV_32x32.png" />
+    <Resource Include="Images\BarItems\ExportToHTML_16x16.png" />
+    <Resource Include="Images\BarItems\ExportToHTML_32x32.png" />
+    <Resource Include="Images\BarItems\ExportToImage_16x16.png" />
+    <Resource Include="Images\BarItems\ExportToImage_32x32.png" />
+    <Resource Include="Images\BarItems\ExportToMHT_16x16.png" />
+    <Resource Include="Images\BarItems\ExportToMHT_32x32.png" />
+    <Resource Include="Images\BarItems\ExportToPDF_16x16.png" />
+    <Resource Include="Images\BarItems\ExportToPDF_32x32.png" />
+    <Resource Include="Images\BarItems\ExportToRTF_16x16.png" />
+    <Resource Include="Images\BarItems\ExportToRTF_32x32.png" />
+    <Resource Include="Images\BarItems\ExportToText_16x16.png" />
+    <Resource Include="Images\BarItems\ExportToText_32x32.png" />
+    <Resource Include="Images\BarItems\ExportToXLSX_16x16.png" />
+    <Resource Include="Images\BarItems\ExportToXLSX_32x32.png" />
+    <Resource Include="Images\BarItems\ExportToXLS_16x16.png" />
+    <Resource Include="Images\BarItems\ExportToXLS_32x32.png" />
+    <Resource Include="Images\BarItems\ExportToXPS_16x16.png" />
+    <Resource Include="Images\BarItems\ExportToXPS_32x32.png" />
+    <Resource Include="Images\BarItems\Export_16x16.png" />
+    <Resource Include="Images\BarItems\Export_32x32.png" />
+    <Resource Include="Images\BarItems\Find_16x16.png" />
+    <Resource Include="Images\BarItems\Find_32x32.png" />
+    <Resource Include="Images\BarItems\First_16x16.png" />
+    <Resource Include="Images\BarItems\First_32x32.png" />
+    <Resource Include="Images\BarItems\FitToPageHeight_16x16.png" />
+    <Resource Include="Images\BarItems\FitToPageHeight_32x32.png" />
+    <Resource Include="Images\BarItems\FitToPageWidth_16x16.png" />
+    <Resource Include="Images\BarItems\FitToPageWidth_32x32.png" />
+    <Resource Include="Images\BarItems\Last_16x16.png" />
+    <Resource Include="Images\BarItems\Last_32x32.png" />
+    <Resource Include="Images\BarItems\Mail_16x16.png" />
+    <Resource Include="Images\BarItems\Mail_32x32.png" />
+    <Resource Include="Images\BarItems\Next_16x16.png" />
+    <Resource Include="Images\BarItems\Next_32x32.png" />
+    <Resource Include="Images\BarItems\Open_16x16.png" />
+    <Resource Include="Images\BarItems\Open_32x32.png" />
+    <Resource Include="Images\BarItems\PageSetup_16x16.png" />
+    <Resource Include="Images\BarItems\PageSetup_32x32.png" />
+    <Resource Include="Images\BarItems\Parameters_16x16.png" />
+    <Resource Include="Images\BarItems\Parameters_32x32.png" />
+    <Resource Include="Images\BarItems\Prev_16x16.png" />
+    <Resource Include="Images\BarItems\Prev_32x32.png" />
+    <Resource Include="Images\BarItems\PrintDialog_16x16.png" />
+    <Resource Include="Images\BarItems\PrintDialog_32x32.png" />
+    <Resource Include="Images\BarItems\Print_16x16.png" />
+    <Resource Include="Images\BarItems\Print_32x32.png" />
+    <Resource Include="Images\BarItems\Save_16x16.png" />
+    <Resource Include="Images\BarItems\Save_32x32.png" />
+    <Resource Include="Images\BarItems\Scaling_16x16.png" />
+    <Resource Include="Images\BarItems\Scaling_32x32.png" />
+    <Resource Include="Images\BarItems\Stop_16x16.png" />
+    <Resource Include="Images\BarItems\TwoPages_16x16.png" />
+    <Resource Include="Images\BarItems\TwoPages_32x32.png" />
+    <Resource Include="Images\BarItems\ZoomIn_16x16.png" />
+    <Resource Include="Images\BarItems\ZoomIn_32x32.png" />
+    <Resource Include="Images\BarItems\ZoomOut_16x16.png" />
+    <Resource Include="Images\BarItems\ZoomOut_32x32.png" />
+    <Resource Include="Images\BarItems\Zoom_16x16.png" />
+    <Resource Include="Images\BarItems\Copy_16x16.png" />
+    <Resource Include="Images\BarItems\Copy_32x32.png" />
+    <Resource Include="Images\BarItems\HandTool_16x16.png" />
+    <Resource Include="Images\BarItems\HandTool_32x32.png" />
+    <Resource Include="Images\BarItems\SelectTool_16x16.png" />
+    <Resource Include="Images\BarItems\SelectTool_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Cursors\CursorHand.png" />
+    <Resource Include="Images\Cursors\CursorHandDrag.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\BarItems\Watermark_16x16.png" />
+    <Resource Include="Images\BarItems\Watermark_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    
+    
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\BarItems\Zoom_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\BackstageDocumentPreview\Printers\DefaultPrinter_32x32.png" />
+    <Resource Include="Images\BackstageDocumentPreview\Printers\Fax_32x32.png" />
+    <Resource Include="Images\BackstageDocumentPreview\Printers\Printer_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\BackstageDocumentPreview\icon-export-40.png" />
+    <Resource Include="Images\BackstageDocumentPreview\icon-page-next-16.png" />
+    <Resource Include="Images\BackstageDocumentPreview\icon-page-prev-16.png" />
+    <Resource Include="Images\BackstageDocumentPreview\icon-pages-16.png" />
+    <Resource Include="Images\BackstageDocumentPreview\icon-print-42x40.png" />
+    <Resource Include="Images\BackstageDocumentPreview\icon-scale-16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Cursors\CursorCross.cur" />
+    <Resource Include="Images\Cursors\CursorHand.cur" />
+    <Resource Include="Images\Cursors\CursorHandDrag.cur" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Images\Printers\DefaultFaxNetwork_16x16.png" />
+    <Resource Include="Images\Printers\DefaultFaxNetwork_32x32.png" />
+    <Resource Include="Images\Printers\DefaultFax_16x16.png" />
+    <Resource Include="Images\Printers\DefaultFax_32x32.png" />
+    <Resource Include="Images\Printers\DefaultPrinterNetwork_16x16.png" />
+    <Resource Include="Images\Printers\DefaultPrinterNetwork_32x32.png" />
+    <Resource Include="Images\Printers\DefaultPrinter_16x16.png" />
+    <Resource Include="Images\Printers\DefaultPrinter_32x32.png" />
+    <Resource Include="Images\Printers\FaxNetwork_16x16.png" />
+    <Resource Include="Images\Printers\FaxNetwork_32x32.png" />
+    <Resource Include="Images\Printers\Fax_16x16.png" />
+    <Resource Include="Images\Printers\Fax_32x32.png" />
+    <Resource Include="Images\Printers\PrinterNetwork_16x16.png" />
+    <Resource Include="Images\Printers\PrinterNetwork_32x32.png" />
+    <Resource Include="Images\Printers\Printer_16x16.png" />
+    <Resource Include="Images\Printers\Printer_32x32.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <PropertyGroup>
+    
+  </PropertyGroup>
+  <PropertyGroup>
+    
+  </PropertyGroup>
+<ItemGroup><EmbeddedResource Include="Descriptions.resx" /></ItemGroup><ItemGroup><Compile Include="Descriptions.cs" /></ItemGroup></Project>

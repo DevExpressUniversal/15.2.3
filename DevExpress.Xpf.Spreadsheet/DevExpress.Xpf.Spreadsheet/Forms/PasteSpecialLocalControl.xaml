@@ -1,0 +1,54 @@
+﻿<UserControl x:Class="DevExpress.Xpf.Spreadsheet.Forms.PasteSpecialLocalControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+             xmlns:dxspsi="clr-namespace:DevExpress.Xpf.Spreadsheet.Internal"
+             xmlns:dxsps="clr-namespace:DevExpress.Xpf.Spreadsheet" 
+             mc:Ignorable="d" Width="430"
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <dxspsi:BoolToIntConverter x:Key="BoolToIntConverter"/>
+        <dxsps:SpreadsheetControlStringIdConverter x:Key="stringIdConverter" />
+    </UserControl.Resources>
+    <Grid Margin="12,10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Label Content="Paste" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            <Separator Grid.Column="1" Margin="10,0,0,0" VerticalAlignment="Center"/>
+        </Grid>
+        
+        <Grid Grid.Row="1" Margin="12,0,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="5*"/>
+                <ColumnDefinition Width="5*"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Orientation="Vertical">
+                <RadioButton Margin="0,12" GroupName="group" Content="{Binding PasteTypeNames[0]}" IsChecked="{Binding PasteType, Converter={StaticResource BoolToIntConverter}, ConverterParameter=0, Mode=TwoWay}"/>
+                <RadioButton Margin="0,0,0,12" GroupName="group" Content="{Binding PasteTypeNames[1]}" IsChecked="{Binding PasteType, Converter={StaticResource BoolToIntConverter}, ConverterParameter=1, Mode=TwoWay}"/>
+                <RadioButton Margin="0,0,0,12" GroupName="group" Content="{Binding PasteTypeNames[2]}" IsChecked="{Binding PasteType, Converter={StaticResource BoolToIntConverter}, ConverterParameter=2, Mode=TwoWay}"/>
+                <RadioButton Margin="0,0,0,12" GroupName="group" Content="{Binding PasteTypeNames[3]}" IsChecked="{Binding PasteType, Converter={StaticResource BoolToIntConverter}, ConverterParameter=3, Mode=TwoWay}"/>
+                <RadioButton Margin="0,0,0,12" GroupName="group" Content="{Binding PasteTypeNames[4]}" IsChecked="{Binding PasteType, Converter={StaticResource BoolToIntConverter}, ConverterParameter=4, Mode=TwoWay}"/>
+            </StackPanel>
+            <StackPanel Grid.Column="1" Orientation="Vertical">
+                <RadioButton Margin="0,12" GroupName="group" Content="{Binding PasteTypeNames[5]}" IsChecked="{Binding PasteType, Converter={StaticResource BoolToIntConverter}, ConverterParameter=5, Mode=TwoWay}"/>
+                <RadioButton Margin="0,0,0,12" GroupName="group" Content="{Binding PasteTypeNames[6]}" IsChecked="{Binding PasteType, Converter={StaticResource BoolToIntConverter}, ConverterParameter=6, Mode=TwoWay}"/>
+                <RadioButton Margin="0,0,0,12" GroupName="group" Content="{Binding PasteTypeNames[7]}" IsChecked="{Binding PasteType, Converter={StaticResource BoolToIntConverter}, ConverterParameter=7, Mode=TwoWay}"/>
+                <RadioButton Margin="0,0,0,12" GroupName="group" Content="{Binding PasteTypeNames[8]}" IsChecked="{Binding PasteType, Converter={StaticResource BoolToIntConverter}, ConverterParameter=8, Mode=TwoWay}"/>
+            </StackPanel>
+        </Grid>
+        <Separator Grid.Row="2" VerticalAlignment="Center"/>
+        <dxe:CheckEdit Grid.Row="3" Margin="12,0,0,0" Content="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_PasteSpecialFormSkipBlanks, Converter={StaticResource stringIdConverter}}" IsChecked="{Binding SkipBlanks}"/>
+    </Grid>
+</UserControl>

@@ -1,0 +1,643 @@
+﻿<ResourceDictionary mc:Ignorable="cs" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:cs="colorscheme_ignorable_uri">
+    <ResourceDictionary.MergedDictionaries>
+        <dxdst:ResourceDictionaryEx Source="/DevExpress.Xpf.Themes.Office2010Silver.v15.2;component/DevExpress.Xpf.Core/DevExpress.Xpf.Core/Themes/StandardControls/Brushes.xaml" />
+        <dxdst:ResourceDictionaryEx Source="/DevExpress.Xpf.Themes.Office2010Silver.v15.2;component/DevExpress.Xpf.Core/DevExpress.Xpf.Core/Themes/StandardControls/SharedResources.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+    <Style x:Key="SliderRepeatButtonStyle" TargetType="{x:Type RepeatButton}">
+        <Setter Property="OverridesDefaultStyle" Value="True" />
+        <Setter Property="IsTabStop" Value="False" />
+        <Setter Property="Focusable" Value="False" />
+        <Setter Property="Background" Value="Transparent" cs:Name="Setter_0001" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type RepeatButton}">
+                    <Border Background="{TemplateBinding Background}" />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="SliderThumbStyle" TargetType="{x:Type Thumb}">
+        <Setter Property="Foreground" Value="{x:Null}" />
+        <Setter Property="Background" Value="{x:Null}" />
+        <Setter Property="MinHeight" Value="11" />
+        <Setter Property="MinWidth" Value="11" />
+        <Setter Property="MaxHeight" Value="21" />
+        <Setter Property="MaxWidth" Value="21" />
+        <Setter Property="OverridesDefaultStyle" Value="True" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Thumb}">
+                    <Grid>
+                        <Grid x:Name="DefaultState">
+                            <Border Background="{StaticResource SliderThumb.DefaultState.Border1}" Padding="1">
+                                <Border Background="{StaticResource SliderThumb.DefaultState.Border2}" />
+                            </Border>
+                        </Grid>
+                        <Grid x:Name="HoverState" Opacity="0">
+                            <Border Background="{StaticResource SliderThumb.HoverState.Border1}" Padding="1">
+                                <Border Background="{StaticResource SliderThumb.HoverState.Border2}" Padding="1">
+                                    <Border Background="{StaticResource SliderThumb.HoverState.Border3}" />
+                                </Border>
+                            </Border>
+                        </Grid>
+                        <Grid x:Name="PressedState" Opacity="0">
+                            <Border Background="{StaticResource SliderThumb.PressedState.Border1}" Padding="1">
+                                <Border Background="{StaticResource SliderThumb.PressedState.Border2}" Padding="1">
+                                    <Border Background="{StaticResource SliderThumb.PressedState.Border3}" />
+                                </Border>
+                            </Border>
+                        </Grid>
+                        <Grid x:Name="DisabledState" Opacity="0">
+                            <Border Background="{StaticResource SliderThumb.DisabledState.Border1}" Padding="1">
+                                <Border Background="{StaticResource SliderThumb.DisabledState.Border2}" />
+                            </Border>
+                        </Grid>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="DefaultState" Property="Opacity" Value="0" />
+                            <Setter TargetName="HoverState" Property="Opacity" Value="1" />
+                            <Setter TargetName="PressedState" Property="Opacity" Value="0" />
+                        </Trigger>
+                        <Trigger Property="IsDragging" Value="True">
+                            <Setter TargetName="DefaultState" Property="Opacity" Value="0" />
+                            <Setter TargetName="HoverState" Property="Opacity" Value="0" />
+                            <Setter TargetName="PressedState" Property="Opacity" Value="1" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="DefaultState" Property="Opacity" Value="0" />
+                            <Setter TargetName="HoverState" Property="Opacity" Value="0" />
+                            <Setter TargetName="PressedState" Property="Opacity" Value="0" />
+                            <Setter TargetName="DisabledState" Property="Opacity" Value="1" />
+                            <Setter Property="Foreground" Value="{StaticResource Text.DisabledState.Foreground}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="HorizontalSliderUpThumbStyle" TargetType="{x:Type Thumb}">
+        <Setter Property="Background" Value="{x:Null}" />
+        <Setter Property="Foreground" Value="{x:Null}" />
+        <Setter Property="OverridesDefaultStyle" Value="True" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Thumb}">
+                    <Grid x:Name="Root" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
+                        <Grid x:Name="DefaultState">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Grid>
+                                <Path Stretch="Fill" Data="F1 M 146,357L 156,357L 151,352L 146,357 Z">
+                                    <Path.Fill>
+                                        <SolidColorBrush Color="{StaticResource SliderThumb.DefaultState.Glyph.BorderBrush}" />
+                                    </Path.Fill>
+                                </Path>
+                                <Path Stretch="Fill" Data="F1 M 147,357L 155,357L 151,353L 147,357 Z" Margin="1,1,1,0">
+                                    <Path.Fill>
+                                        <SolidColorBrush Color="{StaticResource SliderThumb.DefaultState.Glyph.Background.0}" />
+                                    </Path.Fill>
+                                </Path>
+                            </Grid>
+                            <Border Background="{StaticResource SliderThumb.DefaultState.Border1}" Padding="1,0,1,1" Grid.Row="1">
+                                <Border Background="{StaticResource SliderThumb.DefaultState.Border2}" />
+                            </Border>
+                        </Grid>
+                        <Grid x:Name="HoverState" Opacity="0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Grid>
+                                <Path Stretch="Fill" Data="F1 M 146,357L 156,357L 151,352L 146,357 Z">
+                                    <Path.Fill>
+                                        <SolidColorBrush Color="{StaticResource SliderThumb.HoverState.Glyph.BorderBrush}" />
+                                    </Path.Fill>
+                                </Path>
+                                <Path Stretch="Fill" Data="F1 M 147,357L 155,357L 151,353L 147,357 Z" Margin="1,1,1,0">
+                                    <Path.Fill>
+                                        <SolidColorBrush Color="{StaticResource SliderThumb.HoverState.Glyph.Background1.0}" />
+                                    </Path.Fill>
+                                </Path>
+                                <Path Stretch="Fill" Data="F1 M 148,357L 154,357L 151,354L 148,357 Z" Margin="2,2,2,0">
+                                    <Path.Fill>
+                                        <SolidColorBrush Color="{StaticResource SliderThumb.HoverState.Glyph.Background2.0}" />
+                                    </Path.Fill>
+                                </Path>
+                            </Grid>
+                            <Border Background="{StaticResource SliderThumb.HoverState.Border1}" Padding="1,0,1,1" Grid.Row="1">
+                                <Border Background="{StaticResource SliderThumb.HoverState.Border2}" Padding="1,0,1,1">
+                                    <Border Background="{StaticResource SliderThumb.HoverState.Border3}" />
+                                </Border>
+                            </Border>
+                        </Grid>
+                        <Grid x:Name="PressedState" Opacity="0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Grid>
+                                <Path Stretch="Fill" Data="F1 M 146,357L 156,357L 151,352L 146,357 Z">
+                                    <Path.Fill>
+                                        <SolidColorBrush Color="{StaticResource SliderThumb.PressedState.Glyph.BorderBrush.0}" />
+                                    </Path.Fill>
+                                </Path>
+                                <Path Stretch="Fill" Data="F1 M 147,357L 155,357L 151,353L 147,357 Z" Margin="1,1,1,0">
+                                    <Path.Fill>
+                                        <SolidColorBrush Color="{StaticResource SliderThumb.PressedState.Glyph.Background1.0}" />
+                                    </Path.Fill>
+                                </Path>
+                                <Path Stretch="Fill" Data="F1 M 148,357L 154,357L 151,354L 148,357 Z" Margin="2,2,2,0">
+                                    <Path.Fill>
+                                        <SolidColorBrush Color="{StaticResource SliderThumb.PressedState.Glyph.Background2.0}" />
+                                    </Path.Fill>
+                                </Path>
+                            </Grid>
+                            <Border Background="{StaticResource SliderThumb.PressedState.Border1}" Padding="1,0,1,1" Grid.Row="1">
+                                <Border Background="{StaticResource SliderThumb.PressedState.Border2}" Padding="1,0,1,1">
+                                    <Border Background="{StaticResource SliderThumb.PressedState.Border3}" />
+                                </Border>
+                            </Border>
+                        </Grid>
+                        <Grid x:Name="DisabledState" Opacity="0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Grid>
+                                <Path Stretch="Fill" Fill="{StaticResource SliderThumb.DisabledState.Border1}" Data="F1 M 146,357L 156,357L 151,352L 146,357 Z" />
+                                <Path Stretch="Fill" Fill="{StaticResource SliderThumb.DisabledState.Border2}" Data="F1 M 147,357L 155,357L 151,353L 147,357 Z" Margin="1,1,1,0" />
+                            </Grid>
+                            <Border Background="{StaticResource SliderThumb.DisabledState.Border1}" Padding="1,0,1,1" Grid.Row="1">
+                                <Border Background="{StaticResource SliderThumb.DisabledState.Border2}" />
+                            </Border>
+                        </Grid>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="DefaultState" Property="Opacity" Value="0" />
+                            <Setter TargetName="HoverState" Property="Opacity" Value="1" />
+                            <Setter TargetName="PressedState" Property="Opacity" Value="0" />
+                        </Trigger>
+                        <Trigger Property="IsDragging" Value="True">
+                            <Setter TargetName="DefaultState" Property="Opacity" Value="0" />
+                            <Setter TargetName="HoverState" Property="Opacity" Value="0" />
+                            <Setter TargetName="PressedState" Property="Opacity" Value="1" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="DefaultState" Property="Opacity" Value="0" />
+                            <Setter TargetName="HoverState" Property="Opacity" Value="0" />
+                            <Setter TargetName="PressedState" Property="Opacity" Value="0" />
+                            <Setter TargetName="DisabledState" Property="Opacity" Value="1" />
+                            <Setter Property="Foreground" Value="{StaticResource Text.DisabledState.Foreground}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="HorizontalSliderDownThumbStyle" TargetType="{x:Type Thumb}">
+        <Setter Property="Background" Value="{x:Null}" />
+        <Setter Property="Foreground" Value="{x:Null}" />
+        <Setter Property="OverridesDefaultStyle" Value="True" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Thumb}">
+                    <Grid x:Name="Root" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
+                        <Grid x:Name="DefaultState">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Grid Grid.Row="1">
+                                <Path Stretch="Fill" Data="F1 M 156,345L 166,345L 161,350L 156,345 Z">
+                                    <Path.Fill>
+                                        <SolidColorBrush Color="{StaticResource SliderThumb.DefaultState.Glyph.BorderBrush}" />
+                                    </Path.Fill>
+                                </Path>
+                                <Path Stretch="Fill" Data="F1 M 157,345L 165,345L 161,349L 157,345 Z" Margin="1,0,1,1">
+                                    <Path.Fill>
+                                        <SolidColorBrush Color="{StaticResource SliderThumb.DefaultState.Glyph.Background.1}" />
+                                    </Path.Fill>
+                                </Path>
+                            </Grid>
+                            <Border Background="{StaticResource SliderThumb.DefaultState.Border1}" Padding="1,1,1,0">
+                                <Border Background="{StaticResource SliderThumb.DefaultState.Border2}" Padding="1,1,1,0" />
+                            </Border>
+                        </Grid>
+                        <Grid x:Name="HoverState" Opacity="0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Grid Grid.Row="1">
+                                <Path Stretch="Fill" Data="F1 M 156,345L 166,345L 161,350L 156,345 Z">
+                                    <Path.Fill>
+                                        <SolidColorBrush Color="{StaticResource SliderThumb.HoverState.Glyph.BorderBrush}" />
+                                    </Path.Fill>
+                                </Path>
+                                <Path Stretch="Fill" Data="F1 M 157,345L 165,345L 161,349L 157,345 Z" Margin="1,0,1,1">
+                                    <Path.Fill>
+                                        <SolidColorBrush Color="{StaticResource SliderThumb.HoverState.Glyph.Background1.1}" />
+                                    </Path.Fill>
+                                </Path>
+                                <Path Stretch="Fill" Data="F1 M 158,345L 164,345L 161,348L 158,345 Z" Margin="2,0,2,2">
+                                    <Path.Fill>
+                                        <SolidColorBrush Color="{StaticResource SliderThumb.HoverState.Glyph.Background2.1}" />
+                                    </Path.Fill>
+                                </Path>
+                            </Grid>
+                            <Border Background="{StaticResource SliderThumb.HoverState.Border1}" Padding="1,1,1,0">
+                                <Border Background="{StaticResource SliderThumb.HoverState.Border2}" Padding="1,1,1,0">
+                                    <Border Background="{StaticResource SliderThumb.HoverState.Border3}" />
+                                </Border>
+                            </Border>
+                        </Grid>
+                        <Grid x:Name="PressedState" Opacity="0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Grid Grid.Row="1">
+                                <Path Stretch="Fill" Data="F1 M 156,345L 166,345L 161,350L 156,345 Z">
+                                    <Path.Fill>
+                                        <SolidColorBrush Color="{StaticResource SliderThumb.PressedState.Glyph.BorderBrush.1}" />
+                                    </Path.Fill>
+                                </Path>
+                                <Path Stretch="Fill" Data="F1 M 157,345L 165,345L 161,349L 157,345 Z" Margin="1,0,1,1">
+                                    <Path.Fill>
+                                        <SolidColorBrush Color="{StaticResource SliderThumb.PressedState.Glyph.Background1.1}" />
+                                    </Path.Fill>
+                                </Path>
+                                <Path Stretch="Fill" Data="F1 M 158,345L 164,345L 161,348L 158,345 Z" Margin="2,0,2,2">
+                                    <Path.Fill>
+                                        <SolidColorBrush Color="{StaticResource SliderThumb.PressedState.Glyph.Background2.1}" />
+                                    </Path.Fill>
+                                </Path>
+                            </Grid>
+                            <Border Background="{StaticResource SliderThumb.PressedState.Border1}" Padding="1,1,1,0">
+                                <Border Background="{StaticResource SliderThumb.PressedState.Border2}" Padding="1,1,1,0">
+                                    <Border Background="{StaticResource SliderThumb.PressedState.Border3}" />
+                                </Border>
+                            </Border>
+                        </Grid>
+                        <Grid x:Name="DisabledState" Opacity="0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Grid Grid.Row="1">
+                                <Path Stretch="Fill" Fill="{StaticResource SliderThumb.DisabledState.Border1}" Data="F1 M 156,345L 166,345L 161,350L 156,345 Z" />
+                                <Path Stretch="Fill" Fill="{StaticResource SliderThumb.DisabledState.Border2}" Data="F1 M 157,345L 165,345L 161,349L 157,345 Z" Margin="1,1,1,0" />
+                            </Grid>
+                            <Border Background="{StaticResource SliderThumb.DisabledState.Border1}" Padding="1,1,1,0">
+                                <Border Background="{StaticResource SliderThumb.DisabledState.Border2}" Padding="1,1,1,0" />
+                            </Border>
+                        </Grid>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="DefaultState" Property="Opacity" Value="0" />
+                            <Setter TargetName="HoverState" Property="Opacity" Value="1" />
+                            <Setter TargetName="PressedState" Property="Opacity" Value="0" />
+                        </Trigger>
+                        <Trigger Property="IsDragging" Value="True">
+                            <Setter TargetName="DefaultState" Property="Opacity" Value="0" />
+                            <Setter TargetName="HoverState" Property="Opacity" Value="0" />
+                            <Setter TargetName="PressedState" Property="Opacity" Value="1" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="DefaultState" Property="Opacity" Value="0" />
+                            <Setter TargetName="HoverState" Property="Opacity" Value="0" />
+                            <Setter TargetName="PressedState" Property="Opacity" Value="0" />
+                            <Setter TargetName="DisabledState" Property="Opacity" Value="1" />
+                            <Setter Property="Foreground" Value="{StaticResource Text.DisabledState.Foreground}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="VerticalSliderLeftThumbStyle" TargetType="{x:Type Thumb}">
+        <Setter Property="Background" Value="{x:Null}" />
+        <Setter Property="Foreground" Value="{x:Null}" />
+        <Setter Property="Height" Value="11" />
+        <Setter Property="MaxWidth" Value="21" />
+        <Setter Property="OverridesDefaultStyle" Value="True" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Thumb}">
+                    <Grid x:Name="Root" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
+                        <Grid x:Name="DefaultState">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid>
+                                <Path Stretch="Fill" Fill="{StaticResource SliderThumb.DefaultState.Border1}" Data="F1 M 149,329L 149,339L 144,334L 149,329 Z" />
+                                <Path Stretch="Fill" Fill="{StaticResource SliderThumb.DefaultState.Border2}" Data="F1 M 149,330L 149,338L 145,334L 149,330 Z" Margin="1,1,0,1" />
+                            </Grid>
+                            <Border Background="{StaticResource SliderThumb.DefaultState.Border1}" Padding="0,1,1,1" Grid.Column="1">
+                                <Border Background="{StaticResource SliderThumb.DefaultState.Border2}" Padding="0,1,1,1" />
+                            </Border>
+                        </Grid>
+                        <Grid x:Name="HoverState" Opacity="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid>
+                                <Path Stretch="Fill" Fill="{StaticResource SliderThumb.HoverState.Border1}" Data="F1 M 149,329L 149,339L 144,334L 149,329 Z" />
+                                <Path Stretch="Fill" Fill="{StaticResource SliderThumb.HoverState.Border2}" Data="F1 M 149,330L 149,338L 145,334L 149,330 Z" Margin="1,1,0,1" />
+                                <Path Stretch="Fill" Data="F1 M 149,331L 149,337L 146,334L 149,331 Z" Fill="{StaticResource SliderThumb.HoverState.Border3}" Margin="2,2,0,2" />
+                            </Grid>
+                            <Border Background="{StaticResource SliderThumb.HoverState.Border1}" Padding="0,1,1,1" Grid.Column="1">
+                                <Border Background="{StaticResource SliderThumb.HoverState.Border2}" Padding="0,1,1,1">
+                                    <Border Background="{StaticResource SliderThumb.HoverState.Border3}" />
+                                </Border>
+                            </Border>
+                        </Grid>
+                        <Grid x:Name="PressedState" Opacity="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid>
+                                <Path Stretch="Fill" Fill="{StaticResource SliderThumb.PressedState.Border1}" Data="F1 M 149,329L 149,339L 144,334L 149,329 Z" />
+                                <Path Stretch="Fill" Fill="{StaticResource SliderThumb.PressedState.Border2}" Data="F1 M 149,330L 149,338L 145,334L 149,330 Z" Margin="1,1,0,1" />
+                                <Path Stretch="Fill" Data="F1 M 149,331L 149,337L 146,334L 149,331 Z" Fill="{StaticResource SliderThumb.PressedState.Border3}" Margin="2,2,0,2" />
+                            </Grid>
+                            <Border Background="{StaticResource SliderThumb.PressedState.Border1}" Padding="0,1,1,1" Grid.Column="1">
+                                <Border Background="{StaticResource SliderThumb.PressedState.Border2}" Padding="0,1,1,1">
+                                    <Border Background="{StaticResource SliderThumb.PressedState.Border3}" />
+                                </Border>
+                            </Border>
+                        </Grid>
+                        <Grid x:Name="DisabledState" Opacity="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid>
+                                <Path Stretch="Fill" Fill="{StaticResource SliderThumb.DisabledState.Border1}" Data="F1 M 149,329L 149,339L 144,334L 149,329 Z" />
+                                <Path Stretch="Fill" Fill="{StaticResource SliderThumb.DisabledState.Border2}" Data="F1 M 149,330L 149,338L 145,334L 149,330 Z" Margin="1,1,0,1" />
+                            </Grid>
+                            <Border Background="{StaticResource SliderThumb.DisabledState.Border1}" Padding="0,1,1,1" Grid.Column="1">
+                                <Border Background="{StaticResource SliderThumb.DisabledState.Border2}" Padding="0,1,1,1" />
+                            </Border>
+                        </Grid>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="DefaultState" Property="Opacity" Value="0" />
+                            <Setter TargetName="HoverState" Property="Opacity" Value="1" />
+                            <Setter TargetName="PressedState" Property="Opacity" Value="0" />
+                        </Trigger>
+                        <Trigger Property="IsDragging" Value="True">
+                            <Setter TargetName="DefaultState" Property="Opacity" Value="0" />
+                            <Setter TargetName="HoverState" Property="Opacity" Value="0" />
+                            <Setter TargetName="PressedState" Property="Opacity" Value="1" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="DefaultState" Property="Opacity" Value="0" />
+                            <Setter TargetName="HoverState" Property="Opacity" Value="0" />
+                            <Setter TargetName="PressedState" Property="Opacity" Value="0" />
+                            <Setter TargetName="DisabledState" Property="Opacity" Value="1" />
+                            <Setter Property="Foreground" Value="{StaticResource Text.DisabledState.Foreground}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="VerticalSliderRightThumbStyle" TargetType="{x:Type Thumb}">
+        <Setter Property="Background" Value="{x:Null}" />
+        <Setter Property="Foreground" Value="{x:Null}" />
+        <Setter Property="OverridesDefaultStyle" Value="True" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Thumb}">
+                    <Grid x:Name="Root" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
+                        <Grid x:Name="DefaultState">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="1">
+                                <Path Stretch="Fill" Fill="{StaticResource SliderThumb.DefaultState.Border1}" Data="F1 M 136.5,320.5L 136.5,330.5L 141.5,325.5L 136.5,320.5 Z" />
+                                <Path Stretch="Fill" Fill="{StaticResource SliderThumb.DefaultState.Border2}" Data="F1 M 136.5,321.5L 136.5,329.5L 140.5,325.5L 136.5,321.5 Z" Margin="0,1,1,1" />
+                            </Grid>
+                            <Border Background="{StaticResource SliderThumb.DefaultState.Border1}" Padding="1,1,0,1">
+                                <Border Background="{StaticResource SliderThumb.DefaultState.Border2}" Padding="1,1,0,1" />
+                            </Border>
+                        </Grid>
+                        <Grid x:Name="HoverState" Opacity="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="1">
+                                <Path Stretch="Fill" Fill="{StaticResource SliderThumb.HoverState.Border1}" Data="F1 M 136.5,320.5L 136.5,330.5L 141.5,325.5L 136.5,320.5 Z" />
+                                <Path Stretch="Fill" Fill="{StaticResource SliderThumb.HoverState.Border2}" Data="F1 M 136.5,321.5L 136.5,329.5L 140.5,325.5L 136.5,321.5 Z" Margin="0,1,1,1" />
+                                <Path Stretch="Fill" Fill="{StaticResource SliderThumb.HoverState.Border3}" Data="F1 M 136.5,322.5L 136.5,328.5L 139.5,325.5L 136.5,322.5 Z" Margin="0,2,2,2" />
+                            </Grid>
+                            <Border Background="{StaticResource SliderThumb.HoverState.Border1}" Padding="1,1,0,1">
+                                <Border Background="{StaticResource SliderThumb.HoverState.Border2}" Padding="1,1,0,1">
+                                    <Border Background="{StaticResource SliderThumb.HoverState.Border3}" />
+                                </Border>
+                            </Border>
+                        </Grid>
+                        <Grid x:Name="PressedState" Opacity="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="1">
+                                <Path Stretch="Fill" Fill="{StaticResource SliderThumb.PressedState.Border1}" Data="F1 M 136.5,320.5L 136.5,330.5L 141.5,325.5L 136.5,320.5 Z" />
+                                <Path Stretch="Fill" Fill="{StaticResource SliderThumb.PressedState.Border2}" Data="F1 M 136.5,321.5L 136.5,329.5L 140.5,325.5L 136.5,321.5 Z" Margin="0,1,1,1" />
+                                <Path Stretch="Fill" Fill="{StaticResource SliderThumb.PressedState.Border3}" Data="F1 M 136.5,322.5L 136.5,328.5L 139.5,325.5L 136.5,322.5 Z" Margin="0,2,2,2" />
+                            </Grid>
+                            <Border Background="{StaticResource SliderThumb.PressedState.Border1}" Padding="1,1,0,1">
+                                <Border Background="{StaticResource SliderThumb.PressedState.Border2}" Padding="1,1,0,1">
+                                    <Border Background="{StaticResource SliderThumb.PressedState.Border3}" />
+                                </Border>
+                            </Border>
+                        </Grid>
+                        <Grid x:Name="DisabledState" Opacity="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="1">
+                                <Path Stretch="Fill" Fill="{StaticResource SliderThumb.DisabledState.Border1}" Data="F1 M 136.5,320.5L 136.5,330.5L 141.5,325.5L 136.5,320.5 Z" />
+                                <Path Stretch="Fill" Fill="{StaticResource SliderThumb.DisabledState.Border2}" Data="F1 M 136.5,321.5L 136.5,329.5L 140.5,325.5L 136.5,321.5 Z" Margin="1,1,0,1" />
+                            </Grid>
+                            <Border Background="{StaticResource SliderThumb.DisabledState.Border1}" Padding="1,1,0,1">
+                                <Border Background="{StaticResource SliderThumb.DisabledState.Border2}" Padding="1,1,0,1" />
+                            </Border>
+                        </Grid>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="DefaultState" Property="Opacity" Value="0" />
+                            <Setter TargetName="HoverState" Property="Opacity" Value="1" />
+                            <Setter TargetName="PressedState" Property="Opacity" Value="0" />
+                        </Trigger>
+                        <Trigger Property="IsDragging" Value="True">
+                            <Setter TargetName="DefaultState" Property="Opacity" Value="0" />
+                            <Setter TargetName="HoverState" Property="Opacity" Value="0" />
+                            <Setter TargetName="PressedState" Property="Opacity" Value="1" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="DefaultState" Property="Opacity" Value="0" />
+                            <Setter TargetName="HoverState" Property="Opacity" Value="0" />
+                            <Setter TargetName="PressedState" Property="Opacity" Value="0" />
+                            <Setter TargetName="DisabledState" Property="Opacity" Value="1" />
+                            <Setter Property="Foreground" Value="{StaticResource Text.DisabledState.Foreground}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=System.Windows.Controls.Slider}" TargetType="{x:Type Slider}">
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="Background" Value="{x:Null}" />
+        <Setter Property="BorderBrush" Value="{x:Null}" />
+        <Setter Property="Foreground" Value="{StaticResource Slider.Tick.Background}" />
+        <Setter Property="Stylus.IsPressAndHoldEnabled" Value="False" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Slider}">
+                    <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Width="{TemplateBinding Width}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="4" />
+                                <RowDefinition Height="{TemplateBinding Height}" MinHeight="11" />
+                                <RowDefinition Height="4" />
+                            </Grid.RowDefinitions>
+                            <TickBar x:Name="TopTick" Fill="{TemplateBinding Foreground}" Placement="Top" Height="4" Opacity="0" />
+                            <TickBar x:Name="BottomTick" Fill="{TemplateBinding Foreground}" Placement="Bottom" Height="4" Grid.Row="2" Opacity="0" />
+                            <Grid Margin="5,0,5,0" VerticalAlignment="Center" Grid.Row="0" Grid.RowSpan="3">
+                                <Border x:Name="FocusState" Height="3" Margin="-1" Style="{StaticResource FocusTemplate}" Opacity="0" />
+                                <Border x:Name="TrackBackground" Background="{StaticResource Slider.Track.Background}" BorderBrush="{StaticResource Slider.Track.BorderBrush}" BorderThickness="0,0,0,1" Margin="0,0,0,-1" Height="2" VerticalAlignment="Center">
+                                    <Canvas Margin="-2">
+                                        <Rectangle x:Name="PART_SelectionRange" Fill="{StaticResource Slider.SelectionRange.Background}" Height="4" Visibility="Hidden" />
+                                    </Canvas>
+                                </Border>
+                            </Grid>
+                            <Track Grid.Row="1" Name="PART_Track">
+                                <Track.DecreaseRepeatButton>
+                                    <RepeatButton Command="{x:Static Slider.DecreaseLarge}" Style="{StaticResource SliderRepeatButtonStyle}" />
+                                </Track.DecreaseRepeatButton>
+                                <Track.IncreaseRepeatButton>
+                                    <RepeatButton Command="{x:Static Slider.IncreaseLarge}" Style="{StaticResource SliderRepeatButtonStyle}" />
+                                </Track.IncreaseRepeatButton>
+                                <Track.Thumb>
+                                    <Thumb x:Name="Thumb" Width="11" Height="{TemplateBinding Height}" Style="{StaticResource SliderThumbStyle}" />
+                                </Track.Thumb>
+                            </Track>
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="TickPlacement" Value="TopLeft">
+                            <Setter TargetName="TopTick" Property="Opacity" Value="1" />
+                            <Setter TargetName="Thumb" Property="Style" Value="{StaticResource HorizontalSliderUpThumbStyle}" />
+                        </Trigger>
+                        <Trigger Property="TickPlacement" Value="BottomRight">
+                            <Setter TargetName="BottomTick" Property="Opacity" Value="1" />
+                            <Setter TargetName="Thumb" Property="Style" Value="{StaticResource HorizontalSliderDownThumbStyle}" />
+                        </Trigger>
+                        <Trigger Property="TickPlacement" Value="Both">
+                            <Setter TargetName="TopTick" Property="Opacity" Value="1" />
+                            <Setter TargetName="BottomTick" Property="Opacity" Value="1" />
+                        </Trigger>
+                        <Trigger Property="IsSelectionRangeEnabled" Value="True">
+                            <Setter TargetName="PART_SelectionRange" Property="Visibility" Value="Visible" />
+                        </Trigger>
+                        <Trigger Property="IsFocused" Value="True">
+                            <Setter TargetName="FocusState" Property="Opacity" Value="0.5" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="TopTick" Property="Opacity" Value="0.35" />
+                            <Setter TargetName="BottomTick" Property="Opacity" Value="0.35" />
+                            <Setter TargetName="TrackBackground" Property="Opacity" Value="0.35" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="Orientation" Value="Vertical">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type Slider}">
+                            <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Height="{TemplateBinding Height}">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="4" />
+                                        <ColumnDefinition Width="{TemplateBinding Width}" MinWidth="11" />
+                                        <ColumnDefinition Width="4" />
+                                    </Grid.ColumnDefinitions>
+                                    <TickBar x:Name="LeftTick" Fill="{TemplateBinding Foreground}" Placement="Left" Grid.Column="0" Opacity="0" />
+                                    <TickBar x:Name="RightTick" Fill="{TemplateBinding Foreground}" Placement="Right" Grid.Column="2" Opacity="0" />
+                                    <Grid Margin="0,5,0,5" HorizontalAlignment="Center" Grid.Column="0" Grid.ColumnSpan="3">
+                                        <Border x:Name="FocusState" Width="3" Margin="-1" Style="{StaticResource FocusTemplate}" Opacity="0" />
+                                        <Border Name="TrackBackground" Background="{StaticResource Slider.Track.Background}" BorderBrush="{StaticResource Slider.Track.BorderBrush}" BorderThickness="0,0,1,0" Margin="0,0,-1,0" Width="2">
+                                            <Canvas Margin="-2">
+                                                <Rectangle x:Name="PART_SelectionRange" Fill="{StaticResource Slider.SelectionRange.Background}" Width="4" Visibility="Hidden" />
+                                            </Canvas>
+                                        </Border>
+                                    </Grid>
+                                    <Track Grid.Column="1" Name="PART_Track">
+                                        <Track.DecreaseRepeatButton>
+                                            <RepeatButton Command="{x:Static Slider.DecreaseLarge}" Style="{StaticResource SliderRepeatButtonStyle}" />
+                                        </Track.DecreaseRepeatButton>
+                                        <Track.IncreaseRepeatButton>
+                                            <RepeatButton Command="{x:Static Slider.IncreaseLarge}" Style="{StaticResource SliderRepeatButtonStyle}" />
+                                        </Track.IncreaseRepeatButton>
+                                        <Track.Thumb>
+                                            <Thumb x:Name="Thumb" Width="{TemplateBinding Width}" Height="11" Style="{StaticResource SliderThumbStyle}" />
+                                        </Track.Thumb>
+                                    </Track>
+                                </Grid>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="TickPlacement" Value="TopLeft">
+                                    <Setter TargetName="LeftTick" Property="Opacity" Value="1" />
+                                    <Setter TargetName="Thumb" Property="Style" Value="{StaticResource VerticalSliderLeftThumbStyle}" />
+                                </Trigger>
+                                <Trigger Property="TickPlacement" Value="BottomRight">
+                                    <Setter TargetName="RightTick" Property="Opacity" Value="1" />
+                                    <Setter TargetName="Thumb" Property="Style" Value="{StaticResource VerticalSliderRightThumbStyle}" />
+                                </Trigger>
+                                <Trigger Property="TickPlacement" Value="Both">
+                                    <Setter TargetName="LeftTick" Property="Opacity" Value="1" />
+                                    <Setter TargetName="RightTick" Property="Opacity" Value="1" />
+                                </Trigger>
+                                <Trigger Property="IsSelectionRangeEnabled" Value="True">
+                                    <Setter TargetName="PART_SelectionRange" Property="Visibility" Value="Visible" />
+                                </Trigger>
+                                <Trigger Property="IsFocused" Value="True">
+                                    <Setter TargetName="FocusState" Property="Opacity" Value="0.5" />
+                                </Trigger>
+                                <Trigger Property="IsEnabled" Value="False">
+                                    <Setter TargetName="LeftTick" Property="Opacity" Value="0.35" />
+                                    <Setter TargetName="RightTick" Property="Opacity" Value="0.35" />
+                                    <Setter TargetName="TrackBackground" Property="Opacity" Value="0.35" />
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+</ResourceDictionary>

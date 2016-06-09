@@ -1,0 +1,687 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{D7FFFCC9-D2DE-4410-AFDD-97C8975DC46D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DevExpress.DataAccess</RootNamespace>
+    <AssemblyName>DevExpress.DataAccess.v15.2</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\..\Bin\Framework\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;CODE_ANALYSIS</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\..\Bin\Framework\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+  
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>..\..\DevExpress.Key\StrongKey.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DevExpress.CodeParser.v15.2">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Bin\Framework\DevExpress.CodeParser.v15.2.dll</HintPath>
+    <Private>False</Private></Reference>
+    <Reference Include="DevExpress.Data.v15.2">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Bin\Framework\DevExpress.Data.v15.2.dll</HintPath>
+    <Private>False</Private></Reference>
+    <Reference Include="DevExpress.Printing.v15.2.Core">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Bin\Framework\DevExpress.Printing.v15.2.Core.dll</HintPath>
+    <Private>False</Private></Reference>
+    <Reference Include="DevExpress.Xpo.v15.2">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Bin\Framework\DevExpress.Xpo.v15.2.dll</HintPath>
+    <Private>False</Private></Reference>
+    
+    <Reference Include="System"><Private>False</Private></Reference>
+    <Reference Include="System.configuration"><Private>False</Private></Reference>
+    <Reference Include="System.Core"><Private>False</Private></Reference>
+    <Reference Include="System.Data"><Private>False</Private></Reference>
+    <Reference Include="System.Data.DataSetExtensions"><Private>False</Private></Reference>
+    <Reference Include="System.Data.Entity"><Private>False</Private></Reference>
+    <Reference Include="System.Drawing"><Private>False</Private></Reference>
+    <Reference Include="System.Windows.Forms"><Private>False</Private></Reference>
+    <Reference Include="System.Xml"><Private>False</Private></Reference>
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    <Private>False</Private></Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BittmapSuffixInSameAssemblyAttribute.cs" />
+    <Compile Include="ConnectionParameters\AmazonRedshiftConnectionParameters.cs" />
+    <Compile Include="ConnectionParameters\AsaConnectionParameters.cs" />
+    <Compile Include="ConnectionParameters\BigQueryConnectionParameters.cs" />
+    <Compile Include="ConnectionParameters\TeradataConnectionParameters.cs" />
+    <Compile Include="ConnectionParameters\VistaDB5ConnectionParameters.cs" />
+    <Compile Include="DataComponentBase.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="EntityFramework\EFConnectionException.cs" />
+    <Compile Include="EntityFramework\EFConnectionParameters.cs" />
+    <Compile Include="EntityFramework\EFDataConnection.cs" />
+    <Compile Include="EntityFramework\EFDataSource.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="EntityFramework\EFParameter.cs" />
+    <Compile Include="EntityFramework\EFParameterCollection.cs" />
+    <Compile Include="EntityFramework\EFStoredProcedureInfoCollection.cs" />
+    <Compile Include="EventArgs.cs" />
+    <Compile Include="Excel\BeforeFillEventArgs.cs" />
+    <Compile Include="Excel\CsvNewlineType.cs" />
+    <Compile Include="Excel\CsvSourceOptions.cs" />
+    <Compile Include="Excel\ExcelWorksheetSettings.cs" />
+    <Compile Include="Excel\ExcelDefinedNameSettings.cs" />
+    <Compile Include="Excel\ExcelSourceOptions.cs" />
+    <Compile Include="Excel\ExcelSettingsBase.cs" />
+    <Compile Include="Excel\ExcelTableSettings.cs" />
+    <Compile Include="Excel\FieldInfoList.cs" />
+    <Compile Include="Excel\ExcelDocumentFormat.cs" />
+    <Compile Include="Excel\ExcelSourceOptionsBase.cs" />
+    <Compile Include="Excel\ExcelDataSource.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Excel\FieldInfo.cs" />
+    <Compile Include="Excel\IExcelSchemaProvider.cs" />
+    <Compile Include="Excel\SchemaValidationException.cs" />
+    <Compile Include="Native\FileNameFilterStrings.cs" />
+    <Compile Include="IDataComponent.cs" />
+    <Compile Include="InvalidNameException.cs" />
+    <Compile Include="Native\ChunkedList.cs" />
+    <Compile Include="Native\ColumnInfoEx.cs" />
+    <Compile Include="Native\DataConnectionParametersComparer.cs" />
+    <Compile Include="EntityFramework\EFStoredProcedureInfo.cs" />
+    <Compile Include="Expression.cs" />
+    <Compile Include="Native\AppConfigHelper.cs" />
+    <Compile Include="Native\Data\AliasesCriteriaPatcher.cs" />
+    <Compile Include="Native\Data\DataColumn.cs" />
+    <Compile Include="Native\Data\DataReference.cs" />
+    <Compile Include="Native\Data\DataReferences.cs" />
+    <Compile Include="Native\Data\DataSchemaChangedEventArgs.cs" />
+    <Compile Include="Native\Data\DataSelection.cs" />
+    <Compile Include="Native\Data\DataSourceWizardException.cs" />
+    <Compile Include="Native\Data\DataTable.cs" />
+    <Compile Include="Native\Data\DataView.cs" />
+    <Compile Include="Native\Data\IDataLoaderHelper.cs" />
+    <Compile Include="Native\Data\IDataProvider.cs" />
+    <Compile Include="Native\Data\IParametersOwner.cs" />
+    <Compile Include="Native\Data\IXpoDataProvider.cs" />
+    <Compile Include="Native\Data\ReadOnlyPropertyDescriptor.cs" />
+    <Compile Include="Native\Data\ReadOnlyTypedList.cs" />
+    <Compile Include="Native\Data\TablesRemovingEventArgs.cs" />
+    <Compile Include="Native\Data\TypedPropertyDescriptor.cs" />
+    <Compile Include="Native\EntityFramework\EF7DescendantBuilderProviderBase.cs" />
+    <Compile Include="Native\EntityFramework\EF7MsSqlCeDescendantBuilderProvider.cs" />
+    <Compile Include="Native\EntityFramework\EF7MsSqlDescendantBuilderProvider.cs" />
+    <Compile Include="Native\EntityFramework\EF7NpgsqlDescendantBuilderProvider.cs" />
+    <Compile Include="Native\EntityFramework\EF7SqliteDescendantBuilderProvider.cs" />
+    <Compile Include="Native\Excel\CantCreateSourceException.cs" />
+    <Compile Include="Native\Excel\CantLoadExcelFileSchemaException.cs" />
+    <Compile Include="Native\Excel\DataView.cs" />
+    <Compile Include="Native\Excel\ExcelDataLoaderHelper.cs" />
+    <Compile Include="Native\Excel\ExcelEncryptedFileException.cs" />
+    <Compile Include="Native\Excel\ExcelSchemaProvider.cs" />
+    <Compile Include="Native\Excel\FieldInfoComparer.cs" />
+    <Compile Include="Native\Excel\FieldInfoEqualityComparer.cs" />
+    <Compile Include="Native\Excel\IExcelOptionsCustomizationService.cs" />
+    <Compile Include="Native\Excel\ViewColumn.cs" />
+    <Compile Include="Native\Excel\ViewRow.cs" />
+    <Compile Include="Native\IDashboard.cs" />
+    <Compile Include="Native\ParametersRenamingHelper.cs" />
+    <Compile Include="Native\ReadOnlyTypeConverter.cs" />
+    <Compile Include="Native\RuntimeConnectionStringsProvider.cs" />
+    <Compile Include="Native\DataComponentHelper.cs" />
+    <Compile Include="Native\DataSourceParameterBase.cs" />
+    <Compile Include="Native\Data\DataProviderState.cs" />
+    <Compile Include="Native\EmptyExceptionHandler.cs" />
+    <Compile Include="Native\EmptyWaitFormProvider.cs" />
+    <Compile Include="Native\EntityFramework\DataAccessEntityFrameworkModel.cs" />
+    <Compile Include="Native\EntityFramework\EF5MsSqlDescendantBuilderProvider.cs" />
+    <Compile Include="Native\EntityFramework\EF6MsSqlDescendantBuilderProvider.cs" />
+    <Compile Include="Native\EntityFramework\EF6MySqlDescendantBuilderProvider.cs" />
+    <Compile Include="Native\EntityFramework\EF6SqliteDescendantBuilderProvider.cs" />
+    <Compile Include="Native\EntityFramework\EFContextWrapper.cs" />
+    <Compile Include="Native\EntityFramework\EntityServiceHelper.cs" />
+    <Compile Include="Native\EntityFramework\RuntimeDefaultDescendantBuilder.cs" />
+    <Compile Include="Native\EntityFramework\RuntimeDescendantBuilder.cs" />
+    <Compile Include="Native\EntityFramework\RuntimeDescendantBuilderFactory.cs" />
+    <Compile Include="ConnectionParameters\Access2007ConnectionParameters.cs" />
+    <Compile Include="ConnectionParameters\Access97ConnectionParameters.cs" />
+    <Compile Include="ConnectionParameters\AdvantageConnectionParameters.cs" />
+    <Compile Include="ConnectionParameters\AseConnectionParameters.cs" />
+    <Compile Include="ConnectionParameters\CustomStringConnectionParameters.cs" />
+    <Compile Include="ConnectionParameters\DataConnectionParameters.cs" />
+    <Compile Include="ConnectionParameters\DB2ConnectionParameters.cs" />
+    <Compile Include="ConnectionParameters\FileConnectionParametersBase.cs" />
+    <Compile Include="ConnectionParameters\FireBirdConnectionParameters.cs" />
+    <Compile Include="ConnectionParameters\MsSqlCEConnectionParameters.cs" />
+    <Compile Include="ConnectionParameters\MsSqlConnectionParameters.cs" />
+    <Compile Include="ConnectionParameters\MySqlConnectionParameters.cs" />
+    <Compile Include="ConnectionParameters\OlapConnectionParameters.cs" />
+    <Compile Include="ConnectionParameters\OracleConnectionParameters.cs" />
+    <Compile Include="ConnectionParameters\PervasiveSqlConnectionParameters.cs" />
+    <Compile Include="ConnectionParameters\PostgreSqlConnectionParameters.cs" />
+    <Compile Include="ConnectionParameters\SQLiteConnectionParameters.cs" />
+    <Compile Include="ConnectionParameters\SqlServerConnectionParametersBase.cs" />
+    <Compile Include="ConnectionParameters\VistaDBConnectionParameters.cs" />
+    <Compile Include="ConnectionParameters\XmlFileConnectionParameters.cs" />
+    <Compile Include="DataAccessLocalizerGenerator.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataAccessLocalizerGenerator.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Localization.cs" />
+    <Compile Include="LocalizerGenerator.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LocalizerGenerator.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Native\Base64XmlSerializer.cs" />
+    <Compile Include="Native\CriteriaPatcher.cs" />
+    <Compile Include="Native\DataLoaderError.cs" />
+    <Compile Include="DataConnectionBase.cs" />
+    <Compile Include="DataProviderBase.cs" />
+    <Compile Include="Native\EmptyWaitFormActivator.cs" />
+    <Compile Include="Native\ExceptionHelper.cs" />
+    <Compile Include="Native\INamedItem.cs" />
+    <Compile Include="Native\IReferenceCountObject.cs" />
+    <Compile Include="Native\IWaitFormActivator.cs" />
+    <Compile Include="Native\IWaitFormProvider.cs" />
+    <Compile Include="Native\LocalizableCategoryAttribute.cs" />
+    <Compile Include="Native\Locker.cs" />
+    <Compile Include="Native\ActionTypeData.cs" />
+    <Compile Include="Native\ItemsRepository.cs" />
+    <Compile Include="Native\Data\FilterInfo.cs" />
+    <Compile Include="Native\NameGenerator.cs" />
+    <Compile Include="Native\ObjectBinding\ConstructorResolutionException.cs" />
+    <Compile Include="Native\ObjectBinding\DataMemberResolveException.cs" />
+    <Compile Include="Native\ObjectBinding\ObjectDataSourceFillHelper.cs" />
+    <Compile Include="Native\ObjectBinding\ObjectDataSourceSerializer.cs" />
+    <Compile Include="Native\ObjectBinding\ResultTypedList.cs" />
+    <Compile Include="Native\ObjectBinding\TypeNamesHelper.cs" />
+    <Compile Include="Native\ParameterSupplier.cs" />
+    <Compile Include="Native\PrefixNameGenerator.cs" />
+    <Compile Include="Native\ResFinder.cs" />
+    <Compile Include="Native\RuntimeSolutionTypesProvider.cs" />
+    <Compile Include="Native\SelectedDataEx.cs" />
+    <Compile Include="Native\Sql\ActionType.cs" />
+    <Compile Include="Native\Sql\AutoSQLWrapHelper.cs" />
+    <Compile Include="Native\Sql\Base64Helper.cs" />
+    <Compile Include="Native\Sql\ConnectionProviders\ConnectionProviderHelper.cs" />
+    <Compile Include="Native\Sql\ConnectionProviders\DataAccessAdvantageConnectionProvider.cs" />
+    <Compile Include="Native\Sql\ConnectionProviders\DataAccessAmazonRedshiftConnectionProvider.cs" />
+    <Compile Include="Native\Sql\ConnectionProviders\DataAccessAsaConnectionProvider.cs" />
+    <Compile Include="Native\Sql\ConnectionProviders\DataAccessAseConnectionProvider.cs" />
+    <Compile Include="Native\Sql\ConnectionProviders\DataAccessBigQueryConnectionProvider.cs" />
+    <Compile Include="Native\Sql\ConnectionProviders\DataAccessDB2ConnectionProvider.cs" />
+    <Compile Include="Native\Sql\ConnectionProviders\DataAccessFirebirdConnectionProvider.cs" />
+    <Compile Include="Native\Sql\ConnectionProviders\DataAccessMSAccessConnectionProvider.cs" />
+    <Compile Include="Native\Sql\ConnectionProviders\DataAccessMSSqlCEConnectionProvider.cs" />
+    <Compile Include="Native\Sql\ConnectionProviders\DataAccessMSSqlConnectionProvider.cs" />
+    <Compile Include="Native\Sql\ConnectionProviders\DataAccessMySqlConnectionProvider.cs" />
+    <Compile Include="Native\Sql\ConnectionProviders\DataAccessOracleConnectionProvider.cs" />
+    <Compile Include="Native\Sql\ConnectionProviders\DataAccessPervasiveSqlConnectionProvider.cs" />
+    <Compile Include="Native\Sql\ConnectionProviders\DataAccessPostgreSqlConnectionProvider.cs" />
+    <Compile Include="Native\Sql\ConnectionProviders\DataAccessSQLiteConnectionProvider.cs" />
+    <Compile Include="Native\Sql\ConnectionProviders\DataAccessTeradataConnectionProvider.cs" />
+    <Compile Include="Native\Sql\ConnectionProviders\DataAccessVistaDB5ConnectionProvider.cs" />
+    <Compile Include="Native\Sql\ConnectionProviders\DataAccessVistaDBConnectionProvider.cs" />
+    <Compile Include="Native\Sql\ConnectionProviders\IAliasFormatter.cs" />
+    <Compile Include="Native\Sql\ConnectionProviders\ICommandParameterNameProvider.cs" />
+    <Compile Include="Native\Sql\ConnectionProviders\IDataStoreEx.cs" />
+    <Compile Include="Native\Sql\ConnectionProviders\IDataStoreSchemaExplorerEx.cs" />
+    <Compile Include="Native\Sql\ConnectionProviders\ISupportGroupByExpressionAlias.cs" />
+    <Compile Include="Native\Sql\ConnectionProviders\ISupportOrderByAggregate.cs" />
+    <Compile Include="Native\Sql\ConnectionProviders\ISupportStoredProc.cs" />
+    <Compile Include="Native\Sql\ConnectionStrategies\Access2007Strategy.cs" />
+    <Compile Include="Native\Sql\ConnectionStrategies\Access97Strategy.cs" />
+    <Compile Include="Native\Sql\ConnectionStrategies\AdvantageStrategy.cs" />
+    <Compile Include="Native\Sql\ConnectionStrategies\AmazonRedshiftStrategy.cs" />
+    <Compile Include="Native\Sql\ConnectionStrategies\AsaStrategy.cs" />
+    <Compile Include="Native\Sql\ConnectionStrategies\AseStrategy.cs" />
+    <Compile Include="Native\Sql\ConnectionStrategies\BigQueryStrategy.cs" />
+    <Compile Include="Native\Sql\ConnectionStrategies\ConnectionParameterEdits.cs" />
+    <Compile Include="Native\Sql\ConnectionStrategies\ConnectionProviderLookUpItem.cs" />
+    <Compile Include="Native\Sql\ConnectionStrategies\CustomConnectionStrategy.cs" />
+    <Compile Include="Native\Sql\ConnectionStrategies\Db2Strategy.cs" />
+    <Compile Include="Native\Sql\ConnectionStrategies\DbStrategyBase.cs" />
+    <Compile Include="Native\Sql\ConnectionStrategies\FileDbStrategyBase.cs" />
+    <Compile Include="Native\Sql\ConnectionStrategies\FirebirdStrategy.cs" />
+    <Compile Include="Native\Sql\ConnectionStrategies\IConnectionParametersControl.cs" />
+    <Compile Include="Native\Sql\ConnectionStrategies\IConnectionParametersStrategy.cs" />
+    <Compile Include="Native\Sql\ConnectionStrategies\MsSqlServerCeStrategy.cs" />
+    <Compile Include="Native\Sql\ConnectionStrategies\MsSqlServerStrategy.cs" />
+    <Compile Include="Native\Sql\ConnectionStrategies\MySqlStrategy.cs" />
+    <Compile Include="Native\Sql\ConnectionStrategies\OracleStrategy.cs" />
+    <Compile Include="Native\Sql\ConnectionStrategies\PervasiveStrategy.cs" />
+    <Compile Include="Native\Sql\ConnectionStrategies\PostgreStrategy.cs" />
+    <Compile Include="Native\Sql\ConnectionStrategies\ServerDbStrategyBase.cs" />
+    <Compile Include="Native\Sql\ConnectionStrategies\SQLiteStrategy.cs" />
+    <Compile Include="Native\Sql\ConnectionStrategies\TeradataStrategy.cs" />
+    <Compile Include="Native\Sql\ConnectionStrategies\VistaDb5Strategy.cs" />
+    <Compile Include="Native\Sql\ConnectionStrategies\VistaDbStrategy.cs" />
+    <Compile Include="Native\Sql\ConnectionStrategies\XmlFileStrategy.cs" />
+    <Compile Include="Native\Sql\ConnectionStringParser.cs" />
+    <Compile Include="Native\Sql\DataAccessConnectionParameter.cs" />
+    <Compile Include="Native\Sql\DataConnectionHelper.cs" />
+    <Compile Include="Native\Sql\DataConnectionParametersRepository.cs" />
+    <Compile Include="Native\Sql\DBSchemaProvider.cs" />
+    <Compile Include="Native\Sql\DBSchemaProviderAsyncHelper.cs" />
+    <Compile Include="Native\Sql\FilteredResultList.cs" />
+    <Compile Include="Native\Sql\FilterHelper.cs" />
+    <Compile Include="Native\Sql\FilterStringValidatorVisitor.cs" />
+    <Compile Include="Native\Sql\HavingCriteriaPatcher.cs" />
+    <Compile Include="Native\Sql\IConnectionPageEx.cs" />
+    <Compile Include="Native\Sql\IDataConnectionParametersService.cs" />
+    <Compile Include="Native\Sql\MasterDetailEditorHelper.cs" />
+    <Compile Include="Native\Sql\OperandPropertyReplacingCriteriaOperatorPatcher.cs" />
+    <Compile Include="Native\Sql\ParametersEvaluator.cs" />
+    <Compile Include="Native\Sql\QueryBuilder\AvailableItemData.cs" />
+    <Compile Include="Native\Sql\QueryBuilder\ColumnDataItem.cs" />
+    <Compile Include="Native\Sql\QueryBuilder\ConditionStringInfo.cs" />
+    <Compile Include="Native\Sql\QueryBuilder\ErrorEventArgs.cs" />
+    <Compile Include="Native\Sql\QueryBuilder\FilterModel.cs" />
+    <Compile Include="Native\Sql\QueryBuilder\FilterPresenter.cs" />
+    <Compile Include="Native\Sql\QueryBuilder\FiltersModel.cs" />
+    <Compile Include="Native\Sql\QueryBuilder\FiltersPresenter.cs" />
+    <Compile Include="Native\Sql\QueryBuilder\GroupFilterPatcher.cs" />
+    <Compile Include="Native\Sql\QueryBuilder\IFilterPresenter.cs" />
+    <Compile Include="Native\Sql\QueryBuilder\IFiltersView.cs" />
+    <Compile Include="Native\Sql\QueryBuilder\IFilterView.cs" />
+    <Compile Include="Native\Sql\QueryBuilder\IJoinEditorPresenter.cs" />
+    <Compile Include="Native\Sql\QueryBuilder\IJoinEditorView.cs" />
+    <Compile Include="Native\Sql\QueryBuilder\IQueryBuilderView.cs" />
+    <Compile Include="Native\Sql\QueryBuilder\IQueryBuilderViewModel.cs" />
+    <Compile Include="Native\Sql\QueryBuilder\ItemDataList.cs" />
+    <Compile Include="Native\IView.cs" />
+    <Compile Include="Native\Sql\QueryBuilder\JoinEditorPresenter.cs" />
+    <Compile Include="Native\PresenterBase.cs" />
+    <Compile Include="Native\Sql\QueryBuilder\QueryBuilderModel.cs" />
+    <Compile Include="Native\Sql\QueryBuilder\QueryBuilderRunnerBase.cs" />
+    <Compile Include="Native\Sql\QueryBuilder\QueryBuilderViewModel.cs" />
+    <Compile Include="Native\Sql\QueryBuilder\QueryGridItemData.cs" />
+    <Compile Include="Native\Sql\QueryBuilder\SelectionItemData.cs" />
+    <Compile Include="Native\Sql\QueryExecutor.cs" />
+    <Compile Include="Native\Sql\QueryParameterExpressionEditorLogic.cs" />
+    <Compile Include="Native\Sql\QuerySerializer.cs" />
+    <Compile Include="Native\Sql\ResultColumn.cs" />
+    <Compile Include="Native\Sql\ResultRelation.cs" />
+    <Compile Include="Native\Sql\ResultRow.cs" />
+    <Compile Include="Native\Sql\ResultSet.cs" />
+    <Compile Include="Native\Sql\ResultTable.cs" />
+    <Compile Include="Native\Sql\ResultTableBase.cs" />
+    <Compile Include="Native\Sql\Serialization.cs" />
+    <Compile Include="Native\Sql\SqlDataConnectionExtensions.cs" />
+    <Compile Include="Native\Sql\SqlDataSourceSerializer.cs" />
+    <Compile Include="Native\Sql\SqlParser\CommonSqlParser.cs">
+      <DependentUpon>CommonSqlParser.atg</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Native\Sql\SqlParser\CommonSqlScanner.cs">
+      <DependentUpon>CommonSqlScanner.atg</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Native\Sql\SqlQueryExtensions.cs" />
+    <Compile Include="Native\XmlHelperBase.cs" />
+    <Compile Include="ObjectBinding\Constructor.cs" />
+    <Compile Include="ObjectBinding\HighlightedMemberAttribute.cs" />
+    <Compile Include="ObjectBinding\HighlightedAssemblyAttribute.cs" />
+    <Compile Include="ObjectBinding\HighlightedClassAttribute.cs" />
+    <Compile Include="ObjectBinding\ObjectDataSource.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ObjectBinding\ObjectMember.cs" />
+    <Compile Include="ObjectBinding\Parameter.cs" />
+    <Compile Include="ObjectBinding\ParameterList.cs" />
+    <Compile Include="ObsoleteExceptions.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Sql\ColumnInfo.cs" />
+    <Compile Include="Sql\CustomSqlQuery.cs" />
+    <Compile Include="Sql\DataApi\IColumn.cs" />
+    <Compile Include="Sql\DataApi\IRelation.cs" />
+    <Compile Include="Sql\DataApi\IRow.cs" />
+    <Compile Include="Sql\DataApi\ITable.cs" />
+    <Compile Include="Sql\DatabaseConnectionException.cs" />
+    <Compile Include="Sql\DBColumnWithAlias.cs" />
+    <Compile Include="Sql\DBSchema.cs" />
+    <Compile Include="Sql\DBTableWithAlias.cs" />
+    <Compile Include="Sql\EventArgs.cs" />
+    <Compile Include="Sql\ForeignKeyInfo.cs" />
+    <Compile Include="Sql\GroupingInfo.cs" />
+    <Compile Include="Sql\GroupingInfoList.cs" />
+    <Compile Include="Sql\IDBSchemaProvider.cs" />
+    <Compile Include="Sql\DataApi\IResultSet.cs" />
+    <Compile Include="Sql\MasterDetailInfo.cs" />
+    <Compile Include="Sql\MasterDetailInfoCollection.cs" />
+    <Compile Include="Sql\QueryParameter.cs" />
+    <Compile Include="Sql\RelationException.cs" />
+    <Compile Include="Sql\RelationInfoList.cs" />
+    <Compile Include="Sql\SortingInfo.cs" />
+    <Compile Include="Sql\SortingInfoList.cs" />
+    <Compile Include="Sql\SqlQuery.cs" />
+    <Compile Include="Sql\RelationColumnInfo.cs" />
+    <Compile Include="Sql\SqlDataConnection.cs" />
+    <Compile Include="Sql\SqlDataSource.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Sql\SqlQueryCollection.cs" />
+    <Compile Include="Sql\StoredProcQuery.cs" />
+    <Compile Include="Sql\TableInfo.cs" />
+    <Compile Include="Sql\TableInfoList.cs" />
+    <Compile Include="Sql\TableQuery.cs" />
+    <Compile Include="Sql\ValidationException.cs" />
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <Compile Include="Wizard\DataComponentCreator.cs" />
+    <Compile Include="Wizard\IDataSourceWizardClient.cs" />
+    <Compile Include="Wizard\IDataSourceWizardClientBase.cs" />
+    <Compile Include="Wizard\IEFDataSourceWizardClient.cs" />
+    <Compile Include="Wizard\IExcelDataSourceWizardClient.cs" />
+    <Compile Include="Wizard\IObjectDataSourceWizardClient.cs" />
+    <Compile Include="Wizard\ISqlDataSourceWizardClient.cs" />
+    <Compile Include="Wizard\IWizardRunnerContext.cs" />
+    <Compile Include="Wizard\Model\DataSourceModel.cs" />
+    <Compile Include="Wizard\Model\DataSourceModelBase.cs" />
+    <Compile Include="Wizard\Model\DataSourceModelWithConnectionBase.cs" />
+    <Compile Include="Wizard\Model\EFDataSourceModel.cs" />
+    <Compile Include="Wizard\Model\ExcelDataSourceModel.cs" />
+    <Compile Include="Wizard\Model\IDataComponentModel.cs" />
+    <Compile Include="Wizard\Model\IDataComponentModelWithConnection.cs" />
+    <Compile Include="Wizard\Model\IDataConnection.cs" />
+    <Compile Include="Wizard\Model\IDataSourceModel.cs" />
+    <Compile Include="Wizard\Model\IEFDataSourceModel.cs" />
+    <Compile Include="Wizard\Model\IExcelDataSourceModel.cs" />
+    <Compile Include="Wizard\Model\IObjectDataSourceModel.cs" />
+    <Compile Include="Wizard\Model\ISqlDataSourceModel.cs" />
+    <Compile Include="Wizard\Model\ObjectDataSourceModel.cs" />
+    <Compile Include="Wizard\Model\SqlDataSourceModel.cs" />
+    <Compile Include="Wizard\Native\CancellationTokenHook.cs" />
+    <Compile Include="Wizard\Native\ConnectionHelper.cs" />
+    <Compile Include="Wizard\Native\ConnectionProviderService.cs" />
+    <Compile Include="Wizard\Native\ConnectionStorageService.cs" />
+    <Compile Include="Wizard\Native\DataSourceTypeHelper.cs" />
+    <Compile Include="Wizard\Native\EFPreviewHelper.cs" />
+    <Compile Include="Wizard\Native\EntityFrameworkModelHelper.cs" />
+    <Compile Include="Wizard\Native\ExcelSchemaLoaderAsync.cs" />
+    <Compile Include="Wizard\Native\ObjectBindingPagesRouter.cs" />
+    <Compile Include="Wizard\Native\SqlQueryHelper.cs" />
+    <Compile Include="Wizard\Native\StoredProcInfo.cs" />
+    <Compile Include="Wizard\Native\StoredProcParametersHelper.cs" />
+    <Compile Include="Wizard\Presenters\ChooseConnectionPage.cs" />
+    <Compile Include="Wizard\Presenters\ChooseDataSourceNamePage.cs" />
+    <Compile Include="Wizard\Presenters\ChooseDataSourceTypePage.cs" />
+    <Compile Include="Wizard\Presenters\ChooseEFConnectionStringPage.cs" />
+    <Compile Include="Wizard\Presenters\ChooseEFContextPage.cs" />
+    <Compile Include="Wizard\Presenters\ChooseFileOptionsPage.cs" />
+    <Compile Include="Wizard\Presenters\ChooseExcelFileDataRangePage.cs" />
+    <Compile Include="Wizard\Presenters\ChooseFilePage.cs" />
+    <Compile Include="Wizard\Presenters\ChooseObjectAssemblyPage.cs" />
+    <Compile Include="Wizard\Presenters\ChooseObjectBindingModePage.cs" />
+    <Compile Include="Wizard\Presenters\ChooseObjectConstructorPage.cs" />
+    <Compile Include="Wizard\Presenters\ChooseObjectMemberPage.cs" />
+    <Compile Include="Wizard\Presenters\ChooseObjectTypePage.cs" />
+    <Compile Include="Wizard\Presenters\ChooseEFDataMemberPage.cs" />
+    <Compile Include="Wizard\Presenters\ConfigureEFStoredProceduresPage.cs" />
+    <Compile Include="Wizard\Presenters\ConfigureExcelFileColumnsPage.cs" />
+    <Compile Include="Wizard\Presenters\ConfigureQueryPage.cs" />
+    <Compile Include="Wizard\Presenters\ConfigureSqlParametersPage.cs" />
+    <Compile Include="Wizard\Presenters\ConnectionPropertiesPage.cs" />
+    <Compile Include="Wizard\Presenters\ConfigureEFConnectionStringPage.cs" />
+    <Compile Include="Wizard\Presenters\IQueryControlPresenter.cs" />
+    <Compile Include="Wizard\Presenters\ObjectConstructorParametersPage.cs" />
+    <Compile Include="Wizard\Presenters\ObjectMemberParametersPage.cs" />
+    <Compile Include="Wizard\Presenters\SaveConnectionPage.cs" />
+    <Compile Include="Wizard\Services\DataSourceTypes.cs" />
+    <Compile Include="Wizard\Services\IConnectionProviderService.cs" />
+    <Compile Include="Wizard\Services\IConnectionStorageService.cs" />
+    <Compile Include="Wizard\Services\ICustomQueryValidator.cs" />
+    <Compile Include="Wizard\Services\IEntityFrameworkModelHelper.cs" />
+    <Compile Include="Wizard\Services\IExceptionHandler.cs" />
+    <Compile Include="Wizard\Services\IDataSourceNameCreationService.cs" />
+    <Compile Include="Wizard\Services\IParameterService.cs" />
+    <Compile Include="Wizard\UIDataLoader.cs" />
+    <Compile Include="Wizard\Views\IChooseDataSourceNamePageView.cs" />
+    <Compile Include="Wizard\Views\IChooseEFConnectionStringPageView.cs" />
+    <Compile Include="Wizard\Views\IChooseConnectionPageView.cs" />
+    <Compile Include="Wizard\Views\IChooseDataSourceTypePageView.cs" />
+    <Compile Include="Wizard\Views\IChooseEFContextPageView.cs" />
+    <Compile Include="Wizard\Views\IChooseFileOptionsPageView.cs" />
+    <Compile Include="Wizard\Views\IChooseExcelFileDataRangePageView.cs" />
+    <Compile Include="Wizard\Views\IChooseFilePageView.cs" />
+    <Compile Include="Wizard\Views\IChooseObjectAssemblyPageView.cs" />
+    <Compile Include="Wizard\Views\IChooseObjectBindingModePageView.cs" />
+    <Compile Include="Wizard\Views\IChooseObjectConstructorPageView.cs" />
+    <Compile Include="Wizard\Views\IChooseObjectMemberPageView.cs" />
+    <Compile Include="Wizard\Views\IChooseObjectTypePageView.cs" />
+    <Compile Include="Wizard\Views\IChooseEFDataMemberPageView.cs" />
+    <Compile Include="Wizard\Views\IConfigureEFStoredProceduresPageView.cs" />
+    <Compile Include="Wizard\Views\IConfigureExcelFileColumnsPageView.cs" />
+    <Compile Include="Wizard\Views\IConfigureParametersPageView.cs" />
+    <Compile Include="Wizard\Views\IConfigureQueryPageView.cs" />
+    <Compile Include="Wizard\Views\IConnectionPropertiesPageView.cs" />
+    <Compile Include="Wizard\Views\IConfigureEFConnectionStringPageView.cs" />
+    <Compile Include="Wizard\Views\IObjectConstructorParametersPageView.cs" />
+    <Compile Include="Wizard\Views\IObjectMemberParametersPageView.cs" />
+    <Compile Include="Wizard\Views\ISaveConnectionPageView.cs" />
+    <Compile Include="Wizard\Views\IWizardPageView.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="LocalizationRes.resx">
+      <DependentUpon>DataAccessLocalizerGenerator.tt</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LocalizationRes.ru.resx"><DependentUpon>DataAccessLocalizerGenerator.tt</DependentUpon></EmbeddedResource>
+    <EmbeddedResource Include="LocalizationRes.ja.resx"><DependentUpon>DataAccessLocalizerGenerator.tt</DependentUpon></EmbeddedResource>
+    <EmbeddedResource Include="LocalizationRes.es.resx"><DependentUpon>DataAccessLocalizerGenerator.tt</DependentUpon></EmbeddedResource>
+    <EmbeddedResource Include="LocalizationRes.de.resx"><DependentUpon>DataAccessLocalizerGenerator.tt</DependentUpon></EmbeddedResource>
+    <EmbeddedResource Include="PropertyNamesRes.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PropertyNamesRes.ru.resx" />
+    <EmbeddedResource Include="PropertyNamesRes.ja.resx" />
+    <EmbeddedResource Include="PropertyNamesRes.es.resx" />
+    <EmbeddedResource Include="PropertyNamesRes.de.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Bitmaps256\SqlDataSource.VisualStudio.11.0.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Bitmaps256\EFDataSource.bmp" />
+    <EmbeddedResource Include="Bitmaps256\SqlDataSource.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Bitmaps256\ObjectDataSource.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    
+  </ItemGroup>
+  <ItemGroup>
+    
+  </ItemGroup>
+  <ItemGroup>
+    
+    
+  </ItemGroup>
+  <ItemGroup>
+    
+    
+  </ItemGroup>
+  <ItemGroup>
+    
+    
+  </ItemGroup>
+  <ItemGroup>
+    
+    
+  </ItemGroup>
+  <ItemGroup>
+    
+    
+  </ItemGroup>
+  <ItemGroup>
+    
+    
+  </ItemGroup>
+  <ItemGroup>
+    
+    
+  </ItemGroup>
+  <ItemGroup>
+    
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Bitmaps256\ExcelDataSource.bmp" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+<ItemGroup><EmbeddedResource Include="Descriptions.resx" /></ItemGroup><ItemGroup><Compile Include="Descriptions.cs" /></ItemGroup></Project>

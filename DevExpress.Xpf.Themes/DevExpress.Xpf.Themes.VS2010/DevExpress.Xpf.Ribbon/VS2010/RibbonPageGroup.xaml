@@ -1,0 +1,459 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+                    xmlns:syscm="clr-namespace:System.ComponentModel;assembly=PresentationFramework"
+                    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+                    xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
+                    xmlns:dxr="http://schemas.devexpress.com/winfx/2008/xaml/ribbon"
+                    xmlns:dxrt="http://schemas.devexpress.com/winfx/2008/xaml/ribbon/themekeys"
+                    xmlns:interop="clr-namespace:System.Windows.Interop;assembly=PresentationFramework">
+
+    <sys:Double x:Key="{dxrt:RibbonPageGroupThemeKey ResourceKey=PopupVerticalOffset}">0</sys:Double>
+
+    <sys:Double x:Key="{dxrt:RibbonPageGroupThemeKey ResourceKey=PopupHorizontalOffset}">0</sys:Double>
+
+    <Thickness x:Key="{dxrt:RibbonPageGroupThemeKey ResourceKey=PopupBorderMargin}">0,20,0,20</Thickness>
+    <Thickness x:Key="{dxrt:RibbonPageGroupThemeKey ResourceKey=ContentMargin}">1,2,0,1</Thickness> 
+    <Style x:Key="{dxrt:RibbonPageGroupThemeKey ResourceKey=ContentStyle}" TargetType="{x:Type ItemsPresenter}">
+        <Setter Property="Margin" Value="{StaticResource {dxrt:RibbonPageGroupThemeKey ResourceKey=ContentMargin}}"/>
+    </Style>
+
+    <Style x:Key="{dxrt:RibbonPageGroupThemeKey ResourceKey=CaptionButtonStyle}"
+           TargetType="{x:Type dxr:RibbonCheckedBorderControl}">
+        <Setter Property="Margin" Value="1,1,-1,-1" />
+        <Setter Property="VerticalAlignment" Value="Bottom"/>
+    </Style>
+
+    <Style x:Key="{dxrt:RibbonPageGroupThemeKey ResourceKey=CaptionPanelStyle}"
+           TargetType="{x:Type dxb:SplitLayoutPanel}">
+        <Setter Property="MaximizeContent1" Value="True" />
+        <Setter Property="LeftContent1Margin" Value="4,0,0,1"/>
+        <Setter Property="RightContent2Margin" Value="0,0,2,2"/>
+        <Setter Property="SingleContent1Margin" Value="4,0,4,1"/>
+    </Style>
+    <ControlTemplate x:Key="{dxrt:RibbonPageGroupThemeKey ResourceKey=BorderTemplate}"
+                     TargetType="{x:Type ContentControl}">
+        <Grid SnapsToDevicePixels="True">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <ContentPresenter Grid.Column="0"/>
+            <TextBlock Name="PART_DesignTimeCaption" Text="[PageGroup]" Grid.Column="1" VerticalAlignment="Center" Margin="2,0" Visibility="Collapsed"/>
+            <Grid Name="PART_Separator" Width="3" HorizontalAlignment="Right" Grid.Column="2">
+                <Grid.OpacityMask>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#00FFFFFF" Offset="0"/>
+                        <GradientStop Color="#FFFFFFFF" Offset="1"/>
+                    </LinearGradientBrush>
+                </Grid.OpacityMask>
+                <Border Background="#3FFFFFFF" Margin="0,0,0,1" />
+                <Border Background="#FF9CAAC1" Margin="1,0,1,0" />
+            </Grid>
+        </Grid>
+        <ControlTemplate.Triggers>
+            <DataTrigger Binding="{Binding Path=IsDesignTimeCaptionVisible, RelativeSource={RelativeSource AncestorType=dxr:RibbonPageGroupControl}}" Value="True">
+                <Setter TargetName="PART_DesignTimeCaption" Property="Visibility" Value="Visible"/>
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Path=IsSeparatorVisible, RelativeSource={RelativeSource AncestorType=dxr:RibbonPageGroupControl}}" Value="False">
+                <Setter TargetName="PART_Separator" Property="Visibility" Value="Collapsed"/>
+            </DataTrigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="{dxrt:RibbonPageGroupThemeKey ResourceKey=BorderTemplateInPopup}" TargetType="{x:Type ContentControl}">
+        <Border Background="#FF9CAAC1">
+            <Border Background="#FFC9D2E1" Margin="1">
+                <Border Background="#FFBCC7D8" Margin="1,1,1,0">
+                    <ContentPresenter/> 
+                </Border>
+            </Border>
+        </Border>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="{dxrt:RibbonPageGroupThemeKey ResourceKey=CaptionButtonTemplate}" TargetType="{x:Type dxr:RibbonCheckedBorderControl}">
+        <Grid Width="14" Height="14">
+            <Grid x:Name="HoverState" Opacity="0">
+                <Border Background="#FFBEB28F" Padding="1">
+                    <Border Padding="1">
+                        <Border.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="#FFFFFEF8" Offset="0" />
+                                <GradientStop Color="#FFFFF4D3" Offset="1" />
+                                <GradientStop Color="#FFFFF7DE" Offset="0.5" />
+                                <GradientStop Color="#FFFFF4D3" Offset="0.5" />
+                            </LinearGradientBrush>
+                        </Border.Background>
+                        <Border>
+                            <Border.Background>
+                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                    <GradientStop Color="#FFFFFBF0" Offset="0" />
+                                    <GradientStop Color="#FFFFE8A6" Offset="1" />
+                                    <GradientStop Color="#FFFFF4D2" Offset="0.5" />
+                                    <GradientStop Color="#FFFFE8A6" Offset="0.5" />
+                                </LinearGradientBrush>
+                            </Border.Background>
+                        </Border>
+                    </Border>
+                </Border>
+            </Grid>
+            <Grid x:Name="PressedState" Opacity="0">
+                <Border Background="#FFAEA27F" Padding="1">
+                    <Border Background="#FFFFE8A6"/>
+                </Border>
+            </Grid>
+            <Path x:Name="Path" Stretch="Fill" Fill="#FF848FA0" Data="F1 M 515,394L 521,394L 521,388L 515,394 Z " Width="6" Height="6" />
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup x:Name="CommonStates">
+                    <VisualState x:Name="Normal"/>
+                    <VisualState x:Name="Hover">
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetName="HoverState" Storyboard.TargetProperty="Opacity" Duration="0" To="1" />
+                            <ColorAnimation Storyboard.TargetName="Path" Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" Duration="0" To="#FF1B293E" />
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Pressed">
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetName="PressedState" Storyboard.TargetProperty="Opacity" Duration="0" To="1" />
+                            <ColorAnimation Storyboard.TargetName="Path" Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" Duration="0" To="#FF1B293E" />
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Checked">
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetName="PressedState" Storyboard.TargetProperty="Opacity" Duration="0" To="1" />
+                            <ColorAnimation Storyboard.TargetName="Path" Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" Duration="0" To="#FF1B293E" />
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Focused">
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetName="HoverState" Storyboard.TargetProperty="Opacity" Duration="0" To="1" />
+                            <ColorAnimation Storyboard.TargetName="Path" Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" Duration="0" To="#FF1B293E" />
+                        </Storyboard>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+        </Grid>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="{dxrt:RibbonPageGroupThemeKey ResourceKey=CaptionBorderTemplate}" TargetType="{x:Type ContentControl}">
+        <Border Background="#FFB4C0D2" Margin="0,0,0,1">
+            <ContentPresenter/>
+        </Border>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="{dxrt:RibbonPageGroupThemeKey ResourceKey=PopupButtonBorderTemplate}"
+                     TargetType="{x:Type dxb:ItemBorderControl}">
+        <Grid SnapsToDevicePixels="True">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Grid Margin="0,0,0,1" Grid.Column="0" Grid.ColumnSpan="1">
+                <Grid Background="Transparent">
+                    <Grid x:Name="CustomizationState" Opacity="0.0" Visibility="Visible">
+                        <Border BorderBrush="#FF000000" BorderThickness="2" CornerRadius="3"/>
+                    </Grid>
+                    <Grid x:Name="NormalState" Opacity="0"/>
+                    <Grid x:Name="HoverState" Opacity="0">
+                        <Border>
+                            <Border.Background>
+                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                    <GradientStop Color="#00FFE9A8" Offset="0"/>
+                                    <GradientStop Color="#7FFFE9A8" Offset="1"/>
+                                </LinearGradientBrush>
+                            </Border.Background>
+                        </Border>
+                    </Grid>
+                    <Grid x:Name="PressedState" Opacity="0">
+                        <Border>
+                            <Border.Background>
+                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                    <GradientStop Color="#009CAAC1" Offset="0"/>
+                                    <GradientStop Color="#7F9CAAC1" Offset="1"/>
+                                </LinearGradientBrush>
+                            </Border.Background>
+                        </Border>
+                    </Grid>
+                </Grid>
+             </Grid>
+            <Grid Width="3" HorizontalAlignment="Right" Grid.Column="1" Grid.ColumnSpan="1">
+                <Grid.OpacityMask>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#00FFFFFF" Offset="0"/>
+                        <GradientStop Color="#FFFFFFFF" Offset="1"/>
+                    </LinearGradientBrush>
+                </Grid.OpacityMask>
+                <Border Background="#3FFFFFFF" Margin="0,0,0,1" />
+                <Border Background="#FF9CAAC1" Margin="1,0,1,0" />
+            </Grid>
+            <ContentPresenter Margin="4" Content="{TemplateBinding Content}"/>
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup x:Name="State">
+                    <VisualState x:Name="Normal">
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetName="NormalState" Storyboard.TargetProperty="Opacity" Duration="0" To="1"/>
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Hover">
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetName="HoverState" Storyboard.TargetProperty="Opacity" Duration="0" To="1"/>
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Pressed">
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetName="PressedState" Storyboard.TargetProperty="Opacity" Duration="0" To="1"/>
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Checked">
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetName="PressedState" Storyboard.TargetProperty="Opacity" Duration="0" To="1"/>
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="HoverChecked">
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetName="HoverState" Storyboard.TargetProperty="Opacity" Duration="0" To="1"/>
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Focused"/>
+                    <VisualState x:Name="Customization">
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetName="CustomizationState" Storyboard.TargetProperty="Opacity" Duration="0" To="1"/>
+                        </Storyboard>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+        </Grid>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="{dxrt:RibbonPageGroupThemeKey ResourceKey=PopupControlTemplate}" TargetType="{x:Type ContentControl}">
+        <ContentPresenter/>
+    </ControlTemplate>
+
+    <Style x:Key="{dxrt:RibbonPageGroupThemeKey ResourceKey=TextSplitterStyle}" TargetType="{x:Type dxb:TextSplitterControl}">
+        <Setter Property="FirstStringHorizontalAlignment" Value="Center"/>
+        <Setter Property="SecondStringHorizontalAlignment" Value="Center"/>
+        <Setter Property="SecondStringMargin" Value="0,-3,0,0"/>
+        <Setter Property="Margin" Value="0,-3,0,0"/>
+    </Style>
+
+    <ControlTemplate x:Key="{dxrt:RibbonPageGroupThemeKey ResourceKey=NormalArrowTemplateInTextSplitter}"
+                     TargetType="{x:Type ContentControl}">
+        <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Path Stretch="Fill" Fill="#7FFFFFFF"
+                  Data="F1 M 185,54L 182,51L 182,50L 188,50L 188,51L 185,54 Z"
+                  Width="6" Height="4"/>
+            <Path Stretch="Fill" Fill="#FF4C607A"
+                  Data="F1 M 168,37L 174,37L 171,39.9999L 168,37 Z"
+                  Margin="0,0,0,1" Width="6" Height="3"
+                  SnapsToDevicePixels="True"/>
+        </Grid>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="{dxrt:RibbonPageGroupThemeKey ResourceKey=SelectedArrowTemplateInTextSplitter}"
+                     TargetType="{x:Type ContentControl}">
+        <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Path Stretch="Fill" Fill="#7FFFFFFF"
+                  Data="F1 M 185,54L 182,51L 182,50L 188,50L 188,51L 185,54 Z"
+                  Width="6" Height="4"/>
+            <Path Stretch="Fill" Fill="#FF4C607A"
+                  Data="F1 M 168,37L 174,37L 171,39.9999L 168,37 Z"
+                  Margin="0,0,0,1" Width="6" Height="3"
+                  SnapsToDevicePixels="True"/>
+        </Grid>
+    </ControlTemplate>
+
+    <Style x:Key="{dxrt:RibbonPageGroupThemeKey ResourceKey=SelectedTextStyleInTextSplitter}"
+           TargetType="{x:Type ContentControl}">
+        <Setter Property="Foreground" Value="#FF1E395B"/>
+    </Style>
+
+    <Style x:Key="{dxrt:RibbonPageGroupThemeKey ResourceKey=NormalTextStyleInTextSplitter}"
+           TargetType="{x:Type ContentControl}">
+        <Setter Property="Foreground" Value="#FF1E395B"/>
+    </Style>
+
+    <Style x:Key="{dxrt:RibbonPageGroupThemeKey ResourceKey=BottomSideArrowContainerStyleInTextSplitter}"
+           TargetType="{x:Type ContentControl}">
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
+
+    <Style x:Key="{dxrt:RibbonPageGroupThemeKey ResourceKey=RightSideArrowContainerStyleInTextSplitter}"
+           TargetType="{x:Type ContentControl}">
+        <Setter Property="Margin" Value="2,0,0,0"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
+
+    <Style x:Key="{dxrt:RibbonPageGroupThemeKey ResourceKey=LayoutPanelStyle}"
+           TargetType="{x:Type dx:Items2Panel}">
+        <Setter Property="HorizontalIndent" Value="2"/>
+        <Setter Property="VerticalIndent" Value="0"/>
+        <Setter Property="Content1Padding" Value="5"/>
+        <Setter Property="Content2Padding" Value="5"/>
+        <Setter Property="VerticalPadding" Value="5"/>
+        <Setter Property="HorizontalPadding" Value="5"/>
+        <Setter Property="Alignment" Value="Top"/>
+        <Setter Property="Margin" Value="0,0,3,0"/>
+    </Style>
+
+    <dx:ColorOverlayConverter x:Key="colorOverlayConverter"/>
+
+    <ControlTemplate x:Key="{dxrt:RibbonPageGroupThemeKey ResourceKey=HighlightedBorderTemplate}"
+                     TargetType="{x:Type ContentControl}">
+        <Grid SnapsToDevicePixels="True">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <ContentPresenter Grid.Column="0"/>
+            <TextBlock Name="PART_DesignTimeCaption" Text="[PageGroup]" Grid.Column="1" VerticalAlignment="Center" Margin="2,0" Visibility="Collapsed"/>
+            <Grid Name="PART_Separator" Width="3" HorizontalAlignment="Right" Grid.Column="2">
+                <Grid.OpacityMask>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#00FFFFFF" Offset="0"/>
+                        <GradientStop Color="#FFFFFFFF" Offset="1"/>
+                    </LinearGradientBrush>
+                </Grid.OpacityMask>
+                <Border Background="#3FFFFFFF" Margin="0,0,0,1" />
+                <Border Background="#FF9CAAC1" Margin="1,0,1,0" />
+            </Grid>
+        </Grid>
+        <ControlTemplate.Triggers>
+            <DataTrigger Binding="{Binding Path=IsDesignTimeCaptionVisible, RelativeSource={RelativeSource AncestorType=dxr:RibbonPageGroupControl}}" Value="True">
+                <Setter TargetName="PART_DesignTimeCaption" Property="Visibility" Value="Visible"/>
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Path=IsSeparatorVisible, RelativeSource={RelativeSource AncestorType=dxr:RibbonPageGroupControl}}" Value="False">
+                <Setter TargetName="PART_Separator" Property="Visibility" Value="Collapsed"/>
+            </DataTrigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="{dxrt:RibbonPageGroupThemeKey ResourceKey=HighlightedBorderTemplateInPopup}"
+                     TargetType="{x:Type ContentControl}">
+        <Border Background="#FF9CAAC1">
+            <Border Background="#FFC9D2E1" Margin="1">
+                <Border Background="#FFBCC7D8" Margin="0,0,1,1">
+                    <ContentPresenter/>
+                </Border>
+            </Border>
+        </Border>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="{dxrt:RibbonPageGroupThemeKey ResourceKey=HighlightedPopupButtonBorderTemplate}"
+                     TargetType="{x:Type dxb:ItemBorderControl}">
+        <Grid SnapsToDevicePixels="True">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Grid Margin="0,0,0,1" Grid.Column="0" Grid.ColumnSpan="1">
+                <Grid Background="Transparent">
+                    <Grid x:Name="CustomizationState" Opacity="0.0" Visibility="Visible">
+                        <Border BorderBrush="#FF000000" BorderThickness="2" CornerRadius="3"/>
+                    </Grid>
+                    <Grid x:Name="NormalState" Opacity="0"/>
+                    <Grid x:Name="HoverState" Opacity="0">
+                        <Border>
+                            <Border.Background>
+                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                    <GradientStop Color="#00FFE9A8" Offset="0"/>
+                                    <GradientStop Color="#7FFFE9A8" Offset="1"/>
+                                </LinearGradientBrush>
+                            </Border.Background>
+                        </Border>
+                    </Grid>
+                    <Grid x:Name="PressedState" Opacity="0">
+                        <Border>
+                            <Border.Background>
+                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                    <GradientStop Color="#009CAAC1" Offset="0"/>
+                                    <GradientStop Color="#7F9CAAC1" Offset="1"/>
+                                </LinearGradientBrush>
+                            </Border.Background>
+                        </Border>
+                    </Grid>
+                </Grid>
+             </Grid>
+            <Grid Width="3" HorizontalAlignment="Right" Grid.Column="1" Grid.ColumnSpan="1">
+                <Grid.OpacityMask>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#00FFFFFF" Offset="0"/>
+                        <GradientStop Color="#FFFFFFFF" Offset="1"/>
+                    </LinearGradientBrush>
+                </Grid.OpacityMask>
+                <Border Background="#3FFFFFFF" Margin="0,0,0,1" />
+                <Border Background="#FF9CAAC1" Margin="1,0,1,0" />
+            </Grid>
+            <ContentPresenter Margin="4" Content="{TemplateBinding Content}"/>
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup x:Name="State">
+                    <VisualState x:Name="Normal">
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetName="NormalState" Storyboard.TargetProperty="Opacity" Duration="0" To="1"/>
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Hover">
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetName="HoverState" Storyboard.TargetProperty="Opacity" Duration="0" To="1"/>
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Pressed">
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetName="PressedState" Storyboard.TargetProperty="Opacity" Duration="0" To="1"/>
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Checked">
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetName="PressedState" Storyboard.TargetProperty="Opacity" Duration="0" To="1"/>
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="HoverChecked">
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetName="HoverState" Storyboard.TargetProperty="Opacity" Duration="0" To="1"/>
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Focused"/>
+                    <VisualState x:Name="Customization">
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetName="CustomizationState" Storyboard.TargetProperty="Opacity" Duration="0" To="1"/>
+                        </Storyboard>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+        </Grid>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="{dxrt:RibbonPageGroupThemeKey ResourceKey=HighlightedPopupButtonGlyphBorderTemplate}"
+                     TargetType="{x:Type ContentControl}">
+        <Border Width="32" Height="32" Margin="0,0,0,6">
+            <ContentPresenter/>
+        </Border>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="{dxrt:RibbonPageGroupThemeKey  ResourceKey=PopupButtonGlyphBorderTemplate}"
+                     TargetType="{x:Type ContentControl}">
+        <Border Width="32" Height="32" Margin="0,0,0,6">
+            <ContentPresenter/>
+        </Border>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="{dxrt:RibbonPageGroupThemeKey ResourceKey=HighlightedPopupButtonContentBorderTemplate}"
+                     TargetType="{x:Type ContentControl}">
+        <ContentPresenter Margin="5,10,8,2"/>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="{dxrt:RibbonPageGroupThemeKey  ResourceKey=PopupButtonContentBorderTemplate}"
+                     TargetType="{x:Type ContentControl}">
+        <ContentPresenter Margin="5,10,8,2"/>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="{dxrt:RibbonPageGroupThemeKey ResourceKey=HighlightedCaptionBorderTemplate}"
+                     TargetType="{x:Type ContentControl}">      
+        <Border Background="#FFB4C0D2" Margin="0,0,0,1">
+            <ContentPresenter/>
+        </Border>
+    </ControlTemplate>
+
+</ResourceDictionary>

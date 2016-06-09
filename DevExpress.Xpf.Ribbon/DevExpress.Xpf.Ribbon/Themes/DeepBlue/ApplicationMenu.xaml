@@ -1,0 +1,80 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:interop="clr-namespace:System.Windows.Interop;assembly=PresentationFramework"
+                    xmlns:dxr="clr-namespace:DevExpress.Xpf.Ribbon"
+                    xmlns:dxrt="clr-namespace:DevExpress.Xpf.Ribbon.Themes">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/DevExpress.Xpf.Ribbon.v15.2;component/Themes/Generic/ApplicationMenu.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    <!-- DeepBlue: Application Menu -->
+    <ControlTemplate x:Key="{dxrt:RibbonThemeKey ResourceKey=ApplicationMenuBackgroundTemplate}" TargetType="{x:Type Control}">
+        <Border Background="#ffffffff" />
+    </ControlTemplate>
+    <ControlTemplate x:Key="{dxrt:RibbonThemeKey ResourceKey=ApplicationMenuBarControlBorderTemplate2007}" TargetType="{x:Type ContentControl}">
+        <Grid x:Name="PART_AppMenu" Margin="0,0,3,3">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="25" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Border x:Name="Shadow" Margin="3,3,-3,-3" SnapsToDevicePixels="True" CornerRadius="3" Background="#FF3b5480" Opacity="0.15" Grid.RowSpan="2" />
+            <Border x:Name="Border" BorderThickness="0" Background="#FF193C72" CornerRadius="3" Margin="0" Grid.RowSpan="2" />
+            <Border x:Name="Header" BorderThickness="0" CornerRadius="2,2,0,0" SnapsToDevicePixels="True" Margin="1,1,1,0">
+                <Border.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FF86a8d6" Offset="0" />
+                        <GradientStop Color="#FF6489bc" Offset="1" />
+                        <GradientStop Color="#FF6a8ec1" Offset="0.5" />
+                        <GradientStop Color="#FF597eb4" Offset="0.5" />
+                    </LinearGradientBrush>
+                </Border.Background>
+            </Border>
+            <Border x:Name="Content" BorderThickness="0" CornerRadius="0,0,2,2" SnapsToDevicePixels="True" Margin="1,0,1,1" Grid.Row="1" Background="#FF6489bc">
+                <Border Margin="2,0,2,2" BorderThickness="1" BorderBrush="#ff4d6e9c">
+                    <ContentPresenter Content="{TemplateBinding Content}" />
+                </Border>
+            </Border>
+        </Grid>
+        <ControlTemplate.Triggers>
+            <DataTrigger Binding="{Binding Source={x:Static interop:BrowserInteropHelper.IsBrowserHosted}}" Value="True">
+                <Setter Property="Visibility" TargetName="Shadow" Value="Collapsed" />
+                <Setter Property="Margin" TargetName="PART_AppMenu" Value="0" />
+                <Setter Property="CornerRadius" TargetName="Header" Value="0" />
+                <Setter Property="CornerRadius" TargetName="Border" Value="0" />
+                <Setter Property="CornerRadius" TargetName="Content" Value="0" />
+            </DataTrigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+    <!-- DeepBlue ... -->
+    <ControlTemplate x:Key="{dxrt:RibbonThemeKey ResourceKey=ApplicationMenuContentControlBorderTemplate}" TargetType="{x:Type ContentControl}">
+        <Border SnapsToDevicePixels="True" BorderBrush="#FF617CA7" BorderThickness="0,1,0,0">
+            <Border SnapsToDevicePixels="True" BorderBrush="#ffdbe1ed" BorderThickness="0,1,0,0">
+                <ContentPresenter Content="{TemplateBinding Content}" />
+            </Border>
+        </Border>
+    </ControlTemplate>
+    <ControlTemplate x:Key="{dxrt:RibbonThemeKey ResourceKey=ApplicationMenuRightPaneTemplate}" TargetType="{x:Type ContentControl}">
+        <Border SnapsToDevicePixels="True" Background="#ffdbe1ed">
+            <ContentPresenter />
+        </Border>
+    </ControlTemplate>
+    <ControlTemplate x:Key="{dxrt:RibbonThemeKey ResourceKey=ApplicationMenuBottomPaneTemplate}" TargetType="{x:Type ContentControl}">
+        <Border SnapsToDevicePixels="True">
+            <Border.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF9dbee9" Offset="0" />
+                    <GradientStop Color="#FF82a5d2" Offset="1" />
+                    <GradientStop Color="#FF8dafda" Offset="0.5" />
+                    <GradientStop Color="#FF82a5d2" Offset="0.5" />
+                </LinearGradientBrush>
+            </Border.Background>
+            <ContentPresenter HorizontalAlignment="Right" Margin="2" />
+        </Border>
+    </ControlTemplate>
+    <!-- DeepBlue ... -->
+    <ControlTemplate x:Key="{dxrt:RibbonThemeKey ResourceKey=ApplicationMenuBarControlBorderTemplate2010}" TargetType="{x:Type ContentControl}">
+        <ContentControl Template="{DynamicResource {dxrt:RibbonThemeKey ResourceKey=ApplicationMenuBarControlBorderTemplate2007}}">
+            <ContentPresenter />
+        </ContentControl>
+    </ControlTemplate>
+</ResourceDictionary>

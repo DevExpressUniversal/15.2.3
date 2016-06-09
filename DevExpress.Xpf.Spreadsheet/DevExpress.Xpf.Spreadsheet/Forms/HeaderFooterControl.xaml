@@ -1,0 +1,71 @@
+﻿<UserControl x:Class="DevExpress.Xpf.Spreadsheet.Forms.HeaderFooterControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:dxc="http://schemas.devexpress.com/winfx/2008/xaml/core"
+             xmlns:dxsps="clr-namespace:DevExpress.Xpf.Spreadsheet" 
+             xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+             xmlns:dxspsi="clr-namespace:DevExpress.Xpf.Spreadsheet.Internal"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300"
+             Height="320" Width="600">
+    <UserControl.Resources>
+        <dxc:BooleanToVisibilityConverter x:Key="boolToVisibilityConverter" />
+        <dxsps:SpreadsheetControlStringIdConverter x:Key="stringIdConverter" />
+    </UserControl.Resources>
+    <Grid>
+        <dxc:DXTabControl Margin="5,5" x:Name="tabControl">
+            <dxc:DXTabControl.Items>
+                <dxc:DXTabItem x:Name="tabHeaderFooter" Header="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_HeaderFooterTabHeaderFooter, Converter={StaticResource stringIdConverter}}">
+                    <Grid>
+                        <dxspsi:HeaderFooterEditControl x:Name="headerFooterControl"
+                                                      Provider="{Binding Provider, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                      LeftHeader="{Binding OddLeftHeader, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                      CenterHeader="{Binding OddCenterHeader, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                      RightHeader="{Binding OddRightHeader, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                      LeftFooter="{Binding OddLeftFooter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                      CenterFooter="{Binding OddCenterFooter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                      RightFooter="{Binding OddRightFooter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                    </Grid>
+                </dxc:DXTabItem>
+                <dxc:DXTabItem x:Name="tabFirstHeaderFooter" Header="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_HeaderFooterTabFirstHeaderFooter, Converter={StaticResource stringIdConverter}}">
+                    <Grid>
+                        <dxspsi:HeaderFooterEditControl x:Name="firstHeaderFooterControl"
+                                                      Provider="{Binding Provider, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                      LeftHeader="{Binding FirstLeftHeader, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                      CenterHeader="{Binding FirstCenterHeader, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                      RightHeader="{Binding FirstRightHeader, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                      LeftFooter="{Binding FirstLeftFooter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                      CenterFooter="{Binding FirstCenterFooter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                      RightFooter="{Binding FirstRightFooter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                    </Grid>
+                </dxc:DXTabItem>
+                <dxc:DXTabItem x:Name="tabOddHeaderFooter" Header="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_HeaderFooterTabOddHeaderFooter, Converter={StaticResource stringIdConverter}}">
+                    <Grid>
+                        <dxspsi:HeaderFooterEditControl x:Name="oddHeaderFooterControl"
+                                                      Provider="{Binding Provider, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                      LeftHeader="{Binding OddLeftHeader, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                      CenterHeader="{Binding OddCenterHeader, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                      RightHeader="{Binding OddRightHeader, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                      LeftFooter="{Binding OddLeftFooter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                      CenterFooter="{Binding OddCenterFooter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                      RightFooter="{Binding OddRightFooter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                    </Grid>
+                </dxc:DXTabItem>
+                <dxc:DXTabItem x:Name="tabEvenHeaderFooter" Header="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_HeaderFooterTabEvenHeaderFooter, Converter={StaticResource stringIdConverter}}">
+                    <Grid>
+                        <dxspsi:HeaderFooterEditControl x:Name="evenHeaderFooterControl"
+                                                      Provider="{Binding Provider, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                      LeftHeader="{Binding EvenLeftHeader, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                      CenterHeader="{Binding EvenCenterHeader, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                      RightHeader="{Binding EvenRightHeader, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                      LeftFooter="{Binding EvenLeftFooter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                      CenterFooter="{Binding EvenCenterFooter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                      RightFooter="{Binding EvenRightFooter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                    </Grid>
+                </dxc:DXTabItem>
+            </dxc:DXTabControl.Items>
+        </dxc:DXTabControl>
+    </Grid>
+</UserControl>

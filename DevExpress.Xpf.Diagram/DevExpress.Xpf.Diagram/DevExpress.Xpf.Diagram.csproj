@@ -1,0 +1,268 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\..\..\Bin\Analyzers\System.Runtime.Analyzers\build\System.Runtime.Analyzers.props" Condition="Exists('..\..\..\Bin\Analyzers\System.Runtime.Analyzers\build\System.Runtime.Analyzers.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{CBC715DD-1328-4CB7-A593-89EA07EAB07A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DevExpress.Xpf.Diagram</RootNamespace>
+    <AssemblyName>DevExpress.Xpf.Diagram.v15.2</AssemblyName>
+    <AssemblyOriginatorKeyFile>..\..\DevExpress.Key\StrongKey.snk</AssemblyOriginatorKeyFile>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <WarningLevel>4</WarningLevel>
+    <SignAssembly>true</SignAssembly>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\..\Bin\Framework\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;WPF;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\..\Bin\Framework\</OutputPath>
+    <DefineConstants>TRACE;WPF;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+  
+  <ItemGroup>
+    <Reference Include="DevExpress.Data.v15.2"><HintPath>..\..\..\Bin\Framework\DevExpress.Data.v15.2.dll</HintPath><Private>False</Private></Reference>
+    <Reference Include="DevExpress.Diagram.v15.2.Core">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Bin\Framework\DevExpress.Diagram.v15.2.Core.dll</HintPath>
+    <Private>False</Private></Reference>
+    <Reference Include="DevExpress.Images.v15.2"><HintPath>..\..\..\Bin\Framework\DevExpress.Images.v15.2.dll</HintPath><Private>False</Private></Reference>
+    <Reference Include="DevExpress.Mvvm.v15.2"><HintPath>..\..\..\Bin\Framework\DevExpress.Mvvm.v15.2.dll</HintPath><Private>False</Private></Reference>
+    <Reference Include="DevExpress.Xpf.Core.v15.2"><HintPath>..\..\..\Bin\Framework\DevExpress.Xpf.Core.v15.2.dll</HintPath><Private>False</Private></Reference>
+    <Reference Include="DevExpress.Xpf.Docking.v15.2"><HintPath>..\..\..\Bin\Framework\DevExpress.Xpf.Docking.v15.2.dll</HintPath><Private>False</Private></Reference>
+    <Reference Include="DevExpress.Xpf.Layout.v15.2.Core"><HintPath>..\..\..\Bin\Framework\DevExpress.Xpf.Layout.v15.2.Core.dll</HintPath><Private>False</Private></Reference>
+    <Reference Include="DevExpress.Xpf.NavBar.v15.2"><HintPath>..\..\..\Bin\Framework\DevExpress.Xpf.NavBar.v15.2.dll</HintPath><Private>False</Private></Reference>
+    <Reference Include="DevExpress.Xpf.Ribbon.v15.2"><HintPath>..\..\..\Bin\Framework\DevExpress.Xpf.Ribbon.v15.2.dll</HintPath><Private>False</Private></Reference>
+    <Reference Include="DevExpress.Xpf.PropertyGrid.v15.2"><HintPath>..\..\..\Bin\Framework\DevExpress.Xpf.PropertyGrid.v15.2.dll</HintPath><Private>False</Private></Reference>
+    <Reference Include="ReachFramework"><Private>False</Private></Reference>
+    <Reference Include="System"><Private>False</Private></Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations"><Private>False</Private></Reference>
+    <Reference Include="System.Core"><Private>False</Private></Reference>
+    <Reference Include="System.Drawing"><Private>False</Private></Reference>
+    <Reference Include="System.Printing"><Private>False</Private></Reference>
+    <Reference Include="System.Windows.Forms"><Private>False</Private></Reference>
+    <Reference Include="System.Xaml"><Private>False</Private></Reference>
+    <Reference Include="System.Xml.Linq"><Private>False</Private></Reference>
+    <Reference Include="System.Data.DataSetExtensions"><Private>False</Private></Reference>
+    <Reference Include="System.Data"><Private>False</Private></Reference>
+    <Reference Include="System.Xml"><Private>False</Private></Reference>
+    <Reference Include="UIAutomationProvider"><Private>False</Private></Reference>
+    <Reference Include="UIAutomationTypes"><Private>False</Private></Reference>
+    <Reference Include="UIAutomationClient"><Private>False</Private></Reference>
+    <Reference Include="WindowsBase"><Private>False</Private></Reference>
+    <Reference Include="PresentationCore"><Private>False</Private></Reference>
+    <Reference Include="PresentationFramework"><Private>False</Private></Reference>
+  </ItemGroup>
+  
+  <ItemGroup>
+    <Compile Include="Behaviors\CollectionUITypeEditors\Base\CollectionEditorBase.cs" />
+    <Compile Include="Behaviors\CollectionUITypeEditors\Base\ExtendedSelectionCollectionEditor.cs" />
+    <Compile Include="Behaviors\CollectionUITypeEditors\Base\SingleSelectionCollectionEditor.cs" />
+    <Compile Include="Behaviors\CollectionUITypeEditors\CollectionEditorController.cs" />
+    <Compile Include="Behaviors\CollectionUITypeEditors\ICollectionEditorController.cs" />
+    <Compile Include="Behaviors\DialogServiceUITypeCollectionEditorBehavior.cs" />
+    <Compile Include="Behaviors\DiagramOrgChartBehavior.cs" />
+    <Compile Include="Diagram\Converters.cs" />
+    <Compile Include="Diagram\DiagramConnector.cs" />
+    <Compile Include="Diagram\DiagramContentItem.cs" />
+    <Compile Include="Diagram\DiagramShapeDescription.cs" />
+    <Compile Include="Diagram\DXDiagramDesignerControl.cs" />
+    <Compile Include="Diagram\Native\FormattedTextCache.cs" />
+    <Compile Include="Diagram\AdornerLayer.cs" />
+    <Compile Include="Diagram\DXDiagramContainerItem.cs" />
+    <Compile Include="Diagram\DXDiagramControl.cs" />
+    <Compile Include="Diagram\DiagramInput.cs" />
+    <Compile Include="Diagram\DXDiagramItem.cs" />
+    <Compile Include="Diagram\DiagramItemCollection.cs" />
+    <Compile Include="Diagram\DiagramRootItem.cs" />
+    <Compile Include="Diagram\GridPainter.cs" />
+    <Compile Include="Diagram\DiagramItemExtensions.cs" />
+    <Compile Include="Diagram\Layers.cs" />
+    <Compile Include="Diagram\DXDiagramShape.cs" />
+    <Compile Include="Diagram\DiagramTool.cs" />
+    <Compile Include="Diagram\Native\FontHelper.cs" />
+    <Compile Include="Diagram\Native\FrameworkElementExtensions.cs" />
+    <Compile Include="Diagram\Native\Input\DiagramCommands.cs" />
+    <Compile Include="Diagram\Native\Input\PlatformInput.cs" />
+    <Compile Include="Diagram\Native\Input\StartDragBehavior.cs" />
+    <Compile Include="Diagram\Native\ScaleCanvas.cs" />
+    <Compile Include="Diagram\Native\SnapLineAdorners.cs" />
+    <Compile Include="Diagram\PopupMenu.cs" />
+    <Compile Include="Diagram\DiagramPopupToolBar.cs" />
+    <Compile Include="Diagram\PredefinedShapeKind.cs" />
+    <Compile Include="Diagram\Previews.cs" />
+    <Compile Include="Diagram\Rulers\RulerScaleBase.cs" />
+    <Compile Include="Diagram\Rulers\RulerScalePresenter.cs" />
+    <Compile Include="Diagram\Rulers\Ruler.cs" />
+    <Compile Include="Diagram\Rulers\DiagramRulerScale.cs" />
+    <Compile Include="Diagram\SelectionAdorner.cs" />
+    <Compile Include="Diagram\SelectionPartsLayerBase.cs" />
+    <Compile Include="Diagram\SelectionPropertyModelExtension.cs" />
+    <Compile Include="Diagram\ThemeHelper.cs" />
+    <Compile Include="Diagram\ThemeKeys.cs" />
+    <Compile Include="Diagram\Toolbox\ActualWidthBehavior.cs" />
+    <Compile Include="Diagram\Toolbox\DiagramToolboxControl.cs" />
+    <Compile Include="Diagram\Toolbox\ExtendedWrapPanel.cs" />
+    <Compile Include="Diagram\Toolbox\ListBoxMenuBehavior.cs" />
+    <Compile Include="Diagram\Toolbox\PanelCollapsedBehavior.cs" />
+    <Compile Include="Diagram\Toolbox\ScrollingLengthBehavior.cs" />
+    <Compile Include="Diagram\Toolbox\ScrollViewerButtonsBehavior.cs" />
+    <Compile Include="Diagram\Toolbox\ViewModelExtension.cs" />
+    <Compile Include="Meta\AssemblyInfo.meta.cs" />
+    <Compile Include="Meta\Completions.meta.cs" />
+    <Compile Include="Meta\Completions.meta.designer.cs" />
+    <Compile Include="Meta\DiagramCommands.meta.cs" />
+    <Compile Include="Meta\DiagramCommands.meta.designer.cs" />
+    <Compile Include="Meta\DXDiagramControl.meta.cs" />
+    <Compile Include="Meta\DXDiagramControl.meta.designer.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="List\DiagramListItem.cs" />
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Behaviors\CollectionUITypeEditors\Themes\CollectionEditorBase.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Behaviors\CollectionUITypeEditors\Themes\ExtendedSelectionCollectionEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Behaviors\CollectionUITypeEditors\Themes\SingleSelectionCollectionEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    
+    
+    <Page Include="Themes\DeepBlue\Colors.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\DeepBlue\Controls.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Generic\Adorners.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Generic\Controls.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Generic\DiagramControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Generic\RibbonItemsStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Generic\Ruler.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Generic\Toolbox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    
+  </ItemGroup>
+  
+  <ItemGroup>
+    
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    
+  </PropertyGroup>
+  <PropertyGroup>
+    
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

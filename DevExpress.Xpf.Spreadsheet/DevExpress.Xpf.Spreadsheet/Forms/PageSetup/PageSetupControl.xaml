@@ -1,0 +1,36 @@
+﻿<UserControl x:Class="DevExpress.Xpf.Spreadsheet.Forms.PageSetupControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+             xmlns:local="clr-namespace:DevExpress.Xpf.Spreadsheet.Forms"
+             xmlns:dxsps="clr-namespace:DevExpress.Xpf.Spreadsheet" 
+             xmlns:dxpspi="clr-namespace:DevExpress.Xpf.Spreadsheet.Internal"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300"
+             Height="380" Width="420">
+    <UserControl.Resources>
+        <dxpspi:InitialTabPageToIntConverter x:Key="InitialTabPageToIntConverter"/>
+        <dxpspi:ProtectedToVisibilityConverter x:Key="ProtectedToVisibilityConverter"/>
+        <dxsps:SpreadsheetControlStringIdConverter x:Key="stringIdConverter" />
+    </UserControl.Resources>
+    <Grid>
+        <dx:DXTabControl Margin="5,5" x:Name="tabControl" SelectionChanging="tabControl_SelectionChanging" SelectedIndex="{Binding InitialTabPage, Converter={StaticResource InitialTabPageToIntConverter}, Mode=OneWay}">
+            <dx:DXTabControl.Items>
+                <dx:DXTabItem x:Name="tabPage" Header="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_PageSetupFormTabPage, Converter={StaticResource stringIdConverter}}">
+                    <local:PageSetupPageControl/>
+                </dx:DXTabItem>
+                <dx:DXTabItem x:Name="tabMargins" Header="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_PageSetupFormTabMargins, Converter={StaticResource stringIdConverter}}">
+                    <local:PageSetupMarginsControl/>
+                </dx:DXTabItem>
+                <dx:DXTabItem x:Name="tabHeaderFooter" Header="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_PageSetupFormTabHeaderFooter, Converter={StaticResource stringIdConverter}}">
+                    <local:PageSetupHeaderFooterControl/>
+                </dx:DXTabItem>
+                <dx:DXTabItem x:Name="tabSheet" Header="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_PageSetupFormTabSheet, Converter={StaticResource stringIdConverter}}">
+                    <local:PageSetupSheetControl/>
+                </dx:DXTabItem>
+            </dx:DXTabControl.Items>
+        </dx:DXTabControl>
+    </Grid>
+</UserControl>

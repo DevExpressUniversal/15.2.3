@@ -1,0 +1,132 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:dx="clr-namespace:DevExpress.Xpf.Core"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:dxtEx="clr-namespace:DevExpress.Xpf.Utils.Themes"
+	xmlns:dxt="clr-namespace:DevExpress.Xpf.Utils.Themes"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d">
+    <!--<SolidColorBrush x:Key="TabControlNormalBorderBrush" Color="#919B9C"/>
+	<LinearGradientBrush x:Key="TabControlPaneTopNormalBackground" EndPoint="0,1" StartPoint="0,0">
+		<GradientStop Color="#FFFCFCFE" Offset="0"/>
+		<GradientStop Color="#FFF4F3EE" Offset="1"/>
+	</LinearGradientBrush>
+	<LinearGradientBrush x:Key="TabControlPaneBottomNormalBackground" EndPoint="0,0" StartPoint="0,1">
+		<GradientStop Color="#FFFCFCFE" Offset="0"/>
+		<GradientStop Color="#FFF4F3EE" Offset="1"/>
+	</LinearGradientBrush>
+	<LinearGradientBrush x:Key="TabControlPaneLeftNormalBackground" EndPoint="1,0" StartPoint="0,0">
+		<GradientStop Color="#FFFCFCFE" Offset="0"/>
+		<GradientStop Color="#FFF4F3EE" Offset="1"/>
+	</LinearGradientBrush>
+	<LinearGradientBrush x:Key="TabControlPaneRightNormalBackground" EndPoint="0,0" StartPoint="1,0">
+		<GradientStop Color="#FFFCFCFE" Offset="0"/>
+		<GradientStop Color="#FFF4F3EE" Offset="1"/>
+	</LinearGradientBrush>-->
+    <SolidColorBrush x:Key="TabControlNormalBorderBrush" Color="#8C8E94"/>
+    <ControlTemplate x:Key="{dxt:TabControlThemeKey ResourceKey=ControlTemplate}" TargetType="{x:Type TabControl}">
+        <Grid x:Name="grid" SnapsToDevicePixels="true" KeyboardNavigation.TabNavigation="Local">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition x:Name="ColumnDefinition0"/>
+                <ColumnDefinition x:Name="ColumnDefinition1" Width="0"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition x:Name="RowDefinition0" Height="Auto"/>
+                <RowDefinition x:Name="RowDefinition1" Height="*"/>
+            </Grid.RowDefinitions>
+            <TabPanel x:Name="HeaderPanel" Grid.Column="0" IsItemsHost="true" Margin="3,3,3,0" Grid.Row="0" KeyboardNavigation.TabIndex="1" Panel.ZIndex="1"/>
+            <Border x:Name="ContentPanel" MinWidth="10" MinHeight="10" CornerRadius="3" Background="{x:Null}"  Grid.Column="0" KeyboardNavigation.DirectionalNavigation="Contained" Grid.Row="1" KeyboardNavigation.TabIndex="2" KeyboardNavigation.TabNavigation="Local">
+                <Grid>
+                    <Border x:Name="Top" MinWidth="10" MinHeight="10" Grid.Row="0" CornerRadius="3" Background="#FF5A80BD" Height="Auto" VerticalAlignment="Stretch" Visibility="Visible" >
+                        <Border CornerRadius="2" Margin="1">
+                            <Border.Background>
+                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                    <GradientStop Color="#FFC7DDF7" Offset="0"/>
+                                    <GradientStop Color="#FFB3CEF4" Offset="1"/>
+                                </LinearGradientBrush>
+                            </Border.Background>
+                        </Border>
+                    </Border>
+                    <Border x:Name="Bottom" MinWidth="10" MinHeight="10" CornerRadius="3" Background="#FF5A80BD" d:LayoutOverrides="VerticalAlignment, GridBox" Visibility="Collapsed" >
+                        <Border CornerRadius="2" Margin="1">
+                            <Border.Background>
+                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                    <GradientStop Color="#FFB3CEF4" Offset="0"/>
+                                    <GradientStop Color="#FFC7DCF6" Offset="1"/>
+                                </LinearGradientBrush>
+                            </Border.Background>
+                            <ContentPresenter x:Name="ContentBottom" Margin="11"/>
+                        </Border>
+                    </Border>
+                    <Border x:Name="Left" Grid.Column="0" MinWidth="10" MinHeight="10" CornerRadius="3" Background="#FF5A80BD" d:LayoutOverrides="VerticalAlignment" Visibility="Collapsed" >
+                        <Border CornerRadius="2" Margin="1">
+                            <Border.Background>
+                                <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
+                                    <GradientStop Color="#FFB3CEF4" Offset="1"/>
+                                    <GradientStop Color="#FFC7DDF6"/>
+                                </LinearGradientBrush>
+                            </Border.Background>
+                            <ContentPresenter x:Name="ContentLeft" Margin="11"/>
+                        </Border>
+                    </Border>
+                    <Border x:Name="Right" MinWidth="10" MinHeight="10" CornerRadius="3" Background="#FF5A80BD" d:LayoutOverrides="GridBox" Visibility="Collapsed" >
+                        <Border CornerRadius="2" Margin="1">
+                            <Border.Background>
+                                <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
+                                    <GradientStop Color="#FFB3CEF4"/>
+                                    <GradientStop Color="#FFC8DEF7" Offset="1"/>
+                                </LinearGradientBrush>
+                            </Border.Background>
+                            <ContentPresenter x:Name="ContentRight" Margin="11"/>
+                        </Border>
+                    </Border>
+                    <ContentPresenter x:Name="PART_SelectedContentHost" ContentSource="SelectedContent" Margin="12" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                </Grid>
+            </Border>
+        </Grid>
+        <ControlTemplate.Triggers>
+            <Trigger Property="TabStripPlacement" Value="Bottom">
+                <Setter Property="Grid.Row" TargetName="HeaderPanel" Value="1"/>
+                <Setter Property="Grid.Row" TargetName="ContentPanel" Value="0"/>
+                <Setter Property="Height" TargetName="RowDefinition0" Value="*"/>
+                <Setter Property="Height" TargetName="RowDefinition1" Value="Auto"/>
+                <Setter Property="Margin" TargetName="HeaderPanel" Value="3,0,3,3"/>
+                <Setter Property="Visibility" TargetName="Top" Value="Collapsed"/>
+                <Setter Property="Visibility" TargetName="Left" Value="Collapsed"/>
+                <Setter Property="Visibility" TargetName="Right" Value="Collapsed"/>
+                <Setter Property="Visibility" TargetName="Bottom" Value="Visible"/>
+            </Trigger>
+            <Trigger Property="TabStripPlacement" Value="Left">
+                <Setter Property="Grid.Row" TargetName="HeaderPanel" Value="0"/>
+                <Setter Property="Grid.Row" TargetName="ContentPanel" Value="0"/>
+                <Setter Property="Grid.Column" TargetName="HeaderPanel" Value="0"/>
+                <Setter Property="Grid.Column" TargetName="ContentPanel" Value="1"/>
+                <Setter Property="Width" TargetName="ColumnDefinition0" Value="Auto"/>
+                <Setter Property="Width" TargetName="ColumnDefinition1" Value="*"/>
+                <Setter Property="Height" TargetName="RowDefinition0" Value="*"/>
+                <Setter Property="Height" TargetName="RowDefinition1" Value="0"/>
+                <Setter Property="Margin" TargetName="HeaderPanel" Value="2,3,0,2"/>
+                <Setter Property="Visibility" TargetName="Top" Value="Collapsed"/>
+                <Setter Property="Visibility" TargetName="Bottom" Value="Collapsed"/>
+                <Setter Property="Visibility" TargetName="Right" Value="Collapsed"/>
+                <Setter Property="Visibility" TargetName="Left" Value="Visible"/>
+            </Trigger>
+            <Trigger Property="TabStripPlacement" Value="Right">
+                <Setter Property="Grid.Row" TargetName="HeaderPanel" Value="0"/>
+                <Setter Property="Grid.Row" TargetName="ContentPanel" Value="0"/>
+                <Setter Property="Grid.Column" TargetName="HeaderPanel" Value="1"/>
+                <Setter Property="Grid.Column" TargetName="ContentPanel" Value="0"/>
+                <Setter Property="Width" TargetName="ColumnDefinition0" Value="*"/>
+                <Setter Property="Width" TargetName="ColumnDefinition1" Value="Auto"/>
+                <Setter Property="Height" TargetName="RowDefinition0" Value="*"/>
+                <Setter Property="Height" TargetName="RowDefinition1" Value="0"/>
+                <Setter Property="Margin" TargetName="HeaderPanel" Value="0,3,2,2"/>
+                <Setter Property="Visibility" TargetName="Top" Value="Visible"/>
+                <Setter Property="Visibility" TargetName="Bottom" Value="Visible"/>
+                <Setter Property="Visibility" TargetName="Left" Value="Visible"/>
+                <Setter Property="Visibility" TargetName="Right" Value="Visible"/>
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="false">
+                <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
+                <Setter Property="Opacity" TargetName="grid" Value="0.35"/>
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+</ResourceDictionary>

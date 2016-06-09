@@ -1,0 +1,115 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" 
+    xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars" 
+    xmlns:dxbt="http://schemas.devexpress.com/winfx/2008/xaml/bars/themekeys">
+    
+    <ControlTemplate x:Key="{dxbt:PopupControlContainerThemeKey ResourceKey=ControlTemplate}" TargetType="{x:Type dxb:PopupContainer}">
+        <dx:DXContentPresenter Background="{TemplateBinding Background}" Content="{TemplateBinding Content}" />
+    </ControlTemplate>
+    <ControlTemplate x:Key="{dxbt:PopupControlContainerThemeKey ResourceKey=BorderTemplate}" TargetType="{x:Type dxb:BarPopupBorderControl}">
+        <!--BEGIN WPF-->
+        <Grid Name="PART_Office2007BlueBarPopupBaseBorder">
+            <!--END WPF-->
+            <!--ONLY SL<Grid Margin="0,0,0,0" Name="PART_Office2007BlueBarPopupBaseBorder">ONLY SL-->
+
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup x:Name="AppType">
+                    <VisualState x:Name="Standalone">
+                        <!--BEGIN WPF-->
+                        <Storyboard>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="shadow" Storyboard.TargetProperty="Visibility">
+                                <DiscreteObjectKeyFrame KeyTime="0:0:0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <Visibility>Visible</Visibility>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="border" Storyboard.TargetProperty="Margin">
+                                <DiscreteObjectKeyFrame KeyTime="0:0:0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <Thickness>0,0,3,3</Thickness>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="border" Storyboard.TargetProperty="CornerRadius">
+                                <DiscreteObjectKeyFrame KeyTime="0:0:0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <CornerRadius>3,3,3,3</CornerRadius>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Office2007BlueBarPopupBaseBorder" Storyboard.TargetProperty="Margin">
+                                <DiscreteObjectKeyFrame KeyTime="0:0:0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <Thickness>0,0,3,3</Thickness>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                        </Storyboard>
+                        <!--END WPF-->
+                    </VisualState>
+                    <VisualState x:Name="BrowserHosted" />
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+            <!--BEGIN WPF-->
+            <Border Margin="2,2,0,0" x:Name="shadow" Visibility="Collapsed" Opacity="0.15" Background="#FF000000 " CornerRadius="4" />
+            <!--END WPF-->
+
+            <!--BEGIN WPF-->
+            <Border x:Name="border" SnapsToDevicePixels="True" Background="#FF868686 " Padding="1">
+                <Grid>
+                    <dx:DXContentPresenter Width="Auto" Height="Auto" Content="{Binding Path=Content, RelativeSource={RelativeSource TemplatedParent}}" />
+                </Grid>
+            </Border>
+            <!--END WPF-->
+
+            <!--ONLY SL<Border x:Name="PART_Shadow" Margin="2,2,-2,-2" CornerRadius="3" Opacity="0.25" Background="#FF000000"/>ONLY SL-->
+
+            <!--ONLY SL<Border Margin="0,0,0,0" x:Name="border" SnapsToDevicePixels="True" Background="#FF868686" CornerRadius="3,3,3,3" Padding="1,1,1,1">
+                <Grid>
+                    <dx:DXContentPresenter Width="Auto" Height="Auto" Content="{Binding Path=Content, RelativeSource={RelativeSource TemplatedParent}}"/>
+                </Grid>
+            </Border>ONLY SL-->
+        </Grid>
+    </ControlTemplate>
+
+    <!--BEGIN WPF-->
+    <Style x:Key="{dxbt:OfficeTabletItemsControlThemeKey ResourceKey=BackButtonStyle}" TargetType="{x:Type ButtonBase}">
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="MinHeight" Value="25"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ButtonBase}">
+                    <Grid Background="Transparent">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Path x:Name="path" Stretch="Fill" Fill="#FF49535C" Data="F1 M 6,2L 7.46699,3.47572L 2.88984,8.05286L 7.41782,12.5808L 6,14L -1.32341e-007,8L 6,2 Z " Width="8" Height="12" Margin="8,3,8,3" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" />
+                        <TextBlock x:Name="backText" MaxWidth="60" Foreground="#FF49535C" Text="{TemplateBinding Content}" TextTrimming="CharacterEllipsis" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="1" />
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="backText" Property="Foreground" Value="#FF000000" />
+                            <Setter TargetName="path" Property="Fill" Value="#FF000000" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="{dxbt:OfficeTabletItemsControlThemeKey ResourceKey=CaptionStyle}" TargetType="{x:Type TextBlock}">
+        <Setter Property="Margin" Value="8,-1,8,0"/>
+        <Setter Property="Foreground" Value="#FF49535C"/>
+    </Style>
+    <Style x:Key="{dxbt:OfficeTabletItemsControlThemeKey ResourceKey=BackgroundStyle}" TargetType="{x:Type Border}">
+        <Setter Property="MinHeight" Value="25"/>
+        <Setter Property="Background" Value="#FFEBEBEB"/>
+        <Setter Property="BorderBrush" Value="#FFC0C0C0"/>
+        <Setter Property="BorderThickness" Value="0,0,0,1"/>
+        <Setter Property="CornerRadius" Value="2,2,0,0"/>
+    </Style> 
+    <!--END WPF-->
+
+</ResourceDictionary>

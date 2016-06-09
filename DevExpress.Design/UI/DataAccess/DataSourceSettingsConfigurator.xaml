@@ -1,0 +1,70 @@
+﻿<UserControl x:Class="DevExpress.Design.DataAccess.UI.DataSourceSettingsConfigurator"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:ui="clr-namespace:DevExpress.Design.UI"
+    xmlns:dataAccessUI="clr-namespace:DevExpress.Design.DataAccess.UI"
+             Background="Transparent"
+             >
+    <UserControl.Resources>
+        <Style TargetType="Hyperlink">
+            <Setter Property="Foreground" Value="{StaticResource ResourceKey={ui:ThemeColorsKey Key=ColorOrange}}"/>
+        </Style>
+        <ui:BooleanToVisibilityConverter x:Key="IsSetConverter"/>
+
+        <Style x:Key="popupStyle" TargetType="{x:Type Popup}">
+            <Style.Setters>
+                <Setter Property="MinWidth" Value="100"/>
+                <Setter Property="Placement" Value="Mouse"/>
+                <Setter Property="AllowsTransparency" Value="True"/>
+            </Style.Setters>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding PlacementTarget.IsMouseOver, RelativeSource={RelativeSource Self}}" Value="True">
+                    <DataTrigger.EnterActions>
+                        <BeginStoryboard x:Name="OpenPopup" >
+                            <Storyboard>
+                                <BooleanAnimationUsingKeyFrames Storyboard.TargetProperty="IsOpen" FillBehavior="HoldEnd">
+                                    <DiscreteBooleanKeyFrame KeyTime="0:0:1" Value="True"/>
+                                </BooleanAnimationUsingKeyFrames>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </DataTrigger.EnterActions>
+                    <DataTrigger.ExitActions>
+                        <StopStoryboard BeginStoryboardName="OpenPopup"/>
+                    </DataTrigger.ExitActions>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+    <Grid VerticalAlignment="Stretch">
+        <ItemsControl Focusable="False" Grid.IsSharedSizeScope="True"
+                    ItemsSource="{Binding PropertiesSource}" Margin="0,0,0,-36"
+                  >
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Grid Margin="0,4" Background="Transparent">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" SharedSizeGroup="Captions" MinWidth="100"/>
+                            <ColumnDefinition Width="12"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Text="{Binding Name}" x:Name="text"
+				            Style="{DynamicResource ResourceKey={ui:ControlsThemeKey Key=DataSourcePropertyCaption}}"
+				            Visibility="{Binding Path=ShowName, Converter={StaticResource IsSetConverter}, Mode=OneWay}"
+				        />
+                        <dataAccessUI:DataSourcePropertyContainer Grid.Column="2" Source="{Binding}" Content="{Binding SettingsModel}"/>
+                        <Popup PlacementTarget="{Binding ElementName=text}" Style="{StaticResource popupStyle}">
+                            <Border BorderThickness="1" BorderBrush="{StaticResource ResourceKey={ui:ThemeColorsKey Key=ColorSilverLight}}" Background="White" Margin="12">
+                                <Border.Effect>
+                                    <DropShadowEffect Direction="-90" Opacity="0.35" BlurRadius="12" ShadowDepth="3"/>
+                                </Border.Effect>
+                                <TextBlock ui:HyperlinkInlineExpression.InlineExpression="{Binding Description}"
+                           			Style="{DynamicResource ResourceKey={ui:ControlsThemeKey Key=Description}}"
+                           			/>
+                            </Border>
+                        </Popup>
+                    </Grid>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+    </Grid>
+</UserControl>

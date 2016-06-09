@@ -1,0 +1,110 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+    xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/DevExpress.Xpf.Themes.LightGray.v15.2;component/DevExpress.Xpf.Core/DevExpress.Xpf.Core/Themes/Generic/Window.xaml" />
+        <ResourceDictionary Source="/DevExpress.Xpf.Themes.LightGray.v15.2;component/DevExpress.Xpf.Core/DevExpress.Xpf.Core/Themes/Generic/Buttons.xaml" />
+        <ResourceDictionary Source="/DevExpress.Xpf.Themes.LightGray.v15.2;component/DevExpress.Xpf.Core/DevExpress.Xpf.Core/Themes/Generic/PseudoWindow.xaml" />
+        <ResourceDictionary Source="/DevExpress.Xpf.Themes.LightGray.v15.2;component/DevExpress.Xpf.Core/DevExpress.Xpf.Core/Themes/Generic/SearchPanel.xaml" />
+        <ResourceDictionary Source="/DevExpress.Xpf.Themes.LightGray.v15.2;component/DevExpress.Xpf.Core/DevExpress.Xpf.Core/Themes/Generic/ConditionalFormatting.xaml" />
+        <ResourceDictionary Source="/DevExpress.Xpf.Themes.LightGray.v15.2;component/DevExpress.Xpf.Core/CornerBox.Wpf.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    <Style x:Key="{dxdst:DefaultStyleThemeKey ThemeName=LightGray, FullName=DevExpress.Xpf.Core.PopupBase}" TargetType="{x:Type dx:PopupBase}" xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys">
+        <Setter Property="AllowsTransparency" Value="True" />
+    </Style>
+    <Style x:Key="{dxdst:DefaultStyleThemeKey ThemeName=LightGray, FullName=DevExpress.Xpf.Core.PopupBorderControl}" TargetType="{x:Type dx:PopupBorderControl}" xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys">
+        <Setter Property="Template" Value="{DynamicResource {dxt:PopupBaseThemeKey ResourceKey=BorderTemplate}}" />
+    </Style>
+
+    <ControlTemplate x:Key="{dxt:SuperTipThemeKey ResourceKey=ItemTemplate}" TargetType="{x:Type dx:SuperTipItemControl}">
+        <dx:Items2Panel Style="{TemplateBinding ActualLayoutStyle}">
+            <dx:Items2Panel.Content1>
+                <dx:PixelSnapper>
+                    <Image x:Name="PART_Glyph" Source="{Binding Path=Item.Glyph, RelativeSource={RelativeSource TemplatedParent}}"/>
+                </dx:PixelSnapper>
+            </dx:Items2Panel.Content1>
+            <dx:Items2Panel.Content2>
+                <ContentControl x:Name="PART_Content"
+                                Style="{TemplateBinding ContentStyle}"
+                                Content="{Binding Path=Item.Content, RelativeSource={RelativeSource TemplatedParent}}" 
+                                ContentTemplate="{TemplateBinding ActualContentTemplate}"/>
+            </dx:Items2Panel.Content2>
+        </dx:Items2Panel>
+    </ControlTemplate>
+
+    <!--BEGIN WPF-->
+    <ControlTemplate x:Key="{dxt:SuperTipThemeKey ResourceKey=SeparatorTemplate}" TargetType="dx:SuperTipItemControlSeparator">
+        <Grid>
+            <ContentControl Style="{TemplateBinding ContentStyle}" ContentTemplate="{TemplateBinding ActualContentTemplate}"/>
+        </Grid>
+    </ControlTemplate>
+    <!--END WPF-->
+
+    <ItemsPanelTemplate x:Key="{dxt:SuperTipThemeKey ResourceKey=PanelTemplate}">
+        <dx:SuperTipPanel/>
+    </ItemsPanelTemplate>
+
+    <ControlTemplate x:Key="{dxt:SuperTipThemeKey ResourceKey=Template}"  TargetType="dx:SuperTipControl">
+        <ContentControl Template="{DynamicResource {dxt:SuperTipThemeKey ResourceKey=BorderTemplate}}">
+            <ItemsPresenter/>
+        </ContentControl>
+    </ControlTemplate>
+
+
+    <Style x:Key="{dxdst:DefaultStyleThemeKey ThemeName=LightGray, FullName=DevExpress.Xpf.Core.SuperTipItemControl}" TargetType="{x:Type dx:SuperTipItemControl}" xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys">
+        <Setter Property="ContentStyle" Value="{DynamicResource {dxt:SuperTipThemeKey ResourceKey=ItemContentStyle}}"/>
+        <Setter Property="ContentTemplate" Value="{DynamicResource {dxt:SuperTipThemeKey ResourceKey=ItemContentTemplate}}"/>
+        <Setter Property="Template" Value="{DynamicResource {dxt:SuperTipThemeKey ResourceKey=ItemTemplate}}"/>
+        <Setter Property="LayoutStyle" Value="{DynamicResource {dxt:SuperTipThemeKey ResourceKey=ItemLayoutStyle}}"/>
+    </Style>
+
+    <Style x:Key="{dxdst:DefaultStyleThemeKey ThemeName=LightGray, FullName=DevExpress.Xpf.Core.SuperTipItemControlSeparator}" TargetType="{x:Type dx:SuperTipItemControlSeparator}" xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys">
+        <!--BEGIN WPF-->
+        <Setter Property="ContentStyle" Value="{DynamicResource {dxt:SuperTipThemeKey ResourceKey=SeparatorContentStyle}}"/>
+        <Setter Property="ContentTemplate" Value="{DynamicResource {dxt:SuperTipThemeKey ResourceKey=SeparatorContentTemplate}}"/>
+        <!--END WPF-->
+        <Setter Property="Template" Value="{DynamicResource {dxt:SuperTipThemeKey ResourceKey=SeparatorTemplate}}"/>
+    </Style>
+
+    <Style x:Key="{dxdst:DefaultStyleThemeKey ThemeName=LightGray, FullName=DevExpress.Xpf.Core.SuperTipHeaderItemControl}" TargetType="{x:Type dx:SuperTipHeaderItemControl}" xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys">
+        <Setter Property="ContentStyle" Value="{DynamicResource {dxt:SuperTipThemeKey ResourceKey=HeaderContentStyle}}"/>
+        <Setter Property="ContentTemplate" Value="{DynamicResource {dxt:SuperTipThemeKey ResourceKey=HeaderContentTemplate}}"/>
+        <Setter Property="Template" Value="{DynamicResource {dxt:SuperTipThemeKey ResourceKey=ItemTemplate}}"/>
+        <Setter Property="LayoutStyle" Value="{DynamicResource {dxt:SuperTipThemeKey ResourceKey=HeaderLayoutStyle}}"/>
+    </Style>
+
+    <Style x:Key="{dxdst:DefaultStyleThemeKey ThemeName=LightGray, FullName=DevExpress.Xpf.Core.SuperTipControl}" TargetType="{x:Type dx:SuperTipControl}" xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys">
+        <Setter Property="Template" Value="{DynamicResource {dxt:SuperTipThemeKey ResourceKey=Template}}"/>
+        <Setter Property="ItemsPanel" Value="{DynamicResource {dxt:SuperTipThemeKey ResourceKey=PanelTemplate}}"/>
+    </Style>
+
+    <Style x:Key="{dxdst:DefaultStyleThemeKey ThemeName=LightGray, FullName=DevExpress.Xpf.Core.FloatingContainerControl}" TargetType="{x:Type dx:FloatingContainerControl}" xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys">
+        <Setter Property="WindowTemplate" Value="{DynamicResource {dxt:FloatingContainerThemeKey ThemeName=LightGray, ResourceKey=FloatingContainerWindowTemplate}}" />
+        <Setter Property="AdornerTemplate" Value="{DynamicResource {dxt:FloatingContainerThemeKey ThemeName=LightGray, ResourceKey=FloatingContainerAdornerTemplate}}" />
+    </Style>
+
+    <Style x:Key="{dxdst:DefaultStyleThemeKey ThemeName=LightGray, FullName=DevExpress.Xpf.Core.FloatingWindowContainer}" TargetType="{x:Type dx:FloatingWindowContainer}" xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys">
+        <Setter Property="ContainerTemplate" Value="{DynamicResource {dxt:FloatingContainerThemeKey ThemeName=LightGray, ResourceKey=FloatingContainerTemplate}}" />
+    </Style>
+    <Style x:Key="{dxdst:DefaultStyleThemeKey ThemeName=LightGray, FullName=DevExpress.Xpf.Core.FloatingAdornerContainer}" TargetType="{x:Type dx:FloatingAdornerContainer}" xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys">
+        <Setter Property="ContainerTemplate" Value="{DynamicResource {dxt:FloatingContainerThemeKey ThemeName=LightGray, ResourceKey=FloatingContainerTemplate}}" />
+    </Style>
+    <Style x:Key="{dxdst:DefaultStyleThemeKey ThemeName=LightGray, FullName=DevExpress.Xpf.Core.PopupFloatingContainer}" TargetType="{x:Type dx:PopupFloatingContainer}" xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys">
+        <Setter Property="ContainerTemplate" Value="{DynamicResource {dxt:FloatingContainerThemeKey ThemeName=LightGray, ResourceKey=FloatingContainerTemplate}}" />
+    </Style>
+    <Style x:Key="{dxt:FloatingContainerThemeKey ThemeName=LightGray, ResourceKey=FloatingContainerStyle}" TargetType="{x:Type dx:FloatingContainer}" xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys">
+        <Setter Property="Owner" Value="{Binding Path=Owner, RelativeSource={RelativeSource TemplatedParent}}" />
+        <Setter Property="Content" Value="{Binding Path=Content, RelativeSource={RelativeSource TemplatedParent}}" />
+        <Setter Property="FloatSize" Value="{Binding Path=FloatSize, RelativeSource={RelativeSource TemplatedParent}}" />
+        <Setter Property="FloatLocation" Value="{Binding Path=FloatLocation, RelativeSource={RelativeSource TemplatedParent}}" />
+        <Setter Property="IsOpen" Value="{Binding Path=IsOpen, RelativeSource={RelativeSource TemplatedParent}}" />
+        <Setter Property="ContainerTemplate" Value="{DynamicResource {dxt:FloatingContainerThemeKey ThemeName=LightGray, ResourceKey=FloatingContainerTemplate}}" />
+        <Setter Property="MinWidth" Value="{Binding Path=MinWidth, RelativeSource={RelativeSource TemplatedParent}}" />
+        <Setter Property="MinHeight" Value="{Binding Path=MinHeight, RelativeSource={RelativeSource TemplatedParent}}" />
+        <Setter Property="MaxWidth" Value="{Binding Path=MaxWidth, RelativeSource={RelativeSource TemplatedParent}}" />
+        <Setter Property="MaxHeight" Value="{Binding Path=MaxHeight, RelativeSource={RelativeSource TemplatedParent}}" />
+    </Style>
+</ResourceDictionary>

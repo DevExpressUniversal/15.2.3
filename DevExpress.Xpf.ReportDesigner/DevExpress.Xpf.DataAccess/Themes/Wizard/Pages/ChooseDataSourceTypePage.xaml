@@ -1,0 +1,46 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+            xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+            xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+            xmlns:local="clr-namespace:DevExpress.Xpf.DataAccess.DataSourceWizard"
+            xmlns:localnative="clr-namespace:DevExpress.Xpf.DataAccess.Native"
+            xmlns:localization="clr-namespace:DevExpress.Xpf.DataAccess.Localization">
+
+    <DataTemplate x:Key="{x:Type local:ChooseDataSourceTypePage}">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <localnative:WizardTitle Title="{localization:DataAccessUIStringId StringId=WizardPageChooseDSType}" />
+            <dxe:ListBoxEdit
+                    Grid.Row="1"
+                    ShowBorder="False"
+                    AllowItemHighlighting="True"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    ItemsSource="{Binding DataSourceTypes}" 
+                    ValueMember="DataSourceType"
+                    EditValue="{Binding DataSourceType, UpdateSourceTrigger=PropertyChanged}">
+                <dxe:ListBoxEdit.ItemContainerStyle>
+                    <Style>
+                        <Setter Property="dxe:ListBoxEditItem.Margin" Value="7" />
+                    </Style>
+                </dxe:ListBoxEdit.ItemContainerStyle>
+                <dxe:ListBoxEdit.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Margin="10">
+                            <Image Source="{Binding Id, Converter={local:ImageNameToSourceConverter Folder=DataSourceType}}" />
+                            <TextBlock Text="{Binding Name}" HorizontalAlignment="Center" />
+                        </StackPanel>
+                    </DataTemplate>
+                </dxe:ListBoxEdit.ItemTemplate>
+                <dxe:ListBoxEdit.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Horizontal" />
+                    </ItemsPanelTemplate>
+                </dxe:ListBoxEdit.ItemsPanel>
+            </dxe:ListBoxEdit>
+        </Grid>
+    </DataTemplate>
+</ResourceDictionary>

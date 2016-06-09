@@ -1,0 +1,36 @@
+﻿<UserControl x:Class="DevExpress.Xpf.RichEdit.UI.ParagraphSpacingControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+             xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+             xmlns:dxre="clr-namespace:DevExpress.Xpf.RichEdit"
+             xmlns:dxreui="clr-namespace:DevExpress.Xpf.RichEdit.UI"
+             MinWidth="300" dx:StyleManager.ApplyApplicationTheme="True">
+
+    <UserControl.Resources>
+        <dxre:RichEditStringIdConverter x:Key="RichEditStringIdConverter" />
+    </UserControl.Resources>
+    <Grid x:Name="LayoutRoot">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" MinWidth="100" />
+            <ColumnDefinition MinWidth="130" />
+            <ColumnDefinition Width="0.1*" MinWidth="15" />
+            <ColumnDefinition MinWidth="130" />
+            <ColumnDefinition Width="0.1*" MinWidth="15" />
+            <ColumnDefinition MinWidth="130" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <TextBlock Margin="0,3,3,3" VerticalAlignment="Center" x:Name="lblBefore" Text="{Binding Source={StaticResource RichEditStringIdConverter}, ConverterParameter=Caption_ParagraphSpacingBeforeLabel, Converter={StaticResource RichEditStringIdConverter}}" />
+        <TextBlock Grid.Row="1" Margin="0,3,3,3" VerticalAlignment="Center" x:Name="lblAfter" Text="{Binding Source={StaticResource RichEditStringIdConverter}, ConverterParameter=Caption_ParagraphSpacingAfterLabel, Converter={StaticResource RichEditStringIdConverter}}" />
+        <TextBlock Grid.Column="3" Margin="0,3,3,3" VerticalAlignment="Center" x:Name="lblLineSpacing" Text="{Binding Source={StaticResource RichEditStringIdConverter}, ConverterParameter=Caption_ParagraphSpacingLineSpacingLabel, Converter={StaticResource RichEditStringIdConverter}}" />
+        <TextBlock Grid.Column="5" Margin="0,3,3,3" VerticalAlignment="Center" x:Name="lblAt" Text="{Binding Source={StaticResource RichEditStringIdConverter}, ConverterParameter=Caption_ParagraphSpacingAtLabel, Converter={StaticResource RichEditStringIdConverter}}" />
+        <dxreui:RichTextIndentEdit x:Name="spnSpacingBefore" Grid.Column="1" Grid.Row="0" Margin="0,3,3,3" VerticalAlignment="Center" AutomationProperties.AutomationId="ParagraphSpacingBefore" AutomationProperties.Name="ParagraphSpacingBefore" />
+        <dxreui:RichTextIndentEdit x:Name="spnSpacingAfter" Grid.Column="1" Grid.Row="1" Margin="0,3,3,3" VerticalAlignment="Center" AutomationProperties.AutomationId="ParagraphSpacingAfter" AutomationProperties.Name="ParagraphSpacingAfter" />
+        <dxreui:RichTextIndentEdit x:Name="spnAtSpacing" Grid.Column="5" Grid.Row="1" Margin="0,3,3,3" VerticalAlignment="Center" />
+        <dxe:SpinEdit x:Name="spnAtFloatSpacing" IsFloatValue="True" Increment="0.5" AllowNullInput="True" Grid.Column="5" Grid.Row="1" Margin="0,3,3,3" VerticalAlignment="Center" AutomationProperties.AutomationId="ParagraphLineSpacingValue" AutomationProperties.Name="ParagraphLineSpacingValue"   />
+        <dxreui:LineSpacingEdit x:Name="edtLineSpacing" Grid.Column="3" Grid.Row="1" Margin="0,3,3,3" VerticalAlignment="Center" AutomationProperties.AutomationId="ParagraphLineSpacingType" AutomationProperties.Name="ParagraphLineSpacingType"  />
+    </Grid>
+</UserControl>

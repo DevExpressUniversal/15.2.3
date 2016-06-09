@@ -1,0 +1,32 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:dxtEx="clr-namespace:DevExpress.Xpf.Utils.Themes"
+                    xmlns:dx="clr-namespace:DevExpress.Xpf.Core" 
+                    xmlns:dxe="clr-namespace:DevExpress.Xpf.Editors" 
+                    xmlns:dxet="clr-namespace:DevExpress.Xpf.Editors.Themes" 
+                    >
+    <!--BEGIN WPF-->
+    <ResourceDictionary.MergedDictionaries>
+        <dxtEx:ResourceDictionaryEx Source="{dx:EditorsResource Themes/DeepBlue/Brushes.xaml}" />
+        <dxtEx:ResourceDictionaryEx Source="{dx:EditorsResource Themes/Generic/ListBoxEdit.xaml}" />
+    </ResourceDictionary.MergedDictionaries>
+    <!--END WPF-->
+
+    <ControlTemplate x:Key="{dxet:ListBoxEditThemeKey ResourceKey=EmptyBorderTemplate}" TargetType="{x:Type ContentControl}">
+        <Border Width="Auto" Height="Auto" SnapsToDevicePixels="True">
+            <ContentPresenter />
+        </Border>
+    </ControlTemplate>
+    
+    <ControlTemplate x:Key="{dxet:ListBoxEditThemeKey ResourceKey=BorderTemplate}" TargetType="{x:Type ContentControl}">
+        <Border Width="Auto" Height="Auto" BorderThickness="1" x:Name="border" SnapsToDevicePixels="True" Background="White">
+            <Border.BorderBrush>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF5B81BE" Offset="0" />
+                    <GradientStop Color="#FF43609B" Offset="1" />
+                </LinearGradientBrush>
+            </Border.BorderBrush>
+            <ContentPresenter />
+        </Border>
+    </ControlTemplate>
+
+</ResourceDictionary>

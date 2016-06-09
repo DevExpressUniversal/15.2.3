@@ -1,0 +1,56 @@
+﻿<dxc:DXWindow x:Class="DevExpress.Xpf.Printing.Native.WatermarkEditor"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:dxc="http://schemas.devexpress.com/winfx/2008/xaml/core"
+    xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+    xmlns:dxpn="clr-namespace:DevExpress.Xpf.Printing.Native"
+    xmlns:local="clr-namespace:DevExpress.Xpf.Printing"
+    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+    xmlns:dxpt="clr-namespace:DevExpress.Xpf.Printing.Themes">
+    <dxc:DXWindow.WindowStyle>
+        ToolWindow
+    </dxc:DXWindow.WindowStyle>
+    <dxc:DXWindow.ResizeMode>
+        NoResize
+    </dxc:DXWindow.ResizeMode>
+    <dxc:DXWindow.SizeToContent>
+        WidthAndHeight
+    </dxc:DXWindow.SizeToContent>
+    <dxc:DXWindow.ShowInTaskbar>
+        False
+    </dxc:DXWindow.ShowInTaskbar>
+    <dxc:DXWindow.WindowStartupLocation>CenterOwner</dxc:DXWindow.WindowStartupLocation>
+    <dxc:DXWindow.Title>
+        <local:PrintingStringIdExtension StringId="WatermarkTitle"/>
+    </dxc:DXWindow.Title>
+    <Grid Margin="12,0,12,12" HorizontalAlignment="Stretch">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto" MinWidth="80"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="auto" MinWidth="80"/>
+            <ColumnDefinition Width="auto" MinWidth="80"/>
+        </Grid.ColumnDefinitions>
+        <dxpn:WatermarkControl x:Name="watermarkControl" Grid.Row="0" Grid.ColumnSpan="4" Margin="0,0,0,12"/>
+        <Button Name="buttonClearAll" 
+                    Content="{local:PrintingStringId StringId=WatermarkClearAll}"
+                    Click="ButtonClearAllClick"
+                    Grid.Row="1" Grid.Column="0"
+                    HorizontalAlignment="Stretch"/>
+        <Button Name="buttonOk" 
+                        Grid.Column="2" Grid.Row="1"
+                        IsDefault="True"
+                        Click="ButtonOkClick"
+                        Content="{local:PrintingStringId StringId=Ok}"
+                        Margin="0,0,6,0"
+                        HorizontalAlignment="Stretch"/>
+        <Button Name="buttonCancel" 
+                        IsCancel="True"
+                        Grid.Column="3" Grid.Row="1"
+                        Content="{local:PrintingStringId StringId=Cancel}"
+                        HorizontalAlignment="Stretch"/>
+    </Grid>
+</dxc:DXWindow>

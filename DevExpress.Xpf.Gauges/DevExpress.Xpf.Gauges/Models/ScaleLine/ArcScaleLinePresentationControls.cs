@@ -1,0 +1,105 @@
+﻿#region Copyright (c) 2000-2015 Developer Express Inc.
+/*
+{*******************************************************************}
+{                                                                   }
+{       Developer Express .NET Component Library                    }
+{                                                                   }
+{                                                                   }
+{       Copyright (c) 2000-2015 Developer Express Inc.              }
+{       ALL RIGHTS RESERVED                                         }
+{                                                                   }
+{   The entire contents of this file is protected by U.S. and       }
+{   International Copyright Laws. Unauthorized reproduction,        }
+{   reverse-engineering, and distribution of all or any portion of  }
+{   the code contained in this file is strictly prohibited and may  }
+{   result in severe civil and criminal penalties and will be       }
+{   prosecuted to the maximum extent possible under the law.        }
+{                                                                   }
+{   RESTRICTIONS                                                    }
+{                                                                   }
+{   THIS SOURCE CODE AND ALL RESULTING INTERMEDIATE FILES           }
+{   ARE CONFIDENTIAL AND PROPRIETARY TRADE                          }
+{   SECRETS OF DEVELOPER EXPRESS INC. THE REGISTERED DEVELOPER IS   }
+{   LICENSED TO DISTRIBUTE THE PRODUCT AND ALL ACCOMPANYING .NET    }
+{   CONTROLS AS PART OF AN EXECUTABLE PROGRAM ONLY.                 }
+{                                                                   }
+{   THE SOURCE CODE CONTAINED WITHIN THIS FILE AND ALL RELATED      }
+{   FILES OR ANY PORTION OF ITS CONTENTS SHALL AT NO TIME BE        }
+{   COPIED, TRANSFERRED, SOLD, DISTRIBUTED, OR OTHERWISE MADE       }
+{   AVAILABLE TO OTHER INDIVIDUALS WITHOUT EXPRESS WRITTEN CONSENT  }
+{   AND PERMISSION FROM DEVELOPER EXPRESS INC.                      }
+{                                                                   }
+{   CONSULT THE END USER LICENSE AGREEMENT FOR INFORMATION ON       }
+{   ADDITIONAL RESTRICTIONS.                                        }
+{                                                                   }
+{*******************************************************************}
+*/
+#endregion Copyright (c) 2000-2015 Developer Express Inc.
+
+namespace DevExpress.Xpf.Gauges {
+	public class DefaultArcScaleLineControl : PresentationControl {
+		public DefaultArcScaleLineControl() {
+			DefaultStyleKey = typeof(DefaultArcScaleLineControl);
+		}
+	}
+	public class CleanWhiteArcScaleLineControl : PresentationControl {
+		public CleanWhiteArcScaleLineControl() {
+			DefaultStyleKey = typeof(CleanWhiteArcScaleLineControl);
+		}
+	}
+	public class CosmicArcScaleLineControl : PresentationControl {
+		public CosmicArcScaleLineControl() {
+			DefaultStyleKey = typeof(CosmicArcScaleLineControl);
+		}
+	}
+	public class SmartArcScaleLineControl : PresentationControl {
+		public SmartArcScaleLineControl() {
+			DefaultStyleKey = typeof(SmartArcScaleLineControl);
+		}
+	}
+	public class ProgressiveArcScaleLineControl : PresentationControl {
+		public ProgressiveArcScaleLineControl() {
+			DefaultStyleKey = typeof(ProgressiveArcScaleLineControl);
+		}
+	}
+	public class EcoArcScaleLineControl : PresentationControl {
+		public EcoArcScaleLineControl() {
+			DefaultStyleKey = typeof(EcoArcScaleLineControl);
+		}
+	}
+	public class FutureArcScaleLineControl : PresentationControl {
+		public FutureArcScaleLineControl() {
+			DefaultStyleKey = typeof(FutureArcScaleLineControl);
+		}
+	}
+	public class ClassicArcScaleLineControl : PresentationControl {
+		public ClassicArcScaleLineControl() {
+			DefaultStyleKey = typeof(ClassicArcScaleLineControl);
+		}
+	}
+	public class IStyleArcScaleLineControl : PresentationControl {
+		public IStyleArcScaleLineControl() {
+			DefaultStyleKey = typeof(IStyleArcScaleLineControl);
+		}
+	}
+	public class YellowSubmarineArcScaleLineControl : PresentationControl {
+		public YellowSubmarineArcScaleLineControl() {
+			DefaultStyleKey = typeof(YellowSubmarineArcScaleLineControl);
+		}
+	}
+	public class MagicLightArcScaleLineControl : PresentationControl {
+		public MagicLightArcScaleLineControl() {
+			DefaultStyleKey = typeof(MagicLightArcScaleLineControl);
+		}
+	}
+	public class FlatLightArcScaleLineControl : PresentationControl {
+		public FlatLightArcScaleLineControl() {
+			DefaultStyleKey = typeof(FlatLightArcScaleLineControl);
+		}
+	}
+	public class FlatDarkArcScaleLineControl : PresentationControl {
+		public FlatDarkArcScaleLineControl() {
+			DefaultStyleKey = typeof(FlatDarkArcScaleLineControl);
+		}
+	}
+}

@@ -1,0 +1,58 @@
+﻿#region Copyright (c) 2000-2015 Developer Express Inc.
+/*
+{*******************************************************************}
+{                                                                   }
+{       Developer Express .NET Component Library                    }
+{                                                                   }
+{                                                                   }
+{       Copyright (c) 2000-2015 Developer Express Inc.              }
+{       ALL RIGHTS RESERVED                                         }
+{                                                                   }
+{   The entire contents of this file is protected by U.S. and       }
+{   International Copyright Laws. Unauthorized reproduction,        }
+{   reverse-engineering, and distribution of all or any portion of  }
+{   the code contained in this file is strictly prohibited and may  }
+{   result in severe civil and criminal penalties and will be       }
+{   prosecuted to the maximum extent possible under the law.        }
+{                                                                   }
+{   RESTRICTIONS                                                    }
+{                                                                   }
+{   THIS SOURCE CODE AND ALL RESULTING INTERMEDIATE FILES           }
+{   ARE CONFIDENTIAL AND PROPRIETARY TRADE                          }
+{   SECRETS OF DEVELOPER EXPRESS INC. THE REGISTERED DEVELOPER IS   }
+{   LICENSED TO DISTRIBUTE THE PRODUCT AND ALL ACCOMPANYING .NET    }
+{   CONTROLS AS PART OF AN EXECUTABLE PROGRAM ONLY.                 }
+{                                                                   }
+{   THE SOURCE CODE CONTAINED WITHIN THIS FILE AND ALL RELATED      }
+{   FILES OR ANY PORTION OF ITS CONTENTS SHALL AT NO TIME BE        }
+{   COPIED, TRANSFERRED, SOLD, DISTRIBUTED, OR OTHERWISE MADE       }
+{   AVAILABLE TO OTHER INDIVIDUALS WITHOUT EXPRESS WRITTEN CONSENT  }
+{   AND PERMISSION FROM DEVELOPER EXPRESS INC.                      }
+{                                                                   }
+{   CONSULT THE END USER LICENSE AGREEMENT FOR INFORMATION ON       }
+{   ADDITIONAL RESTRICTIONS.                                        }
+{                                                                   }
+{*******************************************************************}
+*/
+#endregion Copyright (c) 2000-2015 Developer Express Inc.
+
+using DevExpress.CodeParser;
+using DevExpress.CodeConverter;
+namespace DevExpress.CsToVbConverter {
+  [ConvertLanguage("CSharp", "Basic")]
+  public class ComparisonWithNullOperatorRule : ConvertRule {
+	public override void Convert(ConvertArgs args) {
+	  RelationalOperation relationOperation = args.ElementForConverting as RelationalOperation;
+	  if (relationOperation == null)
+		return;
+	  PrimitiveExpression leftSide = relationOperation.LeftSide as PrimitiveExpression;
+	  PrimitiveExpression rightSide = relationOperation.RightSide as PrimitiveExpression;
+	  if ((leftSide == null || !leftSide.IsNullLiteral) && (rightSide == null || !rightSide.IsNullLiteral))
+		return;
+	  if (relationOperation.RelationalOperator == RelationalOperator.Equality)
+		args.NewElement = new Is(relationOperation.LeftSide, relationOperation.RightSide);
+	  else if (relationOperation.RelationalOperator == RelationalOperator.Inequality)
+		args.NewElement = new IsNot(relationOperation.LeftSide, relationOperation.RightSide);
+	}
+  }
+}

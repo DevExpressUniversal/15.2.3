@@ -1,0 +1,175 @@
+﻿<UserControl 
+    x:Class="DevExpress.Design.Mvvm.Wizards.UI.ConstructorStartPageView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:ui="clr-namespace:DevExpress.Design.UI;assembly=DevExpress.Design.v15.2"    
+    xmlns:mvvmWizardsUI="clr-namespace:DevExpress.Design.Mvvm.Wizards.UI"
+    xmlns:mvvm="clr-namespace:DevExpress.Design.Mvvm"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+    mc:Ignorable="d" 
+    d:DesignHeight="500" d:DesignWidth="800"
+    >
+    <UserControl.Resources>
+        <ui:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+        <Visibility x:Key="CollapsedVisibility">Collapsed</Visibility>
+        <ui:BooleanToVisibilityConverter x:Key="InvertedBooleanToVisibilityConverter" Inverted ="True"/>
+        <mvvmWizardsUI:ToolTipDataConverter x:Key="AssemblyDataConverter" ToolTipDataType="Assembly"/>
+        <mvvmWizardsUI:ToolTipDataConverter x:Key="NamespaceDataConverter" ToolTipDataType="Namespace"/>
+        <mvvmWizardsUI:ToolTipDataConverter x:Key="NameDataConverter" ToolTipDataType="Name"/>
+        <Style TargetType="Hyperlink">
+            <Setter Property="Foreground" Value="{StaticResource ResourceKey={ui:ThemeColorsKey Key=ColorOrange}}"/>
+        </Style>
+        <Style x:Key="ListBoxItemWithToolTip" TargetType="{x:Type ListBoxItem}">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="{DynamicResource ResourceKey={ui:ThemeColorsKey Key=ColorSilver}}"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="HorizontalContentAlignment" Value="{Binding HorizontalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"/>
+            <Setter Property="VerticalContentAlignment" Value="{Binding VerticalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"/>
+            <Setter Property="Padding" Value="20,5"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                        <Border x:Name="Bd" Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}" SnapsToDevicePixels="true">
+                            <ContentPresenter x:Name="contentPresenter"  
+                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                                          SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" 
+                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsSelected" Value="true">
+                                <Setter Property="Background" TargetName="Bd" Value="{DynamicResource ResourceKey={ui:ThemeColorsKey Key=ColorOrange}}"/>
+                                <Setter Property="Foreground" Value="White" />
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Background" TargetName="Bd" Value="{DynamicResource ResourceKey={ui:ThemeColorsKey Key=ColorOrangeLight}}"/>
+                                <Setter Property="Foreground" Value="White" />
+                            </Trigger>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="IsSelected" Value="true"/>
+                                    <Condition Property="Selector.IsSelectionActive" Value="false"/>
+                                </MultiTrigger.Conditions>
+                            </MultiTrigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Opacity" Value="0.25" TargetName="contentPresenter"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="ToolTip">
+                <Setter.Value>
+                    <ToolTip>
+                        <TreeView Padding="0" Background="{x:Null}" BorderBrush="{x:Null}">
+                            <TreeViewItem IsExpanded="True">
+                                <TreeViewItem.Header>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Image Source="..\Images\Assembly.png"/>
+                                        <TextBlock Text="{Binding Source, Converter={StaticResource ResourceKey=AssemblyDataConverter}}" Padding="2,0,0,0"/>
+                                    </StackPanel>
+                                </TreeViewItem.Header>
+                                <TreeViewItem IsExpanded="True">
+                                    <TreeViewItem.Header>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Image Source="..\Images\Namespace.png"/>
+                                            <TextBlock Text="{Binding Source, Converter={StaticResource ResourceKey=NamespaceDataConverter}}" Padding="2,0,0,0"/>
+                                        </StackPanel>
+                                    </TreeViewItem.Header>
+                                    <TreeViewItem>
+                                        <TreeViewItem.Header>
+                                            <StackPanel Orientation="Horizontal">
+                                                <Image Source="..\Images\Class.png"/>
+                                                <TextBlock Text="{Binding Source, Converter={StaticResource ResourceKey=NameDataConverter}}" Padding="2,0,0,0"/>
+                                            </StackPanel>
+                                        </TreeViewItem.Header>
+                                    </TreeViewItem>
+                                </TreeViewItem>
+                            </TreeViewItem>
+                        </TreeView>
+                    </ToolTip>
+                </Setter.Value>
+            </Setter>
+
+        </Style>
+    </UserControl.Resources>
+    <Grid VerticalAlignment="Stretch">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="5*"/>
+            <ColumnDefinition Width="12"/>
+            <ColumnDefinition Width="7*"/>
+        </Grid.ColumnDefinitions>
+        <Border Grid.RowSpan="2" BorderThickness="1" BorderBrush="{StaticResource ResourceKey={ui:ThemeColorsKey Key=ColorSilverLight}}">
+            <DockPanel>
+                <TextBlock Text="{x:Static mvvmWizardsUI:SR_Mvvm.ViewWizard_LoadinTypesText}" DockPanel.Dock="Top" Foreground="#FF9900"
+                           Visibility="{Binding LoadingTypes, Converter={StaticResource ResourceKey=BooleanToVisibilityConverter}}"/>
+                <ListBox Style="{DynamicResource ResourceKey={ui:StandardControlsThemeKey Key=ListBox}}"
+                         ItemsSource="{Binding AvailableEntries}" SelectedItem="{Binding SelectedEntry, Mode=TwoWay}"                          
+                         DisplayMemberPath="Name"
+                         BorderBrush="{x:Null}"                         
+                         >
+                    <ListBox.Template>
+                        <ControlTemplate>
+                            <ItemsPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                        </ControlTemplate>
+                    </ListBox.Template>
+                </ListBox>
+            </DockPanel>
+        </Border>
+        <DockPanel Grid.RowSpan="2" Grid.Column="2">
+            <TextBlock DockPanel.Dock="Bottom" Margin="0,5,0,0" HorizontalAlignment="Right">
+                <Hyperlink  Foreground="{DynamicResource ResourceKey={ui:ThemeColorsKey Key=ColorOrange}}"
+                    Command="{Binding NavigateToLearnMore}">
+                    <Run Text="{x:Static mvvmWizardsUI:SR_Mvvm.Wizard_LearnMore}"/>
+                </Hyperlink>
+            </TextBlock>
+            <DockPanel>
+                <TextBlock Foreground="Gray" DockPanel.Dock="Bottom"
+                            TextWrapping="Wrap" Margin="0,8,8,4" TextAlignment="Justify" 
+                            Text="{x:Static mvvmWizardsUI:SR_Mvvm.DataAccessLayerWizard_RebuildNotice}" 
+                            Style="{DynamicResource ResourceKey={ui:ControlsThemeKey Key=ListAnnotation}}"
+                            HorizontalAlignment="Left"
+                            />
+                <Border BorderThickness="1" BorderBrush="{DynamicResource ResourceKey={ui:ThemeColorsKey Key=ColorSilverLight}}">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <ListBox Style="{DynamicResource ResourceKey={ui:StandardControlsThemeKey Key=ListBox}}"                               
+                                BorderThickness="0" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                                ItemsSource="{Binding SelectedEntry.Items}"     
+                                SelectedItem="{Binding SelectedEntry.SelectedItem, Mode=TwoWay}"
+                                Visibility="{Binding CanCreateNewItems, Converter={StaticResource InvertedBooleanToVisibilityConverter}, Mode=OneWay}">
+                            <ListBox.ItemContainerStyle>
+                                <Style TargetType="ListBoxItem" BasedOn="{StaticResource ResourceKey=ListBoxItemWithToolTip}">
+                                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                                </Style>
+                            </ListBox.ItemContainerStyle>
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel>
+                                        <TextBlock Text="{Binding Path=Name}" />
+                                        <TextBlock Text="{x:Static mvvmWizardsUI:SR_Mvvm.DataAccessLayerWizard_OldEntityFrameworkWarningText}" TextWrapping="Wrap"
+                                                FontSize="14" Foreground="Red" Padding="10,4" Margin="-10,4" Background="White"
+                                                Visibility="{Binding IsUnsupported, Converter={StaticResource BooleanToVisibilityConverter}, Mode=OneWay, FallbackValue={StaticResource CollapsedVisibility}, TargetNullValue={StaticResource CollapsedVisibility}}" />
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                        <Button Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Margin="8,0,8,4" 
+                            Command="{Binding NewItemCommand}"
+                            Content="{x:Static mvvmWizardsUI:SR_Mvvm.DataAccessLayerWizard_CreateNewEntityModel}"
+                            Visibility="{Binding CanCreateNewItems, Converter={StaticResource BooleanToVisibilityConverter}, Mode=OneWay}"
+                            Style="{DynamicResource ResourceKey={ui:ControlsThemeKey Key=NewDataSourceButton}}"                                
+                            />
+                    </Grid>
+                </Border>
+            </DockPanel>
+        </DockPanel>
+    </Grid>
+</UserControl>

@@ -1,0 +1,57 @@
+﻿<Window x:Class="DevExpress.NoteHint.NoteWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+        xmlns:local="clr-namespace:DevExpress.NoteHint"				
+        mc:Ignorable="d"
+        Background="Transparent"
+        Focusable="False"
+        ShowInTaskbar="False"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        Opacity="0.01"
+        SizeToContent="WidthAndHeight"
+        WindowStartupLocation ="Manual">
+    
+    <Window.Resources>
+        <Storyboard x:Key="uxFadeInAnimation" FillBehavior="Stop">
+            <DoubleAnimation Duration="00:00:0.7" Storyboard.TargetProperty="Opacity" From="0" To="1" />
+        </Storyboard>
+    </Window.Resources>
+    <Grid x:Name="root" Margin="0,0,10,10" Grid.Row="0">
+        <Grid.Resources>
+            <Style x:Key="NoteHintContainerStyle" TargetType="{x:Type local:NoteHintContainer}">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type local:NoteHintContainer}">
+                            <Canvas x:Name="root">
+                                <Path x:Name="path" Fill="{TemplateBinding Background}"  Stroke="{TemplateBinding Stroke}" StrokeThickness="{TemplateBinding StrokeThickness}">
+                                    <Path.Effect>
+                                        <DropShadowEffect ShadowDepth="3" BlurRadius="5" Direction="-45" Opacity="0.5"/>
+                                    </Path.Effect>
+                                    <Path.Data>
+                                        <PathGeometry Figures="m 15.476117 1.0910052 c -7.8519681 0 -14.1875001 6.335532 -14.1875001 14.1874998 l 0 103.031255 c 0 7.85197 6.335532 14.15625 14.1875001 14.15625 l 141.156253 0 17.28125 29 16.875 -29 20.75 0 c 7.85197 0 14.1875 -6.30428 14.1875 -14.15625 l 0 -103.031255 c 0 -7.8519678 -6.33553 -14.1874998 -14.1875 -14.1874998 l -196.062503 0 z" FillRule="NonZero"/>
+                                    </Path.Data>
+                                </Path>
+                                <ContentPresenter x:Name="presenter" Content="{TemplateBinding Content}"/>
+                            </Canvas>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <Style x:Key="RichTextBoxStyle"  TargetType="{x:Type TextBoxBase}">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type TextBoxBase}">
+                            <AdornerDecorator x:Name="PART_ContentHost" Focusable="False" />
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </Grid.Resources>
+
+        <local:NoteHintContainer x:Name="hintContainer" Style="{StaticResource NoteHintContainerStyle}" />
+    </Grid>
+</Window>

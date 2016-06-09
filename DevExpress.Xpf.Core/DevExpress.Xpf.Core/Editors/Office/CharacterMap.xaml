@@ -1,0 +1,88 @@
+<UserControl x:Class="DevExpress.Xpf.Office.UI.CharacterMapControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:dx="clr-namespace:DevExpress.Xpf.Core"
+    xmlns:dxe="clr-namespace:DevExpress.Xpf.Editors"
+    xmlns:dxec="clr-namespace:DevExpress.Xpf.Editors.Controls"
+    xmlns:local="clr-namespace:DevExpress.Xpf.Office.UI"
+    AutomationProperties.AutomationId="CharacterMapControl" AutomationProperties.Name="CharacterMapControl">
+
+    <!--CharacterMapControl-->
+    <UserControl.Resources>
+        <dx:EditorStringIdConverter x:Key="EditorStringIdConverter" />
+    </UserControl.Resources>
+    <Grid UseLayoutRounding="True">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal" Grid.Row="0" Visibility="Collapsed" UseLayoutRounding="True">
+            <ToggleButton x:Name="btnCommonChars" Content="{Binding Source={StaticResource EditorStringIdConverter}, ConverterParameter=Caption_CommonCharactersToggleButton, Converter={StaticResource EditorStringIdConverter}, Mode=OneTime}" IsChecked="true" UseLayoutRounding="True" />
+            <ToggleButton x:Name="btnSpecialChars" Content="{Binding Source={StaticResource EditorStringIdConverter}, ConverterParameter=Caption_SpecialCharactersToggleButton, Converter={StaticResource EditorStringIdConverter}, Mode=OneTime}" UseLayoutRounding="True" />
+        </StackPanel>
+        <Grid x:Name="SpecialGrid" Grid.Row="1" Visibility="Collapsed" UseLayoutRounding="True">
+            <ListBox x:Name="SpecialList" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10" Height="300" UseLayoutRounding="True" />
+        </Grid>
+        <!--<Grid x:Name="CommonGrid" Background="{TemplateBinding Background}" Grid.Row="1" Margin="12,12,12,-6" UseLayoutRounding="True">-->
+        <Grid x:Name="CommonGrid" Grid.Row="1" Margin="0,0,0,-6" UseLayoutRounding="True">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Grid.Row="0" UseLayoutRounding="True">
+                <TextBlock Text="{Binding Source={StaticResource EditorStringIdConverter}, ConverterParameter=Caption_SymbolFormSearchByCode, Converter={StaticResource EditorStringIdConverter}}" VerticalAlignment="Center" Margin="0,0,3,5" UseLayoutRounding="True" />
+                <TextBox x:Name="tbSearch" Width="50" Margin="3,0,5,5" Text="33" UseLayoutRounding="True" AutomationProperties.AutomationId="Code" AutomationProperties.Name="Code" />
+            </StackPanel>
+            <Grid Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="150" UseLayoutRounding="True">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <dx:BackgroundPanel Grid.ColumnSpan="2" IsEnabled="False" Margin="0,-2,0,-2" UseLayoutRounding="True" />
+                <Grid x:Name="CharactersGrid" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,5,0,5" UseLayoutRounding="True" />
+                <ScrollBar Grid.Column="1" x:Name="sbCharactersScrollbar" Orientation="Vertical" Margin="2,0,2,0" UseLayoutRounding="True" />
+            </Grid>
+
+            <Grid Grid.Row="2" UseLayoutRounding="True">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+            </Grid>
+            <Grid Grid.Row="3" Margin="0,16,0,0" UseLayoutRounding="True">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="{Binding Source={StaticResource EditorStringIdConverter}, ConverterParameter=Caption_SymbolFormFontName, Converter={StaticResource EditorStringIdConverter}}" Margin="0,0,3,2" VerticalAlignment="Center" />
+                <dxe:FontEdit Grid.Column="1" x:Name="cbFontFamily" Width="140" Margin="3,0,5,2" VerticalAlignment="Center" IsTextEditable="False" AutomationProperties.AutomationId="FontName" AutomationProperties.Name="FontName" />
+                <TextBlock Grid.Row="1" Text="{Binding Source={StaticResource EditorStringIdConverter}, ConverterParameter=Caption_SymbolFormCharacterSet, Converter={StaticResource EditorStringIdConverter}}" VerticalAlignment="Center" Margin="0,2,3,6" />
+                <dxe:ComboBoxEdit Grid.Row="1" Grid.Column="1" x:Name="cbCharacterSet" Width="140" Margin="3,2,5,6" VerticalAlignment="Center" IsTextEditable="False" AutomationProperties.AutomationId="CharacterSet" AutomationProperties.Name="CharacterSet" />
+                <TextBlock Grid.Row="2" Text="{Binding Source={StaticResource EditorStringIdConverter}, ConverterParameter=Caption_SymbolFormFilter, Converter={StaticResource EditorStringIdConverter}}" VerticalAlignment="Center" Margin="0,6,3,15" />
+                <dxe:ComboBoxEdit Grid.Row="2" Grid.Column="1" x:Name="cbFilter" Width="140" Margin="3,6,5,15" VerticalAlignment="Center" IsTextEditable="False" AutomationProperties.AutomationId="Filter" AutomationProperties.Name="Filter" />
+                <dxec:DXSeparator HorizontalAlignment="Stretch" VerticalAlignment="Center" Grid.Row="4" Grid.ColumnSpan="3" />
+                <!--<Rectangle Fill="#FFBBBBBB" HorizontalAlignment="Stretch" VerticalAlignment="Center" Height="1" Grid.Row="4" Grid.ColumnSpan="3" />-->
+                <Border Grid.Column="2" Grid.RowSpan="4" Margin="5,0,0,16" Width="110" Height="110" VerticalAlignment="Top" HorizontalAlignment="Right" Background="#FF7E7E7E" CornerRadius="4">
+                    <Border HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="White" Margin="1" CornerRadius="3">
+                        <TextBlock x:Name="tbSearchResult" VerticalAlignment="Center" HorizontalAlignment="Center" Text="!" FontWeight="Bold" FontSize="74" />
+                    </Border>
+                </Border>
+
+            </Grid>
+            <StackPanel x:Name="pnlCommonlyUsed" Orientation="Horizontal" Grid.Row="4" UseLayoutRounding="True" />
+            <TextBlock x:Name="CharacterDescription" Foreground="#FF707070" Margin="0,6,0,0" FontSize="11" Grid.Row="5" Height="43" TextWrapping="Wrap" Width="350" UseLayoutRounding="True" />
+        </Grid>
+    </Grid>
+</UserControl>

@@ -1,0 +1,1256 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{6BD76F26-C686-4526-8759-6D2E63E80E02}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DevExpress.Printing</RootNamespace>
+    <AssemblyName>DevExpress.Printing.v15.2.Core</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <AssemblyOriginatorKeyFile>..\..\DevExpress.Key\StrongKey.snk</AssemblyOriginatorKeyFile>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\..\Bin\Framework\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\..\Bin\Framework\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  
+  
+  
+  <ItemGroup>
+    <Reference Include="DevExpress.Data.v15.2">
+      <SpecificVersion>False</SpecificVersion>
+    <HintPath>..\..\..\Bin\Framework\DevExpress.Data.v15.2.dll</HintPath><Private>False</Private></Reference>
+    <Reference Include="Microsoft.CSharp"><Private>False</Private></Reference>
+    
+    <Reference Include="PresentationCore"><Private>False</Private></Reference>
+    <Reference Include="PresentationFramework"><Private>False</Private></Reference>
+    <Reference Include="System"><Private>False</Private></Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations"><Private>False</Private></Reference>
+    <Reference Include="System.configuration"><Private>False</Private></Reference>
+    <Reference Include="System.Data"><Private>False</Private></Reference>
+    <Reference Include="System.Drawing"><Private>False</Private></Reference>
+    <Reference Include="System.Printing"><Private>False</Private></Reference>
+    <Reference Include="System.Runtime.Serialization"><Private>False</Private></Reference>
+    <Reference Include="System.Security"><Private>False</Private></Reference>
+    <Reference Include="System.ServiceModel"><Private>False</Private></Reference>
+    <Reference Include="System.Windows.Forms"><Private>False</Private></Reference>
+    <Reference Include="System.Xaml"><Private>False</Private></Reference>
+    <Reference Include="System.Xml"><Private>False</Private></Reference>
+    <Reference Include="System.Core"><Private>False</Private></Reference>
+    <Reference Include="System.Xml.Linq"><Private>False</Private></Reference>
+    <Reference Include="WindowsBase"><Private>False</Private></Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="Core\BrickExporters\EmptyBrickExporter.cs" />
+    <Compile Include="Core\BrickExporters\TableOfContentsLineBrickExporter.cs" />
+    <Compile Include="Core\BrickExporters\ToggleSwitchBrickExporter.cs" />
+    <Compile Include="Core\BrickExporters\ToggleSwitchTextBrickExporter.cs" />
+    <Compile Include="Core\BrickExporters\TrackBarBrickExporter.cs" />
+    <Compile Include="Core\BrickExporters\XECheckBoxBrickExporter.cs" />
+    <Compile Include="Core\BrickExporters\XEToggleSwitchBrickExporter.cs" />
+    <Compile Include="Core\BrickOwnerType.cs" />
+    <Compile Include="Core\AttachedProperty.cs" />
+    <Compile Include="Core\Bricks\BarCode\BarCode2DGenerator.cs" />
+    <Compile Include="Core\Bricks\BarCode\BarCodeGeneratorBase.cs" />
+    <Compile Include="Core\Bricks\BarCode\BarCodeGeneratorFactory.cs" />
+    <Compile Include="Core\Bricks\BarCode\BarCodeGeneratorTypeConverter.cs" />
+    <Compile Include="Core\Bricks\BarCode\CodabarGenerator.cs" />
+    <Compile Include="Core\Bricks\BarCode\Code11Generator.cs" />
+    <Compile Include="Core\Bricks\BarCode\Code128Generator.cs" />
+    <Compile Include="Core\Bricks\BarCode\Code39ExtendedGenerator.cs" />
+    <Compile Include="Core\Bricks\BarCode\Code39Generator.cs" />
+    <Compile Include="Core\Bricks\BarCode\Code93ExtendedGenerator.cs" />
+    <Compile Include="Core\Bricks\BarCode\Code93Generator.cs" />
+    <Compile Include="Core\Bricks\BarCode\CodeMSIGenerator.cs" />
+    <Compile Include="Core\Bricks\BarCode\DataBar\DataBarGenerator.cs" />
+    <Compile Include="Core\Bricks\BarCode\DataBar\DataBarPatternProcessor.cs" />
+    <Compile Include="Core\Bricks\BarCode\DataMatrix\DataMatrixConstans.cs" />
+    <Compile Include="Core\Bricks\BarCode\DataMatrix\DataMatrixGenerator.cs" />
+    <Compile Include="Core\Bricks\BarCode\DataMatrix\DataMatrixGS1Generator.cs" />
+    <Compile Include="Core\Bricks\BarCode\DataMatrix\DataMatrixPatternProcessor.cs" />
+    <Compile Include="Core\Bricks\BarCode\DataMatrix\DataMatrixReedSolomon.cs" />
+    <Compile Include="Core\Bricks\BarCode\EAN128Generator.cs" />
+    <Compile Include="Core\Bricks\BarCode\EAN13Generator.cs" />
+    <Compile Include="Core\Bricks\BarCode\EAN8Generator.cs" />
+    <Compile Include="Core\Bricks\BarCode\Enums.cs" />
+    <Compile Include="Core\Bricks\BarCode\GS1Helper.cs" />
+    <Compile Include="Core\Bricks\BarCode\Industrial2of5Generator.cs" />
+    <Compile Include="Core\Bricks\BarCode\IntelligentMail\IntelligentMailGenerator.cs" />
+    <Compile Include="Core\Bricks\BarCode\IntelligentMail\IntelligentMailProcessor.cs" />
+    <Compile Include="Core\Bricks\BarCode\Interfaces.cs" />
+    <Compile Include="Core\Bricks\BarCode\Interleaved2of5Generator.cs" />
+    <Compile Include="Core\Bricks\BarCode\IntelligentMailPackageGenerator.cs" />
+    <Compile Include="Core\Bricks\BarCode\ITF14Generator.cs" />
+    <Compile Include="Core\Bricks\BarCode\Matrix2of5Generator.cs" />
+    <Compile Include="Core\Bricks\BarCode\PDF417\PDF417Constants.cs" />
+    <Compile Include="Core\Bricks\BarCode\PDF417\PDF417Generator.cs" />
+    <Compile Include="Core\Bricks\BarCode\PDF417\PDF417PatternProcessor.cs" />
+    <Compile Include="Core\Bricks\BarCode\PostNetGenerator.cs" />
+    <Compile Include="Core\Bricks\BarCode\QRCode\QRCodeConstants.cs" />
+    <Compile Include="Core\Bricks\BarCode\QRCode\QRCodeGenerator.cs" />
+    <Compile Include="Core\Bricks\BarCode\QRCode\QRCodeHelper.cs" />
+    <Compile Include="Core\Bricks\BarCode\QRCode\QRCodePatternProcessor.cs" />
+    <Compile Include="Core\Bricks\BarCode\TypeConverters.cs" />
+    <Compile Include="Core\Bricks\BarCode\UPCAGenerator.cs" />
+    <Compile Include="Core\Bricks\BarCode\UPCE0Generator.cs" />
+    <Compile Include="Core\Bricks\BarCode\UPCE1Generator.cs" />
+    <Compile Include="Core\Bricks\BarCode\UPCEGeneratorBase.cs" />
+    <Compile Include="Core\Bricks\BarCode\UPCSupplemental2Generator.cs" />
+    <Compile Include="Core\Bricks\BarCode\UPCSupplemental5Generator.cs" />
+    <Compile Include="Core\Bricks\BarCode\UPCSupplementalNGeneratorBase.cs" />
+    <Compile Include="Core\Bricks\ICheckBoxBrick.cs" />
+    <Compile Include="Core\Bricks\Native\SpanBrick.cs" />
+    <Compile Include="Core\Bricks\Native\TableOfContentsLineBrick.cs" />
+    <Compile Include="Core\Bricks\Native\TOC\TableOfContentsLineTextGenerator.cs" />
+    <Compile Include="Core\Bricks\Native\ToggleSwitchTextBrick.cs" />
+    <Compile Include="Core\Bricks\Native\XEToggleSwitchBrick.cs" />
+    <Compile Include="Core\Bricks\Native\XEToggleSwitchTextBrick.cs" />
+    <Compile Include="Core\Bricks\ToggleSwitchBrick.cs" />
+    <Compile Include="Core\Bricks\TrackBarBrick.cs" />
+    <Compile Include="Core\Delayer.cs" />
+    <Compile Include="Core\DispatcherTimerDelayer.cs" />
+    <Compile Include="Core\ExportOptions\MailMessageExportOptions.cs" />
+    <Compile Include="Core\ExportOptions\PdfSignatureOptions.cs" />
+    <Compile Include="Core\ExportOptions\XlDocumentOptions.cs" />
+    <Compile Include="Core\Exports\NewXlsExport.cs" />
+    <Compile Include="Core\Exports\RtfExport\RtfChunkData.cs" />
+    <Compile Include="Core\HtmlExport\HtmlTableBuilderEmailMultiPart.cs" />
+    <Compile Include="Core\HtmlExport\MailDocumentBuilder.cs" />
+    <Compile Include="Core\HtmlExport\SinglePageWebControl.cs" />
+    <Compile Include="Core\ControlLayoutRules.cs" />
+    <Compile Include="Core\HtmlExport\CssHtmlCellImageContentCreator.cs" />
+    <Compile Include="Core\HtmlExport\HtmlCellImageContentCreator.cs" />
+    <Compile Include="Core\HtmlExport\MhtCellImageContentCreator.cs" />
+    <Compile Include="Core\LineSpecifics.cs" />
+    <Compile Include="Core\Links\CompositeLinkBase.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Core\Links\LinkCollection.cs" />
+    <Compile Include="Core\Native\DrillDownKey.cs" />
+    <Compile Include="Core\Native\IBookmarkNode.cs" />
+    <Compile Include="Core\Native\Navigation\SearchHelper.cs" />
+    <Compile Include="Core\Observable.cs" />
+    <Compile Include="Core\PageBuilder\PageContentEngine2.cs" />
+    <Compile Include="Core\PageBuilder\SmartXPageContentEngine.cs" />
+    <Compile Include="Core\PdfExport\Attachments.cs" />
+    <Compile Include="Core\PdfExport\GraphicsImpl.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Core\PdfExport\Metafile\BitmapHelper.cs" />
+    <Compile Include="Core\PdfExport\Metafile\EMF+\EmfPlusBitmap.cs" />
+    <Compile Include="Core\PdfExport\Metafile\EMF+\EmfPlusBrush.cs" />
+    <Compile Include="Core\PdfExport\Metafile\EMF+\EmfPlusCompoundLineData.cs" />
+    <Compile Include="Core\PdfExport\Metafile\EMF+\EmfPlusCustomCapData.cs" />
+    <Compile Include="Core\PdfExport\Metafile\EMF+\EmfPlusDashedLineData.cs" />
+    <Compile Include="Core\PdfExport\Metafile\EMF+\EmfPlusFont.cs" />
+    <Compile Include="Core\PdfExport\Metafile\EMF+\EmfPlusGraphicsVersion.cs" />
+    <Compile Include="Core\PdfExport\Metafile\EMF+\EmfPlusImage.cs" />
+    <Compile Include="Core\PdfExport\Metafile\EMF+\EmfPlusMetafile.cs" />
+    <Compile Include="Core\PdfExport\Metafile\EMF+\EmfPlusPath.cs" />
+    <Compile Include="Core\PdfExport\Metafile\EMF+\EmfPlusPathPointType.cs" />
+    <Compile Include="Core\PdfExport\Metafile\EMF+\EmfPlusPen.cs" />
+    <Compile Include="Core\PdfExport\Metafile\EMF+\EmfPlusPenData.cs" />
+    <Compile Include="Core\PdfExport\Metafile\EMF+\EmfPlusPenOptionalData.cs" />
+    <Compile Include="Core\PdfExport\Metafile\EMF+\EmfPlusRegion.cs" />
+    <Compile Include="Core\PdfExport\Metafile\EMF+\EmfPlusRegionNode.cs" />
+    <Compile Include="Core\PdfExport\Metafile\EMF+\EmfPlusRegionNodeChildNodes.cs" />
+    <Compile Include="Core\PdfExport\Metafile\EMF+\EmfPlusRegionNodePath.cs" />
+    <Compile Include="Core\PdfExport\Metafile\EMF+\EmfPlusStringFormat.cs" />
+    <Compile Include="Core\PdfExport\Metafile\EMF+\EmfPlusTransformMatrix.cs" />
+    <Compile Include="Core\PdfExport\Metafile\WMF\CharacterSet.cs" />
+    <Compile Include="Core\PdfExport\Metafile\WMF\MapMode.cs" />
+    <Compile Include="Core\PdfExport\Metafile\MetafileObjectTable.cs" />
+    <Compile Include="Core\PdfExport\Metafile\MetaState.cs" />
+    <Compile Include="Core\PdfExport\Metafile\MetaImage.cs" />
+    <Compile Include="Core\PdfExport\Metafile\MetaReader.cs" />
+    <Compile Include="Core\PdfExport\Metafile\EMF+\ObjectType.cs" />
+    <Compile Include="Core\PdfExport\Metafile\WMF\MixMode.cs" />
+    <Compile Include="Core\PdfExport\Metafile\WMF\PolyFillMode.cs" />
+    <Compile Include="Core\PdfExport\Metafile\WMF\WmfFontObject.cs" />
+    <Compile Include="Core\PdfExport\Metafile\WMF\WmfLogBrush.cs" />
+    <Compile Include="Core\PdfExport\Metafile\WMF\WmfPaletteEntry.cs" />
+    <Compile Include="Core\PdfExport\Metafile\WMF\WmfPaletteObject.cs" />
+    <Compile Include="Core\PdfExport\Metafile\WMF\WmfPenObject.cs" />
+    <Compile Include="Core\PdfExport\Patterns.cs" />
+    <Compile Include="Core\PdfExport\PdfVectorImage.cs" />
+    <Compile Include="Core\PdfExport\Shading.cs" />
+    <Compile Include="Core\PdfExport\TransparencyGS.cs" />
+    <Compile Include="Core\PSPrintDocument.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Core\ReportServer\AuthenticationCompletedEventArgs.cs" />
+    <Compile Include="Core\Native\CustomPageData.cs" />
+    <Compile Include="Core\Native\DeviceCaps.cs" />
+    <Compile Include="Core\FieldListNodeSpecifics.cs" />
+    <Compile Include="Core\Native\Helper.cs" />
+    <Compile Include="Core\Native\IBrickPagePairFactory.cs" />
+    <Compile Include="Core\Native\PdfSignature\CertificateItem.cs" />
+    <Compile Include="Core\Native\IdGenerator.cs" />
+    <Compile Include="Core\Native\MergeBrickHelper.cs" />
+    <Compile Include="Core\Native\PdfSignature\IPdfSignatureEditorView.cs" />
+    <Compile Include="Core\Native\PdfSignature\PdfSignatureEditorPresenter.cs" />
+    <Compile Include="Core\Native\PrintingSystemContextWrapper.cs" />
+    <Compile Include="Core\Native\XamlCompatibility.cs" />
+    <Compile Include="Core\PageBuilder\DocumentHelper.cs" />
+    <Compile Include="Core\PageBuilder\IPageContentService.cs" />
+    <Compile Include="Core\PageBuilder\LayoutViewBuildEngine.cs" />
+    <Compile Include="Core\PageSettingsHelper.cs" />
+    <Compile Include="Core\PdfExport\PdfSignature.cs" />
+    <Compile Include="Core\ReportServer\DeserializedPrintingSystem.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Core\ReportServer\GetRemoteParametersCompletedEventArgs.cs" />
+    <Compile Include="Core\ReportServer\IndexedCache\ICache.cs" />
+    <Compile Include="Core\ReportServer\IndexedCache\IndexedCache.cs" />
+    <Compile Include="Core\ReportServer\IndexedCache\IndexedCacheItem.cs" />
+    <Compile Include="Core\ReportServer\IndexedCache\IndexedCacheItemState.cs" />
+    <Compile Include="Core\ReportServer\PageListEnumerator.cs" />
+    <Compile Include="Core\ReportServer\RemoteBrickPagePair.cs" />
+    <Compile Include="Core\ReportServer\RemoteDocument.cs" />
+    <Compile Include="Core\ReportServer\RemoteDocumentSource.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Core\ReportServer\RemoteInnerPageList.cs" />
+    <Compile Include="Core\ReportServer\RemoteOperations\RemoteOperationFactory.cs" />
+    <Compile Include="Core\ReportServer\RemoteOperations\RemoteScalarOperation.cs" />
+    <Compile Include="Core\ReportServer\RemoteOperations\RequestPagesOperation.cs" />
+    <Compile Include="Core\ReportServer\RemotePageInfo.cs" />
+    <Compile Include="Core\ReportServer\RemotePageList.cs" />
+    <Compile Include="Core\ReportServer\RemotePreviewLocalizer.cs" />
+    <Compile Include="Core\ReportServer\RemotePrintingSystem.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Core\ReportServer\Services\BrickPagePairFactory.cs" />
+    <Compile Include="Core\ReportServer\Services\EmptyPageFactory.cs" />
+    <Compile Include="Core\ReportServer\Services\ICredentialsService.cs" />
+    <Compile Include="Core\ReportServer\Services\IEmptyPageFactory.cs" />
+    <Compile Include="Core\ReportServer\Services\IPageListService.cs" />
+    <Compile Include="Core\ReportServer\Services\IPageOwnerProvider.cs" />
+    <Compile Include="Core\ReportServer\Services\IRemotePrintService.cs" />
+    <Compile Include="Core\ReportServer\Services\PageListService.cs" />
+    <Compile Include="Core\ReportServer\Services\PageOwnerProvider.cs" />
+    <Compile Include="Core\ReportServer\Services\RemoteDrillDownService.cs" />
+    <Compile Include="Core\ReportServer\Services\RemoteDrillDownStrategy.cs" />
+    <Compile Include="Core\ReportServer\Services\RemotePrintService.cs" />
+    <Compile Include="Core\SharedUtils.cs" />
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <Compile Include="Core\TextEditMode.cs" />
+    <Compile Include="Core\ThreadingTimerDelayer.cs" />
+    <Compile Include="Core\Tracer.cs" />
+    <Compile Include="Core\XRAccessor.cs" />
+    <Compile Include="Data\SpreadsheetSource\Cell.cs" />
+    <Compile Include="Data\SpreadsheetSource\Columns.cs" />
+    <Compile Include="Data\SpreadsheetSource\Csv\CsvDataReader.cs" />
+    <Compile Include="Data\SpreadsheetSource\Csv\CsvOptions.cs" />
+    <Compile Include="Data\SpreadsheetSource\Csv\CsvSource.cs" />
+    <Compile Include="Data\SpreadsheetSource\Csv\CsvStreamReader.cs" />
+    <Compile Include="Data\SpreadsheetSource\DataReader.cs" />
+    <Compile Include="Data\SpreadsheetSource\DefinedName.cs" />
+    <Compile Include="Data\SpreadsheetSource\ISpreadsheetSource.cs" />
+    <Compile Include="Data\SpreadsheetSource\Options.cs" />
+    <Compile Include="Data\SpreadsheetSource\Tables.cs" />
+    <Compile Include="Data\SpreadsheetSource\Worksheet.cs" />
+    <Compile Include="Data\SpreadsheetSource\Xlsx\DataReader.cs" />
+    <Compile Include="Data\SpreadsheetSource\Xlsx\Import\DestinationImporter.cs" />
+    <Compile Include="Data\SpreadsheetSource\Xlsx\Import\DestinationXmImporter.cs" />
+    <Compile Include="Data\SpreadsheetSource\Xlsx\Import\Destination\DefinedNameDestination.cs" />
+    <Compile Include="Data\SpreadsheetSource\Xlsx\Import\Destination\DocumentDestination.cs" />
+    <Compile Include="Data\SpreadsheetSource\Xlsx\Import\Destination\NumberFormatDestination.cs" />
+    <Compile Include="Data\SpreadsheetSource\Xlsx\Import\Destination\RelationshipDestination.cs" />
+    <Compile Include="Data\SpreadsheetSource\Xlsx\Import\Destination\SharedStringsDestination.cs" />
+    <Compile Include="Data\SpreadsheetSource\Xlsx\Import\Destination\SheetDestination.cs" />
+    <Compile Include="Data\SpreadsheetSource\Xlsx\Import\Destination\StylesDestination.cs" />
+    <Compile Include="Data\SpreadsheetSource\Xlsx\Import\Destination\WorkbookPropertiesDestination.cs" />
+    <Compile Include="Data\SpreadsheetSource\Xlsx\Import\Destination\WorksheetCellDestination.cs" />
+    <Compile Include="Data\SpreadsheetSource\Xlsx\Import\Destination\WorksheetColumnDestination.cs" />
+    <Compile Include="Data\SpreadsheetSource\Xlsx\Import\Destination\WorksheetTablePartDestination.cs" />
+    <Compile Include="Data\SpreadsheetSource\Xlsx\Import\XlsxImporter.cs" />
+    <Compile Include="Data\SpreadsheetSource\Xlsx\Import\XlsxSpreadsheetSourceImporter.cs" />
+    <Compile Include="Data\SpreadsheetSource\Xlsx\XlsxSource.cs" />
+    <Compile Include="Data\SpreadsheetSource\Xlsx\XlsxWorksheet.cs" />
+    <Compile Include="Data\SpreadsheetSource\Xls\CommandFactory.cs" />
+    <Compile Include="Data\SpreadsheetSource\Xls\Commands.cs" />
+    <Compile Include="Data\SpreadsheetSource\Xls\WorkbookGlobals.cs" />
+    <Compile Include="Data\SpreadsheetSource\Xls\Worksheet.cs" />
+    <Compile Include="Data\SpreadsheetSource\Xls\XlsSource.cs" />
+    <Compile Include="DocumentFormats\CellReferenceParcer.cs" />
+    <Compile Include="DocumentFormats\Encryption\Agile\Config.cs" />
+    <Compile Include="DocumentFormats\Encryption\Agile\EncrypedStream.cs" />
+    <Compile Include="DocumentFormats\Encryption\Agile\EncryptionData.cs" />
+    <Compile Include="DocumentFormats\Encryption\Agile\Hmac.cs" />
+    <Compile Include="DocumentFormats\Encryption\Agile\KeyManager.cs" />
+    <Compile Include="DocumentFormats\Encryption\Agile\PasswordKeyEncryptor.cs" />
+    <Compile Include="DocumentFormats\Encryption\Agile\PrimaryCipher.cs" />
+    <Compile Include="DocumentFormats\Encryption\Agile\Session.cs" />
+    <Compile Include="DocumentFormats\Encryption\Agile\Utils.cs" />
+    <Compile Include="DocumentFormats\Import\PackageUtils.cs" />
+    <Compile Include="DocumentFormats\Import\StructuredStorageBased\IBinaryContentBuilder.cs" />
+    <Compile Include="DocumentFormats\Import\StructuredStorageBased\PackageFileReader.cs" />
+    <Compile Include="DocumentFormats\Import\StructuredStorageBased\VirtualStreamBinaryReader.cs" />
+    <Compile Include="DocumentFormats\Import\XmlBased\Destination.cs" />
+    <Compile Include="DocumentFormats\Import\XmlBased\IDestinationImporter.cs" />
+    <Compile Include="DocumentFormats\Import\XmlBased\OpenXmlImportRelationHelper.cs" />
+    <Compile Include="DocumentFormats\Import\XmlBased\TransparentDestination.cs" />
+    <Compile Include="DocumentFormats\Import\XmlBased\XmlCharsDecoder.cs" />
+    <Compile Include="DocumentFormats\Import\XmlBased\XmlPackageReader.cs" />
+    <Compile Include="DocumentServices\ServiceModel\ClientParameter.cs" />
+    <Compile Include="DocumentServices\ServiceModel\Client\IAsyncReportService.cs" />
+    <Compile Include="DocumentServices\ServiceModel\Client\IReportServiceClient.cs" />
+    <Compile Include="DocumentServices\ServiceModel\Client\IReportServiceClientFactory.cs" />
+    <Compile Include="DocumentServices\ServiceModel\Client\ReportServiceClient.cs" />
+    <Compile Include="DocumentServices\ServiceModel\Client\ReportServiceClientFactory.cs" />
+    <Compile Include="DocumentServices\ServiceModel\DataContracts\ParameterLookUpValues.cs" />
+    <Compile Include="DocumentServices\ServiceModel\DefaultValueParameter.cs" />
+    <Compile Include="DocumentServices\ServiceModel\DefaultValueParameterContainer.cs" />
+    <Compile Include="DocumentServices\ServiceModel\ExportReportTask.cs" />
+    <Compile Include="DocumentServices\ServiceModel\IClientParameter.cs" />
+    <Compile Include="DocumentServices\ServiceModel\IParameterContainer.cs" />
+    <Compile Include="DocumentServices\ServiceModel\Native\ClientParameterContainer.cs" />
+    <Compile Include="DocumentServices\ServiceModel\Native\PrintingStatus.cs" />
+    <Compile Include="DocumentServices\ServiceModel\Native\ServiceClientCreator.cs" />
+    <Compile Include="DocumentServices\ServiceModel\ReportServiceTaskBase.cs" />
+    <Compile Include="DocumentServices\ServiceModel\ReportServiceTaskFactoryExtensions.cs" />
+    <Compile Include="DocumentServices\ServiceModel\ServiceOperations\CreateDocumentCompletedEventArgs.cs" />
+    <Compile Include="DocumentServices\ServiceModel\ServiceOperations\CreateDocumentOperation.cs" />
+    <Compile Include="DocumentServices\ServiceModel\ServiceOperations\CreateDocumentProgressEventArgs.cs" />
+    <Compile Include="DocumentServices\ServiceModel\ServiceOperations\CreateDocumentReportInfoEventArgs.cs" />
+    <Compile Include="DocumentServices\ServiceModel\ServiceOperations\CreateDocumentStartedEventArgs.cs" />
+    <Compile Include="DocumentServices\ServiceModel\ServiceOperations\ExportDocumentCompletedEventArgs.cs" />
+    <Compile Include="DocumentServices\ServiceModel\ServiceOperations\ExportDocumentOperation.cs" />
+    <Compile Include="DocumentServices\ServiceModel\ServiceOperations\ExportDocumentProgressEventArgs.cs" />
+    <Compile Include="DocumentServices\ServiceModel\ServiceOperations\ExportDocumentStartedEventArgs.cs" />
+    <Compile Include="DocumentServices\ServiceModel\ServiceOperations\PrintDocumentCompletedEventArgs.cs" />
+    <Compile Include="DocumentServices\ServiceModel\ServiceOperations\PrintDocumentOperation.cs" />
+    <Compile Include="DocumentServices\ServiceModel\ServiceOperations\PrintDocumentProgressEventArgs.cs" />
+    <Compile Include="DocumentServices\ServiceModel\ServiceOperations\PrintDocumentStartedEventArgs.cs" />
+    <Compile Include="DocumentServices\ServiceModel\ServiceOperations\ReportServiceOperation.cs" />
+    <Compile Include="DocumentServices\ServiceModel\ServiceOperations\ServiceOperationBase.cs" />
+    <Compile Include="DocumentServices\ServiceModel\ServiceOperations\ServiceOperationCompletedEventArgs.cs" />
+    <Compile Include="DocumentView\Interfaces.cs" />
+    <Compile Include="DXReportsLicenseProvider.cs" />
+    <Compile Include="ExportHelpers\Clipboard\ClipboardExportManagerBase.cs" />
+    <Compile Include="ExportHelpers\Clipboard\Exporters\ClipboardCsvExporter.cs" />
+    <Compile Include="ExportHelpers\Clipboard\ClipboardHelper.cs" />
+    <Compile Include="ExportHelpers\Clipboard\ClipboardOptions.cs" />
+    <Compile Include="ExportHelpers\Clipboard\ClipboardCellInfo.cs" />
+    <Compile Include="ExportHelpers\Clipboard\Exporters\ClipboardTxtExport.cs" />
+    <Compile Include="ExportHelpers\Clipboard\Exporters\ClipboardXlsExporter.cs" />
+    <Compile Include="ExportHelpers\Clipboard\Interfaces.cs" />
+    <Compile Include="ExportHelpers\ConditionalFormatting\ColumnPositionConverter.cs" />
+    <Compile Include="ExportHelpers\ConditionalFormatting\ConditionalFormattingExportHelper.cs" />
+    <Compile Include="ExportHelpers\DataAwareExportContext.cs" />
+    <Compile Include="ExportHelpers\ExportAggregator\ExportAggregator.cs" />
+    <Compile Include="ExportHelpers\ExportDashboard\DashboardItemExcelExporter.cs" />
+    <Compile Include="ExportHelpers\ExportInfo.cs" />
+    <Compile Include="ExportHelpers\ExportPivot\PivotGridExcelExporter.cs" />
+    <Compile Include="ExportHelpers\ExportTreeList\TreeListExcelExporter.cs" />
+    <Compile Include="ExportHelpers\FormatStringParser.cs" />
+    <Compile Include="ExportHelpers\Helpers\DataValidationExportHelper.cs" />
+    <Compile Include="ExportHelpers\Diagnostics.cs" />
+    <Compile Include="ExportHelpers\FormattingMethods.cs" />
+    <Compile Include="ExportHelpers\GridExportHelpers.cs" />
+    <Compile Include="ExportHelpers\Helpers\ExportHelperBase.cs" />
+    <Compile Include="ExportHelpers\Helpers\HyperlinkExporter.cs" />
+    <Compile Include="ExportHelpers\Helpers\SparklineExportHelper.cs" />
+    <Compile Include="ExportHelpers\Interfaces.cs" />
+    <Compile Include="ExportHelpers\Helpers\MergeCellsExportHelper.cs" />
+    <Compile Include="ExportHelpers\Helpers\PictureExportHelper.cs" />
+    <Compile Include="ExportHelpers\Helpers\SummaryExportHelper.cs" />
+    <Compile Include="Export\Csv\CsvNumberFormatting.cs" />
+    <Compile Include="Export\Csv\CsvOptions.cs" />
+    <Compile Include="Export\Csv\CsvTableBasedExport.cs" />
+    
+    <Compile Include="Export\ExportExcelProvider.cs" />
+    <Compile Include="Export\ExportToExcel2007\ExportXlsxProvider.cs" />
+    <Compile Include="Export\ExportToExcel2007\XslxDom\ContentTypesDocument.cs" />
+    <Compile Include="Export\ExportToExcel2007\XslxDom\DrawingDocument.cs" />
+    <Compile Include="Export\ExportToExcel2007\XslxDom\OpenXmlDocument.cs" />
+    <Compile Include="Export\ExportToExcel2007\XslxDom\OpenXmlElement.cs" />
+    <Compile Include="Export\ExportToExcel2007\XslxDom\Relationships.cs" />
+    <Compile Include="Export\ExportToExcel2007\XslxDom\RelsDocument.cs" />
+    <Compile Include="Export\ExportToExcel2007\XslxDom\SharedStringsDocument.cs" />
+    <Compile Include="Export\ExportToExcel2007\XslxDom\StyleSheetDocument.cs" />
+    <Compile Include="Export\ExportToExcel2007\XslxDom\WoorkSheetDocument.cs" />
+    <Compile Include="Export\ExportToExcel2007\XslxDom\WorkbookDocument.cs" />
+    <Compile Include="Export\ExportToExcel2007\XslxDom\XlsxHelper.cs" />
+    <Compile Include="Export\ExportToExcel2007\XslxDom\XlsxPackage.cs" />
+    <Compile Include="Export\ExportToExcel\DynamicBuffer.cs" />
+    <Compile Include="Export\ExportToExcel\ExportXlsProvider.cs" />
+    <Compile Include="Export\ExportToExcel\FormatStringConverter.cs" />
+    <Compile Include="Export\ExportToExcel\SharedStringTable.cs" />
+    <Compile Include="Export\ExportToExcel\XlsCell.cs" />
+    <Compile Include="Export\ExportToExcel\XlsConsts.cs" />
+    <Compile Include="Export\ExportToExcel\XlsPictures.cs" />
+    <Compile Include="Export\ExportToExcel\XlsRecordList.cs" />
+    <Compile Include="Export\ExportToExcel\XlsStream.cs" />
+    <Compile Include="Export\ExportToExcel\XlsWorkBookWriter.cs" />
+    <Compile Include="Export\ExportUtils.cs" />
+    <Compile Include="Export\HtmlExport.cs" />
+    <Compile Include="Export\IScriptContainer.cs" />
+    <Compile Include="Export\Xlsx\CellError.cs" />
+    <Compile Include="Export\Xlsx\DocumentProperties.cs" />
+    <Compile Include="Export\Xlsx\Shapes.cs" />
+    <Compile Include="Export\Xlsx\Sparklines.cs" />
+    <Compile Include="Export\Xlsx\Tables.cs" />
+    
+    <Compile Include="Export\Xls\ARC4Crypto.cs" />
+    <Compile Include="Export\Xls\ConditionalFormatting.cs" />
+    <Compile Include="Export\Xls\DocumentProperties.cs" />
+    <Compile Include="Export\Xls\MD5Hash.cs" />
+    <Compile Include="Export\Xls\Pictures.cs" />
+    <Compile Include="Export\Xls\PropertySet.cs" />
+    <Compile Include="Export\Xls\Shapes.cs" />
+    
+    
+    
+    
+    <Compile Include="Export\Xl\CellReferenceParser.cs" />
+    <Compile Include="Export\Xl\Color.cs" />
+    <Compile Include="Export\Xl\ConditionalFormatting.cs" />
+    <Compile Include="Export\Xl\DataValidation.cs" />
+    <Compile Include="Export\Xl\ReferenceParser.cs" />
+    <Compile Include="Export\Xl\RichTextString.cs" />
+    <Compile Include="Export\Xl\Shapes.cs" />
+    <Compile Include="Export\Xl\Sparklines.cs" />
+    <Compile Include="Export\Xl\Tables.cs" />
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <Compile Include="Export\Xl\ValueObject.cs" />
+    <Compile Include="Export\Xl\Worksheet.cs" />
+    <Compile Include="Export\Xl\Hyperlink.cs" />
+    <Compile Include="Export\Xl\Styles.cs" />
+    <Compile Include="Export\Xl\XlExport.cs" />
+    <Compile Include="Export\Xl\XlExportNumberFormatConverter.cs" />
+    <Compile Include="Export\Xl\XlExpression.cs" />
+    
+    
+    
+    <Compile Include="Core\Accessor.cs" />
+    <Compile Include="Core\Bookmark.cs" />
+    <Compile Include="Core\BrickData.cs" />
+    <Compile Include="Core\BrickExporters\BarCodeBrickExporter.cs" />
+    <Compile Include="Core\BrickExporters\BrickBaseExporter.cs" />
+    <Compile Include="Core\BrickExporters\BrickContainerBaseExporter.cs" />
+    <Compile Include="Core\BrickExporters\BrickContainerExporter.cs" />
+    <Compile Include="Core\BrickExporters\BrickExporter.cs" />
+    <Compile Include="Core\BrickExporters\BrickExporterAttribute.cs" />
+    <Compile Include="Core\BrickExporters\CheckBoxBrickExporter.cs" />
+    <Compile Include="Core\BrickExporters\CheckBoxTextBrickExporter.cs" />
+    <Compile Include="Core\BrickExporters\CompositeBrickExporter.cs" />
+    <Compile Include="Core\BrickExporters\ContainerBrickBaseExporter.cs" />
+    <Compile Include="Core\BrickExporters\ExportersFactory.cs" />
+    <Compile Include="Core\BrickExporters\ImageBrickExporter.cs" />
+    <Compile Include="Core\BrickExporters\LabelBrickExporter.cs" />
+    <Compile Include="Core\BrickExporters\LineBrickExporter.cs" />
+    <Compile Include="Core\BrickExporters\PageExporter.cs" />
+    <Compile Include="Core\BrickExporters\PageInfoTextBrickBaseExporter.cs" />
+    <Compile Include="Core\BrickExporters\PanelBrickExporter.cs" />
+    <Compile Include="Core\BrickExporters\ProgressBarBrickExporter.cs" />
+    <Compile Include="Core\BrickExporters\RichTextBoxBrickExporter.cs" />
+    <Compile Include="Core\BrickExporters\RowBrickExporter.cs" />
+    <Compile Include="Core\BrickExporters\ShapeBrickExporter.cs" />
+    <Compile Include="Core\BrickExporters\TableBrickExporter.cs" />
+    <Compile Include="Core\BrickExporters\TextBrickExporter.cs" />
+    <Compile Include="Core\BrickExporters\UserVisualBrickExporter.cs" />
+    <Compile Include="Core\BrickExporters\VisualBrickExporter.cs" />
+    <Compile Include="Core\BrickExporters\ZipCodeBrickExporter.cs" />
+    <Compile Include="Core\BrickGraphics.cs" />
+    <Compile Include="Core\BrickList.cs" />
+    <Compile Include="Core\BrickModifier.cs" />
+    <Compile Include="Core\BrickPagePair.cs" />
+    <Compile Include="Core\BrickPagePairCollection.cs" />
+    <Compile Include="Core\BrickStyleHelper.cs" />
+    <Compile Include="Core\Bricks\BarCodeBrick.cs" />
+    <Compile Include="Core\Bricks\Brick.cs" />
+    <Compile Include="Core\Bricks\BrickBase.cs" />
+    <Compile Include="Core\Bricks\BrickCollection.cs" />
+    <Compile Include="Core\Bricks\BrickContainer.cs" />
+    <Compile Include="Core\Bricks\CheckBoxBrick.cs" />
+    <Compile Include="Core\Bricks\CompositeBrick.cs" />
+    <Compile Include="Core\Bricks\EmptyBrick.cs" />
+    <Compile Include="Core\Bricks\GroupingPageInfoTextBrick.cs" />
+    <Compile Include="Core\Bricks\ImageBrick.cs" />
+    <Compile Include="Core\Bricks\LabelBrick.cs" />
+    <Compile Include="Core\Bricks\LineBrick.cs" />
+    <Compile Include="Core\BookmarkInfo.cs" />
+    <Compile Include="Core\Bricks\Native\CheckBoxTextBrick.cs" />
+    <Compile Include="Core\Bricks\Native\NoTextExportTextBrick.cs" />
+    <Compile Include="Core\Bricks\Native\RichTextBoxBrick.cs" />
+    <Compile Include="Core\Bricks\Native\RowBrick.cs" />
+    <Compile Include="Core\Bricks\Native\SeparableBrick.cs" />
+    <Compile Include="Core\Bricks\Native\SpanPanelBrick.cs" />
+    <Compile Include="Core\Bricks\Native\TableBrick.cs" />
+    <Compile Include="Core\Bricks\Native\XECheckBoxBrick.cs" />
+    <Compile Include="Core\Bricks\PageBricks\PageCustomBrickHelper.cs" />
+    <Compile Include="Core\Bricks\PageBricks\PageImageBrick.cs" />
+    <Compile Include="Core\Bricks\PageBricks\PageInfoBrick.cs" />
+    <Compile Include="Core\Bricks\PageBricks\PageTableBrick.cs" />
+    <Compile Include="Core\Bricks\PageBricks\TableCellList.cs" />
+    <Compile Include="Core\Bricks\PageBricks\TableRow.cs" />
+    <Compile Include="Core\Bricks\PageBricks\TableRowCollection.cs" />
+    <Compile Include="Core\Bricks\PageBricks\UserPageBrick.cs" />
+    <Compile Include="Core\Bricks\PageInfoTextBrick.cs" />
+    <Compile Include="Core\Bricks\PanelBrick.cs" />
+    <Compile Include="Core\Bricks\ProgressBarBrick.cs" />
+    <Compile Include="Core\Bricks\ShapeBrick.cs" />
+    <Compile Include="Core\Bricks\Shape\ClosedShapeBase.cs" />
+    <Compile Include="Core\Bricks\Shape\FilletShapeBase.cs" />
+    <Compile Include="Core\Bricks\Shape\Native\BoundedCommandsRotator.cs" />
+    <Compile Include="Core\Bricks\Shape\Native\ShapeBaseTypeConverter.cs" />
+    <Compile Include="Core\Bricks\Shape\Native\ShapeCommandCollections.cs" />
+    <Compile Include="Core\Bricks\Shape\Native\ShapeCommands.cs" />
+    <Compile Include="Core\Bricks\Shape\Native\ShapeCommandVisitors.cs" />
+    <Compile Include="Core\Bricks\Shape\Native\ShapeGeneratorFactory.cs" />
+    <Compile Include="Core\Bricks\Shape\Native\ShapeUtils.cs" />
+    <Compile Include="Core\Bricks\Shape\ShapeArrow.cs" />
+    <Compile Include="Core\Bricks\Shape\ShapeBase.cs" />
+    <Compile Include="Core\Bricks\Shape\ShapeBrace.cs" />
+    <Compile Include="Core\Bricks\Shape\ShapeBracket.cs" />
+    <Compile Include="Core\Bricks\Shape\ShapeCross.cs" />
+    <Compile Include="Core\Bricks\Shape\ShapeEllipse.cs" />
+    <Compile Include="Core\Bricks\Shape\ShapeLine.cs" />
+    <Compile Include="Core\Bricks\Shape\ShapePolygon.cs" />
+    <Compile Include="Core\Bricks\Shape\ShapePolygonBase.cs" />
+    <Compile Include="Core\Bricks\Shape\ShapeRectangle.cs" />
+    <Compile Include="Core\Bricks\Shape\ShapeStar.cs" />
+    <Compile Include="Core\Bricks\TextBrick.cs" />
+    <Compile Include="Core\Bricks\TextBrickBase.cs" />
+    <Compile Include="Core\Bricks\UserVisualBrick.cs" />
+    <Compile Include="Core\Bricks\VisualBrick.cs" />
+    <Compile Include="Core\Bricks\ZipCodeBrick.cs" />
+    <Compile Include="Core\CommandSetBase.cs" />
+    <Compile Include="Core\ComponentExporter.cs" />
+    <Compile Include="Core\ComponentPrinter.cs" />
+    <Compile Include="Core\ControlPrinter.cs" />
+    <Compile Include="Core\DisplayTypeNameHelper.cs" />
+    <Compile Include="Core\Document.cs" />
+    <Compile Include="Core\Enumerators.cs" />
+    <Compile Include="Core\Enums.cs" />
+    <Compile Include="Core\EventArgsAndDelegates.cs" />
+    <Compile Include="Core\ExceptionHelper.cs" />
+    <Compile Include="Core\ExportOptionsControllers\CsvExportOptionsController.cs" />
+    <Compile Include="Core\ExportOptionsControllers\ExportModeTypeProvider.cs" />
+    <Compile Include="Core\ExportOptionsControllers\ExportOptionsControllerBase.cs" />
+    <Compile Include="Core\ExportOptionsControllers\HtmlExportOptionsController.cs" />
+    <Compile Include="Core\ExportOptionsControllers\HtmlExportOptionsControllerBase.cs" />
+    <Compile Include="Core\ExportOptionsControllers\ImageExportOptionsController.cs" />
+    <Compile Include="Core\ExportOptionsControllers\MhtExportOptionsController.cs" />
+    <Compile Include="Core\ExportOptionsControllers\NativeFormatOptionsController.cs" />
+    <Compile Include="Core\ExportOptionsControllers\PdfExportOptionsController.cs" />
+    <Compile Include="Core\ExportOptionsControllers\RtfExportOptionsController.cs" />
+    <Compile Include="Core\ExportOptionsControllers\TextExportOptionsController.cs" />
+    <Compile Include="Core\ExportOptionsControllers\TextExportOptionsControllerBase.cs" />
+    <Compile Include="Core\ExportOptionsControllers\XlsExportOptionsController.cs" />
+    <Compile Include="Core\ExportOptionsControllers\XpsExportOptionsController.cs" />
+    <Compile Include="Core\ExportOptions\CsvExportOptions.cs" />
+    <Compile Include="Core\ExportOptions\Enums.cs" />
+    <Compile Include="Core\ExportOptions\ExportFormat.cs" />
+    <Compile Include="Core\ExportOptions\ExportOptionsBase.cs" />
+    <Compile Include="Core\ExportOptions\ExportOptionsTypeConverters.cs" />
+    <Compile Include="Core\ExportOptions\HtmlExportOptions.cs" />
+    <Compile Include="Core\ExportOptions\HtmlExportOptionsBase.cs" />
+    <Compile Include="Core\ExportOptions\ImageExportOptions.cs" />
+    <Compile Include="Core\ExportOptions\MhtExportOptions.cs" />
+    <Compile Include="Core\ExportOptions\NativeFormatOptions.cs" />
+    <Compile Include="Core\ExportOptions\Native\CharSetConverter.cs" />
+    <Compile Include="Core\ExportOptions\Native\EncodingConverter.cs" />
+    <Compile Include="Core\ExportOptions\Native\ExportOptionsHelper.cs" />
+    <Compile Include="Core\ExportOptions\Native\PSImageFormatConverter.cs" />
+    <Compile Include="Core\ExportOptions\PageByPageExportOptionsBase.cs" />
+    <Compile Include="Core\ExportOptions\PdfDocumentOptions.cs" />
+    <Compile Include="Core\ExportOptions\PdfExportOptions.cs" />
+    <Compile Include="Core\ExportOptions\PdfPermissions.cs" />
+    <Compile Include="Core\ExportOptions\PdfSecurityOptions.cs" />
+    <Compile Include="Core\ExportOptions\RtfExportOptions.cs" />
+    <Compile Include="Core\ExportOptions\TextExportOptions.cs" />
+    <Compile Include="Core\ExportOptions\TextExportOptionsBase.cs" />
+    <Compile Include="Core\ExportOptions\XlsExportOptions.cs" />
+    <Compile Include="Core\ExportOptions\XpsDocumentOptions.cs" />
+    <Compile Include="Core\ExportOptions\XpsExportOptions.cs" />
+    <Compile Include="Core\Exports\BrickViewData.cs" />
+    <Compile Include="Core\Exports\EmailSenderBase.cs" />
+    <Compile Include="Core\Exports\ExportBand.cs" />
+    <Compile Include="Core\Exports\ExportFileHelperBase.cs" />
+    <Compile Include="Core\Exports\ExportOptions\Design\OptionKindPropertyTypeAttribute.cs" />
+    <Compile Include="Core\Exports\ExportOptions\Design\SeparatorConverter.cs" />
+    <Compile Include="Core\Exports\ExportOptions\EmailOptions.cs" />
+    <Compile Include="Core\Exports\ExportOptions\Enums.cs" />
+    <Compile Include="Core\Exports\ExportOptions\ExportOptionKind.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ExportOptionKind.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Exports\ExportOptions\ExportOptions.cs" />
+    <Compile Include="Core\Exports\ExportOptions\ExportOptionsLocalizer.cs" />
+    <Compile Include="Core\Exports\ExportOptions\ExportOptionsPropertiesNames.cs" />
+    <Compile Include="Core\Exports\ExportOptions\PrintPreviewOptions.cs" />
+    <Compile Include="Core\Exports\ExportUtils.cs" />
+    <Compile Include="Core\Exports\ExportVisitor.cs" />
+    <Compile Include="Core\Exports\ImageExport\BrickWithOffset.cs" />
+    <Compile Include="Core\Exports\ImageExport\DocumentInfo.cs" />
+    <Compile Include="Core\Exports\ImageExport\GraphicsFactorys.cs" />
+    <Compile Include="Core\Exports\ImageExport\ImageDocumentBuilderBase.cs" />
+    <Compile Include="Core\Exports\ImageExport\ImageSinglePageByPageDocumentBuilder.cs" />
+    <Compile Include="Core\Exports\ImageExport\ImageSinglePageDocumentBuilder.cs" />
+    <Compile Include="Core\Exports\ITableCellFiller.cs" />
+    <Compile Include="Core\Exports\Layout\LayoutBuilder.cs" />
+    <Compile Include="Core\Exports\Layout\LayoutControl.cs" />
+    <Compile Include="Core\Exports\Layout\LayoutControlCollection.cs" />
+    <Compile Include="Core\Exports\Layout\PageLayoutBuilder.cs" />
+    <Compile Include="Core\Exports\Layout\TextLayoutBuilder.cs" />
+    <Compile Include="Core\Exports\Layout\XlsLayoutBuilder.cs" />
+    <Compile Include="Core\Exports\RtfExport\RtfDocumentProviderBase.cs" />
+    <Compile Include="Core\Exports\RtfExport\RtfExportHelper.cs" />
+    <Compile Include="Core\Exports\RtfExport\RtfExportProvider.cs" />
+    <Compile Include="Core\Exports\RtfExport\RtfExportProviderBase.cs" />
+    <Compile Include="Core\Exports\RtfExport\RtfLayoutBuilder.cs" />
+    <Compile Include="Core\Exports\RtfExport\RtfPageExportProvider.cs" />
+    <Compile Include="Core\Exports\RtfExport\RtfPageLayoutBuilder.cs" />
+    <Compile Include="Core\Exports\RtfExport\RtfTags.cs" />
+    <Compile Include="Core\Exports\TextDocument.cs" />
+    <Compile Include="Core\Exports\XlsExport.cs" />
+    <Compile Include="Core\Exports\XpsExportServiceBase.cs" />
+    <Compile Include="Core\GdiGraphics.cs" />
+    <Compile Include="Core\GdiHashtable.cs" />
+    <Compile Include="Core\GroupingManager.cs" />
+    <Compile Include="Core\HtmlExport\CompressedHtmlTextWriter.cs" />
+    <Compile Include="Core\HtmlExport\Controls\DXCssStyleCollection.cs" />
+    <Compile Include="Core\HtmlExport\Controls\DXHtmlAnchor.cs" />
+    <Compile Include="Core\HtmlExport\Controls\DXHtmlContainerControl.cs" />
+    <Compile Include="Core\HtmlExport\Controls\DXHtmlControl.cs" />
+    <Compile Include="Core\HtmlExport\Controls\DXHtmlDivision.cs" />
+    <Compile Include="Core\HtmlExport\Controls\DXHtmlGenericControl.cs" />
+    <Compile Include="Core\HtmlExport\Controls\DXHtmlImage.cs" />
+    <Compile Include="Core\HtmlExport\Controls\DXHtmlLiteralControl.cs" />
+    <Compile Include="Core\HtmlExport\Controls\DXHtmlTable.cs" />
+    <Compile Include="Core\HtmlExport\Controls\DXHtmlTableCell.cs" />
+    <Compile Include="Core\HtmlExport\Controls\DXHtmlTableCellCollection.cs" />
+    <Compile Include="Core\HtmlExport\Controls\DXHtmlTableRow.cs" />
+    <Compile Include="Core\HtmlExport\Controls\DXHtmlTableRowCollection.cs" />
+    <Compile Include="Core\HtmlExport\Controls\DXWebAttributeCollection.cs" />
+    <Compile Include="Core\HtmlExport\Controls\DXWebBorderStyle.cs" />
+    <Compile Include="Core\HtmlExport\Controls\DXWebControlBase.cs" />
+    <Compile Include="Core\HtmlExport\Controls\DXWebControlCollection.cs" />
+    <Compile Include="Core\HtmlExport\Controls\DXWebControlState.cs" />
+    <Compile Include="Core\HtmlExport\Controls\DXWebEmptyControlCollection.cs" />
+    <Compile Include="Core\HtmlExport\Controls\DXWebFontInfo.cs" />
+    <Compile Include="Core\HtmlExport\Controls\DXWebFontSize.cs" />
+    <Compile Include="Core\HtmlExport\Controls\DXWebFontUnit.cs" />
+    <Compile Include="Core\HtmlExport\Controls\DXWebRenderStyle.cs" />
+    <Compile Include="Core\HtmlExport\Controls\DXWebStyle.cs" />
+    <Compile Include="Core\HtmlExport\Controls\DXWebUnit.cs" />
+    <Compile Include="Core\HtmlExport\Controls\DXWebUnitType.cs" />
+    <Compile Include="Core\HtmlExport\DXHtmlTextWriterAttribute.cs" />
+    <Compile Include="Core\HtmlExport\DXHtmlTextWriterStyle.cs" />
+    <Compile Include="Core\HtmlExport\DXHtmlTextWriterTag.cs" />
+    <Compile Include="Core\HtmlExport\HtmlDocumentBuilder.cs" />
+    <Compile Include="Core\HtmlExport\HtmlHelper.cs" />
+    <Compile Include="Core\HtmlExport\HtmlLayoutBuilder.cs" />
+    <Compile Include="Core\HtmlExport\HtmlPageLayoutBuilder.cs" />
+    <Compile Include="Core\HtmlExport\HtmlPSControl.cs" />
+    <Compile Include="Core\HtmlExport\HtmlStringCreator.cs" />
+    <Compile Include="Core\HtmlExport\HtmlTableBuilder.cs" />
+    <Compile Include="Core\HtmlExport\HtmlUtil.cs" />
+    <Compile Include="Core\HtmlExport\MhtDocumentBuilder.cs" />
+    <Compile Include="Core\HtmlExport\Native\DXCssTextWriter.cs" />
+    <Compile Include="Core\HtmlExport\Native\DXHashCodeCombiner.cs" />
+    <Compile Include="Core\HtmlExport\Native\DXHtmlEntities.cs" />
+    <Compile Include="Core\HtmlExport\Native\DXHtmlTextWriter.cs" />
+    <Compile Include="Core\HtmlExport\Native\DXHttpUtility.cs" />
+    <Compile Include="Core\HtmlExport\Native\DXSimpleBitVector32.cs" />
+    <Compile Include="Core\HtmlExport\Native\DXStateBag.cs" />
+    <Compile Include="Core\HtmlExport\Native\DXWebHorizontalAlign.cs" />
+    <Compile Include="Core\HtmlExport\Native\DXWebImageAlign.cs" />
+    <Compile Include="Core\HtmlExport\Native\DXWebIndexedString.cs" />
+    <Compile Include="Core\HtmlExport\Native\DXWebStringUtil.cs" />
+    <Compile Include="Core\HtmlExport\PSMultiplePageWebControl.cs" />
+    <Compile Include="Core\HtmlExport\PSWebControl.cs" />
+    <Compile Include="Core\HtmlExport\PSWebControlBase.cs" />
+    <Compile Include="Core\HtmlExport\ScriptBlockControl.cs" />
+    <Compile Include="Core\HtmlExport\WebScriptControl.cs" />
+    <Compile Include="Core\HtmlExport\WebStyleControl.cs" />
+    <Compile Include="Core\IBrickOwner.cs" />
+    <Compile Include="Core\IGraphics.cs" />
+    <Compile Include="Core\ImageComparer.cs" />
+    <Compile Include="Core\ImageContextMenu.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Core\LineDirection.cs" />
+    <Compile Include="Core\Links\CreateAreaEventArgs.cs" />
+    <Compile Include="Core\Links\DataGridLinkBase.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Core\Links\LinkBase.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Core\Links\ListViewLinkBase.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Core\Links\PrintableComponentLinkBase.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Core\Links\TreeViewLinkBase.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Core\LocalizableObjectConverter.cs" />
+    <Compile Include="Core\Measurement.cs" />
+    <Compile Include="Core\Bricks\Native\XECheckBoxTextBrick.cs" />
+    <Compile Include="Core\Bricks\Native\XETextPanelBrick .cs" />
+    <Compile Include="Core\Native\AvailableExportModes.cs" />
+    <Compile Include="Core\Native\BrickPaint.cs" />
+    <Compile Include="Core\Native\BrickPSHelper.cs" />
+    <Compile Include="Core\Native\BrickStyleEqualityComparer.cs" />
+    <Compile Include="Core\Native\CheckBoxImageHelper.cs" />
+    <Compile Include="Core\Native\ConvertHelper.cs" />
+    <Compile Include="Core\Native\CursorHelper.cs" />
+    <Compile Include="Core\Native\CursorStorage.cs" />
+    <Compile Include="Core\Native\DateTimeHelper.cs" />
+    <Compile Include="Core\Native\DefaultEqualityComparer.cs" />
+    <Compile Include="Core\Native\DocumentMapTreeViewNode.cs" />
+    <Compile Include="Core\Native\DocumentMapTreeViewNodeBuilder.cs" />
+    <Compile Include="Core\Native\DocumentMapTreeViewNodeHelper.cs" />
+    <Compile Include="Core\Native\DocumentState.cs" />
+    <Compile Include="Core\Native\EmptyImage.cs" />
+    <Compile Include="Core\Native\Enums.cs" />
+    <Compile Include="Core\Native\ExportContext.cs" />
+    <Compile Include="Core\Native\FileExportHelper.cs" />
+    <Compile Include="Core\Native\GraphicsBase.cs" />
+    <Compile Include="Core\Native\GraphicsModifier.cs" />
+    <Compile Include="Core\Native\HtmlExportContex.cs" />
+    <Compile Include="Core\Native\ICommandHandler.cs" />
+    <Compile Include="Core\Native\ImageInfo.cs" />
+    <Compile Include="Core\Native\ImagesContainer.cs" />
+    <Compile Include="Core\Native\IPageSettingsExtenderBase.cs" />
+    <Compile Include="Core\Native\IPrintingSystemExtender.cs" />
+    <Compile Include="Core\Native\JustifiedStringPainter.cs" />
+    <Compile Include="Core\Native\Lines\BaseLineController.cs" />
+    <Compile Include="Core\Native\Lines\DesignLineControllers.cs" />
+    <Compile Include="Core\Native\Lines\Line.cs" />
+    <Compile Include="Core\Native\Lines\LineFactoryBase.cs" />
+    <Compile Include="Core\Native\Lines\LocalizedEnumStringConverter.cs" />
+    <Compile Include="Core\Native\Lines\PSBooleanLineController.cs" />
+    <Compile Include="Core\Native\Lines\PSColorLineController.cs" />
+    <Compile Include="Core\Native\Lines\PSDateTimeLineController.cs" />
+    <Compile Include="Core\Native\Lines\PSDropDownLineController.cs" />
+    <Compile Include="Core\Native\Lines\PSEditorLineController.cs" />
+    <Compile Include="Core\Native\Lines\PSNumericLineController.cs" />
+    <Compile Include="Core\Native\Lines\PSPropertyLineController.cs" />
+    <Compile Include="Core\Native\Lines\PSTextLineController.cs" />
+    <Compile Include="Core\Native\Lines\RuntimeTypeDescriptorContext.cs" />
+    <Compile Include="Core\Native\Lines\StringConverter.cs" />
+    <Compile Include="Core\Native\Lines\TypeStringConverter.cs" />
+    <Compile Include="Core\Native\Mapi.cs" />
+    <Compile Include="Core\Native\Navigation\BrickSelector.cs" />
+    <Compile Include="Core\Native\Navigation\Enums.cs" />
+    <Compile Include="Core\Native\Navigation\NavigateHelper.cs" />
+    <Compile Include="Core\Native\Navigation\TextBrickSelector.cs" />
+    <Compile Include="Core\Native\NullBrickOwner.cs" />
+    <Compile Include="Core\Native\ObjectContainer.cs" />
+    <Compile Include="Core\Native\PagesExportHelper.cs" />
+    <Compile Include="Core\Native\PdfPasswordSecurityOptionsPresenter.cs" />
+    <Compile Include="Core\Native\PdfPasswordSecurityOptionsView.cs" />
+    <Compile Include="Core\Native\PSBrickPaint.cs" />
+    <Compile Include="Core\Native\PSCommandHelper.cs" />
+    <Compile Include="Core\Native\PSFileType.cs" />
+    <Compile Include="Core\Native\RectHelper.cs" />
+    <Compile Include="Core\Native\ReflectorBarBase.cs" />
+    <Compile Include="Core\Native\RegistryHelper.cs" />
+    <Compile Include="Core\Native\RepeatPasswordCompleteEventArgs.cs" />
+    <Compile Include="Core\Native\RepositoryImageHelper.cs" />
+    <Compile Include="Core\Native\RichEditHelper.cs" />
+    <Compile Include="Core\Native\RichTextBoxEx.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Core\Native\RtfExportContext.cs" />
+    <Compile Include="Core\Native\Serialization\BrickFactory.cs" />
+    <Compile Include="Core\Native\Serialization\BrickTypes.cs" />
+    <Compile Include="Core\Native\Serialization\DefaultBrickFactory.cs" />
+    <Compile Include="Core\Native\Serialization\DeserializedDocument.cs" />
+    <Compile Include="Core\Native\Serialization\DocumentDeserializationCollection.cs" />
+    <Compile Include="Core\Native\Serialization\DocumentSerializationOptions.cs" />
+    <Compile Include="Core\Native\Serialization\DocumentSerializationOrders.cs" />
+    <Compile Include="Core\Native\Serialization\ImageEntry.cs" />
+    <Compile Include="Core\Native\Serialization\InstanceEqualityComparer.cs" />
+    <Compile Include="Core\Native\Serialization\ObjectCache.cs" />
+    <Compile Include="Core\Native\StackBase.cs" />
+    <Compile Include="Core\Native\StylesContainer.cs" />
+    
+    <Compile Include="Core\Native\TextLayoutTable.cs" />
+    <Compile Include="Core\Native\TextRotation.cs" />
+    <Compile Include="Core\Native\XlsExportContext.cs" />
+    <Compile Include="Core\Page.cs" />
+    <Compile Include="Core\PageBuilder\ApplicationBackgroundPageBuildEngineStrategy.cs" />
+    <Compile Include="Core\PageBuilder\BackgroundPageBuildEngine.cs" />
+    <Compile Include="Core\PageBuilder\BackgroundPageBuildEngineStrategy.cs" />
+    <Compile Include="Core\PageBuilder\BuildInfoContainer.cs" />
+    <Compile Include="Core\PageBuilder\ContinuousExportInfo.cs" />
+    <Compile Include="Core\PageBuilder\DataNodeBandManager.cs" />
+    <Compile Include="Core\PageBuilder\DocumentBand.cs" />
+    <Compile Include="Core\PageBuilder\DocumentBandCollection.cs" />
+    <Compile Include="Core\PageBuilder\DocumentBandEnumerator.cs" />
+    <Compile Include="Core\PageBuilder\DocumentBandFamily.cs" />
+    <Compile Include="Core\PageBuilder\DocumentBandKind.cs" />
+    <Compile Include="Core\PageBuilder\Enums.cs" />
+    <Compile Include="Core\PageBuilder\ExportPageBuildEngine.cs" />
+    <Compile Include="Core\PageBuilder\IBandManager.cs" />
+    <Compile Include="Core\PageBuilder\LayoutAdjustment\DocumentBandLayoutData.cs" />
+    <Compile Include="Core\PageBuilder\LayoutAdjustment\ILayoutData.cs" />
+    <Compile Include="Core\PageBuilder\LayoutAdjustment\LayoutAdjuster.cs" />
+    <Compile Include="Core\PageBuilder\LayoutAdjustment\LayoutCollection.cs" />
+    <Compile Include="Core\PageBuilder\LayoutAdjustment\LayoutDataComparer.cs" />
+    <Compile Include="Core\PageBuilder\LayoutAdjustment\PageBreakLayoutData.cs" />
+    <Compile Include="Core\PageBuilder\LayoutAdjustment\SubreportDocumentBandLayoutData.cs" />
+    <Compile Include="Core\PageBuilder\LayoutAdjustment\UnprintLayoutData.cs" />
+    <Compile Include="Core\PageBuilder\LayoutAdjustment\VisualBrickLayoutData.cs" />
+    <Compile Include="Core\PageBuilder\MultiColumn.cs" />
+    <Compile Include="Core\PageBuilder\NOderMultiColumnBuilder.cs" />
+    <Compile Include="Core\PageBuilder\PageBreakList.cs" />
+    <Compile Include="Core\PageBuilder\PageBuildEngine.cs" />
+    <Compile Include="Core\PageBuilder\PageBuildInfo.cs" />
+    <Compile Include="Core\PageBuilder\PageContentEngine.cs" />
+    <Compile Include="Core\PageBuilder\PageHeaderFooterRowBuilder.cs" />
+    <Compile Include="Core\PageBuilder\PageHeaderFooterRowBuilderBase.cs" />
+    <Compile Include="Core\PageBuilder\PageRowBuilder.cs" />
+    <Compile Include="Core\PageBuilder\PageRowBuilderBase.cs" />
+    <Compile Include="Core\PageBuilder\PageRowCalculator.cs" />
+    <Compile Include="Core\PageBuilder\PrintAtBottomHelper.cs" />
+    <Compile Include="Core\PageBuilder\PrintingDocument.cs" />
+    <Compile Include="Core\PageBuilder\ProcessState.cs" />
+    <Compile Include="Core\PageBuilder\PSPage.cs" />
+    <Compile Include="Core\PageBuilder\RootDocumentBand.cs" />
+    <Compile Include="Core\PageBuilder\ServiceDocumentBand.cs" />
+    <Compile Include="Core\PageBuilder\SimplePageRowBuilder.cs" />
+    <Compile Include="Core\PageBuilder\ValueInfo.cs" />
+    <Compile Include="Core\PageBuilder\ZOderMultiColumnBuilder.cs" />
+    <Compile Include="Core\PageBuilder\ZOderMultiColumnCaclulator.cs" />
+    <Compile Include="Core\PageHeaderFooter.cs" />
+    <Compile Include="Core\PageList.cs" />
+    <Compile Include="Core\PageSizeInfo.cs" />
+    <Compile Include="Core\PdfExport\Actions.cs" />
+    <Compile Include="Core\PdfExport\Annotations.cs" />
+    <Compile Include="Core\PdfExport\Catalog.cs" />
+    <Compile Include="Core\PdfExport\Compression\BitBuffer.cs" />
+    <Compile Include="Core\PdfExport\Compression\Deflater.cs" />
+    <Compile Include="Core\PdfExport\Compression\LZ77.cs" />
+    <Compile Include="Core\PdfExport\Contents.cs" />
+    <Compile Include="Core\PdfExport\Document.cs" />
+    <Compile Include="Core\PdfExport\DocumentObject.cs" />
+    <Compile Include="Core\PdfExport\FontObjects.cs" />
+    <Compile Include="Core\PdfExport\Fonts.cs" />
+    <Compile Include="Core\PdfExport\Graphics.cs" />
+    <Compile Include="Core\PdfExport\Images.cs" />
+    <Compile Include="Core\PdfExport\Info.cs" />
+    <Compile Include="Core\PdfExport\Objects.cs" />
+    <Compile Include="Core\PdfExport\Outlines.cs" />
+    <Compile Include="Core\PdfExport\PartialTrustPdfContext.cs" />
+    <Compile Include="Core\PdfExport\PartialTrustPdfFont.cs" />
+    <Compile Include="Core\PdfExport\PartialTrustPdfFontDescriptor.cs" />
+    <Compile Include="Core\PdfExport\PartialTrustPdfTrueTypeFont.cs" />
+    <Compile Include="Core\PdfExport\PdfBuilder.cs" />
+    <Compile Include="Core\PdfExport\PdfEncryption.cs" />
+    <Compile Include="Export\Xl\XlFunctions.cs" />
+    <Compile Include="Interfaces\ICloneable.cs" />
+    <Compile Include="Native\AttributeConstants.cs" />
+    <Compile Include="Native\ParameterValueTypeHelper.cs" />
+    <Compile Include="Native\WebClientUIControl\DataContracts\FieldListNode.cs" />
+    <Compile Include="Native\WebClientUIControl\JsonConverter.cs" />
+    <Compile Include="Native\WebClientUIControl\JsonGenerator.cs" />
+    <Compile Include="ReportGeneration\ReportGenerationOptions.cs" />
+    <Compile Include="ReportGeneration\Wizard\ReportGridModel.cs" />
+    <Compile Include="ReportGeneration\Wizard\ReportTool.cs" />
+    
+    
+    
+    
+    <Compile Include="Utils\ListWrapper.cs" />
+    <Compile Include="Utils\StoredObjects\Extensions.cs" />
+    <Compile Include="Utils\StoredObjects\LiveObjectRepository.cs" />
+    <Compile Include="Utils\StoredObjects\PersistentObjectRepository.cs" />
+    <Compile Include="Utils\StoredObjects\PersistentDictionary.cs" />
+    <Compile Include="Utils\StoredObjects\RepositoryProvider.cs" />
+    <Compile Include="Utils\StoredObjects\StoreAgent.cs" />
+    <Compile Include="Utils\StoredObjects\StoredObjectList.cs" />
+    <Compile Include="Utils\StoredObjects\StoredObject.cs" />
+    <Compile Include="Utils\StoredObjects\StoredObjectRepository.cs" />
+    <Compile Include="PdfCommon\PdfFontUtils.cs" />
+    <Compile Include="PdfCommon\PdfMeasuringContext.cs" />
+    <Compile Include="PdfCommon\PdfTextMeasuringProcessor.cs" />
+    <Compile Include="PdfCommon\PdfToUnicodeCMapBase.cs" />
+    <Compile Include="PdfCommon\PdfToUnicodeCMapExport.cs" />
+    <Compile Include="PdfCommon\PdfStringUtils.cs" />
+    <Compile Include="PdfCommon\WindowsInterop\CHARSETINFO.cs" />
+    <Compile Include="PdfCommon\WindowsInterop\GCP_RESULTS.cs" />
+    <Compile Include="PdfCommon\WindowsInterop\GDIFunctions.cs" />
+    <Compile Include="PdfCommon\PdfCharCache.cs" />
+    <Compile Include="PdfCommon\StringDirection.cs" />
+    <Compile Include="PdfCommon\WindowsInterop\tagFONTSIGNATURE.cs" />
+    <Compile Include="PdfCommon\TextRun.cs" />
+    <Compile Include="PdfCommon\TrueTypeFileFormat\CMap.cs" />
+    <Compile Include="PdfCommon\TrueTypeFileFormat\Glyf.cs" />
+    <Compile Include="PdfCommon\TrueTypeFileFormat\Head.cs" />
+    <Compile Include="PdfCommon\TrueTypeFileFormat\HHea.cs" />
+    <Compile Include="PdfCommon\TrueTypeFileFormat\HMtx.cs" />
+    <Compile Include="PdfCommon\TrueTypeFileFormat\Loca.cs" />
+    <Compile Include="PdfCommon\TrueTypeFileFormat\MaxP.cs" />
+    <Compile Include="PdfCommon\TrueTypeFileFormat\Name.cs" />
+    <Compile Include="PdfCommon\TrueTypeFileFormat\OS2.cs" />
+    <Compile Include="PdfCommon\TrueTypeFileFormat\Post.cs" />
+    <Compile Include="PdfCommon\TrueTypeFileFormat\TTCFile.cs" />
+    <Compile Include="PdfCommon\TrueTypeFileFormat\TTFFile.cs" />
+    <Compile Include="PdfCommon\TrueTypeFileFormat\TTFStream.cs" />
+    <Compile Include="PdfCommon\TrueTypeFileFormat\TTFTable.cs" />
+    <Compile Include="PdfCommon\TrueTypeFileFormat\TTFTableDirectory.cs" />
+    <Compile Include="Core\PdfExport\XObjects.cs" />
+    <Compile Include="Core\PdfExport\XRef.cs" />
+    <Compile Include="Core\PrinterSettingsUsing.cs" />
+    <Compile Include="Core\PrintingSystemAccessor.cs" />
+    <Compile Include="Core\PrintingSystemBase.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Core\ProgressReflector.cs" />
+    <Compile Include="Core\PSCommandConverters.cs" />
+    <Compile Include="Core\PSCommandHandlerBase.cs" />
+    <Compile Include="Core\PSDocument.cs" />
+    
+    <Compile Include="Export\Xl\CellPosition.cs" />
+    <Compile Include="Export\Xl\CellRange.cs" />
+    <Compile Include="Export\Xlsx\Cells.cs" />
+    <Compile Include="Export\Xlsx\Columns.cs" />
+    <Compile Include="Export\Xlsx\ConditionalFormatting.cs" />
+    <Compile Include="Export\Xlsx\DataValidation.cs" />
+    <Compile Include="Export\Xlsx\Grouping.cs" />
+    <Compile Include="Export\Xlsx\Hyperlink.cs" />
+    <Compile Include="Export\Xlsx\PackageBuilder.cs" />
+    <Compile Include="Export\Xlsx\Picture.cs" />
+    <Compile Include="Export\Xlsx\Relation.cs" />
+    <Compile Include="Export\Xlsx\Rows.cs" />
+    <Compile Include="Export\Xlsx\SharedStringTable.cs" />
+    <Compile Include="Export\Xlsx\Styles.cs" />
+    <Compile Include="Export\Xlsx\Variant.cs" />
+    <Compile Include="Export\Xlsx\Workbook.cs" />
+    <Compile Include="Export\Xlsx\Worksheet.cs" />
+    <Compile Include="Export\Xlsx\XlsxTableBasedExport.cs" />
+    <Compile Include="Export\Xls\Cells.cs" />
+    <Compile Include="Export\Xls\Columns.cs" />
+    <Compile Include="Export\Xls\DataValidation.cs" />
+    <Compile Include="Export\Xls\DifferentialFormat.cs" />
+    <Compile Include="Export\Xls\FormulaEngine.cs" />
+    <Compile Include="Export\Xls\Hyperlink.cs" />
+    <Compile Include="Export\Xls\Rows.cs" />
+    <Compile Include="Export\Xls\Styles.cs" />
+    
+    
+    
+    
+    
+    
+    
+    
+    <Compile Include="Export\Xls\Utils.cs" />
+    <Compile Include="Export\Xls\WorkbookGlobals.cs" />
+    <Compile Include="Export\Xls\Worksheet.cs" />
+    <Compile Include="Export\Xls\XFProperties.cs" />
+    <Compile Include="Export\Xls\XlsChunkWriter.cs" />
+    <Compile Include="Export\Xls\XlsContent.cs" />
+    <Compile Include="Export\Xls\XlsContentBase.cs" />
+    <Compile Include="Export\Xls\XlsDefs.cs" />
+    <Compile Include="Export\Xls\XlsReader.cs" />
+    <Compile Include="Export\Xls\XlsTableBasedExporter.cs" />
+    <Compile Include="Native\BorderDashStyleExtensions.cs" />
+    <Compile Include="Native\GraphicsUnitConversionExtensions.cs" />
+    <Compile Include="Native\Presentation\Base64StringImageConverter.cs" />
+    <Compile Include="Native\Presentation\TileEffect.cs" />
+    <Compile Include="Native\PreviewClickHelper.cs" />
+    <Compile Include="Native\ServiceContainerExtensions.cs" />
+    <Compile Include="Native\ServiceProviderExtensions.cs" />
+    <Compile Include="Native\VisualHelper.cs" />
+    <Compile Include="Native\XamlExport\BrickExporters\BrickContainerBaseXamlExporter.cs" />
+    <Compile Include="Native\XamlExport\BrickExporters\BrickContainerXamlExporter.cs" />
+    <Compile Include="Native\XamlExport\BrickExporters\BrickImageXamlExporter.cs" />
+    <Compile Include="Native\XamlExport\BrickExporters\BrickXamlExporterBase.cs" />
+    <Compile Include="Native\XamlExport\BrickExporters\CheckBoxBrickXamlExporter.cs" />
+    <Compile Include="Native\XamlExport\BrickExporters\CompositeBrickXamlExporter.cs" />
+    <Compile Include="Native\XamlExport\BrickExporters\ImageBrickXamlExporter.cs" />
+    <Compile Include="Native\XamlExport\BrickExporters\LineBrickXamlExporter.cs" />
+    <Compile Include="Native\XamlExport\BrickExporters\PageInfoTextBrickXamlExporter.cs" />
+    <Compile Include="Native\XamlExport\BrickExporters\PageXamlExporter.cs" />
+    <Compile Include="Native\XamlExport\BrickExporters\PanelBrickXamlExporter.cs" />
+    <Compile Include="Native\XamlExport\BrickExporters\RichTextBrickXamlExporter.cs" />
+    <Compile Include="Native\XamlExport\BrickExporters\TextBrickXamlExporter.cs" />
+    <Compile Include="Native\XamlExport\BrickExporters\VisualBrickXamlExporter.cs" />
+    <Compile Include="Native\XamlExport\BrickXamlExporterFactory.cs" />
+    <Compile Include="Native\XamlExport\DeclareNamespacesEventArgs.cs" />
+    <Compile Include="Native\XamlExport\FontResolver.cs" />
+    <Compile Include="Native\XamlExport\ImageResolveEventArgs.cs" />
+    <Compile Include="Native\XamlExport\ImageResource.cs" />
+    <Compile Include="Native\XamlExport\ResourceCache.cs" />
+    <Compile Include="Native\XamlExport\ResourceMap.cs" />
+    <Compile Include="Native\XamlExport\TextMeasurementSystem.cs" />
+    <Compile Include="Native\XamlExport\WatermarkXamlExporter.cs" />
+    <Compile Include="Native\XamlExport\WriteCustomPropertiesEventArgs.cs" />
+    <Compile Include="Native\XamlExport\XamlAttribute.cs" />
+    <Compile Include="Native\XamlExport\XamlBorderStyle.cs" />
+    <Compile Include="Native\XamlExport\XamlBrickExportMode.cs" />
+    <Compile Include="Native\XamlExport\XamlExportContext.cs" />
+    <Compile Include="Native\XamlExport\XamlExporter.cs" />
+    <Compile Include="Native\XamlExport\XamlLineStyle.cs" />
+    <Compile Include="Native\XamlExport\XamlNames.cs" />
+    <Compile Include="Native\XamlExport\XamlNs.cs" />
+    <Compile Include="Native\XamlExport\XamlNsPrefix.cs" />
+    <Compile Include="Native\XamlExport\XamlResourceBase.cs" />
+    <Compile Include="Native\XamlExport\XamlResourceHelper.cs" />
+    <Compile Include="Native\XamlExport\XamlTag.cs" />
+    <Compile Include="Native\XamlExport\XamlTextBlockStyle.cs" />
+    <Compile Include="Native\XamlExport\XamlWriter.cs" />
+    <Compile Include="Native\XpfWatermark.cs" />
+    <Compile Include="Native\XRLineSpecificsHelper.cs" />
+    <Compile Include="Platform\Wpf\Native\DXTypeEditor.cs" />
+    <Compile Include="Platform\Wpf\Native\ImageRepository.cs" />
+    <Compile Include="Platform\Wpf\Native\Presentation\RepositoryImageConverter.cs" />
+    <Compile Include="ReportServer\ServiceModel\Client\AuthenticationServiceClient.cs" />
+    <Compile Include="ReportServer\ServiceModel\Client\AuthenticationServiceClientFactory.cs" />
+    <Compile Include="ReportServer\ServiceModel\Client\FormsAuthenticationBehaviorExtension.cs" />
+    <Compile Include="ReportServer\ServiceModel\Client\FormsAuthenticationEndpointBehavior.cs" />
+    <Compile Include="ReportServer\ServiceModel\Client\FormsAuthenticationMessageInspector.cs" />
+    <Compile Include="ReportServer\ServiceModel\Client\IAuthenticationService.cs" />
+    <Compile Include="ReportServer\ServiceModel\Client\IAuthenticationServiceAsync.cs" />
+    <Compile Include="ReportServer\ServiceModel\Client\IAuthenticationServiceClient.cs" />
+    <Compile Include="ReportServer\ServiceModel\Client\IReportServerClient.cs" />
+    <Compile Include="ReportServer\ServiceModel\Client\IReportServerFacadeAsync.cs" />
+    <Compile Include="ReportServer\ServiceModel\Client\ReportServerClient.cs" />
+    <Compile Include="ReportServer\ServiceModel\Client\ReportServerClientFactory.cs" />
+    <Compile Include="ReportServer\ServiceModel\ConnectionProviders\ConnectionProvider.cs" />
+    <Compile Include="ReportServer\ServiceModel\ConnectionProviders\GuestConnectionProvider.cs" />
+    <Compile Include="ReportServer\ServiceModel\ConnectionProviders\ServerUserConnectionProvider.cs" />
+    <Compile Include="ReportServer\ServiceModel\ConnectionProviders\WindowsUserConnectionProvider.cs" />
+    <Compile Include="ReportServer\ServiceModel\DataContracts\CategoryDto.cs" />
+    <Compile Include="ReportServer\ServiceModel\DataContracts\CreateReportResult.cs" />
+    <Compile Include="ReportServer\ServiceModel\DataContracts\DataModelDto.cs" />
+    <Compile Include="ReportServer\ServiceModel\DataContracts\GeneratedReportIdentity.cs" />
+    <Compile Include="ReportServer\ServiceModel\DataContracts\LayoutRevisionDto.cs" />
+    <Compile Include="ReportServer\ServiceModel\DataContracts\ReportCatalogItemDto.cs" />
+    <Compile Include="ReportServer\ServiceModel\DataContracts\ReportDto.cs" />
+    <Compile Include="ReportServer\ServiceModel\DataContracts\ReportIdentity.cs" />
+    <Compile Include="ReportServer\ServiceModel\DataContracts\ReportLayoutRevisionIdentity.cs" />
+    <Compile Include="ReportServer\ServiceModel\DataContracts\ReportNotCheckedOutFault.cs" />
+    <Compile Include="ReportServer\ServiceModel\DataContracts\StoredDataSourceInfo.cs" />
+    <Compile Include="ReportServer\ServiceModel\DataContracts\TransientReportId.cs" />
+    <Compile Include="Reports\CascadingParametersService.cs" />
+    <Compile Include="Reports\CascadingParametersValueSetter.cs" />
+    <Compile Include="Reports\DynamicListLookUpSettings.cs" />
+    <Compile Include="Reports\EditorValueProviderSimple.cs" />
+    <Compile Include="Reports\ParameterExtensions.cs" />
+    <Compile Include="Reports\IDataContainer.cs" />
+    <Compile Include="Reports\ILookUpValuesUpdateService.cs" />
+    <Compile Include="Reports\IParameterEditorValueProvider.cs" />
+    <Compile Include="Reports\IXRBinding.cs" />
+    <Compile Include="Reports\LookUpHelper.cs" />
+    <Compile Include="Reports\LookUpSettings.cs" />
+    <Compile Include="Reports\LookUpValue.cs" />
+    <Compile Include="Reports\Parameter.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\ParameterCollection.cs" />
+    <Compile Include="Reports\ParameterLookUpValuesContainer.cs" />
+    <Compile Include="Reports\ParameterPath.cs" />
+    <Compile Include="Reports\StaticListLookUpSettings.cs" />
+    
+    <Compile Include="ResFinder.cs" />
+    <Compile Include="Core\SingleComparer.cs" />
+    <Compile Include="Core\SR.cs" />
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <Compile Include="Core\TextFormatter.cs" />
+    <Compile Include="Core\Utils.cs" />
+    <Compile Include="Core\Watermark.cs" />
+    <Compile Include="Core\XtraPageSettings.cs" />
+    <Compile Include="Reports\IReport.cs" />
+    <Compile Include="Reports\IReportPrintTool.cs" />
+    <Compile Include="Reports\ParameterInfo.cs" />
+    <Compile Include="Reports\ParameterLineControllerBase.cs" />
+    <Compile Include="Reports\ParametersEventArgs.cs" />
+    <Compile Include="Reports\ReportPrintContext.cs" />
+    <Compile Include="DocumentServices\ServiceModel\DataContracts\BuildStatus.cs" />
+    <Compile Include="DocumentServices\ServiceModel\DataContracts\DocumentData.cs" />
+    <Compile Include="DocumentServices\ServiceModel\DataContracts\DocumentId.cs" />
+    <Compile Include="DocumentServices\ServiceModel\DataContracts\DocumentExportArgs.cs" />
+    <Compile Include="DocumentServices\ServiceModel\DataContracts\ExportId.cs" />
+    <Compile Include="DocumentServices\ServiceModel\DataContracts\ExportStatus.cs" />
+    <Compile Include="DocumentServices\ServiceModel\DataContracts\InstanceIdentity.cs" />
+    <Compile Include="DocumentServices\ServiceModel\DataContracts\PageCompatibility.cs" />
+    <Compile Include="DocumentServices\ServiceModel\DataContracts\PrintId.cs" />
+    <Compile Include="DocumentServices\ServiceModel\DataContracts\PrintStatus.cs" />
+    <Compile Include="DocumentServices\ServiceModel\DataContracts\ReportBuildArgs.cs" />
+    <Compile Include="DocumentServices\ServiceModel\DataContracts\ReportNameIdentity.cs" />
+    <Compile Include="DocumentServices\ServiceModel\DataContracts\ReportParameter.cs" />
+    <Compile Include="DocumentServices\ServiceModel\DataContracts\ReportParameterContainer.cs" />
+    <Compile Include="DocumentServices\ServiceModel\DataContracts\ServiceFault.cs" />
+    <Compile Include="DocumentServices\ServiceModel\DataContracts\TaskStatus.cs" />
+    <Compile Include="DocumentServices\ServiceModel\DataContracts\UploadingResourceId.cs" />
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <Compile Include="Utils\StoredObjects\TypedObjectRepository.cs" />
+    <Compile Include="WebClientUIControl\DataContracts\DataSourceInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Core\HtmlExport\navigation.js" />
+    <EmbeddedResource Include="Core\Images\blank.gif" />
+    <EmbeddedResource Include="Core\Images\check.gif" />
+    <EmbeddedResource Include="Core\Images\check_grey.gif" />
+    <EmbeddedResource Include="Core\Images\MarkBrush.bmp" />
+    <EmbeddedResource Include="Core\Images\Triangle.gif" />
+    <EmbeddedResource Include="Core\Images\uncheck.gif" />
+    <EmbeddedResource Include="Core\PaperKind.xml" />
+    <EmbeddedResource Include="PropertyNamesRes.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PropertyNamesRes.ru.resx" />
+    <EmbeddedResource Include="PropertyNamesRes.ja.resx" />
+    <EmbeddedResource Include="PropertyNamesRes.es.resx" />
+    <EmbeddedResource Include="PropertyNamesRes.de.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Core\Bricks\BarCode\QRCode\QRMatrixData.dat" />
+    <EmbeddedResource Include="Core\Bricks\BarCode\QRCode\QRRscData.dat" />
+    
+    
+    
+    <EmbeddedResource Include="Core\PdfExport\ICCProfile.bin" />
+    
+    
+    
+    
+    
+    
+    
+    
+    <EmbeddedResource Include="Export\Xls\Theme\theme2010.zip" />
+    <EmbeddedResource Include="Export\Xls\Theme\theme2013.zip" />
+    
+    <Resource Include="Native\Presentation\TileEffect.ps" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
+    <Service Include="{B4F97281-0DBD-4835-9ED8-7DFB966E87FF}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ExportHelpers\ExportGrid\" />
+    <Folder Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Native\CheckBoxTemplates.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Bitmaps256\RemoteDocumentSource.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Bitmaps256\Authenticator.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Export\Xlsx\Theme\theme2010.xml" />
+    <EmbeddedResource Include="Export\Xlsx\Theme\theme2013.xml" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <PropertyGroup>
+    
+  </PropertyGroup>
+<ItemGroup><EmbeddedResource Include="Descriptions.resx" /></ItemGroup><ItemGroup><Compile Include="Descriptions.cs" /></ItemGroup></Project>

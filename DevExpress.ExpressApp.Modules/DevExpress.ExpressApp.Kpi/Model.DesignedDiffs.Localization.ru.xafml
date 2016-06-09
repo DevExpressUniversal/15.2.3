@@ -1,0 +1,153 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application>
+  <ActionDesign>
+    <Actions>
+      <Action Id="RefreshKpi" Caption="Обновить KPI" />
+      <Action Id="ShowChart" Caption="Показать диаграмму" />
+      <Action Id="ClearKpiCache" Caption="Удалить KPI кэш" />
+    </Actions>
+  </ActionDesign>
+  <BOModel>
+    <Class Name="DevExpress.ExpressApp.Kpi.BaseKpiObject" Caption="Базовый KPI объект" />
+    <Class Name="DevExpress.ExpressApp.Kpi.IDateRange" Caption="Интервал IDate">
+      <OwnMembers>
+        <Member Name="Caption" Caption="Название" />
+        <Member Name="EndPoint" Caption="Конечная точка" />
+        <Member Name="Name" Caption="Имя" />
+        <Member Name="StartPoint" Caption="Начальная точка" />
+      </OwnMembers>
+    </Class>
+    <Class Name="DevExpress.ExpressApp.Kpi.KpiDashboardOrganizationItem">
+      <OwnMembers>
+        <Member Name="ActionsToolbarVisibility" Caption="Видимость панели инструментов" />
+        <Member Name="AvailableIndicators" Caption="Доступные индикаторы" />
+        <Member Name="Kpi" Caption="KPI" />
+        <Member Name="Id" Caption="Идентификатор" />
+        <Member Name="Item" Caption="Элемент" />
+        <Member Name="Visibility" Caption="Видимость" />
+      </OwnMembers>
+    </Class>
+    <Class Name="DevExpress.ExpressApp.Kpi.KpiDefinition" Caption="Определение">
+      <OwnMembers>
+        <Member Name="Active" Caption="Активный" />
+        <Member Name="Compare" Caption="Сравнение" />
+        <Member Name="Criteria" Caption="Критерий" />
+        <Member Name="Current" Caption="Текущий" />
+        <Member Name="Direction" Caption="Направление" />
+        <Member Name="EnableCustomizeRepresentation" Caption="Включить настройку представления" />
+        <Member Name="Expression" Caption="Выражение" />
+        <Member Name="GreenZone" Caption="Зеленая зона" />
+        <Member Name="MeasurementFrequency" Caption="Частота измерения" />
+        <Member Name="Name" Caption="Имя" />
+        <Member Name="Objects" Caption="Объекты" />
+        <Member Name="Period" Caption="Период" />
+        <Member Name="Range" Caption="Диапазон" />
+        <Member Name="RangeToCompare" Caption="Диапазон для сравнения" />
+        <Member Name="RedZone" Caption="Красная зона" />
+        <Member Name="SuppressedSeries" Caption="Скрытые дапазоны" />
+        <Member Name="TargetObjectType" Caption="Тип целевого объекта" />
+      </OwnMembers>
+    </Class>
+    <Class Name="DevExpress.ExpressApp.Kpi.KpiHistoryItem" Caption="Элемент истории KPI">
+      <OwnMembers>
+        <Member Name="RangeEnd" Caption="Конец диапазона" />
+        <Member Name="RangeStart" Caption="Начало диапазона" />
+        <Member Name="Value" Caption="Значение" />
+      </OwnMembers>
+    </Class>
+    <Class Name="DevExpress.ExpressApp.Kpi.KpiInstance" Caption="Экземпляр KPI">
+      <OwnMembers>
+        <Member Name="Change" Caption="Изменение" />
+        <Member Name="ChartDataSource" Caption="Источник данных диаграммы" />
+        <Member Name="Current" Caption="Текущий" />
+        <Member Name="GaugeDataSource" Caption="Источник данных индикатора" />
+        <Member Name="HistoryItems" Caption="Элементы истории" />
+        <Member Name="KpiName" Caption="Имя KPI" />
+        <Member Name="Period" Caption="Период" />
+        <Member Name="Previous" Caption="Предыдущий" />
+        <Member Name="Scorecards" Caption="Оценочные таблицы" />
+        <Member Name="Sparkline" Caption="Мини-график" />
+        <Member Name="Trend" Caption="Тенденция" />
+      </OwnMembers>
+    </Class>
+    <Class Name="DevExpress.ExpressApp.Kpi.KpiScorecard" Caption="Оценочная таблица">
+      <OwnMembers>
+        <Member Name="Indicators" Caption="Индикаторы" />
+        <Member Name="Name" Caption="Имя" />
+      </OwnMembers>
+    </Class>
+  </BOModel>
+  <Localization>
+    <LocalizationGroup Name="DashboardOrganizationItems">
+      <LocalizationItem Name="Kpi" Value="KPI" />
+    </LocalizationGroup>
+    <LocalizationGroup Name="DateRanges">
+      <LocalizationItem Name="DayMonthAgo" Value="День месяц назад" />
+      <LocalizationItem Name="DayWeekAgo" Value="День неделю назад" />
+      <LocalizationItem Name="DayYearAgo" Value="День год назад" />
+      <LocalizationItem Name="LastMonthToDate" Value="Последний месяц" />
+      <LocalizationItem Name="LastTenDays" Value="Последние десять дней" />
+      <LocalizationItem Name="LastThirtyDays" Value="Последние тридцать дней" />
+      <LocalizationItem Name="LastThreeDays" Value="Последние три дня" />
+      <LocalizationItem Name="LastWeekToDate" Value="Последняя неделя" />
+      <LocalizationItem Name="LastYearToDate" Value="Последний год" />
+      <LocalizationItem Name="Now" Value="Сейчас" />
+      <LocalizationItem Name="ThisMonthToDate" Value="Текущий месяц" />
+      <LocalizationItem Name="ThisWeekToDate" Value="Текущая неделя" />
+      <LocalizationItem Name="ThisYearToDate" Value="Текущий год" />
+      <LocalizationItem Name="Today" Value="Сегодня" />
+      <LocalizationItem Name="Yesterday" Value="Вчера" />
+    </LocalizationGroup>
+    <LocalizationGroup Name="Enums">
+      <LocalizationGroup Name="DevExpress.ExpressApp.Editors.Trend" Value="Тенденция">
+        <LocalizationItem Name="Better" Value="Лучше" />
+        <LocalizationItem Name="NoChange" Value="Нет изменений" />
+        <LocalizationItem Name="Worse" Value="Хуже" />
+      </LocalizationGroup>
+      <LocalizationGroup Name="DevExpress.ExpressApp.Kpi.Direction" Value="Направление">
+        <LocalizationItem Name="HighIsBetter" Value="Чем больше тем лучше" />
+        <LocalizationItem Name="LowIsBetter" Value="Чем меньше тем лучше" />
+      </LocalizationGroup>
+      <LocalizationGroup Name="DevExpress.ExpressApp.Kpi.MeasurementType">
+        <LocalizationItem Name="Current" Value="Текущий" />
+        <LocalizationItem Name="Previous" Value="Предыдущий" />
+      </LocalizationGroup>
+      <LocalizationGroup Name="DevExpress.ExpressApp.Kpi.TimeIntervalType" Value="Тип временного интервала">
+        <LocalizationItem Name="Day" Value="День" />
+        <LocalizationItem Name="Hour" Value="Час" />
+        <LocalizationItem Name="Month" Value="Месяц" />
+        <LocalizationItem Name="Week" Value="Неделя" />
+        <LocalizationItem Name="Year" Value="Год" />
+      </LocalizationGroup>
+    </LocalizationGroup>
+    <LocalizationGroup Name="Exceptions">
+      <LocalizationItem Name="RangeNotFound" Value="Диапазон '{0}' не найден" />
+    </LocalizationGroup>
+    <LocalizationGroup Name="Texts">
+      <LocalizationItem Name="VersusText" Value="против" />
+    </LocalizationGroup>
+  </Localization>
+  <Views>
+    <DetailView Id="KpiDefinition_DetailView">
+      <Layout>
+        <TabbedGroup Id="Tabs">
+          <LayoutGroup Id="Definition" Caption="Определение">
+            <LayoutGroup Id="SimpleEditors">
+              <LayoutGroup Id="SizeableEditors" Caption="Критерий" />
+            </LayoutGroup>
+            <LayoutGroup Id="Options">
+              <TabbedGroup Id="OptionsTabs">
+                <LayoutGroup Id="MeasurementOptions" Caption="Параметры измерения" />
+                <LayoutGroup Id="Zones" Caption="Зоны" />
+              </TabbedGroup>
+            </LayoutGroup>
+          </LayoutGroup>
+          <LayoutGroup Id="Preview" Caption="Предварительный просмотр">
+            <LayoutGroup Id="Objects_Group" Caption="Объекты" />
+            <LayoutGroup Id="Preview.Objects_Group" Caption="Группа предпросмотра объектов" />
+          </LayoutGroup>
+        </TabbedGroup>
+      </Layout>
+    </DetailView>
+  </Views>
+</Application>

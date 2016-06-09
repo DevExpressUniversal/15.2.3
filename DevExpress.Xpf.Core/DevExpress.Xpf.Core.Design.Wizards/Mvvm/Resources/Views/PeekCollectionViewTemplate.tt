@@ -1,0 +1,88 @@
+﻿<#@ template language="C#" #>
+<#@ import namespace="System" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.Diagnostics" #>
+<#@ import namespace="System.IO" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Xml" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="DevExpress.Xpf.Core.Design.Wizards.Mvvm.EntityFramework" #>
+<#@ import namespace="DevExpress.Xpf.Core.Design.Wizards.Mvvm" #>
+<#@ import namespace="DevExpress.Xpf.Core.Design.Wizards.Mvvm.ViewModelData" #>
+<#@ import namespace="DevExpress.Xpf.Core.Native" #>
+<#	
+	T4TemplateInfo templateInfo = this.GetTemplateInfo();
+	DocumentManagerViewModelInfo viewModelData = templateInfo.Properties["IViewModelInfo"] as DocumentManagerViewModelInfo;
+    string viewName = templateInfo.Properties["ViewName"].ToString();
+    string localNamespace = templateInfo.Properties["Namespace"].ToString();
+	string viewFullName = localNamespace +"." + viewName;    
+	
+	XamlNamespaces xamlNamespaces = templateInfo.Properties["XamlNamespaces"] as XamlNamespaces;
+	string viewModelPrefix = templateInfo.Properties["viewModelPrefix"].ToString();
+#>
+<UserControl x:Class="<#=viewFullName#>"
+<#
+    PasteXamlNamespaces(xamlNamespaces);
+#>
+	mc:Ignorable="<#=xamlNamespaces.GetPrefix(XamlNamespaces.xmlns_blend)#>"
+    d:DesignHeight="400" d:DesignWidth="600">
+	<UserControl.Resources>
+        <dxmvvm:DataTemplateByTypeNameSelector x:Key="ItemTemplateSelector">
+            <dxmvvm:DataTemplateByTypeNameSelector.Templates>
+<#
+			foreach(DocumentInfo info in viewModelData.Tables.Concat(viewModelData.Views)) {
+			string imagePropertyName = DevExpress.Mvvm.UI.Native.ViewGenerator.EditorsSource.GetImagePropertyName(info.EntityInfo.ElementType);
+			string displayMemberPropertyName = DevExpress.Mvvm.UI.Native.ViewGenerator.EditorsSource.GetDisplayMemberPropertyName(info.EntityInfo.ElementType.Type);
+#>
+				<DataTemplate x:Key="<#=info.EntityInfo.ElementType.Type.Name#>">
+		            <ContentControl Background="Transparent">
+		                <dxmvvm:Interaction.Behaviors>
+		                    <dxmvvm:EventToCommand Command="{Binding DataContext.NavigateCommand, RelativeSource={RelativeSource AncestorType=UserControl}}" CommandParameter="{Binding}" EventName="MouseDoubleClick" />
+				        </dxmvvm:Interaction.Behaviors>
+						<Grid>
+		                    <Grid.ColumnDefinitions>
+				                <ColumnDefinition Width="Auto" />
+								<ColumnDefinition Width="12" />
+				                <ColumnDefinition Width="*" />
+						    </Grid.ColumnDefinitions>
+		                    <dxe:ImageEdit IsReadOnly="True"<#if(imagePropertyName != null) {#> EditValue="{Binding <#=imagePropertyName#>}"<#}#> Width="36" Height="36" Stretch="UniformToFill" />
+		                    <TextBlock Grid.Column="2" Text="{Binding <#=displayMemberPropertyName#>}" FontSize="16" VerticalAlignment="Center" />
+		                </Grid>
+		            </ContentControl>
+				</DataTemplate>
+<#
+	}
+#>
+            </dxmvvm:DataTemplateByTypeNameSelector.Templates>
+        </dxmvvm:DataTemplateByTypeNameSelector>
+	</UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <dxe:SelectorEditColumnProvider x:Name="columnProvider" OwnerEdit="{Binding ElementName=listBoxEdit}" ItemsSourceType="{Binding SelectedEntity, Converter={dxmvvm:ReflectionConverter ConvertMethod=GetType}}" />
+        <dxe:SearchControl x:Name="searchControl" ColumnProvider="{Binding ElementName=columnProvider}" ShowCloseButton="False" Margin="0" FilterByColumnsMode="Custom" ImmediateMRUPopup="False">
+            <dxmvvm:Interaction.Behaviors>
+                <dxmvvm:FocusBehavior />
+            </dxmvvm:Interaction.Behaviors>
+        </dxe:SearchControl>
+        <TextBlock Text="{Binding Path=(dxmvvm:ViewModelExtensions.DocumentTitle), RelativeSource={RelativeSource Self}}" Grid.Row="1" Margin="0,5" FontSize="16" />
+        <dxe:ListBoxEdit x:Name="listBoxEdit" Grid.Row="2" ItemsSource="{Binding Entities}" SelectedItem="{Binding SelectedEntity}" ShowBorder="False" Padding="0" FilterCriteria="{Binding FilterCriteria, ElementName=searchControl}" ItemTemplateSelector="{StaticResource ItemTemplateSelector}" />
+    </Grid>
+</UserControl>
+<#+
+void PasteXamlNamespaces(XamlNamespaces xamlNamespaces) {
+	string[] toAdd = new string[]{
+		XmlNamespaceConstants.RibbonNamespaceDefinition,
+		XmlNamespaceConstants.EditorsNamespaceDefinition,
+		XmlNamespaceConstants.LayoutControlNamespaceDefinition,
+		XmlNamespaceConstants.BarsNamespaceDefinition,
+		XmlNamespaceConstants.UtilsNamespaceDefinition,
+		XmlNamespaceConstants.GridNamespaceDefinition,
+		XmlNamespaceConstants.MvvmNamespaceDefinition
+	};
+	xamlNamespaces.AddDevExpressXamlNamespaces(toAdd);
+	this.WriteLine(xamlNamespaces.GetXaml());
+}#>

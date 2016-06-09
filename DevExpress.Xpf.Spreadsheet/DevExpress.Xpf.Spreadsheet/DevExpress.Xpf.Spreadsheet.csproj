@@ -1,0 +1,811 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F2650345-4F32-4121-97AC-DF92A0675C63}</ProjectGuid>
+    <OutputType>library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DevExpress.Xpf.Spreadsheet</RootNamespace>
+    <AssemblyName>DevExpress.Xpf.Spreadsheet.v15.2</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <BaseIntermediateOutputPath>obj.Wpf</BaseIntermediateOutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\..\Bin\Framework\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;WPF; SPREADSHEET</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\..\Bin\Framework\</OutputPath>
+    <DefineConstants>TRACE;WPF;SPREADSHEET</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+  </PropertyGroup>
+  
+  <ItemGroup>
+    <Reference Include="DevExpress.Charts.v15.2.Core"><HintPath>..\..\..\Bin\Framework\DevExpress.Charts.v15.2.Core.dll</HintPath><Private>False</Private></Reference>
+    <Reference Include="DevExpress.Data.v15.2"><HintPath>..\..\..\Bin\Framework\DevExpress.Data.v15.2.dll</HintPath><Private>False</Private></Reference>
+    <Reference Include="DevExpress.Office.v15.2.Core"><HintPath>..\..\..\Bin\Framework\DevExpress.Office.v15.2.Core.dll</HintPath><Private>False</Private></Reference>
+    <Reference Include="DevExpress.Printing.v15.2.Core"><HintPath>..\..\..\Bin\Framework\DevExpress.Printing.v15.2.Core.dll</HintPath><Private>False</Private></Reference>
+    <Reference Include="DevExpress.Spreadsheet.v15.2.Core"><HintPath>..\..\..\Bin\Framework\DevExpress.Spreadsheet.v15.2.Core.dll</HintPath><Private>False</Private></Reference>
+    <Reference Include="DevExpress.Xpf.Charts.v15.2"><HintPath>..\..\..\Bin\Framework\DevExpress.Xpf.Charts.v15.2.dll</HintPath><Private>False</Private></Reference>
+    <Reference Include="DevExpress.Xpf.Core.v15.2"><HintPath>..\..\..\Bin\Framework\DevExpress.Xpf.Core.v15.2.dll</HintPath><Private>False</Private></Reference>
+    <Reference Include="DevExpress.Mvvm.v15.2"><HintPath>..\..\..\Bin\Framework\DevExpress.Mvvm.v15.2.dll</HintPath><Private>False</Private></Reference>
+    <Reference Include="devexpress.xpf.docking.v15.2">
+      <SpecificVersion>False</SpecificVersion>
+      
+    <Private>False</Private></Reference>
+    <Reference Include="DevExpress.Xpf.Layout.v15.2.Core"><HintPath>..\..\..\Bin\Framework\DevExpress.Xpf.Layout.v15.2.Core.dll</HintPath><Private>False</Private></Reference>
+    <Reference Include="DevExpress.Xpf.NavBar.v15.2">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Bin\Framework\DevExpress.Xpf.NavBar.v15.2.dll</HintPath>
+    <Private>False</Private></Reference>
+    <Reference Include="DevExpress.Xpf.Printing.v15.2"><HintPath>..\..\..\Bin\Framework\DevExpress.Xpf.Printing.v15.2.dll</HintPath><Private>False</Private></Reference>
+    <Reference Include="DevExpress.Xpf.Ribbon.v15.2"><HintPath>..\..\..\Bin\Framework\DevExpress.Xpf.Ribbon.v15.2.dll</HintPath><Private>False</Private></Reference>
+    
+    <Reference Include="System"><Private>False</Private></Reference>
+    <Reference Include="System.Data"><Private>False</Private></Reference>
+    <Reference Include="System.Drawing"><Private>False</Private></Reference>
+    <Reference Include="System.Windows.Forms"><Private>False</Private></Reference>
+    <Reference Include="System.Xml"><Private>False</Private></Reference>
+    <Reference Include="Microsoft.CSharp"><Private>False</Private></Reference>
+    <Reference Include="System.Core"><Private>False</Private></Reference>
+    <Reference Include="System.Xml.Linq"><Private>False</Private></Reference>
+    <Reference Include="System.Data.DataSetExtensions"><Private>False</Private></Reference>
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    <Private>False</Private></Reference>
+    <Reference Include="UIAutomationProvider"><Private>False</Private></Reference>
+    <Reference Include="UIAutomationTypes"><Private>False</Private></Reference>
+    <Reference Include="WindowsBase"><Private>False</Private></Reference>
+    <Reference Include="PresentationCore"><Private>False</Private></Reference>
+    <Reference Include="PresentationFramework"><Private>False</Private></Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Forms\ChangeChartItemTitleControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\ChangeDataSourcePivotTableControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\ChartSelectDataControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Forms\ColumnWidthControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Forms\ConditionalFormattingAverageRuleControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Forms\ConditionalFormattingBetweenRuleControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Forms\ConditionalFormattingDateOccurringRuleControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Forms\ConditionalFormattingDuplicateValuesRuleControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Forms\ConditionalFormattingHighlightCellsRuleControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Forms\ConditionalFormattingTopBottomRuleControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Forms\ConfirmPasswordControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\CreateDefinedNamesFromSelectionControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Forms\DataFieldSettingsPivotTableControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\DataValidationControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\DefaultColumnWidthControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Forms\DefineNameControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Forms\DocumentPropertiesControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Forms\FieldSettingsPivotTableControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\FieldsPanelPivotTableControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\FindReplaceControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Forms\FormatCells\FormatCellsAlignmentControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\FormatCells\FormatCellsBorderControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\FormatCells\FormatCellsControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\FormatCells\FormatCellsFillControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\FormatCells\FormatCellsFontControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\FormatCells\FormatCellsNumberControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\FormatCells\FormatCellsProtectionControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\FormatCells\FormatNumberCustomControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\FormatCells\FormatNumberDecimalControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\FormatCells\FormatNumberTypeControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\GenericFilterControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\GroupUngroupControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\HeaderFooterControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\Hyperlink\CellReferenceAddressControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\Hyperlink\EmailAddressControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\Hyperlink\ExternalAddressControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\Hyperlink\HyperlinkControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Forms\InsertPivotTableControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\InsertTableControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Forms\MoveOrCopySheetControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\MovePivotTableControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\NameManagerControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Forms\OptionsPivotTableControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\OutlineSettingsControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\OutlineSubtotalControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\PageSetup\PageSetupControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\PageSetup\PageSetupHeaderFooterControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\PageSetup\PageSetupMarginsControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\PageSetup\PageSetupPageControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\PageSetup\PageSetupSheetControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\PasteSpecialFormControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\PasteSpecialLocalControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\PivotTableDateFilterControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\PivotTableLabelFilterControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\PivotTableFieldsFilterItemsControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\PivotTableShowValuesAsControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\PivotTableTop10FilterControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\PivotTableValueFilterControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\ProtectedRangeManagerControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Forms\ProtectRangeControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Forms\ProtectSheetControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Forms\ProtectWorkbookControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Forms\RenameSheetControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\RowHeightControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Forms\SimpleFilterControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\Top10FilterControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Forms\UnhideSheetControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\UnprotectRangeControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Forms\UnprotectSheetControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Forms\UnprotectWorkbookControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\DeepBlue\SpreadsheetControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <LogicalName>Themes\generic.xaml</LogicalName>
+    </Page>
+    <Page Include="Themes\DeepBlue.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Generic\DefaultStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BarItemCommandUIState.cs" />
+    <Compile Include="BarItemTemplates.cs" />
+    <Compile Include="ChartLayoutGallery.cs" />
+    <Compile Include="ControlBarCommandManager.cs" />
+    <Compile Include="DisplayArea.cs" />
+    <Compile Include="Forms\ChangeChartItemTitleControl.xaml.cs">
+      <DependentUpon>ChangeChartItemTitleControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ChangeDataSourcePivotTableControl.xaml.cs">
+      <DependentUpon>ChangeDataSourcePivotTableControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ChartSelectDataControl.xaml.cs">
+      <DependentUpon>ChartSelectDataControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ColumnWidthControl.xaml.cs">
+      <DependentUpon>ColumnWidthControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ConditionalFormattingAverageRuleControl.xaml.cs">
+      <DependentUpon>ConditionalFormattingAverageRuleControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ConditionalFormattingBetweenRuleControl.xaml.cs">
+      <DependentUpon>ConditionalFormattingBetweenRuleControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ConditionalFormattingDateOccurringRuleControl.xaml.cs">
+      <DependentUpon>ConditionalFormattingDateOccurringRuleControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ConditionalFormattingDuplicateValuesRuleControl.xaml.cs">
+      <DependentUpon>ConditionalFormattingDuplicateValuesRuleControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ConditionalFormattingHighlightCellsRuleControl.xaml.cs">
+      <DependentUpon>ConditionalFormattingHighlightCellsRuleControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ConditionalFormattingTopBottomRuleControl.xaml.cs">
+      <DependentUpon>ConditionalFormattingTopBottomRuleControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ConfirmPasswordControl.xaml.cs">
+      <DependentUpon>ConfirmPasswordControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\CreateDefinedNamesFromSelectionControl.xaml.cs">
+      <DependentUpon>CreateDefinedNamesFromSelectionControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DataFieldSettingsPivotTableControl.xaml.cs">
+      <DependentUpon>DataFieldSettingsPivotTableControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DataValidationControl.xaml.cs">
+      <DependentUpon>DataValidationControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DefaultColumnWidthControl.xaml.cs">
+      <DependentUpon>DefaultColumnWidthControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DefineNameControl.xaml.cs">
+      <DependentUpon>DefineNameControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Design\InsertFunctionsBarListItem.cs" />
+    <Compile Include="Forms\Design\PaperKindBarListItem.cs" />
+    <Compile Include="Forms\DocumentPropertiesControl.xaml.cs">
+      <DependentUpon>DocumentPropertiesControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FieldSettingsPivotTableControl.xaml.cs">
+      <DependentUpon>FieldSettingsPivotTableControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FieldsPanelPivotTableControl.xaml.cs">
+      <DependentUpon>FieldsPanelPivotTableControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FindReplaceControl.xaml.cs">
+      <DependentUpon>FindReplaceControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormatCells\FormatCellsAlignmentControl.xaml.cs">
+      <DependentUpon>FormatCellsAlignmentControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormatCells\FormatCellsBorderControl.xaml.cs">
+      <DependentUpon>FormatCellsBorderControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormatCells\FormatCellsControl.xaml.cs">
+      <DependentUpon>FormatCellsControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormatCells\FormatCellsFillControl.xaml.cs">
+      <DependentUpon>FormatCellsFillControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormatCells\FormatCellsFontControl.xaml.cs">
+      <DependentUpon>FormatCellsFontControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormatCells\FormatCellsNumberControl.xaml.cs">
+      <DependentUpon>FormatCellsNumberControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormatCells\FormatCellsProtectionControl.xaml.cs">
+      <DependentUpon>FormatCellsProtectionControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormatCells\FormatNumberCustomControl.xaml.cs">
+      <DependentUpon>FormatNumberCustomControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormatCells\FormatNumberDecimalControl.xaml.cs">
+      <DependentUpon>FormatNumberDecimalControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormatCells\FormatNumberTypeControl.xaml.cs">
+      <DependentUpon>FormatNumberTypeControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\GenericFilterControl.xaml.cs">
+      <DependentUpon>GenericFilterControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\GroupUngroupControl.xaml.cs">
+      <DependentUpon>GroupUngroupControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\HeaderFooterControl.xaml.cs">
+      <DependentUpon>HeaderFooterControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Hyperlink\CellReferenceAddressControl.xaml.cs">
+      <DependentUpon>CellReferenceAddressControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Hyperlink\EmailAddressControl.xaml.cs">
+      <DependentUpon>EmailAddressControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Hyperlink\ExternalAddressControl.xaml.cs">
+      <DependentUpon>ExternalAddressControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Hyperlink\HyperlinkControl.xaml.cs">
+      <DependentUpon>HyperlinkControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\InsertPivotTableControl.xaml.cs">
+      <DependentUpon>InsertPivotTableControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\InsertTableControl.xaml.cs">
+      <DependentUpon>InsertTableControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\MoveOrCopySheetControl.xaml.cs">
+      <DependentUpon>MoveOrCopySheetControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\MovePivotTableControl.xaml.cs">
+      <DependentUpon>MovePivotTableControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\NameManagerControl.xaml.cs">
+      <DependentUpon>NameManagerControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\OptionsPivotTableControl.xaml.cs">
+      <DependentUpon>OptionsPivotTableControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\OutlineSettingsControl.xaml.cs">
+      <DependentUpon>OutlineSettingsControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\OutlineSubtotalControl.xaml.cs">
+      <DependentUpon>OutlineSubtotalControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\PageSetup\PageSetupControl.xaml.cs">
+      <DependentUpon>PageSetupControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\PageSetup\PageSetupHeaderFooterControl.xaml.cs">
+      <DependentUpon>PageSetupHeaderFooterControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\PageSetup\PageSetupMarginsControl.xaml.cs">
+      <DependentUpon>PageSetupMarginsControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\PageSetup\PageSetupPageControl.xaml.cs">
+      <DependentUpon>PageSetupPageControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\PageSetup\PageSetupSheetControl.xaml.cs">
+      <DependentUpon>PageSetupSheetControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\PasteSpecialFormControl.xaml.cs">
+      <DependentUpon>PasteSpecialFormControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\PasteSpecialLocalControl.xaml.cs">
+      <DependentUpon>PasteSpecialLocalControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\PivotTableDateFilterControl.xaml.cs">
+      <DependentUpon>PivotTableDateFilterControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\PivotTableLabelFilterControl.xaml.cs">
+      <DependentUpon>PivotTableLabelFilterControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\PivotTableFieldsFilterItemsControl.xaml.cs">
+      <DependentUpon>PivotTableFieldsFilterItemsControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\PivotTableShowValuesAsControl.xaml.cs">
+      <DependentUpon>PivotTableShowValuesAsControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\PivotTableTop10FilterControl.xaml.cs">
+      <DependentUpon>PivotTableTop10FilterControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\PivotTableValueFilterControl.xaml.cs">
+      <DependentUpon>PivotTableValueFilterControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ProtectedRangeManagerControl.xaml.cs">
+      <DependentUpon>ProtectedRangeManagerControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ProtectRangeControl.xaml.cs">
+      <DependentUpon>ProtectRangeControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ProtectSheetControl.xaml.cs">
+      <DependentUpon>ProtectSheetControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ProtectWorkbookControl.xaml.cs">
+      <DependentUpon>ProtectWorkbookControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\RenameSheetControl.xaml.cs">
+      <DependentUpon>RenameSheetControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\RowHeightControl.xaml.cs">
+      <DependentUpon>RowHeightControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SimpleFilterControl.xaml.cs">
+      <DependentUpon>SimpleFilterControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Top10FilterControl.xaml.cs">
+      <DependentUpon>Top10FilterControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\UnhideSheetControl.xaml.cs">
+      <DependentUpon>UnhideSheetControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\UnprotectRangeControl.xaml.cs">
+      <DependentUpon>UnprotectRangeControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\UnprotectSheetControl.xaml.cs">
+      <DependentUpon>UnprotectSheetControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\UnprotectWorkbookControl.xaml.cs">
+      <DependentUpon>UnprotectWorkbookControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Localization.cs" />
+    <Compile Include="LocalizationRes.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LocalizationRes.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Platform\Wpf\FontCache.cs" />
+    <Compile Include="Platform\Wpf\FontInfo.cs" />
+    <Compile Include="Platform\Wpf\FontInfoMeasurer.cs" />
+    <Compile Include="Platform\Wpf\SpreadsheetControl\Printing.cs" />
+    <Compile Include="Platform\Xpf\AutoFilterImageCache.cs" />
+    <Compile Include="Platform\Xpf\BackgroundWorker.cs" />
+    <Compile Include="Platform\Xpf\Controls\CellControl.cs" />
+    <Compile Include="Platform\Xpf\Controls\CellData.cs" />
+    <Compile Include="Platform\Xpf\Controls\FormatBorderControl.cs" />
+    <Compile Include="Platform\Xpf\Controls\FormulaBarControl.cs" />
+    <Compile Include="Platform\Xpf\Controls\FormulaBarEditor.cs" />
+    <Compile Include="Platform\Xpf\Controls\FormulaRangesControl.cs" />
+    <Compile Include="Platform\Xpf\Controls\HeaderFooterEditControl.cs" />
+    <Compile Include="Platform\Xpf\Controls\HeaderFooterPreviewControl.cs" />
+    <Compile Include="Platform\Xpf\Controls\PageMarginsPreviewControl.cs" />
+    <Compile Include="Platform\Xpf\Controls\PageSetupPrintButtonsControl.cs" />
+    <Compile Include="Platform\Xpf\Controls\SpreadsheetNameBoxControl.cs" />
+    <Compile Include="Platform\Xpf\Controls\SpreadsheetViewControl.cs" />
+    <Compile Include="Platform\Xpf\Controls\VisualFeedbackControl.cs" />
+    <Compile Include="Platform\Xpf\Controls\WorksheetBackgroundControl.cs" />
+    <Compile Include="Platform\Xpf\Controls\WorksheetCommentPanel.cs" />
+    <Compile Include="Platform\Xpf\Controls\WorksheetControl.cs" />
+    <Compile Include="Platform\Xpf\Controls\WorksheetDataValidationPanel.cs" />
+    <Compile Include="Platform\Xpf\Controls\WorksheetDiagonalBorderControl.cs" />
+    <Compile Include="Platform\Xpf\Controls\WorksheetGroupControl.cs" />
+    <Compile Include="Platform\Xpf\Controls\WorksheetIndicatorControl.cs" />
+    <Compile Include="Platform\Xpf\Controls\WorksheetLineControl.cs" />
+    <Compile Include="Platform\Xpf\Controls\WorksheetPaintControl.cs" />
+    <Compile Include="Platform\Xpf\Controls\WorksheetPanel.cs" />
+    <Compile Include="Platform\Xpf\Controls\WorksheetRuler.cs" />
+    <Compile Include="Platform\Xpf\Controls\WorksheetSelectionControl.cs" />
+    <Compile Include="Platform\Xpf\Converters.cs" />
+    <Compile Include="Platform\Xpf\Extensions.cs" />
+    <Compile Include="Platform\Xpf\MeasurementAndDrawingStrategy.cs" />
+    <Compile Include="Platform\Xpf\Options\SpreadsheetPivotTableFieldListOptions.cs" />
+    <Compile Include="Platform\Xpf\Options\SpreadsheetBehaviorOptions.cs" />
+    <Compile Include="Platform\Xpf\Options\SpreadsheetCapabilitiesOptions.cs" />
+    <Compile Include="Platform\Xpf\Options\SpreadsheetControlOptions.cs" />
+    <Compile Include="Platform\Xpf\Options\SpreadsheetExportOptions.cs" />
+    <Compile Include="Platform\Xpf\Options\SpreadsheetImportOptions.cs" />
+    <Compile Include="Platform\Xpf\Options\SpreadsheetSaveOptions.cs" />
+    <Compile Include="Platform\Xpf\Options\SpreadsheetViewOptions.cs" />
+    <Compile Include="Platform\Xpf\Services\ChartControllerFactoryService.cs" />
+    <Compile Include="Platform\Xpf\Services\SpreadsheetContextMenuService.cs" />
+    <Compile Include="Platform\Xpf\SpreadsheetControl\Commands.cs" />
+    <Compile Include="Platform\Xpf\SpreadsheetControl\CommentInplaceEditor.cs" />
+    <Compile Include="Platform\Xpf\SpreadsheetControl\Cursors.cs" />
+    <Compile Include="Platform\Xpf\SpreadsheetControl\DataValidationInplaceEditor.cs" />
+    <Compile Include="Platform\Xpf\SpreadsheetControl\Forms.cs" />
+    <Compile Include="Platform\Xpf\SpreadsheetControl\InplaceEditor.cs" />
+    <Compile Include="Platform\Xpf\SpreadsheetControl\Keyboard.cs" />
+    <Compile Include="Platform\Xpf\SpreadsheetControl\Manipulation.cs" />
+    <Compile Include="Platform\Xpf\SpreadsheetControl\Menu.cs" />
+    <Compile Include="Platform\Xpf\SpreadsheetControl\MenuBuilder.cs" />
+    <Compile Include="Platform\Xpf\SpreadsheetControl\Mouse.cs" />
+    <Compile Include="Platform\Xpf\SpreadsheetControl\ScrollBarAdapter.cs" />
+    <Compile Include="Platform\Xpf\SpreadsheetControl\Utils.cs" />
+    <Compile Include="Platform\Xpf\SpreadsheetDocumentSource.cs" />
+    <Compile Include="Platform\Xpf\TabSelector.cs" />
+    <Compile Include="Platform\Xpf\Scrollbar.cs" />
+    <Compile Include="Platform\Xpf\SpreadsheetControl\Printing.cs" />
+    <Compile Include="Platform\Xpf\SpreadsheetControl\SpreadsheetControl.cs" />
+    <Compile Include="Platform\Xpf\SpreadsheetView.cs" />
+    <Compile Include="Platform\Xpf\Utils.cs" />
+    <Compile Include="Printing\OfficeRectBrickXamlExporter.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Services\ChartImageService.cs" />
+    <Compile Include="Services\CommandFactoryService.cs" />
+    <Compile Include="Services\ControlThreadSyncService.cs" />
+    <Compile Include="Services\MessageBoxService.cs" />
+    <Compile Include="Services\PictureImageService.cs" />
+    <Compile Include="Services\PrintingService.cs" />
+    <Compile Include="SpreadsheetBarItemCommandUIState.cs" />
+    <Compile Include="SpreadsheetControlAccessor.cs" />
+    <Compile Include="SpreadsheetControlBarCommandManager.cs" />
+    <Compile Include="SpreadsheetControlProvider.cs" />
+    <Compile Include="SpreadsheetControlUICommand.cs" />
+    <Compile Include="SpreadsheetControl\BatchUpdate.cs" />
+    <Compile Include="SpreadsheetControl\CommandAwareControl.cs" />
+    <Compile Include="SpreadsheetControl\Events.cs" />
+    <Compile Include="SpreadsheetControl\InplaceEditor.cs" />
+    <Compile Include="SpreadsheetControl\Mouse.cs" />
+    <Compile Include="SpreadsheetControl\PopupMenu.cs" />
+    <Compile Include="SpreadsheetControl\ServiceContainer.cs" />
+    <Compile Include="SpreadsheetControl\SpreadsheetControl.cs" />
+    <Compile Include="SpreadsheetControl\View.cs" />
+    <Compile Include="SpreadsheetElementVisibility.cs" />
+    <Compile Include="SpreadsheetMenuType.cs" />
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <Compile Include="ThemeKeys\ThemeKeys.cs" />
+    <EmbeddedResource Include="LocalizationRes.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>LocalizationRes.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LocalizationRes.ru.resx" />
+    <EmbeddedResource Include="LocalizationRes.ja.resx" />
+    <EmbeddedResource Include="LocalizationRes.es.resx" />
+    <EmbeddedResource Include="LocalizationRes.de.resx" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+    
+    
+    
+    
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\FormulaBarCancel_16x16.png" />
+    <Resource Include="Images\FormulaBarInsertFunction_16x16.png" />
+    <Resource Include="Images\FormulaBarOk_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\nbiEmail.LargeImage.png" />
+    <Resource Include="Images\nbiFileOrWebPage.LargeImage.png" />
+    <Resource Include="Images\nbiThisDocument.LargeImage.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Apply_16x16.png" />
+    <Resource Include="Images\Cancel_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\BorderBottom_16x16.png" />
+    <Resource Include="Images\BorderDiagonalDown_16x16.png" />
+    <Resource Include="Images\BorderDiagonalUp_16x16.png" />
+    <Resource Include="Images\BorderInsideHorizontal_16x16.png" />
+    <Resource Include="Images\BorderInsideVertical_16x16.png" />
+    <Resource Include="Images\BorderLeft_16x16.png" />
+    <Resource Include="Images\BorderNone_32x32.png" />
+    <Resource Include="Images\BorderRight_16x16.png" />
+    <Resource Include="Images\BordersInside_32x32.png" />
+    <Resource Include="Images\BordersOutside_32x32.png" />
+    <Resource Include="Images\BorderTop_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Error_48x48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\AutoFilter\Ascending.png" />
+    <EmbeddedResource Include="Images\AutoFilter\Descending.png" />
+    <EmbeddedResource Include="Images\AutoFilter\DropDown.png" />
+    <EmbeddedResource Include="Images\AutoFilter\Filtered.png" />
+    <EmbeddedResource Include="Images\AutoFilter\FilteredAndAscending.png" />
+    <EmbeddedResource Include="Images\AutoFilter\FilteredAndDescending.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Information_48x48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Warning_48x48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\InsertDate_16x16.png" />
+    <Resource Include="Images\InsertFileName_16x16.png" />
+    <Resource Include="Images\InsertFilePath_16x16.png" />
+    <Resource Include="Images\InsertPageCount_16x16.png" />
+    <Resource Include="Images\InsertPageNumber_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\FormatNumberTime_16x16.png" />
+    <Resource Include="Images\SingleSheet_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\PivotFieldListColumn_16x16.png" />
+    <Resource Include="Images\PivotFieldListData_16x16.png" />
+    <Resource Include="Images\PivotFieldListFilter_16x16.png" />
+    <Resource Include="Images\PivotFieldListRow_16x16.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    
+  </PropertyGroup>
+  <PropertyGroup>
+    
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+<ItemGroup><EmbeddedResource Include="Descriptions.resx" /></ItemGroup><ItemGroup><Compile Include="Descriptions.cs" /></ItemGroup></Project>

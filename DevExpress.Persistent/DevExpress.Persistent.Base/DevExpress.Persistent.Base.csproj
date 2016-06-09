@@ -1,0 +1,263 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{DE98AF71-1817-4E5F-BB07-D3BA9DB34822}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DevExpress.Persistent.Base</RootNamespace>
+    <AssemblyName>DevExpress.Persistent.Base.v15.2</AssemblyName>
+    <AssemblyOriginatorKeyFile>..\..\DevExpress.Key\StrongKey.snk</AssemblyOriginatorKeyFile>
+    <SignAssembly>true</SignAssembly>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation />
+    <TargetFrameworkProfile />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\..\Bin\Framework\</OutputPath>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\..\Bin\Framework\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  
+  
+  
+  <ItemGroup>
+    <Reference Include="DevExpress.Printing.v15.2.Core">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Bin\Framework\DevExpress.Printing.v15.2.Core.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DevExpress.Data.v15.2">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Bin\Framework\DevExpress.Data.v15.2.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DevExpress.Utils.v15.2">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Bin\Framework\DevExpress.Utils.v15.2.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraReports.v15.2">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Bin\Framework\DevExpress.XtraReports.v15.2.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraReports.v15.2.Extensions">
+      <HintPath>..\..\..\Bin\Framework\DevExpress.XtraReports.v15.2.Extensions.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    
+    <Reference Include="System"><Private>False</Private></Reference>
+    <Reference Include="System.configuration"><Private>False</Private></Reference>
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    <Private>False</Private></Reference>
+    <Reference Include="System.Data"><Private>False</Private></Reference>
+    <Reference Include="System.Drawing"><Private>False</Private></Reference>
+    <Reference Include="System.Xaml"><Private>False</Private></Reference>
+    <Reference Include="System.Xml"><Private>False</Private></Reference>
+    <Reference Include="WindowsBase">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    <Private>False</Private></Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AssemblyVersionInfo.cs">
+      
+    </Compile>
+    <Compile Include="DimensionPropertyExtractor.cs" />
+    <Compile Include="General\IContentHolder.cs" />
+    <Compile Include="General\IEvent.cs" />
+    <Compile Include="General\INotifications.cs" />
+    <Compile Include="General\Reports\IInplaceReport.cs" />
+    <Compile Include="General\IRecurrenceInfo.cs" />
+    <Compile Include="General\IReminder.cs" />
+    <Compile Include="General\Reports\IReportData.cs" />
+    <Compile Include="General\IResource.cs" />
+    <Compile Include="General\ISupportRecurrences.cs" />
+    <Compile Include="General\ISupportReminders.cs" />
+    <Compile Include="General\ITask.cs" />
+    <Compile Include="General\Reports\IXtraReportData.cs" />
+    <Compile Include="General\RecurrenceInfoImpl.cs" />
+    <Compile Include="General\ReminderImpl.cs" />
+    <Compile Include="General\SupportRecurrencesImpl.cs" />
+    <Compile Include="General\TaskImpl.cs" />
+    <Compile Include="General\Workflow\IInstanceKey.cs" />
+    <Compile Include="General\Workflow\IRunningWorkflowInstanceInfo.cs" />
+    <Compile Include="General\Workflow\StartWorkflowConditions\IStartWorkflowCondition.cs" />
+    <Compile Include="General\Workflow\IStartWorkflowRequest.cs" />
+    <Compile Include="General\Workflow\ITrackingRecord.cs" />
+    <Compile Include="General\Workflow\IUserActivityVersion.cs" />
+    <Compile Include="General\Workflow\IWorkflowDefinition.cs" />
+    <Compile Include="General\Workflow\IWorkflowInstance.cs" />
+    <Compile Include="General\Workflow\IWorkflowInstanceControlCommandRequest.cs" />
+    <Compile Include="General\Workflow\StartWorkflowConditions\ObjectCreatedStartWorkflowCondition.cs" />
+    <Compile Include="IAnalysisInfo.cs" />
+    <Compile Include="IFileData.cs" />
+    <Compile Include="IStateHolder.cs" />
+    <Compile Include="Kpi\KpiHelper.cs" />
+    <Compile Include="MapsInterfaces.cs" />
+    <Compile Include="ReportsV2\Components\CollectionDataSource.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportsV2\Components\DataSourceBase.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportsV2\Components\ViewDataSource.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportsV2\Helpers\CollectionPropertyDescriptorProvider.cs" />
+    <Compile Include="ReportsV2\Helpers\CustomOperatorDesignTimeHelper.cs" />
+    <Compile Include="ReportsV2\Helpers\ReportsDataSourcePropertyDescriptor.cs" />
+    <Compile Include="ReportsV2\Helpers\ReportDataTypeConverter.cs" />
+    <Compile Include="ReportsV2\Helpers\SortingCollection.cs" />
+    <Compile Include="ReportsV2\Helpers\ViewPropertiesCollection.cs" />
+    <Compile Include="ReportsV2\Helpers\ViewProperty.cs" />
+    <Compile Include="ReportsV2\Helpers\ViewPropertyDescriptorProvider.cs" />
+    <Compile Include="ReportsV2\Interfaces\IReportInplaceActionContainer.cs" />
+    <Compile Include="ReportsV2\Interfaces\IReportStorageExtensionContainer.cs" />
+    <Compile Include="ReportsV2\Interfaces\ISortingPropertyDescriptorProvider.cs" />
+    <Compile Include="ReportsV2\Interfaces\IReportObjectSpaceProvider.cs" />
+    <Compile Include="ReportsV2\Interfaces\ISupportCriteria.cs" />
+    <Compile Include="ReportsV2\Interfaces\ISupportSorting.cs" />
+    <Compile Include="ResFinder.cs" />
+    <Compile Include="Security\AuthenticationInterfaces.cs" />
+    <Compile Include="Cloner.cs" />
+    <Compile Include="CombinedEnumerator.cs" />
+    <Compile Include="General\AddressImpl.cs" />
+    <Compile Include="General\EventImpl.cs" />
+    <Compile Include="General\IAddress.cs" />
+    <Compile Include="General\ICategorizedItem.cs" />
+    <Compile Include="General\ICountry.cs" />
+    <Compile Include="General\IHCategory.cs" />
+    <Compile Include="General\INote.cs" />
+    <Compile Include="General\IPerson.cs" />
+    <Compile Include="General\IPhoneNumber.cs" />
+    <Compile Include="General\IPropertyBag.cs" />
+    <Compile Include="General\IPropertyDescriptor.cs" />
+    <Compile Include="General\IPropertyDescriptorContainer.cs" />
+    <Compile Include="General\IPropertyValue.cs" />
+    <Compile Include="General\ITreeNode.cs" />
+    <Compile Include="General\PersonImpl.cs" />
+    <Compile Include="General\PhoneNumberImpl.cs" />
+    <Compile Include="General\PropertyBagImpl.cs" />
+    <Compile Include="General\PropertyDescriptorAdapter.cs" />
+    <Compile Include="General\PropertyDescriptorImpl.cs" />
+    <Compile Include="General\NoteImpl.cs" />
+    <Compile Include="Security\IPersistentPermission.cs" />
+    <Compile Include="Security\IRole.cs" />
+    <Compile Include="Security\IUserWithRoles.cs" />
+    <Compile Include="Security\PersistentPermissionImpl.cs" />
+    <Compile Include="Security\RoleImpl.cs" />
+    <Compile Include="Security\UserImpl.cs" />
+    <Compile Include="EnumeratorConverter.cs" />
+    <Compile Include="IFileAttachment.cs" />
+    <Compile Include="Security\IUser.cs" />
+    <Compile Include="Security\ISimpleUser.cs" />
+    <Compile Include="IUserTaskData.cs" />
+    <Compile Include="ListConverter.cs" />
+    <Compile Include="PasswordVerifier.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ISoftLink.cs" />
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <Compile Include="UsedExportedTypes.cs" />
+    <Compile Include="Validation\CodeRuleAttribute.cs" />
+    <Compile Include="Validation\CollectionPropertyRules\RuleCollectionPropertyHelper.cs" />
+    <Compile Include="Validation\ContextIdentifiers.cs" />
+    <Compile Include="Validation\Interfaces.cs" />
+    <Compile Include="Validation\RuleBase.cs" />
+    <Compile Include="Validation\RuleBaseAttributes.cs" />
+    <Compile Include="Validation\RulePropertiesAttributes.cs" />
+    <Compile Include="Validation\RulePropertiesImpl.cs" />
+    <Compile Include="Validation\RuleProperties.cs" />
+    <Compile Include="Validation\RuleSet.cs" />
+    <Compile Include="Validation\SearchObjectsRules.cs" />
+    <Compile Include="Validation\SimpleRules.cs" />
+    <Compile Include="Validation\Validator.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="DevExpress.ExpressApp.v15.2"><Name>DevExpress.ExpressApp.v15.2</Name><HintPath>..\..\..\Bin\Framework\DevExpress.ExpressApp.v15.2.dll</HintPath></Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\CollectionDataSource_16x16.png" />
+    <EmbeddedResource Include="Resources\CollectionDataSource_32x32.png" />
+    <EmbeddedResource Include="Resources\ViewDataSource_16x16.png" />
+    <EmbeddedResource Include="Resources\ViewDataSource_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\CollectionDataSource.ico" />
+    <EmbeddedResource Include="Resources\CollectionDataSource_24x24.png" />
+    <EmbeddedResource Include="Resources\ViewDataSource.ico" />
+    <EmbeddedResource Include="Resources\ViewDataSource_24x24.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+<ItemGroup><EmbeddedResource Include="Descriptions.resx" /></ItemGroup><ItemGroup><Compile Include="Descriptions.cs" /></ItemGroup></Project>

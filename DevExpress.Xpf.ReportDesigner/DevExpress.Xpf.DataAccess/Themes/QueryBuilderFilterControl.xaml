@@ -1,0 +1,43 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+            xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+            xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
+            xmlns:editors="clr-namespace:DevExpress.Xpf.DataAccess.Editors"
+            xmlns:local="clr-namespace:DevExpress.Xpf.DataAccess.DataSourceWizard"
+            xmlns:localization="clr-namespace:DevExpress.Xpf.DataAccess.Localization">
+
+    <Style TargetType="{x:Type editors:QueryBuilderFilterControl}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type editors:QueryBuilderFilterControl}">
+                    <Grid DataContext="{Binding EditValue, RelativeSource={RelativeSource TemplatedParent}}">
+                        <dxlc:LayoutControl Orientation="Vertical">
+                            <dxlc:LayoutGroup View="Tabs">
+                                <dxlc:LayoutGroup Header="{localization:DataAccessUIStringId StringId=FiltersView_Filter}">
+                                    <local:DataAccessFilterEditor FilterString="{Binding FilterString}" AdditionalProperties="{Binding AdditionalProperties}" ObjectType="{x:Type local:Stub}" ShowGroupCommandsIcon="True" />
+                                </dxlc:LayoutGroup>
+                                <dxlc:LayoutGroup Header="{localization:DataAccessUIStringId StringId=FiltersView_GroupFilter}" IsEnabled="{Binding GroupFilterEnabled, UpdateSourceTrigger=PropertyChanged}">
+                                    <local:DataAccessFilterEditor FilterString="{Binding GroupFilterString}" AdditionalProperties="{Binding GroupFilterAdditionalProperties}" ObjectType="{x:Type local:Stub}" />
+                                </dxlc:LayoutGroup>
+                            </dxlc:LayoutGroup>
+                            <dxlc:LayoutGroup Orientation="Horizontal" HorizontalAlignment="Left">
+                                <dxlc:LayoutItem>
+                                    <dxe:CheckEdit Content="{localization:DataAccessUIStringId StringId=FiltersView_CheckText}" EditValue="{Binding RecordsLimitationEnabled, UpdateSourceTrigger=PropertyChanged}" />
+                                </dxlc:LayoutItem>
+                                <dxlc:LayoutItem>
+                                    <dxe:TextEdit EditValue="{Binding TopRecords, UpdateSourceTrigger=PropertyChanged}" Width="50" IsEnabled="{Binding TopEditEnabled, UpdateSourceTrigger=PropertyChanged}" />
+                                </dxlc:LayoutItem>
+                                <dxlc:LayoutItem>
+                                    <TextBlock Text="{localization:DataAccessUIStringId StringId=FiltersView_TopAndSkipText}" />
+                                </dxlc:LayoutItem>
+                                <dxlc:LayoutItem>
+                                    <dxe:TextEdit EditValue="{Binding SkipRecords, UpdateSourceTrigger=PropertyChanged}" Width="50" IsEnabled="{Binding SkipEditEnabled, UpdateSourceTrigger=PropertyChanged}" />
+                                </dxlc:LayoutItem>
+                            </dxlc:LayoutGroup>
+                        </dxlc:LayoutControl>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

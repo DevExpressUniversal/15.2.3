@@ -1,0 +1,27 @@
+﻿<UserControl x:Class="DevExpress.XtraRichEdit.Forms.InsertTableCellsFormControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+    xmlns:dxre="clr-namespace:DevExpress.Xpf.RichEdit"
+    mc:Ignorable="d"
+    d:DesignHeight="300" d:DesignWidth="400" dx:StyleManager.ApplyApplicationTheme="True" AutomationProperties.AutomationId="InsertTableCellsFormContent" AutomationProperties.Name="InsertTableCellsFormContent">
+
+    <UserControl.Resources>
+        <dxre:RichEditStringIdConverter x:Key="RichEditStringIdConverter" />
+    </UserControl.Resources>
+    <Grid x:Name="LayoutRoot">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <RadioButton x:Name="rbShiftRight" Content="{Binding Source={StaticResource RichEditStringIdConverter}, ConverterParameter=Caption_InsertTableCellsFormShiftCellsRightRadioButton, Converter={StaticResource RichEditStringIdConverter}}" Margin="0,0,0,0" Grid.Row="0" dx:StyleManager.ApplyApplicationTheme="True" AutomationProperties.AutomationId="ShiftRight" AutomationProperties.Name="ShiftRight"/>
+        <RadioButton x:Name="rbShiftDown" Content="{Binding Source={StaticResource RichEditStringIdConverter}, ConverterParameter=Caption_InsertTableCellsFormShiftCellsDownRadioButton, Converter={StaticResource RichEditStringIdConverter}}" Margin="0,2,0,0" Grid.Row="1" dx:StyleManager.ApplyApplicationTheme="True" AutomationProperties.AutomationId="ShiftDown" AutomationProperties.Name="ShiftDown"/>
+        <RadioButton x:Name="rbInsertRow" Content="{Binding Source={StaticResource RichEditStringIdConverter}, ConverterParameter=Caption_InsertTableCellsFormInsertEntireRowRadioButton, Converter={StaticResource RichEditStringIdConverter}}" Margin="0,2,0,0" Grid.Row="2" dx:StyleManager.ApplyApplicationTheme="True" AutomationProperties.AutomationId="InsertRow" AutomationProperties.Name="InsertRow"/>
+        <RadioButton x:Name="rbInsertColumn" Content="{Binding Source={StaticResource RichEditStringIdConverter}, ConverterParameter=Caption_InsertTableCellsFormInsertEntireColumnRadioButton, Converter={StaticResource RichEditStringIdConverter}}" Margin="0,2,0,0" Grid.Row="3" dx:StyleManager.ApplyApplicationTheme="True" AutomationProperties.AutomationId="InsertColumn" AutomationProperties.Name="InsertColumn"/>
+    </Grid>
+</UserControl>

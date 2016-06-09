@@ -1,0 +1,382 @@
+﻿<#@ template language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="DevExpress.Design.Mvvm" #>
+<#@ import namespace="DevExpress.Xpf.Core.Design.Wizards.Mvvm.EntityFramework" #>
+<#@ import namespace="DevExpress.Xpf.Core.Design.Wizards.Mvvm" #>
+<#@ import namespace="DevExpress.Xpf.Core.Design.Wizards.Mvvm.ViewModelData" #>
+<#@ import namespace="DevExpress.Xpf.Core.Native" #>
+<#
+	T4TemplateInfo templateInfo = this.GetTemplateInfo();
+	DocumentManagerViewModelInfo viewModelData = templateInfo.Properties["IViewModelInfo"] as DocumentManagerViewModelInfo;
+	UIType uiType = (UIType)templateInfo.Properties["UIType"];
+    string viewName = templateInfo.Properties["ViewName"].ToString();    
+    string localNamespace = templateInfo.Properties["Namespace"].ToString();
+	string viewFullName = localNamespace +"." + viewName;
+	string mvvmContextFullName = viewModelData.Namespace+"."+viewModelData.Name;
+	string bindingSourceName = Char.ToLowerInvariant(viewName[0]) + viewName.Substring(1) + "BindingSource";
+	bool IsVisualBasic = (bool)templateInfo.Properties["IsVisualBasic"];
+#>
+<#
+if(!IsVisualBasic){
+#>
+namespace <#=viewFullName#> {
+    partial class <#=viewName#> {
+        /// <summary> 
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary> 
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing) {
+            if(disposing && (components != null)) {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+		 #region Component Designer generated code
+
+        /// <summary> 
+        /// Required method for Designer support - do not modify 
+        /// the contents of this method with the code editor.
+        /// </summary>
+		private void InitializeComponent() {
+			this.components = new System.ComponentModel.Container();
+            this.tileBar = new DevExpress.XtraBars.Navigation.TileBar();
+            this.navigationFrame = new DevExpress.XtraBars.Navigation.NavigationFrame();
+            this.mvvmContext = new DevExpress.Utils.MVVM.MVVMContext(this.components);
+			this.tileBarGroupTables = new DevExpress.XtraBars.Navigation.TileBarGroup();
+            this.tileBarGroupViews = new DevExpress.XtraBars.Navigation.TileBarGroup();
+			<#foreach(var item in viewModelData.Tables){
+					string nameForItem = "tileBarItem" + item.ViewName;
+				#>
+			this.<#=nameForItem#> = new DevExpress.XtraBars.Navigation.TileBarItem();
+			<#}	#>
+			<#foreach(var item in viewModelData.Views){
+					string nameForItem = "tileBarItem" + item.ViewName;
+				#>
+			this.<#=nameForItem#> = new DevExpress.XtraBars.Navigation.TileBarItem(); 
+			<#}	#>
+            this.SuspendLayout();
+			/// 
+            // tileBar
+            // 
+            this.tileBar.AllowDrag = false;
+			this.tileBar.AllowGlyphSkinning = true;
+			this.tileBar.AllowSelectedItem = true;
+            this.tileBar.Dock = System.Windows.Forms.DockStyle.Top;
+            this.tileBar.DropDownOptions.BeakColor = System.Drawing.Color.Empty;
+            this.tileBar.Groups.Add(this.tileBarGroupTables);
+            this.tileBar.Groups.Add(this.tileBarGroupViews);
+			this.tileBar.BackColor = System.Drawing.Color.FromArgb(230, 230, 230);
+            this.tileBar.Location = new System.Drawing.Point(0, 0);
+            this.tileBar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tileBar.Name = "tileBar";
+            this.tileBar.Padding = new System.Windows.Forms.Padding(29, 11, 29, 11);
+            this.tileBar.ScrollMode = DevExpress.XtraEditors.TileControlScrollMode.ScrollButtons;
+			this.tileBar.AppearanceGroupText.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
+            this.tileBar.AppearanceGroupText.Options.UseForeColor = true;
+            this.tileBar.ItemPadding = new System.Windows.Forms.Padding(8, 6, 12, 6);
+            this.tileBar.IndentBetweenGroups = 10;
+            this.tileBar.IndentBetweenItems = 10;
+            this.tileBar.DropDownButtonWidth = 30;
+            this.tileBar.SelectionBorderWidth = 2;
+            this.tileBar.WideTileWidth = 150;
+            this.tileBar.MinimumSize = new System.Drawing.Size(100, 110);
+			this.tileBar.MaximumSize = new System.Drawing.Size(0, 110);
+			this.tileBar.SelectionBorderWidth = 2;
+            this.tileBar.Text = "tileBar";
+			//
+			//tileBarGroupTables
+			//
+			this.tileBarGroupTables.Name = "tileBarGroupTables";
+            this.tileBarGroupTables.Text = "TABLES";
+			// 
+            // tileBarGroupViews
+            // 
+            this.tileBarGroupViews.Name = "tileBarGroupViews";
+            this.tileBarGroupViews.Text = "VIEWS";
+            <#
+			int indexer = -1;
+			int Red = 0;
+			int Green = 0;
+			int Blue = 0;
+			foreach(var item in viewModelData.Tables){
+				string nameForItem = "tileBarItem" + item.ViewName;
+				string nameForElement = "tileItemElement" + item.ViewName;
+				indexer++;
+				if(indexer % 5 == 0){Red = 0; Green = 135; Blue = 156; }
+				if(indexer % 5 == 1){Red = 0; Green = 0; Blue = 0; }
+				if(indexer % 5 == 2){Red = 204; Green = 109; Blue = 0; }
+				if(indexer % 5 == 3){Red = 0; Green = 115; Blue = 196; }
+				if(indexer % 5 == 4){Red = 62; Green = 112; Blue = 56; }
+			#>
+			//
+			//<#=nameForItem#>
+			//
+			DevExpress.XtraEditors.TileItemElement <#=nameForElement#> = new DevExpress.XtraEditors.TileItemElement();
+            <#=nameForElement#>.Text = "<#=item.Caption#>";
+            <#=nameForElement#>.ImageUri.Uri = "Cube;Size32x32;GrayScaled";
+			this.<#=nameForItem#>.Elements.Add(<#=nameForElement#>);
+			this.<#=nameForItem#>.AppearanceItem.Normal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(<#=Red#>)))), ((int)(((byte)(<#=Green#>)))), ((int)(((byte)(<#=Blue#>)))));
+            this.<#=nameForItem#>.AppearanceItem.Normal.Options.UseBackColor = true;
+            this.tileBarGroupTables.Items.Add(this.<#=nameForItem#>);
+			<#}#>			
+			<#foreach(var item in viewModelData.Views){
+				indexer++;
+				string nameForItem = "tileBarItem" + item.ViewName;
+				string nameForElement = "tileItemElement" + item.ViewName;
+				if(indexer % 5 == 0){Red = 0; Green = 135; Blue = 156; }
+				if(indexer % 5 == 1){Red = 0; Green = 0; Blue = 0; }
+				if(indexer % 5 == 2){Red = 204; Green = 109; Blue = 0; }
+				if(indexer % 5 == 3){Red = 0; Green = 115; Blue = 196; }
+				if(indexer % 5 == 4){Red = 62; Green = 112; Blue = 56; }
+			#>
+			//
+			//<#=nameForItem#>
+			//
+			DevExpress.XtraEditors.TileItemElement <#=nameForElement#> = new DevExpress.XtraEditors.TileItemElement();
+            <#=nameForElement#>.Text = "<#=item.Caption#>";
+            <#=nameForElement#>.ImageUri.Uri = "Cube;Size32x32;GrayScaled";
+			this.<#=nameForItem#>.Elements.Add(<#=nameForElement#>);
+			this.<#=nameForItem#>.AppearanceItem.Normal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(<#=Red#>)))), ((int)(((byte)(<#=Green#>)))), ((int)(((byte)(<#=Blue#>)))));
+            this.<#=nameForItem#>.AppearanceItem.Normal.Options.UseBackColor = true;
+			this.tileBarGroupViews.Items.Add(this.<#=nameForItem#>);
+			<#}#>	
+			// 
+            // navigationFrame
+            // 
+            this.navigationFrame.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.navigationFrame.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.navigationFrame.Name = "navigationFrame";
+            this.navigationFrame.SelectedPage = null;
+            this.navigationFrame.SelectedPageIndex = -1;
+            this.navigationFrame.Text = "navigationFrame";
+			// 
+            // mvvmContext
+            // 
+            this.mvvmContext.ContainerControl = this;
+            this.mvvmContext.ViewModelType = typeof(<#=mvvmContextFullName#>);
+			// 
+            // <#=viewName#>
+            // 
+			this.Appearance.BackColor = System.Drawing.Color.White;
+            this.Appearance.Options.UseBackColor = true;
+			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.Controls.Add(this.navigationFrame);
+            this.Controls.Add(this.tileBar);
+			this.Size = new System.Drawing.Size(1024, 768);
+            this.Name = "<#=viewName#>";
+			this.Text = "<#=viewName#>";
+            this.ResumeLayout(false);
+		}
+		
+        #endregion
+
+		private DevExpress.XtraBars.Navigation.TileBar tileBar;
+        private DevExpress.XtraBars.Navigation.NavigationFrame navigationFrame;
+        private DevExpress.Utils.MVVM.MVVMContext mvvmContext;
+        private DevExpress.XtraBars.Navigation.TileBarGroup tileBarGroupTables;
+        private DevExpress.XtraBars.Navigation.TileBarGroup tileBarGroupViews;
+		<#foreach(var item in viewModelData.Tables){
+				string nameForItem = "tileBarItem" + item.ViewName;
+			#>
+		private DevExpress.XtraBars.Navigation.TileBarItem <#=nameForItem#>;
+		<#}	#>
+		<#foreach(var item in viewModelData.Views){
+				string nameForItem = "tileBarItem" + item.ViewName;
+			#>
+		private DevExpress.XtraBars.Navigation.TileBarItem <#=nameForItem#>;
+		<#}	#>
+	}
+}
+<#
+}
+if(IsVisualBasic){
+#>
+Namespace Global.<#=viewFullName#>
+	Partial Public Class <#=viewName#>
+		''' <summary> 
+		''' Required designer variable.
+		''' </summary>
+		Private components As System.ComponentModel.IContainer = Nothing
+
+		''' <summary> 
+		''' Clean up any resources being used.
+		''' </summary>
+		''' <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+		Protected Overrides Sub Dispose(ByVal disposing As Boolean)
+			If disposing AndAlso (components IsNot Nothing) Then
+				components.Dispose()
+			End If
+			MyBase.Dispose(disposing)
+		End Sub
+		#Region "Component Designer generated code"
+
+		''' <summary> 
+		''' Required method for Designer support - do not modify 
+		''' the contents of this method with the code editor.
+		''' </summary>
+		Private Sub InitializeComponent()
+			Me.components = New System.ComponentModel.Container()
+			Me.tileBar = New DevExpress.XtraBars.Navigation.TileBar()
+			Me.navigationFrame = New DevExpress.XtraBars.Navigation.NavigationFrame()
+			Me.mvvmContext = New DevExpress.Utils.MVVM.MVVMContext(Me.components)
+			Me.tileBarGroupTables = New DevExpress.XtraBars.Navigation.TileBarGroup()
+			Me.tileBarGroupViews = New DevExpress.XtraBars.Navigation.TileBarGroup()
+			<#foreach(var item in viewModelData.Tables){
+					string nameForItem = "tileBarItem" + item.ViewName;
+				#>
+			Me.<#=nameForItem#> = New DevExpress.XtraBars.Navigation.TileBarItem()
+			<#}	#>
+			<#foreach(var item in viewModelData.Views){
+					string nameForItem = "tileBarItem" + item.ViewName;
+				#>
+			Me.<#=nameForItem#> = New DevExpress.XtraBars.Navigation.TileBarItem()
+			<#}	#>
+            Me.SuspendLayout()
+            '
+            ' tileBar
+            ' 
+            Me.tileBar.AllowDrag = False
+			Me.tileBar.AllowGlyphSkinning = True
+			Me.tileBar.AllowSelectedItem = True
+			Me.tileBar.Dock = System.Windows.Forms.DockStyle.Top
+			Me.tileBar.DropDownOptions.BeakColor = System.Drawing.Color.Empty
+			Me.tileBar.Groups.Add(Me.tileBarGroupTables)
+			Me.tileBar.Groups.Add(Me.tileBarGroupViews)
+			Me.tileBar.BackColor = System.Drawing.Color.FromArgb(230, 230, 230)
+			Me.tileBar.Location = New System.Drawing.Point(0, 0)
+			Me.tileBar.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+			Me.tileBar.Name = "tileBar"
+			Me.tileBar.Padding = New System.Windows.Forms.Padding(29, 11, 29, 11)
+			Me.tileBar.ScrollMode = DevExpress.XtraEditors.TileControlScrollMode.ScrollButtons
+			Me.tileBar.AppearanceGroupText.ForeColor = System.Drawing.Color.FromArgb((CInt((CByte(140)))), (CInt((CByte(140)))), (CInt((CByte(140)))))
+			Me.tileBar.AppearanceGroupText.Options.UseForeColor = True
+			Me.tileBar.ItemPadding = New System.Windows.Forms.Padding(8, 6, 12, 6)
+			Me.tileBar.IndentBetweenGroups = 10
+			Me.tileBar.IndentBetweenItems = 10
+			Me.tileBar.DropDownButtonWidth = 30
+			Me.tileBar.SelectionBorderWidth = 2
+			Me.tileBar.WideTileWidth = 150
+			Me.tileBar.MinimumSize = New System.Drawing.Size(100, 110)
+			Me.tileBar.MaximumSize = New System.Drawing.Size(0, 110)
+			Me.tileBar.SelectionBorderWidth = 2
+			Me.tileBar.Text = "tileBar"
+			'
+			'tileBarGroupTables
+			'
+			Me.tileBarGroupTables.Name = "tileBarGroupTables"
+			Me.tileBarGroupTables.Text = "TABLES"
+			' 
+			' tileBarGroupViews
+			' 
+			Me.tileBarGroupViews.Name = "tileBarGroupViews"
+			Me.tileBarGroupViews.Text = "VIEWS"
+			<#
+			int indexer = -1;
+			int Red = 0;
+			int Green = 0;
+			int Blue = 0;
+			foreach(var item in viewModelData.Tables){
+				string nameForItem = "tileBarItem" + item.ViewName;
+				indexer++;
+				string nameForElement = "tileItemElement" + item.ViewName;
+				if(indexer % 5 == 0){Red = 0; Green = 135; Blue = 156; }
+				if(indexer % 5 == 1){Red = 0; Green = 0; Blue = 0; }
+				if(indexer % 5 == 2){Red = 204; Green = 109; Blue = 0; }
+				if(indexer % 5 == 3){Red = 0; Green = 115; Blue = 196; }
+				if(indexer % 5 == 4){Red = 62; Green = 112; Blue = 56; }
+			#>
+			'
+			'<#=nameForItem#>
+			'
+			Dim <#=nameForElement#> As New DevExpress.XtraEditors.TileItemElement()
+            <#=nameForElement#>.Text = "<#=item.Caption#>"
+            <#=nameForElement#>.ImageUri.Uri = "Cube;Size32x32;GrayScaled"
+			Me.<#=nameForItem#>.Elements.Add(<#=nameForElement#>)
+			Me.<#=nameForItem#>.AppearanceItem.Normal.BackColor = System.Drawing.Color.FromArgb((CInt((CByte(<#=Red#>)))), (CInt((CByte(<#=Green#>)))), (CInt((CByte(<#=Blue#>)))))	
+            Me.<#=nameForItem#>.AppearanceItem.Normal.Options.UseBackColor = true
+            Me.tileBarGroupTables.Items.Add(Me.<#=nameForItem#>)
+			<#}#>
+			<#foreach(var item in viewModelData.Views){
+				indexer++;
+				string nameForItem = "tileBarItem" + item.ViewName;
+				string nameForElement = "tileItemElement" + item.ViewName;
+				if(indexer % 5 == 0){Red = 0; Green = 135; Blue = 156; }
+				if(indexer % 5 == 1){Red = 0; Green = 0; Blue = 0; }
+				if(indexer % 5 == 2){Red = 204; Green = 109; Blue = 0; }
+				if(indexer % 5 == 3){Red = 0; Green = 115; Blue = 196; }
+				if(indexer % 5 == 4){Red = 62; Green = 112; Blue = 56; }
+			#>
+			'
+			'<#=nameForItem#>
+			'
+			Dim <#=nameForElement#> As New DevExpress.XtraEditors.TileItemElement()
+            <#=nameForElement#>.Text = "<#=item.Caption#>"
+            <#=nameForElement#>.ImageUri.Uri = "Cube;Size32x32;GrayScaled"
+			Me.<#=nameForItem#>.Elements.Add(<#=nameForElement#>)
+			Me.<#=nameForItem#>.AppearanceItem.Normal.BackColor = System.Drawing.Color.FromArgb((CInt((CByte(<#=Red#>)))), (CInt((CByte(<#=Green#>)))), (CInt((CByte(<#=Blue#>)))))	
+            Me.<#=nameForItem#>.AppearanceItem.Normal.Options.UseBackColor = true
+            Me.tileBarGroupViews.Items.Add(Me.<#=nameForItem#>)
+			<#}#>	
+			' 
+			' navigationFrame
+			' 
+			Me.navigationFrame.Dock = System.Windows.Forms.DockStyle.Fill
+			Me.navigationFrame.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+			Me.navigationFrame.Name = "navigationFrame"
+			Me.navigationFrame.SelectedPage = Nothing
+			Me.navigationFrame.SelectedPageIndex = -1
+			Me.navigationFrame.Text = "navigationFrame"
+			' 
+			' mvvmContext
+			' 
+			Me.mvvmContext.ContainerControl = Me
+			Me.mvvmContext.ViewModelType = GetType(Global.<#=mvvmContextFullName#>)
+			' 
+			' NorthwindEntitiesView
+			' 
+			Me.Appearance.BackColor = System.Drawing.Color.White
+			Me.Appearance.Options.UseBackColor = True
+			Me.AutoScaleDimensions = New System.Drawing.SizeF(6F, 13F)
+			Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+			Me.Controls.Add(Me.navigationFrame)
+			Me.Controls.Add(Me.tileBar)
+			Me.Size = New System.Drawing.Size(1024, 768)
+			Me.Name = "<#=viewName#>"
+			Me.Text = "<#=viewName#>"
+			Me.ResumeLayout(False)
+
+
+
+		End Sub
+
+		#End Region
+
+		Private tileBar As DevExpress.XtraBars.Navigation.TileBar
+		Private navigationFrame As DevExpress.XtraBars.Navigation.NavigationFrame
+		Private mvvmContext As DevExpress.Utils.MVVM.MVVMContext
+		Private tileBarGroupTables As DevExpress.XtraBars.Navigation.TileBarGroup
+		Private tileBarGroupViews As DevExpress.XtraBars.Navigation.TileBarGroup
+		<#foreach(var item in viewModelData.Tables){
+				string nameForItem = "tileBarItem" + item.ViewName;
+		#>
+		Private <#=nameForItem#> As DevExpress.XtraBars.Navigation.TileBarItem
+		<#}	#>
+		<#foreach(var item in viewModelData.Views){
+				string nameForItem = "tileBarItem" + item.ViewName;
+		#>
+		Private <#=nameForItem#> As DevExpress.XtraBars.Navigation.TileBarItem
+		<#}	#>
+	End Class
+End Namespace
+<#
+}
+#>

@@ -1,0 +1,1328 @@
+TokenKind = Type;
+TokenValue = Value;
+GenLinePragmas = false;
+
+PARSER Parser
+
+FRAME
+-->begin
+using System;
+using System.Collections;
+using System.Collections.Specialized;
+
+#if DXCORE
+namespace DevExpress.CodeRush.StructuralParser.Html
+#else
+namespace DevExpress.CodeParser.Html
+#endif
+{
+	using Xml;
+
+	-->constants
+	
+	partial class HtmlParser
+	{
+		-->declarations
+		// private methods...
+		protected override void HandlePragmas()
+		{
+			-->pragmas
+		}
+		-->productions
+		void Parse()
+		{
+			la = new Token();
+			if(InlineExpressions != null)
+				InlineExpressions.Clear();
+			la.Value = "";
+			Get();
+			-->parseRoot
+			Expect(0);
+			if (Context != null)
+				Context.SetRange(GetRange(Context, tToken));
+			CloseContext();
+		}
+		protected override bool[,] CreateSetArray()
+		{
+			bool[,] set =
+			{
+			-->initialization
+			};
+			return set;
+		}				
+	}
+	public class HtmlParserErrors : ParserErrorsBase
+	{
+		protected override string GetSyntaxErrorText(int n)
+		{
+			string s;
+			switch (n)
+			{
+	-->errors
+				default:
+					s = "error " + n;
+					break;
+			}
+			return s;
+		}
+	}
+}
+$$$
+ENDFRAME
+
+TOKENNAMES
+	EOF		= EOF
+	NAME	= NAME
+	COMMENT = COMMENT
+	
+	SERVERCOMMENT = SERVERCOMMENT
+	PICHARS = PICHARS
+	PITARGET = PITARGET
+	QUOTEDLITERAL = QUOTEDLITERAL
+	
+	SYSTEMLITERAL = SYSTEMLITERAL
+	PUBIDLITERAL = PUBIDLITERAL
+	CDATA = CDATA
+	CHARREF = CHARREF
+	
+	XMLTAGOPEN = XMLTAGOPEN
+	EQUALS = EQUALSTOKEN
+	SINGLEQUOTE = SINGLEQUOTE	
+  DOUBLEQUOTE = DOUBLEQUOTE
+	QUESTTAGOPEN = QUESTTAGOPEN
+	QUESTTAGCLOSE = QUESTTAGCLOSE	
+	SYSTEM = SYSTEM
+	PUBLIC = PUBLIC
+	DECL = DECL
+	DOCTYPE = DOCTYPE
+	TAGCLOSE = TAGCLOSE
+	BRACKETOPEN = BRACKETOPEN
+	BRACKETCLOSE = BRACKETCLOSE
+	ELEMENTDECL = ELEMENTDECL
+	EMPTY = EMPTY
+	ANYCONTENT = ANYCONTENT
+	PARENOPEN = PARENOPEN
+	PARENCLOSE = PARENCLOSE
+	PARENCLOSESTAR =PARENCLOSESTAR
+	PCDATA = PCDATA 
+	BITWISEOR = BITWISEOR
+	PERCENTSYMBOL = PERCENTSYMBOL
+	SEMICOLON = SEMICOLON
+	COMMA = COMMA
+	QUESTION = QUESTION
+	STAR = STAR
+	PLUS = PLUS
+	//NOTATIONDECl = NOTATIONDECl
+	ATTLISTDECL = ATTLISTDECL
+	ID = ID
+	CDATATOKEN = CDATATOKEN
+	IDREF =	IDREF 
+	IDREFS = IDREFS
+	ENTITY = ENTITY 
+	ENTITIES = ENTITIES
+	NMTOKEN = NMTOKEN
+	NMTOKENS = NMTOKENS
+	NOTATION = NOTATION
+	REQUIRED = REQUIRED 
+	IMPLIED = IMPLIED 
+	FIXED =	FIXED
+	//ENTITYDECL = ENTITYDECL
+	NDATA = NDATA
+	TAGOPEN = TAGOPEN
+	EMPTYTAGCLOSE = EMPTYTAGCLOSE
+	TAGCLOSESTART = TAGCLOSESTART
+	AMPERSAND = AMPERSAND
+	CDATASTART = CDATASTART
+	CDATAEND  = CDATAEND
+	UNQUOTEDATTRIBUTEVALUE = UNQUOTEDATTRIBUTEVALUE
+	ASPSCRIPTTAGSTART = ASPSCRIPTTAGSTART
+	ASPSCRIPTTAGCLOSE = ASPSCRIPTTAGCLOSE
+	ASPDIRECTIVETAGSTART = ASPDIRECTIVETAGSTART
+	//ASPDATABINDING = ASPDATABINDING
+	
+  RAZORSTARTCHAR = RAZORSTARTCHAR
+  RAZORSTARTCHARCOLON = RAZORSTARTCHARCOLON
+  RAZORCOMMENT = RAZORCOMMENT
+  RAZORMODEL = RAZORMODEL
+  RAZORINHERITS = RAZORINHERITS
+  RAZORSECTION = RAZORSECTION
+  RAZORHELPER = RAZORHELPER
+  RAZORFUNCTIONS = RAZORFUNCTIONS
+  TOKENS
+
+	NAME
+	COMMENT
+	SERVERCOMMENT
+	
+	CHARREF
+
+	
+	EQUALS
+	SINGLEQUOTE
+  DOUBLEQUOTE
+	QUESTTAGOPEN
+	QUESTTAGCLOSE
+	
+	ASPSCRIPTTAGSTART
+	ASPSCRIPTTAGCLOSE 
+	ASPDIRECTIVETAGSTART
+	//ASPDATABINDING
+		
+	SYSTEM
+	PUBLIC
+	DECL 
+	DOCTYPE
+	ELEMENTDECL
+	TAGCLOSE
+	BRACKETOPEN
+	BRACKETCLOSE
+	EMPTY
+	ANYCONTENT
+	PARENOPEN
+	PARENCLOSE
+	PCDATA
+	BITWISEOR
+	PERCENTSYMBOL
+	SEMICOLON
+	COMMA
+	QUESTION
+	STAR
+	PLUS
+//	NOTATIONDECl
+	ATTLISTDECL
+	ID
+	CDATATOKEN
+	IDREF
+	IDREFS
+	ENTITY
+	ENTITIES
+	NMTOKEN
+	NMTOKENS
+	NOTATION
+	REQUIRED
+	IMPLIED
+	FIXED
+	//ENTITYDECL
+	NDATA
+	TAGOPEN
+	EMPTYTAGCLOSE
+	TAGCLOSESTART
+	AMPERSAND
+	CDATASTART
+	CDATAEND
+	
+	CDATA
+	PICHARS
+	UNQUOTEDATTRIBUTEVALUE
+  RAZORSTARTCHAR
+
+  QUOTEDLITERAL
+  RAZORSTARTCHARCOLON
+  RAZORCOMMENT
+  RAZORMODEL
+  RAZORINHERITS
+  RAZORSECTION
+  RAZORHELPER
+  RAZORFUNCTIONS
+//////////////////////////////////GRAMMAR//////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////
+	
+PRODUCTIONS
+
+///////ROOT/////////////
+
+Parser = 
+  (.
+     
+    while (la != null && la.Type != Tokens.EOF)
+    {
+      Token startToken = la;
+  .)
+	ParserCore 
+  (.
+      if (la == startToken)
+        Get();
+    }
+  .)
+.
+ParserCore = 
+SYNC {Comment} {Element | HtmlText} (.HtmlScanner.ShouldCheckForXmlText = false;.)
+	
+  
+  Prolog (.HtmlScanner.ShouldCheckForXmlText = false;.)
+  
+	{
+	  Element |
+	  (.HtmlScanner.ShouldCheckForXmlText = false;.)
+	  TAGCLOSESTART Name
+	  (.
+	    SetCategoryIfNeeded(TokenCategory.HtmlElementName);
+	    if (Context != null)
+        Context.HasErrors = true;
+	  .) TAGCLOSE
+	  | HtmlText
+	  Comment
+	} {Misc}
+.
+Prolog
+(.
+	XmlProcessingInstruction processingInstruction = null;
+.)
+= 
+	{
+		PI<out  processingInstruction, false>
+		(.
+			if (processingInstruction != null)
+			{
+				AddNode(processingInstruction);
+			}
+		.)
+		| DocTypeDecl
+		| Misc
+	}	
+.
+
+DocTypeDecl
+(.
+	XmlDocTypeDecl docTypeDecl = new XmlDocTypeDecl();
+	AddNode(docTypeDecl);
+	docTypeDecl.SetRange(la.Range);
+	NewExternalIDLink extID = null;
+	HtmlScanner.ShouldCheckForXmlText = false;
+.) = 
+	DECL (DOCTYPE | Name) (. SetCategoryIfNeeded(TokenCategory.HtmlElementName); .)  Name 
+		(.
+		  SetCategoryIfNeeded(TokenCategory.HtmlAttributeName);
+			docTypeDecl.Name = tToken.Value;
+		.) 
+		[ExternalID<out extID> 
+		(. 
+			if (extID != null) docTypeDecl.AddDetailNode(extID);
+		.)]  
+		[BRACKETOPEN IntSubset<docTypeDecl> BRACKETCLOSE] TAGCLOSE
+		(.
+			docTypeDecl.SetRange(GetRange(docTypeDecl, tToken));
+		.)
+.
+
+IntSubset<XmlDocTypeDecl docTypeDecl> = 
+	{ MarkupDecl<docTypeDecl> | DeclSep<docTypeDecl>}
+.
+
+MarkupDecl<XmlDocTypeDecl docTypeDecl>
+(.
+	XmlElementDecl elementDecl = null;
+	XmlNotationDecl notationDecl = null;
+	XmlAttributeListDeclaration attListDecl = null;
+	XmlEntityDecl entityDecl = null;
+	XmlProcessingInstruction processingInstruction = null;
+.) =
+  DECL
+  ( 
+		ElementDecl<out elementDecl> 
+		(.
+			if (docTypeDecl != null && elementDecl != null)
+				docTypeDecl.AddNode(elementDecl);
+		.)
+	|	AttlistDecl <out attListDecl>
+		(.
+			if (docTypeDecl != null && attListDecl != null)
+				docTypeDecl.AddNode(attListDecl);
+		.)
+	|	EntityDecl<out entityDecl>
+		(.
+			if (docTypeDecl != null && entityDecl != null)
+				docTypeDecl.AddNode(entityDecl);
+		.) 
+	|	NotationDecl <out notationDecl>
+		(.
+			if (docTypeDecl != null && notationDecl != null)
+				docTypeDecl.AddNode(notationDecl);
+		.)
+		
+	)
+	|	PI<out  processingInstruction, false> 
+		(.
+			if (docTypeDecl != null && processingInstruction != null)
+				docTypeDecl.AddNode(processingInstruction);
+		.)
+	|	Comment
+.
+DeclSep<XmlDocTypeDecl docTypeDecl>
+(.
+	XmlNameReference nameRef;
+.) = 
+	PEReference<out nameRef>
+	(.
+		if (nameRef != null && docTypeDecl != null)
+			docTypeDecl.AddNode(nameRef);
+	.)
+.
+ElementDecl<out XmlElementDecl elementDecl>
+(.
+	elementDecl = new XmlElementDecl();
+	elementDecl.SetRange(tToken.Range);
+	XmlBaseContentSpec contentSpec = null;
+.) = 
+	ELEMENTDECL  Name 
+		(.
+			elementDecl.Name = tToken.Value;
+		.)  
+	ContentSpec<out contentSpec>
+		(.
+			if (contentSpec != null)
+				elementDecl.AddDetailNode(contentSpec);
+		.) 
+	TAGCLOSE
+	(.
+		elementDecl.SetRange(GetRange(elementDecl, tToken));
+	.)
+.
+ContentSpec<out XmlBaseContentSpec contentSpec>
+(.
+	contentSpec = null;
+	XmlMixedContentSpec mixedContent = null;
+	XmlChildrenContentSpec childContent = null;
+	SourceRange startRange = la.Range;
+.) = 
+		EMPTY 
+		(.
+			contentSpec = new XmlEmptyContentSpec();	
+		.)
+	|	ANYCONTENT 
+		(.
+			contentSpec = new XmlAnyContentSpec();	
+		.)
+	|	PARENOPEN
+		(
+				Mixed<out mixedContent> 
+				(.
+					contentSpec = mixedContent;
+				.)
+			|	Children<out childContent>
+				(.
+					contentSpec = childContent;
+				.)
+		)
+		(.
+			if (contentSpec != null)
+				contentSpec.SetRange(GetRange(startRange, tToken));
+		.)
+
+.
+
+Mixed<out XmlMixedContentSpec contentSpec>
+(.
+	contentSpec = new XmlMixedContentSpec();
+	XmlNameReference nameRef;
+.) = 
+	  PCDATA {BITWISEOR 
+			(
+				Name
+				(.
+					XmlName name = new XmlName();
+					name.Name = tToken.Value;
+					name.SetRange(GetRange(tToken));
+					contentSpec.Names.Add(name);
+					contentSpec.AddDetailNode(name);
+				.) 
+			|	PEReference<out nameRef>
+				(.
+					if (nameRef != null)
+					{
+						contentSpec.Names.Add(nameRef);
+						contentSpec.AddDetailNode(nameRef);
+					}
+				.)
+			)} (PARENCLOSE [STAR])
+.
+
+Children<out XmlChildrenContentSpec children>
+(.
+	XmlContentParticle contentParticle = null;
+	children = new XmlChildrenContentSpec();
+	RepeatCount repCount = RepeatCount.Once;
+.) =
+
+	( 
+	  CpSequence<out contentParticle> 
+		[	QUESTION(.repCount = RepeatCount.ZeroOrOnce;.) 
+		|	STAR(.repCount = RepeatCount.ZeroOrMore;.) 
+		|	PLUS(.repCount = RepeatCount.OnceOrMore;.)]
+	)
+(.
+	if (contentParticle != null)
+	{
+		contentParticle.RepeatCount = repCount;
+		children.Source = contentParticle;
+		children.AddDetailNode(contentParticle);
+	}
+.)
+.
+
+Cp<out XmlContentParticle contentParticle>
+(.
+	XmlNameReference nameRef = null;
+	contentParticle = null;
+	RepeatCount repCount = RepeatCount.Once;
+	SourceRange startRange = la.Range;
+.) = 
+
+	(		Name 
+			(.
+				XmlName name = new XmlName();
+				name.Name = tToken.Value;
+				contentParticle = new XmlNamedContentParticle();
+				(contentParticle as XmlNamedContentParticle).ParticleName = name;
+				contentParticle.AddDetailNode(name);
+			.)
+		|	PEReference<out nameRef> 
+			(.
+				if (nameRef != null)
+				{
+					contentParticle = new XmlNamedContentParticle();
+					(contentParticle as XmlNamedContentParticle).ParticleName = nameRef;
+					contentParticle.AddDetailNode(nameRef);
+				}
+			.)
+		|	PARENOPEN CpSequence<out contentParticle> 
+	) 
+		[	QUESTION(.repCount = RepeatCount.ZeroOrOnce;.) 
+		|	STAR(.repCount = RepeatCount.ZeroOrMore;.) 
+		|	PLUS(.repCount = RepeatCount.OnceOrMore;.)
+	]
+	(.
+		if (contentParticle != null)
+		{
+			contentParticle.RepeatCount = repCount;
+			contentParticle.SetRange(GetRange(startRange, tToken));
+		}
+	.)	
+.
+
+CpSequence <out XmlContentParticle choiceCP>
+(.
+	choiceCP = null;
+	XmlContentParticle currentCP = null;
+	XmlSequencedContentParticle result = null;
+.) = 
+	(
+		Cp<out currentCP> 
+		{	
+			(
+					BITWISEOR
+					(.
+						if (result == null)
+						{
+							result = new XmlChoiceContentParticle();
+							if (currentCP != null)
+							{
+								result.Particles.Add(currentCP);
+								result.AddDetailNode(currentCP);
+							}
+						}
+					.) 
+				|	COMMA
+					(.
+						if (result == null)
+						{
+							result = new XmlSequenceContentParticle();
+							if (currentCP != null)
+							{
+								result.Particles.Add(currentCP);
+								result.AddDetailNode(currentCP);
+							}
+						}
+					.)
+			)
+			 Cp<out currentCP>
+			(.
+				if (currentCP != null)
+				{
+					result.Particles.Add(currentCP);
+					result.AddDetailNode(currentCP);
+				}
+			.)
+		} PARENCLOSE
+	)
+	(.
+		choiceCP = result;
+	.)
+.
+
+NotationDecl<out XmlNotationDecl notationDecl>
+(.
+	NewExternalIDLink extID = null;
+	notationDecl = new XmlNotationDecl();
+	notationDecl.SetRange(tToken.Range);
+.) = 
+	NOTATION Name (.notationDecl.Name = tToken.Value;.)  
+		ExternalID<out extID> 
+		(.
+			if (extID != null) 
+			{
+				notationDecl.NotationLink = extID; 
+				notationDecl.AddDetailNode(extID);
+			}
+		.)  TAGCLOSE
+	(.
+		notationDecl.SetRange(GetRange(notationDecl, tToken));
+	.)
+.
+
+AttlistDecl<out XmlAttributeListDeclaration result>
+(.
+	result = new XmlAttributeListDeclaration();
+	XmlAttributeDeclaration attrDecl = null;
+	result.SetRange(tToken.Range);
+.) = 
+	ATTLISTDECL  Name (.result.Name = tToken.Value; .) 
+		{
+			AttDef<out attrDecl>
+			(.
+				if (attrDecl != null)
+				{
+					result.AddNode(attrDecl);
+					result.AttributesDecl.Add(attrDecl);
+				}
+			.)
+		}  
+	TAGCLOSE
+	(.
+		result.SetRange(GetRange(result, tToken));
+	.)
+.
+
+AttDef<out XmlAttributeDeclaration attrDecl>
+(.
+	attrDecl = new XmlAttributeDeclaration();
+	attrDecl.SetRange(la.Range);
+.) = 
+	Name(.attrDecl.Name = tToken.Value;.)  AttType<attrDecl>  DefaultDecl<attrDecl>
+	(.
+		attrDecl.SetRange(GetRange(attrDecl, tToken));
+	.)
+.
+
+AttType<XmlAttributeDeclaration attrDecl> = 
+		TokenizedType<attrDecl> 
+	|	Enumeration<attrDecl>
+.
+TokenizedType<XmlAttributeDeclaration attrDecl> = 
+		ID
+		(.
+			attrDecl.AttributeType = AttributeType.Id;
+		.)
+	|	CDATATOKEN
+		(.
+			attrDecl.AttributeType = AttributeType.CData;
+		.)
+	|	IDREF  
+		(.
+			attrDecl.AttributeType = AttributeType.IdRef;
+		.)
+	|	IDREFS  
+		(.
+			attrDecl.AttributeType = AttributeType.IdRefs;
+		.)	
+	|	ENTITY 
+		(.
+			attrDecl.AttributeType = AttributeType.Entity;
+		.)
+	|	ENTITIES 
+		(.
+			attrDecl.AttributeType = AttributeType.Entities;
+		.)
+	|	NMTOKEN  
+		(.
+			attrDecl.AttributeType = AttributeType.NmToken;
+		.)
+	|	NMTOKENS
+		(.
+			attrDecl.AttributeType = AttributeType.NmTokens;
+		.)
+.
+Enumeration<XmlAttributeDeclaration attrDecl>
+(.
+	attrDecl.AttributeType = AttributeType.Enumeration;
+.) = 
+	[NOTATION(.attrDecl.AttributeType = AttributeType.Notation;.)] 
+		PARENOPEN Name(.attrDecl.EnumerationMembers.Add(tToken.Value);.) 
+		{BITWISEOR Name(.attrDecl.EnumerationMembers.Add(tToken.Value);.) 
+		} PARENCLOSE
+.
+
+
+DefaultDecl<XmlAttributeDeclaration attrDecl> = 
+		REQUIRED 
+		(.attrDecl.DefaultAttributeValueType = DefaultAttributeValueType.Required;.)
+	|	IMPLIED 
+		(.attrDecl.DefaultAttributeValueType = DefaultAttributeValueType.Implied;.)
+	|	[FIXED]  (.Token stringToken = null;.)QuotedLiteral<out stringToken>
+		(.
+			attrDecl.DefaultAttributeValueType = DefaultAttributeValueType.Fixed;
+			attrDecl.DefaultAttributeValue = stringToken.Value;
+		.)
+.
+
+EntityDecl<out XmlEntityDecl entityDecl>
+(.
+	entityDecl = new XmlEntityDecl();
+	entityDecl.SetRange(tToken.Range);
+.) = 
+		ENTITY [PERCENTSYMBOL(.entityDecl.IsParameterEntity = true;.)]  
+		Name(.entityDecl.Name = tToken.Value;.)  EntityDef<entityDecl>  TAGCLOSE
+		(.
+			entityDecl.SetRange(GetRange(entityDecl, tToken));
+		.)
+.
+
+EntityDef<XmlEntityDecl entityDecl>
+(.
+	NewExternalIDLink extID = null;
+.) = 
+		(.Token stringToken = null;.)QuotedLiteral<out stringToken>
+		(.
+			if (entityDecl != null)
+				entityDecl.ImmediateValue = stringToken.Value;
+		.)
+	|   ExternalID<out extID>
+		(.
+			if (entityDecl != null && extID != null)
+			{
+				entityDecl.ExternalLinkValue = extID;
+				entityDecl.AddDetailNode(extID);
+			}
+		.) 
+		[NDATA 
+			Name
+			(.
+				if (entityDecl != null)
+					entityDecl.NDataValue = tToken.Value;
+			.)
+		]	
+.
+
+PI<out XmlProcessingInstruction processingInstruction, bool insideElementContent>
+(.
+	processingInstruction = new XmlProcessingInstruction();
+	HtmlScanner.ShouldCheckForXmlText = false;
+	processingInstruction.SetRange(la.Range);
+	bool hasAttributes	= false;
+.) = 
+	QUESTTAGOPEN
+	(.
+	  hasAttributes = la.Value == "xml";
+	  HtmlScanner.ShouldReturnPIChars = !hasAttributes;
+	.)
+	Name
+  (.
+    processingInstruction.Name = tToken.Value;
+    SetCategoryIfNeeded(TokenCategory.HtmlElementName);
+  .) 
+	(.
+    if (hasAttributes)
+    {
+      HtmlAttribute attribute = null;	  
+	.)
+      {Attribute<out attribute>
+	    (.
+        if (attribute != null)
+        {
+          processingInstruction.AddDetailNode(attribute);	      
+        }
+      .)}
+  (.
+    }
+    else
+    {
+  .)
+    PICHARS(.processingInstruction.InstructionText = tToken.Value;.)
+    (.
+      HtmlScanner.ShouldCheckForXmlText = insideElementContent;
+    }
+    .)
+  QUESTTAGCLOSE
+  (.
+    processingInstruction.SetRange(GetRange(processingInstruction, tToken));
+  .)
+.
+
+ExternalID<out NewExternalIDLink extID>
+(.
+	extID = null;
+	SourceRange startRange = la.Range;
+.) = 
+(
+		SYSTEM (.Token stringToken = null;.)QuotedLiteral<out stringToken> 
+		(.
+			NewExternalIDSystemLink result = new NewExternalIDSystemLink();
+			result.SystemURI = stringToken.Value;
+			extID = result;
+		.)
+	|	
+		(
+			PUBLIC
+			(.
+			  SetCategoryIfNeeded(TokenCategory.HtmlAttributeName);
+				NewExternalIDPublicLink result = new NewExternalIDPublicLink();
+				extID = result;
+			.)
+			(.Token stringToken = null;.)QuotedLiteral<out stringToken> (.result.PublicID = stringToken.Value; SetCategoryIfNeeded(TokenCategory.HtmlAttributeValue);.)
+			[QuotedLiteral<out stringToken> (.result.SystemURI = stringToken.Value; SetCategoryIfNeeded(TokenCategory.HtmlAttributeValue);.)]
+		 )
+)
+(.
+	if (extID != null)
+		extID.SetRange(GetRange(startRange, tToken));
+.)
+.
+PEReference<out XmlNameReference nameRef>
+(.
+	nameRef = new XmlNameReference();
+	nameRef.SetRange(la.Range);
+.) = 
+	PERCENTSYMBOL Name (. nameRef.Name = tToken.Value; .) SEMICOLON
+	(.
+		nameRef.SetRange(GetRange(nameRef, tToken));
+	.)
+.
+
+Misc
+(.
+	XmlProcessingInstruction processingInstruction = null;
+.) = 
+		Comment 
+	|	PI<out processingInstruction, false>
+		(.
+			if (processingInstruction != null)
+				AddNode(processingInstruction);
+		.)
+.
+CDSect
+(.
+	XmlCharacterData cData = new XmlCharacterData();
+	AddNode(cData);
+	HtmlScanner.ShouldCheckForXmlText = false;
+	cData.SetRange(la.Range);
+.) = 
+	(.HtmlScanner.ShouldReturnCharDataToken = true;.)
+	CDATASTART 
+	CDATA(. cData.Name = tToken.Value;HtmlScanner.ShouldCheckForXmlText = true; .)
+	CDATAEND
+	(.
+		cData.SetRange(GetRange(cData, tToken));
+	.)
+.
+AspDirectiveDef
+(.
+  SplitAspDirectiveTagStartIfNeeded();
+.)
+ = 
+	ASPDIRECTIVETAGSTART
+	(.
+		AspDirective directive = null;
+		if (String.Compare(la.Value, "Page", StringComparison.CurrentCultureIgnoreCase) == 0)
+		{
+			directive = new PageDirective();
+		}
+		else
+		  if (String.Compare(la.Value, "Register", StringComparison.CurrentCultureIgnoreCase) == 0)
+		  {
+			directive = new RegisterDirective();
+		  }
+		else
+		  if (String.Compare(la.Value, "Control", StringComparison.CurrentCultureIgnoreCase) == 0)
+		  {
+			directive = new ControlDirective();
+		  }
+		 else
+		  if (String.Compare(la.Value, "Master", StringComparison.CurrentCultureIgnoreCase) == 0)
+		  {
+			directive = new MasterDirective();
+		  }
+		else
+		  if (String.Compare(la.Value, "Import", StringComparison.CurrentCultureIgnoreCase) == 0)
+		  {
+			directive = new AspImportDirective();
+		  }
+		else
+			directive = new AspDirective();
+		directive.SetRange(tToken.Range);
+		HtmlAttribute attribute = null;
+		AddNode(directive);
+	.)
+	Name
+	(.
+	  SetCategoryIfNeeded(TokenCategory.HtmlElementName);
+	  directive.Name = tToken.Value;
+	  directive.NameRange = tToken.Range;
+	.) 
+	{Attribute<out attribute>
+	(.
+		if (attribute != null)
+		{
+			directive.AddDetailNode(attribute);
+			directive.Attributes.Add(attribute);
+		}
+	.)
+	} (.HtmlScanner.ShouldCheckForXmlText = true;.) 
+	ASPSCRIPTTAGCLOSE
+	(.
+		directive.HasCloseTag = false;
+		directive.SetRange(GetRange(directive, tToken));
+		DotNetLanguageType language = GetDefaultLanguage(directive);
+		SourceFile rootFile = RootNode as SourceFile;
+		if (rootFile != null)
+    {
+      if (directive is PageDirective || directive is ControlDirective || directive is RazorModelDirective || IsWebHandlerOrWebService(directive))
+        SetSourceFileProperties(rootFile, directive, language);
+			if (directive is AspImportDirective)
+				AddToUsingList(rootFile, directive as AspImportDirective);
+      string masterPageFile = GetMasterPageFile(directive);
+      if (!string.IsNullOrEmpty(masterPageFile))
+        SetMasterPageFile(rootFile, masterPageFile);
+    }
+	.)
+	{Comment}
+.
+AspCodeEmbedding<out AspCodeEmbedding codeEmbedding>
+(.
+	codeEmbedding = new AspCodeEmbedding();
+	Token codeEmbeddingToken = HtmlScanner.GetCodeEmbeddingText();
+	string codeEmbeddingText = String.Empty;
+	if (codeEmbeddingToken != null)
+	{
+		codeEmbeddingText = codeEmbeddingToken.Value;
+		codeEmbedding.CodeRange = codeEmbeddingToken.Range;
+		codeEmbedding.CodeEmbeddingToken = codeEmbeddingToken;
+	}
+	if (SetTokensCategory)
+			{
+				if (SavedTokens != null)
+					SavedTokens.Add(codeEmbeddingToken);
+			}
+	codeEmbedding.Code = codeEmbeddingText;
+	codeEmbedding.Name = codeEmbeddingText;
+.) =
+	ASPSCRIPTTAGSTART// | ASPDATABINDING)
+		(.
+			if (!InsideAttribute && !AspEmbCodeIsName)
+			{
+				HtmlScanner.ShouldCheckForXmlText = true;
+			}
+			codeEmbedding.HasCloseTag = false;
+			codeEmbedding.SetRange(GetRange(tToken,la));
+		.) ASPSCRIPTTAGCLOSE
+  //| RazorEmbedding
+. 
+
+RazorEmbedding =
+(.
+  ParseRazorEmbedding();
+  if (!InsideAttribute && !AspEmbCodeIsName)
+	{
+    HtmlScanner.ShouldCheckForXmlText = true;
+  }
+.) 
+  RAZORSTARTCHAR
+.
+ElementStart<out HtmlElement htmlElement, out bool shouldReturn>
+(.
+	htmlElement = null;
+	shouldReturn = true;
+	HtmlAttribute attribute = null;
+	AspCodeEmbedding codeEmbedding = null;
+	SourceRange tagOpenRange = la.Range;
+	SourceRange lastTagRange = SourceRange.Empty;
+	if (tToken != null)
+		lastTagRange = tToken.Range;
+.) 
+	= 
+	(TAGOPEN(.	htmlElement = CreateElement(la.Value, la.Range, tToken.Range); .)
+			(
+				Name
+				|(.AspEmbCodeIsName = true;.)AspCodeEmbedding<out codeEmbedding>(.AspEmbCodeIsName = false;	HandleCodeEmbedding(htmlElement, codeEmbedding);.)
+        |RazorEmbedding
+			)(.SetContextForHtmlElement(htmlElement, lastTagRange, tagOpenRange);.) 
+			{Attribute<out attribute>
+			(.
+				if (attribute != null)
+				{
+					htmlElement.Attributes.Add(attribute);
+					htmlElement.AddDetailNode(attribute);
+				}
+					
+			.)}
+
+			(.
+				TryToHandleScriptOrStyleSheets(htmlElement);
+			.)
+
+			(
+				TAGCLOSE 
+					(.
+						HandleTagClose(htmlElement, out shouldReturn);
+						if (shouldReturn)
+							return;
+					.)
+				| EMPTYTAGCLOSE
+					(.
+						HanldeEmptyTagClose(htmlElement);
+						return;
+				.)
+			)
+		)
+		(.
+			shouldReturn = false;
+		.)
+.
+ElementEnd<HtmlElement htmlElement, out bool shouldReturn>
+(.
+	SourceRange tagCloseRange = SourceRange.Empty;
+	shouldReturn = true;
+	HandleTagCloseStart(htmlElement, out tagCloseRange, out shouldReturn);
+	if (shouldReturn)
+		return;
+.)
+ =
+	TAGCLOSESTART
+					[Name]
+					(.
+						string closeTagElementName = String.Empty;
+						HandleClosingNameToken(htmlElement, tagCloseRange, out closeTagElementName);
+					.)TAGCLOSE
+					(.
+						HandleEndingTagClose(htmlElement, tagCloseRange, out shouldReturn);
+						if (shouldReturn)
+							return;
+						shouldReturn = false;
+					.)
+.
+Element
+(.
+	if (la.Type == Tokens.EOF)
+		return;
+	HtmlScanner.ShouldCheckForXmlText = false;
+	
+	HtmlElement htmlElement;
+	SourceRange contentRange = SourceRange.Empty;
+	AspCodeEmbedding codeEmbedding = null;
+	
+	
+	XmlProcessingInstruction processingInstruction = null;
+	bool shouldReturn = false;
+	
+.) = 
+	(
+				ElementStart<out htmlElement, out shouldReturn>
+				(.
+					if (TopLevelReturnCount > 0 || ShouldPreventCycling())
+					{
+						TopLevelReturnCount--;
+						ElementNestingLevel--;
+						return;
+					}
+          
+					if (shouldReturn)
+						return;
+				.)
+				{
+							Element
+						|	Reference 
+						|	CDSect 
+						|	PI<out processingInstruction, true>
+							(.
+								if (processingInstruction != null)
+									AddNode(processingInstruction);
+							.)
+						|	Comment
+						|	HtmlText
+						
+				}
+				(.
+					if (Context == htmlElement)
+						htmlElement.InnerRange = GetRange(htmlElement.InnerRange, new SourceRange(la.Range.Start.Line, la.Range.Start.Offset));
+					HtmlScanner.ShouldCheckForXmlText = false; 
+					if (la.Type != Tokens.TAGCLOSESTART)
+						HtmlScanner.ShouldCheckForXmlText = true;
+								
+				.) 
+				[ElementEnd<htmlElement, out shouldReturn>
+				(.
+					if (shouldReturn)
+						return;
+				.)
+				]
+	)
+	| AspDirectiveDef
+	| AspCodeEmbedding<out codeEmbedding>
+	(.
+		if (codeEmbedding != null)
+			AddNode(codeEmbedding);
+	.)
+  | RazorEmbedding
+  | RazorText
+  | RazorModel
+  | RazorInherits
+  | RazorSection
+  | RazorHelper
+  | RazorFunctions
+  
+.
+RazorFunctions =
+(.
+  if (SetTokensCategory)
+  {
+    CategorizedToken catToken = la as CategorizedToken;
+    catToken.Category = TokenCategory.HtmlServerSideScript;
+  }
+  ParseRazorFunctions();
+.)
+RAZORFUNCTIONS
+.
+
+RazorHelper =
+(.
+  if (SetTokensCategory)
+  {
+    CategorizedToken catToken = la as CategorizedToken;
+    catToken.Category = TokenCategory.HtmlServerSideScript;
+  }
+  ParseRazorHelper();
+.)
+  RAZORHELPER
+.
+
+RazorModel =
+(.
+  HtmlScanner.ShouldCheckForAttribute = true;
+  RazorModelDirective directive = new RazorModelDirective();
+  directive.SetRange(la.Range);
+  SplitRazorDerectiveTokenIfNeeded();
+.)
+
+  RAZORMODEL
+  UNQUOTEDATTRIBUTEVALUE
+  (.
+    directive.Model = tToken.Value.Trim();
+    directive.SetRange(GetRange(directive, tToken));
+    directive.ModelRange = tToken.Range;
+    SourceFile fileNode = Context as SourceFile;
+    if (fileNode != null)
+      fileNode.SetModelTypeName(directive.Model);
+    AddNode(directive);
+  .)
+.
+RazorSection =
+(.
+  HtmlScanner.ShouldCheckForAttribute = true;
+  SplitRazorDerectiveTokenIfNeeded();
+.)
+  RAZORSECTION
+  (.
+    ParseRazorEmbedding();
+  .)
+  NAME
+  
+.
+RazorInherits =
+(.
+  HtmlScanner.ShouldCheckForAttribute = true;
+  RazorInheritsDirective directive = new RazorInheritsDirective();
+  directive.SetRange(la.Range);
+  SplitRazorDerectiveTokenIfNeeded();
+.)
+  RAZORINHERITS
+  UNQUOTEDATTRIBUTEVALUE
+  (.
+    directive.Model = tToken.Value.Trim();
+    directive.SetRange(GetRange(directive, tToken));
+    directive.ModelRange = tToken.Range;
+    AddNode(directive);
+  .)
+.
+RazorText = 
+  (.
+    SourceRange lineRange = SourceRange.Empty;
+    string razorTextLine = HtmlScanner.ReadSingleLine(out lineRange);
+    ParseRazorText(razorTextLine, lineRange);
+   .)
+  RAZORSTARTCHARCOLON
+.
+HtmlText =
+(.HtmlScanner.ShouldCheckForXmlText = false;.)CDATA 
+							(.
+								if (tToken.Value.Length > 0)
+								{
+									HtmlText htmlText = new HtmlText();
+									htmlText.Name = tToken.Value;
+									htmlText.Text = tToken.Value;
+									AddNode(htmlText);
+									htmlText.SetRange(tToken.Range);
+								}
+							.)
+.
+Attribute<out HtmlAttribute attribute> 
+(.
+	attribute = null;
+	InsideAttribute = true;
+.)
+=
+AttributeCore<out attribute>
+(.
+	InsideAttribute = false;
+.)
+.
+
+AttributeCore<out HtmlAttribute attribute> 
+(.
+	attribute = new HtmlAttribute();
+	attribute.SetRange(la.Range);
+	AspCodeEmbedding codeEmbedding = null;
+.) =
+	(Name
+	(.
+		attribute.Name = tToken.Value;
+		attribute.SetNameRange(tToken.Range);
+		SetCategoryIfNeeded(TokenCategory.HtmlAttributeName);
+	.) [(.HtmlScanner.ShouldCheckForAttribute = true;.)
+	EQUALS 
+	((.Token stringToken = null;.)QuotedLiteral<out stringToken>
+	(.
+		if (stringToken.Value != null && stringToken.Value.Length > 0)
+		{
+			int startPos = 0;
+			int endPos = stringToken.Value.Length;
+			char firstSign = stringToken.Value[0];
+			if (firstSign == '"' || firstSign == '\'')
+			{
+				startPos = 1;
+				if (firstSign == '"')
+					attribute.AttributeQuoteType = QuoteType.DoubleQuote;
+				else if (firstSign == '\'')
+					attribute.AttributeQuoteType = QuoteType.SingleQuote;
+			}
+			if (stringToken.Value[stringToken.Value.Length -1] == '"' || stringToken.Value[stringToken.Value.Length -1] == '\'')
+				endPos = stringToken.Value.Length -1;
+			attribute.Value = stringToken.Value.Substring(startPos, endPos - startPos);	
+		}
+		attribute.SetValueRange(new SourceRange(stringToken.Range.Start.Line, stringToken.Range.Start.Offset + 1, stringToken.Range.End.Line, stringToken.Range.End.Offset - 1));
+		attribute.SetRange(GetRange(attribute, stringToken));
+    CheckForInlineExpression(attribute);
+		CheckForEventHandlerScriptCode(attribute);
+	.)
+	|UNQUOTEDATTRIBUTEVALUE
+	(.
+		attribute.Value = tToken.Value;
+		attribute.SetValueRange(tToken.Range);
+		attribute.SetRange(GetRange(attribute, tToken));
+	.)
+	| AspCodeEmbedding<out codeEmbedding>
+	  (.
+		if (codeEmbedding != null && attribute != null)
+		{
+			attribute.Value = codeEmbedding.Code;
+			attribute.SetValueRange(codeEmbedding.CodeRange);
+			attribute.AddDetailNode(codeEmbedding);
+			attribute.SetRange(GetRange(attribute, tToken));
+			attribute.ValueIsAspCodeEmbedding = true;
+		}
+	  .)
+	)
+	(.
+		SetCategoryIfNeeded(TokenCategory.HtmlAttributeValue);
+		SplitInlineExpressionIfNeeded();
+	.)
+	]
+	)
+	(.
+		ParseAttributeStyle(attribute);		
+	.)
+.
+
+
+Comment
+(.
+	HtmlScanner.ShouldCheckForXmlText = false;
+	Comment comment = new Comment();
+	comment.CommentType = CommentType.MultiLine;
+	AddComment(comment);
+.) =
+	(.HtmlScanner.ShouldCheckForXmlText = true;.) (COMMENT | SERVERCOMMENT | RAZORCOMMENT)(.comment.SetRange(tToken.Range);comment.Name = tToken.Value;.)
+	
+.
+
+Reference
+(.
+	HtmlScanner.ShouldCheckForXmlText = false;
+.) = 
+  (
+		AMPERSAND
+		(.
+		   XmlReference xmlReference = new XmlReference();
+		   AddNode(xmlReference);
+		   xmlReference.SetRange(tToken.Range);
+		   SetCategoryIfNeeded(TokenCategory.HtmlEntity);
+		.)
+		Name 
+		(.
+			xmlReference.SetRange(GetRange(xmlReference, la));
+			xmlReference.Name = tToken.Value;
+			HtmlScanner.ShouldCheckForXmlText = true;
+			SetCategoryIfNeeded(TokenCategory.HtmlEntity);
+		.) SEMICOLON
+		|
+		CHARREF
+		(.
+			XmlCharReference xmlCharReference = new XmlCharReference();
+			AddNode(xmlCharReference);
+			xmlCharReference.SetRange(GetRange(tToken, la));
+			xmlCharReference.Name = tToken.Value;
+			HtmlScanner.ShouldCheckForXmlText = true;
+			SetCategoryIfNeeded(TokenCategory.HtmlEntity);
+		.)
+		SEMICOLON
+	)
+(.
+  SetCategoryIfNeeded(TokenCategory.HtmlEntity);
+.)
+.
+
+Name = 
+		NAME
+  | DOCTYPE
+	| ELEMENTDECL
+	| ATTLISTDECL
+	|	SYSTEM
+	|	PUBLIC
+	|	EMPTY
+	|	ANYCONTENT
+	|	CDATATOKEN
+	|	IDREF
+	|	IDREFS
+	|	ENTITY
+	|	ENTITIES
+	|	NMTOKEN
+	|	NMTOKENS
+	|	NOTATION
+	|	NDATA
+	|	ID
+.
+
+QuotedLiteral<out Token stringToken>
+(.
+  stringToken = HtmlScanner.ReadStringLiteral(la.Type, this);
+.)
+ =
+  (SINGLEQUOTE
+| DOUBLEQUOTE)
+    (.
+  if(tToken.Type == Tokens.SINGLEQUOTE || tToken.Type == Tokens.DOUBLEQUOTE)
+    {
+     tToken = ConcatTokens(tToken, stringToken, Tokens.QUOTEDLITERAL, tToken.Value + stringToken.Value);
+	}
+    stringToken = tToken;
+  .)
+.
+END Parser.

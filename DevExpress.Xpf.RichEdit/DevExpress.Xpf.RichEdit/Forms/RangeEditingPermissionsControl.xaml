@@ -1,0 +1,40 @@
+﻿<UserControl x:Class="DevExpress.XtraRichEdit.Forms.RangeEditingPermissionsControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+    xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+    xmlns:dxre="clr-namespace:DevExpress.Xpf.RichEdit"
+    xmlns:design="clr-namespace:DevExpress.XtraRichEdit"
+    mc:Ignorable="d"
+    d:DesignHeight="308" d:DesignWidth="477" dx:StyleManager.ApplyApplicationTheme="True">
+
+    <UserControl.Resources>
+        <dxre:RichEditStringIdConverter x:Key="RichEditStringIdConverter" />
+    </UserControl.Resources>
+    <Grid x:Name="LayoutRoot">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Text="{Binding Source={StaticResource RichEditStringIdConverter}, ConverterParameter=Caption_RangeEditingPermissionsFormUsersLabel, Converter={StaticResource RichEditStringIdConverter}}" Margin="0,0,15,0" VerticalAlignment="Center" Grid.Row="1" Grid.Column="0" />
+        <dxe:ListBoxEdit Grid.Row="2" Grid.Column="0" Margin="0,0,15,0" MinWidth="200" MinHeight="200" x:Name="listUsers">
+            <dxe:ListBoxEdit.StyleSettings>
+                <dxe:CheckedListBoxEditStyleSettings />
+            </dxe:ListBoxEdit.StyleSettings>
+        </dxe:ListBoxEdit>
+        <TextBlock Text="{Binding Source={StaticResource RichEditStringIdConverter}, ConverterParameter=Caption_RangeEditingPermissionsFormGroupsLabel, Converter={StaticResource RichEditStringIdConverter}}" Margin="15,0,15,0" VerticalAlignment="Center" Grid.Row="1" Grid.Column="1" />
+        <dxe:ListBoxEdit Grid.Row="2" Grid.Column="1" Margin="15,0,0,0" MinWidth="200" MinHeight="200" x:Name="listUserGroups">
+            <dxe:ListBoxEdit.StyleSettings>
+                <dxe:CheckedListBoxEditStyleSettings />
+            </dxe:ListBoxEdit.StyleSettings>
+        </dxe:ListBoxEdit>
+    </Grid>
+</UserControl>

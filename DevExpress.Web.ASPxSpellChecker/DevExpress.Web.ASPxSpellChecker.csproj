@@ -1,0 +1,187 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{AF1086A8-3C57-4860-8A4F-14344C2A51DF}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <AssemblyName>DevExpress.Web.ASPxSpellChecker.v15.2</AssemblyName>
+    <RootNamespace>
+    </RootNamespace>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation />
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(MSBuildToolsVersion)' != '' ">
+    <LangVersion>ISO-2</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\Bin\Framework\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;CODE_ANALYSIS</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\Bin\Framework\</OutputPath>
+    <DefineConstants>$(CustomDefine)TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  
+  
+  
+  <ItemGroup>
+    <Reference Include="DevExpress.Data.v15.2">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+    <HintPath>..\..\Bin\Framework\DevExpress.Data.v15.2.dll</HintPath></Reference>
+    <Reference Include="DevExpress.Web.v15.2">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+    <HintPath>..\..\Bin\Framework\DevExpress.Web.v15.2.dll</HintPath></Reference>
+    <Reference Include="DevExpress.SpellChecker.v15.2.Core">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+    <HintPath>..\..\Bin\Framework\DevExpress.SpellChecker.v15.2.Core.dll</HintPath></Reference>
+    
+    <Reference Include="System"><Private>False</Private></Reference>
+    <Reference Include="System.configuration"><Private>False</Private></Reference>
+    <Reference Include="System.Data"><Private>False</Private></Reference>
+    <Reference Include="System.Design"><Private>False</Private></Reference>
+    <Reference Include="System.Drawing"><Private>False</Private></Reference>
+    <Reference Include="System.Web"><Private>False</Private></Reference>
+    <Reference Include="System.Windows.Forms"><Private>False</Private></Reference>
+    <Reference Include="System.Xml"><Private>False</Private></Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ASPxSpellChecker.cs">
+    </Compile>
+    <Compile Include="ClientSideEvents.cs" />
+    <Compile Include="Controls.cs" />
+    <Compile Include="DialogForm.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Dictionaries.cs" />
+    <EmbeddedResource Include="Forms\CS\SpellCheckForm.ascx.cs">
+      <DependentUpon>SpellCheckForm.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CS\SpellCheckOptionsForm.ascx.cs">
+      <DependentUpon>SpellCheckOptionsForm.ascx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CS\Designers\SpellCheckForm.ascx.designer.cs" />
+    <EmbeddedResource Include="Forms\CS\Designers\SpellCheckOptionsForm.ascx.designer.cs" />
+    <Compile Include="Forms\SpellCheckForm.ascx.cs">
+      <DependentUpon>SpellCheckForm.ascx.generated.cs</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\SpellCheckOptionsForm.ascx.cs">
+      <DependentUpon>SpellCheckOptionsForm.ascx.generated.cs</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\SpellCheckOptionsForm.ascx.generated.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\SpellCheckForm.ascx.generated.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Images.cs" />
+    <Compile Include="LicenseProvider.cs" />
+    <Compile Include="Localization.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SpellCheckerInternal.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="SpellCheckerSettings.cs" />
+    <Compile Include="Styles.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    
+    
+    
+    
+    
+    
+    
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Scripts\SpellChecker.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Css\Default.css" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Scripts\Dialogs.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ASPxSpellChecker.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Forms\CS\SpellCheckForm.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CS\SpellCheckOptionsForm.ascx" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Forms\VB\SpellCheckForm.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\VB\SpellCheckForm.ascx.vb">
+      <DependentUpon>SpellCheckForm.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\VB\SpellCheckOptionsForm.ascx" />
+    <EmbeddedResource Include="Forms\VB\SpellCheckOptionsForm.ascx.vb">
+      <DependentUpon>SpellCheckOptionsForm.ascx</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    
+    
+  </ItemGroup>
+  <ItemGroup>
+    
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\Loading.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\scErrorUnderline.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Forms\VB\Designers\SpellCheckForm.ascx.designer.vb" />
+    <EmbeddedResource Include="Forms\VB\Designers\SpellCheckOptionsForm.ascx.designer.vb" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Css\system.css" />
+    <EmbeddedResource Include="LocalizationRes.resx" />
+    <EmbeddedResource Include="LocalizationRes.ru.resx" />
+    <EmbeddedResource Include="LocalizationRes.ja.resx" />
+    <EmbeddedResource Include="LocalizationRes.es.resx" />
+    <EmbeddedResource Include="LocalizationRes.de.resx" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <PropertyGroup>
+    
+  </PropertyGroup>
+<ItemGroup><EmbeddedResource Include="Descriptions.resx" /></ItemGroup><ItemGroup><Compile Include="Descriptions.cs" /></ItemGroup></Project>

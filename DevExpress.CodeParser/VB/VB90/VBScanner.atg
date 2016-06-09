@@ -1,0 +1,431 @@
+EofCode = EOF;
+TokenKind = Type;
+TokenValue = Value;
+
+SCANNER VBScanner
+
+FRAME
+-->begin
+using System;
+using System.IO;
+using System.Collections;
+using System.Collections.Specialized;
+
+#if DXCORE
+namespace DevExpress.CodeRush.StructuralParser.VB
+#else
+namespace DevExpress.CodeParser.VB
+#endif
+{
+	public partial class VBScanner : VBScannerBase
+	{
+	-->declarations
+		
+    public VBScanner(string input)
+			: base(input)
+		{
+		}
+    public VBScanner(ISourceReader s)
+      : base(s)
+		{
+		}
+		public VBScanner(ISourceReader reader, int line, int offset)
+			: base(reader, line, offset)
+		{
+		}
+
+		// protected methods...
+		protected override int GetUnicodeLetterIndex()
+		{
+			return UnicodeLetterIndex;
+		}
+		protected override int GetNextState(int input)
+		{
+			return start[input];
+		}
+		protected override void InitializeIgnoreTable()
+		{
+			ignore = new BitArray(charSetSize + 1);
+			ignore[' '] = true;  // blanks are always white space
+			-->initialization
+		}
+		protected override void NextChCasing()
+		{
+			-->casing1
+      if (ch != EOF)
+        ch = CharUtils.Translate(ch);
+		}
+		protected override void AddCh()
+		{
+			base.AddCh();
+			-->casing2
+			NextCh();
+		}
+
+	-->comments
+
+		void CheckLiteral()
+		{
+			-->literals
+		}
+    
+    -->scan1
+		
+		protected override void NextTokenScan(int state)
+		{
+      int recKind = noSym;
+		  int recEnd = pos;
+      int recPrevLineStart = prevLineStart;
+
+			AddCh();		
+			switch (state)
+			{
+				case -1: { t.Type = eofSym; break; } // NextCh already done
+				case 0:
+        {
+				  if (recKind != noSym)
+          {
+					  tlen = recEnd - t.StartPosition;
+            prevLineStart = recPrevLineStart;
+					  BackTrackScannerToToken();
+				  }
+				  t.Type = recKind;
+          break;
+			  }
+			  -->scan2
+			}
+		}
+		protected override Token NextToken()
+		{
+      Token token = base.NextToken();
+      if (token != null && token.Type == maxT)
+        return NextToken();
+      return token;
+		}
+
+    // public properties...
+    public override char CharValue
+    {
+      get { return valCh; }
+    }
+
+	} // end Scanner
+}
+$$$
+ENDFRAME
+IGNORECASE
+CHARACTERS
+
+  tab                = '\u0009'. /*  9 = tabulator */
+  eol                = '\u000a'. /* 10 = line feed */
+  cr                 = '\u000d'. /* 13 = carriage return */
+  whiteSpace         = tab + " ".
+  newLine            = cr + eol. /* Line separator character (U+2028) + Paragraph separator character (U+2029) */
+
+
+  octalDigit         = "01234567".
+  digit              = octalDigit + "89".
+  hexDigit           = digit + "ABCDEFabcdef".
+  integralTypeCharacter = "%&".
+  sign = "+-".
+  dot = ".".
+  identStartChar = 'A'..'Z'.
+  identChar = identStartChar + "_" + digit.
+  typeCharacter = "%&@!#$".
+  dbQuote = "\"".
+  stringChar = ANY - dbQuote - "\r" - "\n".
+  notNewLine         = ANY - newLine .
+  noEqual = ANY - "=" - whiteSpace.
+  commentChar		= ANY - "-" - ">".
+  notSingleQuoteAndNewLine = ANY - "'" - newLine.
+
+  /*----- keyword names needed in LL(1) resolvers -----*/
+TOKENS
+  EOL = cr [eol] | eol.
+  INTEGERLITERAL = (digit {digit} | "&" ("H" hexDigit {hexDigit} | "O" octalDigit {octalDigit} ))
+                   (["U"] ["S"|"I"|"L"] | [integralTypeCharacter]).
+  FLOATINGPOINTLITERAL = "." digit {digit}
+    [("e" | "E") ["+" | "-"] digit {digit}]
+    ["F" | "R" | "D" | "@" | "!" | "#"]
+  | digit {digit}
+    ( "." digit {digit}
+      [("e" | "E" ) ["+" | "-"] digit {digit} ]
+      ["F" | "R" | "D" | "@" | "!" | "#"]
+    | ("e" | "E") ["+" | "-"] digit {digit}
+      ["F" | "R" | "D" | "@" | "!" | "#"]
+    | "F" | "R" | "D" | "@" | "!" | "#"
+    ).
+  IDENTIFIER = identStartChar {identChar} [typeCharacter]
+             | "_" identChar {identChar} [typeCharacter]
+             | "[" (identStartChar {identChar} [typeCharacter]
+             | "_" identChar {identChar} [typeCharacter]) "]".
+
+
+  CONSTDIRECTIVE                  = "#" {whiteSpace} "Const".
+  IFDIRECTIVE                     = "#" {whiteSpace} "If".
+  ENDIFDIRECTIVE                  = "#" {whiteSpace} "End" whiteSpace {whiteSpace} "If".
+  ELSEIFDIRECTIVE                 = "#" {whiteSpace} "ElseIf".
+  ELSEDIRECTIVE                   = "#" {whiteSpace} "Else".
+  REGION                          = "#" {whiteSpace} "Region".
+  ENDREGION                       = "#" {whiteSpace} "End" whiteSpace {whiteSpace} "Region".
+  EXTERNALSOURCEDIRECTIVE         = "#" {whiteSpace} "ExternalSource".
+  ENDEXTERNALSOURCEDIRECTIVE      = "#" {whiteSpace} "End" whiteSpace {whiteSpace} "ExternalSource".
+  LINECONTINUATION = "_" {whiteSpace} [cr [eol] | eol].
+
+  SINGLELINECOMMENT = "REM" whiteSpace {notNewLine}
+                      | "'"
+                      | "''"
+                      | "'" notSingleQuoteAndNewLine {notNewLine}
+                      | "''" notSingleQuoteAndNewLine {notNewLine}.
+
+  CHARACTERLITERAL  = dbQuote (stringChar | dbQuote dbQuote) dbQuote "C".
+  STRINGLITERAL = dbQuote {stringChar | dbQuote dbQuote} [dbQuote].
+
+  PLUSEQUAL = "+" {whiteSpace} "=".
+  MINUSEQUAL = "-" {whiteSpace} "=".
+  MULEQUAL = "*" {whiteSpace} "=".
+  DIVEQUAL = "/" {whiteSpace} "=".
+  BACKSLASHEQUALS = "\\" {whiteSpace} "=".
+  XOREQUAL = "^" {whiteSpace} "=".
+  ANDEQUAL = "&" {whiteSpace} "=".
+  SHIFTLEFT = "<" {whiteSpace} "<".
+  SHIFTRIGHT = ">" {whiteSpace} ">".
+  SHIFTRIGHTEQUAL = ">" {whiteSpace} ">" {whiteSpace} "=".
+  SHIFTLEFTEQUAL = "<" {whiteSpace} "<" {whiteSpace} "=".
+  NOTEQUALS = "<" {whiteSpace} ">".
+  LESSOREQUAL = "<" {whiteSpace} "=".
+  GREATEROREQUAL = ">" {whiteSpace} "=".
+  COMMA = ",".
+  CURLYBRACEOPEN = "{".
+  CURLYBRACECLOSE = "}".
+  PARENOPEN = "(".
+  PARENCLOSE = ")".
+  DOT = ".".
+  COLON = ":".
+  COLONEQUALS = ":=".
+  PLUS = "+".
+  MINUS = "-".
+  ASTERISK = "*".// CONTEXT ( {whiteSpace} noEqual ).
+  SLASH = "/".
+  BACKSLASH = "\\".
+  EXCLAMATIONSYMBOL = "!".
+  XORSYMBOL = "^".
+  EQUALSSYMBOL = "=".
+  GREATERTHAN = ">".
+  LESSTHAN = "<".
+  BITAND = "&".
+  SHARP = "#".
+
+  // Keywords
+  ADDHANDLER = "AddHandler".
+  ADDRESSOF = "AddressOf".
+  ALIAS = "Alias".
+  AND = "And".
+  ANDALSO = "AndAlso".
+  AS = "As".
+  BOOLEAN = "Boolean".
+  BYREF = "ByRef".
+  BYTE = "Byte".
+  BYVAL = "ByVal".
+  CALL = "Call".
+  CASE = "Case".
+  CATCH = "Catch".
+  CBOOL = "CBool".
+  CBYTE = "CByte".
+  CCHAR = "CChar".
+  CDATE = "CDate".
+  CDBL = "CDbl".
+  CDEC = "CDec".
+  CHAR = "Char".
+  CINT = "CInt".
+  CLASS = "Class".
+  CLNG = "CLng".
+  COBJ = "CObj".
+  CONST = "Const".
+  CONTINUE = "Continue".
+  CSBYTE = "CSByte".
+  CSHORT = "CShort".
+  CSNG = "CSng".
+  CSTR = "CStr".
+  CTYPE = "CType".
+  CUINT = "CUInt".
+  CULNG = "CULng".
+  CUSHORT = "CUShort".
+  DATE = "Date".
+  DECIMAL = "Decimal".
+  DECLARE = "Declare".
+  DEFAULT = "Default".
+  DELEGATE = "Delegate".
+  DIM = "Dim".
+  DIRECTCAST = "DirectCast".
+  DO = "Do".
+  DOUBLE = "Double".
+  EACH = "Each".
+  ELSE = "Else".
+  ELSEIF = "ElseIf".
+  ENDTOKEN = "End".
+  ENDIF = "EndIf".
+  ENUM = "Enum".
+  ERASE = "Erase".
+  ERROR = "Error".
+  EVENT = "Event".
+  EXIT = "Exit".
+  FALSE = "False".
+  FINALLY = "Finally".
+  FOR = "For".
+  FRIEND = "Friend".
+  FUNCTION = "Function".
+  GET = "Get".
+  GETTYPE = "GetType".
+  GLOBAL = "Global".
+  GOSUB = "GoSub".
+  GOTO = "GoTo".
+  HANDLES = "Handles".
+  IFTOKEN = "If".
+  IMPLEMENTS = "Implements".
+  IMPORTS = "Imports".
+  IN = "In".
+  OUT = "Out".
+  INHERITS = "Inherits".
+  INTEGER = "Integer".
+  INTERFACE = "Interface".
+  IS = "Is".
+  ISNOT = "IsNot".
+  ISFALSE = "IsFalse".
+  ISTRUE = "IsTrue".
+  LET = "Let".
+  LIB = "Lib".
+  LIKE = "Like".
+  LONG = "Long".
+  LOOP = "Loop".
+  ME = "Me".
+  MOD = "Mod".
+  MODULE = "Module".
+  MUSTINHERIT = "MustInherit".
+  MUSTOVERRIDE = "MustOverride".
+  MYBASE = "MyBase".
+  MYCLASS = "MyClass".
+  NAMESPACE = "Namespace".
+  NARROWING = "Narrowing".
+  NEW = "New".
+  NEXT = "Next".
+  NOT = "Not".
+  NOTHING = "Nothing".
+  NOTINHERITABLE = "NotInheritable".
+  NOTOVERRIDABLE = "NotOverridable".
+  OBJECT = "Object".
+  OF = "Of".
+  ON = "On".
+  OPERATOR = "Operator".
+  OPTION = "Option".
+  OPTIONAL = "Optional".
+  OR = "Or".
+  ORELSE = "OrElse".
+  OVERLOADS = "Overloads".
+  OVERRIDABLE = "Overridable".
+  OVERRIDES = "Overrides".
+  PARAMARRAY = "ParamArray".
+  PARTIAL = "Partial".
+  PRIVATE = "Private".
+  PROPERTY = "Property".
+  PROTECTED = "Protected".
+  PUBLIC = "Public".
+  PRESERVE = "Preserve".
+  RAISEEVENT = "RaiseEvent".
+  READONLY = "ReadOnly".
+  REDIM = "ReDim".
+  REMOVEHANDLER = "RemoveHandler".
+  RESUME = "Resume".
+  RETURN = "Return".
+  REM = "Rem".
+  SBYTE = "SByte".
+  SELECT = "Select".
+  SET = "Set".
+  SHADOWS = "Shadows".
+  SHARED = "Shared".
+  SHORT = "Short".
+  SINGLE = "Single".
+  STATIC = "Static".
+  STEP = "Step".
+  STOP = "Stop".
+  STRING = "String".
+  STRUCTURE = "Structure".
+  SUB = "Sub".
+  SYNCLOCK = "SyncLock".
+  THEN = "Then".
+  THROW = "Throw".
+  TOTOKEN = "To".
+  TRUE = "True".
+  TRY = "Try".
+  TRYCAST = "TryCast".
+  TYPEOF = "TypeOf".
+
+  UINTEGER = "UInteger".
+  ULONG = "ULong".
+  USHORT = "UShort".
+  USING = "Using".
+  UNTIL = "Until".
+  VARIANT = "Variant".
+  WEND = "Wend".
+  WHEN = "When".
+  WHILE = "While".
+  WIDENING = "Widening".
+  WITH = "With".
+  WITHEVENTS = "WithEvents".
+  WRITEONLY = "WriteOnly".
+  XOR = "Xor".
+
+// Other tokens
+  ADD = "Add".
+  REMOVE = "Remove".
+  ANSI = "Ansi".
+  ASSEMBLY = "Assembly".
+  AUTO = "Auto".
+  UNICODE = "Unicode".
+  EXPLICIT = "Explicit".
+  STRICT = "Strict".
+  COMPARE = "Compare".
+  BINARY = "Binary".
+  TEXT = "Text".
+  OFF = "Off".
+  CUSTOM = "Custom".
+  FROMTOKEN = "From".
+  WHERE = "Where".
+  JOIN = "Join".
+  EQUALS = "Equals".
+  INTO = "Into".
+  ORDER = "Order".
+  BY = "By".
+  GROUP = "Group".
+  ASCENDING = "Ascending".
+  DESCENDING = "Descending".
+  QUESTION = "?".
+  DISTINCT = "Distinct".
+  INFER = "Infer".
+  KEYTOKEN = "Key".
+  AGGREGATE = "Aggregate".
+  SKIP = "Skip".
+  TAKE = "Take".
+
+  OpenEmbeddedCodeTAG = "<%=".
+  CloseEmbeddedCodeTAG = "%>".
+  CLOSETAG = "</".
+  SingleLineCloseTAG = "/>".
+  CommAtSymbol = "@".
+  TripleDot = "...".
+  XmlComStr = "<!--" {">" |  commentChar | "-" {"-"} commentChar} "-" {"-"} ">".
+  DOLLARSYMBOL = "$".
+  PERCENTSYMBOL = "%".
+  //SINGLELINEXMLCOMMENT = "'''" {notNewLine} [cr [eol] | eol] {whiteSpace} 
+  //                      {"'''" {notNewLine} [cr [eol] | eol] {whiteSpace}}.
+
+  //("''".*)({LineTerminator}{WhiteSpace}*("''".*))*
+
+  SINGLELINEXMLCOMMENT = "'''" {notNewLine} { (cr [eol] | eol) {whiteSpace} "'''" {notNewLine} }.
+
+
+PRAGMAS
+
+IGNORE tab
+
+END VBScanner.

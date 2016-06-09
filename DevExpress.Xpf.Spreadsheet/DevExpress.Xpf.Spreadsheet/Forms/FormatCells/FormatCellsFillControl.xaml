@@ -1,0 +1,90 @@
+﻿<UserControl x:Class="DevExpress.Xpf.Spreadsheet.Forms.FormatCellsFillControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+             xmlns:dxspsi="clr-namespace:DevExpress.Xpf.Spreadsheet.Internal"
+             xmlns:dxpatternmodel="clr-namespace:DevExpress.Export.Xl;assembly=DevExpress.Printing.v15.2.Core"
+             xmlns:dxsps="clr-namespace:DevExpress.Xpf.Spreadsheet" 
+             mc:Ignorable="d"
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <dxe:EnumItemsSource x:Key="patternStylesSource" EnumType="{x:Type dxpatternmodel:XlPatternType}"/>
+        <dxspsi:SystemColorToMediaColor x:Key="SystemColorToMediaColor"/>
+        <dxspsi:CheckStateToBoolConverter x:Key="CheckStateToBoolConverter"/>
+        <dxspsi:ColorToBrushConverter x:Key="ColorToBrushConverter"/>
+        <dxsps:SpreadsheetControlStringIdConverter x:Key="stringIdConverter" />
+    </UserControl.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="180"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <TextBlock Text="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_FormatCellsFormFillBackgroundColor, Converter={StaticResource stringIdConverter}}"
+                   HorizontalAlignment="Left"/>
+        <ToggleButton x:Name="noColor"
+                      Grid.Row="1"
+                      Content="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_FormatCellsFormFillNoColor, Converter={StaticResource stringIdConverter}}"
+                      Margin="0,3,0,0"
+                      IsChecked="{Binding IsFillColorEmpty, Mode=TwoWay}"/>
+        <dxe:ColorEdit x:Name="backColor" 
+                       Grid.Row="2" 
+                       Margin="0,3,0,0"
+                       ShowBorder="False"
+                       ColorChanged="OnBackColorChanged"
+                       Color="{Binding FillBackColor, Mode=TwoWay, Converter={StaticResource SystemColorToMediaColor}, NotifyOnTargetUpdated=True, NotifyOnSourceUpdated=True}"
+                       TargetUpdated="backColor_TargetUpdated"
+                       SourceUpdated="backColor_SourceUpdated"/>
+        <GroupBox Header="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_FormatCellsFormFillSample, Converter={StaticResource stringIdConverter}}"
+                  Grid.Row="4" 
+                  Height="50" 
+                  x:Name="group"
+                  Grid.ColumnSpan="2">
+            <Border BorderThickness="0" x:Name="preview"/>
+        </GroupBox>
+        <TextBlock Grid.Column="1" Grid.Row="0"
+                   Text="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_FormatCellsFormFillPatternColor, Converter={StaticResource stringIdConverter}}"
+                   HorizontalAlignment="Left"
+                   Margin="50,3,0,0"  />
+        <dxe:PopupColorEdit x:Name="patternColor"
+                Grid.Column="1" Grid.Row="1" 
+                Margin="50,3,0,0" 
+                Color="{Binding FillForeColor, Mode=TwoWay, Converter={StaticResource SystemColorToMediaColor}, NotifyOnTargetUpdated=True, NotifyOnSourceUpdated=True}" 
+                TargetUpdated="patternColor_TargetUpdated"
+                SourceUpdated="patternColor_SourceUpdated"
+                Grid.ColumnSpan="2"/>
+        <Grid Grid.Column="1" Grid.Row="2"
+              Margin="50,3,0,0" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="11*"/>
+                <ColumnDefinition Width="24*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0"
+                   Text="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_FormatCellsFormFillPatternStyle, Converter={StaticResource stringIdConverter}}"
+                   HorizontalAlignment="Left" 
+                   Grid.ColumnSpan="2"
+                   Margin="0,0,-1,0" />
+            <dxe:ComboBoxEdit x:Name="patternStyle"
+                          Grid.Row="1" 
+                          Margin="0,3,0,0"  
+                          ItemsSource="{StaticResource patternStylesSource}"
+                          EditValue="{Binding PatternType, Mode=TwoWay, NotifyOnTargetUpdated=True, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}"
+                          TargetUpdated="patternStyle_TargetUpdated"
+                          SourceUpdated="patternStyle_SourceUpdated"
+                          Grid.ColumnSpan="2" IsTextEditable="False"/>
+        </Grid>
+    </Grid>
+</UserControl>

@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application>
+  <ActionDesign>
+    <Actions>
+      <Action Id="EditReportController.Edit" Caption="編集" />
+      <Action Id="ExecuteReport" Caption="レポートの実行" />
+      <Action Id="PreviewReport" Caption="プレビュー" />
+      <Action Id="ShowReportDesigner" Caption="レポート デザイナを表示" />
+    </Actions>
+  </ActionDesign>
+  <BOModel>
+    <Class Name="DevExpress.ExpressApp.Reports.Win.NewReportParams" Caption="新規レポート パラメーター" />
+    <Class Name="DevExpress.ExpressApp.Reports.Win.NewXafReportWizardParameters" Caption="新規 XAF レポート ウィザード パラメーター">
+      <OwnMembers>
+        <Member Name="DataType" Caption="データ タイプ" />
+        <Member Name="ReportName" Caption="レポート名" />
+        <Member Name="ReportType" Caption="レポート タイプ" />
+      </OwnMembers>
+    </Class>
+  </BOModel>
+  <Localization>
+    <LocalizationGroup Name="Captions">
+      <LocalizationItem Name="AllFiles" Value="すべてのファイル" />
+      <LocalizationItem Name="ExportLayout" Value="レイアウトをファイルにエクスポート..." />
+      <LocalizationItem Name="ImportLayout" Value="レイアウトをファイルからインポート..." />
+      <LocalizationItem Name="ReportDesignerError" Value="エラー" />
+      <LocalizationItem Name="ReportDesignerWarning" Value="警告" />
+      <LocalizationItem Name="ReportFiles" Value="レポート ファイル" />
+    </LocalizationGroup>
+    <LocalizationGroup Name="Enums">
+      <LocalizationGroup Name="DevExpress.ExpressApp.Reports.Win.ReportType" Value="レポート タイプ">
+        <LocalizationItem Name="Label" Value="ラベル" />
+        <LocalizationItem Name="Standard" Value="標準" />
+      </LocalizationGroup>
+    </LocalizationGroup>
+    <LocalizationGroup Name="Messages">
+      <LocalizationItem Name="ReportPreviewFilter" Value="設定しているフィルターはクエリ可能なフィールドを使用しているため、デザイン時フィルターとして使用できません。\r\nデザイン時に使用できるフィルターの自動タイプが作成されます。\r\nFilterForDesignPreview プロパティを設定するとフィルターを手動で変更できます。" />
+      <LocalizationItem Name="WrongReportPreviewFilter" Value="クエリ可能なフィールドを持つフィルターは FilterForDesignPreview プロパティに使用できません。" />
+    </LocalizationGroup>
+  </Localization>
+  <Views>
+    <DetailView Id="NewXafReportWizardParameters_DetailView" Caption="新規レポート ウィザード">
+      <Items>
+        <StaticText Id="ReportText" Text="新しいレポートを作成するには、下のフィールドに名前を入力し、リストからレポートの主要データ タイプを選択してください。" />
+      </Items>
+      <Layout>
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="Static" Caption="静的(11)">
+            <LayoutGroup Id="NewReportParams" Caption="新規レポート パラメーター">
+              <LayoutGroup Id="SimpleEditors" Caption="シンプル エディタ" />
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+  </Views>
+</Application>

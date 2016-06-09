@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application>
+  <ActionDesign>
+    <Actions>
+      <Action Id="ChooseTheme" Caption="テーマの選択" />
+      <Action Id="Edit" Caption="編集" />
+      <Action Id="Export" Caption="エクスポート先" />
+      <Action Id="ExportAnalysis" Caption="分析のエクスポート先" />
+      <Action Id="InlineEdit" Caption="インライン編集" />
+      <Action Id="NavigateTo" Caption="移動先" />
+      <Action Id="QuickCreateAction" Caption="クイック作成" />
+      <Action Id="SwitchToEditMode" Caption="編集" />
+    </Actions>
+  </ActionDesign>
+  <BOModel>
+    <Class Name="DevExpress.ExpressApp.Web.LogonAttemptsAmountedToLimit" Caption="ログオン試行回数が規定数を超えました。" />
+    <Class Name="DevExpress.ExpressApp.Web.ParameterlessLogonFailedInfo" Caption="パラメーターのないログオンに失敗情報">
+      <OwnMembers>
+        <Member Name="Message" Caption="メッセージ" />
+      </OwnMembers>
+    </Class>
+  </BOModel>
+  <Localization>
+    <LocalizationGroup Name="ASPxImagePropertyEditor">
+      <LocalizationItem Name="Clear" Value="クリア" />
+      <LocalizationItem Name="Edit" Value="編集" />
+    </LocalizationGroup>
+    <LocalizationGroup Name="Messages">
+      <LocalizationItem Name="ThereAreNoRecordsToDisplay" Value="表示するレコードはありません。" />
+    </LocalizationGroup>
+	<LocalizationGroup Name="Captions">
+		<LocalizationItem Name="MyAccount" Value="マイアカウント"  />
+	</LocalizationGroup>
+  </Localization>
+  <Views>
+    <DetailView Id="LogonAttemptsAmountedToLimit_DetailView" Caption="ログオン">
+      <Items>
+        <StaticText Id="LogonText" Text="ログインに3回失敗したため、ブラウザを閉じる必要があります。ログインの詳細については、システム管理者にお問い合わせください。" />
+      </Items>
+    </DetailView>
+    <DetailView Id="ParameterlessLogonFailedInfo_DefaultDetailView" Caption="ログオン">
+      <Items>
+        <StaticText Id="Message" Text="{0} ログイン情報についてシステム管理者にお問い合わせください。" />
+      </Items>
+    </DetailView>
+  </Views>
+</Application>

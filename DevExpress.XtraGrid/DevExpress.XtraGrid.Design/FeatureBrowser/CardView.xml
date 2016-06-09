@@ -1,0 +1,696 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FeatureItems SourceType="CardView">
+
+	<FeatureItem ID="DataBinding_Main" Name="Data Binding" Category="">
+		<Description>
+			This section contains pages that allow you to bind the grid control to data, bind the current view's columns to data fields or create unbound columns.
+		</Description>
+	</FeatureItem>
+	<FeatureItem ID="Layout_Main" Name="Card Layout" Category="">
+		<Description>
+			The pages in this section allow you to customize the size, order and other layout aspects for cards, card fields and value cells.
+		</Description>
+	</FeatureItem>
+	<FeatureItem ID="Feature_Sorting" Name="Sorting" Category="" ShowColumns="True" ExpandAll="True" SelectedPropertyOnStart="OptionsView.ShowQuickCustomizeButton">
+        <Properties>
+			<Item Name="OptionsView.ShowQuickCustomizeButton"></Item>
+		</Properties>
+		<Pages>
+			<Columns>
+				<Properties>
+					<Item Name="SortOrder"></Item>
+					<Item Name="OptionsColumn.AllowSort"></Item>
+				</Properties>
+			</Columns>
+		</Pages>
+		<Description>
+			Quick customization button's visibility:
+			[{(OptionsView.ShowQuickCustomizeButton=False)}OptionsView.ShowQuickCustomizeButton] property.
+
+			Disable / enable sorting for particular fields:
+			[{goto:Columns,OptionsColumn.AllowSort}Column.OptionsColumn.AllowSort] row property.
+			
+			Sort order for a field:
+			[{goto:Columns,SortOrder}Column.SortOrder] row property.
+		</Description>
+	</FeatureItem>
+	<FeatureItem ID="Feature_Filtering" Name="Filtering" Category="" SelectedPropertyOnStart="OptionsView.ShowQuickCustomizeButton">
+        <Properties>
+			<Item Name="OptionsView.ShowFilterPanelMode"></Item>
+			<Item Name="ActiveFilterEnabled"></Item>
+			<Item Name="OptionsView.ShowQuickCustomizeButton"></Item>
+		</Properties>
+        <ExpandedPropertiesOnStart>
+			<ExpandedItem Name="OptionsView"></ExpandedItem>
+		</ExpandedPropertiesOnStart>
+		<Pages>
+			<Columns>
+				<Properties>
+					<Item Name="OptionsFilter.AllowFilter"></Item>
+				</Properties>
+			</Columns>
+		</Pages>
+		<Description>
+			Quick customization button's visibility:
+			[{(OptionsView.ShowQuickCustomizeButton=False)}OptionsView.ShowQuickCustomizeButton] option.
+			
+			Filter panel's visibility:
+			[OptionsView.ShowFilterPanelMode] option.
+			
+			Allow Filtering:
+			[{goto:Columns,OptionsFilter.AllowFilter}Column.OptionsFilter.AllowFilter] option.
+			
+			Enable / disable the current filter condition:
+			[ActiveFilterEnabled] property.
+		</Description>
+	</FeatureItem>
+	<FeatureItem ID="Editing_Main" Name="Editing" Category="">
+		<Description>
+			The pages in this section allow you to specify settings for data editing.
+		</Description>
+	</FeatureItem>
+	<FeatureItem ID="Nav_Main" Name="Focus, Selection, Navigation" Category="">
+		<Description>
+			The pages in this section allow you to specify settings for focus movement, selection and navigation.
+		</Description>
+	</FeatureItem>
+	<FeatureItem ID="MD_Main" Name="Master-Detail" Category="">
+		<Description>
+			The pages in this section allow you to customize how the view and its details work in master-detail mode.
+		</Description>
+	</FeatureItem>
+	<FeatureItem ID="Appearance_Main" Name="Appearance" Category="">
+		<Description>
+			The pages in this section allow you to specify the look and feel (paint style) for the entire grid control or just the currently selected view. They also enable you to change the style of individual view elements. For a list of all the visual elements available along with their appearance settings, refer to the [{gotoFeature:VE_Main}Visual Elements] section.
+		</Description>
+	</FeatureItem>
+	<FeatureItem ID="VE_Main" Name="Visual Elements" Category="" ShowColumns="False" Sorted="True" ExpandAll="False" SelectedPropertyOnStart="" SampleSetupClass="">
+		<Description>
+			This section contains pages that describe how to change the visibility, appearance and size of visual elements provided to you by the grid control and the currently selected view.
+		</Description>
+	</FeatureItem>
+	<FeatureItem ID="Behavior_Main" Name="Behavior" Category="">
+		<Description>
+			The pages in this section allow you to change how the view performs particular operations.
+		</Description>
+	</FeatureItem>
+	<FeatureItem ID="EndUser_Main" Name="End-user Actions" Category="">
+		<Description>
+			The pages in this section provide settings that control the availability of particular actions to end users and events that provide notifications about actions performed.
+		</Description>
+	</FeatureItem>
+	<FeatureItem ID="Card_Printing" Name="Printing" Category="" SelectedPropertyOnStart="OptionsPrint.PrintSelectedCardOnly">
+        <Properties>
+			<Item Name="PrintMaximumCardColumns"></Item>
+			<Item Name="OptionsPrint"></Item>
+			<Item Name="AppearancePrint"></Item>
+		</Properties>
+		<ExpandedPropertiesOnStart>
+			<ExpandedItem Name="OptionsPrint"></ExpandedItem>
+		</ExpandedPropertiesOnStart>
+		<Description>
+			This page provides access to all the settings available for customizing printing. You can also access the printing settings which relate to a particular visual element. See the [{gotoFeature:VE_Main}Visual Elements] section for this purpose.
+			
+			Print styles enabled: [OptionsPrint.UsePrintStyles].
+		</Description>
+	</FeatureItem>
+
+	<FeatureItem ID="Layout_General" Name="General Settings" Category="Layout_Main" ExpandAll="True" SelectedPropertyOnStart="CardInterval">
+        <Properties>
+			<Item Name="CardInterval"></Item>
+			<Item Name="MaximumCardRows"></Item>
+			<Item Name="MaximumCardColumns"></Item>
+		</Properties>
+		<Description>
+			Interval between cards:
+			[CardInterval] property.
+			
+			Maximum number of cards to display vertically and horizontally:
+			[MaximumCardRows] and [MaximumCardColumns] properties.
+		</Description>
+	</FeatureItem>
+	<FeatureItem ID="Layout_Fields" Name="Fields" Category="Layout_Main" SelectedPropertyOnStart="OptionsBehavior.FieldAutoHeight">
+        <Properties>
+			<Item Name="OptionsBehavior.FieldAutoHeight"></Item>
+			<Item Name="OptionsView.ShowEmptyFields"></Item>
+		</Properties>
+        <ExpandedPropertiesOnStart>
+			<ExpandedItem Name="OptionsBehavior"></ExpandedItem>
+			<ExpandedItem Name="OptionsView"></ExpandedItem>
+		</ExpandedPropertiesOnStart>
+		<Pages>
+			<Columns>
+				<Properties>
+					<Item Name="ColumnEdit"></Item>
+					<Item Name="Visible"></Item>
+					<Item Name="VisibleIndex"></Item>
+				</Properties>
+			</Columns>
+		</Pages>
+		<Description>
+			Visibility and order:
+			[{goto:Columns,Visible}Column.Visible,] [{goto:Columns,VisibleIndex}Column.VisibleIndex] properties.
+			
+			Automatic field height:
+			[{(OptionsBehavior.FieldAutoHeight=False)}OptionsBehavior.FieldAutoHeight] option. In effect when a memo or picture editor is assigned to a column's [{goto:Columns,ColumnEdit}ColumnEdit] property.
+			
+			Suppress empty fields:
+			[{(OptionsView.ShowEmptyFields=False)}OptionsView.ShowEmptyFields] option.
+		</Description>
+	</FeatureItem>
+	<FeatureItem ID="Layout_CardWidth" Name="Card Width" Category="Layout_Main" ExpandAll="True" SelectedPropertyOnStart="CardWidth">
+        <Properties>
+			<Item Name="CardWidth"></Item>
+			<Item Name="MaximumCardColumns"></Item>
+			<Item Name="OptionsBehavior.AutoHorzWidth"></Item>
+		</Properties>
+		<Description>
+			Card width:
+			[CardWidth] property.
+			
+			Automatic card width:
+			[{(OptionsBehavior.AutoHorzWidth=False)}OptionsBehavior.AutoHorzWidth] option, [MaximumCardColumns] property.
+		</Description>
+	</FeatureItem>
+	<FeatureItem ID="Layout_CardWidthUserActions" Name="End-user Actions" Category="Layout_CardWidth" ReferenceId="VE_Separator">
+	</FeatureItem>
+	<FeatureItem ID="Layout_ExpandCollapse" Name="Card Collapsing and Expanding" Category="Layout_Main" ExpandAll="True" SelectedPropertyOnStart="OptionsView.ShowCardExpandButton">
+        <Properties>
+			<Item Name="OptionsBehavior.AllowExpandCollapse"></Item>
+			<Item Name="OptionsView.ShowCardExpandButton"></Item>
+			<Item Name="OptionsView.ShowCardCaption"></Item>
+			<Item Name="CardExpanding"></Item>
+			<Item Name="CardCollapsing"></Item>
+			<Item Name="CardExpanded"></Item>
+			<Item Name="CardCollapsed"></Item>
+		</Properties>
+		<Description>
+			Availability:
+			[{(OptionsBehavior.AllowExpandCollapse=False)}OptionsBehavior.AllowExpandCollapse], [{(OptionsView.ShowCardCaption=False)}OptionsView.ShowCardCaption], [{(OptionsView.ShowCardExpandButton=False)}OptionsView.ShowCardExpandButton] options. 
+			
+			Prevent particular cards from being expanded / collapsed:
+			[CardExpanding], [CardCollapsing] events.
+			
+			Expanding / collapsing notifications:
+			[CardExpanded], [CardCollapsed] events.
+		</Description>
+	</FeatureItem>
+
+	<FeatureItem ID="VE_FilterDropdowns" Name="Filter Dropdowns" Category="Feature_Filtering" ExpandAll="True" SelectedPropertyOnStart="OptionsFilter.ShowAllTableValuesInFilterPopup" SampleSetupClass="">
+        <Properties>
+			<Item Name="ShowFilterPopupListBox"></Item>
+			<Item Name="OptionsFilter.ShowAllTableValuesInFilterPopup"></Item>			
+			<Item Name="OptionsFilter.UseNewCustomFilterDialog"></Item>
+			<Item Name="OptionsFilter.ColumnFilterPopupMaxRecordsCount"></Item>
+			<Item Name="OptionsFilter.ColumnFilterPopupRowCount"></Item>
+			<Item Name="OptionsFilter.AllowColumnMRUFilterList"></Item>
+			<Item Name="OptionsFilter.MRUColumnFilterListCount"></Item>
+			<Item Name="CustomFilterDialog"></Item>
+		</Properties>
+		<Description>
+			Filter dropdowns are shown when filter buttons are clicked. They allow end users to filter columns by the value of a particular column or to specify a custom filtering condition.
+			
+			Content: 
+			[OptionsFilter.ShowAllTableValuesInFilterPopup] and [OptionsFilter.ColumnFilterPopupMaxRecordsCount] properties, [ShowFilterPopupListBox] event.
+			
+			Size: 
+			[OptionsFilter.ColumnFilterPopupRowCount] property.
+			
+			MRU list: 
+			[OptionsFilter.AllowColumnMRUFilterList], [OptionsFilter.MRUColumnFilterListCount] options.
+			
+			(Custom) item behavior: 
+			[OptionsFilter.UseNewCustomFilterDialog] property, [CustomFilterDialog] event.
+		</Description>
+	</FeatureItem>
+	<FeatureItem ID="VE_FilterPanel" Name="Filter Panel" Category="Feature_Filtering" SelectedPropertyOnStart="OptionsView.ShowFilterPanelMode" SampleSetupClass="DevExpress.XtraGrid.FeatureBrowser.FeatureBrowserGridFilteringCustomization">
+        <Properties>
+			<Item Name="OptionsView.ShowFilterPanelMode"></Item>
+			<Item Name="Appearance.FilterPanel"></Item>			
+			<Item Name="Appearance.FilterCloseButton"></Item>			
+			<Item Name="CustomDrawFilterPanel"></Item>
+			<Item Name="AppearancePrint.FilterPanel"></Item>
+			<Item Name="OptionsFilter.AllowMRUFilterList"></Item>
+			<Item Name="OptionsFilter.MRUFilterListCount"></Item>
+			<Item Name="OptionsFilter.MRUFilterListPopupCount"></Item>
+		</Properties>
+        <ExpandedPropertiesOnStart>
+			<ExpandedItem Name="OptionsView"></ExpandedItem>
+			<ExpandedItem Name="Appearance"></ExpandedItem>
+			<ExpandedItem Name="OptionsFilter"></ExpandedItem>
+		</ExpandedPropertiesOnStart>
+		<Description>
+			The filter panel displays the currenly applied filter criteria, allows you to enable, disable or cancel the current filter and provides access to the most recently used filter conditions. 
+			
+			Provide an indication when the view is filtered: 
+			[OptionsView.ShowFilterPanelMode] property.
+
+			Appearance: 
+			[Appearance.FilterPanel], [Appearance.FilterCloseButton] properties.
+			
+			MRU filter conditions:
+			[{(OptionsFilter.AllowMRUFilterList=False)}OptionsFilter.AllowMRUFilterList], [OptionsFilter.MRUFilterListCount], [OptionsFilter.MRUFilterListPopupCount] properties.
+			
+			Printed appearance: 
+			[AppearancePrint.FilterPanel] property.
+			
+			Manual painting: 
+			[CustomDrawFilterPanel] event.
+			
+			Related features: [{gotoFeature:Feature_Filtering}filtering].
+		</Description>
+	</FeatureItem>
+	<FeatureItem ID="Filtering_EndUser" Name="End-user Actions" Category="Feature_Filtering" ReferenceId="EndUser_Filtering">
+	</FeatureItem>
+
+	<FeatureItem ID="Sorting_Behavior" Name="Behavior" Category="Feature_Sorting" ReferenceId="Behavior_Sorting">
+	</FeatureItem>
+	<FeatureItem ID="Sorting_EndUser" Name="End-user Actions" Category="Feature_Sorting" ReferenceId="EndUser_Sorting">
+	</FeatureItem>
+	
+
+			<FeatureItem ID="MD_MainSettings_Detail" Name="Detail View Settings" Category="MD_Main" ExpandAll="True" SelectedPropertyOnStart="SynchronizeClones">
+        <Properties>
+			<Item Name="SynchronizeClones"></Item>
+			<Item Name="DetailHeight"></Item>
+		</Properties>
+		<Description>
+			If this view is a detail:
+			Detail synchronization: 
+			[{(SynchronizeClones=False)}SynchronizeClones] property.
+			
+			Size when expanded: 
+			[DetailHeight] property.
+		</Description>
+	</FeatureItem>
+
+
+	<FeatureItem ID="VE_FieldCaption" Name="Field Caption" Category="VE_Main" SelectedPropertyOnStart="Appearance.FieldCaption">
+        <Properties>
+			<Item Name="AppearancePrint.Card"></Item>
+			<Item Name="Images"></Item>
+			<Item Name="Appearance.Card"></Item>
+			<Item Name="Appearance.FieldCaption"></Item>
+			<Item Name="AppearancePrint.FieldCaption"></Item>
+			<Item Name="AppearancePrint.Card"></Item>
+			<Item Name="CustomDrawCardField"></Item>
+			<Item Name="CustomDrawCardFieldCaption"></Item>
+			<Item Name="OptionsView.ShowFieldCaptions"></Item>
+		</Properties>
+        <ExpandedPropertiesOnStart>
+			<ExpandedItem Name="Appearance"></ExpandedItem>
+		</ExpandedPropertiesOnStart>
+		<Pages>
+			<Columns>
+				<Properties>
+					<Item Name="Caption"></Item>
+					<Item Name="ImageAlignment"></Item>
+					<Item Name="ImageIndex"></Item>
+					<Item Name="AppearanceHeader"></Item>
+					<Item Name="OptionsColumn.ShowCaption"></Item>
+				</Properties>
+				<ExpandedPropertiesOnStart>
+					<ExpandedItem Name="OptionsColumn"></ExpandedItem>
+				</ExpandedPropertiesOnStart>
+			</Columns>
+		</Pages>
+		<Description>
+			Visibility:
+			[{(OptionsView.ShowFieldCaptions=False)}OptionsView.ShowFieldCaptions] option.
+			
+			Appearance:
+			[Appearance.Card], [Appearance.FieldCaption], [{goto:Columns,AppearanceHeader}Column.AppearanceHeader] properties.
+			
+			Content:
+			[{goto:Columns,Caption}Column.Caption,] [{Images}Images,] [{goto:Columns,ImageIndex}Column.ImageIndex,] [{goto:Columns,ImageAlignment}Column.ImageAlignment,] [{goto:Columns,OptionsColumn.ShowCaption}Column.OptionsColumn.ShowCaption] properties.	
+			
+			Manual painting:
+			[CustomDrawCardField], [CustomDrawCardFieldCaption] events.
+			
+			Appearance when printed:
+			[AppearancePrint.Card], [AppearancePrint.FieldCaption] properties.
+		</Description>
+	</FeatureItem>
+	<FeatureItem ID="VE_Cell" Name="Cell" Category="VE_Main" SelectedPropertyOnStart="Appearance.FieldValue">
+        <Properties>
+			<Item Name="Appearance.Card"></Item>
+			<Item Name="Appearance.FieldValue"></Item>
+			<Item Name="AppearancePrint.FieldValue"></Item>
+			<Item Name="AppearancePrint.Card"></Item>
+			<Item Name="CardWidth"></Item>
+			<Item Name="CustomDrawCardField"></Item>
+			<Item Name="CustomDrawCardFieldValue"></Item>
+			<Item Name="RowCellDefaultAlignment"></Item>
+		</Properties>
+        <ExpandedPropertiesOnStart>
+			<ExpandedItem Name="Appearance"></ExpandedItem>
+		</ExpandedPropertiesOnStart>
+		<Pages>
+			<Columns>
+				<Properties>
+					<Item Name="AppearanceCell"></Item>
+				</Properties>
+			</Columns>
+		</Pages>
+		<Description>
+			Appearance:
+			[Appearance.Card], [Appearance.FieldValue], [{goto:Columns,AppearanceCell}Column.AppearanceCell] properties.
+			
+			Size:
+			[CardWidth] property.
+			
+			Manual painting:
+			[CustomDrawCardField], [CustomDrawCardFieldValue] events.
+			
+			Custom alignment:
+			[RowCellDefaultAlignment] event.
+			
+			Appearance when printed:
+			[AppearancePrint.Card], [AppearancePrint.FieldValue] properties.
+		</Description>
+	</FeatureItem>
+	<FeatureItem ID="VE_Hints" Name="Hints" Category="VE_Main" ExpandAll="True" SelectedPropertyOnStart="OptionsView.ShowFieldHints">
+        <Properties>
+			<Item Name="OptionsView.ShowFieldHints"></Item>
+		</Properties>
+		<Description>
+			Automatic cell hints:
+			[{(OptionsView.ShowFieldHints=False)}OptionsView.ShowFieldHints].
+		</Description>
+	</FeatureItem>
+	<FeatureItem ID="VE_CardCaption" Name="Card Caption" Category="VE_Main" SelectedPropertyOnStart="OptionsView.ShowCardCaption">
+        <Properties>
+			<Item Name="OptionsView.ShowCardCaption"></Item>
+			<Item Name="AppearancePrint.CardCaption"></Item>
+			<Item Name="CardCaptionFormat"></Item>
+			<Item Name="Appearance.CardCaption"></Item>
+			<Item Name="OptionsPrint.PrintCardCaption"></Item>
+			<Item Name="CustomCardCaptionImage"></Item>
+			<Item Name="CustomDrawCardCaption"></Item>
+		</Properties>
+        <ExpandedPropertiesOnStart>
+			<ExpandedItem Name="Appearance"></ExpandedItem>
+			<ExpandedItem Name="OptionsView"></ExpandedItem>
+		</ExpandedPropertiesOnStart>
+		<Description>
+			Visibility:
+			[{(OptionsView.ShowCardCaption=False)}OptionsView.ShowCardCaption] option.
+			
+			Appearance:
+			[Appearance.CardCaption] property.
+			
+			Content: 
+			[CardCaptionFormat] property, [CustomCardCaptionImage] event, [{gotoFeature:VE_ExpandButton}expand buttons.]
+			
+			Manual painting:
+			[CustomDrawCardCaption] event.
+			
+			Visibility and appearance when printed:
+			[OptionsPrint.PrintCardCaption], [AppearancePrint.CardCaption] properties.
+		</Description>
+	</FeatureItem>
+	<FeatureItem ID="VE_ExpandButton" Name="Expand Buttons" Category="VE_Main" SelectedPropertyOnStart="OptionsView.ShowCardExpandButton">
+        <Properties>
+			<Item Name="OptionsView.ShowCardExpandButton"></Item>
+			<Item Name="Appearance.CardExpandButton"></Item>
+		</Properties>
+	    <ExpandedPropertiesOnStart>
+			<ExpandedItem Name="Appearance"></ExpandedItem>
+			<ExpandedItem Name="OptionsView"></ExpandedItem>
+		</ExpandedPropertiesOnStart>
+		<Description>
+			Visibility:
+			[{(OptionsView.ShowCardExpandButton=False)}OptionsView.ShowCardExpandButton] property.
+			
+			Appearance: 
+			[Appearance.CardExpandButton] property.
+		</Description>
+	</FeatureItem>
+	<FeatureItem ID="VE_Focus" Name="Focus" Category="VE_Main" SelectedPropertyOnStart="Appearance.FocusedCardCaption">
+        <Properties>
+			<Item Name="Appearance.HideSelectionCardCaption"></Item>
+			<Item Name="Appearance.FocusedCardCaption"></Item>
+		</Properties>
+	    <ExpandedPropertiesOnStart>
+			<ExpandedItem Name="Appearance"></ExpandedItem>
+		</ExpandedPropertiesOnStart>
+		<Description>
+			Appearance when the control is focused:
+			[Appearance.FocusedCardCaption] property.
+			
+			Appearance when the control is not focused: 
+			[Appearance.HideSelectionCardCaption] property.
+		</Description>
+	</FeatureItem>
+	<FeatureItem ID="VE_Selection" Name="Selection" Category="VE_Main" SelectedPropertyOnStart="OptionsSelection.MultiSelect">
+        <Properties>
+			<Item Name="OptionsSelection.MultiSelect"></Item>
+			<Item Name="Appearance.HideSelectionCardCaption"></Item>
+			<Item Name="Appearance.SelectedCardCaption"></Item>
+			<Item Name="SelectionChanged"></Item>
+		</Properties>
+	    <ExpandedPropertiesOnStart>
+			<ExpandedItem Name="Appearance"></ExpandedItem>
+		</ExpandedPropertiesOnStart>
+		<Description>
+			Availability: 
+			[{(OptionsSelection.MultiSelect=False)}OptionsSelection.MultiSelect] option.
+			
+			Appearance when the control is focused:
+			[Appearance.SelectedCardCaption] property.
+			
+			Appearance when the control is not focused: 
+			[Appearance.HideSelectionCardCaption] property.
+			
+			Notifications of selection changes:
+			[SelectionChanged] event.
+		</Description>
+	</FeatureItem>
+	<FeatureItem ID="VE_ScrollButtons" Name="Scroll Buttons" Category="VE_Main" SelectedPropertyOnStart="VertScrollVisibility">
+        <Properties>
+			<Item Name="Appearance.CardButton"></Item>
+			<Item Name="VertScrollVisibility"></Item>
+			<Item Name="CardScrollButtonBorderStyle"></Item>
+		</Properties>
+	    <ExpandedPropertiesOnStart>
+			<ExpandedItem Name="Appearance"></ExpandedItem>
+		</ExpandedPropertiesOnStart>
+		<Description>
+			Availability:
+			[VertScrollVisibility] property (if cards don't fit into the view vertically).
+			
+			Appearance: 
+			[Appearance.CardButton], [CardScrollButtonBorderStyle] properties.
+		</Description>
+	</FeatureItem>
+	<FeatureItem ID="VE_Separator" Name="Separators" Category="VE_Main" SelectedPropertyOnStart="OptionsView.ShowLines">
+        <Properties>
+			<Item Name="OptionsView.ShowLines"></Item>
+			<Item Name="Appearance.SeparatorLine"></Item>
+			<Item Name="OptionsBehavior.Sizeable"></Item>
+			<Item Name="OptionsBehavior.AutoHorzWidth"></Item>
+		</Properties>
+        <ExpandedPropertiesOnStart>
+			<ExpandedItem Name="Appearance"></ExpandedItem>
+			<ExpandedItem Name="OptionsView"></ExpandedItem>
+			<ExpandedItem Name="OptionsBehavior"></ExpandedItem>
+		</ExpandedPropertiesOnStart>
+		<Description>
+			Separator visibility:
+			[{(OptionsView.ShowLines=False)}OptionsView.ShowLines] option.
+			
+			Appearance:
+			[Appearance.SeparatorLine] property.
+			
+			Behavior availability:
+			[{(OptionsBehavior.Sizeable=False)}OptionsBehavior.Sizeable], [{(OptionsBehavior.AutoHorzWidth=True)}OptionsBehavior.AutoHorzWidth] options.
+		</Description>
+	</FeatureItem>
+	<FeatureItem ID="VE_CustomizeButton" Name="Customize Button" Category="VE_Main" SelectedPropertyOnStart="OptionsView.ShowQuickCustomizeButton">
+        <Properties>
+			<Item Name="OptionsView.ShowQuickCustomizeButton"></Item>
+		</Properties>
+        <ExpandedPropertiesOnStart>
+			<ExpandedItem Name="OptionsView"></ExpandedItem>
+		</ExpandedPropertiesOnStart>
+		<Description>
+			Visibility:
+			[{(OptionsView.ShowQuickCustomizeButton=False)}OptionsView.ShowQuickCustomizeButton] option.
+		</Description>
+	</FeatureItem>
+
+	<FeatureItem ID="Editing_Editors" Name="In-place Editors" Category="Editing_Main" SelectedPropertyOnStart="ShowButtonMode">
+        <Properties>
+			<Item Name="ShowButtonMode"></Item>
+		</Properties>
+		<Pages>
+			<Columns>
+				<Properties>
+					<Item Name="ColumnEdit"></Item>
+					<Item Name="ShowButtonMode"></Item>
+				</Properties>
+			</Columns>
+		</Pages>
+		<Description>
+			Assign editors to columns:
+			[{goto:Columns,ColumnEdit}Column.ColumnEdit] property.
+			
+			Visibility of the editor buttons : 
+			[ShowButtonMode], [{goto:Columns,ShowButtonMode}Column.ShowButtonMode] properties.
+		</Description>
+	</FeatureItem>
+
+	<FeatureItem ID="Nav_Selection" Name="Multiple Card Selection" Category="Nav_Main" ReferenceId="VE_Selection">
+	</FeatureItem>
+	<FeatureItem ID="Nav_Focus" Name="Focus" Category="Nav_Main" ExpandAll="True" SelectedPropertyOnStart="OptionsBehavior.AutoFocusNewCard">
+        <Properties>
+			<Item Name="OptionsBehavior.UseTabKey"></Item>
+			<Item Name="OptionsBehavior.AutoFocusNewCard"></Item>
+			<Item Name="FocusedRowChanged"></Item>
+			<Item Name="FocusedColumnChanged"></Item>
+		</Properties>
+		<Description>
+			Focus movement options:
+			[OptionsBehavior.UseTabKey], [OptionsBehavior.AutoFocusNewCard] options.
+			
+			Focus change notifications:
+			[FocusedRowChanged], [FocusedColumnChanged] events.
+		</Description>
+	</FeatureItem>
+	<FeatureItem ID="Nav_HorzScrollBar" Name="Horizontal Scrollbar" Category="Nav_Main" ExpandAll="True" SelectedPropertyOnStart="OptionsView.ShowHorzScrollBar">
+        <Properties>
+			<Item Name="OptionsView.ShowHorzScrollBar"></Item>
+			<Item Name="TopLeftCardChanged"></Item>
+		</Properties>
+		<Description>
+			Availability:
+			[{(OptionsView.ShowHorzScrollBar=False)}OptionsView.ShowHorzScrollBar] option.
+			
+			Position change notifications:
+			[TopLeftCardChanged] event.
+		</Description>
+	</FeatureItem>
+	<FeatureItem ID="Nav_ScrollButtons" Name="Scroll Buttons" Category="Nav_Main" ReferenceId="VE_ScrollButtons">
+	</FeatureItem>
+
+	<FeatureItem ID="Appearance_ViewAppearance" Name="View Appearance" Category="Appearance_Main" SelectedPropertyOnStart="PaintStyleName">	
+		<Properties>
+			<Item Name="Appearance"></Item>
+			<Item Name="CustomDrawCardCaption"></Item>
+			<Item Name="CustomDrawCardField"></Item>
+			<Item Name="CustomDrawCardFieldCaption"></Item>
+			<Item Name="CustomDrawCardFieldValue"></Item>
+			<Item Name="CustomDrawEmptyForeground"></Item>
+			<Item Name="CustomDrawFilterPanel"></Item>
+			<Item Name="RowCellDefaultAlignment"></Item>
+			<Item Name="PaintStyleName"></Item>
+		</Properties>
+        <ExpandedPropertiesOnStart>
+			<ExpandedItem Name="Appearance"></ExpandedItem>
+		</ExpandedPropertiesOnStart>
+		<Description>
+			This page provides access to all the settings available for customizing the appearance of this view. You can also access the appearance settings which relate to a particular visual element. See the [{gotoFeature:VE_Main}Visual Elements] section for this purpose.
+		</Description>
+	</FeatureItem>
+
+	<FeatureItem ID="Behavior_Sorting" Name="Sorting" Category="Behavior_Main" ExpandAll="True" SelectedPropertyOnStart="CustomColumnSort" SampleSetupClass="">
+        <Properties>
+			<Item Name="CustomColumnSort"></Item>
+			<Item Name="CustomColumnDisplayText"></Item>
+		</Properties>
+		<Pages>
+			<Columns>
+				<Properties>
+					<Item Name="SortMode"></Item>
+					<Item Name="ColumnEdit"></Item>
+				</Properties>
+			</Columns>
+		</Pages>
+		<Description>
+			Sort mode: 
+			[{goto:Columns,SortMode}Column.SortMode] property.
+
+			If "sort by display text" mode is enabled, the text can differ from the edit values if:
+			A particular editor is assigned: [{goto:Columns,ColumnEdit}Column.ColumnEdit] property.
+			Custom text is supplied manually: [CustomColumnDisplayText] event.
+			
+			If custom sort mode is enabled:
+			The sorting algorithm is supplied via the: [CustomColumnSort] event.
+		</Description>
+	</FeatureItem>
+
+	<FeatureItem ID="EndUser_Filtering" Name="Filtering" Category="EndUser_Main" ExpandAll="True" SelectedPropertyOnStart="OptionsView.ShowQuickCustomizeButton" SampleSetupClass="">
+        <Properties>
+			<Item Name="ColumnFilterChanged"></Item>
+			<Item Name="OptionsView.ShowFilterPanelMode"></Item>			
+			<Item Name="OptionsView.ShowQuickCustomizeButton"></Item>
+		</Properties>
+		<Pages>
+			<Columns>
+				<Properties>
+					<Item Name="OptionsFilter.AllowFilter"></Item>        
+				</Properties>
+			</Columns>
+		</Pages>
+		<Description>
+			Quick customization button:
+			[{(OptionsView.ShowQuickCustomizeButton=False)}OptionsView.ShowQuickCustomizeButton] option.
+
+			Filtering availability:
+			[{goto:Columns,OptionsFilter.AllowFilter}Column.OptionsFilter.AllowFilter] option.
+			
+			Filter change notification:
+			[ColumnFilterChanged] event.
+		</Description>
+	</FeatureItem>
+	<FeatureItem ID="EndUser_Sorting" Name="Sorting" Category="EndUser_Main" SelectedPropertyOnStart="OptionsView.ShowQuickCustomizeButton" SampleSetupClass="">
+        <Properties>
+			<Item Name="StartSorting"></Item>
+			<Item Name="EndSorting"></Item>
+			<Item Name="OptionsView.ShowQuickCustomizeButton"></Item>
+		</Properties>
+        <ExpandedPropertiesOnStart>
+			<ExpandedItem Name="OptionsView"></ExpandedItem>
+			<ExpandedItem Name="OptionsMenu"></ExpandedItem>
+			<ExpandedItem Name="OptionsCustomization"></ExpandedItem>
+		</ExpandedPropertiesOnStart>
+		<Pages>
+			<Columns>
+				<Properties>
+					<Item Name="OptionsColumn.AllowSort"></Item>
+				</Properties>
+			</Columns>
+		</Pages>
+		<Description>
+			Quick customization button: 
+			[{(OptionsView.ShowQuickCustomizeButton=False)}OptionsView.ShowQuickCustomizeButton] property.
+			
+			Sorting availability: 
+			[{goto:Columns,OptionsColumn.AllowSort}Column.OptionsColumn.AllowSort] options.
+			
+			Sorting notifications: 
+			[StartSorting] and [EndSorting] events.
+		</Description>
+	</FeatureItem>
+	<FeatureItem ID="EndUser_CardResizing" Name="Card Resizing" Category="EndUser_Main" ReferenceId="VE_Separator">
+	</FeatureItem> 
+	<FeatureItem ID="EndUser_Scrolling" Name="Scrolling" Category="EndUser_Main" ExpandAll="True" SelectedPropertyOnStart="OptionsView.ShowHorzScrollBar">
+        <Properties>
+			<Item Name="VertScrollVisibility"></Item>
+			<Item Name="OptionsView.ShowHorzScrollBar"></Item>
+			<Item Name="TopLeftCardChanged"></Item>
+		</Properties>
+	    <ExpandedPropertiesOnStart>
+			<ExpandedItem Name="Appearance"></ExpandedItem>
+		</ExpandedPropertiesOnStart>
+		<Description>
+			Availability:
+			[VertScrollVisibility], property (if cards don't fit into the view vertically).
+			[{(OptionsView.ShowHorzScrollBar=False)}OptionsView.ShowHorzScrollBar] option.
+			
+			Position change notification:
+			[TopLeftCardChanged] event.
+		</Description>
+	</FeatureItem> 
+
+</FeatureItems>

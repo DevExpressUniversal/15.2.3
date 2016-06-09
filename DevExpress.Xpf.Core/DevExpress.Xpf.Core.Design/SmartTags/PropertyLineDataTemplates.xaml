@@ -1,0 +1,195 @@
+﻿<ResourceDictionary x:Class="DevExpress.Xpf.Core.Design.PropertyLineDataTemplates"
+            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+            xmlns:SmartTags="clr-namespace:DevExpress.Design.SmartTags"
+            xmlns:SmartTags_Design="clr-namespace:DevExpress.Design.SmartTags;assembly=DevExpress.Design.v15.2"
+            xmlns:local="clr-namespace:DevExpress.Xpf.Core.Design">
+    <ResourceDictionary.MergedDictionaries>
+        <SmartTags:PropertyLineDataTemplates/>
+    </ResourceDictionary.MergedDictionaries>
+    <Style TargetType="ContextMenu"/>
+
+    <local:ActionListPropertyLineViewModelStringConverter x:Key="ActionListPropertyLineViewModelStringConverter"/>
+    <Style x:Key="hyperlinkBaseStyle" TargetType="Hyperlink">
+        <Setter Property="Foreground" Value="{StaticResource foregroundBrush}"/>
+        <Setter Property="TextDecorations" Value="None"/>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <!--<Setter Property="Foreground" Value="{StaticResource foregroundBrush}"/>-->
+                <Setter Property="Foreground" Value="#FFF78A09"/>
+                <Setter Property="TextDecorations" Value="Underline"/>
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Foreground" Value="#FFC5C5C5"/>
+                <Setter Property="TextDecorations" Value="None"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <BooleanToVisibilityConverter x:Key="booleanToVisibilityConverter"/>
+    <Thickness x:Key="popupContentPadding">24</Thickness>
+    <SolidColorBrush x:Key="popupBorderBrush">#FFD8D8D8</SolidColorBrush>
+    <DropShadowEffect x:Key="shadowEffect" Color="Black" ShadowDepth="2" Direction="270" BlurRadius="6" Opacity="0.15" x:Shared="True"/>
+    <DataTemplate DataType="{x:Type SmartTags:BooleanPropertyLineViewModel}">
+        <CheckBox Foreground="Black" IsChecked ="{Binding PropertyValue}"/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type SmartTags:NullableBooleanPropertyLineViewModel}">
+        <CheckBox Foreground="Black" IsChecked ="{Binding PropertyValue}" IsThreeState="True"/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type SmartTags:EnumPropertyLineViewModel}">
+        <ComboBox Foreground="Black" IsReadOnly="False" SelectedItem="{Binding PropertyValue, Mode=TwoWay}" ItemsSource="{Binding Values}"/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type SmartTags:ItemListPropertyLineViewModel}">
+        <ComboBox Foreground="Black" Name="cmbBox" ItemsSource="{Binding Items}" SelectedItem="{Binding SelectedTypeSource, Mode=TwoWay}"
+                  IsEditable="True" IsTextSearchEnabled="True" 
+                  IsTextSearchCaseSensitive="{Binding AutoCompleteInfo.IsTextSearchCaseSensitive}"
+                  TextSearch.Text="{Binding AutoCompleteInfo.TextSearchText}"
+                  StaysOpenOnEdit="{Binding AutoCompleteInfo.StaysOpenOnEdit}"
+                  TextSearch.TextPath="Name">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Name}"/>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+        <DataTemplate.Triggers>
+            <DataTrigger Binding="{Binding AutoCompleteInfo}" Value="{x:Null}">
+                <Setter TargetName="cmbBox" Property="IsEditable" Value="False"/>
+                <Setter TargetName="cmbBox" Property="IsTextSearchEnabled" Value="False"/>
+                <Setter TargetName="cmbBox" Property="StaysOpenOnEdit" Value="False"/>
+            </DataTrigger>
+        </DataTemplate.Triggers>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type local:CommandPropertyLineViewModel}">
+        <TextBlock Text="{Binding BindingInfo.Path}"/>
+    </DataTemplate>
+    <Style TargetType="TreeViewItem" x:Key="elementItemStyle">
+        <Setter Property="IsSelected" Value="{Binding IsSelected}"/>
+        <Setter Property="IsExpanded" Value="{Binding IsExpanded}"/>
+    </Style>
+    <DataTemplate DataType="{x:Type local:ActionListPropertyLineViewModel}">
+        <StackPanel Orientation="Horizontal" Margin="0,0,0,1" >
+            <TextBlock x:Name="txtText" VerticalAlignment="Center" TextTrimming="CharacterEllipsis"
+                       ContextMenuService.PlacementTarget="{Binding ElementName=txtText}"
+                       ContextMenuService.Placement="Bottom">
+                    <Hyperlink Command="{Binding SelectedItemCommand}" Style="{StaticResource hyperlinkBaseStyle}">
+                        <Run Text="{Binding Text, Converter={StaticResource ActionListPropertyLineViewModelStringConverter}}"/><Run x:Name="txtCaption" Text="{Binding SelectedMenuItem.Caption}"/>
+                    </Hyperlink>
+                <TextBlock.ContextMenu>
+                    <ContextMenu ItemsSource="{Binding Path=Items}">
+                        <ContextMenu.ItemContainerStyle>
+                            <Style TargetType="MenuItem">
+                                <Setter Property="Header" Value="{Binding Caption}"/>
+                                <Setter Property="Command" Value="{Binding Command}"/>
+                                <Setter Property="CommandParameter" Value="{Binding}" />
+                                <Setter Property="ItemsSource" Value="{Binding SubItems}"/>
+                                <Setter Property="Visibility" Value="{Binding IsVisible, Converter={StaticResource booleanToVisibilityConverter}}"/>
+                                <Setter Property="Icon" Value="{Binding Image}"/>
+                                <Setter Property="IsChecked" Value="{Binding IsChecked}"/>
+                            </Style>
+                        </ContextMenu.ItemContainerStyle>
+                    </ContextMenu>
+                </TextBlock.ContextMenu>
+            </TextBlock>
+            <ToggleButton x:Name="toggleButton" Grid.Column="1" Focusable="False" IsChecked="{Binding ElementName=txtText, Path=ContextMenu.IsOpen, Mode=OneWay}" 
+                              Command="{Binding ShowContextMenu}" CommandParameter="{Binding ElementName=txtText}" Margin="0" Padding="5,0">
+                <ToggleButton.Template>
+                    <ControlTemplate TargetType="ToggleButton">
+                        <ContentPresenter Margin="{TemplateBinding Property=Padding}"/>
+                    </ControlTemplate>
+                </ToggleButton.Template>
+                <Grid x:Name="grid" Background="Transparent" UseLayoutRounding="True">
+                    <Image x:Name="image" Source="/DevExpress.Xpf.Core.v15.2.Design;component/Images/change2.png" Stretch="Uniform"
+                           Opacity="0.6"/>
+                </Grid>
+            </ToggleButton>
+        </StackPanel>
+        <DataTemplate.Triggers>
+            <Trigger SourceName="toggleButton" Property="IsMouseOver" Value="True">
+                <Setter TargetName="image" Property="Opacity" Value="1"/>
+            </Trigger>
+            <Trigger SourceName="toggleButton" Property="IsChecked" Value="True">
+                <Setter TargetName="image" Property="Opacity" Value="1"/>
+            </Trigger>
+        </DataTemplate.Triggers>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type SmartTags:ActionPropertyLineViewModel}">
+        <TextBlock Margin="0,0,0,1">
+            <Hyperlink Command="{Binding Command}" CommandParameter="{Binding SelectedItem}" Style="{StaticResource hyperlinkBaseStyle}">
+                <Run Text="{Binding Text, Mode=OneWay}"/>
+            </Hyperlink>
+        </TextBlock>
+    </DataTemplate>
+
+    <Style x:Key="groupBoxStyle" TargetType="GroupBox">
+        <Setter Property="Padding" Value="0,1,0,5"/>
+        <Setter Property="Margin" Value="0,2,0,0"/>
+        <Setter Property="BorderBrush" Value="#FF4F97D1"/>
+        <Setter Property="HeaderTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <TextBlock Text="{Binding}" Foreground="{StaticResource foregroundBrush}" FontSize="11" FontWeight="SemiBold"/>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="GroupBox">
+                    <Grid SnapsToDevicePixels="True">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Border x:Name="contentBorder" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="1,0,1,1" Margin="-11,0,-4,0" Grid.Row="1"/>
+                        <Grid x:Name="headerGrid" Margin="-11,0,-4,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="0.5*" />
+                                <RowDefinition Height="0.5*" />
+                            </Grid.RowDefinitions>
+                            <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="1,1,0,0" Margin="0,2,0,0" Width="18" Grid.Row="1" />
+                            <ContentPresenter Margin="3,0,3,0" Grid.Column="1" Grid.RowSpan="2" ContentSource="Header"/>
+                            <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="0,1,1,0" Margin="0,2,0,0" Grid.Column="2" Grid.Row="1" />
+                        </Grid>
+                        <ContentPresenter x:Name="content" Grid.Row="1" Margin="{TemplateBinding Padding}"/>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <DataTemplate DataType="{x:Type SmartTags:NestedPropertyLinesViewModel}">
+        <GroupBox Name="groupBox" Style="{StaticResource groupBoxStyle}"
+                  Header="{Binding NestedProperty}">
+            <ContentPresenter Content="{Binding NestedContext}" ContentTemplate="{StaticResource PropertyLinesTempate}"/>
+        </GroupBox>
+        <DataTemplate.Triggers>
+            <DataTrigger Binding="{Binding NestedContext}" Value="{x:Null}">
+                <Setter TargetName="groupBox" Property="Visibility" Value="Collapsed"/>
+            </DataTrigger>
+        </DataTemplate.Triggers>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type local:SeparatorLineViewModel}">
+        <Grid x:Name="separatorElement" Margin="-11,5,-4,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock x:Name="txtBlock" Text="{Binding Text}" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,4,0" Foreground="{StaticResource foregroundBrush}"
+                       FontSize="11" FontWeight="SemiBold"/>
+            <Border x:Name="border" Grid.Column="1" Height="1" Background="#FF4F97D1" Margin="0,1,0,0" VerticalAlignment="Center" HorizontalAlignment="Stretch"/>
+        </Grid>
+        <DataTemplate.Triggers>
+            <DataTrigger Binding="{Binding Text}" Value="{x:Null}">
+                <Setter TargetName="txtBlock" Property="Visibility" Value="Collapsed"/>
+            </DataTrigger>
+            <DataTrigger Binding="{Binding IsLineVisible}" Value="False">
+                <Setter TargetName="border" Property="Visibility" Value="Collapsed"/>
+                <Setter TargetName="separatorElement" Property="Margin" Value="0,2,0,0"/>
+            </DataTrigger>
+        </DataTemplate.Triggers>
+    </DataTemplate>
+</ResourceDictionary>

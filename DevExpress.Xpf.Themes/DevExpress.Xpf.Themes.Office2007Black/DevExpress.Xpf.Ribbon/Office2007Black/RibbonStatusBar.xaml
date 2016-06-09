@@ -1,0 +1,68 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars" xmlns:dxr="http://schemas.devexpress.com/winfx/2008/xaml/ribbon" xmlns:dxrt="http://schemas.devexpress.com/winfx/2008/xaml/ribbon/themekeys" xmlns:sys="clr-namespace:System;assembly=mscorlib">
+
+    <!-- Office2007Black: Ribbon Status Bar. Left Part -->
+    <ControlTemplate x:Key="{dxrt:RibbonStatusBarThemeKey  ResourceKey=LeftPartTemplate}" TargetType="{x:Type ContentControl}">
+        <Border x:Name="PART_statusBarLeft" SnapsToDevicePixels="True">
+            <Grid>
+                <Border Margin="0" BorderThickness="0,1,0,0" SnapsToDevicePixels="True">
+                    <Border.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#FF434752" Offset="0" />
+                            <GradientStop Color="#FF3c3c3c" Offset="1" />
+                            <GradientStop Color="#FF3b3e46" Offset="0.4" />
+                            <GradientStop Color="#FF2f3030" Offset="0.4" /> 
+                        </LinearGradientBrush>
+                    </Border.Background>
+                    <Border.BorderBrush>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#ff414141" Offset="0" />
+                            <GradientStop Color="#FF454545" Offset="1" />
+                        </LinearGradientBrush>
+                    </Border.BorderBrush>
+                </Border>
+                <ContentPresenter Margin="1,1,0,0" />
+            </Grid>
+        </Border>
+    </ControlTemplate>
+
+    <!-- Office2007Black: Ribbon Status Bar. Right Part -->
+    <ControlTemplate x:Key="{dxrt:RibbonStatusBarThemeKey  ResourceKey=RightPartTemplate}" TargetType="{x:Type ContentControl}">
+        <Border x:Name="PART_statusBarRight" SnapsToDevicePixels="True">
+            <Grid>
+                <Border Margin="0" BorderThickness="0,1,0,0" SnapsToDevicePixels="True">
+                    <Border.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#FFc6c5c6" Offset="0" />
+                            <GradientStop Color="#FF49535e" Offset="1" />
+                            <GradientStop Color="#FFb4b4b4" Offset="0.4" />
+                            <GradientStop Color="#FF979898" Offset="0.4" />
+                        </LinearGradientBrush>
+                    </Border.Background>
+                    <Border.BorderBrush>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#ff414141" Offset="0" />
+                            <GradientStop Color="#FF454545" Offset="1" />
+                        </LinearGradientBrush>
+                    </Border.BorderBrush>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="2" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <Border Width="2" BorderBrush="#44FFFFFF" BorderThickness="0,0,1,0" Background="#44000000" Grid.Column="0" Grid.ColumnSpan="1" SnapsToDevicePixels="True" />
+                        <ContentPresenter Grid.Column="1" Grid.ColumnSpan="1" Margin="1,1,0,0" />
+                    </Grid>
+                </Border>
+            </Grid>
+        </Border>
+    </ControlTemplate>
+
+    <!-- Office2007Black: Ribbon Status Bar. Size Grip -->
+    <ControlTemplate x:Key="{dxrt:RibbonStatusBarThemeKey  ResourceKey=SizeGripTemplate}" TargetType="{x:Type Thumb}">
+        <Grid Background="Transparent" Height="11" Width="11" Margin="0,0,2,2" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+            <Path Stretch="Fill" Fill="#5AFFFFFF" Data="F1 M 0,8.99998L 2,8.99998L 2,11L 0,11L 0,8.99998 Z M 3.99997,8.99999L 5.99997,8.99999L 5.99997,11L 3.99997,11L 3.99997,8.99999 Z M 7.99998,8.99999L 9.99998,8.99999L 9.99998,11L 7.99998,11L 7.99998,8.99999 Z M 7.99998,4.99999L 9.99998,4.99999L 9.99998,6.99999L 7.99998,6.99999L 7.99998,4.99999 Z M 7.99999,0.999989L 9.99999,0.999989L 9.99999,2.99998L 7.99999,2.99998L 7.99999,0.999989 Z M 4,4.99998L 6,4.99998L 6,6.99998L 4,6.99998L 4,4.99998 Z " Margin="1,1,0,0" />
+            <Path Stretch="Fill" Fill="#FF252525" Data="F1 M 0,7.99999L 2,7.99999L 2,9.99999L 0,9.99999L 0,7.99999 Z M 3.99997,8L 5.99997,8L 5.99997,10L 3.99997,10L 3.99997,8 Z M 7.99998,8L 9.99998,8L 9.99998,10L 7.99998,10L 7.99998,8 Z M 7.99998,4L 9.99998,4L 9.99998,6L 7.99998,6L 7.99998,4 Z M 7.99999,0L 9.99999,0L 9.99999,2L 7.99999,2L 7.99999,0 Z M 4,4L 6,4L 6,6L 4,6L 4,4 Z " Margin="0,0,1,1" />
+        </Grid>
+    </ControlTemplate>
+    <sys:Double x:Key="{dxrt:RibbonStatusBarThemeKey ResourceKey=MinHeight}">22</sys:Double>
+</ResourceDictionary>

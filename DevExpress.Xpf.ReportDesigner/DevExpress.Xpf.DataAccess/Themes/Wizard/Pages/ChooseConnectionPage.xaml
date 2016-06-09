@@ -1,0 +1,38 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+            xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
+            xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+            xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+            xmlns:local="clr-namespace:DevExpress.Xpf.DataAccess.DataSourceWizard"
+            xmlns:localization="clr-namespace:DevExpress.Xpf.DataAccess.Localization"
+            xmlns:localnative="clr-namespace:DevExpress.Xpf.DataAccess.Native">
+
+    <DataTemplate x:Key="{x:Type local:ChooseConnectionPage}">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <localnative:WizardTitle Title="{localization:DataAccessUIStringId StringId=WizardPageChooseConnection}" />
+            <Grid Grid.Row="1" Margin="50,20">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <dxe:ListBoxEdit
+                            ShowBorder="False"
+                            ItemsSource="{Binding Options}"
+                            ValueMember="Value"
+                            EditValue="{Binding ShouldCreateNewConnection, UpdateSourceTrigger=PropertyChanged}"
+                            StyleSettings="{dxe:RadioListBoxEditStyleSettings}"
+                />
+                <dxe:ListBoxEdit
+                            Grid.Row="1"
+                            IsEnabled="{Binding ShouldCreateNewConnection, Converter={dxmvvm:BooleanNegationConverter}}"
+                            ItemsSource="{Binding Connections}"
+                            EditValue="{Binding ExistingConnectionName, UpdateSourceTrigger=PropertyChanged}"
+                />
+            </Grid>
+        </Grid>
+    </DataTemplate>
+</ResourceDictionary>

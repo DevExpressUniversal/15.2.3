@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{6DB20688-A6F4-4832-AB0A-3DA2E51BB913}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DevExpress.ExpressApp.Maps.Web</RootNamespace>
+    <AssemblyName>DevExpress.ExpressApp.Maps.Web.v15.2</AssemblyName>
+    <AssemblyOriginatorKeyFile>..\..\DevExpress.Key\StrongKey.snk</AssemblyOriginatorKeyFile>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\..\Bin\Framework\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\..\Bin\Framework\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DevExpress.Data.v15.2">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+      <HintPath>..\..\..\Bin\Framework\DevExpress.Data.v15.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Web.v15.2">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Bin\Framework\DevExpress.Web.v15.2.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System"><Private>False</Private></Reference>
+    <Reference Include="System.Core"><Private>False</Private></Reference>
+    <Reference Include="Microsoft.CSharp"><Private>False</Private></Reference>
+    <Reference Include="System.Data"><Private>False</Private></Reference>
+    <Reference Include="System.Drawing"><Private>False</Private></Reference>
+    <Reference Include="System.Web"><Private>False</Private></Reference>
+    <Reference Include="System.Web.Extensions"><Private>False</Private></Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AssemblyVersionInfo.cs">
+      
+    </Compile>
+    <Compile Include="Controls\MapViewerBase.cs" />
+    <Compile Include="Controls\MapViewer.cs" />
+    <Compile Include="Controls\VectorMapViewer.cs" />
+    <Compile Include="Editors\WebMapsListEditor.cs" />
+    <Compile Include="Editors\WebMapsPropertyEditor.cs" />
+    <Compile Include="Editors\WebVectorMapsListEditor.cs" />
+    <Compile Include="Generators\MapViewerJSGenerator.cs" />
+    <Compile Include="Generators\VectorMapViewerJSGenerator.cs" />
+    <Compile Include="Helpers\MapEventArgs.cs" />
+    <Compile Include="Helpers\MapsCallbackHandler.cs" />
+    <Compile Include="Helpers\MapSerializableStructs.cs" />
+    <Compile Include="Helpers\MapSettings.cs" />
+    <Compile Include="Helpers\MapViewerClientSideEvents.cs" />
+    <Compile Include="Helpers\ModelsExtenders.cs" />
+    <Compile Include="Helpers\NullValuesConverter.cs" />
+    <Compile Include="Helpers\ObjectInfoHelper.cs" />
+    <Compile Include="Helpers\VectorMapSerializableStructs.cs" />
+    <Compile Include="Helpers\VectorMapSettings.cs" />
+    <Compile Include="Helpers\VectorMapViewerClientSideEvents.cs" />
+    <Compile Include="Module.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Toolbox_Module_Maps_Web.ico" />
+    <EmbeddedResource Include="Scripts\maps.js" />
+    <EmbeddedResource Include="Scripts\usa.js" />
+    <EmbeddedResource Include="Scripts\vectorMaps.js" />
+    <EmbeddedResource Include="Scripts\world.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Scripts\africa.js" />
+    <EmbeddedResource Include="Scripts\canada.js" />
+    <EmbeddedResource Include="Scripts\eurasia.js" />
+    <EmbeddedResource Include="Scripts\europe.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="DevExpress.ExpressApp.Web.v15.2"><Name>DevExpress.ExpressApp.Web.v15.2</Name><HintPath>..\..\..\Bin\Framework\DevExpress.ExpressApp.Web.v15.2.dll</HintPath></Reference>
+    <Reference Include="DevExpress.ExpressApp.v15.2"><Name>DevExpress.ExpressApp.v15.2</Name><HintPath>..\..\..\Bin\Framework\DevExpress.ExpressApp.v15.2.dll</HintPath></Reference>
+    <Reference Include="DevExpress.Persistent.Base.v15.2"><Name>DevExpress.Persistent.Base.v15.2</Name><HintPath>..\..\..\Bin\Framework\DevExpress.Persistent.Base.v15.2.dll</HintPath></Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Model.DesignedDiffs.xafml" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+<ItemGroup><EmbeddedResource Include="Descriptions.resx" /></ItemGroup><ItemGroup><Compile Include="Descriptions.cs" /></ItemGroup></Project>

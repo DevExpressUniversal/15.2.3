@@ -1,0 +1,71 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+            xmlns:local="clr-namespace:DevExpress.Xpf.DataAccess.DataSourceWizard"
+            xmlns:localeditors="clr-namespace:DevExpress.Xpf.DataAccess.Editors"
+            xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+            xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+            xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
+            xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+            xmlns:dxpg="http://schemas.devexpress.com/winfx/2008/xaml/propertygrid"
+            xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
+            xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
+            xmlns:printing="clr-namespace:DevExpress.XtraPrinting;assembly=DevExpress.Printing.v15.2.Core"
+            xmlns:xtrareportsparameters="clr-namespace:DevExpress.XtraReports.Parameters;assembly=DevExpress.Printing.v15.2.Core"
+            xmlns:designernative="clr-namespace:DevExpress.Xpf.Reports.UserDesigner.Native"
+            xmlns:dxda="clr-namespace:DevExpress.Xpf.DataAccess.DataSourceWizard"
+            xmlns:dxdanative="clr-namespace:DevExpress.Xpf.DataAccess.Native"
+            xmlns:dxdacollectioneditors="clr-namespace:DevExpress.Xpf.DataAccess.Editors.CollectionUITypeEditors">
+
+    <Style TargetType="{x:Type localeditors:ReportParameterPropertyGridControl}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="localeditors:ReportParameterPropertyGridControl">
+                    <dxpg:PropertyGridControl SortMode="Ascending" SelectedObject="{Binding ReportParameter, RelativeSource={RelativeSource TemplatedParent}, UpdateSourceTrigger=PropertyChanged}" ExpandCategoriesWhenSelectedObjectChanged="True">
+                        
+                        <dxpg:PropertyGridControl.Resources>
+                            <DataTemplate x:Key="{x:Static dxda:MetadataPropertyGridEditorTemplateKeys.Description}">
+                                <dxpg:PropertyDefinition Path="Description" IsReadOnly="False"  >
+                                    <dxpg:PropertyDefinition.EditSettings>
+                                        <dxe:MemoEditSettings ShowIcon="False" TextWrapping="Wrap" />
+                                    </dxpg:PropertyDefinition.EditSettings>
+                                </dxpg:PropertyDefinition>
+                            </DataTemplate>
+                        </dxpg:PropertyGridControl.Resources>
+                        
+                        
+                        <dxpg:PropertyGridControl.PropertyDefinitions>
+                            <dxpg:PropertyDefinition Path="Type" IsReadOnly="False">
+                                <dxpg:PropertyDefinition.EditSettings>
+                                    <dxe:ComboBoxEditSettings IsTextEditable="False" ItemsSource="{x:Static dxdanative:ListsWithNamesValues.ParameterTypes}" DisplayMember="Name" ValueMember="Value"  />
+                                </dxpg:PropertyDefinition.EditSettings>
+                            </dxpg:PropertyDefinition>
+                            
+                            <dxpg:PropertyDefinition Path="Value" IsReadOnly="False">
+                                <dxpg:PropertyDefinition.CellTemplateSelector>
+                                    <dxdanative:ParameterPropertyGridTemplateSelector>
+                                        <dxdanative:ParameterPropertyGridTemplateSelector.DateTimeTemplate>
+                                            <DataTemplate>
+                                                <dxe:DateEdit IsTextEditable="False" x:Name="PART_Editor" />
+                                            </DataTemplate>
+                                        </dxdanative:ParameterPropertyGridTemplateSelector.DateTimeTemplate>
+                                        <dxdanative:ParameterPropertyGridTemplateSelector.CheckBoxTemplate>
+                                            <DataTemplate>
+                                                <dxe:CheckEdit x:Name="PART_Editor"></dxe:CheckEdit>
+                                            </DataTemplate>
+                                        </dxdanative:ParameterPropertyGridTemplateSelector.CheckBoxTemplate>
+                                        <dxdanative:ParameterPropertyGridTemplateSelector.TextEditTemplate>
+                                            <DataTemplate>
+                                                <dxe:TextEdit x:Name="PART_Editor"></dxe:TextEdit>
+                                            </DataTemplate>
+                                        </dxdanative:ParameterPropertyGridTemplateSelector.TextEditTemplate>
+                                    </dxdanative:ParameterPropertyGridTemplateSelector>
+
+                                </dxpg:PropertyDefinition.CellTemplateSelector>
+                            </dxpg:PropertyDefinition>
+                        </dxpg:PropertyGridControl.PropertyDefinitions>
+                    </dxpg:PropertyGridControl>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

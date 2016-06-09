@@ -1,0 +1,38 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:dxdb="clr-namespace:DevExpress.Xpf.DemoBase"
+    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+    xmlns:helpers="clr-namespace:DevExpress.Xpf.DemoBase.Helpers"
+    xmlns:ddhelpers="clr-namespace:DevExpress.DemoData.Helpers;assembly=DevExpress.DemoData.v15.2.Core"
+    xmlns:dxl="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <helpers:ThemeSelectorHelper x:Key="ThemeSelectorHelper" />
+    <ddhelpers:SelectConverter x:Key="LoadingBlackOpacityConverter">
+        <ddhelpers:SelectState Key="Black" Value="{ddhelpers:DoubleValue S=1}" />
+        <ddhelpers:SelectState Key="White" Value="{ddhelpers:DoubleValue S=0}" />
+        <ddhelpers:SelectState Key="None" Value="{ddhelpers:DoubleValue S=0}" />
+    </ddhelpers:SelectConverter>
+    <ddhelpers:SelectConverter x:Key="LoadingWhiteOpacityConverter">
+        <ddhelpers:SelectState Key="Black" Value="{ddhelpers:DoubleValue S=0}" />
+        <ddhelpers:SelectState Key="White" Value="{ddhelpers:DoubleValue S=1}" />
+        <ddhelpers:SelectState Key="None" Value="{ddhelpers:DoubleValue S=0}" />
+    </ddhelpers:SelectConverter>
+    <ddhelpers:SelectConverter x:Key="LoadingOpacityConverter">
+        <ddhelpers:SelectState Key="False" Value="{ddhelpers:DoubleValue S=0}" />
+        <ddhelpers:SelectState Key="True" Value="{ddhelpers:DoubleValue S=1}" />
+    </ddhelpers:SelectConverter>
+    <Style TargetType="dxdb:ThemeSelectingLoadingControl">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="dxdb:ThemeSelectingLoadingControl">
+                    <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Opacity="{ddhelpers:SelectBinding Binding={Binding LoadingInProgress, RelativeSource={RelativeSource TemplatedParent}}, Converter={StaticResource LoadingOpacityConverter}}">
+                        <Image Source="/DevExpress.Xpf.DemoBase.v15.2;component/Images/ThemeLoadingBlack.png" Stretch="None"
+                            Opacity="{ddhelpers:SelectBinding Binding={Binding LoadingBackground, RelativeSource={RelativeSource TemplatedParent}}, Converter={StaticResource LoadingBlackOpacityConverter}}" />
+                        <Image Source="/DevExpress.Xpf.DemoBase.v15.2;component/Images/ThemeLoadingWhite.png" Stretch="None"
+                            Opacity="{ddhelpers:SelectBinding Binding={Binding LoadingBackground, RelativeSource={RelativeSource TemplatedParent}}, Converter={StaticResource LoadingWhiteOpacityConverter}}" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

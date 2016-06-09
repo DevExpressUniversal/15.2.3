@@ -1,0 +1,30 @@
+﻿<UserControl x:Class="DevExpress.Xpf.Spreadsheet.Forms.Top10FilterControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+             xmlns:dxsps="clr-namespace:DevExpress.Xpf.Spreadsheet" 
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="500">
+    <UserControl.Resources>
+        <dxsps:SpreadsheetControlStringIdConverter x:Key="stringIdConverter" />
+    </UserControl.Resources>
+    <Grid Margin="10,10,12,0" FocusManager.FocusedElement="{Binding ElementName=edtValue}">
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Text="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_Top10FilterFormShow, Converter={StaticResource stringIdConverter}}" VerticalAlignment="Center" Margin="0,0,12,0"/>
+        
+        <dxe:ComboBoxEdit VerticalAlignment="Center" Margin="24,6,6,0" Grid.Row="1" Grid.Column="0" MinWidth="150" IsTextEditable="False" EditValue="{Binding IsTop}" ItemsSource="{Binding OrderDataSource}" DisplayMember="Text" ValueMember="Value" />
+        <dxe:SpinEdit x:Name="edtValue" VerticalAlignment="Center" Margin="0,6,6,0" EditValue="{Binding Value}" Grid.Row="1" Grid.Column="1" MinWidth="75" MinValue="1" MaxValue="500" />
+        <dxe:ComboBoxEdit VerticalAlignment="Center" Margin="0,6,0,0" Grid.Row="1" Grid.Column="2" MinWidth="150" IsTextEditable="False" EditValue="{Binding IsPercent}" ItemsSource="{Binding TypeDataSource}" DisplayMember="Text" ValueMember="Value" />
+    </Grid>
+</UserControl>

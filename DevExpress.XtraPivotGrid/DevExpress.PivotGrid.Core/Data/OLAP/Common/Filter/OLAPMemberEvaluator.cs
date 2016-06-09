@@ -1,0 +1,88 @@
+﻿#region Copyright (c) 2000-2015 Developer Express Inc.
+/*
+{*******************************************************************}
+{                                                                   }
+{       Developer Express .NET Component Library                    }
+{                                                                   }
+{                                                                   }
+{       Copyright (c) 2000-2015 Developer Express Inc.              }
+{       ALL RIGHTS RESERVED                                         }
+{                                                                   }
+{   The entire contents of this file is protected by U.S. and       }
+{   International Copyright Laws. Unauthorized reproduction,        }
+{   reverse-engineering, and distribution of all or any portion of  }
+{   the code contained in this file is strictly prohibited and may  }
+{   result in severe civil and criminal penalties and will be       }
+{   prosecuted to the maximum extent possible under the law.        }
+{                                                                   }
+{   RESTRICTIONS                                                    }
+{                                                                   }
+{   THIS SOURCE CODE AND ALL RESULTING INTERMEDIATE FILES           }
+{   ARE CONFIDENTIAL AND PROPRIETARY TRADE                          }
+{   SECRETS OF DEVELOPER EXPRESS INC. THE REGISTERED DEVELOPER IS   }
+{   LICENSED TO DISTRIBUTE THE PRODUCT AND ALL ACCOMPANYING .NET    }
+{   CONTROLS AS PART OF AN EXECUTABLE PROGRAM ONLY.                 }
+{                                                                   }
+{   THE SOURCE CODE CONTAINED WITHIN THIS FILE AND ALL RELATED      }
+{   FILES OR ANY PORTION OF ITS CONTENTS SHALL AT NO TIME BE        }
+{   COPIED, TRANSFERRED, SOLD, DISTRIBUTED, OR OTHERWISE MADE       }
+{   AVAILABLE TO OTHER INDIVIDUALS WITHOUT EXPRESS WRITTEN CONSENT  }
+{   AND PERMISSION FROM DEVELOPER EXPRESS INC.                      }
+{                                                                   }
+{   CONSULT THE END USER LICENSE AGREEMENT FOR INFORMATION ON       }
+{   ADDITIONAL RESTRICTIONS.                                        }
+{                                                                   }
+{*******************************************************************}
+*/
+#endregion Copyright (c) 2000-2015 Developer Express Inc.
+
+using System;
+using System.Collections.Generic;
+using DevExpress.Data.Filtering.Helpers;
+using DevExpress.PivotGrid.QueryMode;
+using DevExpress.XtraPivotGrid;
+namespace DevExpress.PivotGrid.OLAP {
+	public class QueryContextCache : Dictionary<string, IOLAPMember> {
+	}
+	public abstract class OLAPQQueryMemberEvaluatorBase : QueryMemberEvaluatorBase {
+		protected object GetMemberValue(IOLAPMember member, string suffix) {
+			if(suffix == null)
+				return member.UniqueLevelValue;
+			else
+				if(suffix == "Self")
+					return member;
+				else
+					if(suffix == "Value")
+						return member.Value;
+					else
+						if(suffix == "Caption")
+							return member.Caption;
+						else
+							return ErrorValue;
+		}
+	}
+	public class QueryMemberEvaluator : OLAPQQueryMemberEvaluatorBase {
+		public QueryMemberEvaluator() { }
+		public override object GetPropertyValue(object source, EvaluatorProperty propertyPath) {
+			string path;
+			string suffix;
+			GetPathAndSuffix(propertyPath.PropertyPath, out path, out suffix);
+			return GetMemberValue((IOLAPMember)source, suffix);
+		}
+	}
+	public class QueryGroupFilterEvaluator : OLAPQQueryMemberEvaluatorBase {
+		public QueryGroupFilterEvaluator() { }
+		public override object GetPropertyValue(object source, EvaluatorProperty propertyPath) {
+			QueryContextCache dic = (QueryContextCache)source;
+			IOLAPMember member = null;
+			string path;
+			string suffix;
+			GetPathAndSuffix(propertyPath.PropertyPath, out path, out suffix);
+			if(dic.TryGetValue(path, out member)) {
+				return GetMemberValue(member, suffix);
+			} else {
+				return ErrorValue;
+			}
+		}
+	}
+}

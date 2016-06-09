@@ -1,0 +1,81 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:dxrt="http://schemas.devexpress.com/winfx/2008/xaml/ribbon/themekeys"
+                    xmlns:interop="clr-namespace:System.Windows.Interop;assembly=PresentationFramework">
+
+    <ControlTemplate x:Key="{dxrt:RibbonThemeKey ResourceKey=ApplicationMenuBackgroundTemplate}" TargetType="{x:Type ContentControl}">
+        <Border>
+            <Border.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFE9ECEE" Offset="0"/>
+                    <GradientStop Color="#FFD1D8E2" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
+            <ContentPresenter/>
+        </Border>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="{dxrt:RibbonThemeKey ResourceKey=ApplicationMenuBarControlBorderTemplate2007}" TargetType="{x:Type ContentControl}">
+        <Grid SnapsToDevicePixels="True">
+            <Border x:Name="Border" Background="#FF2B3B58" Margin="0,0,3,3">
+                <Grid Margin="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" MinHeight="22"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Border x:Name="Header">
+                        <Border.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="#FF4D6082" Offset="0"/>
+                                <GradientStop Color="#FF3D5277" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Border.Background>
+                    </Border>
+                    <Border Grid.Row="1">
+                        <Border.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="#FFE9ECEE" Offset="0"/>
+                                <GradientStop Color="#FFD1D8E2" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Border.Background>
+                        <ContentPresenter/>
+                    </Border>
+                </Grid>
+            </Border>
+        </Grid>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="{dxrt:RibbonThemeKey ResourceKey=ApplicationMenuBottomPaneTemplate}" TargetType="{x:Type ContentControl}">
+        <Grid>
+            <Border x:Name="Footer" Background="#FF3D5277">
+                <ContentPresenter Margin="2" HorizontalAlignment="Right" SnapsToDevicePixels="True"/>
+            </Border>
+        </Grid>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="{dxrt:RibbonThemeKey ResourceKey=ApplicationMenuRightPaneTemplate}" TargetType="{x:Type ContentControl}">
+        <Border>
+            <Border.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFE9ECEE" Offset="0"/>
+                    <GradientStop Color="#FFD1D8E2" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
+            <ContentPresenter/>
+        </Border>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="{dxrt:RibbonThemeKey ResourceKey=ApplicationMenuContentControlBorderTemplate}" TargetType="{x:Type ContentControl}">
+        <Grid>
+            <Border BorderBrush="#FFE9ECEE" BorderThickness="0,1,0,0"/>
+            <ContentPresenter Content="{TemplateBinding Content}" Margin="0,2,0,0"/>
+        </Grid>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="{dxrt:RibbonThemeKey ResourceKey=ApplicationMenuBarControlBorderTemplate2010}" TargetType="{x:Type ContentControl}">
+        <ContentControl Template="{DynamicResource {dxrt:RibbonThemeKey ResourceKey=ApplicationMenuBarControlBorderTemplate2007}}">
+            <ContentPresenter/>
+        </ContentControl>
+    </ControlTemplate>
+
+</ResourceDictionary>

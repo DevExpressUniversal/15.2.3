@@ -1,0 +1,344 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+            xmlns:local="clr-namespace:DevExpress.Xpf.DataAccess.DataSourceWizard"
+            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+            xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+            xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
+            xmlns:dxd="http://schemas.devexpress.com/winfx/2008/xaml/docking"
+            xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+            xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
+            xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+            xmlns:localization="clr-namespace:DevExpress.Xpf.DataAccess.Localization"
+            xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
+            xmlns:localnative="clr-namespace:DevExpress.Xpf.DataAccess.Native"
+            xmlns:editors="clr-namespace:DevExpress.Xpf.DataAccess.Editors">
+
+    <Style x:Key="WizardTableViewBaseStyle" TargetType="{x:Type dxg:TableView}">
+        <Setter Property="ShowSearchPanelMode" Value="Never" />
+        <Setter Property="ShowFilterPanelMode" Value="Never" />
+        <Setter Property="AllowGrouping" Value="False" />
+        <Setter Property="ShowGroupPanel" Value="False" />
+        <Setter Property="AllowColumnFiltering" Value="False" />
+        <Setter Property="AutoWidth" Value="True" />
+        <Setter Property="AllowColumnMoving" Value="False" />
+        <Setter Property="IsGroupPanelMenuEnabled" Value="False" />
+        <Setter Property="EnableImmediatePosting" Value="True" />
+        <Setter Property="EditorButtonShowMode" Value="ShowAlways" />
+    </Style>
+
+    <dxmvvm:ObjectToObjectConverter x:Key="BooleanToFontWeightConverter">
+        <dxmvvm:ObjectToObjectConverter.DefaultTarget>
+            <FontWeight>Normal</FontWeight>
+        </dxmvvm:ObjectToObjectConverter.DefaultTarget>
+        <dxmvvm:MapItem Source="False">
+            <dxmvvm:MapItem.Target>
+                <FontWeight>Bold</FontWeight>
+            </dxmvvm:MapItem.Target>
+        </dxmvvm:MapItem>
+    </dxmvvm:ObjectToObjectConverter>
+
+    <dxb:PopupMenu x:Key="QueryBuilderItemContextMenu">
+        <dxb:BarButtonItem Content="{localization:DataAccessUIStringId StringId=QueryBuilder_Rename}" Command="{Binding Column.TemplatedParent.RenameTableCommand}" CommandParameter="{Binding View}" />
+        <dxb:BarButtonItem Content="{localization:DataAccessUIStringId StringId=QueryBuilder_Delete}" Command="{Binding Column.TemplatedParent.RemoveTableCommand}" CommandParameter="{Binding View.DataControl.CurrentCellValue}" />
+    </dxb:PopupMenu>
+
+    <Style TargetType="{x:Type local:QueryBuilder}">
+        <Setter Property="PreviewDialogServiceTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <ContentControl>
+                        <dx:DialogService>
+                            <dx:DialogService.DialogStyle>
+                                <Style TargetType="{x:Type dx:DXDialogWindow}">
+                                    <Setter Property="UseLayoutRounding" Value="True" />
+                                    <Setter Property="ResizeMode" Value="CanResize" />
+                                    <Setter Property="Width" Value="800" />
+                                    <Setter Property="Height" Value="500" />
+                                </Style>
+                            </dx:DialogService.DialogStyle>
+                            <dx:DialogService.ViewTemplate>
+                                <DataTemplate>
+                                    <dxg:GridControl ItemsSource="{Binding}" AutoGenerateColumns="AddNew">
+                                        <dxg:GridControl.View>
+                                            <dxg:TableView
+                                                        BestFitMaxRowCount="1000"
+                                                        AllowEditing="False"
+                                                        AllowFilterEditor="False"
+                                                        AllowColumnFiltering="False"
+                                                        AutoWidth="False"
+                                                        ShowIndicator="False"
+                                                        ShowGroupPanel="False"
+                                                        ShowFilterPanelMode="Never"
+                                                        IsColumnMenuEnabled="False"
+                                            />
+                                        </dxg:GridControl.View>
+                                    </dxg:GridControl>
+                                </DataTemplate>
+                            </dx:DialogService.ViewTemplate>
+                        </dx:DialogService>
+                    </ContentControl>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="FilterDialogServiceTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <ContentControl>
+                        <dx:DialogService>
+                            <dx:DialogService.DialogStyle>
+                                <Style TargetType="{x:Type dx:DXDialogWindow}">
+                                    <Setter Property="UseLayoutRounding" Value="True" />
+                                    <Setter Property="ResizeMode" Value="CanResize" />
+                                    <Setter Property="Width" Value="650" />
+                                    <Setter Property="Height" Value="400" />
+                                </Style>
+                            </dx:DialogService.DialogStyle>
+                            <dx:DialogService.ViewTemplate>
+                                <DataTemplate>
+                                    <editors:QueryBuilderFilterControl EditValue="{Binding}" />
+                                </DataTemplate>
+                            </dx:DialogService.ViewTemplate>
+                        </dx:DialogService>
+                    </ContentControl>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="JoinEditorDialogServiceTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <ContentControl>
+                        <dx:DialogService>
+                            <dx:DialogService.DialogStyle>
+                                <Style TargetType="{x:Type dx:DXDialogWindow}">
+                                    <Setter Property="UseLayoutRounding" Value="True" />
+                                    <Setter Property="Width" Value="600" />
+                                    <Setter Property="Height" Value="300" />
+                                    <Setter Property="MinWidth" Value="250" />
+                                    <Setter Property="MinHeight" Value="200" />
+                                    <Setter Property="ResizeMode" Value="CanResize" />
+                                </Style>
+                            </dx:DialogService.DialogStyle>
+                            <dx:DialogService.ViewTemplate>
+                                <DataTemplate>
+                                    <local:JoinEditorControl EditValue="{Binding}" />
+                                </DataTemplate>
+                            </dx:DialogService.ViewTemplate>
+                        </dx:DialogService>
+                    </ContentControl>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="MessageBoxServiceTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <ContentControl>
+                        <dx:DXMessageBoxService />
+                    </ContentControl>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="SplashScreenServiceTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <ContentControl>
+                        <dx:DXSplashScreenService SplashScreenStartupLocation="CenterOwner">
+                            <dx:DXSplashScreenService.ViewTemplate>
+                                <DataTemplate>
+                                    <dx:WaitIndicator DeferedVisibility="True" />
+                                </DataTemplate>
+                            </dx:DXSplashScreenService.ViewTemplate>
+                        </dx:DXSplashScreenService>
+                    </ContentControl>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:QueryBuilder">
+                    <Grid>
+                        <dxd:DockLayoutManager>
+                            <dxd:DockLayoutManager.LayoutRoot>
+                                <dxd:LayoutGroup Orientation="Vertical">
+                                    <dxd:LayoutControlItem ItemHeight="Auto">
+                                        <dxe:CheckEdit Content="{localization:DataAccessUIStringId StringId=QueryBuilder_AllowEdit}" IsChecked="{Binding AllowEditSql}" HorizontalAlignment="Right" VerticalAlignment="Top" />
+                                    </dxd:LayoutControlItem>
+                                    <dxd:LayoutGroup AllowSplitters="True">
+                                        <dxd:LayoutGroup ItemWidth="*" Orientation="Vertical" AllowSplitters="True">
+                                            <dxd:LayoutGroup ItemHeight="3*">
+                                                <dxd:LayoutControlItem>
+                                                    <dxe:ListBoxEdit ItemsSource="{Binding Available}" EditValue="{Binding SelectedAvailableItem, RelativeSource={RelativeSource TemplatedParent}}">
+                                                        <dxe:ListBoxEdit.ItemContainerStyle>
+                                                            <Style TargetType="dxe:ListBoxEditItem">
+                                                                <Setter Property="dxmvvm:Interaction.BehaviorsTemplate">
+                                                                    <Setter.Value>
+                                                                        <DataTemplate>
+                                                                            <ContentControl>
+                                                                                <dxmvvm:EventToCommand EventName="MouseDoubleClick" Command="{Binding AddSelectedItemCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:QueryBuilder}}}" />
+                                                                            </ContentControl>
+                                                                        </DataTemplate>
+                                                                    </Setter.Value>
+                                                                </Setter>
+                                                            </Style>
+                                                        </dxe:ListBoxEdit.ItemContainerStyle>
+                                                        <dxe:ListBoxEdit.ItemTemplate>
+                                                            <DataTemplate>
+                                                                <StackPanel Orientation="Horizontal">
+                                                                    <Image Source="{Binding Type, Converter={local:ImageNameToSourceConverter Folder=QueryBuilder}}" />
+                                                                    <TextBlock Text="{Binding Name}" FontWeight="{Binding Shadowed, Converter={StaticResource BooleanToFontWeightConverter}}" />
+                                                                </StackPanel>
+                                                            </DataTemplate>
+                                                        </dxe:ListBoxEdit.ItemTemplate>
+                                                    </dxe:ListBoxEdit>
+                                                </dxd:LayoutControlItem>
+                                            </dxd:LayoutGroup>
+                                            <dxd:LayoutGroup ItemHeight="2*">
+                                                <dxd:LayoutGroup Caption="{Binding AvailableItemGroupBoxHeader, RelativeSource={RelativeSource TemplatedParent}}" GroupBorderStyle="GroupBox" ShowCaption="True">
+                                                    <dxd:LayoutControlItem>
+                                                        <dxg:GridControl ItemsSource="{Binding SelectedAvailableItem.Children, RelativeSource={RelativeSource TemplatedParent}}" MaxHeight="1000">
+                                                            <dxg:GridControl.Columns>
+                                                                <dxg:GridColumn>
+                                                                    <dxg:GridColumn.CellTemplate>
+                                                                        <DataTemplate>
+                                                                            <TextBlock Text="{Binding RowData.Row.Name}" FontWeight="Bold" />
+                                                                        </DataTemplate>
+                                                                    </dxg:GridColumn.CellTemplate>
+                                                                </dxg:GridColumn>
+                                                                <dxg:GridColumn FieldName="Type">
+                                                                    <dxg:GridColumn.EditSettings>
+                                                                        <dxe:TextEditSettings HorizontalContentAlignment="Right" />
+                                                                    </dxg:GridColumn.EditSettings>
+                                                                </dxg:GridColumn>
+                                                            </dxg:GridControl.Columns>
+                                                            <dxg:GridControl.View>
+                                                                <dxg:TableView ShowColumnHeaders="False" ShowIndicator="False" Style="{StaticResource WizardTableViewBaseStyle}" />
+                                                            </dxg:GridControl.View>
+                                                        </dxg:GridControl>
+                                                    </dxd:LayoutControlItem>
+                                                </dxd:LayoutGroup>
+                                            </dxd:LayoutGroup>
+                                        </dxd:LayoutGroup>
+                                        <dxd:LayoutGroup ItemWidth="4*" Orientation="Vertical"  AllowSplitters="True">
+                                            <dxd:LayoutControlItem ItemHeight="*" Visibility="{Binding AllowEditSql, Converter={dxmvvm:BooleanToVisibilityConverter}}">
+                                                <dxe:TextEdit EditValue="{Binding SqlText}" IsReadOnly="{Binding AllowEditSql, Converter={dxmvvm:BooleanNegationConverter}}" />
+                                            </dxd:LayoutControlItem>
+                                            <dxd:LayoutGroup ItemHeight="3*" Orientation="Horizontal" AllowSplitters="True" Visibility="{Binding AllowEditSql, Converter={dxmvvm:BooleanToVisibilityConverter Inverse=True}}">
+                                                <dxd:LayoutGroup>
+                                                    <dxd:LayoutControlItem>
+                                                        <dxg:GridControl ItemsSource="{Binding EditValue.Selection, RelativeSource={RelativeSource TemplatedParent}}" Visibility="{Binding AllowEditSql, Converter={dxmvvm:BooleanToVisibilityConverter Inverse=True}}">
+                                                            <dxg:GridControl.Columns>
+                                                                <dxg:GridColumn FieldName="Name" Header="Name" AllowEditing="False">
+                                                                    <dxg:GridColumn.CellTemplate>
+                                                                        <DataTemplate>
+                                                                            <Grid dxb:BarManager.DXContextMenu="{Binding RowData.Node, Converter={local:TreeListNodeToContextMenuConverter}, ConverterParameter={StaticResource QueryBuilderItemContextMenu}}">
+                                                                                <Grid>
+                                                                                    <Grid.ColumnDefinitions>
+                                                                                        <ColumnDefinition Width="*" />
+                                                                                        <ColumnDefinition Width="Auto" />
+                                                                                    </Grid.ColumnDefinitions>
+                                                                                    <dxe:TextEdit x:Name="PART_Editor" />
+                                                                                    <StackPanel Orientation="Horizontal" Grid.Column="1">
+                                                                                        <Image Source="{dx:DXImage Image=SortAsc_16x16.png}" Visibility="{Binding RowData.Row.SortedAsc, Converter={dxmvvm:BooleanToVisibilityConverter}}" />
+                                                                                        <Image Source="{dx:DXImage Image=SortDesc_16x16.png}" Visibility="{Binding RowData.Row.SortedDesc, Converter={dxmvvm:BooleanToVisibilityConverter}}" />
+                                                                                        <Image Source="{dx:DXImage Image=Group_16x16.png}" Visibility="{Binding RowData.Row.GroupedBy, Converter={dxmvvm:BooleanToVisibilityConverter}}" />
+                                                                                        <Image Source="{dx:DXImage Image=Summary_16x16.png}" Visibility="{Binding RowData.Row.Aggregated, Converter={dxmvvm:BooleanToVisibilityConverter}}" />
+                                                                                    </StackPanel>
+                                                                                </Grid>
+                                                                                <dxmvvm:Interaction.Behaviors>
+                                                                                    <localnative:ExpandNodesBehavior TreeListNode="{Binding RowData.Node}" />
+                                                                                </dxmvvm:Interaction.Behaviors>
+                                                                            </Grid>
+                                                                        </DataTemplate>
+                                                                    </dxg:GridColumn.CellTemplate>
+                                                                </dxg:GridColumn>
+                                                                <dxg:GridColumn Header="Join Information" AllowEditing="False">
+                                                                    <dxg:GridColumn.CellTemplate>
+                                                                        <DataTemplate>
+                                                                            <StackPanel Orientation="Horizontal">
+                                                                                <Button Command="{Binding JoinTableCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:QueryBuilder}}}" CommandParameter="{Binding RowData.Row.Id}" HorizontalAlignment="Left" Visibility="{Binding RowData.Row.ForeignKey, Converter={local:FKStateToVisibilityConverter FKState=CanBeJoined}}">
+                                                                                    <Image Source="{dx:DXImage Image=Add_16x16.png}" Width="16" Height="16" />
+                                                                                </Button>
+                                                                                <Button HorizontalAlignment="Left" Visibility="{Binding RowData.Row.ForeignKey, Converter={local:FKStateToVisibilityConverter FKState=AlreadyJoined}}">
+                                                                                    <Image Source="{dx:DXImage Image=Apply_16x16.png}" Width="16" Height="16" />
+                                                                                </Button>
+                                                                                <TextBlock Text="{Binding RowData.Row.Condition}" />
+                                                                                <Button Command="{Binding OnEditJoinCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:QueryBuilder}}}" CommandParameter="{Binding RowData.Row.Name}" HorizontalAlignment="Right" Content="...">
+                                                                                    <Button.Visibility>
+                                                                                        <MultiBinding Converter="{local:ConditionAndFKStateToVisibilityConverter}">
+                                                                                            <Binding Path="RowData.Row.Condition" />
+                                                                                            <Binding Path="RowData.Row.ForeignKey" />
+                                                                                        </MultiBinding>
+                                                                                    </Button.Visibility>
+                                                                                </Button>
+                                                                            </StackPanel>
+                                                                        </DataTemplate>
+                                                                    </dxg:GridColumn.CellTemplate>
+                                                                </dxg:GridColumn>
+                                                            </dxg:GridControl.Columns>
+                                                            <dxg:GridControl.View>
+                                                                <dxg:TreeListView KeyFieldName="Id" ParentFieldName="Parent" ShowCheckboxes="True" CheckBoxFieldName="Selected" AutoWidth="True" />
+                                                            </dxg:GridControl.View>
+                                                        </dxg:GridControl>
+                                                    </dxd:LayoutControlItem>
+                                                </dxd:LayoutGroup>
+                                                <dxd:LayoutGroup>
+                                                    <dxd:LayoutControlItem>
+                                                        <dxe:TextEdit EditValue="{Binding SqlText}" IsReadOnly="{Binding AllowEditSql, Converter={dxmvvm:BooleanNegationConverter}}" FontFamily="Courier New, Lucida Console" VerticalContentAlignment="Top" AcceptsReturn="True" AcceptsTab="True" />
+                                                    </dxd:LayoutControlItem>
+                                                </dxd:LayoutGroup>
+                                            </dxd:LayoutGroup>
+                                            <dxd:LayoutControlItem ItemHeight="*" Visibility="{Binding AllowEditSql, Converter={dxmvvm:BooleanToVisibilityConverter Inverse=True}}">
+                                                <dxg:GridControl ItemsSource="{Binding QueryGrid}" Visibility="{Binding AllowEditSql, Converter={dxmvvm:BooleanToVisibilityConverter Inverse=True}}">
+                                                    <dxg:GridControl.Columns>
+                                                        <dxg:GridColumn FieldName="Column" />
+                                                        <dxg:GridColumn FieldName="Table" ReadOnly="True" />
+                                                        <dxg:GridColumn FieldName="Alias" />
+                                                        <dxg:GridColumn FieldName="Output">
+                                                        </dxg:GridColumn>
+                                                        <dxg:GridColumn Header="Sorting Type">
+                                                            <dxg:GridColumn.CellTemplate>
+                                                                <DataTemplate>
+                                                                    <dxe:ComboBoxEdit ItemsSource="{x:Static localnative:ListsWithNamesValues.SortingDirections}" DisplayMember="Name" ValueMember="Value" EditValue="{Binding RowData.Row.SortingType, UpdateSourceTrigger=PropertyChanged}" IsTextEditable="False" />
+                                                                </DataTemplate>
+                                                            </dxg:GridColumn.CellTemplate>
+                                                        </dxg:GridColumn>
+                                                        <dxg:GridColumn Header="Sort Order" FieldName="SortOrder">
+                                                            <dxg:GridColumn.EditSettings>
+                                                                <dxe:SpinEditSettings AllowNullInput="False" MinValue="1" MaxValue="{Binding EditValue.QueryGrid.Count, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:QueryBuilder}}, UpdateSourceTrigger=PropertyChanged}" IsFloatValue="False" />
+                                                            </dxg:GridColumn.EditSettings>
+                                                        </dxg:GridColumn>
+                                                        <dxg:GridColumn Header="Group By" FieldName="GroupBy" />
+                                                        <dxg:GridColumn Header="Aggregate">
+                                                            <dxg:GridColumn.CellTemplate>
+                                                                <DataTemplate>
+                                                                    <dxe:ComboBoxEdit ItemsSource="{x:Static localnative:ListsWithNamesValues.AggregationTypes}" DisplayMember="Name" ValueMember="Value" EditValue="{Binding RowData.Row.Aggregate, UpdateSourceTrigger=PropertyChanged}" IsTextEditable="False" />
+                                                                </DataTemplate>
+                                                            </dxg:GridColumn.CellTemplate>
+                                                        </dxg:GridColumn>
+                                                    </dxg:GridControl.Columns>
+                                                    <dxg:GridControl.View>
+                                                        <dxg:TableView Style="{StaticResource WizardTableViewBaseStyle}" EnableImmediatePosting="True" />
+                                                    </dxg:GridControl.View>
+                                                </dxg:GridControl>
+                                            </dxd:LayoutControlItem>
+                                        </dxd:LayoutGroup>
+                                    </dxd:LayoutGroup>
+                                </dxd:LayoutGroup>
+                            </dxd:DockLayoutManager.LayoutRoot>
+                        </dxd:DockLayoutManager>
+                        <dx:DialogFooter>
+                            <Grid>
+                                <StackPanel Orientation="Horizontal">
+                                    <dx:DialogButton Content="{localization:DataAccessUIStringId StringId=QueryBuilderButtons_PreviewResults}" DialogResult="{x:Null}" Command="{Binding PreviewResultsCommand, RelativeSource={RelativeSource TemplatedParent}}" />
+                                    <dx:DialogButton Content="{localization:DataAccessUIStringId StringId=QueryBuilderButtons_Filter}" IsEnabled="{Binding AllowEditSql, Converter={dxmvvm:BooleanNegationConverter}}" DialogResult="{x:Null}" Command="{Binding OnEditFilterCommand, RelativeSource={RelativeSource TemplatedParent}}" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                    <dx:DialogButton DialogResult="OK" />
+                                    <dx:DialogButton DialogResult="Cancel" />
+                                </StackPanel>
+                            </Grid>
+                        </dx:DialogFooter>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

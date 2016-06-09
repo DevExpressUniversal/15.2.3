@@ -1,0 +1,1375 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F96D98CD-7FD2-4C34-8577-7E04B3F8890C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DevExpress.Web.ASPxRichEdit</RootNamespace>
+    <AssemblyName>DevExpress.Web.ASPxRichEdit.v15.2</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+    <TypeScriptOutFile>Scripts\compiled.js</TypeScriptOutFile>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TypeScriptTarget>ES3</TypeScriptTarget>
+    <TypeScriptToolsVersion>1.5</TypeScriptToolsVersion>
+    <TypeScriptGeneratesDeclarations>true</TypeScriptGeneratesDeclarations>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\Bin\Framework\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <TypeScriptOutFile>Scripts\compiled.js</TypeScriptOutFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\Bin\Framework\</OutputPath>
+    <DefineConstants>TRACE;DXCommon;ASP</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <TypeScriptOutFile>Scripts\compiled.js</TypeScriptOutFile>
+  </PropertyGroup>
+  
+  <ItemGroup>
+    <Reference Include="DevExpress.Printing.v15.2.Core"><HintPath>..\..\Bin\Framework\DevExpress.Printing.v15.2.Core.dll</HintPath><Private>False</Private></Reference>
+    <Reference Include="System"><Private>False</Private></Reference>
+    <Reference Include="System.configuration"><Private>False</Private></Reference>
+    <Reference Include="System.Core"><Private>False</Private></Reference>
+    <Reference Include="System.Data.Linq"><Private>False</Private></Reference>
+    <Reference Include="System.Design"><Private>False</Private></Reference>
+    <Reference Include="System.Drawing"><Private>False</Private></Reference>
+    <Reference Include="System.Web"><Private>False</Private></Reference>
+    <Reference Include="System.Web.Extensions"><Private>False</Private></Reference>
+    <Reference Include="System.Windows.Forms"><Private>False</Private></Reference>
+    <Reference Include="System.Xml.Linq"><Private>False</Private></Reference>
+    <Reference Include="Microsoft.CSharp"><Private>False</Private></Reference>
+    <Reference Include="System.Data"><Private>False</Private></Reference>
+    <Reference Include="System.Xml"><Private>False</Private></Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Commands\Bookmarks\EditBookmarksCommand.cs" />
+    <Compile Include="Commands\Bookmarks\LoadBookmarksCommand.cs" />
+    <Compile Include="Commands\CommandFactory.cs" />
+    <Compile Include="Commands\CommandType.cs" />
+    <Compile Include="Commands\Document\LoadDocumentCommand.cs" />
+    <Compile Include="Commands\Document\LoadStringResourcesCommand.cs" />
+    <Compile Include="Commands\Fields\DeleteFieldCommand.cs" />
+    <Compile Include="Commands\File\DelayedPrintCommand.cs" />
+    <Compile Include="Commands\File\NewDocumentCommand.cs" />
+    <Compile Include="Commands\File\OpenDocumentCommand.cs" />
+    <Compile Include="Commands\File\SaveAsDocumentCommand.cs" />
+    <Compile Include="Commands\File\SaveDocumentCommand.cs" />
+    <Compile Include="Commands\File\SaveMergedDocumentCommand.cs" />
+    <Compile Include="Commands\Paragraphs\LinkParagraphStylesCommands.cs" />
+    <Compile Include="Commands\Paragraphs\LoadParagraphStylesCommand.cs" />
+    <Compile Include="Commands\Sections\ChangeHeaderFooterIndexCommand.cs" />
+    <Compile Include="Commands\Sections\CreateHeaderFooterCommand.cs" />
+    <Compile Include="Commands\Sections\LoadHeadersFootersCommand.cs" />
+    <Compile Include="Commands\Tables\ApplyTableStyleCommand.cs" />
+    <Compile Include="Commands\Tables\ChangeTableCellPropertyCommand.cs" />
+    <Compile Include="Commands\Tables\ChangeTablePropertyCommand.cs" />
+    <Compile Include="Commands\Tables\ChangeTableRowPropertyCommand.cs" />
+    <Compile Include="Commands\Tables\CreateTableCommand.cs" />
+    <Compile Include="Commands\Tables\Exporter\Styles\TableConditionalStyleExporters.cs" />
+    <Compile Include="Commands\Tables\Exporter\Styles\TableConditionalStyleDictionaryExporter.cs" />
+    <Compile Include="Commands\Tables\Exporter\Styles\TableStyleExporter.cs" />
+    <Compile Include="Commands\Tables\InsertTableCellCommand.cs" />
+    <Compile Include="Commands\Tables\InsertTableRowCommand.cs" />
+    <Compile Include="Commands\Tables\LoadTableCellStylesCommand.cs" />
+    <Compile Include="Commands\Tables\LoadTablesCommand.cs" />
+    <Compile Include="Commands\Tables\LoadTableStylesCommand.cs" />
+    <Compile Include="Commands\Tables\MergeTableCellHorizontallyCommand.cs" />
+    <Compile Include="Commands\Tables\RemoveTableCellCommand.cs" />
+    <Compile Include="Commands\Tables\RemoveTableCommand.cs" />
+    <Compile Include="Commands\Tables\RemoveTableRowCommand.cs" />
+    <Compile Include="Commands\Tables\ShiftTableStartPositionCommand.cs" />
+    <Compile Include="Commands\Tables\SplitTableCellHorizontallyCommand.cs" />
+    <Compile Include="Commands\Tabs\TabPropertiesExporter.cs" />
+    <Compile Include="Export\WebModelPropertiesCacheBase.cs" />
+    <Compile Include="Export\WebTableCellProperties.cs" />
+    <Compile Include="Export\WebTableProperties.cs" />
+    <Compile Include="Export\WebTableRowProperties.cs" />
+    <Compile Include="Forms\BaseForm.cs" />
+    <Compile Include="Forms\BookmarksForm.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\BorderShadingForm.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\BulletedListForm.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\ColumnsEditorForm.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\ColumnsForm.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\DeleteTableCellsForm.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\ErrorForm.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\FinishMergeForm.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\FontForm.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\InsertHyperlinkForm.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\InsertImageForm.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\InsertMergeFieldForm.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\InsertTableCellsForm.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\InsertTableForm.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\MultiLevelNumberingListForm.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\NumberingListForm.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\OpenFileForm.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\PageSetupForm.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\ParagraphForm.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\SaveFileForm.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\SelectFolderForm.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\SimpleNumberingListForm.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\SplitTableCellsForm.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\SymbolsForm.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\TablePropertiesForm.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\TabsForm.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RichEditDownloadManager.cs" />
+    
+    <Compile Include="WorkSession\RichEditDocumentInfo.cs" />
+    <Compile Include="WorkSession\RichEditWorkSession.cs" />
+    <Compile Include="WorkSession\WorkSessionClient.cs" />
+    <TypeScriptCompile Include="Scripts\Canvas\Color.ts" />
+    <TypeScriptCompile Include="Scripts\Canvas\SelectionRenderer.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\BookmarkCommand.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\ClientCommand.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\Dialogs\DialogBookmarksCommand.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\Dialogs\DialogBorderShadingCommand.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\Dialogs\DialogCustomNumberingListCommand.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\Dialogs\DialogFinishAndMergeCommand.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\Dialogs\DialogHyperlinkCommand.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\Dialogs\DialogInsertMergeFieldCommand.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\Dialogs\DialogInsertTableCellsCommand.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\Dialogs\DialogInsertTableCommand.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\Dialogs\DialogNumberingListCommand.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\Dialogs\DialogSplitTableCellsCommand.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\Dialogs\DialogSymbolsCommand.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\Dialogs\DialogTablePropertiesCommand.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\Dialogs\DialogTabsCommand.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\DocumentProperties\ChangePageColorCommand.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\Fields\CreateFieldCommand.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\Fields\GoToRecordCommand.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\Fields\HyperlinkCommandBase.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\Fields\OpenHyperlinkCommand.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\Fields\RemoveHyperlinkCommand.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\Fields\RemoveHyperlinksCommand.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\Fields\ShowAllFieldCodesCommand.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\Fields\ShowAllFieldResultCommand.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\Fields\ToggleFieldCodesCommand.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\Fields\ToggleAllFieldsCommand.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\Fields\ToggleViewMergedDataCommand.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\Fields\UpdateAllFieldsCommand.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\Fields\UpdateFieldCommand.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\HeaderFooter\CloseHeaderFooterCommand.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\HeaderFooter\ContextItemHeadersFooters.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\HeaderFooter\DifferentFirstPageHeaderFooterCommand.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\HeaderFooter\DifferentOddEvenHeaderFooterCommand.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\HeaderFooter\GoToHeaderFooterCommand.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\HeaderFooter\GoToNextHeaderFooterCommand.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\HeaderFooter\GoToPreviousHeaderFooterCommand.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\HeaderFooter\HeaderFooterCommandBase.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\HeaderFooter\InsertHeaderFooterCommands.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\HeaderFooter\LinkHeaderFooterCommands.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\Layout\ToggleShowTableGridLinesCommand.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\Numbering\ChangeNumberingIndentCommand.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\Numbering\ContinueNumberingListCommand.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\Numbering\ToggleMultiLevelListCommand.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\Numbering\InsertNumerationToParagraphsCommand.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\Numbering\NumberingListCommandBase.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\Numbering\RemoveNumerationFromParagraphsCommand.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\Numbering\RestartNumberingListCommand.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\Numbering\ToggleBulletedListCommand.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\Numbering\ToggleNumberingListCommand.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\ParagraphProperties\AddSpacingAfterParagraphCommand.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\ParagraphProperties\AddSpacingBeforeParagraphCommand.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\Layout\ApplyStyleCommand.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\ParagraphProperties\ChangeParagraphIndentFromFirstRowCommand.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\ParagraphProperties\ParagraphIndentCommandBase.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\Ruler\RulerParagraphTabsCommand.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\SectionProperties\SectionPropertiesCommandBase.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\Selection\GoToDocumentEndCommand.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\Selection\GoToDocumentStartCommand.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\Selection\GoToNextWordCommand.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\Selection\GoToPrevWordCommand.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\Selection\SelectTableCommand.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\SubDocument\ChangeActiveSubDocumentCommand.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\Tables\ApplyTableStyleCommand.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\Tables\ChangeTableBorderRepositoryItem.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\Tables\ChangeTableCellAlignmentCommand.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\Tables\ChangeTableCellShadingCommand.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\Tables\ChangeTableLookCommand.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\Tables\ContextItemTables.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\Tables\DeleteTableCellsWithShiftToTheHorizontallyCommand.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\Tables\DeleteTableCellsWithShiftToTheVerticallyCommand.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\Tables\DeleteTableColumnsCommand.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\Tables\DeleteTableCommand.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\Tables\DeleteTableRowsCommand.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\Tables\InsertTableCellsWithShiftToTheHorizontallyCommand.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\Tables\InsertTableCellsWithShiftToTheVerticallyCommand.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\Tables\InsertTableColumnCommands.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\Tables\InsertTableCoreCommand.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\Tables\InsertTableRowCommands.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\Tables\MergeTableCellsCommand.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\Tables\SplitTableCellsCommand.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\Tables\ToggleTableCellsBorderCommand.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\Text\ChangeTextCaseCommands.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\Text\DragDropCommands.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\Text\InsertSectionBreakCommand.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\Text\InsertSpaceCommand.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\Text\InsertTabCommand.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\Document\PrintDocumentCommand.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\Document\ReloadDocumentCommand.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\ParagraphProperties\RemoveSpacingAfterParagraphCommand.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\ParagraphProperties\RemoveSpacingBeforeParagraphCommand.ts" />
+    <Compile Include="ASPxInternalRichEditDocumentServer.cs" />
+    <Compile Include="ASPxRichEdit.cs" />
+    <Compile Include="ClientSideEvents.cs" />
+    <Compile Include="Commands\Lists\AddAbstractNumberingListCommand.cs" />
+    <Compile Include="Commands\Lists\AddNumberingListCommand.cs" />
+    <Compile Include="Commands\ApplyCharacterStyle.cs" />
+    <Compile Include="Commands\Lists\ApplyNumberingListCommand.cs" />
+    <Compile Include="Commands\Paragraphs\ApplyParagraphStyleCommand.cs" />
+    <Compile Include="Commands\ChangeCharacterFormattingCommand.cs" />
+    <Compile Include="Commands\ChangeInlineObjectCommand.cs" />
+    <Compile Include="Commands\Lists\ChangeIOverrideListLevelCommand.cs" />
+    <Compile Include="Commands\Lists\ChangeListLevelCharacterPropertiesCommand.cs" />
+    <Compile Include="Commands\Lists\ChangeListLevelParagraphPropertiesCommand.cs" />
+    <Compile Include="Commands\Lists\ChangeListLevelPropertiesCommand.cs" />
+    <Compile Include="Commands\Paragraphs\ChangeParagraphFormattingCommand.cs" />
+    <Compile Include="Commands\ChangeSectionFormattingCommand.cs" />
+    <Compile Include="Commands\ChangeTextBufferCommand.cs" />
+    <Compile Include="Commands\CommandManager.cs" />
+    <Compile Include="Commands\CommandStates.cs" />
+    <Compile Include="Commands\Document\LoadControlOptionsCommand.cs" />
+    <Compile Include="Commands\DeleteCommand.cs" />
+    <Compile Include="Commands\Lists\DeleteNumberingListCommands.cs" />
+    <Compile Include="Commands\Document\DocumentPropertiesCommand.cs" />
+    <Compile Include="Commands\Fields\FieldUpdateCommand.cs" />
+    <Compile Include="Commands\Fields\FieldListCommand.cs" />
+    <Compile Include="Commands\FixedLengthFormattedTextCommand.cs" />
+    <Compile Include="Commands\Fields\HyperlinkInfoChangedCommand.cs" />
+    <Compile Include="Commands\Document\InitSessionCommand.cs" />
+    <Compile Include="Commands\Fields\InsertFieldCommand.cs" />
+    <Compile Include="Commands\InsertInlinePictureCommand.cs" />
+    <Compile Include="Commands\Paragraphs\InsertParagraphCommand.cs" />
+    <Compile Include="Commands\Sections\InsertSectionCommand.cs" />
+    <Compile Include="Commands\InsertTextCommand.cs" />
+    <Compile Include="Commands\LoadInlinePicturesCommand.cs" />
+    <Compile Include="Commands\Modifiers\ModelModifiers.cs" />
+    <Compile Include="Commands\Modifiers\WebCharacterPropertiesModifiers.cs" />
+    <Compile Include="Commands\Modifiers\WebParagraphPropertiesModifiers.cs" />
+    <Compile Include="Commands\Lists\NumberingListCommand.cs" />
+    <Compile Include="Commands\Sections\LoadSectionsCommand.cs" />
+    <Compile Include="Commands\Document\LoadStylesCommand.cs" />
+    <Compile Include="Commands\Tables\Exporter\SimpleExporters\TableBordersExporter.cs" />
+    <Compile Include="Commands\Tables\Exporter\SimpleExporters\TableCellBordersExporter.cs" />
+    <Compile Include="Commands\Tables\Exporter\SimpleExporters\TableCellMarginsExporter.cs" />
+    <Compile Include="Commands\Tables\Exporter\SimpleExporters\UnitExporters.cs" />
+    <Compile Include="Commands\Tabs\TabsCommand.cs" />
+    <Compile Include="Commands\Tabs\TabsInfoExporter.cs" />
+    <Compile Include="Commands\UpdateInlinePicturesCommand.cs" />
+    <Compile Include="Commands\WebRichEditCommandBase.cs" />
+    <Compile Include="Controls.cs" />
+    <Compile Include="Dialogs.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Export\CharacterFormattingBaseExporter.cs" />
+    <Compile Include="Export\ParagraphFormattingBaseExporter.cs" />
+    <Compile Include="Export\Enums.cs" />
+    <Compile Include="Export\LangInfoExporter.cs" />
+    <Compile Include="Export\WebNumberingList.cs" />
+    <Compile Include="Export\WebNumberingListStyle.cs" />
+    <Compile Include="Export\WebStyleBase.cs" />
+    <Compile Include="Export\WebTableCellStyle.cs" />
+    <Compile Include="Export\FormattingExporters.cs" />
+    <Compile Include="Export\Chunk.cs" />
+    <Compile Include="Export\Interfaces.cs" />
+    <Compile Include="Export\RichEditServerResponse.cs" />
+    <Compile Include="Export\RichEditServerResponseGenerator.cs" />
+    <Compile Include="Export\WebCharacterStyle.cs" />
+    <Compile Include="Export\WebFontInfo.cs" />
+    <Compile Include="Export\WebFontInfoCache.cs" />
+    <Compile Include="Export\WebParagraph.cs" />
+    <Compile Include="Export\WebParagraphStyle.cs" />
+    <Compile Include="Export\WebSection.cs" />
+    <Compile Include="Export\WebSectionProperties.cs" />
+    <Compile Include="Export\WebSectionPropertiesCache.cs" />
+    <Compile Include="Export\WebTextRangeBase.cs" />
+    <Compile Include="Images.cs" />
+    <Compile Include="Localization.cs" />
+    <Compile Include="PopupMenu.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Ribbon\RERibbon.cs" />
+    <Compile Include="Ribbon\RERibbonBase.cs" />
+    <Compile Include="Ribbon\RERibbonCommandsHeaderAndFooter.cs" />
+    <Compile Include="Ribbon\RERibbonCommandsTable.cs" />
+    <Compile Include="Ribbon\RERibbonCommandsReferences.cs" />
+    <Compile Include="Ribbon\RERibbonCommandsReview.cs" />
+    <Compile Include="Ribbon\RERibbonCommandsPicture.cs" />
+    <Compile Include="Ribbon\RERibbonCommandsView.cs" />
+    <Compile Include="Ribbon\RERibbonCommandsMailMerge.cs" />
+    <Compile Include="Ribbon\RERibbonCommandsPageLayout.cs" />
+    <Compile Include="Ribbon\RERibbonCommandsInsert.cs" />
+    <Compile Include="Ribbon\RERibbonCommandsHome.cs" />
+    <Compile Include="Ribbon\RERibbonCommandsFile.cs" />
+    <Compile Include="Ribbon\RERibbonCommands.cs" />
+    <Compile Include="Ribbon\RERibbonGroups.cs" />
+    <Compile Include="Ribbon\RERibbonTabs.cs" />
+    <Compile Include="RichEditRequestManager.cs" />
+    <Compile Include="Settings.cs" />
+    <Compile Include="SettingsCore.cs" />
+    <Compile Include="Styles.cs" />
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <Compile Include="tt\BorderBaseExporter.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BorderBaseExporter.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tt\BorderInfoExporter.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BorderInfoExporter.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tt\CharacterFormattingBaseExporter.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CharacterFormattingBaseExporter.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tt\CharacterPropertiesExporter.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CharacterPropertiesExporter.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tt\CodeGenerator.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CodeGenerator.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tt\ListLevelPropertiesExporter.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ListLevelPropertiesExporter.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tt\ParagraphFormattingBase.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ParagraphFormattingBase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tt\ParagraphPropertiesExporter.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ParagraphPropertiesExporter.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tt\TypeLoader.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TypeLoader.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Scripts\JSON\tt\TypeScriptCodeGenerator.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TypeScriptCodeGenerator.tt</DependentUpon>
+    </Compile>
+    <TypeScriptCompile Include="Scripts\Commands\Ruler\RulerParagraphIndentsCommand.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\Ruler\RulerSectionColumnsSettingsCommand.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\Ruler\RulerSectionMarginsCommand.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\Selection\GoToParagraphEndCommand.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\Selection\GoToParagraphStartCommand.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\Selection\SelectParagraphCommand.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\Dialogs\DialogColumnsCommand.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\Dialogs\DialogErrorMessageCommand.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\Ruler\ToggleShowHorizontalRulerCommand.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\Layout\ToggleShowHiddenSymbolsCommand.ts" />
+    <TypeScriptCompile Include="Scripts\ControlOptions.ts" />
+    <TypeScriptCompile Include="Scripts\JSON\CommandType.ts" />
+    <TypeScriptCompile Include="Scripts\JSON\Enums.ts" />
+    <TypeScriptCompile Include="Scripts\JSON\ManualConverters\ColumnsSectionPropertiesConverter.ts" />
+    <TypeScriptCompile Include="Scripts\JSON\JSONImporter.ts" />
+    <TypeScriptCompile Include="Scripts\JSON\ManualConverters\Table\JSONTableBordersConverter.ts" />
+    <TypeScriptCompile Include="Scripts\JSON\ManualConverters\Table\JSONTableCellBordersConverter.ts" />
+    <TypeScriptCompile Include="Scripts\JSON\ManualConverters\Table\JSONTableCellMarginsConverter.ts" />
+    <TypeScriptCompile Include="Scripts\JSON\ManualConverters\Table\JSONTableCellPropertiesConverter.ts" />
+    <TypeScriptCompile Include="Scripts\JSON\ManualConverters\Table\JSONTableCellStyleConverter.ts" />
+    <TypeScriptCompile Include="Scripts\JSON\ManualConverters\Table\JSONTableConditionalStyleConverter.ts" />
+    <TypeScriptCompile Include="Scripts\JSON\ManualConverters\Table\JSONTableStyleConverter.ts" />
+    <TypeScriptCompile Include="Scripts\JSON\ManualConverters\Table\JSONTableUnitConverter.ts" />
+    <TypeScriptCompile Include="Scripts\JSON\ManualConverters\Table\JSONTablePropertiesConverter.ts" />
+    <TypeScriptCompile Include="Scripts\JSON\ManualConverters\Table\JSONTableRowPropertiesConverter.ts" />
+    <TypeScriptCompile Include="Scripts\JSON\ManualConverters\TabConverter.ts" />
+    <TypeScriptCompile Include="Scripts\JSON\ServerDispatcherModelChangesListener.ts" />
+    <TypeScriptCompile Include="Scripts\JSON\ServerDispatcherResponseProcessor.ts" />
+    <TypeScriptCompile Include="Scripts\JSON\tt\JSONBorderInfoConverter.ts">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>JSONBorderInfoConverter.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Scripts\JSON\tt\JSONListLevelPropertiesConverter.ts">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>JSONListLevelPropertiesConverter.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Scripts\LayoutEngine\BookmarksFormatter.ts" />
+    <TypeScriptCompile Include="Scripts\LayoutEngine\LayoutFormatter\LayoutTableBorderHelper.ts" />
+    <TypeScriptCompile Include="Scripts\LayoutEngine\RowFormatter\BoxAligner.ts" />
+    <TypeScriptCompile Include="Scripts\LayoutEngine\ColumnsCalculator.ts" />
+    <TypeScriptCompile Include="Scripts\LayoutEngine\LayoutBoxIterator\LayoutBoxIteratorBase.ts" />
+    <TypeScriptCompile Include="Scripts\LayoutEngine\LayoutBoxIterator\LayoutBoxIteratorMainSubDocument.ts" />
+    <TypeScriptCompile Include="Scripts\LayoutEngine\LayoutBoxIterator\LayoutBoxIteratorOtherSubDocument.ts" />
+    <TypeScriptCompile Include="Scripts\LayoutEngine\LayoutBoxIterator\LayoutBoxIteratorTableCell.ts" />
+    <TypeScriptCompile Include="Scripts\LayoutEngine\LayoutFormatter\Interfaces.ts" />
+    <TypeScriptCompile Include="Scripts\LayoutEngine\LayoutFormatter\LayoutBoundsCalculator.ts" />
+    <TypeScriptCompile Include="Scripts\LayoutEngine\LayoutFormatter\LayoutFormatterBase.ts" />
+    <TypeScriptCompile Include="Scripts\LayoutEngine\LayoutFormatter\LayoutFormatterInvalidator.ts" />
+    <TypeScriptCompile Include="Scripts\LayoutEngine\LayoutFormatter\LayoutFormatterModelChangesListener.ts" />
+    <TypeScriptCompile Include="Scripts\LayoutEngine\LayoutFormatter\LayoutFormatterState.ts" />
+    <TypeScriptCompile Include="Scripts\LayoutEngine\LayoutFormatter\LayoutFormatterMain.ts" />
+    <TypeScriptCompile Include="Scripts\LayoutEngine\LayoutFormatter\LayoutFormatterTableInfo.ts" />
+    <TypeScriptCompile Include="Scripts\LayoutEngine\LineSpacingCalculator.ts" />
+    <TypeScriptCompile Include="Scripts\LayoutEngine\LayoutPositionCreator.ts" />
+    <TypeScriptCompile Include="Scripts\LayoutEngine\RowFormatter\TableTextBoxCollector.ts" />
+    <TypeScriptCompile Include="Scripts\LayoutEngine\RowFormatter\TextBoxIterator\BoxInfosGenerator.ts" />
+    <TypeScriptCompile Include="Scripts\LayoutEngine\RowFormatter\TextBoxIterator\BoxIteratorTablePositionsManipulator.ts" />
+    <TypeScriptCompile Include="Scripts\LayoutEngine\RowFormatter\TextBoxIterator\ITextBoxIterator.ts" />
+    <TypeScriptCompile Include="Scripts\LayoutEngine\RowFormatter\TextRowFormatterStates.ts" />
+    <TypeScriptCompile Include="Scripts\LayoutEngine\TablesEngine\ColumnIntervalEngine\ColumnIntervalWidth.ts" />
+    <TypeScriptCompile Include="Scripts\LayoutEngine\TablesEngine\ColumnIntervalEngine\ColumnIntervalWidthIterator.ts" />
+    <TypeScriptCompile Include="Scripts\LayoutEngine\TablesEngine\TableCompressHelper.ts" />
+    <TypeScriptCompile Include="Scripts\LayoutEngine\TablesEngine\TableGrid.ts" />
+    <TypeScriptCompile Include="Scripts\LayoutEngine\TablesEngine\WidthEngine\AutofitTableLayoutCalculator.ts" />
+    <TypeScriptCompile Include="Scripts\LayoutEngine\TablesEngine\WidthEngine\EstimatedTableWidthCalculator.ts" />
+    <TypeScriptCompile Include="Scripts\LayoutEngine\TablesEngine\WidthEngine\CellWidthBoundsCalculator.ts" />
+    <TypeScriptCompile Include="Scripts\LayoutEngine\TablesEngine\WidthEngine\CellWidthBoundsCollector.ts" />
+    <TypeScriptCompile Include="Scripts\LayoutEngine\TablesEngine\WidthEngine\NestedTableIterator.ts" />
+    <TypeScriptCompile Include="Scripts\LayoutEngine\TablesEngine\WidthEngine\NestedTablesWidthCalculator.ts" />
+    <TypeScriptCompile Include="Scripts\LayoutEngine\TablesEngine\WidthEngine\ParagraphWidthManipulator.ts" />
+    <TypeScriptCompile Include="Scripts\LayoutEngine\TablesEngine\ColumnIntervalEngine\ColumnIntervalWidthCalculator.ts" />
+    <TypeScriptCompile Include="Scripts\Layout\LayoutChanges.ts" />
+    <TypeScriptCompile Include="Scripts\Layout\LayoutWordPositions.ts" />
+    <TypeScriptCompile Include="Scripts\Layout\Table\LayoutTableCellInfo.ts" />
+    <TypeScriptCompile Include="Scripts\Layout\Table\LayoutTableInfo.ts" />
+    <TypeScriptCompile Include="Scripts\Layout\Table\LayoutTableRowInfo.ts" />
+    <TypeScriptCompile Include="Scripts\Layout\Table\Properties\LayoutTableCellProperties.ts" />
+    <TypeScriptCompile Include="Scripts\Layout\Table\Properties\LayoutTableProperties.ts" />
+    <TypeScriptCompile Include="Scripts\Layout\Table\TableCellIterator.ts" />
+    <TypeScriptCompile Include="Scripts\LinkedInterval.ts" />
+    <TypeScriptCompile Include="Scripts\Model\History\BookmarkHistoryItems.ts" />
+    <TypeScriptCompile Include="Scripts\Model\History\HeaderFooterHistoryItems.ts" />
+    <TypeScriptCompile Include="Scripts\Model\History\Tables\ChangeTableCellHistoryItems.ts" />
+    <TypeScriptCompile Include="Scripts\Model\History\Tables\CreateTableHistoryItem.ts" />
+    <TypeScriptCompile Include="Scripts\Model\History\Tables\InsertTableRowHistoryItem.ts" />
+    <TypeScriptCompile Include="Scripts\Model\History\Tables\RemoveTableCellHistoryItem.ts" />
+    <TypeScriptCompile Include="Scripts\Model\History\Tables\RemoveTableHistoryItem.ts" />
+    <TypeScriptCompile Include="Scripts\Model\History\Tables\RemoveTableRowHistoryItem.ts" />
+    <TypeScriptCompile Include="Scripts\Model\History\Tables\SplitTableCellHistoryItem.ts" />
+    <TypeScriptCompile Include="Scripts\Model\History\Tables\TableCellPropertiesHistoryItems.ts" />
+    <TypeScriptCompile Include="Scripts\Model\History\Tables\TablePropertiesHistoryItems.ts" />
+    <TypeScriptCompile Include="Scripts\Model\History\Tables\TableRowPropertiesHistoryItems.ts" />
+    <TypeScriptCompile Include="Scripts\Model\Manipulators\BookmarksManipulator.ts" />
+    <TypeScriptCompile Include="Scripts\Model\Manipulators\ModelChangesDispatcher.ts" />
+    <TypeScriptCompile Include="Scripts\Model\Manipulators\Operations\CreateRangeCopyOperation.ts" />
+    <TypeScriptCompile Include="Scripts\Model\Manipulators\Operations\InsertTableCellOperation.ts" />
+    <TypeScriptCompile Include="Scripts\Model\Manipulators\Operations\InsertTableRowOperation.ts" />
+    <TypeScriptCompile Include="Scripts\Model\Manipulators\Operations\MergeTableCellsOperation.ts" />
+    <TypeScriptCompile Include="Scripts\Model\Manipulators\Operations\RestoreRemovedIntervalOperation.ts" />
+    <TypeScriptCompile Include="Scripts\Model\Manipulators\TableCellPropertiesManipulator.ts" />
+    <TypeScriptCompile Include="Scripts\Model\Manipulators\TablePropertiesManipulator.ts" />
+    <TypeScriptCompile Include="Scripts\Model\Manipulators\TableRowPropertiesManipulator.ts" />
+    <TypeScriptCompile Include="Scripts\Model\Manipulators\TablesManipulator.ts" />
+    <TypeScriptCompile Include="Scripts\Model\Tables\PropertiesMergers\TableCellPropertiesMerger.ts" />
+    <TypeScriptCompile Include="Scripts\Model\Tables\PropertiesMergers\TablePropertiesMerger.ts" />
+    <TypeScriptCompile Include="Scripts\Model\Tables\PropertiesMergers\TablePropertiesMergerBase.ts" />
+    <TypeScriptCompile Include="Scripts\Model\Tables\PropertiesMergers\TableRowPropertiesMerger.ts" />
+    <TypeScriptCompile Include="Scripts\Model\Tables\SecondaryStructures\TableBorderCalculator.ts" />
+    <TypeScriptCompile Include="Scripts\Model\Tables\TableUtils.ts" />
+    <TypeScriptCompile Include="Scripts\StringResources.ts" />
+    <TypeScriptCompile Include="Scripts\Utils\Logging.ts" />
+    <TypeScriptCompile Include="Scripts\Model\Bookmarks.ts" />
+    <TypeScriptCompile Include="Scripts\Model\Fields\DateTimeFormatter.ts" />
+    <TypeScriptCompile Include="Scripts\Model\Fields\Field.ts" />
+    <TypeScriptCompile Include="Scripts\Model\Fields\FieldParserFabric.ts" />
+    <TypeScriptCompile Include="Scripts\Model\Fields\FieldContextMenuHelper.ts" />
+    <TypeScriptCompile Include="Scripts\Model\History\ApplyFieldHyperlinkStyleHistoryItem.ts" />
+    <TypeScriptCompile Include="Scripts\Model\History\ChangeFieldHyperlinkInfoHistoryItem.ts" />
+    <TypeScriptCompile Include="Scripts\Model\History\DocumentPropertiesHistoryItems.ts" />
+    <TypeScriptCompile Include="Scripts\Model\History\FieldInsertHistoryItem.ts" />
+    <TypeScriptCompile Include="Scripts\Model\History\InsertRunHistoryItem.ts" />
+    <TypeScriptCompile Include="Scripts\Model\History\InsertSubDocumentHistoryItem.ts" />
+    <TypeScriptCompile Include="Scripts\Model\History\RemoveHyperlinkHistoryItem.ts" />
+    <TypeScriptCompile Include="Scripts\Model\Interfaces.ts" />
+    <TypeScriptCompile Include="Scripts\Model\Manipulators\DocumentPropertiesManipulator.ts" />
+    <TypeScriptCompile Include="Scripts\Model\Manipulators\FieldsManipulator.ts" />
+    <TypeScriptCompile Include="Scripts\Model\Manipulators\HeaderFooterManipulator.ts" />
+    <TypeScriptCompile Include="Scripts\Model\Manipulators\Operations\ChunkSizeCorrector.ts" />
+    <TypeScriptCompile Include="Scripts\Model\Manipulators\Operations\RemoveIntervalOperation.ts" />
+    <TypeScriptCompile Include="Scripts\Model\Manipulators\TabsManipulator.ts" />
+    <TypeScriptCompile Include="Scripts\Model\Manipulators\TextCaseManipulator.ts" />
+    <TypeScriptCompile Include="Scripts\Model\ModelIterator.ts" />
+    <TypeScriptCompile Include="Scripts\Model\Fields\Parsers\FieldCodeParserCreateDate.ts" />
+    <TypeScriptCompile Include="Scripts\Model\Fields\Parsers\FieldCodeParserDate.ts" />
+    <TypeScriptCompile Include="Scripts\Model\Fields\Parsers\FieldCodeParserDocVariable.ts" />
+    <TypeScriptCompile Include="Scripts\Model\Fields\Parsers\FieldCodeParserFormula.ts" />
+    <TypeScriptCompile Include="Scripts\Model\Fields\Parsers\FieldCodeParserHyperlink.ts" />
+    <TypeScriptCompile Include="Scripts\Model\Fields\Parsers\FieldCodeParserIf.ts" />
+    <TypeScriptCompile Include="Scripts\Model\Fields\Parsers\FieldCodeParserIncludePicture.ts" />
+    <TypeScriptCompile Include="Scripts\Model\Fields\Parsers\FieldCodeParser.ts" />
+    <TypeScriptCompile Include="Scripts\Model\Fields\Parsers\FieldCodeParserMergeField.ts" />
+    <TypeScriptCompile Include="Scripts\Model\Fields\Parsers\FieldCodeParserNumPages.ts" />
+    <TypeScriptCompile Include="Scripts\Model\Fields\Parsers\FieldCodeParserPage.ts" />
+    <TypeScriptCompile Include="Scripts\Model\Fields\Parsers\FieldCodeParserSeq.ts" />
+    <TypeScriptCompile Include="Scripts\Model\Fields\Parsers\FieldCodeParserSymbol.ts.ts" />
+    <TypeScriptCompile Include="Scripts\Model\Fields\Parsers\FieldCodeParserTc.ts" />
+    <TypeScriptCompile Include="Scripts\Model\Fields\Parsers\FieldCodeParserTime.ts" />
+    <TypeScriptCompile Include="Scripts\Model\Fields\Parsers\FieldCodeParserToc.ts" />
+    <TypeScriptCompile Include="Scripts\Model\Fields\TreeCreator.ts" />
+    <TypeScriptCompile Include="Scripts\Model\FindReplaceHelper.ts" />
+    <TypeScriptCompile Include="Scripts\Model\History\ApplyStyleHistoryItems.ts" />
+    <TypeScriptCompile Include="Scripts\Model\History\CreateStyleLinkHistoryItem.ts" />
+    <TypeScriptCompile Include="Scripts\Model\History\ListLevelCharacterPropertiesHistoryItems.ts" />
+    <TypeScriptCompile Include="Scripts\Model\History\ListLevelParagraphPropertiesHistoryItems.ts" />
+    <TypeScriptCompile Include="Scripts\Model\History\ListLevelPropertiesHistoryItems.ts" />
+    <TypeScriptCompile Include="Scripts\Model\History\HistoryItemStateObject.ts" />
+    <TypeScriptCompile Include="Scripts\Model\History\InsertInlinePictureHistoryItem.ts" />
+    <TypeScriptCompile Include="Scripts\JSON\tt\JSONCharacterPropertiesConverter.ts">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>JSONCharacterPropertiesConverter.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Scripts\JSON\tt\JSONMaskedCharacterPropertiesConverter.ts">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>JSONMaskedCharacterPropertiesConverter.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Scripts\JSON\tt\JSONFontInfoConverter.ts">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>JSONFontInfoConverter.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Scripts\JSON\tt\JSONMaskedParagraphPropertiesConverter.ts">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>JSONMaskedParagraphPropertiesConverter.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Scripts\JSON\tt\JSONParagraphPropertiesConverter.ts">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>JSONParagraphPropertiesConverter.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Scripts\JSON\tt\JSONSectionPropertiesConverter.ts">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>JSONSectionPropertiesConverter.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Scripts\Model\History\NumberingListHistoryItems.ts" />
+    <TypeScriptCompile Include="Scripts\Model\History\PasteSelectionHistoryItem.ts" />
+    <TypeScriptCompile Include="Scripts\Model\Manipulators\ListLevelCharacterPropertiesManipulator.ts" />
+    <TypeScriptCompile Include="Scripts\Model\Manipulators\ListLevelPropertiesManipulator.ts" />
+    <TypeScriptCompile Include="Scripts\Model\Manipulators\NumberingListManipulator.ts" />
+    <TypeScriptCompile Include="Scripts\Model\Manipulators\ListLevelParagraphPropertiesManipulator.ts" />
+    <TypeScriptCompile Include="Scripts\Model\Manipulators\StylesManipulator.ts" />
+    <TypeScriptCompile Include="Scripts\Model\NumberConverters\AlphabetBasedNumberConverter.ts" />
+    <TypeScriptCompile Include="Scripts\Model\NumberConverters\BulletNumberConverter.ts" />
+    <TypeScriptCompile Include="Scripts\Model\NumberConverters\DecimalEnclosedParenthesesNumberConverter.ts" />
+    <TypeScriptCompile Include="Scripts\Model\NumberConverters\DecimalNumberConverter.ts" />
+    <TypeScriptCompile Include="Scripts\Model\NumberConverters\DecimalZeroNumberConverter.ts" />
+    <TypeScriptCompile Include="Scripts\Model\NumberConverters\DescriptiveNumberConverter.ts" />
+    <TypeScriptCompile Include="Scripts\Model\NumberConverters\LatinLetterNumberConverter.ts" />
+    <TypeScriptCompile Include="Scripts\Model\NumberConverters\NumberInDashNumberConverter.ts" />
+    <TypeScriptCompile Include="Scripts\Model\NumberConverters\NumericsProvider.ts" />
+    <TypeScriptCompile Include="Scripts\Model\NumberConverters\OrdinalBasedNumberConverter.ts" />
+    <TypeScriptCompile Include="Scripts\Model\NumberConverters\RomanNumberConverter.ts" />
+    <TypeScriptCompile Include="Scripts\Model\NumberingLists\NumberingListCountersCalculator.ts" />
+    <TypeScriptCompile Include="Scripts\Model\NumberingLists\NumberingListIndexCalculator.ts" />
+    <TypeScriptCompile Include="Scripts\Model\NumberingLists\NumberingListStyle.ts" />
+    <TypeScriptCompile Include="Scripts\Model\NumberingLists\ListLevel.ts" />
+    <TypeScriptCompile Include="Scripts\Model\NumberingLists\ListLevelProperties.ts" />
+    <TypeScriptCompile Include="Scripts\Model\NumberingLists\NumberingList.ts" />
+    <TypeScriptCompile Include="Scripts\Model\NumberingLists\NumberingListIdProvider.ts" />
+    <TypeScriptCompile Include="Scripts\Model\NumberingLists\PieceTableNumberingListCountersManager.ts" />
+    <TypeScriptCompile Include="Scripts\Model\Section\HeaderFooter.ts" />
+    <TypeScriptCompile Include="Scripts\Model\SentenceModelBuilder.ts" />
+    <TypeScriptCompile Include="Scripts\Model\StylesManager.ts" />
+    <TypeScriptCompile Include="Scripts\Model\SubDocumentInfos.ts" />
+    <TypeScriptCompile Include="Scripts\Model\Tables\MainStructures\Table.ts" />
+    <TypeScriptCompile Include="Scripts\Model\Tables\SecondaryStructures\TableBaseStructures.ts" />
+    <TypeScriptCompile Include="Scripts\Model\Tables\MainStructures\TableCell.ts" />
+    <TypeScriptCompile Include="Scripts\Model\Tables\Properties\TableCellProperties.ts" />
+    <TypeScriptCompile Include="Scripts\Model\Tables\Properties\TableProperties.ts" />
+    <TypeScriptCompile Include="Scripts\Model\Tables\MainStructures\TableRow.ts" />
+    <TypeScriptCompile Include="Scripts\Model\Tables\Properties\TableRowProperties.ts" />
+    <TypeScriptCompile Include="Scripts\Model\Tables\SecondaryStructures\TableUnits.ts" />
+    <TypeScriptCompile Include="Scripts\Model\Tables\Styles\TableCellStyle.ts" />
+    <TypeScriptCompile Include="Scripts\Model\Tables\Styles\TableConditionalStyle.ts" />
+    <TypeScriptCompile Include="Scripts\Model\Tables\Styles\TableStyle.ts" />
+    <TypeScriptCompile Include="Scripts\MouseHandler\ManipulatorHandlerBase.ts" />
+    <TypeScriptCompile Include="Scripts\MouseHandler\ResizeBoxHelper.ts" />
+    <TypeScriptCompile Include="Scripts\MouseHandler\TouchHandler\TouchHandlerDragContentStates.ts" />
+    <TypeScriptCompile Include="Scripts\MouseHandler\TouchHandler\TouchHandlerResizeBoxState.ts" />
+    <TypeScriptCompile Include="Scripts\MouseHandler\TouchHandler\TouchHandlerSelectionStates.ts" />
+    <TypeScriptCompile Include="Scripts\MouseHandler\TouchHandler\TouchHandlerWaitingStates.ts" />
+    <TypeScriptCompile Include="Scripts\MouseHandler\TouchHandler\TouchMoveCaretUnderCursorState.ts" />
+    <TypeScriptCompile Include="Scripts\UI\Loupe.ts" />
+    <TypeScriptCompile Include="Scripts\UI\Ruler\Controls.ts" />
+    <TypeScriptCompile Include="Scripts\UI\Ruler\Division.ts" />
+    <TypeScriptCompile Include="Scripts\UI\Ruler\EventManagers.ts" />
+    <TypeScriptCompile Include="Scripts\UI\Ruler\PositionManager.ts" />
+    <TypeScriptCompile Include="Scripts\UI\Ruler\Ruler.ts" />
+    <TypeScriptCompile Include="Scripts\UI\Ruler\RulerDisplayControl.ts" />
+    <TypeScriptCompile Include="Scripts\UI\Ruler\Utils.ts" />
+    <TypeScriptCompile Include="Scripts\Utils\BatchUpdatableObject.ts" />
+    <TypeScriptCompile Include="Scripts\Utils\Errors.ts" />
+    <TypeScriptCompile Include="Scripts\Utils\EventDispatcher.ts" />
+    <TypeScriptCompile Include="Scripts\Utils\PaperKind.ts" />
+    <TypeScriptCompile Include="Scripts\Utils\RuntimeTestHelper.ts" />
+    <TypeScriptCompile Include="Scripts\Utils\ShadingPattern.ts" />
+    <TypeScriptCompile Include="Scripts\Utils\SpecialCharacters.ts" />
+    <TypeScriptCompile Include="Scripts\Utils\Utils.ts" />
+    <TypeScriptCompile Include="_references.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="DevExpress.Web.v15.2">
+      <SpecificVersion>False</SpecificVersion>
+    <HintPath>..\..\Bin\Framework\DevExpress.Web.v15.2.dll</HintPath><Private>False</Private></Reference>
+    <Reference Include="DevExpress.Data.v15.2">
+      <SpecificVersion>False</SpecificVersion>
+    <HintPath>..\..\Bin\Framework\DevExpress.Data.v15.2.dll</HintPath><Private>False</Private></Reference>
+    <Reference Include="DevExpress.Office.v15.2.Core">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+    <HintPath>..\..\Bin\Framework\DevExpress.Office.v15.2.Core.dll</HintPath></Reference>
+    <Reference Include="DevExpress.RichEdit.v15.2.Core">
+      <SpecificVersion>False</SpecificVersion>
+    <HintPath>..\..\Bin\Framework\DevExpress.RichEdit.v15.2.Core.dll</HintPath><Private>False</Private></Reference>
+    
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="Scripts\Commands\ParagraphProperties\ChangeIndentCommand.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\ParagraphProperties\ChangeParagraphLeftIndentCommand.ts" />
+    <TypeScriptCompile Include="Scripts\Canvas\CanvasManager.ts" />
+    <TypeScriptCompile Include="Scripts\Canvas\HtmlConverter.ts" />
+    <TypeScriptCompile Include="Scripts\Canvas\ShapeResizeBox.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\Text\BackspaceCommand.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\CharacterProperties\ChangeCharacterPropertiesCommandBase.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\CharacterProperties\ChangeFontBackColorCommand.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\CharacterProperties\ChangeFontColorCommand.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\CharacterProperties\ChangeFontNameCommand.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\CharacterProperties\ChangeFontSizeCommand.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\Text\ChangeInlinePictureScaleCommand.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\ParagraphProperties\ChangeParagraphBackColorCommand.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\ParagraphProperties\ChangeParagraphPropertiesCommandBase.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\SectionProperties\ChangeSectionPropertiesCommandBase.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\Layout\ClearFormattingCommand.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\Text\ClipboardCommands.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\CharacterProperties\DecreaseFontSizeCommand.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\Text\DeleteCommand.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\CharacterProperties\IncreaseFontSizeCommand.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\Text\InsertColumnBreakCommand.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\Text\InsertLineBreakCommand.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\Text\InsertPageBreakCommand.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\Text\InsertParagraphCommand.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\Text\InsertTextCommand.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\Selection\GoToLineBelowCommand.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\Selection\GoToLineEndCommand.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\Selection\GoToLineStartCommand.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\Selection\GoToLineAboveCommand.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\Selection\GoToLineVerticallyCommandBase.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\Document\NewDocumentCommand.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\Selection\GoToNextCharacterCommand.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\Selection\GoToNextPageCommand.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\Selection\GoToPrevCharacterCommand.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\Selection\GoToPrevPageCommand.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\RedoCommand.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\Document\SaveDocumentCommand.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\Selection\SelectAllDocumentCommand.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\Selection\SelectionCommandBase.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\Selection\SelectLineCommand.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\ParagraphProperties\SetDoubleParagraphSpacingCommand.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\SectionProperties\SetLandscapePageOrientationCommand.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\SectionProperties\SetPortraitPageOrientationCommand.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\SectionProperties\SetPredefinedSectionPageMarginsCommands.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\SectionProperties\SetSectionColumnCountCommands.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\SectionProperties\SetSectionPaperKindCommands.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\ParagraphProperties\SetSesquialteralParagraphSpacingCommand.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\ParagraphProperties\SetSingleParagraphSpacingCommand.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\Dialogs\ShowDialogCommandBase.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\Dialogs\DialogOpenFileCommand.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\Dialogs\DialogFontCommand.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\Dialogs\DialogInsertImageCommand.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\Dialogs\DialogPageSetupCommand.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\Dialogs\DialogParagraphPropertiesCommand.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\Dialogs\DialogSaveFileCommand.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\CharacterProperties\ToggleCharacterPropertiesCommandBase.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\CharacterProperties\ToggleFontItalicCommand.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\CharacterProperties\ToggleFontStrikeoutCommand.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\CharacterProperties\ToggleFontSubscriptCommand.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\CharacterProperties\ToggleFontSuperscriptCommand.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\CharacterProperties\ToggleFontUnderlineCommand.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\Layout\ToggleFullScreenCommand.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\ParagraphProperties\ToggleParagraphAlignmentCommand.ts" />
+    <TypeScriptCompile Include="Scripts\Commands\UndoCommand.ts" />
+    <TypeScriptCompile Include="Scripts\EventManager.ts" />
+    <TypeScriptCompile Include="Scripts\FontInfo.ts" />
+    <TypeScriptCompile Include="Scripts\HtmlExport.ts" />
+    <TypeScriptCompile Include="Scripts\HtmlImport.ts" />
+    <TypeScriptCompile Include="Scripts\Interfaces\IDocumentLayoutChangesListener.ts" />
+    <TypeScriptCompile Include="Scripts\Interfaces\IDocumentModelChangesListener.ts" />
+    <TypeScriptCompile Include="Scripts\InputController.ts" />
+    <TypeScriptCompile Include="Scripts\Interfaces\IProcessManager.ts" />
+    <TypeScriptCompile Include="Scripts\Interfaces\ISelectionLayoutChangesListener.ts" />
+    <TypeScriptCompile Include="Scripts\LayoutEngine\DragCaretVisualizer.ts" />
+    <TypeScriptCompile Include="Scripts\LayoutEngine\HitTestManager\HitTestManager.ts" />
+    <TypeScriptCompile Include="Scripts\LayoutEngine\HitTestManager\HitTestResult.ts" />
+    <TypeScriptCompile Include="Scripts\LayoutEngine\ResizeBoxVisualizer.ts" />
+    <TypeScriptCompile Include="Scripts\LayoutEngine\RowFormatter\TextRowFormatter.ts" />
+    <TypeScriptCompile Include="Scripts\Layout\LayoutDragCaret.ts" />
+    <TypeScriptCompile Include="Scripts\Layout\LayoutPosition.ts" />
+    <TypeScriptCompile Include="Scripts\Model\Character\CharacterProperties.ts" />
+    <TypeScriptCompile Include="Scripts\Model\History\CharacterPropertiesHistoryItems.ts" />
+    <TypeScriptCompile Include="Scripts\Model\History\ParagraphPropertiesHistoryItems.ts" />
+    <TypeScriptCompile Include="Scripts\Model\History\ChangeRectangularObjectScaleHistoryItem.ts" />
+    <TypeScriptCompile Include="Scripts\Model\History\SectionPropertiesHistoryItems.ts" />
+    <TypeScriptCompile Include="Scripts\Model\History\CopyIntervalHistoryItem.ts" />
+    <TypeScriptCompile Include="Scripts\Model\History\InsertTextHistoryItem.ts" />
+    <TypeScriptCompile Include="Scripts\Model\History\RemoveIntervalHistoryItem.ts" />
+    <TypeScriptCompile Include="Scripts\Model\History\Selection\SetSelectionHistoryItem.ts" />
+    <TypeScriptCompile Include="Scripts\Model\History\TextRunChangeCaseHistoryItem.ts" />
+    <TypeScriptCompile Include="Scripts\Model\Manipulators\InlineObjectManipulator.ts" />
+    <TypeScriptCompile Include="Scripts\Model\Manipulators\IPropertiesManipulator.ts" />
+    <TypeScriptCompile Include="Scripts\Model\Manipulators\ParagraphPropertiesManipulator.ts" />
+    <TypeScriptCompile Include="Scripts\Model\PropertiesMerger\ParagraphPropertiesMerger.ts" />
+    <TypeScriptCompile Include="Scripts\Model\Manipulators\SectionPropertiesManipulator.ts" />
+    <TypeScriptCompile Include="Scripts\Model\Manipulators\TextManipulator.ts" />
+    <TypeScriptCompile Include="Scripts\MouseHandler\MouseHandlerDragContentStates.ts" />
+    <TypeScriptCompile Include="Scripts\MouseHandler\MouseHandler.ts" />
+    <TypeScriptCompile Include="Scripts\MouseHandler\MouseHandlerDefaultState.ts" />
+    <TypeScriptCompile Include="Scripts\MouseHandler\MouseHandlerStateBase.ts" />
+    <TypeScriptCompile Include="Scripts\MouseHandler\MouseHandlerResizeBoxState.ts" />
+    <TypeScriptCompile Include="Scripts\MouseHandler\MouseHandlerTextSelectionStates.ts" />
+    <TypeScriptCompile Include="Scripts\RichEditCore.ts" />
+    <TypeScriptCompile Include="Scripts\Selection\ISelectionChangesListener.ts" />
+    <TypeScriptCompile Include="Scripts\LayoutEngine\SelectionFormatter.ts" />
+    <TypeScriptCompile Include="Scripts\Layout\DocumentLayout.ts" />
+    <TypeScriptCompile Include="Scripts\Layout\MainStructures\LayoutItemBase.ts" />
+    <TypeScriptCompile Include="Scripts\Layout\MainStructures\LayoutBox.ts" />
+    <TypeScriptCompile Include="Scripts\Layout\MainStructures\LayoutColumn.ts" />
+    <TypeScriptCompile Include="Scripts\Layout\MainStructures\LayoutPage.ts" />
+    <TypeScriptCompile Include="Scripts\Layout\MainStructures\LayoutPageArea.ts" />
+    <TypeScriptCompile Include="Scripts\Layout\MainStructures\LayoutRow.ts" />
+    <TypeScriptCompile Include="Scripts\Layout\LayoutSelectionRow.ts" />
+    <TypeScriptCompile Include="Scripts\Model\DocumentModel.ts" />
+    <TypeScriptCompile Include="Scripts\Model\Manipulators\ModelManipulator.ts" />
+    <TypeScriptCompile Include="Scripts\Canvas\LayoutPoint.ts" />
+    <TypeScriptCompile Include="Scripts\Selection\Selection.ts" />
+    <TypeScriptCompile Include="Scripts\Measurer.ts" />
+    <TypeScriptCompile Include="Scripts\Canvas\DocumentRenderer.ts" />
+    <TypeScriptCompile Include="Scripts\Selection\InputPosition.ts" />
+    <TypeScriptCompile Include="Scripts\UI\BarManager.ts" />
+    <TypeScriptCompile Include="Scripts\UnitConverter.ts" />
+    <TypeScriptCompile Include="Scripts\_definitions.d.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="LocalizationRes.resx" />
+    <EmbeddedResource Include="LocalizationRes.ru.resx" />
+    <EmbeddedResource Include="LocalizationRes.ja.resx" />
+    <EmbeddedResource Include="LocalizationRes.es.resx" />
+    <EmbeddedResource Include="LocalizationRes.de.resx" />
+    <EmbeddedResource Include="Scripts\RichEdit.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Css\Default.css" />
+    <EmbeddedResource Include="Css\System.css" />
+  </ItemGroup>
+  <ItemGroup>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <TypeScriptCompile Include="Scripts\Model\PositionManager.ts" />
+    <TypeScriptCompile Include="Scripts\Layout\ColumnController.ts" />
+    <TypeScriptCompile Include="Scripts\Interfaces\IBoxMeasurer.ts" />
+    <TypeScriptCompile Include="Scripts\Model\History\History.ts" />
+    <TypeScriptCompile Include="Scripts\Interfaces\IDocumentRenderer.ts" />
+    <TypeScriptCompile Include="Scripts\Interfaces\IEventManager.ts" />
+    <TypeScriptCompile Include="Scripts\Model\History\IHistory.ts" />
+    <TypeScriptCompile Include="Scripts\Model\History\HistoryItem.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="Scripts\Model\SubDocument.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="Scripts\Model\Character\TextRun.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="Scripts\Model\Chunk.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="Scripts\Model\Paragraph\Paragraph.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="Scripts\Model\DocumentCache.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="Scripts\Model\Character\RunIterator.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="Scripts\Model\History\HistoryItemState.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="Scripts\Model\Manipulators\CharacterPropertiesManipulator.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="Scripts\FixedInterval.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="Scripts\Interfaces\IRichEditControl.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="Scripts\Commands\CommandManager.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="Scripts\Commands\ICommand.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="Scripts\Commands\CharacterProperties\ToggleFontBoldCommand.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="Scripts\Commands\CommandStates.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="Scripts\Commands\CommandBase.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="Scripts\Model\History\IntervalBasedHistoryItem.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="Scripts\LayoutEngine\RowFormatter\TextBoxIterator\TextBoxIterator.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="Scripts\Interfaces\ITextBoxIteratorRequestsListener.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="Scripts\JSON\ServerDispatcher.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="Scripts\Model\Paragraph\ParagraphProperties.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="Scripts\Model\BorderInfo.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="Scripts\Model\Section\Section.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="Scripts\Interfaces\Common.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="Scripts\Model\Section\SectionProperties.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="Scripts\Model\StyleBase.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="Scripts\Model\Character\CharacterStyle.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="Scripts\Model\PropertiesMerger\CharacterPropertiesMerger.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="Scripts\Model\PropertiesMerger\PropertiesMergerBase.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Scripts\UI\Dialogs.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Scripts\UI\FileManager.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.0">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.4.5">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 4.5</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Scripts\UI\FolderManager.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="Scripts\Model\Paragraph\ParagraphStyle.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ASPxRichEdit.bmp" />
+    <TypeScriptCompile Include="Scripts\UI\Ruler\IRulerControl.ts" />
+    <EmbeddedResource Include="Images\Cursor.gif" />
+    <EmbeddedResource Include="Css\sprite.css" />
+    <EmbeddedResource Include="Images\sprite.png" />
+    <EmbeddedResource Include="Images\1x1.gif" />
+    <EmbeddedResource Include="Images\reLoadingOnStatusBar.gif" />
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <TypeScriptCompile Include="Scripts\Model\History\InsertParagraphHistoryItem.ts" />
+    <TypeScriptCompile Include="Scripts\Model\History\InsertSectionHistoryItem.ts" />
+    <EmbeddedResource Include="Scripts\compiled.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Css\ISprite.css" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\ISprite.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="Scripts\MouseHandler\TouchHandler\TouchHandler.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="Scripts\MouseHandler\TouchHandler\TouchHandlerDefaultState.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="Scripts\MouseHandler\TouchHandler\TouchHandlerStateBase.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    
+    
+    
+    
+  </ItemGroup>
+  <ItemGroup>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  </ItemGroup>
+  <ItemGroup>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\GISprite.png" />
+    <EmbeddedResource Include="Images\GWISprite.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Css\GISprite.css" />
+    <EmbeddedResource Include="Css\GWISprite.css" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\CursorTouch.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    
+  </ItemGroup>
+  <ItemGroup>
+    
+    
+  </ItemGroup>
+  <ItemGroup>
+    
+    
+  </ItemGroup>
+  <ItemGroup>
+    
+    
+  </ItemGroup>
+  <ItemGroup>
+    
+    
+  </ItemGroup>
+  <ItemGroup>
+    
+  </ItemGroup>
+  <ItemGroup>
+    
+  </ItemGroup>
+  <ItemGroup>
+    
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\reImageLoading.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  </ItemGroup>
+  <ItemGroup>
+    
+  </ItemGroup>
+  <ItemGroup>
+    
+  </ItemGroup>
+  <ItemGroup>
+    
+  </ItemGroup>
+  <ItemGroup>
+    
+  </ItemGroup>
+  <ItemGroup>
+    
+  </ItemGroup>
+  <ItemGroup>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  </ItemGroup>
+  <ItemGroup>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  </ItemGroup>
+  <ItemGroup>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
+  <PropertyGroup>
+    
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+<ItemGroup><EmbeddedResource Include="Descriptions.resx" /></ItemGroup><ItemGroup><Compile Include="Descriptions.cs" /></ItemGroup></Project>

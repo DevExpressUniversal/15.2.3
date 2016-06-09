@@ -1,0 +1,161 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:DevExpress.Xpf.Map">
+
+    <local:DXMapImages x:Key="MapImages"/>
+    <local:NullToVisibilityConverter x:Key="NullToVisibilityConverter"/>
+    <local:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
+    <local:SystemParametersWrapper x:Key="SystemParametersWrapper"/>
+    <local:PushpinTooltipMenuDropAlignmentToLayoutTransformConverter x:Key="PushpinTooltipMenuDropAlignmentToLayoutTransformConverter"/>
+    <local:PushpinTooltipMenuDropAlignmentToHorizontalAlignmentConverter x:Key="PushpinTooltipMenuDropAlignmentToHorizontalAlignmentConverter"/>
+    <local:PushpinTooltipMenuDropAlignmentToHorizontalOffsetConverter x:Key="PushpinTooltipMenuDropAlignmentToHorizontalOffsetConverter"/>
+    <local:PushpinTooltipMenuDropAlignmentToMarginConverter x:Key="PushpinTooltipMenuDropAlignmentToMarginConverter"/>
+
+    <Style TargetType="ToolTip" x:Key="PushpinTooltipStyle">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ToolTip">
+                    <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{Binding Path=MapItem.Information, Converter={StaticResource NullToVisibilityConverter}}" Margin="16,10,16,16">
+                        <Grid.Effect>
+                            <DropShadowEffect Direction="-90" BlurRadius="16" Opacity="0.5" ShadowDepth="4"/>
+                        </Grid.Effect>
+                        <Grid Grid.Column="1" Grid.Row="1" Margin="-1">
+                            <Border Background="Black" Opacity="0.35" CornerRadius="4"/>
+                            <Border Background="White" Margin="1" CornerRadius="3" />
+                            <ContentPresenter
+                              Content="{TemplateBinding Content}"
+                              ContentTemplate="{TemplateBinding ContentTemplate}"
+                              Cursor="{TemplateBinding Cursor}"
+                              Margin="{TemplateBinding Padding}"/>
+                        </Grid>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="local:PushpinMarkerControl">
+        <Setter Property="Item" Value="{Binding MapItem}"/>
+        <Setter Property="State" Value="{Binding MapItem.State}"/>
+        <Setter Property="IsHighlighted" Value="{Binding MapItem.IsHighlighted}"/>
+        <Setter Property="IsSelected" Value="{Binding IsSelected}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:PushpinMarkerControl">
+                    <Grid x:Name="ContainerGrid" HorizontalAlignment="Center" Height="64" VerticalAlignment="Center" Width="64">
+                        <ToolTipService.ToolTip>
+                            <ToolTip Placement="Top" 
+                                     HorizontalOffset="{Binding Source={StaticResource SystemParametersWrapper},Path=MenuDropAlignment, Converter={StaticResource PushpinTooltipMenuDropAlignmentToHorizontalOffsetConverter}}" 
+                                     Style="{StaticResource PushpinTooltipStyle}">
+                                <ToolTip.Content>
+                                    <TextBlock TextWrapping="Wrap" Margin="24,16" Text="{Binding MapItem.Information}" Foreground="#FF646464"/>
+                                </ToolTip.Content>
+                            </ToolTip>
+                        </ToolTipService.ToolTip>
+                        <Grid.RenderTransform>
+                            <TransformGroup>
+                                <TranslateTransform X="-32" Y="-52"/>
+                                <RotateTransform x:Name="PointerRotation" Angle="0"/>
+                            </TransformGroup>
+                        </Grid.RenderTransform>
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="Selection">
+                                <VisualState x:Name="Selected">
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="SelectionMarker" Storyboard.TargetProperty="Opacity" To="1" Duration="0:0:0"/>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="NotSelected">
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="SelectionMarker" Storyboard.TargetProperty="Opacity" To="0" Duration="0:0:0"/>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="State">
+                                <VisualState x:Name="Busy">
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="Loading" Storyboard.TargetProperty="Opacity" To="1" Duration="0:0:0"/>
+                                        <DoubleAnimation Storyboard.TargetName="LoadingRotation" Storyboard.TargetProperty="Angle" To="360" RepeatBehavior="Forever" Duration="0:0:1"/>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Normal">
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="Loading" Storyboard.TargetProperty="Opacity" To="0" Duration="0:0:0"/>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="MouseStates">
+                                <VisualState x:Name="Highlighted">
+                                    <Storyboard>
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity" Storyboard.TargetName="Glow" RepeatBehavior="Forever">
+                                            <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0.5"/>
+                                            <EasingDoubleKeyFrame KeyTime="0:0:1" Value="0.0"/>
+                                        </DoubleAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="NonHighlighted">
+                                    <Storyboard>
+                                        <DoubleAnimation Duration="0:0:0.5" To="0.0" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="Glow"/>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Image Source="{Binding PushpinPointerShadow, Source={StaticResource ResourceKey=MapImages}}" Stretch="None" Margin="0,0,0,5" VerticalAlignment="Bottom" Opacity="0.5" IsHitTestVisible="False"/>
+                        <Path x:Name="Glow" Stretch="Fill" Fill="#FF8AFBFF" Data="F1 M 55,32C 66.0457,32 75,40.8729 75,51.8182C 75,57.1414 72.882,61.9744 69.4355,65.5349L 56,80L 54,80L 40.8274,65.8015C 37.226,62.2175 35,57.2755 35,51.8182C 35,40.8729 43.9543,32 55,32 Z " HorizontalAlignment="Center" Height="48" UseLayoutRounding="False" VerticalAlignment="Center" Width="40" Opacity="0">
+                            <Path.Effect>
+                                <BlurEffect Radius="12"/>
+                            </Path.Effect>
+                        </Path>
+                        <Grid Height="44" Width="36" Background="Transparent" >
+                            <Path x:Name="Edge" Stretch="Fill" Fill="#59000000" Data="F1 M 55,34C 64.9411,34 73,42.0589 73,52C 73,56.8348 71.0938,61.2245 67.992,64.4583L 55.3825,78L 54.6179,78L 42.2447,64.7005C 39.0034,61.4453 37,56.9566 37,52C 37,42.0589 45.0589,34 55,34 Z M 55,40C 48.3726,40 43,45.3726 43,52C 43,58.6275 48.3726,64 55,64C 61.6274,64 67,58.6275 67,52C 67,45.3726 61.6274,40 55,40 Z M 55,42C 60.5228,42 65,46.4772 65,52C 65,57.5229 60.5228,62 55,62C 49.4771,62 45,57.5229 45,52C 45,46.4772 49.4771,42 55,42 Z " Margin="0,0,0,-0.001" UseLayoutRounding="False"/>
+                            <Path Stretch="Fill" Fill="{Binding MapItem.Brush}" Data="F1 M 55,43C 59.9706,43 64,47.0294 64,52C 64,56.9706 59.9706,61 55,61C 50.0294,61 46,56.9706 46,52C 46,47.0294 50.0294,43 55,43 Z M 55,35C 64.3888,35 72,42.6112 72,52C 72,56.195 70.4805,60.0351 67.962,63L 55,77L 42.038,63C 39.5194,60.0351 38,56.195 38,52C 38,42.6112 45.6111,35 55,35 Z M 55,39C 47.8203,39 42,44.8203 42,52C 42,59.1797 47.8203,65 55,65C 62.1797,65 68,59.1797 68,52C 68,44.8203 62.1797,39 55,39 Z" Margin="0.999" UseLayoutRounding="False"/>
+                            <Grid x:Name="Loading" Height="24" Width="24" Margin="6" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5">
+                                <Grid.RenderTransform>
+                                    <RotateTransform x:Name="LoadingRotation" Angle="0"/>
+                                </Grid.RenderTransform>
+                                <Path Stretch="Fill" Data="F1 M 55,40C 61.6274,40 67,45.3726 67,52L 65,52C 65,46.4772 60.5228,42 55,42C 49.4771,42 45,46.4772 45,52L 43,52C 43,45.3726 48.3726,40 55,40 Z " Width="24" Height="12" VerticalAlignment="Top" UseLayoutRounding="False" RenderTransformOrigin="0.5,1">
+                                    <Path.Fill>
+                                        <LinearGradientBrush EndPoint="1,1" StartPoint="0,1">
+                                            <GradientStop Color="#00FFD23B"/>
+                                            <GradientStop Color="#FFFFD23B" Offset="1"/>
+                                        </LinearGradientBrush>
+                                    </Path.Fill>
+                                </Path>
+                            </Grid>
+                            <Path x:Name="SelectionMarker" Stretch="Fill" Fill="Red" Data="F1 M 55,43C 59.9706,43 64,47.0294 64,52C 64,56.9706 59.9706,61 55,61C 50.0294,61 46,56.9706 46,52C 46,47.0294 50.0294,43 55,43 Z M 55,35C 64.3888,35 72,42.6112 72,52C 72,56.195 70.4805,60.0351 67.962,63L 55,77L 42.038,63C 39.5194,60.0351 38,56.195 38,52C 38,42.6112 45.6111,35 55,35 Z M 55,39C 47.8203,39 42,44.8203 42,52C 42,59.1797 47.8203,65 55,65C 62.1797,65 68,59.1797 68,52C 68,44.8203 62.1797,39 55,39 Z" Margin="0.999" UseLayoutRounding="False"/>
+                            <TextBlock x:Name="Label" TextWrapping="Wrap" Text="{Binding MapItem.Text}" Foreground="{Binding MapItem.TextBrush}" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" Margin="0,0,0,10" FontSize="13.333" Opacity="0.75"/>
+                        </Grid>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="local:PushpinControl">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:PushpinControl">
+                    <Grid>
+                        <local:PushpinPanel x:Name="PART_Container">
+                            <local:PushpinTraceControl x:Name="PART_Trace" Item="{Binding RelativeSource={RelativeSource TemplatedParent},Path=ItemInfo.MapItem}"/>
+                            <ContentPresenter x:Name="PART_Marker" Content="{Binding RelativeSource={RelativeSource TemplatedParent},Path=ItemInfo}" ContentTemplate="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=ItemInfo.MapItem.MarkerTemplate}"/>
+                        </local:PushpinPanel>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="local:PushpinTraceControl">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:PushpinTraceControl">
+                    <Grid Name="PART_Canvas"/>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>
+    

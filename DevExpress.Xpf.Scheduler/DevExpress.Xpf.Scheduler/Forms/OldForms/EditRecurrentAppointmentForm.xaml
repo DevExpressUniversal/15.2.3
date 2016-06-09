@@ -1,0 +1,72 @@
+﻿<UserControl x:Class="DevExpress.Xpf.Scheduler.UI.EditRecurrentAppointmentForm"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:dxsch="clr-namespace:DevExpress.Xpf.Scheduler"
+             xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+             xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+             xmlns:dxschcore="clr-namespace:DevExpress.XtraScheduler;assembly=DevExpress.XtraScheduler.v15.2.Core"
+             xmlns:dxschd="clr-namespace:DevExpress.Xpf.Scheduler.Drawing"
+             xmlns:dxschui="clr-namespace:DevExpress.Xpf.Scheduler.UI"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="220"
+             dxsch:SchedulerFormBehavior.Title="{Binding Title}"
+             >
+    <UserControl.Resources>
+        <dxsch:SchedulerControlStringIdConverter x:Key="SchedulerControlStringIdConverter" />
+    </UserControl.Resources>
+    <Grid MinWidth="300">        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid Margin="24,16,24,22">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Image Name="image1" VerticalAlignment="Top" Stretch="None" Margin="-6,-1,4,-4" Source="/DevExpress.Xpf.Scheduler.v15.1;component/Images/Question.png" />
+            <TextBlock Text="{Binding Message}" VerticalAlignment="Center" MaxWidth="250" Grid.Column="1" TextWrapping="Wrap" />
+            <Grid Grid.Column="1" Grid.Row="1" Margin="0,11,0,0">
+                <dxe:ListBoxEdit SelectedIndex="0" ShowBorder="False" 
+                             Background="{x:Null}" 
+                             DisplayMember="Caption" ValueMember="Id" 
+                             EditValue="{Binding Action, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                             VerticalAlignment="Top">
+                    <dxe:ListBoxEdit.StyleSettings>
+                        <dxe:RadioListBoxEditStyleSettings />
+                    </dxe:ListBoxEdit.StyleSettings>
+                    <dxe:ListBoxEdit.Items>
+                        <dxschd:NamedElement Caption="{Binding Source={StaticResource SchedulerControlStringIdConverter}, ConverterParameter=Form_RecurrentAppointmentAction_EditSeries, Converter={StaticResource SchedulerControlStringIdConverter}}">
+                            <dxschd:NamedElement.Id>
+                                <dxschcore:RecurrentAppointmentAction>Series</dxschcore:RecurrentAppointmentAction>
+                            </dxschd:NamedElement.Id>
+                        </dxschd:NamedElement>
+                        <dxschd:NamedElement Caption="{Binding Source={StaticResource SchedulerControlStringIdConverter}, ConverterParameter=Form_RecurrentAppointmentAction_EditOccurrence, Converter={StaticResource SchedulerControlStringIdConverter}}">
+                            <dxschd:NamedElement.Id>
+                                <dxschcore:RecurrentAppointmentAction>Occurrence</dxschcore:RecurrentAppointmentAction>
+                            </dxschd:NamedElement.Id>
+                        </dxschd:NamedElement>
+                    </dxe:ListBoxEdit.Items>
+                </dxe:ListBoxEdit>
+            </Grid>
+        </Grid>
+        <Grid Grid.Row="2" HorizontalAlignment="Right" Margin="12,0,12,12">
+            <Grid x:Name="okCancelGrid">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Button Content="{Binding Source={StaticResource SchedulerControlStringIdConverter}, ConverterParameter=ButtonCaption_OK, Converter={StaticResource SchedulerControlStringIdConverter}}" Click="OnOKButtonClick" MinWidth="65" Margin="6,0,0,0" />
+                <Button Grid.Column="1" Content="{Binding Source={StaticResource SchedulerControlStringIdConverter}, ConverterParameter=ButtonCaption_Cancel, Converter={StaticResource SchedulerControlStringIdConverter}}" Click="OnCancelButtonClick" MinWidth="65" Margin="6,0,0,0" />
+            </Grid>
+        </Grid>
+    </Grid>
+
+</UserControl>

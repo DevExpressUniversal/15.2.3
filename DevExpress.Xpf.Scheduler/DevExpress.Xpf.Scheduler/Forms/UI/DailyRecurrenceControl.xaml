@@ -1,0 +1,44 @@
+﻿<dxschdui:RecurrenceControlBase x:Class="DevExpress.Xpf.Scheduler.UI.DailyRecurrenceControl"
+                xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+                xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+                xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+                xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+                xmlns:dxsch="clr-namespace:DevExpress.Xpf.Scheduler"
+                xmlns:dxschdw="clr-namespace:DevExpress.Xpf.Scheduler.Drawing"
+                xmlns:dxschdui="clr-namespace:DevExpress.Xpf.Scheduler.UI"
+                xmlns:sys="clr-namespace:System;assembly=mscorlib"
+                mc:Ignorable="d" 
+                d:DesignHeight="300" d:DesignWidth="300"
+                x:Name="DailyUserControl">
+
+    <dxschdui:RecurrenceControlBase.Resources>
+        <dx:EnumToBoolConverter x:Key="EnumToBoolConverter"/>
+        <dxschdw:InvertedBoolConverter x:Key="invertedBoolConverter"/>
+        <dxsch:SchedulerControlStringIdConverter x:Key="SchedulerControlStringIdConverter"/>
+        <dxschdw:DecimalToConverter x:Key="DecimalToConverter" />
+    </dxschdui:RecurrenceControlBase.Resources>
+
+    <Grid x:Name="MainElement">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal" MinHeight="29" Grid.Row="0">
+            <RadioButton x:Name="EveryNDayRadioButton" IsChecked="{Binding WeekDays, Converter={StaticResource EnumToBoolConverter}, ConverterParameter=EveryDay, Mode=TwoWay}"  VerticalAlignment="Center"
+                         Content="{Binding Source={StaticResource SchedulerControlStringIdConverter}, ConverterParameter=Form_Every, Converter={StaticResource SchedulerControlStringIdConverter}}" Margin="0,0,8,0"/>
+            <dxe:SpinEdit x:Name="spinDailyDaysCount"
+                            AutomationProperties.Name="{Binding Source={StaticResource SchedulerControlStringIdConverter}, ConverterParameter=Form_EveryEditableTextDay, Converter={StaticResource SchedulerControlStringIdConverter}}"
+                            EditValue="{Binding Path=Periodicity, Mode=TwoWay, Converter={StaticResource DecimalToConverter}, ConverterParameter={x:Type sys:Int32}, UpdateSourceTrigger=PropertyChanged}" 
+                            VerticalAlignment="Center" IsFloatValue="False" MinValue="1" MaxValue="1000" MinWidth="58" Focusable="True" GotFocus="spinDailyDaysCount_GotFocus"
+                            IsReadOnly="{Binding IsReadOnly}"/>
+            <TextBlock Margin="8,0,0,0" Text="{Binding Source={StaticResource SchedulerControlStringIdConverter}, ConverterParameter=Form_DayOrDays, Converter={StaticResource SchedulerControlStringIdConverter}}" VerticalAlignment="Center" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" MinHeight="29" Grid.Row="1">
+            <RadioButton Grid.Row="1" Margin="0,11,0,0" IsChecked="{Binding WeekDays, Converter={StaticResource EnumToBoolConverter}, ConverterParameter=WorkDays, Mode=TwoWay}"  VerticalAlignment="Center"
+                         Content="{Binding Source={StaticResource SchedulerControlStringIdConverter}, ConverterParameter=Form_EveryWeekday, Converter={StaticResource SchedulerControlStringIdConverter}}"/>
+        </StackPanel>
+    </Grid>
+
+</dxschdui:RecurrenceControlBase>

@@ -1,0 +1,191 @@
+﻿<UserControl x:Class="DevExpress.Xpf.Core.ConditionalFormattingManager.ContainView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:dx="clr-namespace:DevExpress.Xpf.Core"
+             xmlns:dxc="clr-namespace:DevExpress.Xpf.Core.ConditionalFormatting"
+             xmlns:dxe="clr-namespace:DevExpress.Xpf.Editors"
+             xmlns:dxmvvm="clr-namespace:DevExpress.Mvvm.UI.Interactivity"
+             xmlns:dxmvvminternal="clr-namespace:DevExpress.Mvvm.UI.Interactivity.Internal"
+             xmlns:dxgcfm="clr-namespace:DevExpress.Xpf.Core.ConditionalFormattingManager"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="{dx:UtilsResourceExtension Core/ConditionalFormatting/Manager/Views/ManagerResources.xaml}"/>
+            </ResourceDictionary.MergedDictionaries>
+            <Style x:Key="SingleValueEditorStyleBase" TargetType="dxe:TextEdit">
+                <Setter Property="EditValue" Value="{Binding Value, UpdateSourceTrigger=PropertyChanged}"/>
+            </Style>
+            <Style x:Key="SingleValueEditorStyle" TargetType="dxe:TextEdit" BasedOn="{StaticResource SingleValueEditorStyleBase}">
+                <Setter Property="Width" Value="215"/>
+                <Setter Property="Margin" Value="5,0,4,0"/>
+            </Style>
+            <Style x:Key="RangeFromValueEditorStyle" TargetType="dxe:TextEdit" BasedOn="{StaticResource SingleValueEditorStyleBase}">
+                <Setter Property="Width" Value="100"/>
+            </Style>
+            <Style x:Key="RangeToValueEditorStyle" TargetType="dxe:TextEdit" BasedOn="{StaticResource SingleValueEditorStyleBase}">
+                <Setter Property="Width" Value="100"/>
+                <Setter Property="EditValue" Value="{Binding Value2, UpdateSourceTrigger=PropertyChanged}"/>
+            </Style>
+            <Style x:Key="BetweenLabelStyle" TargetType="Label">
+                <Setter Property="Content" Value="{dxc:DataControlStringId ConditionalFormatting_BetweenDialog_RangeValuesConnector}"/>
+                <Setter Property="Margin" Value="8,0,8,0"/>
+            </Style>
+            <DataTemplate x:Key="SingleTextValueEditor">
+                <dxe:TextEdit Style="{StaticResource SingleValueEditorStyle}"/>
+            </DataTemplate>
+            <DataTemplate x:Key="SingleNumericValueEditor">
+                <dxe:TextEdit Style="{StaticResource SingleValueEditorStyle}" EditValueType="sys:Decimal"/>
+            </DataTemplate>
+            <DataTemplate x:Key="SingleDateTimeValueEditor">
+                <dxe:DateEdit Style="{StaticResource SingleValueEditorStyle}"/>
+            </DataTemplate>
+            <DataTemplate x:Key="RangeNumericValueEditor">
+                <StackPanel Orientation="Horizontal" Margin="5,0,4,0">
+                    <dxe:TextEdit Style="{StaticResource RangeFromValueEditorStyle}" x:Name="leftBoundaryEdit" EditValueType="sys:Decimal"/>
+                    <Label Style="{StaticResource BetweenLabelStyle}"/>
+                    <dxe:TextEdit Style="{StaticResource RangeToValueEditorStyle}" x:Name="rightBoundaryEdit" EditValueType="sys:Decimal"/>
+                </StackPanel>
+            </DataTemplate>
+            <DataTemplate x:Key="RangeDateTimeValueEditor">
+                <StackPanel Orientation="Horizontal" Margin="5,0,4,0">
+                    <dxe:DateEdit Style="{StaticResource RangeFromValueEditorStyle}" x:Name="leftBoundaryEdit"/>
+                    <Label Style="{StaticResource BetweenLabelStyle}"/>
+                    <dxe:DateEdit Style="{StaticResource RangeToValueEditorStyle}" x:Name="rightBoundaryEdit"/>
+                </StackPanel>
+            </DataTemplate>
+            <DataTemplate x:Key="RangeTextValueEditor">
+                <StackPanel Orientation="Horizontal" Margin="5,0,4,0">
+                    <dxe:TextEdit Style="{StaticResource RangeFromValueEditorStyle}" x:Name="leftBoundaryEdit"/>
+                    <Label Style="{StaticResource BetweenLabelStyle}"/>
+                    <dxe:TextEdit Style="{StaticResource RangeToValueEditorStyle}" x:Name="rightBoundaryEdit"/>
+                </StackPanel>
+            </DataTemplate>
+            
+            <DataTemplate x:Key="BetweenView">
+                <ContentPresenter Content="{Binding}">
+                    <ContentPresenter.ContentTemplateSelector>
+                        <dxc:FormatConditionValueEditorTemplateSelector/>
+                    </ContentPresenter.ContentTemplateSelector>
+                </ContentPresenter>
+            </DataTemplate>
+            <DataTemplate x:Key="BinaryView">
+                <ContentPresenter Content="{Binding}">
+                    <ContentPresenter.ContentTemplateSelector>
+                        <dxc:FormatConditionValueEditorTemplateSelector/>
+                    </ContentPresenter.ContentTemplateSelector>
+                </ContentPresenter>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type dxgcfm:ContainCellValueViewModel}">
+                <StackPanel Orientation="Horizontal">
+                    <dxe:ComboBoxEdit EditValue="{Binding Operator, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding Operators}" Style="{StaticResource SelectorStyle}"/>
+                    <ContentPresenter Content="{Binding}" x:Name="operatorView" ContentTemplate="{StaticResource BinaryView}"/>
+                </StackPanel>
+                <DataTemplate.Triggers>
+                    <DataTrigger Binding="{Binding IsBetween}" Value="True">
+                        <Setter Property="ContentTemplate" TargetName="operatorView" Value="{StaticResource BetweenView}" />
+                    </DataTrigger>
+                </DataTemplate.Triggers>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type dxgcfm:ContainTextViewModel}">
+                <StackPanel Orientation="Horizontal">
+                    <dxe:ComboBoxEdit EditValue="{Binding Operator, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding Operators}" Style="{StaticResource SelectorStyle}"/>
+                    <ContentPresenter Content="{Binding}" ContentTemplate="{StaticResource SingleTextValueEditor}"/>
+                </StackPanel>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type dxgcfm:ContainDateViewModel}">
+                <dxe:ComboBoxEdit EditValue="{Binding Operator, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding Operators}" Style="{StaticResource SelectorStyle}" />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type dxgcfm:ContainBlanksViewModel}"/>
+
+            <DataTemplate x:Key="Contain">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="{dxc:DataControlStringId ConditionalFormatting_Manager_ContainTitle}" Style="{StaticResource TitleTextStyle}"/>
+                    <StackPanel Orientation="Horizontal" Grid.Row="1">
+                        <dxe:ComboBoxEdit EditValue="{Binding SelectedViewModel, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding ViewModels}" DisplayMember="Description" Style="{StaticResource SelectorStyle}"/>
+                        <ContentPresenter Content="{Binding SelectedViewModel}"/>
+                    </StackPanel>
+                </Grid>
+            </DataTemplate>
+            <DataTemplate x:Key="AboveBelow">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="{dxc:DataControlStringId ConditionalFormatting_Manager_AboveBelowTitle}" Style="{StaticResource TitleTextStyle}"/>
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Grid.Row="1">
+                        <dxe:ComboBoxEdit EditValue="{Binding Rule, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{dxe:EnumItemsSource EnumType=dxgcfm:AboveBelowOperatorType, NameConverter={StaticResource enumNameConverterLocalized}}" Style="{StaticResource SelectorStyle}"/>
+                        <TextBlock Text="{dxc:DataControlStringId ConditionalFormatting_Manager_AboveBelowRangeDescription}"/>
+                    </StackPanel>
+                </Grid>
+            </DataTemplate>
+            <DataTemplate x:Key="TopBottom">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="{dxc:DataControlStringId ConditionalFormatting_Manager_TopBottomTitle}" Style="{StaticResource TitleTextStyle}"/>
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Grid.Row="1">
+                        <dxe:ComboBoxEdit EditValue="{Binding Rule, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{dxe:EnumItemsSource EnumType=dxgcfm:TopBottomOperatorType, NameConverter={StaticResource enumNameConverterLocalized}}" Style="{StaticResource SelectorStyle}"/>
+                        <dxe:TextEdit EditValue="{Binding Threshold, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,10,0" Style="{StaticResource NumericEditStyle}"/>
+                        <dxe:CheckEdit IsChecked="{Binding UsePercent}" Content="{dxc:DataControlStringId ConditionalFormatting_Manager_TopBottomRangeDescription}" Margin="0,0,10,0"/>
+                    </StackPanel>
+                </Grid>
+            </DataTemplate>
+            <DataTemplate x:Key="Formula">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="{dxc:DataControlStringId ConditionalFormatting_Manager_FormulaTitle}" Style="{StaticResource TitleTextStyle}"/>
+                    <dxe:ButtonEdit AllowDefaultButton="False" DataContext="{Binding ExpressionEditorViewModel}" EditValue="{Binding Value, UpdateSourceTrigger=PropertyChanged}" Width="340" HorizontalAlignment="Left" Grid.Row="1">
+                        <dxmvvm:Interaction.Behaviors>
+                            <dx:DialogService x:Name="customConditionService" DialogWindowStartupLocation="CenterOwner" dxmvvminternal:InteractionHelper.BehaviorInDesignMode="AsWellAsNotInDesignMode" DialogStyle="{StaticResource ButtonDialogStyle}">
+                                <dx:DialogService.ViewTemplate>
+                                    <DataTemplate>
+                                        <dxc:CustomConditionEditorView/>
+                                    </DataTemplate>
+                                </dx:DialogService.ViewTemplate>
+                            </dx:DialogService>
+                            <dx:DXMessageBoxService dxmvvminternal:InteractionHelper.BehaviorInDesignMode="AsWellAsNotInDesignMode"/>
+                        </dxmvvm:Interaction.Behaviors>
+                        <dxe:ButtonEdit.Buttons>
+                            <dxe:ButtonInfo GlyphKind="Regular" Command="{Binding ShowConditionEditorCommand}" IsDefaultButton="True"/>
+                        </dxe:ButtonEdit.Buttons>
+                    </dxe:ButtonEdit>
+                </Grid>
+            </DataTemplate>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <ContentPresenter Content="{Binding}">
+            <ContentPresenter.ContentTemplateSelector>
+                <dxgcfm:FormatEditorOwnerTemplateSelector ContainTemplate="{StaticResource Contain}" AboveBelowTemplate="{StaticResource AboveBelow}" TopBottomTemplate="{StaticResource TopBottom}" FormulaTemplate="{StaticResource Formula}"/>
+            </ContentPresenter.ContentTemplateSelector>
+        </ContentPresenter>
+        <Separator Style="{x:Null}" Grid.Row="1" Margin="0,15,0,15"/>
+        <StackPanel Orientation="Horizontal" Grid.Row="2">
+            <TextBlock Text="{dxc:DataControlStringId ConditionalFormatting_Manager_Preview}" Style="{StaticResource TitleTextStyle}" VerticalAlignment="Center"/>
+            <Border BorderBrush="{StaticResource PreviewBorderBrush}" BorderThickness="1" Width="200" Height="40" Margin="5,0,10,0">
+                <dxgcfm:FormatPreviewContainer Format="{Binding Format}"/>
+            </Border>
+            <dxgcfm:FormatEditorView VerticalAlignment="Center" MinWidth="65" MinHeight="22"/>
+        </StackPanel>
+    </Grid>
+</UserControl>

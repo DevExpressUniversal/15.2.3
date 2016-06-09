@@ -1,0 +1,140 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+                    xmlns:dxwuit="clr-namespace:DevExpress.Xpf.WindowsUI.ThemeKeys"
+                    xmlns:dxwuii="clr-namespace:DevExpress.Xpf.WindowsUI.Internal"
+                    xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+                    xmlns:dxnav="clr-namespace:DevExpress.Xpf.Navigation"
+                    xmlns:dxnavi="clr-namespace:DevExpress.Xpf.Navigation.Internal"
+                    xmlns:dxut="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"> 
+    
+    <dx:BoolToVisibilityConverter x:Key="boolToVisibilityConverter" />
+    <Style TargetType="{x:Type dxnav:OfficeNavigationBar}">
+        <!--SPECIFICTHEME Office2010Black <Setter Property="Background" Value="{DynamicResource {dxut:FloatingContainerThemeKey ResourceKey=FloatingContainerBackground}}" /> SPECIFICTHEME-->
+        <Setter Property="ItemsPanel">
+            <Setter.Value>
+                <ItemsPanelTemplate>
+                    <dxnavi:NavigationBarItemsPanel Padding="0" Orientation="Horizontal"/>
+                </ItemsPanelTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="dxnav:OfficeNavigationBar">
+                    <ControlTemplate.Resources>
+                        <dxnavi:NavigationItemTemplateSelector x:Key="navigationItemTemplateSelector">
+                            <dxnavi:NavigationItemTemplateSelector.NavigationItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Header}" />
+                                </DataTemplate>
+                            </dxnavi:NavigationItemTemplateSelector.NavigationItemTemplate>
+                        </dxnavi:NavigationItemTemplateSelector>
+                    </ControlTemplate.Resources>
+                    <Border x:Name="back" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Padding="{TemplateBinding Padding}" VerticalAlignment="Top" >
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CompactStates">
+                                <VisualState x:Name="NonCompact" />
+                                <VisualState x:Name="Compact">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Visibility" Storyboard.TargetName="back">
+                                            <DiscreteObjectKeyFrame KeyTime="0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <Visibility>Collapsed</Visibility>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="OrientationStates">
+                                <VisualState x:Name="Horizontal" />
+                                <VisualState x:Name="Vertical">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="VerticalAlignment" Storyboard.TargetName="back">
+                                            <DiscreteObjectKeyFrame KeyTime="0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <VerticalAlignment>Stretch</VerticalAlignment>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="HorizontalAlignment" Storyboard.TargetName="back">
+                                            <DiscreteObjectKeyFrame KeyTime="0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <HorizontalAlignment>Left</HorizontalAlignment>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="HorizontalAlignment" Storyboard.TargetName="PART_ButtonsItemsControl">
+                                            <DiscreteObjectKeyFrame KeyTime="0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <HorizontalAlignment>Center</HorizontalAlignment>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="VerticalAlignment" Storyboard.TargetName="PART_ButtonsItemsControl">
+                                            <DiscreteObjectKeyFrame KeyTime="0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <VerticalAlignment>Top</VerticalAlignment>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Grid>
+                            <dxwuii:vePanel x:Name="PART_VisualTreeHost" />
+                            <dxe:FlyoutControl x:Name="PART_FlyoutControl" Padding="0" AlwaysOnTop="True" StaysOpen="True" />
+                            <dxnavi:NavigationBarItems2Panel ItemSpacing="{TemplateBinding ItemSpacing}" Content1Location="{TemplateBinding ButtonsAlignment}">
+                                <dxnavi:NavigationBarItems2Panel.Content1>
+                                    <!--<dxwuii:ItemsPresenter x:Name="PART_ItemsPresenter"/>-->
+                                    <ItemsPresenter />
+                                </dxnavi:NavigationBarItems2Panel.Content1>
+                                <dxnavi:NavigationBarItems2Panel.Content2>
+                                    <ItemsControl x:Name="PART_ButtonsItemsControl" VerticalAlignment="Center">
+                                        <ItemsControl.ItemsPanel>
+                                            <ItemsPanelTemplate>
+                                                <dxwuii:SplitPanel ItemSizeMode="AutoSize"
+                                                                   Orientation="{Binding Orientation,RelativeSource={RelativeSource AncestorType=dxnav:OfficeNavigationBar}}" 
+                                                                   ItemSpacing="{Binding ItemSpacing,RelativeSource={RelativeSource AncestorType=dxnav:OfficeNavigationBar}}"/>
+                                            </ItemsPanelTemplate>
+                                        </ItemsControl.ItemsPanel>
+                                    </ItemsControl>
+                                </dxnavi:NavigationBarItems2Panel.Content2>
+                            </dxnavi:NavigationBarItems2Panel>
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="ItemSpacing" Value="10" />
+    </Style>
+    <Style TargetType="{x:Type dxnav:NavigationBarItem}">
+        <Setter Property="Template" Value="{DynamicResource {dxwuit:NavigationBarElementsThemeKey ResourceKey=ItemTemplate}}" />
+        <Setter Property="FontSize" Value="24" />
+        <Setter Property="FontFamily" Value="Segoe UI" />
+        <Setter Property="FontWeight" Value="Light" />
+    </Style>
+
+    <Style TargetType="dxnav:NavigationBarButton">
+        <Setter Property="UseLayoutRounding" Value="True" />
+        <Setter Property="Template" Value="{DynamicResource {dxwuit:NavigationBarElementsThemeKey ResourceKey=ButtonTemplate}}" />
+    </Style>
+    <Style TargetType="dxnavi:NavigationBarCustomizationButton" BasedOn="{StaticResource {x:Type dxnav:NavigationBarButton}}">
+        <Setter Property="ContentTemplate" Value="{DynamicResource {dxwuit:NavigationBarElementsThemeKey ResourceKey=CustomizationButtonContentTemplate}}" />
+        <Setter Property="MinHeight" Value="16" />
+    </Style>
+
+    <!--Customization -->
+    <Style TargetType="{x:Type dxnavi:CustomizationArrowControl}">
+        <Setter Property="Template" Value="{DynamicResource {dxwuit:NavigationBarElementsThemeKey ResourceKey=CustomizationArrowControlTemplate}}" />
+    </Style>
+    <Style TargetType="{x:Type dxnavi:CustomizationSeparatorControl}">
+        <Setter Property="Template" Value="{DynamicResource {dxwuit:NavigationBarElementsThemeKey ResourceKey=CustomizationSeparatorControlTemplate}}" />
+    </Style>
+    <Style TargetType="{x:Type dxnavi:NavigationBarThemeDependentValuesProvider}">
+        <Setter Property="CustomizationFormFloatSize" Value="{DynamicResource {dxwuit:NavigationBarElementsThemeKey ResourceKey=CustomizationFormFloatSize}}"/>
+        <Setter Property="CustomizationFormMinWidth" Value="{DynamicResource {dxwuit:NavigationBarElementsThemeKey ResourceKey=CustomizationFormMinWidth}}"/>
+        <Setter Property="CustomizationFormMinHeight" Value="{DynamicResource {dxwuit:NavigationBarElementsThemeKey ResourceKey=CustomizationFormMinHeight}}"/>
+    </Style>
+</ResourceDictionary>

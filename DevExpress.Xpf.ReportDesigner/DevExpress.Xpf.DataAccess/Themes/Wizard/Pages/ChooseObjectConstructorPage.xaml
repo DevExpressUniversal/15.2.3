@@ -1,0 +1,23 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+            xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
+            xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+            xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+            xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+            xmlns:local="clr-namespace:DevExpress.Xpf.DataAccess.DataSourceWizard"
+            xmlns:localization="clr-namespace:DevExpress.Xpf.DataAccess.Localization"
+            xmlns:localnative="clr-namespace:DevExpress.Xpf.DataAccess.Native">
+
+    <DataTemplate x:Key="{x:Type local:ChooseObjectConstructorPage}">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <localnative:WizardTitle Title="{localization:DataAccessUIStringId StringId=WizardPageChooseObjectConstructor}" />
+            <dxe:ListBoxEdit Grid.Row="1" ItemsSource="{Binding Items}" EditValue="{Binding SelectedItem, UpdateSourceTrigger=PropertyChanged}" DisplayMember="Parameters" />
+            <dxe:CheckEdit Grid.Row="2" IsEnabled="{Binding EnableShowAll}" EditValue="{Binding ShowAll, Converter={dxmvvm:BooleanNegationConverter}}" Content="{localization:DataAccessUIStringId StringId=WizardPageChooseObjectConstructor_ShowOnlyHighlighted}" />
+        </Grid>
+    </DataTemplate>
+</ResourceDictionary>

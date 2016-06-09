@@ -1,0 +1,35 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:dxtEx="clr-namespace:DevExpress.Xpf.Utils.Themes"
+                    xmlns:dxb="clr-namespace:DevExpress.Xpf.Bars" 
+                    xmlns:dxbt="clr-namespace:DevExpress.Xpf.Bars.Themes"
+                    xmlns:dxcn="clr-namespace:DevExpress.Xpf.Core.Native">
+
+    <ControlTemplate x:Key="{dxbt:GlyphSideControlThemeKey ResourceKey=Template}" TargetType="{x:Type dxb:GlyphSideControl}">
+        <Border x:Name="PART_Border" MinWidth="10" MinHeight="10" Background="#FFE4E4E4" Visibility="Visible">
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup x:Name="AlignmentStates">
+                    <VisualState x:Name="Top">
+                        <Storyboard>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Border" Storyboard.TargetProperty="CornerRadius" dxcn:ValueSetter.CornerRadius="2,0,0,0"/>
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Center">
+                        <Storyboard>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Border" Storyboard.TargetProperty="CornerRadius" dxcn:ValueSetter.CornerRadius="0"/>
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Bottom">
+                        <Storyboard>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Border" Storyboard.TargetProperty="CornerRadius" dxcn:ValueSetter.CornerRadius="0,0,0,2"/>
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Stretch">
+                        <Storyboard>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Border" Storyboard.TargetProperty="CornerRadius" dxcn:ValueSetter.CornerRadius="2,0,0,2"/>
+                        </Storyboard>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+        </Border>
+    </ControlTemplate>
+</ResourceDictionary>

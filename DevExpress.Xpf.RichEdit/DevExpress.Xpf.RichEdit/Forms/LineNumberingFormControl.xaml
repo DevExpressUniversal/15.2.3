@@ -1,0 +1,50 @@
+﻿<UserControl x:Class="DevExpress.XtraRichEdit.Forms.LineNumberingFormControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+    xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+    xmlns:dxre="clr-namespace:DevExpress.Xpf.RichEdit"
+    xmlns:dxreui="clr-namespace:DevExpress.Xpf.RichEdit.UI"
+    xmlns:design="clr-namespace:DevExpress.XtraRichEdit"
+    mc:Ignorable="d"
+    dx:StyleManager.ApplyApplicationTheme="True">
+
+    <UserControl.Resources>
+        <dxre:RichEditStringIdConverter x:Key="RichEditStringIdConverter" />
+    </UserControl.Resources>
+    <Grid x:Name="LayoutRoot" MinWidth="160" MinHeight="100">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="4.5*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <dxe:CheckEdit Margin="0,3,3,3" x:Name="chkAddLineNumbering" Content="{Binding Source={StaticResource RichEditStringIdConverter}, ConverterParameter=Caption_LineNumberingFormAddLineNumberingCheckEdit, Converter={StaticResource RichEditStringIdConverter}}" />
+        <Grid Grid.Row="1" Margin="20,0,3,3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition MinWidth="60" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <TextBlock Margin="0,3,3,3" VerticalAlignment="Center" x:Name="lblStartAt" Text="{Binding Source={StaticResource RichEditStringIdConverter}, ConverterParameter=Caption_LineNumberingStartAtLabel, Converter={StaticResource RichEditStringIdConverter}}" />
+            <TextBlock Margin="0,3,3,3" Grid.Row="1" VerticalAlignment="Center" x:Name="lblCountBy" Text="{Binding Source={StaticResource RichEditStringIdConverter}, ConverterParameter=Caption_LineNumberingCountByLabel, Converter={StaticResource RichEditStringIdConverter}}" />
+            <TextBlock Margin="0,3,3,3" Grid.Row="2" VerticalAlignment="Center" x:Name="lblFromText" Text="{Binding Source={StaticResource RichEditStringIdConverter}, ConverterParameter=Caption_LineNumberingFromTextLabel, Converter={StaticResource RichEditStringIdConverter}}" />
+            <dxe:SpinEdit  Grid.Column="1" Margin="3" x:Name="edtStartAt" MinValue="1" VerticalAlignment="Center" IsFloatValue="False" EditValue="1" />
+            <dxe:SpinEdit Grid.Column="1" Grid.Row="1" Margin="3" x:Name="edtCountBy" MinValue="1" VerticalAlignment="Center" IsFloatValue="False" EditValue="1" />
+            <dxreui:RichTextIndentEdit Grid.Row="2" Grid.Column="1" Margin="3" x:Name="edtFromText" VerticalAlignment="Center" />
+        </Grid>
+        <TextBlock Grid.Row="2" Margin="20,3,3,3" VerticalAlignment="Center" x:Name="lblNumbering" Text="{Binding Source={StaticResource RichEditStringIdConverter}, ConverterParameter=Caption_LineNumberingNumberingLabel, Converter={StaticResource RichEditStringIdConverter}}" />
+        <RadioButton Grid.Row="3" Margin="40,0,3,3" x:Name="rbtnRestartEachPage" GroupName="rgrpNumberingRestart" Content="{Binding Source={StaticResource RichEditStringIdConverter}, ConverterParameter=Caption_LineNumberingRestartEachPageRadioButton, Converter={StaticResource RichEditStringIdConverter}}" />
+        <RadioButton Grid.Row="4" Margin="40,0,3,3" x:Name="rbtnRestartEachSection" GroupName="rgrpNumberingRestart" Content="{Binding Source={StaticResource RichEditStringIdConverter}, ConverterParameter=Caption_LineNumberingRestartEachSectionRadioButton, Converter={StaticResource RichEditStringIdConverter}}" />
+        <RadioButton Grid.Row="5" Margin="40,0,3,3" x:Name="rbtnContinuous" GroupName="rgrpNumberingRestart" Content="{Binding Source={StaticResource RichEditStringIdConverter}, ConverterParameter=Caption_LineNumberingContinuousRadioButton, Converter={StaticResource RichEditStringIdConverter}}" />
+    </Grid>
+</UserControl>

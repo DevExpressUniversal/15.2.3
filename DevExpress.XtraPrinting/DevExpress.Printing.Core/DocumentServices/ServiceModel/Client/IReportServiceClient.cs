@@ -1,0 +1,76 @@
+﻿#region Copyright (c) 2000-2015 Developer Express Inc.
+/*
+{*******************************************************************}
+{                                                                   }
+{       Developer Express .NET Component Library                    }
+{                                                                   }
+{                                                                   }
+{       Copyright (c) 2000-2015 Developer Express Inc.              }
+{       ALL RIGHTS RESERVED                                         }
+{                                                                   }
+{   The entire contents of this file is protected by U.S. and       }
+{   International Copyright Laws. Unauthorized reproduction,        }
+{   reverse-engineering, and distribution of all or any portion of  }
+{   the code contained in this file is strictly prohibited and may  }
+{   result in severe civil and criminal penalties and will be       }
+{   prosecuted to the maximum extent possible under the law.        }
+{                                                                   }
+{   RESTRICTIONS                                                    }
+{                                                                   }
+{   THIS SOURCE CODE AND ALL RESULTING INTERMEDIATE FILES           }
+{   ARE CONFIDENTIAL AND PROPRIETARY TRADE                          }
+{   SECRETS OF DEVELOPER EXPRESS INC. THE REGISTERED DEVELOPER IS   }
+{   LICENSED TO DISTRIBUTE THE PRODUCT AND ALL ACCOMPANYING .NET    }
+{   CONTROLS AS PART OF AN EXECUTABLE PROGRAM ONLY.                 }
+{                                                                   }
+{   THE SOURCE CODE CONTAINED WITHIN THIS FILE AND ALL RELATED      }
+{   FILES OR ANY PORTION OF ITS CONTENTS SHALL AT NO TIME BE        }
+{   COPIED, TRANSFERRED, SOLD, DISTRIBUTED, OR OTHERWISE MADE       }
+{   AVAILABLE TO OTHER INDIVIDUALS WITHOUT EXPRESS WRITTEN CONSENT  }
+{   AND PERMISSION FROM DEVELOPER EXPRESS INC.                      }
+{                                                                   }
+{   CONSULT THE END USER LICENSE AGREEMENT FOR INFORMATION ON       }
+{   ADDITIONAL RESTRICTIONS.                                        }
+{                                                                   }
+{*******************************************************************}
+*/
+#endregion Copyright (c) 2000-2015 Developer Express Inc.
+
+using System;
+using System.ComponentModel;
+using DevExpress.Data.Utils.ServiceModel;
+using DevExpress.DocumentServices.ServiceModel.DataContracts;
+namespace DevExpress.DocumentServices.ServiceModel.Client {
+	public interface IReportServiceClient : IServiceClientBase {
+		void GetReportParametersAsync(InstanceIdentity identity, object asyncState);
+		event EventHandler<ScalarOperationCompletedEventArgs<ReportParameterContainer>> GetReportParametersCompleted;
+		void GetLookUpValuesAsync(InstanceIdentity identity, ReportParameter[] parameterValues, string[] requiredParameterPaths, object asyncState);
+		event EventHandler<ScalarOperationCompletedEventArgs<ParameterLookUpValues[]>> GetLookUpValuesCompleted;
+		void StartBuildAsync(InstanceIdentity identity, ReportBuildArgs buildArgs, object asyncState);
+		event EventHandler<ScalarOperationCompletedEventArgs<DocumentId>> StartBuildCompleted;
+		void StopBuildAsync(DocumentId documentId, object asyncState);
+		event EventHandler<AsyncCompletedEventArgs> StopBuildCompleted;
+		void GetBuildStatusAsync(DocumentId documentId, object asyncState);
+		event EventHandler<ScalarOperationCompletedEventArgs<BuildStatus>> GetBuildStatusCompleted;
+		void GetPagesAsync(DocumentId documentId, int[] pageIndexes, PageCompatibility compatibility, object asyncState);
+		event EventHandler<ScalarOperationCompletedEventArgs<byte[]>> GetPagesCompleted;
+		void GetDocumentDataAsync(DocumentId documentId, object asyncState);
+		event EventHandler<ScalarOperationCompletedEventArgs<DocumentData>> GetDocumentDataCompleted;
+		void StartPrintAsync(DocumentId documentId, PageCompatibility compatibility, object asyncState);
+		event EventHandler<ScalarOperationCompletedEventArgs<PrintId>> StartPrintCompleted;
+		void StopPrintAsync(PrintId printId, object asyncState);
+		event EventHandler<AsyncCompletedEventArgs> StopPrintCompleted;
+		void GetPrintStatusAsync(PrintId printId, object asyncState);
+		event EventHandler<ScalarOperationCompletedEventArgs<PrintStatus>> GetPrintStatusCompleted;
+		void GetPrintDocumentAsync(PrintId printId, object asyncState);
+		event EventHandler<ScalarOperationCompletedEventArgs<byte[]>> GetPrintDocumentCompleted;
+		void ClearDocumentAsync(DocumentId documentId, object asyncState);
+		event EventHandler<AsyncCompletedEventArgs> ClearDocumentCompleted;
+		void StartExportAsync(DocumentId documentId, DocumentExportArgs exportArgs, object asyncState);
+		event EventHandler<ScalarOperationCompletedEventArgs<ExportId>> StartExportCompleted;
+		void GetExportStatusAsync(ExportId exportId, object asyncState);
+		event EventHandler<ScalarOperationCompletedEventArgs<ExportStatus>> GetExportStatusCompleted;
+		void GetExportedDocumentAsync(ExportId exportId, object asyncState);
+		event EventHandler<ScalarOperationCompletedEventArgs<byte[]>> GetExportedDocumentCompleted;
+	}
+}

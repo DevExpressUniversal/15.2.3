@@ -1,0 +1,306 @@
+TokenKind = Type;
+TokenValue = Value;
+GenLinePragmas = false;
+
+PARSER Parser
+
+FRAME
+-->begin
+using System;
+using System.Collections;
+using System.Collections.Specialized;
+
+#if DXCORE
+namespace DevExpress.CodeRush.StructuralParser.Xaml
+#else
+namespace DevExpress.CodeParser.Xaml
+#endif
+{
+  using Xml;
+
+  -->constants
+  partial class MarkupExtensionParser
+  {
+    -->declarations
+    // private methods...
+    protected override void HandlePragmas()
+    {
+      -->pragmas
+    }
+    -->productions
+    void Parse()
+    {
+      la = new Token();
+      la.Value = "";
+      Get();
+      -->parseRoot
+      Expect(0);
+      if (Context != null)
+        Context.SetRange(GetRange(Context, tToken));
+      CloseContext();
+    }
+    protected override bool[,] CreateSetArray()
+    {
+      return new bool[,] { -->initialization };
+    }
+  }
+  public class MarkupExtensionParserErrors : ParserErrorsBase
+  {
+    protected override string GetSyntaxErrorText(int n)
+    {
+      string s;
+      switch (n)
+      {
+        -->errors
+        default:
+          s = "error " + n;
+          break;
+      }
+      return s;
+    }
+  }
+}
+$$$
+ENDFRAME
+
+TOKENNAMES
+  EOF = EOF
+  DOT = DOT
+  COMMA = COMMA
+  COLON = COLON
+  EQUALS = EQUALSTOKEN
+  OPENBRACE = OPENBRACE
+  CLOSEBRACE = CLOSEBRACE
+  IDENTIFIER = IDENTIFIER
+  OPENBRACKET = OPENBRACKET
+  CLOSEBRACKET = CLOSEBRACKET
+  STRINGLITERAL = STRINGLITERAL
+  INTEGERLITERAL = INTEGERLITERAL
+  PATH = PATH
+
+TOKENS
+  DOT
+  COMMA
+  COLON
+  EQUALS
+  OPENBRACE
+  CLOSEBRACE
+  IDENTIFIER
+  OPENBRACKET
+  CLOSEBRACKET
+  STRINGLITERAL
+  INTEGERLITERAL
+  PATH
+
+PRODUCTIONS
+
+Parser =
+(.
+  MarkupExtensionExpression result = null;
+.)
+  MarkupExtensionExpr<out result>
+  (.
+    SetContext(result);
+  .)
+.
+
+PartialName<Expression source, out Expression result>
+(.
+  result = source;
+  QualifiedElementReference qualifiedEleRef = null;
+.)
+=
+  (DOT | COLON)
+  (.
+    qualifiedEleRef = new QualifiedElementReference(la.Value);
+    qualifiedEleRef.NameRange = la.Range;
+    qualifiedEleRef.SetRange(GetRange(source.Range, la.Range));
+    qualifiedEleRef.Qualifier = result;
+    result = qualifiedEleRef;
+  .)
+  IDENTIFIER
+  {
+    (DOT | COLON)
+    (.
+      qualifiedEleRef = new QualifiedElementReference(la.Value);
+      qualifiedEleRef.NameRange = la.Range;
+      qualifiedEleRef.SetRange(GetRange(source.Range, la.Range));
+      qualifiedEleRef.Qualifier = result;
+      result = qualifiedEleRef;
+    .)
+    IDENTIFIER
+  }
+.
+
+SimpleName<out Expression result>
+(.
+  result = null;
+  SourceRange startRange = la.Range;
+  string value = la.Value;
+.)
+=
+  IDENTIFIER
+  [
+    PATH
+	(.
+      PrimitiveExpression primitive = new PrimitiveExpression(value + tToken.Value, GetRange(startRange, tToken.Range));
+      primitive.PrimitiveType = PrimitiveType.Path;
+      result = primitive;
+	  return;
+    .)
+  ]
+  (.
+    if (la.Value == @"/")
+    {
+      while(la.Value == @"/" || la.Type == Tokens.DOT)
+      {
+        value += la.Value;
+        Get();
+        if(la.Type == Tokens.IDENTIFIER)
+        {
+          value += la.Value;
+          Get();
+        }
+      }
+      PrimitiveExpression primitive = new PrimitiveExpression(value, GetRange(startRange, tToken.Range));
+      primitive.PrimitiveType = PrimitiveType.Path;
+      primitive.PrimitiveValue = value;
+      result = primitive;
+    }
+    else
+    {
+    if(la.Type == Tokens.COLON)
+      result = new QualifiedAliasExpression(tToken.Value);
+    else
+      result = new ElementReferenceExpression(tToken.Value);
+    result.NameRange = tToken.Range;
+    result.SetRange(tToken.Range);
+	}
+  .)
+.
+
+Name<out Expression result> =
+(.
+  result = null;
+.)
+  SimpleName<out result>
+  [PartialName<result, out result>]
+.
+
+MarkupExtensionExpr<out MarkupExtensionExpression result>
+(.
+  result = new MarkupExtensionExpression();
+  result.SetRange(la.Range);
+  Expression expression = null;
+  Expression elRef;
+.)
+=
+  OPENBRACE
+  [
+    Name<out elRef>
+    (.
+      result.Qualifier = elRef;
+      result.Name = tToken.Value;
+      result.NameRange = tToken.Range;
+    .)
+  ]
+  {
+    (
+      IF (IsInitializer()) Initializer<out expression> (. result.AddInitializer(expression); .)
+      | Expression<out expression> (. result.AddArgument(expression); .)
+    )
+    [COMMA]
+  }
+  CLOSEBRACE
+  (.
+    result.SetRange(GetRange(result, tToken.Range));
+  .)
+.
+
+Indexer<Expression source, out Expression expr> =
+(.
+  IndexerExpression indexer = new IndexerExpression(source);
+  expr = indexer;
+  Expression expression = null;
+  SourceRange startRange = la.Range;
+.)
+  OPENBRACKET
+  Expression<out expression>  (. indexer.AddArgument(expression); .)
+  {COMMA Expression<out expression> (. indexer.AddArgument(expression); .) }
+  CLOSEBRACKET
+  
+  (.
+    if (source != null)
+      indexer.SetRange(GetRange(source.Range, tToken.Range));
+    else
+      indexer.SetRange(GetRange(startRange, tToken.Range));
+  .)
+.
+
+Initializer<out Expression expr>
+(.
+  AttributeVariableInitializer varInit = new AttributeVariableInitializer();
+  varInit.SetRange(la.Range);
+  expr = varInit;
+  Expression init = null;
+  Expression name = null;
+.) =
+  Name<out name> (. varInit.Name = la.Value; .) EQUALS
+  Expression<out init>
+  (.
+    varInit.LeftSide = name;
+    varInit.RightSide = init;
+    varInit.SetRange(GetRange(varInit, tToken));
+  .)
+.
+
+Literal<out Expression result>
+(.
+  PrimitiveExpression primitive = new PrimitiveExpression(la.Value, la.Range);
+  result = primitive;
+  primitive.IsVerbatimStringLiteral = false;
+.)
+=
+  STRINGLITERAL
+  (.
+     primitive.PrimitiveType = PrimitiveType.String;
+     primitive.PrimitiveValue = tToken.Value.Trim('\'');
+  .)
+  
+  | 
+  INTEGERLITERAL
+  (.
+    primitive.PrimitiveType = PrimitiveType.Int32;
+     int intVal = 0;
+     int.TryParse(la.Value, out intVal);
+     primitive.PrimitiveValue = intVal;
+  .)
+  | PATH
+  (.
+    primitive.PrimitiveType = PrimitiveType.Path;
+     int intVal = 0;
+     int.TryParse(la.Value, out intVal);
+     primitive.PrimitiveValue = tToken.Value.Trim();
+  .)
+  
+.
+
+Expression<out Expression expression>
+(.
+  expression = null;
+  Expression name = null;
+  MarkupExtensionExpression markupExtensionExpression = null;
+.) =
+  (
+    Literal<out expression>
+    | Indexer<null, out expression>
+    | Name<out name> (. expression = name; .)
+    | MarkupExtensionExpr<out markupExtensionExpression> (. expression = markupExtensionExpression; .)
+  )
+  {
+    Indexer<expression, out expression>
+    | PartialName<expression, out expression>
+  }
+.
+
+END Parser.

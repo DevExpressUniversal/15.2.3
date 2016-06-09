@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application>
+  <Views>
+    <DetailView ID="CategoryString_Images_DetailView" ClassName="DevExpress.ExpressApp.Demos.Win.CategoryString" IsNewNode="True">
+      <Items IsNewNode="True">
+        <PropertyEditor PropertyName="Images" View="CategoryString_Images_ListView" IsNewNode="True" />
+        <PropertyEditor PropertyName="Name" IsNewNode="True" />
+      </Items>
+      <Layout IsNewNode="True">
+        <LayoutGroup ID="Main" Index="0" Direction="Vertical" ShowCaption="False" Caption="Main" CaptionLocation="Default" RelativeSize="99" IsNewNode="True">
+          <LayoutGroup ID="Images_Group" Index="0" Direction="Vertical" ShowCaption="True" CaptionLocation="Default" RelativeSize="98" IsNewNode="True">
+            <LayoutItem ID="Images" ShowCaption="True" Index="0" CaptionLocation="Default" RelativeSize="94" SizeConstraintsType="Custom" IsNewNode="True" />
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView ID="ImageNode_DetailView">
+      <Layout>
+        <LayoutGroup ID="Main" CaptionLocation="Default" RelativeSize="99">
+          <LayoutGroup ID="SimpleEditors" CaptionLocation="Default" RelativeSize="98">
+            <LayoutGroup ID="ImageBrowserCategory" Index="0" CaptionLocation="Default" RelativeSize="3">
+              <LayoutItem ID="Name" RelativeSize="100" />
+            </LayoutGroup>
+            <LayoutGroup ID="ImageNode" Index="1" CaptionLocation="Default" RelativeSize="96">
+              <LayoutItem ID="Image" ShowCaption="False" RelativeSize="98" />
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView ID="ImagePreviewObject_Categories_DetailView" ClassName="DevExpress.ExpressApp.Demos.Win.ImagePreviewObject" IsNewNode="True">
+      <Items IsNewNode="True">
+        <PropertyEditor PropertyName="Categories" View="ImagePreviewObject_Categories_ListView" IsNewNode="True" />
+        <PropertyEditor PropertyName="Image12x12" IsNewNode="True" />
+        <PropertyEditor PropertyName="Image16x16" IsNewNode="True" />
+        <PropertyEditor PropertyName="Image32x32" IsNewNode="True" />
+        <PropertyEditor PropertyName="Image48x48" IsNewNode="True" />
+        <PropertyEditor PropertyName="ImageName" IsNewNode="True" />
+      </Items>
+      <Layout IsNewNode="True">
+        <LayoutGroup ID="Main" Index="0" Direction="Vertical" ShowCaption="False" Caption="Main" CaptionLocation="Default" RelativeSize="99" IsNewNode="True">
+          <LayoutGroup ID="Categories_Group" Index="1" Direction="Vertical" ShowCaption="True" CaptionLocation="Default" RelativeSize="96" IsNewNode="True">
+            <LayoutItem ID="Categories" ShowCaption="False" Index="0" CaptionLocation="Default" RelativeSize="94" SizeConstraintsType="Custom" IsNewNode="True" />
+          </LayoutGroup>
+          <LayoutItem ID="ImageName" ShowCaption="True" CaptionLocation="Default" Index="0" RelativeSize="3" IsNewNode="True" />
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <ListView ID="ImagePreviewObject_Categories_ListView" DetailViewID="CategoryString_Images_DetailView" MasterDetailMode="ListViewAndDetailView">
+      <SplitLayout Direction="Vertical" SplitterPosition="212" />
+    </ListView>
+    <DetailView ID="ImagePreviewObject_DetailView">
+      <Layout >
+        <LayoutGroup ID="Main" CaptionLocation="Default" RelativeSize="99">
+          <LayoutGroup ID="Categories_Group" Direction="Vertical" CaptionLocation="Default" RelativeSize="88">
+            <LayoutItem ID="Categories" ShowCaption="False" RelativeSize="93" />
+          </LayoutGroup>
+          <LayoutGroup ID="SimpleEditors" CaptionLocation="Default" RelativeSize="9">
+            <LayoutGroup ID="ImagePreviewObject" ShowCaption="False" CaptionLocation="Default" Index="1" RelativeSize="82">
+              <LayoutItem ID="Image12x12" ShowCaption="True" CaptionLocation="Default" Index="0" RelativeSize="12" IsNewNode="True" />
+              <LayoutItem ID="Image16x16" ShowCaption="True" CaptionLocation="Default" Index="1" RelativeSize="12" IsNewNode="True" />
+              <LayoutItem ID="Image32x32" ShowCaption="True" CaptionLocation="Default" Index="2" RelativeSize="12" IsNewNode="True" />
+              <LayoutItem ID="Image48x48" ShowCaption="True" CaptionLocation="Default" Index="3" RelativeSize="61" IsNewNode="True" />
+              <LayoutGroup ID="ImagePreviewObject_col1" Removed="True" />
+              <LayoutGroup ID="ImagePreviewObject_col2" Removed="True" />
+            </LayoutGroup>
+            <LayoutItem ID="ImageName" ShowCaption="True" CaptionLocation="Default" Index="0" RelativeSize="17" IsNewNode="True" />
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <ListView ID="ImagesGroupNode_Images_ListView" DetailViewID="ImagePreviewObject_Categories_DetailView" MasterDetailMode="ListViewAndDetailView" AllowEdit="False" >
+    </ListView>
+    <ListView ID="ImageSourceBrowserBase_ImageCategories_ListView" MasterDetailMode="ListViewAndDetailView" >
+    </ListView>
+    <ListView ID="ImageSourceBrowserBase_Categories_ListView" ShowAutoFilterRow="True" />
+  </Views>
+</Application>

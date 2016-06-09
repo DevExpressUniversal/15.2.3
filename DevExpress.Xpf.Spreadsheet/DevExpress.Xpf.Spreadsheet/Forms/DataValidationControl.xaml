@@ -1,0 +1,121 @@
+﻿<UserControl x:Class="DevExpress.Xpf.Spreadsheet.Forms.DataValidationControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:dxc="http://schemas.devexpress.com/winfx/2008/xaml/core"
+             xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+             xmlns:dxsps="clr-namespace:DevExpress.Xpf.Spreadsheet"
+             mc:Ignorable="d" Width="400" 
+             d:DesignHeight="278" d:DesignWidth="385">
+    <UserControl.Resources>
+        <dxc:BooleanToVisibilityConverter x:Key="boolToVisibilityConverter" />
+        <dxsps:SpreadsheetControlStringIdConverter x:Key="stringIdConverter" />
+    </UserControl.Resources>
+    <Grid Margin="10,10,10,0">
+        <dxc:DXTabControl x:Name="tabControl" MinHeight="268">
+            <dxc:DXTabControl.Items>
+                <dxc:DXTabItem x:Name="tabSettings" Header="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_DataValidationSettingsPage, Converter={StaticResource stringIdConverter}}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Margin="0,-6,0,0" VerticalAlignment="Center" Grid.Row="0" Text="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_DataValidationCriteria, Converter={StaticResource stringIdConverter}}" />
+                        <TextBlock Margin="10,3,0,0" VerticalAlignment="Center" Grid.Row="1" Text="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_DataValidationAllow, Converter={StaticResource stringIdConverter}}" />
+                        <dxe:ComboBoxEdit x:Name="edtType" Margin="10,3,185,0" VerticalAlignment="Top" Grid.Row="3" ShowBorder="True" IsTextEditable="False" EditValue="{Binding TypeValue, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding TypeDataSource}" />
+
+                        <TextBlock Margin="10,-15,0,0" VerticalAlignment="Center" Grid.Row="4" Text="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_DataValidationData, Converter={StaticResource stringIdConverter}}" IsEnabled="{Binding CanChangeOperator}" />
+                        <dxe:ComboBoxEdit x:Name="edtOperator" VerticalAlignment="Center" Grid.Row="5" Margin="10,3,185,0" ShowBorder="True" IsTextEditable="False" EditValue="{Binding OperatorValue, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding OperatorDataSource}" IsEnabled="{Binding CanChangeOperator}" />
+
+                        <TextBlock Margin="10,3,0,0" VerticalAlignment="Center" Grid.Row="6" Visibility="{Binding Formula1Visible, Converter={StaticResource ResourceKey=boolToVisibilityConverter}, ConverterParameter=HiddenOnFalse}" Text="{Binding Formula1Caption}" />
+                        <dxe:TextEdit x:Name="edtFormula1" Margin="10,3,10,0" VerticalAlignment="Center" Grid.Row="7" Visibility="{Binding Formula1Visible, Converter={StaticResource ResourceKey=boolToVisibilityConverter}, ConverterParameter=HiddenOnFalse}" EditValue="{Binding Formula1, UpdateSourceTrigger=PropertyChanged}" MaxLength="255" />
+                        <TextBlock Margin="10,3,0,0" VerticalAlignment="Center" Grid.Row="8" Visibility="{Binding Formula2Visible, Converter={StaticResource ResourceKey=boolToVisibilityConverter}, ConverterParameter=HiddenOnFalse}" Text="{Binding Formula2Caption}" />
+                        <dxe:TextEdit x:Name="edtFormula2" Margin="10,3,10,0" VerticalAlignment="Center" Grid.Row="9" Visibility="{Binding Formula2Visible, Converter={StaticResource ResourceKey=boolToVisibilityConverter}, ConverterParameter=HiddenOnFalse}" EditValue="{Binding Formula2, UpdateSourceTrigger=PropertyChanged}" MaxLength="255" />
+
+                        <Grid VerticalAlignment="Top" Margin="10,3,0,0" Grid.Row="3" Grid.Column="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <dxe:CheckEdit x:Name="chkIgnoreBlank" Margin="170,-3,0,0" VerticalAlignment="Top" IsEnabled="{Binding Formula1Visible}" Grid.Row="0" EditValue="{Binding IgnoreBlank, UpdateSourceTrigger=PropertyChanged}" Content="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_DataValidationIgnoreBlank, Converter={StaticResource stringIdConverter}}" />
+                            <dxe:CheckEdit x:Name="chkDropDown" Margin="170,0,0,0" VerticalAlignment="Top" Grid.Row="1" Visibility="{Binding InCellDropDownVisible, Converter={StaticResource ResourceKey=boolToVisibilityConverter}, ConverterParameter=HiddenOnFalse}" EditValue="{Binding InCellDropDown, UpdateSourceTrigger=PropertyChanged}" Content="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_DataValidationInCellDropdown, Converter={StaticResource stringIdConverter}}" />
+                        </Grid>
+
+                        <dxe:CheckEdit x:Name="chkApplyToAllCells" Margin="0,6,0,0" VerticalAlignment="Center" Grid.Row="10" IsEnabled="{Binding CanApplyChangesToAllCells}" EditValueChanged="chkApplyToAllCells_OnCheckedChanged" Content="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_DataValidationApplyToAllCells, Converter={StaticResource stringIdConverter}}" />
+                    </Grid>
+                </dxc:DXTabItem>
+                <dxc:DXTabItem x:Name="tabInputMessage" Header="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_DataValidationInputMessagePage, Converter={StaticResource stringIdConverter}}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <dxe:CheckEdit x:Name="chkShowMessage" Margin="0,-6,0,0" VerticalAlignment="Center" Grid.Row="0" Grid.Column="0" EditValue="{Binding ShowMessage}" Content="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_DataValidationInputMessageCheckbox, Converter={StaticResource stringIdConverter}}" />
+                        <TextBlock VerticalAlignment="Center" Margin="0,3,0,0" Grid.Row="1" Grid.Column="1" Text="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_DataValidationInputMessageText, Converter={StaticResource stringIdConverter}}" />
+
+                        <TextBlock VerticalAlignment="Center" Margin="10,3,0,0" Grid.Row="2" Grid.Column="1" IsEnabled="{Binding ShowMessage}" Text="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_DataValidationInputMessageTitle, Converter={StaticResource stringIdConverter}}" />
+                        <dxe:TextEdit x:Name="edtMessageTitle" VerticalAlignment="Center" Grid.Row="3" Grid.Column="1" Margin="10,3,10,0" ShowBorder="True" EditValue="{Binding MessageTitle, UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding ShowMessage}" MaxLength="32" />
+
+                        <TextBlock VerticalAlignment="Center" Margin="10,3,0,0" Grid.Row="4" Grid.Column="1" IsEnabled="{Binding ShowMessage}" Text="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_DataValidationInputMessage, Converter={StaticResource stringIdConverter}}" />
+                        <dxe:TextEdit x:Name="edtMessage" Grid.Row="8" Grid.Column="1" Height="110" Margin="10,3,10,0" EditValue="{Binding Message, UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding ShowMessage}" VerticalScrollBarVisibility="Visible" AcceptsReturn="True" TextWrapping="Wrap" MaxLength="255" VerticalContentAlignment="Top" />
+                    </Grid>
+                </dxc:DXTabItem>
+                <dxc:DXTabItem x:Name="tabErrorAlert" Header="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_DataValidationErrorAlertPage, Converter={StaticResource stringIdConverter}}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <dxe:CheckEdit x:Name="chkShowErrorMessage" Margin="0,-6,0,0" VerticalAlignment="Center" Grid.Row="0" Grid.Column="0" EditValue="{Binding ShowErrorMessage, UpdateSourceTrigger=PropertyChanged}" Content="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_DataValidationErrorMessageCheckbox, Converter={StaticResource stringIdConverter}}" />
+                        <TextBlock VerticalAlignment="Center" Margin="0,3,0,0" Grid.Row="1" Grid.Column="1" Text="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_DataValidationErrorMessageText, Converter={StaticResource stringIdConverter}}" />
+
+                        <TextBlock VerticalAlignment="Center" Margin="10,3,0,0" Grid.Row="2" Grid.Column="1" IsEnabled="{Binding ShowErrorMessage}" Text="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_DataValidationErrorMessageStyle, Converter={StaticResource stringIdConverter}}"  />
+                        <TextBlock VerticalAlignment="Center" Margin="175,3,0,0" Grid.Row="2" Grid.Column="1" IsEnabled="{Binding ShowErrorMessage}" Text="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_DataValidationInputMessageTitle, Converter={StaticResource stringIdConverter}}" />
+                        <dxe:ComboBoxEdit x:Name="edtErrorStyle" VerticalAlignment="Center" Grid.Row="3" Grid.Column="1" Margin="10,3,190,0" ShowBorder="True" IsTextEditable="False" EditValue="{Binding ErrorStyleValue, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding ErrorStyleDataSource}" IsEnabled="{Binding ShowErrorMessage}" />
+                        <dxe:TextEdit x:Name="edtErrorTitle" VerticalAlignment="Center" Grid.Row="3" Grid.Column="1" Margin="175,3,10,0" ShowBorder="True" EditValue="{Binding ErrorTitle, UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding ShowErrorMessage}" MaxLength="32" />
+
+                        <TextBlock VerticalAlignment="Center" Margin="175,3,0,0" Grid.Row="4" Grid.Column="1" IsEnabled="{Binding ShowErrorMessage}" Text="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_DataValidationErrorMessage, Converter={StaticResource stringIdConverter}}"  />
+                        <dxe:TextEdit x:Name="edtErrorMessage" Grid.Row="5" Grid.Column="1" Height="110" Margin="175,3,10,0" EditValue="{Binding ErrorMessage, UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding ShowErrorMessage}" VerticalScrollBarVisibility="Visible" AcceptsReturn="True" VerticalAlignment="Top" TextWrapping="Wrap" MaxLength="225" VerticalContentAlignment="Top" />
+                        <Image x:Name="iconStop" VerticalAlignment="Center" HorizontalAlignment="Center" MaxHeight="60" MaxWidth="60" Margin="10,30,200,30" Grid.Row="5" Grid.Column="1" Visibility="{Binding StopIconVisible, Converter={StaticResource boolToVisibilityConverter}, ConverterParameter=HiddenOnFalse}" Source="pack://application:,,,/DevExpress.Xpf.Spreadsheet.v15.2;component/Images/Error_48x48.png" />
+                        <Image x:Name="iconInfo" VerticalAlignment="Center" HorizontalAlignment="Center" MaxHeight="60" MaxWidth="60" Margin="10,30,200,30" Grid.Row="5" Grid.Column="1" Visibility="{Binding InfoIconVisible, Converter={StaticResource ResourceKey=boolToVisibilityConverter}, ConverterParameter=HiddenOnFalse}" Source="pack://application:,,,/DevExpress.Xpf.Spreadsheet.v15.2;component/Images/Information_48x48.png" />
+                        <Image x:Name="iconWarning" VerticalAlignment="Center" HorizontalAlignment="Center" MaxHeight="60" MaxWidth="60" Margin="10,30,200,30" Grid.Row="5" Grid.Column="1" Visibility="{Binding WarningIconVisible, Converter={StaticResource ResourceKey=boolToVisibilityConverter}, ConverterParameter=HiddenOnFalse}" Source="pack://application:,,,/DevExpress.Xpf.Spreadsheet.v15.2;component/Images/Warning_48x48.png" />
+                    </Grid>
+                </dxc:DXTabItem>
+            </dxc:DXTabControl.Items>
+        </dxc:DXTabControl>
+    </Grid>
+</UserControl>

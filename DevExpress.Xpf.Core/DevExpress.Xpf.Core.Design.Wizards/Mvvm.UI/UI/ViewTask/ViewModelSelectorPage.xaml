@@ -1,0 +1,47 @@
+﻿<UserControl 
+    x:Class="DevExpress.Design.Mvvm.Wizards.UI.ViewModelSelectorPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:ui="clr-namespace:DevExpress.Design.UI;assembly=DevExpress.Design.v15.2"    
+    xmlns:mvvm="clr-namespace:DevExpress.Design.Mvvm"
+    xmlns:mvvmWizardsUI="clr-namespace:DevExpress.Design.Mvvm.Wizards.UI"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+    mc:Ignorable="d" 
+    d:DesignHeight="500" d:DesignWidth="800"
+    >
+    <UserControl.Resources>
+        <ui:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+        <Style TargetType="Hyperlink">
+            <Setter Property="Foreground" Value="{StaticResource ResourceKey={ui:ThemeColorsKey Key=ColorOrange}}"/>
+        </Style>
+    </UserControl.Resources>
+    <Grid VerticalAlignment="Stretch">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="0"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <DockPanel Grid.Row="0" Grid.RowSpan="3" LastChildFill="False">
+            <TextBlock DockPanel.Dock="Top"
+                       ui:HyperlinkInlineExpression.InlineExpression="{Binding DescriptionText}"
+                       Style="{DynamicResource {ui:ControlsThemeKey Key=InfoText}}"
+                       />
+            <DockPanel DockPanel.Dock="Top" Margin="0,10,0,0">
+                <TextBlock Style="{DynamicResource ResourceKey={ui:ControlsThemeKey Key=OptionName}}"
+                           Text="{x:Static mvvmWizardsUI:SR_Mvvm.ViewWizard_ViewNameOption}"
+                          />
+                <TextBox  DockPanel.Dock="Bottom" Width="400" HorizontalAlignment="Left" Text="{Binding ViewName, UpdateSourceTrigger=PropertyChanged}" 
+                          IsEnabled="{Binding IsViewModelSelected}"
+                          Style="{DynamicResource ResourceKey={ui:StandardControlsThemeKey Key=TextBox}}"
+                          />
+            </DockPanel>            
+            <TextBlock DockPanel.Dock="Bottom" Margin="0,5,0,0" HorizontalAlignment="Right">
+                <Hyperlink Foreground="{DynamicResource ResourceKey={ui:ThemeColorsKey Key=ColorOrange}}"
+                    Command="{Binding NavigateToLearnMore}">
+                    <Run Text="{x:Static mvvmWizardsUI:SR_Mvvm.Wizard_LearnMore}"/>
+                </Hyperlink>
+            </TextBlock>
+        </DockPanel>        
+    </Grid>
+</UserControl>

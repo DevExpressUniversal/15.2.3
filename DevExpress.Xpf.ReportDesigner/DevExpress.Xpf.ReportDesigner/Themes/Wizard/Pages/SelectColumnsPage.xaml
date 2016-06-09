@@ -1,0 +1,58 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
+                    xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+                    xmlns:scm="clr-namespace:System.ComponentModel;assembly=WindowsBase"
+                    xmlns:dataaccessNative="clr-namespace:DevExpress.Xpf.DataAccess.Native;assembly=DevExpress.Xpf.DataAccess.v15.2"
+                    xmlns:local="clr-namespace:DevExpress.Xpf.Reports.UserDesigner.ReportWizard.Pages">
+    <DataTemplate x:Key="{x:Type local:SelectColumnsPage}">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <dataaccessNative:WizardTitle Title="Select the columns you want to display within your report." />
+            <dxlc:LayoutControl Grid.Row="1" Padding="0" Margin="50,20">
+                <Grid>
+                    <Grid.Resources>
+                        <CollectionViewSource Source="{Binding AvailableColumns}" x:Key="availableItems" >
+                            <CollectionViewSource.SortDescriptions>
+                                <scm:SortDescription PropertyName="DisplayName" />
+                            </CollectionViewSource.SortDescriptions>
+                        </CollectionViewSource>
+                    </Grid.Resources>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <dxlc:LayoutItem VerticalAlignment="Stretch" Label="Available columns:" LabelPosition="Top" Grid.RowSpan="2">
+                        <dxe:ListBoxEdit Name="availableColumns" DisplayMember="DisplayName" ItemsSource="{Binding AvailableColumns}" SelectedIndex="0" />
+                    </dxlc:LayoutItem>
+                    <StackPanel VerticalAlignment="Center" Margin="12,0, 12, 60" Orientation="Vertical" Grid.Column="1" Grid.Row="1">
+                        <Button Command="{Binding AddCommand}" CommandParameter="{Binding SelectedItem, ElementName=availableColumns}" Margin="0,0,0,6">
+                            <Image Stretch="None" Source="/DevExpress.Xpf.ReportDesigner.v15.2;component/Images/Wizard/ArrowRight.png" />
+                        </Button>
+                        <Button Command="{Binding AddAllCommand}" Margin="0,0,0,18" >
+                            <Image Stretch="None" Source="/DevExpress.Xpf.ReportDesigner.v15.2;component/Images/Wizard/DoubleArrowRight.png" />
+                        </Button>
+                        <Button Command="{Binding RemoveCommand}" CommandParameter="{Binding SelectedItem, ElementName=selectedColumns}" Margin="0,0,0,6" >
+                            <Image Stretch="None" Source="/DevExpress.Xpf.ReportDesigner.v15.2;component/Images/Wizard/ArrowLeft.png" />
+                        </Button>
+                        <Button Command="{Binding RemoveAllCommand}" >
+                            <Image Stretch="None" Source="/DevExpress.Xpf.ReportDesigner.v15.2;component/Images/Wizard/DoubleArrowLeft.png" />
+                        </Button>
+                    </StackPanel>
+                    <dxlc:LayoutItem VerticalAlignment="Stretch" Label="Selected columns:" LabelPosition="Top" Grid.Column="2" Grid.RowSpan="2">
+                        <dxe:ListBoxEdit Name="selectedColumns" DisplayMember="DisplayName" ItemsSource="{Binding SelectedColumns}" SelectedIndex="0" />
+                    </dxlc:LayoutItem>
+                </Grid>
+            </dxlc:LayoutControl>
+        </Grid>
+        
+    </DataTemplate>
+</ResourceDictionary>

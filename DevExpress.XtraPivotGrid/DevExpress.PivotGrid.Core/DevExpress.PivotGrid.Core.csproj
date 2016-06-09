@@ -1,0 +1,651 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{DA50534F-0CF7-436E-813B-BD030FAD9AE9}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DevExpress.XtraPivotGrid</RootNamespace>
+    <AssemblyName>DevExpress.PivotGrid.v15.2.Core</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\..\Bin\Framework\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;DXWhidbey</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\..\Bin\Framework\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  
+  <ItemGroup>
+    <Reference Include="DevExpress.Data.v15.2">
+      <SpecificVersion>False</SpecificVersion>
+    <HintPath>..\..\..\Bin\Framework\DevExpress.Data.v15.2.dll</HintPath><Private>False</Private></Reference>
+    <Reference Include="DevExpress.Printing.v15.2.Core">
+      <SpecificVersion>False</SpecificVersion>
+    <HintPath>..\..\..\Bin\Framework\DevExpress.Printing.v15.2.Core.dll</HintPath><Private>False</Private></Reference>
+    
+    <Reference Include="System"><Private>False</Private></Reference>
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    <Private>False</Private></Reference>
+    <Reference Include="System.Data"><Private>False</Private></Reference>
+    <Reference Include="System.Drawing"><Private>False</Private></Reference>
+    <Reference Include="System.Windows.Forms"><Private>False</Private></Reference>
+    <Reference Include="System.XML"><Private>False</Private></Reference>
+    <Reference Include="System.Xml.Linq"><Private>False</Private></Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="ChartDataSource\ChartDataSourceEnums.cs" />
+    <Compile Include="ChartDataSource\DateTimeValueBuilder.cs" />
+    <Compile Include="ChartDataSource\PivotChartDataSource.cs" />
+    <Compile Include="ChartDataSource\PivotChartDataSourceRows.cs" />
+    <Compile Include="CubeLoader.cs" />
+    <Compile Include="Customization\CustomizationTree.cs" />
+    <Compile Include="Customization\CustomizationFormFields.cs" />
+    <Compile Include="Customization\CustomizationTreeItems.cs" />
+    <Compile Include="Customization\TreeEnumerator.cs" />
+    <Compile Include="Data\BaseCollection.cs" />
+    <Compile Include="Data\CellCoords.cs" />
+    <Compile Include="Data\Common\Aggregations\AggregationLevel.cs" />
+    <Compile Include="Data\Common\Aggregations\AggregationLevelsCalculator.cs" />
+    <Compile Include="Data\Common\CriteriaVisitors\BaseCriteriaChecker.cs" />
+    <Compile Include="Data\Common\CriteriaVisitors\ColumnNamesCriteriaVisitor.cs" />
+    <Compile Include="Data\Common\CriteriaVisitors\CriteriaParameterReplacer.cs" />
+    <Compile Include="Data\Common\CriteriaVisitors\CustomFunctionReplacer.cs" />
+    <Compile Include="Data\Common\CriteriaVisitors\SummaryLevelCriteriaValidator.cs" />
+    <Compile Include="Data\Common\Interfaces.cs" />
+    <Compile Include="Data\Common\PivotSummaryTypeExtension.cs" />
+    <Compile Include="Data\Common\SummaryCalculator.cs" />
+    <Compile Include="Data\DataController\Areas.cs" />
+    <Compile Include="Data\DataController\Comparers.cs" />
+    <Compile Include="Data\DataController\DataControllerGroupHelperBase.cs" />
+    <Compile Include="Data\DataController\FilterAreaGroupHelper.cs" />
+    <Compile Include="Data\DataController\Filters.cs" />
+    <Compile Include="Data\DataController\PivotColumnInfo.cs" />
+    <Compile Include="Data\DataController\PivotDataController.cs" />
+    <Compile Include="Data\DataController\PivotFilterHelper.cs" />
+    <Compile Include="Data\DataController\PivotGroupRowInfo.cs" />
+    <Compile Include="Data\DataController\SummaryInfo.cs" />
+    <Compile Include="Data\DataStorage.cs" />
+    <Compile Include="Data\DateHelpers.cs" />
+    <Compile Include="Data\ActionsQueue.cs" />
+    <Compile Include="Data\Exceptions.cs" />
+    <Compile Include="Data\IQueryable\AnonymousClasses.cs" />
+    <Compile Include="Data\IQueryable\CriteriaToExpressionConverter.cs" />
+    <Compile Include="Data\IQueryable\EntityCriteriaHelper.cs" />
+    <Compile Include="Data\Common\CriteriaVisitors\HasAggregateCriteriaChecker.cs" />
+    <Compile Include="Data\IQueryable\HasDayOfWeekCriteriaChecker.cs" />
+    <Compile Include="Data\IQueryable\Interfaces.cs" />
+    <Compile Include="Data\IQueryable\LinqExpressionHelper.cs" />
+    <Compile Include="Data\IQueryable\QueryableQueryExecutor.cs" />
+    <Compile Include="Data\IQueryable\PickManager.cs" />
+    <Compile Include="Data\IQueryable\PickManagerNode.cs" />
+    <Compile Include="Data\OLAP\Adomd\Wrappers\Error.cs" />
+    <Compile Include="Data\OLAP\Common\MeasureStorage.cs" />
+    <Compile Include="Data\OLAP\Common\Metadata\Columns\OlapPropertyDescriptor.cs" />
+    <Compile Include="Data\OLAP\Common\Metadata\Schema\Constants.cs" />
+    <Compile Include="Data\OLAP\Common\Metadata\Schema\Dimension.cs" />
+    <Compile Include="Data\OLAP\Common\Metadata\Schema\Entity.cs" />
+    <Compile Include="Data\OLAP\Common\Metadata\Schema\EntityCollections.cs" />
+    <Compile Include="Data\OLAP\Common\Metadata\OLAPMemberCollection.cs" />
+    <Compile Include="Data\OLAP\Common\Metadata\QueryMemberCollectionBase.cs" />
+    <Compile Include="Data\OLAP\Common\Metadata\Schema\Hierarchy.cs" />
+    <Compile Include="Data\OLAP\Common\Metadata\Schema\Level.cs" />
+    <Compile Include="Data\OLAP\Common\Metadata\Schema\MeasureGroup.cs" />
+    <Compile Include="Data\OLAP\Common\Metadata\Schema\SchemaRowSets.cs" />
+    <Compile Include="Data\OLAP\Common\Query\ActionProvider\AllGroupsActionProvider.cs" />
+    <Compile Include="Data\OLAP\Common\Query\ActionProvider\MemberCreator.cs" />
+    <Compile Include="Data\OLAP\Common\Query\CellSetCreator.cs" />
+    <Compile Include="Data\OLAP\Common\Query\CellSetParser\AxisProviders.cs" />
+    <Compile Include="Data\OLAP\Common\Query\CellSetParser\FormatHelper.cs" />
+    <Compile Include="Data\OLAP\Common\Query\CellSetParser\XMLReaderAxis.cs" />
+    <Compile Include="Data\OLAP\Common\Query\CellSetParser\XMLReaderCellSet.cs" />
+    <Compile Include="Data\OLAP\Common\Query\XmlParser\XmlReaderException.cs" />
+    <Compile Include="Data\OLAP\Common\Query\CellSetParser\XMLReaderMember.cs" />
+    <Compile Include="Data\OLAP\Common\Query\XmlParser\XmlReaderParserBase.cs" />
+    <Compile Include="Data\OLAP\Common\Query\RowSetParser\RowSetColumn.cs" />
+    <Compile Include="Data\OLAP\Common\Query\RowSetParser\XMLReaderRowSet.cs" />
+    <Compile Include="Data\OLAP\Common\Query\CellSetParser\XMLReaderTuple.cs" />
+    <Compile Include="Data\OLAP\Common\Query\CellSetParser\XMLReaserCell.cs" />
+    <Compile Include="Data\OLAP\Common\Query\XmlParser\XsdTypeConverter.cs" />
+    <Compile Include="Data\OLAP\Common\Query\OLAPCellSetParser.cs" />
+    <Compile Include="Data\OLAP\Common\SchemaEntities.cs" />
+    <Compile Include="Data\OLAP\Common\Filter\OLAPCriteriaFilterHelper.cs" />
+    <Compile Include="Data\OLAP\Common\SortComparers.cs" />
+    <Compile Include="Data\OLAP\OleDb\Query\OleDbWrappers.cs" />
+    <Compile Include="Data\Common\CriteriaVisitors\MixedSummaryLevelsCriteriaVisitor.cs" />
+    <Compile Include="Data\QueryMode\Filter\CurrentFilterInfos.cs" />
+    <Compile Include="Data\OLAP\Common\Filter\OLAPFilterHelperBase.cs" />
+    <Compile Include="Data\OLAP\Common\PartialUpdater.cs" />
+    <Compile Include="Data\OLAP\Common\OLAPPublicInterfaces.cs" />
+    <Compile Include="Data\Common\CriteriaVisitors\CriteriaPatcherBase.cs" />
+    <Compile Include="Data\QueryMode\Metadata\QueryException.cs" />
+    <Compile Include="Data\QueryMode\PatialUpdate\RemoveDataFieldUpdater.cs" />
+    <Compile Include="Data\QueryMode\PatialUpdate\RemoveEmptyFieldValuesUpdater.cs" />
+    <Compile Include="Data\QueryMode\PatialUpdate\RemoveFieldValuesLevelUpdater.cs" />
+    <Compile Include="Data\QueryMode\PatialUpdate\SortOrderUpdater.cs" />
+    <Compile Include="Data\QueryMode\PatialUpdate\TopValueSortOrderUpdater.cs" />
+    <Compile Include="Data\QueryMode\PatialUpdate\UpdaterBase.cs" />
+    <Compile Include="Data\QueryMode\Query\ActionProviderHelper.cs" />
+    <Compile Include="Data\QueryMode\PatialUpdate\PartialUpdaterBase.cs" />
+    <Compile Include="Data\QueryMode\PatialUpdate\AutoExpandUpdateAction.cs" />
+    <Compile Include="Data\QueryMode\Query\ActionProvider\AllGroupsActionProvider.cs" />
+    <Compile Include="Data\QueryMode\Query\ActionProvider\ExpandActionProvider.cs" />
+    <Compile Include="Data\QueryMode\Query\ActionProvider\FirstLevelActionProvider.cs" />
+    <Compile Include="Data\QueryMode\Query\ActionProvider\FullExpandActionProvider.cs" />
+    <Compile Include="Data\QueryMode\Query\QueryExecutorBase.cs" />
+    <Compile Include="Data\QueryMode\Query\QueryTuple.cs" />
+    <Compile Include="Data\QueryMode\Query\TuplesTree\MemberCreator.cs" />
+    <Compile Include="Data\QueryMode\Sorting\ByMemberCustomDisplayTextComparer.cs" />
+    <Compile Include="Data\QueryMode\Sorting\CustomSortHelper.cs" />
+    <Compile Include="Data\QueryMode\Sorting\QueryMemberProviderComparer.cs" />
+    <Compile Include="Data\QueryMode\VisualItems\AreaFieldValues.cs" />
+    <Compile Include="Data\QueryMode\VisualItems\CellTable.cs" />
+    <Compile Include="Data\QueryMode\VisualItems\CollapsedState.cs" />
+    <Compile Include="Data\QueryMode\VisualItems\DictionaryContainer.cs" />
+    <Compile Include="Data\QueryMode\VisualItems\GroupInfo.cs" />
+    <Compile Include="Data\QueryMode\VisualItems\GroupInfoColumn.cs" />
+    <Compile Include="Data\ServerMode\CriteriaGenerators\AndCriteria.cs" />
+    <Compile Include="Data\ServerMode\CriteriaGenerators\GroupToSelectCriteria.cs" />
+    <Compile Include="Data\ServerMode\CriteriaGenerators\InMembers.cs" />
+    <Compile Include="Data\ServerMode\CriteriaGenerators\InversedQueryTupleListToCriteriaOperatorConverter.cs.cs" />
+    <Compile Include="Data\ServerMode\CriteriaVisitors\ClientCriteriaToServerCriteriaVisitor.cs" />
+    <Compile Include="Data\ServerMode\CriteriaVisitors\CriteriaValidator.cs" />
+    <Compile Include="Data\ServerMode\CriteriaVisitors\IsNotContantChecker.cs" />
+    <Compile Include="Data\ServerMode\CriteriaGenerators\FunctionOperatorAdd.cs" />
+    <Compile Include="Data\ServerMode\CubeColumns.cs" />
+    <Compile Include="Data\ServerMode\MeasuresStorage.cs" />
+    <Compile Include="Data\ServerMode\PartialUpdater.cs" />
+    <Compile Include="Data\ServerMode\Query\ActionProvider\AllGroupsActionProvider.cs" />
+    <Compile Include="Data\ServerMode\Areas.cs" />
+    <Compile Include="Data\ServerMode\CellTable.cs" />
+    <Compile Include="Data\ServerMode\CriteriaGenerators\ColumnCriteriaHelper.cs" />
+    <Compile Include="Data\ServerMode\CriteriaGenerators\OthersValueColumn.cs" />
+    <Compile Include="Data\ServerMode\CriteriaGenerators\SortCriteria.cs" />
+    <Compile Include="Data\ServerMode\CriteriaVisitors\CriteriaPropertyExcluder.cs" />
+    <Compile Include="Data\ServerMode\Metadata\UnboundMetadataColumn.cs" />
+    <Compile Include="Data\ServerMode\CriteriaVisitors\PropertyToQueryOperandPathcher.cs" />
+    <Compile Include="Data\ServerMode\CriteriaGenerators\CriteriaOperatorToServerModeCriteria.cs" />
+    <Compile Include="Data\ServerMode\Query\AreaQueryContext.cs" />
+    <Compile Include="Data\ServerMode\Query\ExpandHelper.cs" />
+    <Compile Include="Data\ServerMode\Query\Sorting\ByMemberValueComparer.cs" />
+    <Compile Include="Data\QueryMode\Sorting\BySummaryComparer.cs" />
+    <Compile Include="Data\QueryMode\Sorting\CellTableSorter.cs" />
+    <Compile Include="Data\QueryMode\Sorting\CellSetSorter.cs" />
+    <Compile Include="Data\QueryMode\Sorting\BaseComparer.cs" />
+    <Compile Include="Data\QueryMode\Sorting\CustomComparer.cs" />
+    <Compile Include="Data\QueryMode\Sorting\EmptyComparer.cs" />
+    <Compile Include="Data\QueryMode\Sorting\Interfaces.cs" />
+    <Compile Include="Data\QueryMode\Sorting\InversedComparer.cs" />
+    <Compile Include="Data\QueryMode\Sorting\Sorter.cs" />
+    <Compile Include="Data\ServerMode\Query\TupleCreators\ColumnState.cs" />
+    <Compile Include="Data\ServerMode\Query\TupleCreators\CriteriaHolder.cs" />
+    <Compile Include="Data\ServerMode\Query\TupleCreators\CrossAreaQueryContext.cs" />
+    <Compile Include="Data\ServerMode\Query\TupleCreators\CrossAreaQueryContextCreator.cs" />
+    <Compile Include="Data\ServerMode\Query\TupleCreators\FullExpandQueryContextCreator.cs" />
+    <Compile Include="Data\QueryMode\Query\TuplesTree\LevelRecords.cs" />
+    <Compile Include="Data\ServerMode\Query\TuplesTree\MemberCreator.cs" />
+    <Compile Include="Data\QueryMode\Query\TuplesTree\TuplesIndexedTreeCache.cs" />
+    <Compile Include="Data\ServerMode\Query\TupleCreators\BaseTuplesCreator.cs" />
+    <Compile Include="Data\ServerMode\Query\TupleCreators\CrossAreaExpandTuplesCreator.cs" />
+    <Compile Include="Data\ServerMode\Query\TupleCreators\FirstLevelTuplesCreator.cs" />
+    <Compile Include="Data\ServerMode\Query\MultipleLevelsQueryExecutor.cs" />
+    <Compile Include="Data\ServerMode\CriteriaGenerators\QueryTupleListToCriteriaOperatorConverter.cs" />
+    <Compile Include="Data\ServerMode\ServerModeDataSource.cs" />
+    <Compile Include="Data\ServerMode\Interfaces.cs" />
+    <Compile Include="Data\ServerMode\Member.cs" />
+    <Compile Include="Data\ServerMode\Metadata\MetadataColumn.cs" />
+    <Compile Include="Data\ServerMode\Column.cs" />
+    <Compile Include="Data\ServerMode\Query\FilterHelper.cs" />
+    <Compile Include="Data\ServerMode\Metadata\Metadata.cs" />
+    <Compile Include="Data\ServerMode\Metadata\MetadataColumns.cs" />
+    <Compile Include="Data\ServerMode\Query\QueryContext.cs" />
+    <Compile Include="Data\ServerMode\Query\QueryExecutor.cs" />
+    <Compile Include="Data\GroupIntervalHelper.cs" />
+    <Compile Include="Data\Interfaces\IPivotGridEventsImplementorBase.cs" />
+    <Compile Include="Data\Interfaces\IPivotGridDataSource.cs" />
+    <Compile Include="Data\ServerMode\Query\TupleCreators\ThisAreaExpandTuplesCreator.cs" />
+    <Compile Include="Data\ThinClientDataSource\EventArgs.cs" />
+    <Compile Include="Data\ThinClientDataSource\PivotGridThinClientData.cs" />
+    <Compile Include="Data\ThinClientDataSource\PivotGridThinClientDataSource.cs" />
+    <Compile Include="Data\NotifyCollection.cs" />
+    <Compile Include="Data\OLAP\Adomd\Metadata\AdomdMetadataHelper.cs" />
+    <Compile Include="Data\OLAP\Adomd\Metadata\AdomdMetaGetter.cs" />
+    <Compile Include="Data\OLAP\Adomd\Metadata\AdoMetadata.cs" />
+    <Compile Include="Data\OLAP\Adomd\PivotGridAdomdDataSource.cs" />
+    <Compile Include="Data\OLAP\Adomd\Wrappers\AdomdCollection.cs" />
+    <Compile Include="Data\OLAP\Adomd\Wrappers\AdomdConnection.cs" />
+    <Compile Include="Data\OLAP\Adomd\Wrappers\AdomdRestrictionCollection.cs" />
+    <Compile Include="Data\OLAP\Adomd\Wrappers\AdomdSchemaGuid.cs" />
+    <Compile Include="Data\OLAP\Adomd\Wrappers\BaseWrapper.cs" />
+    <Compile Include="Data\OLAP\Adomd\Wrappers\Exceptions.cs" />
+    <Compile Include="Data\DataEvents.cs" />
+    <Compile Include="Data\OLAP\Common\Filter\OLAPCriteriaFilter.cs" />
+    <Compile Include="Data\QueryMode\CriteriaVisitors\QueryMemberEvaluatorBase.cs" />
+    <Compile Include="Data\OLAP\Common\Filter\OLAPFilterValues.cs" />
+    <Compile Include="Data\OLAP\Common\Filter\OLAPGroupFilterVisitor.cs" />
+    <Compile Include="Data\OLAP\Common\Filter\OLAPMemberEvaluator.cs" />
+    <Compile Include="Data\OLAP\Common\Metadata\Columns\OLAPCubeColumn.cs" />
+    <Compile Include="Data\OLAP\Common\Metadata\Columns\OLAPKPIMeasureMetadataColumn.cs" />
+    <Compile Include="Data\OLAP\Common\Metadata\Columns\OLAPKPIMetadataColumn.cs" />
+    <Compile Include="Data\OLAP\Common\Metadata\Columns\OLAPMetadataColumn.cs" />
+    <Compile Include="Data\OLAP\Common\Metadata\Columns\OLAPMetadataColumns.cs" />
+    <Compile Include="Data\OLAP\Common\Metadata\OLAPAreas.cs" />
+    <Compile Include="Data\OLAP\Common\Metadata\Columns\OLAPCubeColumns.cs" />
+    <Compile Include="Data\OLAP\Common\Metadata\OLAPDataTypeConverter.cs" />
+    <Compile Include="Data\OLAP\Common\Metadata\OLAPHierarchies.cs" />
+    <Compile Include="Data\OLAP\Common\Metadata\OLAPMembers.cs" />
+    <Compile Include="Data\OLAP\Common\Metadata\OLAPMetadata.cs" />
+    <Compile Include="Data\OLAP\Common\Metadata\OLAPMetadataHelper.cs" />
+    <Compile Include="Data\OLAP\Common\Metadata\OLAPSchemaGuid.cs" />
+    <Compile Include="Data\OLAP\Common\Metadata\OLAPConnectionStringBuilder.cs" />
+    <Compile Include="Data\OLAP\Common\OLAPDataSourceBase.cs" />
+    <Compile Include="Data\OLAP\Common\OLAPEnums.cs" />
+    <Compile Include="Data\OLAP\Common\OLAPExceptions.cs" />
+    <Compile Include="Data\OLAP\Common\Filter\OLAPFilterHelper.cs" />
+    <Compile Include="Data\OLAP\Common\OLAPInterfaces.cs" />
+    <Compile Include="Data\OLAP\Common\OLAPPropertyGrid.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Data\OLAP\Common\OLAPPublicMembers.cs" />
+    <Compile Include="Data\OLAP\Common\OLAPUniqueValues.cs" />
+    <Compile Include="Data\OLAP\Common\Query\MDXHelpers.cs" />
+    <Compile Include="Data\OLAP\Common\Query\OLAPCellSet.cs" />
+    <Compile Include="Data\OLAP\Common\Query\OLAPDataSourceQuery.cs" />
+    <Compile Include="Data\OLAP\Common\Query\OLAPMembersWriter.cs" />
+    <Compile Include="Data\OLAP\Common\Query\OLAPQueryBuilder.cs" />
+    <Compile Include="Data\OLAP\Common\Query\OLAPQueryContext.cs" />
+    <Compile Include="Data\OLAP\Common\Query\OLAPQueryExecutor.cs" />
+    <Compile Include="Data\OLAP\Common\Query\OLAPSortByTempMember.cs" />
+    <Compile Include="Data\OLAP\Common\Metadata\OLAPMetaGetter.cs" />
+    <Compile Include="Data\OLAP\OleDb\Metadata\OleDbMetadata.cs" />
+    <Compile Include="Data\OLAP\OleDb\Metadata\OleDbSpecific.cs" />
+    <Compile Include="Data\OLAP\OleDb\Query\OleDbCellSet.cs" />
+    <Compile Include="Data\OLAP\OleDb\Query\OleCellSetParser.cs" />
+    <Compile Include="Data\OLAP\XMLA\Common\Command.cs" />
+    <Compile Include="Data\OLAP\XMLA\Common\Connection.cs" />
+    <Compile Include="Data\OLAP\Common\Query\XmlParser\Constants.cs" />
+    <Compile Include="Data\OLAP\XMLA\Common\Properties.cs" />
+    <Compile Include="Data\OLAP\XMLA\Helpers\Finder.cs" />
+    <Compile Include="Data\OLAP\XMLA\Helpers\Parser.cs" />
+    <Compile Include="Data\OLAP\XMLA\Metadata\XmlaMetadata.cs" />
+    <Compile Include="Data\OLAP\XMLA\Metadata\XmlaMetadataHelper.cs" />
+    <Compile Include="Data\OLAP\XMLA\Metadata\XmlaMetaGetter.cs" />
+    <Compile Include="Data\OLAP\XMLA\Metadata\XmlaMetaLoader.cs" />
+    <Compile Include="Data\OLAP\XMLA\PivotGridXmlaDataSource.cs" />
+    <Compile Include="Data\OLAP\XMLA\Request\MethodRequestUploader.cs" />
+    <Compile Include="Data\OLAP\XMLA\Request\MethodResults.cs" />
+    <Compile Include="Data\OLAP\XMLA\Request\Methods.cs" />
+    <Compile Include="Data\OLAP\XMLA\Request\SoapGenerator.cs" />
+    <Compile Include="Data\PivotDataSourceObjectLevelHelper.cs" />
+    <Compile Include="Data\PivotGridFileDataSource.cs" />
+    <Compile Include="Data\QueryMode\QueryDataSource.cs" />
+    <Compile Include="Data\PivotDataCellValuesProvider.cs" />
+    <Compile Include="Data\Serializers.cs" />
+    <Compile Include="Data\QueryMode\VisualItems\MeasuresStorage.cs" />
+    <Compile Include="Data\QueryMode\Metadata\MetadataColumns.cs" />
+    <Compile Include="Data\QueryMode\Metadata\QueryMetadata.cs" />
+    <Compile Include="Data\QueryMode\Metadata\QueryMetadataColumn.cs" />
+    <Compile Include="Data\QueryMode\QueryAreas.cs" />
+    <Compile Include="Data\QueryMode\Metadata\QueryColumns.cs" />
+    <Compile Include="Data\QueryMode\Query\QueryContext.cs" />
+    <Compile Include="Data\QueryMode\Filter\QueryFilterHelper.cs" />
+    <Compile Include="Data\QueryMode\Metadata\QueryMembers.cs" />
+    <Compile Include="Data\QueryMode\Query\CellSet.cs" />
+    <Compile Include="Data\QueryMode\Interfaces.cs" />
+    <Compile Include="Data\QueryMode\ServerUniqueValues.cs" />
+    <Compile Include="Data\ServerMode\UniqueValues.cs" />
+    <Compile Include="DesignUtils.cs" />
+    <Compile Include="Events\EventArgs.cs" />
+    <Compile Include="Events\EventRaiserBase.cs" />
+    <Compile Include="Events\PivotCustomFieldValueItemsEventArgsBase.cs" />
+    <Compile Include="Events\PivotGridCustomSummaryEventArgsBase.cs" />
+    <Compile Include="Events\PivotGridEmptyEventsImplementor.cs" />
+    <Compile Include="Export\ExportOptions\CustomizePivotCellEvent.cs" />
+    <Compile Include="Export\ExportOptions\IPivotGridExportOptions.cs" />
+    <Compile Include="Export\PivotColumnImplementer.cs" />
+    <Compile Include="Export\PivotCreators\IPivotExportItem.cs" />
+    <Compile Include="Export\PivotCreators\PivotColumnsCreator.cs" />
+    <Compile Include="Export\PivotCreators\PivotColumnSettings.cs" />
+    <Compile Include="Export\PivotCreators\PivotExportItemsCreator.cs" />
+    <Compile Include="Export\PivotCreators\PivotRowsCreator.cs" />
+    <Compile Include="Export\PivotGridExcelExporter.cs" />
+    <Compile Include="Export\PivotGridViewImplementer.cs" />
+    <Compile Include="Export\PivotRowImplementer.cs" />
+    <Compile Include="Export\ExportOptions\PivotXlsExportOptions.cs" />
+    <Compile Include="Export\ExportOptions\PivotXlsxExportOptions.cs" />
+    <Compile Include="Fields\CriteriaFilterHelper.cs" />
+    <Compile Include="Fields\FieldCalculations.cs" />
+    <Compile Include="Fields\FieldComparers.cs" />
+    <Compile Include="Fields\FieldCustomTotals.cs" />
+    <Compile Include="Fields\FieldEnums.cs" />
+    <Compile Include="Fields\FilterBySummary\FieldSummaryFilter.cs" />
+    <Compile Include="Fields\FilterBySummary\SummaryFilterController.cs" />
+    <Compile Include="Fields\FilterItems\FieldCriteriaFilterItems.cs" />
+    <Compile Include="Fields\FilterItems\FieldFilterItemsBase.cs" />
+    <Compile Include="Fields\FieldPropertyDescriptor.cs" />
+    <Compile Include="Fields\FieldReadOnlyCollection.cs" />
+    <Compile Include="Fields\FieldSortBySummaryInfo.cs" />
+    <Compile Include="Fields\FilterItems\GroupCriteriaFilterItems.cs" />
+    <Compile Include="Fields\FilterValues\FieldFilterValues.cs" />
+    <Compile Include="Fields\FilterValues\GroupFilterValues.cs" />
+    <Compile Include="Fields\FilterItems\GroupFilterItems.cs" />
+    <Compile Include="Fields\FieldReadOnlyCollections.cs" />
+    <Compile Include="Fields\PivotGridGroup.cs" />
+    <Compile Include="Fields\ThreadSafeAccess.cs" />
+    <Compile Include="Helpers\DataAccessor.cs" />
+    <Compile Include="Helpers\Extensions.cs" />
+    <Compile Include="Helpers\Wrappers.cs" />
+    <Compile Include="Localization.cs" />
+    <Compile Include="Options\OptionsFilterBase.cs" />
+    <Compile Include="Options\OptionsLayoutPivotGrid.cs" />
+    <Compile Include="Options\FieldOptions.cs" />
+    <Compile Include="Options\OptionsBase.cs" />
+    <Compile Include="Options\OptionsBehaviorBase.cs" />
+    <Compile Include="Options\OptionsChartDataSource.cs" />
+    <Compile Include="Options\OptionsCustomization.cs" />
+    <Compile Include="Options\OptionsData.cs" />
+    <Compile Include="Options\OptionsDataField.cs" />
+    <Compile Include="Options\OptionsOLAP.cs" />
+    <Compile Include="Options\OptionsPrint.cs" />
+    <Compile Include="Options\OptionsSelection.cs" />
+    <Compile Include="Options\OptionsViewBase.cs" />
+    <Compile Include="ChartDataSource\PivotChartDataSourceBase.cs" />
+    <Compile Include="Data\PivotData.cs" />
+    <Compile Include="ClientDataSources\PivotDrillDownDataSource.cs" />
+    <Compile Include="PivotGridSerializationHelper.cs" />
+    <Compile Include="Printing\EventArgs.cs" />
+    <Compile Include="Printing\Interfaces.cs" />
+    <Compile Include="Printing\PivotGridPrinterBase.cs" />
+    <Compile Include="Printing\PivotGridWebPrinter.cs" />
+    <Compile Include="Printing\PivotPrintBestFitter.cs" />
+    <Compile Include="Printing\PivotPrintHeaders.cs" />
+    <Compile Include="Printing\PrintCellsBestFitProvider.cs" />
+    <Compile Include="Printing\PrintCellSizeProvider.cs" />
+    <Compile Include="Printing\PrintFieldValueAreaBestFitProvider.cs" />
+    <Compile Include="Printing\WebPrintAppearance.cs" />
+    <Compile Include="ResFinder.cs" />
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <Compile Include="VisualItems\CellSizeProvider.cs" />
+    <Compile Include="VisualItems\FieldValueItemCollection.cs" />
+    <Compile Include="VisualItems\FieldValueItemsGenerator.cs" />
+    <Compile Include="VisualItems\FieldValueItemsCreator.cs" />
+    <Compile Include="VisualItems\LifeTimeListContainer.cs" />
+    <Compile Include="VisualItems\PivotFieldItems.cs" />
+    <Compile Include="VisualItems\PivotGridBestFitter.cs" />
+    <Compile Include="VisualItems\PivotGridCellItems.cs" />
+    <Compile Include="PivotGridData.cs">
+    </Compile>
+    <Compile Include="Fields\PivotGridFields.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PivotGridDataAsync.cs" />
+    <Compile Include="VisualItems\PivotGridFieldValueItems.cs" />
+    <Compile Include="Fields\FilterItems\FieldFilterItems.cs" />
+    <Compile Include="Data\PivotGridNativeDataSource.cs" />
+    <Compile Include="Data\PivotGridOleDbDataSource.cs">
+    </Compile>
+    <Compile Include="ClientDataSources\PivotSummaryDataSource.cs" />
+    <Compile Include="Data\TableDataHelper.cs" />
+    <Compile Include="Data\Prefilter.cs" />
+    <Compile Include="Printing\PrintAppearance.cs" />
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <Compile Include="VisualItems\RowTreeFieldBase.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="VisualItems\SelectionVisualItems.cs" />
+    <Compile Include="VisualItems\Selection\IMultipleSelection.cs" />
+    <Compile Include="VisualItems\Selection\PivotGridSelection.cs" />
+    <Compile Include="VisualItems\Selection\PivotWholeColumnSelection.cs" />
+    <Compile Include="VisualItems\Selection\ReadOnlyCells.cs" />
+    <Compile Include="VisualItems\Selection\SelectionScrollerBase.cs" />
+    <Compile Include="VisualItems\Selection\SelectionStorage.cs" />
+    <Compile Include="VisualItems\VisualItemsBase.cs" />
+    <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="LocalizationRes.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LocalizationRes.ru.resx" />
+    <EmbeddedResource Include="LocalizationRes.ja.resx" />
+    <EmbeddedResource Include="LocalizationRes.es.resx" />
+    <EmbeddedResource Include="LocalizationRes.de.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\Faces\-1.png" />
+    <EmbeddedResource Include="Images\Faces\0.png" />
+    <EmbeddedResource Include="Images\Faces\1.png" />
+    <EmbeddedResource Include="Images\ReversedCylinder\-1.png" />
+    <EmbeddedResource Include="Images\ReversedCylinder\0.png" />
+    <EmbeddedResource Include="Images\ReversedCylinder\1.png" />
+    <EmbeddedResource Include="Images\ReversedGauge\-1.png" />
+    <EmbeddedResource Include="Images\ReversedGauge\0.png" />
+    <EmbeddedResource Include="Images\ReversedGauge\1.png" />
+    <EmbeddedResource Include="Images\ReversedStatusArrow\-1.png" />
+    <EmbeddedResource Include="Images\ReversedStatusArrow\0.png" />
+    <EmbeddedResource Include="Images\ReversedStatusArrow\1.png" />
+    <EmbeddedResource Include="Images\ReversedThermometer\-1.png" />
+    <EmbeddedResource Include="Images\ReversedThermometer\0.png" />
+    <EmbeddedResource Include="Images\ReversedThermometer\1.png" />
+    <EmbeddedResource Include="Images\RoadSigns\-1.png" />
+    <EmbeddedResource Include="Images\RoadSigns\0.png" />
+    <EmbeddedResource Include="Images\RoadSigns\1.png" />
+    <EmbeddedResource Include="Images\Shapes\-1.png" />
+    <EmbeddedResource Include="Images\Shapes\0.png" />
+    <EmbeddedResource Include="Images\Shapes\1.png" />
+    <EmbeddedResource Include="Images\StandardArrow\-1.png" />
+    <EmbeddedResource Include="Images\StandardArrow\0.png" />
+    <EmbeddedResource Include="Images\StandardArrow\1.png" />
+    <EmbeddedResource Include="Images\StatusArrow\-1.png" />
+    <EmbeddedResource Include="Images\StatusArrow\0.png" />
+    <EmbeddedResource Include="Images\StatusArrow\1.png" />
+    <EmbeddedResource Include="Images\TrafficLights\-1.png" />
+    <EmbeddedResource Include="Images\TrafficLights\0.png" />
+    <EmbeddedResource Include="Images\TrafficLights\1.png" />
+    <EmbeddedResource Include="Images\VarianceArrow\-1.png" />
+    <EmbeddedResource Include="Images\VarianceArrow\0.png" />
+    <EmbeddedResource Include="Images\VarianceArrow\1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\Cylinder\-1.png" />
+    <EmbeddedResource Include="Images\Cylinder\0.png" />
+    <EmbeddedResource Include="Images\Cylinder\1.png" />
+    <EmbeddedResource Include="Images\Gauge\-1.png" />
+    <EmbeddedResource Include="Images\Gauge\0.png" />
+    <EmbeddedResource Include="Images\Gauge\1.png" />
+    <EmbeddedResource Include="Images\Thermometer\-1.png" />
+    <EmbeddedResource Include="Images\Thermometer\0.png" />
+    <EmbeddedResource Include="Images\Thermometer\1.png" />
+    <EmbeddedResource Include="PropertyNamesRes.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PropertyNamesRes.ru.resx" />
+    <EmbeddedResource Include="PropertyNamesRes.ja.resx" />
+    <EmbeddedResource Include="PropertyNamesRes.es.resx" />
+    <EmbeddedResource Include="PropertyNamesRes.de.resx" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <PropertyGroup>
+    
+  </PropertyGroup>
+<ItemGroup><EmbeddedResource Include="Descriptions.resx" /></ItemGroup><ItemGroup><Compile Include="Descriptions.cs" /></ItemGroup></Project>

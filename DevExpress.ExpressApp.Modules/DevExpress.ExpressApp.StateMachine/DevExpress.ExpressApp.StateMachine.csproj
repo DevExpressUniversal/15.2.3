@@ -1,0 +1,207 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{88A2FDAB-B210-4BC0-87E4-6C1A75C38037}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DevExpress.ExpressApp.StateMachine</RootNamespace>
+    <AssemblyName>DevExpress.ExpressApp.StateMachine.v15.2</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>..\..\DevExpress.Key\StrongKey.snk</AssemblyOriginatorKeyFile>
+    <FileAlignment>512</FileAlignment>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation />
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\..\Bin\Framework\</OutputPath>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\..\Bin\Framework\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  
+  
+  
+  <ItemGroup>
+    <Reference Include="DevExpress.Printing.v15.2.Core">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Bin\Framework\DevExpress.Printing.v15.2.Core.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DevExpress.Data.v15.2">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Bin\Framework\DevExpress.Data.v15.2.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DevExpress.Xpo.v15.2">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Bin\Framework\DevExpress.Xpo.v15.2.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    
+    <Reference Include="System"><Private>False</Private></Reference>
+    <Reference Include="System.configuration"><Private>False</Private></Reference>
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    <Private>False</Private></Reference>
+    <Reference Include="System.Data"><Private>False</Private></Reference>
+    <Reference Include="System.Drawing"><Private>False</Private></Reference>
+    <Reference Include="System.Xml"><Private>False</Private></Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AssemblyVersionInfo.cs">
+      
+    </Compile>
+    <Compile Include="Dc\State.cs" />
+    <Compile Include="Dc\StateAppearance.cs" />
+    <Compile Include="Dc\StateMachine.cs" />
+    <Compile Include="Dc\Transition.cs" />
+    <Compile Include="DisableStatePropertyController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="NonPersistent\State.cs" />
+    <Compile Include="NonPersistent\StateAppearance.cs" />
+    <Compile Include="NonPersistent\StateMachine.cs" />
+    <Compile Include="NonPersistent\Transition.cs" />
+    <Compile Include="Resources\StateMachineLocalizer.cs" />
+    <Compile Include="StateMachineAppearanceController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="StateMachineProvider.cs" />
+    <Compile Include="StateMachineController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="StateMachineRefreshStatePropertyNameController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="StateMachineRepository.cs" />
+    <Compile Include="StateMachineLogic.cs" />
+    <Compile Include="StateMasterObjectInitializingController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    
+    
+    
+    
+    
+    
+    <Compile Include="Utils\Converters.cs" />
+    <Compile Include="Utils\MarkerObject.cs" />
+    <Compile Include="Utils\StringObject.cs" />
+    <Compile Include="Xpo\StateMachineObjectBase.cs" />
+    <Compile Include="Xpo\StateAppearance.cs" />
+    <Compile Include="Old\Triggers\MethodInvokeTrigger.cs" />
+    <Compile Include="Old\MethodInvokeTriggerAvailableMethodsController.cs" />
+    <Compile Include="Old\Triggers\MethodInvokeTriggerBase.cs" />
+    <Compile Include="Old\Triggers\SetPropertyTrigger.cs" />
+    <Compile Include="Old\Triggers\TransitionTriggerBase.cs" />
+    <Compile Include="Xpo\State.cs" />
+    <Compile Include="Xpo\StateMachine.cs" />
+    <Compile Include="StateMachine.cs">
+    </Compile>
+    
+    
+    <Compile Include="Old\Triggers\MethodInvokeTriggerTests.cs" />
+    <Compile Include="Old\Triggers\SetPropertyTriggerTests.cs" />
+    
+    <Compile Include="Xpo\Transition.cs" />
+    <Compile Include="Module.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Old\StartStateMachineController.cs" />
+    <Compile Include="Old\DCTests.cs" />
+    <Compile Include="Old\Triggers\TransitionTriggerBaseTests.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="DevExpress.ExpressApp.Xpo.v15.2"><Name>DevExpress.ExpressApp.Xpo.v15.2</Name><HintPath>..\..\..\Bin\Framework\DevExpress.ExpressApp.Xpo.v15.2.dll</HintPath></Reference>
+    <Reference Include="DevExpress.ExpressApp.v15.2"><Name>DevExpress.ExpressApp.v15.2</Name><HintPath>..\..\..\Bin\Framework\DevExpress.ExpressApp.v15.2.dll</HintPath></Reference>
+    <Reference Include="DevExpress.Persistent.Base.v15.2"><Name>DevExpress.Persistent.Base.v15.2</Name><HintPath>..\..\..\Bin\Framework\DevExpress.Persistent.Base.v15.2.dll</HintPath></Reference>
+    <Reference Include="DevExpress.ExpressApp.ConditionalAppearance.v15.2"><Name>DevExpress.ExpressApp.ConditionalAppearance.v15.2</Name><HintPath>..\..\..\Bin\Framework\DevExpress.ExpressApp.ConditionalAppearance.v15.2.dll</HintPath></Reference>
+    <Reference Include="DevExpress.ExpressApp.Validation.v15.2"><Name>DevExpress.ExpressApp.Validation.v15.2</Name><HintPath>..\..\..\Bin\Framework\DevExpress.ExpressApp.Validation.v15.2.dll</HintPath></Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\Action_Change_State.png" />
+    <EmbeddedResource Include="Images\Action_Change_State_32x32.png" />
+    <EmbeddedResource Include="Images\BO_State.png" />
+    <EmbeddedResource Include="Images\BO_StateMachine.png" />
+    <EmbeddedResource Include="Images\BO_StateMachine_32x32.png" />
+    <EmbeddedResource Include="Images\BO_State_32x32.png" />
+    <EmbeddedResource Include="Images\BO_Transition.png" />
+    <EmbeddedResource Include="Images\BO_Transition_32x32.png" />
+    <EmbeddedResource Include="Resources\StateMachine.resx" />
+    <EmbeddedResource Include="Resources\Toolbox_Module_StateMachine.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\Action_StateMachine.png" />
+    <EmbeddedResource Include="Images\Action_StateMachine_32x32.png" />
+    <EmbeddedResource Include="Images\BO_Appearance.png" />
+    <EmbeddedResource Include="Images\BO_Appearance_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Model.DesignedDiffs.xafml">
+      <SubType>
+      </SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Model.DesignedDiffs.Localization.ru.xafml" />
+    <EmbeddedResource Include="Model.DesignedDiffs.Localization.ja.xafml" />
+    <EmbeddedResource Include="Model.DesignedDiffs.Localization.de.xafml" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+<ItemGroup><EmbeddedResource Include="Descriptions.resx" /></ItemGroup><ItemGroup><Compile Include="Descriptions.cs" /></ItemGroup></Project>

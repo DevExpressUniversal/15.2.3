@@ -1,0 +1,27 @@
+﻿<UserControl x:Class="DevExpress.Xpf.Spreadsheet.Forms.ProtectWorkbookControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+             xmlns:dxsps="clr-namespace:DevExpress.Xpf.Spreadsheet" 
+             mc:Ignorable="d" Width="425"
+             d:DesignHeight="300" d:DesignWidth="300">
+  <UserControl.Resources>
+    <dxsps:SpreadsheetControlStringIdConverter x:Key="stringIdConverter" />
+  </UserControl.Resources>
+  <Grid Margin="10,10,12,0" FocusManager.FocusedElement="{Binding ElementName=edtPassword}">
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <TextBlock Text="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_ProtectWorkbookFormProtectedObjects, Converter={StaticResource stringIdConverter}}" VerticalAlignment="Center" Margin="0,0,0,6" Grid.Row="0"/>
+        <dxe:CheckEdit Content="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_ProtectWorkbookFormStructure, Converter={StaticResource stringIdConverter}}" EditValue="{Binding IsStructureLocked}" VerticalAlignment="Center" Margin="0,0,0,6" Grid.Row="1"/>
+        <dxe:CheckEdit Content="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_ProtectWorkbookFormWindows, Converter={StaticResource stringIdConverter}}" EditValue="{Binding IsWindowsLocked}" VerticalAlignment="Center" Margin="0,0,0,6" Grid.Row="2"/>
+        <TextBlock Text="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_ProtectWorkbookFormPassword, Converter={StaticResource stringIdConverter}}" VerticalAlignment="Center" Margin="0,6,0,6" Grid.Row="3"/>
+        <dxe:PasswordBoxEdit x:Name="edtPassword" EditValue="{Binding Password}" Grid.Row="4"/>
+    </Grid>
+</UserControl>

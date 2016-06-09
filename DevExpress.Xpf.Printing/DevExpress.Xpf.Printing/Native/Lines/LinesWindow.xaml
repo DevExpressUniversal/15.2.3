@@ -1,0 +1,34 @@
+﻿<dxc:DXDialog x:Class="DevExpress.Xpf.Printing.Native.Lines.LinesWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:dxp="clr-namespace:DevExpress.Xpf.Printing"
+    xmlns:lines="clr-namespace:DevExpress.Xpf.Printing.Native.Lines"
+    xmlns:dxc="http://schemas.devexpress.com/winfx/2008/xaml/core"
+    xmlns:native="clr-namespace:DevExpress.Xpf.Printing.Native"
+    Title="LinesWindow">
+    <dxc:DXDialog.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/DevExpress.Xpf.Printing.v15.2;component/Themes/Generic/Constants.xaml" dxc:Wpf2SLOptions.AllowProcessNode="False" />
+            </ResourceDictionary.MergedDictionaries>            
+        </ResourceDictionary>
+    </dxc:DXDialog.Resources>
+    <dxc:DXDialog.ResizeMode>
+        NoResize
+    </dxc:DXDialog.ResizeMode>
+    <dxc:DXDialog.SizeToContent>
+        WidthAndHeight
+    </dxc:DXDialog.SizeToContent>
+    <dxc:DXDialog.ShowInTaskbar>
+        False
+    </dxc:DXDialog.ShowInTaskbar>
+    <dxc:DXDialog.WindowStartupLocation>
+        CenterOwner
+    </dxc:DXDialog.WindowStartupLocation>    
+    <dxc:DXDialog.Icon>
+        <dxp:PrintingResourceImage ResourceName="Images/Icons/DXPrinting.ico" />
+    </dxc:DXDialog.Icon>
+    <StackPanel Width="400">
+        <lines:LinesContainer x:Name="linesContainer" IsTabStop="False" Margin="{StaticResource clientAreaMarginNoBottom}" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" />
+    </StackPanel>
+</dxc:DXDialog>

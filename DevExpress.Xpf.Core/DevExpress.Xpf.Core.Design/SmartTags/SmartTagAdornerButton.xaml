@@ -1,0 +1,53 @@
+﻿<UserControl x:Class="DevExpress.Xpf.Core.Design.SmartTagAdornerButton"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:DevExpress.Xpf.Core.Design"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             mc:Ignorable="d" 
+             LayoutUpdated="OnLayoutUpdated"
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="booleanToVisibilityConverter"/>
+    </UserControl.Resources>
+    <Grid>
+        <ToggleButton Name="toggleButton" IsChecked="{Binding IsPressed, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=TwoWay}" ClickMode="Press" Background="White" BorderBrush="#5A000000" BorderThickness="1" Focusable="False">
+            <Grid Name="grid">
+                <Image x:Name="normal" RenderOptions.BitmapScalingMode="NearestNeighbor" Source="/DevExpress.Xpf.Core.v15.2.Design;component/Images/change.png" Stretch="None" Opacity="0.5" />
+                <Image x:Name="pressed" RenderOptions.BitmapScalingMode="NearestNeighbor" Source="/DevExpress.Xpf.Core.v15.2.Design;component/Images/change-pressed.png" Stretch="None" 
+                       Visibility="{Binding ElementName=toggleButton, Path=IsChecked, Converter={StaticResource booleanToVisibilityConverter}}" />
+                <Grid.RenderTransform>
+                    <RotateTransform x:Name="rotateTransform" CenterX="7" CenterY="7" Angle="270"/>
+                </Grid.RenderTransform>
+            </Grid>
+            <ToggleButton.Triggers>
+                <EventTrigger RoutedEvent="ToggleButton.Checked">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetName="rotateTransform" Storyboard.TargetProperty="Angle" To="90" Duration="0"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+                <EventTrigger RoutedEvent="ToggleButton.Unchecked">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetName="rotateTransform" Storyboard.TargetProperty="Angle" To="270" Duration="0"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </ToggleButton.Triggers>
+        </ToggleButton>
+        <Popup AllowsTransparency="True" PopupAnimation="None" Name="popup" 
+               PlacementTarget="{Binding ElementName=toggleButton}"
+               StaysOpen="False"
+               IsOpen="{Binding ElementName=toggleButton, Path=IsChecked}">
+            <Grid Name="popupGrid" Background="Transparent" MouseDown="OnGridMouseDown" MouseUp="OnGridMouseUp" MinWidth="350" MaxWidth="600">
+                <Border Name="border" Background="White" Margin="10,0,10,10" BorderBrush="#FFD8D8D8" BorderThickness="1">
+                    <local:FrameworkElementSmartTagView x:Name="view" Content="{Binding}"/>
+                </Border>
+                <Thumb HorizontalAlignment="Right" VerticalAlignment="Stretch" Cursor="SizeWE" Opacity="0" Margin="0,0,10,10" DragDelta="OnDragDelta"/>
+            </Grid>
+        </Popup>
+    </Grid>
+</UserControl>

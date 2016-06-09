@@ -1,0 +1,178 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:DevExpress.Xpf.SpellChecker.Forms"
+                    xmlns:scl="clr-namespace:DevExpress.XtraSpellChecker.Localization"
+                    xmlns:core="clr-namespace:DevExpress.Xpf.Core;assembly=DevExpress.Xpf.Core.v15.2"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+                    xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+                    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+                    xmlns:native="clr-namespace:DevExpress.Xpf.SpellChecker.Native">
+
+    <Style TargetType="{x:Type local:SpellingOutlookStyleControl}">
+        <Setter Property="AutomationProperties.AutomationId" Value="SpellingOutlookStyleControl"/>
+        <Setter Property="AutomationProperties.Name" Value="SpellingOutlookStyleControl"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:SpellingOutlookStyleControl}">
+                    <Grid x:Name="LayoutRoot" Margin="5,5,5,0">
+                        <Grid.Resources>
+                            <core:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+                            <scl:SpellCheckerStringIdConverter x:Key="StringIdConverter" />
+                        </Grid.Resources>
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="NotInDictionaryWordError_ChangeWord" />
+                                <VisualState x:Name="NotInDictionaryWordError_DeleteWord">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="btnChange">
+                                            <DiscreteObjectKeyFrame KeyTime="0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <Visibility>Collapsed</Visibility>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="btnDelete">
+                                            <DiscreteObjectKeyFrame KeyTime="0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <Visibility>Visible</Visibility>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="RepeatedWordError">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="lblRepeatedWord">
+                                            <DiscreteObjectKeyFrame KeyTime="0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <Visibility>Visible</Visibility>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="lblNotInDictionary">
+                                            <DiscreteObjectKeyFrame KeyTime="0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <Visibility>Collapsed</Visibility>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="btnChange">
+                                            <DiscreteObjectKeyFrame KeyTime="0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <Visibility>Collapsed</Visibility>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="btnDelete">
+                                            <DiscreteObjectKeyFrame KeyTime="0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <Visibility>Visible</Visibility>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Control.IsEnabled)" Storyboard.TargetName="btnIgnoreAll">
+                                            <DiscreteObjectKeyFrame KeyTime="0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <sys:Boolean>False</sys:Boolean>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Control.IsEnabled)" Storyboard.TargetName="btnChangeAll">
+                                            <DiscreteObjectKeyFrame KeyTime="0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <sys:Boolean>False</sys:Boolean>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Control.IsEnabled)" Storyboard.TargetName="btnAdd">
+                                            <DiscreteObjectKeyFrame KeyTime="0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <sys:Boolean>False</sys:Boolean>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" MinWidth="120" />
+                            <ColumnDefinition Width="5" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="1" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="5" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="5" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="5" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <TextBlock x:Name="lblRepeatedWord" Grid.Column="0" Grid.Row="0" Text="{Binding Source={StaticResource StringIdConverter}, Converter={StaticResource StringIdConverter}, ConverterParameter=Form_Spelling_RepeatedWord}" Visibility="Collapsed" VerticalAlignment="Center" />
+                        <TextBlock x:Name="lblNotInDictionary" Grid.Column="0" Grid.Row="0" Text="{Binding Source={StaticResource StringIdConverter}, Converter={StaticResource StringIdConverter}, ConverterParameter=Form_Spelling_NotInDictionary}" VerticalAlignment="Center" />
+                        <dxe:TextEdit x:Name="txtNotInDictionary" Grid.Column="2" IsReadOnly="True" Text="{Binding WrongWord, RelativeSource={RelativeSource TemplatedParent}}" Grid.ColumnSpan="2" AutomationProperties.AutomationId="NotInDictionary" AutomationProperties.Name="NotInDictionary" />
+                        <TextBlock Grid.Column="0" Grid.Row="2" Text="{Binding Source={StaticResource StringIdConverter}, Converter={StaticResource StringIdConverter}, ConverterParameter=Form_Spelling_ChangeTo}" VerticalAlignment="Center" />
+                        <dxe:TextEdit x:Name="txtChangeTo" Grid.Column="2" Grid.Row="2" Grid.ColumnSpan="2" AutomationProperties.AutomationId="ChangeTo" AutomationProperties.Name="ChangeTo">
+                            <dxe:TextEdit.Text>
+                                <Binding Path="Suggestion" Mode="TwoWay" RelativeSource="{RelativeSource TemplatedParent}">
+                                    <!--BEGIN WPF-->
+                                    <Binding.UpdateSourceTrigger>
+                                        <UpdateSourceTrigger>
+                                            PropertyChanged
+                                        </UpdateSourceTrigger>
+                                    </Binding.UpdateSourceTrigger>
+                                    <!--END WPF-->
+                                </Binding>
+                            </dxe:TextEdit.Text>
+                        </dxe:TextEdit>
+                        <TextBlock Grid.Column="0" Grid.Row="4" Text="{Binding Source={StaticResource StringIdConverter}, Converter={StaticResource StringIdConverter}, ConverterParameter=Form_Spelling_Suggestions}" />
+                        <Grid Grid.Column="2" Grid.Row="4" Grid.ColumnSpan="2">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" MinWidth="130" />
+                                <ColumnDefinition Width="5" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="0" Grid.Row="0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*" MinHeight="120" />
+                                    <RowDefinition Height="5" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <dxe:ListBoxEdit x:Name="lbcSuggestions" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" SelectedIndex="0" ItemsSource="{Binding Path=Suggestions, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}" IsEnabled="{Binding Path=HasSuggestions, RelativeSource={RelativeSource TemplatedParent}}" SelectedItem="{native:BindingHelper Path=Suggestion}" native:DoubleClickHelper.DoubleClickCommand="{Binding ChangeCommand, RelativeSource={RelativeSource TemplatedParent}}" AutomationProperties.AutomationId="Suggestions" AutomationProperties.Name="Suggestions"/>
+                                <Button x:Name="btnOptions" Grid.Row="2" MinWidth="70" Content="{Binding Source={StaticResource StringIdConverter}, Converter={StaticResource StringIdConverter}, ConverterParameter=Form_Spelling_OptionsButton}" HorizontalAlignment="Left" core:StyleManager.ApplyApplicationTheme="True" Command="{Binding ShowOptionsCommand, RelativeSource={RelativeSource TemplatedParent}}" AutomationProperties.AutomationId="Options" AutomationProperties.Name="Options"/>
+                            </Grid>
+                            <Grid Grid.Column="2" x:Name="VisualStateRoot">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="5" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="5" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="5" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Button x:Name="btnIgnore" Grid.Column="0" Grid.Row="0" MinWidth="70" Content="{Binding Source={StaticResource StringIdConverter}, Converter={StaticResource StringIdConverter}, ConverterParameter=Form_Spelling_IgnoreButton}" core:StyleManager.ApplyApplicationTheme="True" Command="{Binding IgnoreCommand, RelativeSource={RelativeSource TemplatedParent}}" AutomationProperties.AutomationId="Ignore" AutomationProperties.Name="Ignore"/>
+                                <Button x:Name="btnIgnoreAll" Grid.Column="2" Grid.Row="0" MinWidth="70" Content="{Binding Source={StaticResource StringIdConverter}, Converter={StaticResource StringIdConverter}, ConverterParameter=Form_Spelling_IgnoreAllButton}" core:StyleManager.ApplyApplicationTheme="True" Command="{Binding IgnoreAllCommand, RelativeSource={RelativeSource TemplatedParent}}" AutomationProperties.AutomationId="IgnoreAll" AutomationProperties.Name="IgnoreAll"/>
+                                <Button x:Name="btnDelete" Grid.Column="0" Grid.Row="2" MinWidth="70" Content="{Binding Source={StaticResource StringIdConverter}, Converter={StaticResource StringIdConverter}, ConverterParameter=Form_Spelling_DeleteButton}" Visibility="Collapsed" core:StyleManager.ApplyApplicationTheme="True" Command="{Binding DeleteCommand, RelativeSource={RelativeSource TemplatedParent}}" AutomationProperties.AutomationId="Delete" AutomationProperties.Name="Delete"/>
+                                <Button x:Name="btnChange" Grid.Column="0" Grid.Row="2" MinWidth="70" Content="{Binding Source={StaticResource StringIdConverter}, Converter={StaticResource StringIdConverter}, ConverterParameter=Form_Spelling_ChangeButton}" core:StyleManager.ApplyApplicationTheme="True" Command="{Binding ChangeCommand, RelativeSource={RelativeSource TemplatedParent}}" AutomationProperties.AutomationId="Change" AutomationProperties.Name="Change"/>
+                                <Button x:Name="btnChangeAll" Grid.Column="2" Grid.Row="2" MinWidth="70" Content="{Binding Source={StaticResource StringIdConverter}, Converter={StaticResource StringIdConverter}, ConverterParameter=Form_Spelling_ChangeAllButton}" core:StyleManager.ApplyApplicationTheme="True" Command="{Binding ChangeAllCommand, RelativeSource={RelativeSource TemplatedParent}}" AutomationProperties.AutomationId="ChangeAll" AutomationProperties.Name="ChangeAll"/>
+                                <Button x:Name="btnAdd" Content="{Binding Source={StaticResource StringIdConverter}, Converter={StaticResource StringIdConverter}, ConverterParameter=Form_Spelling_AddButton}" Grid.Column="0" Grid.Row="4" MinWidth="70" core:StyleManager.ApplyApplicationTheme="True" Command="{Binding AddToDictionaryCommand, RelativeSource={RelativeSource TemplatedParent}}" AutomationProperties.AutomationId="Add" AutomationProperties.Name="Add"/>
+                                <Button x:Name="btnSuggest" Grid.Column="2" Grid.Row="4" MinWidth="70" Content="{Binding Source={StaticResource StringIdConverter}, Converter={StaticResource StringIdConverter}, ConverterParameter=Form_Spelling_SuggestButton}" core:StyleManager.ApplyApplicationTheme="True" Opacity="0" AutomationProperties.AutomationId="Suggest" AutomationProperties.Name="Suggest"/>
+                                <Button x:Name="btnUndoLast" Grid.Column="0" Grid.Row="6" MinWidth="70" Content="{Binding Source={StaticResource StringIdConverter}, Converter={StaticResource StringIdConverter}, ConverterParameter=Form_Spelling_UndoLastButton}" core:StyleManager.ApplyApplicationTheme="True" Command="{Binding UndoCommand, RelativeSource={RelativeSource TemplatedParent}}" AutomationProperties.AutomationId="UndoLast" AutomationProperties.Name="UndoLast"/>
+                                <Button x:Name="btnCancel" Grid.Column="2" Grid.Row="6" MinWidth="70" Content="{Binding Source={StaticResource StringIdConverter}, Converter={StaticResource StringIdConverter}, ConverterParameter=Form_Spelling_CancelButton}" core:StyleManager.ApplyApplicationTheme="True" Command="{Binding CancelCommand, RelativeSource={RelativeSource TemplatedParent}}" AutomationProperties.AutomationId="Cancel" AutomationProperties.Name="Cancel"/>
+                                <Button x:Name="btnClose" Grid.Column="2" Grid.Row="6" MinWidth="70" Content="{Binding Source={StaticResource StringIdConverter}, Converter={StaticResource StringIdConverter}, ConverterParameter=Form_Spelling_CloseButton}" core:StyleManager.ApplyApplicationTheme="True" Visibility="{Binding Path=IsUndoAvailable, Converter={StaticResource BoolToVisibilityConverter}, RelativeSource={RelativeSource TemplatedParent}}" Command="{Binding CancelCommand, RelativeSource={RelativeSource TemplatedParent}}" AutomationProperties.AutomationId="Close" AutomationProperties.Name="Close"/>
+                            </Grid>
+                        </Grid>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

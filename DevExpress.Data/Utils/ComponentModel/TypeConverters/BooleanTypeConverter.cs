@@ -1,0 +1,93 @@
+#region Copyright (c) 2000-2015 Developer Express Inc.
+/*
+{*******************************************************************}
+{                                                                   }
+{       Developer Express .NET Component Library                    }
+{                                                                   }
+{                                                                   }
+{       Copyright (c) 2000-2015 Developer Express Inc.              }
+{       ALL RIGHTS RESERVED                                         }
+{                                                                   }
+{   The entire contents of this file is protected by U.S. and       }
+{   International Copyright Laws. Unauthorized reproduction,        }
+{   reverse-engineering, and distribution of all or any portion of  }
+{   the code contained in this file is strictly prohibited and may  }
+{   result in severe civil and criminal penalties and will be       }
+{   prosecuted to the maximum extent possible under the law.        }
+{                                                                   }
+{   RESTRICTIONS                                                    }
+{                                                                   }
+{   THIS SOURCE CODE AND ALL RESULTING INTERMEDIATE FILES           }
+{   ARE CONFIDENTIAL AND PROPRIETARY TRADE                          }
+{   SECRETS OF DEVELOPER EXPRESS INC. THE REGISTERED DEVELOPER IS   }
+{   LICENSED TO DISTRIBUTE THE PRODUCT AND ALL ACCOMPANYING .NET    }
+{   CONTROLS AS PART OF AN EXECUTABLE PROGRAM ONLY.                 }
+{                                                                   }
+{   THE SOURCE CODE CONTAINED WITHIN THIS FILE AND ALL RELATED      }
+{   FILES OR ANY PORTION OF ITS CONTENTS SHALL AT NO TIME BE        }
+{   COPIED, TRANSFERRED, SOLD, DISTRIBUTED, OR OTHERWISE MADE       }
+{   AVAILABLE TO OTHER INDIVIDUALS WITHOUT EXPRESS WRITTEN CONSENT  }
+{   AND PERMISSION FROM DEVELOPER EXPRESS INC.                      }
+{                                                                   }
+{   CONSULT THE END USER LICENSE AGREEMENT FOR INFORMATION ON       }
+{   ADDITIONAL RESTRICTIONS.                                        }
+{                                                                   }
+{*******************************************************************}
+*/
+#endregion Copyright (c) 2000-2015 Developer Express Inc.
+
+using System;
+using System.Collections.Generic;
+using System.Text;
+using System.ComponentModel;
+using System.Globalization;
+using DevExpress.Data;
+using System.Collections;
+using DevExpress.Compatibility.System.ComponentModel;
+#if SILVERLIGHT
+using DevExpress.Xpf.ComponentModel;
+using TypeConverter = DevExpress.Data.Browsing.TypeConverter;
+#endif
+namespace DevExpress.Utils.Design {
+	public class BooleanTypeConverter : BooleanConverter {
+		static Dictionary<object, DXDisplayNameAttribute> names = new Dictionary<object, DXDisplayNameAttribute>();
+		static BooleanTypeConverter() {
+			names.Add(true, GetDisplayName(true));
+			names.Add(false, GetDisplayName(false));
+		}
+		static DXDisplayNameAttribute GetDisplayName(bool value) {
+			return new DXDisplayNameAttribute(typeof(ResFinder), DXDisplayNameAttribute.DefaultResourceFile, string.Format("{0}.{1}", value.GetType().FullName, value.ToString()));
+		}
+		static object GetBooleanValueFromDiplayName(string displayName) {
+			foreach(KeyValuePair<object, DXDisplayNameAttribute> entry in names)
+				if(StringExtensions.CompareInvariantCultureIgnoreCase(entry.Value.DisplayName, displayName) == 0)
+					return entry.Key;
+			return null;
+		}
+		public override object ConvertFrom(ITypeDescriptorContext context, System.Globalization.CultureInfo culture, object value) {
+			if(value is string) {
+				object name = GetBooleanValueFromDiplayName((string)value);
+				value = name != null ? name.ToString() : value;
+			}
+			return base.ConvertFrom(context, culture, value);
+		}
+		public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType) {
+			if(destinationType == typeof(string)) {
+				if(value is string)
+					return value;
+				DXDisplayNameAttribute attr;
+				if(value != null && names.TryGetValue(value, out attr))
+					return GetDisplayName(attr);
+			}
+			return base.ConvertTo(context, culture, value, destinationType);
+		}
+		protected virtual string GetDisplayName(DXDisplayNameAttribute attr) {
+			return attr.DisplayName;
+		}
+	}
+	class AlwaysLocalizedBooleanTypeConverter : BooleanTypeConverter {
+		protected override string GetDisplayName(DXDisplayNameAttribute attr) {
+			return attr.GetLocalizedDisplayName();
+		}
+	}
+}

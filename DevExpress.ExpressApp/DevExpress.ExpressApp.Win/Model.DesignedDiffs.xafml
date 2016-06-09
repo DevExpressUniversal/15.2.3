@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application>
+  <ActionDesign>
+    <ActionToContainerMapping>
+      <ActionContainer Id="Exit">
+        <ActionLink ActionId="Logoff" Index="0" IsNewNode="True"/>
+        <ActionLink ActionId="Exit" Index="1" />
+      </ActionContainer>
+      <ActionContainer Id="Tools">
+        <ActionLink ActionId="Logoff" Removed="True" />
+      </ActionContainer>
+      <ActionContainer Id="PopupActions">
+        <ActionLink ActionId="Clear" Index="0" />
+        <ActionLink ActionId="Logon" Index="1000" />
+      </ActionContainer>
+    </ActionToContainerMapping>
+  </ActionDesign>
+  <Views>
+    <DetailView Id="DashboardOrganizer_DetailView">
+      <Layout>
+        <LayoutGroup Id="Main">
+          <TabbedGroup Id="Tabs" Removed="True" />
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="ProcessDataLockingInfoMergeDialog_DetailView" ClassName="DevExpress.ExpressApp.Win.SystemModule.ProcessDataLockingInfoDialogObject" Caption="Warning" IsNewNode="True">
+      <Items IsNewNode="True">
+        <StaticText Id="Message" Text="The information you are trying to save was changed by another user.&#xD;&#xA;You can either merge changes, refresh data and discard your changes, or cancel the save operation." IsNewNode="True" />
+      </Items>
+      <Layout IsNewNode="True">
+        <LayoutGroup Id="Main" IsNewNode="True">
+          <LayoutItem Id="Message" ViewItem="Message" Index="0" IsNewNode="True" />
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="ProcessDataLockingInfoRefreshDialog_DetailView" ClassName="DevExpress.ExpressApp.Win.SystemModule.ProcessDataLockingInfoDialogObject" Caption="Warning" IsNewNode="True">
+      <Items IsNewNode="True">
+        <StaticText Id="Message" Text="The information you are trying to save was changed by another user.&#xD;&#xA;You can either refresh data and discard your changes, or cancel the save operation." IsNewNode="True" />
+      </Items>
+      <Layout IsNewNode="True">
+        <LayoutGroup Id="Main" IsNewNode="True">
+          <LayoutItem Id="Message" ViewItem="Message" Index="0" IsNewNode="True" />
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+  </Views>
+  <Localization>
+    <LocalizationGroup Name="FrameTemplates" IsNewNode="True" /> <!-- T125432 -->
+    <LocalizationGroup Name="Messages">
+      <LocalizationItem Name="UnableToSaveCustomization" Value="Unable to save customization information:\n{0}" IsNewNode="True" />
+    </LocalizationGroup>
+    <LocalizationGroup Name="Captions">
+      <LocalizationItem Name="ObjectModel" Value="Object Model" IsNewNode="True" />
+      <LocalizationItem Name="FilterBuilder" Value="Filter Builder" IsNewNode="True" />
+      <LocalizationItem Name="ExportedModelDifferencesMessage" Value="Selected settings (model differences) were exported to the {0} folder." IsNewNode="True" />
+    </LocalizationGroup>
+    <LocalizationGroup Name="Enums">
+      <LocalizationGroup Name="DevExpress.XtraBars.Docking.DockVisibility" IsNewNode="True">
+        <LocalizationItem Name="Visible" Value="Visible" IsNewNode="True" />
+        <LocalizationItem Name="Hidden" Value="Hidden" IsNewNode="True" />
+        <LocalizationItem Name="AutoHide" Value="Auto Hide" IsNewNode="True" />
+      </LocalizationGroup>
+    </LocalizationGroup>
+    <LocalizationGroup Name="Confirmations" IsNewNode="True">
+      <LocalizationItem Name="Cancel" Value="Do you want to cancel your changes?" IsNewNode="True" />
+      <LocalizationItem Name="Save" Value="Do you want to save changes?" IsNewNode="True" />
+      <LocalizationItem Name="ConfirmForcedCloseWindow" Value="Closing this window causes an error. Do you want to close the window anyway?\r\nWarning: if you click 'Yes', all changes will be lost." IsNewNode="True" />
+    </LocalizationGroup>
+    <LocalizationGroup Name="Ribbon" IsNewNode="True">
+      <LocalizationItem Name="ActionsPageGroup" Value="Actions" IsNewNode="True" />
+      <LocalizationItem Name="HomePage" Value="Home" IsNewNode="True" />
+    </LocalizationGroup>
+    <LocalizationGroup Name="Texts">
+      <LocalizationItem Name="Aggregates" Value="Aggregate operations" IsNewNode="True" />
+      <LocalizationItem Name="AggregatesAvgDescription" Value="Avg(Field)\r\nEvaluates an average of all values in a collection." IsNewNode="True" />
+      <LocalizationItem Name="AggregatesCountDescription" Value="Count\r\nReturns the number of objects in a collection." IsNewNode="True" />
+      <LocalizationItem Name="AggregatesMaxDescription" Value="Max(Field)\r\nReturns the maximum expression value in a collection." IsNewNode="True" />
+      <LocalizationItem Name="AggregatesMinDescription" Value="Min(Field)\r\nReturns the minimum expression value in a collection." IsNewNode="True" />
+      <LocalizationItem Name="AggregatesSumDescription" Value="Sum(Field)\r\nReturns a sum of all expression values in a collection." IsNewNode="True" />
+    </LocalizationGroup>
+  </Localization>
+  <SchemaModules>
+    <SchemaModule Name="SystemModule" Version="13.1.6.0" IsNewNode="True" />
+    <SchemaModule Name="SystemWindowsFormsModule" Version="13.1.1.0" IsNewNode="True" />
+  </SchemaModules>
+  <Templates>
+    <Template Id="DevExpress.ExpressApp.Win.Templates.PopupForm" IsNewNode="True">
+      <FormStates IsNewNode="True">
+        <FormState Id="DashboardCreationInfo_DetailView" State="Normal" Width="510" Height="535" IsNewNode="True" />
+        <FormState Id="DashboardOrganizer_DetailView" State="Normal" Width="450" Height="400" IsNewNode="True" />
+        <FormState Id="ProcessDataLockingInfoMergeDialog_DetailView" State="Normal" Width="420" Height="180" IsNewNode="True" />
+        <FormState Id="ProcessDataLockingInfoRefreshDialog_DetailView" State="Normal" Width="420" Height="180" IsNewNode="True" />
+        <FormState Id="Event_DetailView" State="Normal" X="470" Y="170" Width="1019" Height="667" IsNewNode="True" />
+      </FormStates>
+    </Template>
+  </Templates>
+</Application>

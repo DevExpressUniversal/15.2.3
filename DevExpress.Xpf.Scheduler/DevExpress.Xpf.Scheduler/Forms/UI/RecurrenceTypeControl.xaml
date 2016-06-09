@@ -1,0 +1,25 @@
+﻿<UserControl 
+    x:Class="DevExpress.Xpf.Scheduler.UI.RecurrenceTypeEditor" 
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" 
+    xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors" 
+    xmlns:dxsch="clr-namespace:DevExpress.Xpf.Scheduler" 
+    xmlns:dxschdui="clr-namespace:DevExpress.Xpf.Scheduler.UI" 
+    xmlns:dxschd="clr-namespace:DevExpress.Xpf.Scheduler.Drawing">
+    <Grid x:Name="LayoutRoot" DataContext="{Binding RelativeSource={RelativeSource FindAncestor, AncestorLevel=1, AncestorType={x:Type dxschdui:RecurrenceTypeEditor}}}" >
+        <dxe:ListBoxEdit ItemsSource="{Binding RecurrenceTypes}" EditValue="{Binding RecurrenceType, Mode=TwoWay}" IsReadOnly="{Binding IsReadOnly}" ShowBorder="False">
+            <dxe:ListBoxEdit.StyleSettings>
+                <dxe:RadioListBoxEditStyleSettings>
+                </dxe:RadioListBoxEditStyleSettings>
+            </dxe:ListBoxEdit.StyleSettings>
+            <dxe:ListBoxEdit.ItemTemplate>
+                <DataTemplate >
+                    <TextBlock Text="{Binding Converter={dxschd:RecurrenceTypeToStringConverter}}"></TextBlock>
+                </DataTemplate>
+            </dxe:ListBoxEdit.ItemTemplate>
+        </dxe:ListBoxEdit>
+    </Grid>
+</UserControl>

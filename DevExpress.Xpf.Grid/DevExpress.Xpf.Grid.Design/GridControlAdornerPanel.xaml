@@ -1,0 +1,225 @@
+﻿<UserControl x:Class="DevExpress.Xpf.Grid.Design.GridControlAdornerPanel"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:dxcd="clr-namespace:DevExpress.Xpf.Core.Design.CoreUtils;assembly=DevExpress.Xpf.Core.v15.2.Design"
+    xmlns:dxcdd="clr-namespace:DevExpress.Xpf.Core.Design;assembly=DevExpress.Xpf.Core.v15.2.Design"
+	xmlns:alias="clr-namespace:DevExpress.Xpf.Grid.Design.Alias"
+    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Height="Auto" Width="Auto" Background="{x:Null}">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/DevExpress.Xpf.Grid.v15.2.Design;component/GridControlAdornerPanelResources.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <dxcd:NegationConverterExtension x:Key="NegationConverter" />
+            <dxcd:BoolToVisibilityInverseConverter x:Key="BoolToVisibilityInverseConverter" />
+            <BooleanToVisibilityConverter x:Key="visibilityConverter" />
+            <dxcd:ImageSourceToImageConverter x:Key="imageSourceToImageConverter" />
+            <dxcd:BoolToDoubleConverter x:Key="canvasLeftConverter" TrueValue="10" />
+            <dxcd:BoolToDoubleConverter x:Key="canvasRightConverter" TrueValue="10">
+                <dxcd:BoolToDoubleConverter.InnerConverter>
+                    <dxcd:NegationConverter />
+                </dxcd:BoolToDoubleConverter.InnerConverter>
+            </dxcd:BoolToDoubleConverter>
+            <dxcd:BoolToObjectConverter x:Key="PanelCaptionConverter">
+                <dxcd:BoolToObjectConverter.TrueValue>
+                    <sys:String>Customization Panel</sys:String>
+                </dxcd:BoolToObjectConverter.TrueValue>
+                <dxcd:BoolToObjectConverter.FalseValue>
+                    <sys:String>Show Customization Panel</sys:String>
+                </dxcd:BoolToObjectConverter.FalseValue>
+            </dxcd:BoolToObjectConverter>
+            <dxcd:BoolToObjectConverter x:Key="IsPropertySetConverter" TrueValue="{StaticResource dropdownbutton}" FalseValue="{StaticResource dropdownbutton-create}" />
+            <Style x:Key="menuItemStyle" TargetType="MenuItem">
+                <Setter Property="Command" Value="{Binding Command}" />
+                <Setter Property="CommandParameter" Value="{Binding Type}" />
+                <Setter Property="IsEnabled" Value="{Binding IsEnabled}" />
+                <Setter Property="Icon" Value="{Binding Image, Converter={StaticResource imageSourceToImageConverter}}" />
+                <Setter Property="Background" Value="{x:Null}"/>
+                <Setter Property="BorderBrush" Value="{x:Null}"/>
+                <Setter Property="Foreground" Value="#FF1E1E1E"/>
+                <Setter Property="MinHeight" Value="24"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type MenuItem}">
+                            <Grid SnapsToDevicePixels="true">
+                                <Rectangle x:Name="Bg" Fill="{TemplateBinding Background}" Stroke="{TemplateBinding BorderBrush}" StrokeThickness="0"/>
+                                <Rectangle x:Name="hover" Fill="#FFF78A09" Stroke="#FFF78A09" StrokeThickness="0" Visibility="Collapsed"/>
+                                <Grid Margin="2">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition MinWidth="24" Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <ContentPresenter x:Name="Icon" ContentSource="Icon" Margin="1" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="Center"/>
+                                    <ContentPresenter Grid.Column="2" ContentSource="Header" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="Center"/>
+                                </Grid>
+                            </Grid>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="Icon" Value="{x:Null}">
+                                    <Setter Property="Visibility" TargetName="Icon" Value="Collapsed"/>
+                                </Trigger>
+                                <Trigger Property="IsChecked" Value="true">
+                                    <Setter Property="Visibility" TargetName="Bg" Value="Collapsed"/>
+                                    <Setter Property="Visibility" TargetName="hover" Value="Visible"/>
+                                </Trigger>
+                                <Trigger Property="IsHighlighted" Value="true">
+                                    <Setter Property="Visibility" TargetName="Bg" Value="Collapsed"/>
+                                    <Setter Property="Visibility" TargetName="hover" Value="Visible"/>
+                                </Trigger>
+                                <Trigger Property="IsKeyboardFocused" Value="true">
+                                    <Setter Property="Visibility" TargetName="Bg" Value="Collapsed"/>
+                                    <Setter Property="Visibility" TargetName="hover" Value="Visible"/>
+                                </Trigger>
+                                <Trigger Property="IsEnabled" Value="false">
+                                    <Setter Property="Foreground" Value="#FF9A9A9A"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            <Style x:Key="contextMenuStyle" TargetType="{x:Type ContextMenu}">
+                <Setter Property="Background" Value="White"/>
+                <Setter Property="Padding" Value="0"/>
+                <Setter Property="ItemContainerStyle" Value="{StaticResource menuItemStyle}"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type ContextMenu}">
+                            <Border x:Name="Border" Background="White" BorderThickness="1" BorderBrush="#FF707070">
+                                <StackPanel IsItemsHost="True" />
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Canvas Background="Transparent">
+        <alias:MouseEventsEndPoint x:Name="controlPanel" SnapsToDevicePixels="True" UseLayoutRounding="True" Canvas.Bottom="10" Canvas.Right="{Binding IsPanelLeftAligned, Converter={StaticResource canvasRightConverter}}" Canvas.Left="{Binding IsPanelLeftAligned, Converter={StaticResource canvasLeftConverter}}">
+            <Border x:Name="border" Background="{x:Null}" Margin="5,5,2,5" BorderBrush="{x:Null}">
+                <Border.MinWidth>
+                    <Binding Path="IsAdornerPanelExpanded">
+                        <Binding.Converter>
+                            <dxcd:BoolToDoubleConverter TrueValue="295" FalseValue="0" />
+                        </Binding.Converter>
+                    </Binding>
+                </Border.MinWidth>
+                <Border Background="White" Margin="2,0,2,5">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <StackPanel HorizontalAlignment="Right" VerticalAlignment="Top" Margin="2" Orientation="Horizontal">
+                            <ToggleButton Margin="12,0,8,0" IsChecked="{Binding IsAdornerPanelExpanded, Mode=TwoWay}" Content="{Binding IsChecked, RelativeSource={RelativeSource Self}, Converter={StaticResource PanelCaptionConverter}}" Foreground="{DynamicResource DefaultForeColor}">
+                                <ToggleButton.Template>
+                                    <ControlTemplate TargetType="ToggleButton">
+                                        <ContentPresenter />
+                                    </ControlTemplate>
+                                </ToggleButton.Template>
+                            </ToggleButton>
+                            <ToggleButton IsChecked="{Binding IsAdornerPanelExpanded, Mode=TwoWay}" x:Name="collapse_button" Style="{DynamicResource collapse-button}" VerticalAlignment="Top" />
+                        </StackPanel>
+                        <Grid x:Name="content" Margin="10,0,22,14" Grid.Row="1" Visibility="{Binding IsAdornerPanelExpanded, Converter={StaticResource visibilityConverter}}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <alias:ToggleStateButton x:Name="selectGridButton" Margin="-5,-5,5,-5" VerticalAlignment="Top" Style="{DynamicResource logo-toggle-button}" Command="{Binding SelectGridCommand}" IsChecked="{Binding IsGridSelected}" ToolTip="Click here to select GridControl">
+                                <Image Source="{Binding ControlIcon}" Stretch="None" Margin="5" />
+                            </alias:ToggleStateButton>
+                            <StackPanel Grid.Column="1">
+                                <alias:ContextMenuToggleButton x:Name="selectViewButton" Margin="0,0,0,0" Style="{DynamicResource toggle-button}" Command="{Binding SelectViewCommand}" IsChecked="{Binding IsViewSelected}" AllowShowInnerContextMenu="{Binding IsViewSet, Converter={StaticResource NegationConverter}}">
+                                    <alias:ContextMenuToggleButton.ToolTip>
+                                        <Binding Path="IsViewSet">
+                                            <Binding.Converter>
+                                                <dxcd:BoolToStringConverter TrueString="Click here to select View" FalseString="Click here to change View" />
+                                            </Binding.Converter>
+                                        </Binding>
+                                    </alias:ContextMenuToggleButton.ToolTip>
+                                    <Grid Margin="5,3,5,3">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="Auto" />
+                                        </Grid.ColumnDefinitions>
+                                        <Image Source="{Binding ViewIcon}" Stretch="None" Margin="2,0,5,0" Visibility="{Binding IsViewSet, Converter={StaticResource visibilityConverter}}" />
+                                        <TextBlock Grid.Column="1" VerticalAlignment="Center" Text="{Binding GridViewInfo}" Visibility="{Binding IsViewSet, Converter={StaticResource visibilityConverter}}" />
+                                        <TextBlock Grid.Column="1" VerticalAlignment="Center" Text="(View not set)" Foreground="{StaticResource PropertyNotSetForeColor}" Visibility="{Binding IsViewSet, Converter={StaticResource BoolToVisibilityInverseConverter}}" />
+                                        <alias:ContextMenuButton Style="{Binding Path=IsViewSet, Converter={StaticResource IsPropertySetConverter}}" x:Name="changeViewButton" HorizontalAlignment="Right" Grid.Column="2" VerticalAlignment="Center">
+                                            <alias:ContextMenuButton.ToolTip>
+                                                <Binding Path="IsViewSet">
+                                                    <Binding.Converter>
+                                                        <dxcd:BoolToStringConverter TrueString="Click here to change View" FalseString="Click here to create View" />
+                                                    </Binding.Converter>
+                                                </Binding>
+                                            </alias:ContextMenuButton.ToolTip>
+                                            <alias:ContextMenuButton.ContextMenu>
+                                                <ContextMenu Name="changeViewMenu" Placement="Bottom" ItemsSource="{Binding Path=ChangeViewInfo}" DisplayMemberPath="Type.Name" Style="{StaticResource contextMenuStyle}"/>
+                                            </alias:ContextMenuButton.ContextMenu>
+                                        </alias:ContextMenuButton>
+                                    </Grid>
+                                </alias:ContextMenuToggleButton>
+                                <StackPanel Margin="0,12,0,0" Visibility="{Binding IsBandControlPanelVisible, Converter={StaticResource visibilityConverter}}">
+                                    <alias:ToggleStateButton x:Name="selectBandButton" Style="{DynamicResource toggle-button}" Command="{Binding SelectBandCommand}" IsChecked="{Binding IsBandSelected}" ToolTip="Click here to select band">
+                                        <Grid Margin="5,3,5,3">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="Auto" />
+                                            </Grid.ColumnDefinitions>
+                                            <TextBlock Margin="0" TextWrapping="Wrap" VerticalAlignment="Center" Text="{Binding GridBandInfo}" />
+                                            <Button Command="{Binding DeleteSelectedBandCommand}" Style="{DynamicResource dropdownbutton-delete}" ToolTip="Delete Band" HorizontalAlignment="Right" Grid.Column="1" VerticalAlignment="Center" />
+                                        </Grid>
+                                    </alias:ToggleStateButton>
+                                </StackPanel>
+                                <StackPanel Margin="0,12,0,0" Visibility="{Binding IsColumnControlPanelVisible, Converter={StaticResource visibilityConverter}}">
+                                    <alias:ToggleStateButton x:Name="selectColumnButton" Style="{DynamicResource toggle-button}" Command="{Binding SelectColumnCommand}" IsChecked="{Binding IsColumnSelected}" ToolTip="Click here to select column">
+                                        <Grid Margin="5,3,5,3">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="Auto" />
+                                            </Grid.ColumnDefinitions>
+                                            <TextBlock Margin="0" TextWrapping="Wrap" VerticalAlignment="Center" Text="{Binding GridColumnInfo}" />
+                                            <Button Command="{Binding DeleteSelectedColumnCommand}" Style="{DynamicResource dropdownbutton-delete}" ToolTip="Delete Column" HorizontalAlignment="Right" Grid.Column="1" VerticalAlignment="Center" />
+                                        </Grid>
+                                    </alias:ToggleStateButton>
+                                    <alias:ContextMenuToggleButton x:Name="selectEditSettingsButton" Margin="24,4,0,0" Style="{DynamicResource toggle-button}" Command="{Binding SelectEditSettingsCommand}" IsChecked="{Binding IsEditSettingsSelected}" AllowShowInnerContextMenu="{Binding IsEditSettingsSet, Converter={StaticResource NegationConverter}}">
+                                        <alias:ContextMenuToggleButton.ToolTip>
+                                            <Binding Path="IsEditSettingsSet">
+                                                <Binding.Converter>
+                                                    <dxcd:BoolToStringConverter TrueString="Click here to select Edit Settings" FalseString="Click here to change Edit Settings" />
+                                                </Binding.Converter>
+                                            </Binding>
+                                        </alias:ContextMenuToggleButton.ToolTip>
+                                        <Grid Margin="5,3,5,3">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto" />
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="Auto" />
+                                            </Grid.ColumnDefinitions>
+                                            <Image Source="{Binding EditSettingsIcon}" Stretch="None" Margin="2,0,5,0" Visibility="{Binding IsEditSettingsSet, Converter={StaticResource visibilityConverter}}" />
+                                            <TextBlock Grid.Column="1" VerticalAlignment="Center" Text="{Binding EditSettingsInfo}" Visibility="{Binding IsEditSettingsSet, Converter={StaticResource visibilityConverter}}" />
+                                            <TextBlock Grid.Column="1" VerticalAlignment="Center" Text="(Edit Settings not set)" Foreground="{StaticResource PropertyNotSetForeColor}" Visibility="{Binding IsEditSettingsSet, Converter={StaticResource BoolToVisibilityInverseConverter}}" />
+                                            <alias:ContextMenuButton x:Name="changeEditSettingsButton" HorizontalAlignment="Right" Grid.Column="2" VerticalAlignment="Center" Style="{Binding Path=IsEditSettingsSet, Converter={StaticResource IsPropertySetConverter}}">
+                                                <alias:ContextMenuButton.ToolTip>
+                                                    <Binding Path="IsEditSettingsSet">
+                                                        <Binding.Converter>
+                                                            <dxcd:BoolToStringConverter TrueString="Click here to change column Edit Settings" FalseString="Click here to create column Edit Settings" />
+                                                        </Binding.Converter>
+                                                    </Binding>
+                                                </alias:ContextMenuButton.ToolTip>
+                                                <alias:ContextMenuButton.ContextMenu>
+                                                    <ContextMenu Name="changeEditSettingsMenu" Placement="Bottom" ItemsSource="{Binding Path=ChangeEditSettingsInfo}" DisplayMemberPath="Type.Name" Style="{StaticResource contextMenuStyle}"/>
+                                                </alias:ContextMenuButton.ContextMenu>
+                                            </alias:ContextMenuButton>
+                                        </Grid>
+                                    </alias:ContextMenuToggleButton>
+                                </StackPanel>
+                            </StackPanel>
+                        </Grid>
+                        <Border Background="{x:Null}" BorderBrush="Black" BorderThickness="1" Opacity="0.1" Grid.RowSpan="2" Margin="-1,-1,-1,0" SnapsToDevicePixels="True"/>
+                    </Grid>
+                </Border>
+            </Border>
+        </alias:MouseEventsEndPoint>
+    </Canvas>
+</UserControl>

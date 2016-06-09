@@ -1,0 +1,66 @@
+﻿<UserControl x:Class="DevExpress.Xpf.Core.Design.SmartTags.BindingEditorControlCommonParametersView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+        xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+        xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+        xmlns:local="clr-namespace:DevExpress.Xpf.Core.Design.SmartTags"
+        mc:Ignorable="d" 
+        d:DesignHeight="300" d:DesignWidth="300">
+
+    <StackPanel>
+        <StackPanel Grid.IsSharedSizeScope="True" DataContext="{Binding SelectedEditor}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.41*" />
+                    <ColumnDefinition Width="9" />
+                    <ColumnDefinition Width="0.59*" />
+                </Grid.ColumnDefinitions>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" SharedSizeGroup="group1" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="BindingMode" VerticalAlignment="Center" Margin="0,0,4,0" />
+                    <dxe:ComboBoxEdit IsTextEditable="False" Grid.Column="1" Margin="0,3,0,0"
+                        ItemsSource="{Binding Path=Modes}"
+                        EditValue="{Binding Path=Mode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                </Grid>
+                <Grid Grid.Column="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="UpdateSourceTrigger" VerticalAlignment="Center" Margin="0,0,4,0"/>
+                    <dxe:ComboBoxEdit IsTextEditable="False" IsEnabled="{Binding Path=UpdateSourceTriggerEnabled}" Grid.Column="1"
+                        ItemsSource="{Binding Path=UpdateSourceTriggers}" Margin="0,3,0,0"
+                        EditValue="{Binding Path=UpdateSourceTrigger, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                </Grid>
+            </Grid>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" SharedSizeGroup="group1" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="Converter" VerticalAlignment="Center" Margin="0,0,4,0"/>
+                <dxe:ComboBoxEdit IsTextEditable="False" Grid.Column="1" Margin="0,3,0,0"
+                    ItemsSource="{Binding Path=Converters}" ValueMember="Converter"
+                    EditValue="{Binding Path=Converter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            </Grid>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" SharedSizeGroup="group1" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="BindingPath" VerticalAlignment="Center" Margin="0,0,4,0"/>
+                <dxe:TextEdit Margin="0,3,0,0" EditValuePostMode="Delayed" EditValuePostDelay="300" Grid.Column="1"
+                      EditValue="{Binding Path=PropertySelector.Path, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            </Grid>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,9,0,0" DataContext="{Binding SelectedEditor}">
+            <Button Content="OK" MinWidth="80" Command="{Binding Path=OKCommand}" />
+            <Button Content="Cancel" MinWidth="80" Margin="12,0,0,0" Command="{Binding Path=CancelCommand}" />
+        </StackPanel>
+    </StackPanel>
+</UserControl>

@@ -1,0 +1,232 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+                    xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+                    xmlns:dxgt="http://schemas.devexpress.com/winfx/2008/xaml/grid/themekeys">
+    <dx:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+    <ControlTemplate x:Key="{dxgt:GridCardThemeKey ResourceKey=ExpandButtonTemplate}" TargetType="{x:Type dx:ToggleStateButton}">
+        <Grid Background="Transparent">
+            <Border x:Name="HoverState" Background="#FFECD698" CornerRadius="2" Padding="1" Opacity="0">
+                <Border CornerRadius="1">
+                    <Border.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#FFFFFEF9" Offset="0" />
+                            <GradientStop Color="#FFFFF2CC" Offset="1" />
+                            <GradientStop Color="#FFFFF9E5" Offset="0.5" />
+                            <GradientStop Color="#FFFFF2CC" Offset="0.5" />
+                        </LinearGradientBrush>
+                    </Border.Background>
+                </Border>
+            </Border>
+            <Border x:Name="PressedState" Background="#FFE4C97F" CornerRadius="2" Padding="1" Opacity="0">
+                <Border Background="#FFF9E3A4" CornerRadius="1"/>
+            </Border>
+            <Grid Margin="4">
+                    <Path x:Name="GlyphClose"
+                          Stretch="Fill" Fill="#FF4A5668"
+                          Data="F1 M 583,362L 588,367L 588,369L 583,364L 578,369L 578,367L 583,362 Z M 583,366L 588,371L 588,373L 583,368L 578,373L 578,371L 583,366 Z "
+                          Width="10" Height="10"/>
+                    <Path x:Name="GlyphOpen"
+                          Stretch="Fill" Fill="#FF4A5668"
+                          Data="F1 M 583,394L 588,389L 588,387L 583,392L 578,387L 578,389L 583,394 Z M 583,390L 588,385L 588,383L 583,388L 578,383L 578,385L 583,390 Z "
+                          Width="10" Height="10"
+                          Visibility="Collapsed" />
+            </Grid>
+        </Grid>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter TargetName="HoverState" Property="Opacity" Value="1"/>
+            </Trigger>
+            <Trigger Property="IsPressed" Value="True">
+                <Setter TargetName="PressedState" Property="Opacity" Value="1"/>
+            </Trigger>
+            <Trigger Property="IsChecked" Value="False">
+                <Setter Property="Visibility" TargetName="GlyphOpen" Value="Visible"/>
+                <Setter Property="Visibility" TargetName="GlyphClose" Value="Hidden"/>
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <Style x:Key="{dxgt:CardTemplatesThemeKey ResourceKey=CardStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Style.Triggers>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsMouseOver" Value="True"/>
+                    <Condition Property="dxg:GridViewBase.IsFocusedRow" Value="False"/>
+                </MultiTrigger.Conditions>
+            </MultiTrigger>
+            <Trigger Property="dxg:GridViewBase.IsFocusedRow" Value="True"/>
+        </Style.Triggers>
+    </Style>
+
+    <ControlTemplate x:Key="{dxgt:GridCardThemeKey ResourceKey=ContainerTemplate}" TargetType="{x:Type ContentControl}">
+        <Grid x:Name="Root">
+            <Border x:Name="Border" Background="#FFC1C8D4" Padding="1" CornerRadius="2">
+                <Border Background="#FFFFFFFF" CornerRadius="1">
+                    <ContentPresenter/>
+                </Border>
+            </Border>
+        </Grid>
+        <ControlTemplate.Triggers>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsMouseOver" Value="True"/>
+                    <Condition Property="dxg:GridViewBase.IsFocusedRow" Value="False"/>
+                </MultiTrigger.Conditions>
+            </MultiTrigger>
+            <DataTrigger Binding="{Binding Path=(dxg:RowData.RowData).SelectionState, RelativeSource={RelativeSource TemplatedParent}}" Value="Focused">
+                <Setter TargetName="Border" Property="Background" Value="#FFA19D8D" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Path=(dxg:RowData.RowData).SelectionState, RelativeSource={RelativeSource TemplatedParent}}" Value="Selected">
+                <Setter TargetName="Border" Property="Background" Value="#FFC1BDAD" />
+            </DataTrigger>
+            <Trigger Property="dxg:GridViewBase.IsFocusedRow" Value="True"/>        
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <Style x:Key="{dxgt:GridCardThemeKey ResourceKey=HeaderPresenterStyle}" TargetType="{x:Type dxg:GridCardHeaderContentPresenter}">
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="TextBlock.Foreground" Value="#FF1B293E"/>
+    </Style>
+
+    <Style x:Key="{dxgt:GridCardThemeKey ResourceKey=ContentExpandButtonStyle}" TargetType="{x:Type dxg:GridCardExpandButton}">
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="Margin" Value="0,0,2,0"/>
+    </Style>
+
+    <Style x:Key="{dxgt:GridCardThemeKey ResourceKey=ContentPresenterStyle}" TargetType="{x:Type dxg:GridCardContentPresenter}">
+        <Setter Property="Margin" Value="11"/>
+    </Style>
+
+    <ControlTemplate x:Key="{dxgt:GridCardThemeKey ResourceKey=HeaderContentTemplate}" TargetType="{x:Type ContentControl}">
+        <ContentPresenter Margin="11,3,11,3"/>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="{dxgt:GridCardThemeKey ResourceKey=ExpanderContentTemplate}" TargetType="{x:Type ContentControl}">
+        <ContentPresenter/>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="{dxgt:GridCardThemeKey ResourceKey=DataContentTemplate}" TargetType="{x:Type ContentControl}">
+        <Border x:Name="Root" Background="#FFF7F8FA" BorderBrush="#FFC1C8D4" BorderThickness="0,1,0,0" CornerRadius="0,0,1,1">
+            <ContentPresenter/>
+        </Border>  
+        <ControlTemplate.Triggers>
+            <Trigger Property="dxg:GridViewBase.IsFocusedRow" Value="True">
+                <Setter TargetName="Root" Property="BorderBrush" Value="#FFC1C8D4"/>
+                <Setter TargetName="Root" Property="Background" Value="#FFF7F8FA"/> 
+            </Trigger>        
+            <Trigger Property="dxg:GridViewBase.IsFocusedRow" Value="True">
+                <Setter TargetName="Root" Property="BorderBrush" Value="#FFC1C8D4"/>
+                <Setter TargetName="Root" Property="Background" Value="#FFFFF9E8"/>
+            </Trigger>        
+            <Trigger Property="dxg:GridViewBase.IsFocusedRow" Value="True">
+                <Setter TargetName="Root" Property="BorderBrush" Value="#FFC1C8D4"/>
+                <Setter TargetName="Root" Property="Background" Value="#FFFFF9E8"/>
+            </Trigger>
+            <DataTrigger Binding="{Binding Path=(dxg:RowData.RowData).SelectionState, RelativeSource={RelativeSource TemplatedParent}}" Value="Focused">
+                <Setter TargetName="Root" Property="BorderBrush" Value="#FFA19D8D" />
+                <Setter TargetName="Root" Property="Background" Value="#FFFFFFFF"/>
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Path=(dxg:RowData.RowData).SelectionState, RelativeSource={RelativeSource TemplatedParent}}" Value="Selected">
+                <Setter TargetName="Root" Property="BorderBrush" Value="#FFC1BDAD" />
+                <Setter TargetName="Root" Property="Background" Value="#FFFFF9E8"/>
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Path=IsExpanded}" Value="False"/>
+        </ControlTemplate.Triggers>        
+    </ControlTemplate>
+ 
+    <ControlTemplate x:Key="{dxgt:GridCardThemeKey ResourceKey=HeaderPanelTemplate}" TargetType="{x:Type ContentControl}">
+        <Grid>
+            <Border x:Name="Root" CornerRadius="1,1,0,0">
+                <Border.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FFEEF1F3" Offset="0" />
+                        <GradientStop Color="#FFDADFE7" Offset="1" />
+                        <GradientStop Color="#FFDFE3E9" Offset="0.5" />
+                        <GradientStop Color="#FFDADFE7" Offset="0.5" />
+                    </LinearGradientBrush>
+                </Border.Background>
+            </Border>
+            <ContentPresenter/>
+        </Grid>
+        <ControlTemplate.Triggers>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsMouseOver" Value="True"/>
+                    <Condition Property="dxg:GridViewBase.IsFocusedRow" Value="False"/>
+                </MultiTrigger.Conditions>
+            </MultiTrigger>
+            <DataTrigger Binding="{Binding Path=(dxg:RowData.RowData).SelectionState, RelativeSource={RelativeSource TemplatedParent}}" Value="Focused">
+                <Setter Property="Background" TargetName="Root">
+                    <Setter.Value>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#FFFFFCF0" Offset="0" />
+                            <GradientStop Color="#FFFFE8A6" Offset="1" />
+                            <GradientStop Color="#FFFFEEBF" Offset="0.5" />
+                            <GradientStop Color="#FFFFE8A6" Offset="0.5" />
+                        </LinearGradientBrush>
+                    </Setter.Value>
+                </Setter>
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Path=(dxg:RowData.RowData).SelectionState, RelativeSource={RelativeSource TemplatedParent}}" Value="Selected">
+                <Setter Property="Background" TargetName="Root">
+                    <Setter.Value>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#FFFFFDF3" Offset="0" />
+                            <GradientStop Color="#FFFFF0C5" Offset="1" />
+                            <GradientStop Color="#FFFFF4D7" Offset="0.5" />
+                            <GradientStop Color="#FFFFF0C5" Offset="0.5" />
+                        </LinearGradientBrush> 
+                    </Setter.Value>
+                </Setter>
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Path=(dxg:RowData.RowData).IsSelected, RelativeSource={RelativeSource TemplatedParent}}" Value="False">
+                <Setter Property="dxg:FadeSelectionHelper.Opacity" TargetName="Root" Value="0.6"/>
+            </DataTrigger>      
+            <DataTrigger Binding="{Binding Path=IsExpanded}" Value="False">             
+                <Setter Property="CornerRadius" TargetName="Root" Value="1" />
+            </DataTrigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="{dxgt:GridCardThemeKey ResourceKey=ControlTemplate}">
+        <ContentControl x:Name="card"
+                        Template="{DynamicResource {dxgt:GridCardThemeKey ResourceKey=ContainerTemplate}}"
+                        Style="{Binding Path=(dxg:GridControl.ActiveView).CardStyle, RelativeSource={RelativeSource TemplatedParent}}">
+            <dxg:GridCardPanel x:Name="gridCardPanel" IsExpanded="{Binding Path=IsExpanded}">
+                <dxg:GridCardPanel.Header>
+                    <dxg:GridCardHeaderControl>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <ContentControl Grid.Column="0"
+                                        Template="{DynamicResource {dxgt:GridCardThemeKey ResourceKey=HeaderContentTemplate}}">
+                                <dxg:GridCardHeaderContentPresenter Style="{DynamicResource {dxgt:GridCardThemeKey ResourceKey=HeaderPresenterStyle}}"/>
+                            </ContentControl>
+                            <ContentControl Grid.Column="1"
+                                        Visibility="{Binding Path=View.ShowCardExpandButton, Converter={StaticResource BoolToVisibilityConverter}}"
+                                        Template="{DynamicResource {dxgt:GridCardThemeKey ResourceKey=ExpanderContentTemplate}}">
+                                <dxg:GridCardExpandButton Style="{DynamicResource {dxgt:GridCardThemeKey ResourceKey=ContentExpandButtonStyle}}"/>
+                            </ContentControl>
+                        </Grid>
+                    </dxg:GridCardHeaderControl>
+                </dxg:GridCardPanel.Header>
+                <dxg:GridCardPanel.Body>
+                    <ContentControl Template="{DynamicResource {dxgt:GridCardThemeKey ResourceKey=DataContentTemplate}}">
+                        <dxg:GridCardContentPresenter x:Name="presenter" Style="{DynamicResource {dxgt:GridCardThemeKey ResourceKey=ContentPresenterStyle}}" />
+                    </ContentControl>
+                </dxg:GridCardPanel.Body>
+            </dxg:GridCardPanel>
+        </ContentControl>
+        <ControlTemplate.Triggers>
+            <DataTrigger Binding="{Binding Path=View.CollapsedCardOrientation}" Value="Vertical">
+                <Setter Property="RotateOnCollapse" Value="True" TargetName="gridCardPanel"/>
+            </DataTrigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+</ResourceDictionary>

@@ -1,0 +1,79 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:dxtEx="clr-namespace:DevExpress.Xpf.Utils.Themes"
+	xmlns:interop="clr-namespace:System.Windows.Interop;assembly=PresentationFramework"
+    xmlns:dx="clr-namespace:DevExpress.Xpf.Core"
+    xmlns:dxt="clr-namespace:DevExpress.Xpf.Utils.Themes">
+
+    <Style x:Key="{dxt:DefaultStyleThemeKey ThemeName=DeepBlue, Type=TextBox, TypeInTargetAssembly=dx:ResourceFinder}" TargetType="{x:Type TextBox}" BasedOn="{StaticResource {x:Type TextBox}}">
+        <Setter Property="Foreground" Value="#FF000000" />
+        <Setter Property="Padding" Value="3,2,3,2"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="BorderBrush">
+            <Setter.Value>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFA3AEB9" Offset="0"/>
+                    <GradientStop Color="#FF8399A9" Offset="0.375"/>
+                    <GradientStop Color="#FF718597" Offset="0.375"/>
+                    <GradientStop Color="#FF617584" Offset="1"/>
+                </LinearGradientBrush>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="TextBox">
+                    <Grid x:Name="RootElement">
+                        <Grid>
+                            <Border x:Name="focus" Margin="-2" Opacity="0" Background="#FF4882d8" CornerRadius="4" />
+                            <Border CornerRadius="3">
+                                <Border.Background>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FF2A4376" Offset="0"/>
+                                        <GradientStop Color="#FF436DAE" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Border.Background>
+                                <Border Margin="1" CornerRadius="2">
+                                    <Border.Background>
+                                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                            <GradientStop Color="#FFD0D8E7" Offset="0"/>
+                                            <GradientStop Color="#FFFDFEFF" Offset="1"/>
+                                            <GradientStop Color="#FFDFE4EE" Offset="0.35"/>
+                                        </LinearGradientBrush>
+                                    </Border.Background>
+                                    <ScrollViewer x:Name="PART_ContentHost" Padding="{TemplateBinding Padding}" VerticalContentAlignment="Center" Foreground="{TemplateBinding Foreground}"  Background="{TemplateBinding Background}"  IsTabStop="False" />
+                                </Border>
+                            </Border>
+                        </Grid>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="RootElement" Property="Opacity" Value="0.35"/>
+                        </Trigger>
+                        <Trigger Property="IsFocused" Value="True">
+                            <Setter Property="Opacity" TargetName="focus" Value="0.35"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="BorderThickness" Value="0">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="TextBox">
+                            <Grid x:Name="RootElement">
+                                <Grid>
+                                    <ScrollViewer x:Name="PART_ContentHost" Padding="{TemplateBinding Padding}" VerticalContentAlignment="Center" Foreground="{TemplateBinding Foreground}" IsTabStop="False" />
+                                </Grid>
+                            </Grid>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsEnabled" Value="False">
+                                    <Setter TargetName="RootElement" Property="Opacity" Value="0.35"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+</ResourceDictionary>

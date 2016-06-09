@@ -1,0 +1,1723 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FeatureItems SourceType="GridView">
+	<FeatureItem ID="DataBinding_Main" Name="Data Binding" Category="">
+		<Description>
+			This section contains pages that allow you to bind the grid control to data, bind the current view's columns to data fields or create unbound columns.
+		</Description>
+	</FeatureItem>
+	<FeatureItem ID="Layout_Main" Name="Column, Rows, Cells Layout" Category="">
+		<Description>
+			The pages in this section allow you to customize the size, order and other layout aspects for columns, rows and cells.
+		</Description>
+	</FeatureItem>
+	<FeatureItem ID="Feature_Preview" Name="Preview" Category="" ExpandAll="True" SelectedPropertyOnStart="OptionsView.ShowPreview" SampleSetupClass="DevExpress.XtraGrid.FeatureBrowser.FeatureBrowserGridPreviewCustomization">	
+		<Properties>
+			<Item Name="OptionsView.ShowPreview"></Item>
+			<Item Name="OptionsView.AutoCalcPreviewLineCount"></Item>
+			<Item Name="OptionsView.ShowPreviewLines"></Item>
+			<Item Name="PreviewFieldName"></Item>
+			<Item Name="PreviewLineCount"></Item>
+			<Item Name="CalcPreviewText"></Item>
+			<Item Name="MeasurePreviewHeight"></Item>
+			<Item Name="PreviewIndent"></Item>
+		</Properties>
+		<Description>
+			Availability: 
+			[{(OptionsView.ShowPreview=False)}OptionsView.ShowPreview] property.
+			
+			Content: 
+			[PreviewFieldName] property, [CalcPreviewText] event. 
+			
+			Size: 
+			- [PreviewLineCount], [PreviewIndent], [{(OptionsView.AutoCalcPreviewLineCount=False)}OptionsView.AutoCalcPreviewLineCount] properties.
+			- [MeasurePreviewHeight] event.
+		</Description>
+	</FeatureItem>
+	<FeatureItem ID="Feature_Sorting" Name="Sorting" Category="" ExpandAll="True" SelectedPropertyOnStart="OptionsCustomization.AllowSort" SampleSetupClass="DevExpress.XtraGrid.FeatureBrowser.FeatureBrowserGridSortingCustomization">
+		<Properties>
+			<Item Name="OptionsCustomization.AllowSort"></Item>
+			<Item Name="OptionsView.ShowColumnHeaders"></Item>
+			<Item Name="OptionsMenu.EnableColumnMenu"></Item>
+		</Properties>
+		<Pages>
+			<Columns>
+				<Properties>
+					<Item Name="SortOrder"></Item>
+					<Item Name="SortMode"></Item>
+					<Item Name="OptionsColumn.AllowSort"></Item>
+				</Properties>
+			</Columns>
+		</Pages>
+		<Description>
+			By default end users are allowed to perform sorting. The following main settings control its availability.
+			
+			Availability: 
+			[{(OptionsCustomization.AllowSort=False)}OptionsCustomization.AllowSort], [{goto:Columns,OptionsColumn.AllowSort}Column.OptionsColumn.AllowSort] options.
+
+			Column headers' visibility: 
+			[{(OptionsView.ShowColumnHeaders=False)}OptionsView.ShowColumnHeaders] option.
+
+			Column header menu: 
+			[{(OptionsMenu.EnableColumnMenu=False)}OptionsMenu.EnableColumnMenu] option.
+
+			Sort order and behavior: 
+			[{goto:Columns,SortOrder}Column.SortOrder], [{goto:Columns,SortMode}Column.SortMode] properties.
+		</Description>
+	</FeatureItem>
+	<FeatureItem ID="Feature_Grouping" Name="Grouping" Category="" ExpandAll="True" SelectedPropertyOnStart="OptionsCustomization.AllowGroup" SampleSetupClass="DevExpress.XtraGrid.FeatureBrowser.FeatureBrowserGridGroupingCustomization">
+        <Properties>
+			<Item Name="OptionsView.GroupDrawMode"></Item>
+			<Item Name="OptionsView.ShowGroupPanel"></Item>
+			<Item Name="OptionsCustomization.AllowGroup"></Item>
+		</Properties>
+        <Pages>
+			<Columns>
+				<Properties>
+					<Item Name="OptionsColumn.AllowGroup"></Item>
+					<Item Name="GroupIndex"></Item>
+					<Item Name="GroupInterval"></Item>
+				</Properties>
+			</Columns>
+		</Pages>
+		<Description>
+			You can group the view against a column DIRECTLY IN THE PREVIEW WINDOW (Your View tab). The main settings that control grouping are:
+			
+			Grouping availability: 
+			[{(OptionsCustomization.AllowGroup=False)}OptionsCustomization.AllowGroup], [{goto:Columns,OptionsColumn.AllowGroup}Column.Options.AllowGroup] options.
+
+			The group panel's visibility: 
+			[{(OptionsView.ShowGroupPanel=False)}OptionsView.ShowGroupPanel] option.
+			
+			Group row style: 
+			[OptionsView.GroupDrawMode] property.
+			
+			Column group index and grouping style: 
+			[{goto:Columns,GroupIndex}Column.GroupIndex], [{goto:Columns,GroupInterval}Column.GroupInterval] properties.
+		</Description>
+	</FeatureItem>
+	<FeatureItem ID="Feature_Filtering" Name="Filtering" Category="" ExpandAll="True" SelectedPropertyOnStart="OptionsCustomization.AllowFilter" SampleSetupClass="DevExpress.XtraGrid.FeatureBrowser.FeatureBrowserGridFilteringCustomization">
+        <Properties>
+			<Item Name="OptionsCustomization.AllowFilter"></Item>
+			<Item Name="OptionsView.ShowAutoFilterRow"></Item>
+			<Item Name="OptionsView.ShowFilterPanelMode"></Item>
+			<Item Name="OptionsView.HeaderFilterButtonShowMode"></Item>
+		</Properties>
+        <Pages>
+			<Columns>
+				<Properties>
+					<Item Name="OptionsFilter.AllowFilter"></Item>
+					<Item Name="OptionsFilter.AllowAutoFilter"></Item>
+				</Properties>
+				<ExpandedPropertiesOnStart>
+					<ExpandedItem Name="OptionsFilter"></ExpandedItem>
+				</ExpandedPropertiesOnStart>
+			</Columns>
+		</Pages>
+		<Description>
+			MS Excel(r) style filtering:
+			[{(OptionsCustomization.AllowFilter=False)}OptionsCustomization.AllowFilter], [{goto:Columns,OptionsFilter.AllowFilter}Column.OptionsFilter.AllowFilter] options. 
+			
+			Shape and behavior of filter buttons:
+			[OptionsView.HeaderFilterButtonShowMode] property.
+			
+			Auto filter row:
+			[{(OptionsView.ShowAutoFilterRow=False)}OptionsView.ShowAutoFilterRow] [{goto:Columns,OptionsFilter.AllowAutoFilter}Column.OptionsFilter.AllowAutoFilter] options. 
+			
+			Filter panel:		
+			[OptionsView.ShowFilterPanelMode] option.
+		</Description>
+	</FeatureItem>
+	<FeatureItem ID="Summary_Main" Name="Summary" Category="">
+		<Description>
+			The pages in this section allow you to specify the total summaries which are displayed within the view footer, and the group summaries which are displayed for each group either within the group's rows or the group's footers.
+		</Description>
+	</FeatureItem>
+	<FeatureItem ID="Editing_Main" Name="Editing" Category="">
+		<Description>
+		The pages in this section allow you to specify settings for data editing.
+		</Description>
+	</FeatureItem>
+	<FeatureItem ID="Nav_Main" Name="Focus, Selection, Navigation" Category="">
+		<Description>
+			The pages in this section allow you to specify settings for focus, selection and navigation.
+		</Description>
+	</FeatureItem>
+	<FeatureItem ID="MD_Main" Name="Master-Detail" Category="">
+		<Description>
+			The pages in this section allow you to customize how the view and its details work in master-detail mode.
+		</Description>
+	</FeatureItem>
+	<FeatureItem ID="Appearance_Main" Name="Appearance" Category="">
+		<Description>
+			The pages in this section allow you to specify the look and feel (paint style) for the entire grid control or just for the currently selected view. They also enable you to change the style of individual view elements. For a list of all the visual elements available along with their appearance settings, refer to the [{gotoFeature:VE_Main}Visual Elements] section.
+		</Description>
+	</FeatureItem>
+	<FeatureItem ID="VE_Main" Name="Visual Elements" Category="" Sorted="True">
+		<Description>
+			This section contains pages that describe how to change the visibility, appearance and size of the visual elements provided by the grid control and the currently selected view.
+		</Description>
+	</FeatureItem>
+	<FeatureItem ID="Behavior_Main" Name="Behavior" Category="">
+		<Description>
+			The pages in this section allow you to change how the view performs particular operations.
+		</Description>
+	</FeatureItem>
+	<FeatureItem ID="EndUser_Main" Name="End-user Actions" Category="">
+		<Description>
+			The pages in this section provide settings that control the availability of particular actions to end users and events that provide notifications about actions performed.
+		</Description>
+	</FeatureItem>
+	<FeatureItem ID="Grid_Printing" Name="Printing Settings" Category="" SelectedPropertyOnStart="OptionsPrint.UsePrintStyles">
+        <Properties>
+			<Item Name="OptionsPrint"></Item>
+			<Item Name="AppearancePrint"></Item>
+		</Properties>
+		<Description>
+			This page provides access to all the settings available for customizing printing. You can also access the printing settings which relate to a particular visual element. See the [{gotoFeature:VE_Main}Visual Elements] section for this purpose.
+			
+			Print styles enabled: [OptionsPrint.UsePrintStyles].
+		</Description>
+	</FeatureItem>
+	<FeatureItem ID="Layout_Columns" Name="Column Layout" Category="Layout_Main" ExpandAll="True" SelectedPropertyOnStart="OptionsView.ColumnAutoWidth">
+		<SupportedComponents GridView="True" BandedGridView="True" AdvBandedGridView="True"></SupportedComponents>
+        <Properties>
+			<Item Name="OptionsView.ColumnAutoWidth"></Item>
+		</Properties>
+        <Pages>
+			<Columns>
+				<Properties>
+					<Item Name="Visible"></Item>
+					<Item Name="Width"></Item>
+				</Properties>
+			</Columns>
+		</Pages>
+		<Description>
+			You can set up the width and order of columns DIRECTLY IN THE PREVIEW WINDOW (Your View tab). Drag and resize column headers for this purpose.	
+			
+			Auto width: 
+			[{OptionsView.ColumnAutoWidth}OptionsView.ColumnAutoWidth] option.
+			
+			Visibility: 
+			[{goto:Columns,Visible}Column.Visible] properties.
+			
+			Width: 
+			[{goto:Columns,Width}Column.Width] property.
+		</Description>
+	</FeatureItem>
+	<FeatureItem ID="Layout_Columns_EndUser" Name="End User Actions" Category="Layout_Columns" ReferenceId="EndUser_ColumnLayout">
+		<SupportedComponents GridView="True"></SupportedComponents>
+	</FeatureItem>
+	<FeatureItem ID="Layout_Columns_CustomizationForm" Name="Customization Form" Category="Layout_Columns" ReferenceId="VE_CustomizationForm">
+		<SupportedComponents GridView="True"></SupportedComponents>
+	</FeatureItem>
+	<FeatureItem ID="Layout_FixedColumns" Name="Fixed Columns" Category="Layout_Main" SelectedPropertyOnStart="OptionsView.ColumnAutoWidth" SampleSetupClass="">
+		<SupportedComponents GridView="True"></SupportedComponents>
+        <Properties>
+			<Item Name="OptionsView.ColumnAutoWidth"></Item>
+			<Item Name="Appearance.FixedLine"></Item>
+			<Item Name="FixedLineWidth"></Item>
+		</Properties>
+        <ExpandedPropertiesOnStart>
+			<ExpandedItem Name="OptionsView"></ExpandedItem>
+			<ExpandedItem Name="Appearance"></ExpandedItem>
+		</ExpandedPropertiesOnStart>
+        <Pages>
+			<Columns>
+				<Properties>
+					<Item Name="Fixed"></Item>
+					<Item Name="Width"></Item>
+				</Properties>
+			</Columns>
+		</Pages>
+		<Description>
+			The Fixed columns feature enables you to anchor columns to the left or right edges of views so that they are not affected by horizontal scrolling. The following main settings control the availability of fixed columns.
+			
+			Column auto width: 
+			[{(OptionsView.ColumnAutoWidth=True)}OptionsView.ColumnAutoWidth] property should be disabled to allow horizontal scrolling.
+			
+			Anchor position: 
+			[{goto:Columns,Fixed}Column.Fixed] property.
+			
+			Separator: 
+			[Appearance.FixedLine], [FixedLineWidth] properties.
+		</Description>
+	</FeatureItem>
+	<FeatureItem ID="Layout_Rows" Name="Rows" Category="Layout_Main" ExpandAll="True" SelectedPropertyOnStart="OptionsView.RowAutoHeight" SampleSetupClass="FeatureBrowserGridRowHeightCustomization">
+		<SupportedComponents GridView="True" BandedGridView="True"></SupportedComponents>
+        <Properties>
+			<Item Name="OptionsCustomization.AllowRowSizing"></Item>
+			<Item Name="OptionsView.RowAutoHeight"></Item>
+			<Item Name="RowHeight"></Item>
+			<Item Name="GroupRowHeight"></Item>
+			<Item Name="CalcRowHeight"></Item>
+			<Item Name="RowSeparatorHeight"></Item>
+		</Properties>
+		<Pages>
+			<Columns>
+				<Properties>
+					<Item Name="ColumnEdit"></Item>
+				</Properties>
+			</Columns>
+		</Pages>
+		<Description>
+			The main settings that affect the layout of rows are:
+			
+			Auto height: 
+			[{(OptionsView.RowAutoHeight=False)}OptionsView.RowAutoHeight] option. In effect when a memo or picture editor is assigned to a column's [{goto:Columns,ColumnEdit}ColumnEdit] property.
+
+			Height: 
+			[RowHeight], [GroupRowHeight] properties and [CalcRowHeight] event.
+			
+			Row separator: 
+			[RowSeparatorHeight] property.
+			
+			End-user resizing: 
+			[{(OptionsCustomization.AllowRowSizing=False)}OptionsCustomization.AllowRowSizing] option.
+		</Description>
+	</FeatureItem>
+	<FeatureItem ID="Layout_CellMerging" Name="Cell Merging" Category="Layout_Main" ExpandAll="True" SelectedPropertyOnStart="OptionsView.AllowCellMerge" SampleSetupClass="">
+		<SupportedComponents GridView="True" BandedGridView="True"></SupportedComponents>
+        <Properties>
+			<Item Name="OptionsView.AllowCellMerge"></Item>
+			<Item Name="OptionsView.ShowPreview"></Item>
+			<Item Name="CellMerge"></Item>
+			<Item Name="RowSeparatorHeight"></Item>
+		</Properties>
+        <Pages>
+			<Columns>
+				<Properties>
+					<Item Name="OptionsColumn.AllowMerge"></Item>
+				</Properties>
+			</Columns>
+		</Pages>
+		<Description>
+			Cell merging is available when the [{gotoFeature:Feature_Preview}preview] and row separators are disabled. So the main settings that affect cell merging are:
+			
+			Preview's visiblity: 
+			[{(OptionsView.ShowPreview=True)}OptionsView.ShowPreview] option.
+			
+			Row separators:
+			[RowSeparatorHeight] property should be 0.
+			
+			Availability: 
+			[OptionsView.AllowCellMerge], [{goto:Columns,OptionsColumn.AllowMerge}Column.OptionsColumn.AllowMerge] properties.
+			
+			Custom merging: 
+			[CellMerge] event.
+		</Description>
+	</FeatureItem>
+	<FeatureItem ID="Preview_Appearance" Name="Preview Appearance" Category="Feature_Preview" ReferenceId="VE_Preview"></FeatureItem>
+	<FeatureItem ID="Sorting_ContextMenus" Name="Context Menus" Category="Feature_Sorting" ReferenceId="VE_ContextMenus"></FeatureItem>
+	<FeatureItem ID="Sorting_ColumnHeaders" Name="Column Headers" Category="Feature_Sorting" ReferenceId="VE_ColumnHeaders"></FeatureItem>
+	<FeatureItem ID="Sorting_Behavior" Name="Behavior" Category="Feature_Sorting" ReferenceId="Behavior_Sorting"></FeatureItem>
+	<FeatureItem ID="Sorting_EndUser" Name="End-user Actions" Category="Feature_Sorting" ReferenceId="EndUser_Sorting"></FeatureItem>
+	<FeatureItem ID="Grouping_GroupPanel" Name="Group Panel" Category="Feature_Grouping" ReferenceId="VE_GroupPanel"></FeatureItem>
+	<FeatureItem ID="Grouping_GroupRows" Name="Group Rows" Category="Feature_Grouping" ReferenceId="VE_GroupRows"></FeatureItem>
+	<FeatureItem ID="Grouping_GroupSummary" Name="Group Summary" Category="Feature_Grouping" ReferenceId="Feature_GroupSummary"></FeatureItem>
+	<FeatureItem ID="Grouping_ContextMenus" Name="Context Menus" Category="Feature_Grouping" ReferenceId="VE_ContextMenus"></FeatureItem>
+	<FeatureItem ID="Grouping_JoinedGroupPanel" Name="Joined Group Panel" Category="Feature_Grouping" ReferenceId="VE_JoinedGroupPanel"></FeatureItem>
+	<FeatureItem ID="Grouping_Behavior" Name="Behavior" Category="Feature_Grouping" ReferenceId="Behavior_Grouping"></FeatureItem>
+	<FeatureItem ID="Grouping_EndUser" Name="End User Actions" Category="Feature_Grouping" ReferenceId="EndUser_Grouping"></FeatureItem>
+	<FeatureItem ID="Filtering_FilterButtons" Name="Filter Buttons" Category="Feature_Filtering" ReferenceId="VE_FilterButtons"></FeatureItem>
+	<FeatureItem ID="Filtering_FilterPanel" Name="Filter Panel" Category="Feature_Filtering" ReferenceId="VE_FilterPanel"></FeatureItem>
+	<FeatureItem ID="Filtering_AutoFilterRow" Name="Auto Filter Row" Category="Feature_Filtering" ReferenceId="VE_AutoFilterRow"></FeatureItem>
+	<FeatureItem ID="Filtering_FilterDropdowns" Name="Filter Dropdowns" Category="Feature_Filtering" ReferenceId="VE_FilterDropdowns"></FeatureItem>
+	<FeatureItem ID="Filtering_EndUser" Name="End-user Actions" Category="Feature_Filtering" ReferenceId="EndUser_Filtering"></FeatureItem>
+	<FeatureItem ID="Feature_TotalSummary" Name="Total Summary" Category="Summary_Main" ExpandAll="True" SelectedPropertyOnStart="OptionsView.ShowFooter">
+        <Properties>
+			<Item Name="OptionsView.ShowFooter"></Item>
+			<Item Name="OptionsMenu.EnableFooterMenu"></Item>
+		</Properties>
+        <Pages>
+			<Columns>
+				<Properties>
+					<Item Name="SummaryItem"></Item>
+          <Item Name="Summary"></Item>
+				</Properties>
+				<ExpandedPropertiesOnStart>
+					<ExpandedItem Name="SummaryItem"></ExpandedItem>
+				</ExpandedPropertiesOnStart>
+			</Columns>
+		</Pages>
+		<Description>
+			The main settings that control the availability of total summaries are:
+			
+			Footer visibility: 
+			[{(OptionsView.ShowFooter=False)}OptionsView.ShowFooter] property.
+			
+			Column summary: 
+			[{goto:Columns,Summary}Column.Summary] property, [{goto:Columns,SummaryItem}Column.SummaryItem] property. 
+			
+			Footer context menu: 
+			[{(OptionsMenu.EnableFooterMenu=False)}OptionsMenu.EnableFooterMenu] option.
+		</Description>
+	</FeatureItem>
+	<FeatureItem ID="TotalSummary_Footer" Name="Footer" Category="Feature_TotalSummary" ReferenceId="VE_Footer"></FeatureItem>
+	<FeatureItem ID="TotalSummary_ContextMenus" Name="Context Menus" Category="Feature_TotalSummary" ReferenceId="VE_ContextMenus"></FeatureItem>
+	<FeatureItem ID="TotalSummary_Behavior" Name="Behavior" Category="Feature_TotalSummary" ReferenceId="Behavior_Summary"></FeatureItem>
+	<FeatureItem ID="Feature_GroupSummary" Name="Group Summary" Category="Summary_Main" ExpandAll="True" SelectedPropertyOnStart="GroupFooterShowMode">
+        <Properties>
+			<Item Name="GroupFooterShowMode"></Item>
+			<Item Name="GroupFormat"></Item>
+		</Properties>
+		<Pages>
+			<GroupSummaries>
+        <Properties>
+          <Item Name="DisplayFormat"></Item>
+          <Item Name="FieldName"></Item>
+          <Item Name="ShowInGroupColumnFooter"></Item>
+          <Item Name="SummaryType"></Item>
+          <Item Name="Tag"></Item>
+        </Properties>
+			</GroupSummaries>
+		</Pages>
+		<Description>
+			The main settings that affect the availability of group summaries are:
+			
+			Group footers: 
+			[GroupFooterShowMode] property.
+			
+			Group row content: 
+			[GroupFormat] property.
+			
+			Summary settings: 
+			[{goto:Group Summary}group summaries collection].
+		</Description>
+	</FeatureItem>
+	<FeatureItem ID="GroupSummary_GroupFooters" Name="Group Footers" Category="Feature_GroupSummary" ReferenceId="VE_GroupFooters"></FeatureItem>
+	<FeatureItem ID="GroupSummary_GroupRows" Name="Group Rows" Category="Feature_GroupSummary" ReferenceId="VE_GroupRows"></FeatureItem>
+	<FeatureItem ID="GroupSummary_ContextMenus" Name="Context Menus" Category="Feature_GroupSummary" ReferenceId="VE_ContextMenus"></FeatureItem>
+	<FeatureItem ID="GroupSummary_Behavior" Name="Behavior" Category="Feature_GroupSummary" ReferenceId="Behavior_Summary"></FeatureItem>
+	<FeatureItem ID="Editing_Editors" Name="In-place Editors" Category="Editing_Main" ExpandAll="False" SelectedPropertyOnStart="OptionsBehavior.Editable">
+        <Properties>
+			<Item Name="OptionsBehavior.Editable"></Item>
+			<Item Name="CustomRowCellEdit"></Item>
+			<Item Name="ShowButtonMode"></Item>
+		</Properties>
+        <Pages>
+			<Columns>
+				<Properties>
+					<Item Name="ColumnEdit"></Item>
+					<Item Name="ShowButtonMode"></Item>
+				</Properties>
+			</Columns>
+		</Pages>
+		<Description>
+			Assign editors to:
+			- columns: [{goto:Columns,ColumnEdit}Column.ColumnEdit] property.
+			- cells: [CustomRowCellEdit] event.
+			
+			Visibility of the Editor buttons: 
+			[ShowButtonMode], [{goto:Columns,ShowButtonMode}Column.ShowButtonMode] properties.
+		</Description>
+	</FeatureItem>
+	<FeatureItem ID="Editing_NewItemRow" Name="New Item Row" Category="Editing_Main" ReferenceId="VE_NewItemRow"></FeatureItem>
+	<FeatureItem ID="Nav_Scrolling" Name="Scrolling" Category="Nav_Main" ExpandAll="True" SelectedPropertyOnStart="ScrollStyle" SampleSetupClass="">	
+		<Properties>
+			<Item Name="OptionsBehavior.SmartVertScrollBar"></Item>
+			<Item Name="HorzScrollStep"></Item>
+			<Item Name="HorzScrollVisibility"></Item>
+			<Item Name="VertScrollVisibility"></Item>
+			<Item Name="VertScrollTipFieldName"></Item>
+			<Item Name="ScrollStyle"></Item>
+			<Item Name="TopRowChanged"></Item>
+			<Item Name="LeftCoordChanged"></Item>
+		</Properties>
+		<Description>
+			Availability of Scrollbars: 
+			[HorzScrollVisibility], [VertScrollVisibility] properties.
+			
+			Scrolling behavior: 
+			[ScrollStyle], [OptionsBehavior.SmartVertScrollBar], [HorzScrollStep] properties.
+			
+			Vertical scrolling hint: 
+			[VertScrollTipFieldName] property (if [ScrollStyle] defines non-live vertical scrolling).
+			
+			Scrolling notifications: 
+			[TopRowChanged], [LeftCoordChanged] properties.
+		</Description>
+	</FeatureItem>
+	<FeatureItem ID="Nav_IncrementalSearch" Name="Incremental Search" Category="Nav_Main" SelectedPropertyOnStart="OptionsBehavior.AllowIncrementalSearch">
+        <Properties>
+			<Item Name="OptionsBehavior.AllowIncrementalSearch"></Item>
+		</Properties>
+		<Pages>
+			<Columns>
+				<Properties>
+					<Item Name="OptionsColumn.AllowIncrementalSearch"></Item>
+				</Properties>
+			</Columns>
+		</Pages>
+		<Description>
+			The incremental search feature allows end users to locate rows by typing cell values when the view is not in edit mode.
+			
+			Availability: 
+			[{(OptionsBehavior.AllowIncrementalSearch=False)}OptionsBehavior.AllowIncrementalSearch], [{goto:Columns,OptionsColumn.AllowIncrementalSearch}Column.OptionsColumn.AllowIncrementalSearch].
+		</Description>
+	</FeatureItem>
+	<FeatureItem ID="Nav_Focus" Name="Focus" Category="Nav_Main" ExpandAll="True" SelectedPropertyOnStart="FocusRectStyle">
+        <Properties>
+			<Item Name="OptionsNavigation"></Item>
+			<Item Name="FocusedRowChanged"></Item>
+			<Item Name="FocusedColumnChanged"></Item>
+			<Item Name="OptionsSelection.InvertSelection"></Item>
+			<Item Name="FocusRectStyle"></Item>
+			<Item Name="BeforeLeaveRow"></Item>
+		</Properties>
+        <Pages>
+			<Columns>
+				<Properties>
+					<Item Name="OptionsColumn.AllowFocus"></Item>
+				</Properties>
+			</Columns>
+		</Pages>
+		<Description>
+			End-user navigation settings: 
+			[OptionsNavigation] options.
+			
+			Row or cell highlighted: 
+			[OptionsSelection.InvertSelection], [FocusRectStyle] option.
+			
+			Focus change notifications: 
+			[FocusedRowChanged], [FocusedColumnChanged] events.
+			
+			Column focus restriction: 
+			[{goto:Columns,OptionsColumn.AllowFocus}Column.OptionsColumn.AllowFocus] option.
+			
+			Row focus restriction: 
+			[BeforeLeaveRow] event. 
+		</Description>
+	</FeatureItem>
+	<FeatureItem ID="Focus_FocusAppearance" Name="Focus Appearance" Category="Nav_Focus" ReferenceId="VE_Focus"></FeatureItem>
+	<FeatureItem ID="Nav_MultiSelect" Name="Row and Cell Selection" Category="Nav_Main" SelectedPropertyOnStart="OptionsSelection.MultiSelect">
+        <Properties>
+			<Item Name="OptionsSelection.MultiSelect"></Item>
+			<Item Name="OptionsSelection.MultiSelectMode"></Item>
+			<Item Name="OptionsSelection.UseIndicatorForSelection"></Item>
+			<Item Name="SelectionChanged"></Item>
+			<Item Name="Appearance.SelectedRow"></Item>
+			<Item Name="Appearance.HideSelectionRow"></Item>
+		</Properties>
+		<Description>
+			Availability: 
+			[OptionsSelection.MultiSelect] option.
+			
+			Row or cell selection:
+			[OptionsSelection.MultiSelectMode] option.
+			
+			Appearance: 
+			[Appearance.SelectedRow] property when the grid has focus, otherwise [Appearance.HideSelectionRow].
+			
+			Selection change notification: 
+			[SelectionChanged] event.
+			
+			Selecting via [{gotoFeature:VE_Indicator}indicator]: 
+			[OptionsSelection.UseIndicatorForSelection] option.
+		</Description>
+	</FeatureItem>
+
+		<FeatureItem ID="MD_MainSettings_Detail" Name="Detail View Settings" Category="MD_Main" ExpandAll="True" SelectedPropertyOnStart="SynchronizeClones">
+        <Properties>
+			<Item Name="SynchronizeClones"></Item>
+			<Item Name="DetailHeight"></Item>
+		</Properties>
+		<Description>
+			If this view is a detail:
+			Detail synchronization: 
+			[{(SynchronizeClones=False)}SynchronizeClones] property.
+			
+			Size when expanded: 
+			[DetailHeight] property.
+			
+		</Description>
+	</FeatureItem>
+
+		<FeatureItem ID="MD_MainSettings_Master" Name="Master View Settings" Category="MD_Main" ExpandAll="True" SelectedPropertyOnStart="OptionsDetail.EnableMasterViewMode">
+        <Properties>
+			<Item Name="OptionsView.ShowDetailButtons"></Item>
+			<Item Name="OptionsDetail.EnableMasterViewMode"></Item>
+			<Item Name="OptionsDetail.EnableDetailToolTip"></Item>
+			<Item Name="OptionsDetail.ShowDetailTabs"></Item>
+			<Item Name="OptionsDetail.AllowZoomDetail"></Item>
+			<Item Name="LevelIndent"></Item>
+		</Properties>
+        <ExpandedPropertiesOnStart>
+			<ExpandedItem Name="OptionsDetail"></ExpandedItem>
+			<ExpandedItem Name="OptionsView"></ExpandedItem>
+		</ExpandedPropertiesOnStart>
+		<Description>
+			Detail availability: 
+			[{(OptionsDetail.EnableMasterViewMode=False)}OptionsDetail.EnableMasterViewMode] option.
+
+			Visual elements: 
+			[{(OptionsView.ShowDetailButtons=False)}OptionsView.ShowDetailButtons], [{(OptionsDetail.ShowDetailTabs=False)}OptionsDetail.ShowDetailTabs], [{(OptionsDetail.EnableDetailToolTip=False)}OptionsDetail.EnableDetailToolTip] options.
+
+			View zooming: 
+			[{(OptionsDetail.AllowZoomDetail=False)}OptionsDetail.AllowZoomDetail] option.
+
+			Detail view indent:
+			[LevelIndent] property.
+		</Description>
+	</FeatureItem>
+
+	
+	
+	<FeatureItem ID="MD_ExpandButtons" Name="Expand Buttons" Category="MD_Main" ReferenceId="VE_DetailExpandButtons"></FeatureItem>
+	<FeatureItem ID="MD_DetailTabs" Name="Detail Tabs" Category="MD_Main" ReferenceId="VE_DetailTabs"></FeatureItem>
+	<FeatureItem ID="MD_DetailToolTips" Name="Detail Tooltips" Category="MD_Main" ReferenceId="VE_DetailToolTip"></FeatureItem>
+	<FeatureItem ID="MD_JoinedGroupPanel" Name="Joined Group Panel" Category="MD_Main" ReferenceId="VE_JoinedGroupPanel"></FeatureItem>
+	<FeatureItem ID="MD_Behavior" Name="Behavior" Category="MD_Main" ReferenceId="Behavior_MD"></FeatureItem>
+	<FeatureItem ID="MD_Events" Name="Create Master-Detail via Events" Category="MD_Main" SelectedPropertyOnStart="MasterRowGetChildList">
+        <Properties>
+			<Item Name="MasterRowEmpty"></Item>
+			<Item Name="MasterRowGetChildList"></Item>
+			<Item Name="MasterRowGetLevelDefaultView"></Item>
+			<Item Name="MasterRowGetRelationCount"></Item>
+			<Item Name="MasterRowGetRelationDisplayCaption"></Item>
+			<Item Name="MasterRowGetRelationName"></Item>
+		</Properties>
+		<Description>
+			Specify child relationships:
+			[MasterRowGetRelationCount], [MasterRowGetRelationName], [MasterRowGetRelationDisplayCaption] events.
+			
+			Supply detail content:
+			[MasterRowEmpty], [MasterRowGetChildList] events.
+			
+			Specify detail representation's kind:
+			[MasterRowGetLevelDefaultView] event.
+		</Description>
+	</FeatureItem>
+	<FeatureItem ID="MD_EndUser" Name="End-user Actions" Category="MD_Main" ReferenceId="EndUser_MD"></FeatureItem>
+	<FeatureItem ID="Appearance_ViewAppearance" Name="View Appearance" Category="Appearance_Main" SelectedPropertyOnStart="PaintStyleName">	
+		<SupportedComponents GridView="True"></SupportedComponents>
+		<Properties>
+			<Item Name="Appearance"></Item>
+			<Item Name="OptionsView.EnableAppearanceEvenRow"></Item>
+			<Item Name="OptionsView.EnableAppearanceOddRow"></Item>
+			<Item Name="OptionsSelection.EnableAppearanceFocusedRow"></Item>
+			<Item Name="OptionsSelection.EnableAppearanceFocusedCell"></Item>
+			<Item Name="CustomDrawCell"></Item>
+			<Item Name="CustomDrawColumnHeader"></Item>
+			<Item Name="CustomDrawEmptyForeground"></Item>
+			<Item Name="CustomDrawFilterPanel"></Item>
+			<Item Name="CustomDrawFooter"></Item>
+			<Item Name="CustomDrawFooterCell"></Item>
+			<Item Name="CustomDrawGroupPanel"></Item>
+			<Item Name="CustomDrawGroupRow"></Item>
+			<Item Name="CustomDrawRowFooter"></Item>
+			<Item Name="CustomDrawRowFooterCell"></Item>
+			<Item Name="CustomDrawRowIndicator"></Item>
+			<Item Name="CustomDrawRowPreview"></Item>
+			<Item Name="GroupLevelStyle"></Item>
+			<Item Name="RowCellDefaultAlignment"></Item>
+			<Item Name="RowCellStyle"></Item>
+			<Item Name="RowStyle"></Item>
+			<Item Name="CustomDrawRowPreview"></Item>
+			<Item Name="CustomDrawRowPreview"></Item>
+			<Item Name="PaintStyleName"></Item>
+		</Properties>
+		<Description>
+			This page provides access to all the settings available for customizing the appearance of this view. You can also access the appearance settings related to a particular visual element. See the [{gotoFeature:VE_Main}Visual Elements] section for this purpose.
+		</Description>
+	</FeatureItem>
+	<FeatureItem ID="VE_AutoFilterRow" Name="Auto Filter Row" Category="VE_Main" SelectedPropertyOnStart="OptionsView.ShowAutoFilterRow" SampleSetupClass="">
+        <Properties>
+			<Item Name="OptionsView.ShowAutoFilterRow"></Item>
+			<Item Name="Appearance.Row"></Item>
+			<Item Name="CustomDrawCell"></Item>
+		</Properties>
+        <ExpandedPropertiesOnStart>
+			<ExpandedItem Name="OptionsView"></ExpandedItem>
+			<ExpandedItem Name="Appearance"></ExpandedItem>
+		</ExpandedPropertiesOnStart>
+		<Description>
+			Auto Filter Row is one of the visual elements that allow end-user data filtering. When enabled, end users can enter values into this row's cells and the view will filter the data to display only the matched values.
+			
+			Visibility: 
+			[{(OptionsView.ShowAutoFilterRow=False)}OptionsView.ShowAutoFilterRow] option. 
+			
+			Appearance: 
+			[Appearance.Row] property (specifies a common style for all data rows).
+			
+			Manual painting: 
+			[CustomDrawCell] event (can be used to specify the Auto Filter Row's style without affecting other data rows).
+			
+			Related Features: [{gotoFeature:Feature_Filtering}filtering].
+		</Description>
+	</FeatureItem>
+	<FeatureItem ID="VE_Cells" Name="Cells" Category="VE_Main" SelectedPropertyOnStart="RowCellStyle" SampleSetupClass="">
+        <Properties>
+			<Item Name="RowCellStyle"></Item>
+			<Item Name="RowCellDefaultAlignment"></Item>
+		</Properties>
+        <Pages>
+			<Columns>
+				<Properties>
+					<Item Name="AppearanceCell"></Item>
+				</Properties>
+			</Columns>
+			<FormatCondition>
+			</FormatCondition>
+		</Pages>
+        <ExpandedPropertiesOnStart>
+			<ExpandedItem Name="Appearance"></ExpandedItem>
+		</ExpandedPropertiesOnStart>
+		<Description>
+			The cell layout is specified by the layout of rows and columns. The following appearance customization mechanisms for individual cells are available.
+			
+			Appearance: 
+			[RowCellStyle], [RowCellDefaultAlignment], [{goto:Columns,AppearanceCell}Column.AppearanceCell] property, [{goto:Format Condition}format rules].
+		</Description>
+	</FeatureItem>
+	<FeatureItem ID="VE_Column" Name="Column" Category="VE_Main" SelectedPropertyOnStart="" SampleSetupClass="">
+		<SupportedComponents GridView="True"></SupportedComponents>
+        <Pages>
+			<Columns>
+				<Properties>
+					<Item Name="Visible"></Item>
+					<Item Name="VisibleIndex"></Item>
+					<Item Name="Width"></Item>
+					<Item Name="MinWidth"></Item>
+					<Item Name="AppearanceCell"></Item>
+					<Item Name="OptionsColumn.FixedWidth"></Item>
+					<Item Name="DisplayFormat"></Item>
+				</Properties>
+				<ExpandedPropertiesOnStart>
+					<ExpandedItem Name="DisplayFormat"></ExpandedItem>
+				</ExpandedPropertiesOnStart>
+			</Columns>
+		</Pages>
+		<Description>
+			The main features that control the order, size and appearance of columns are:
+			
+			Visibility and order: 
+			[{goto:Columns,Visible}Column.Visible], [{goto:Columns,VisibleIndex}Column.VisibleIndex].
+			
+			Size: 
+			[{goto:Columns,Width}Column.Width], [{goto:Columns,MinWidth}Column.MinWidth], [{goto:Columns,OptionsColumn.FixedWidth}Column.OptionsColumn.FixedWidth] properties.
+			
+			Appearance for cells: 
+			[{goto:Columns,AppearanceCell}AppearanceCell] property.
+			
+			Formatting of cells' texts: 
+			[{goto:Columns,DisplayFormat}Column.DisplayFormat] property.
+					
+			Related features: [{gotoFeature:VE_Cells}cells], [{gotoFeature:VE_ColumnHeaders}column headers], [{gotoFeature:Layout_Columns}column layout].
+		</Description>
+	</FeatureItem>
+	<FeatureItem ID="VE_ColumnHeaders" Name="Column Headers" Category="VE_Main" SelectedPropertyOnStart="OptionsView.ShowColumnHeaders" SampleSetupClass="">
+		<SupportedComponents GridView="True" BandedGridView="True" AdvBandedGridView="True"></SupportedComponents>
+        <Properties>
+			<Item Name="OptionsView.ShowColumnHeaders"></Item>
+			<Item Name="OptionsHint.ShowColumnHeaderHints"></Item>
+			<Item Name="Appearance.HeaderPanel"></Item>
+			<Item Name="Images"></Item>
+			<Item Name="CustomDrawColumnHeader"></Item>
+			<Item Name="ColumnPanelRowHeight"></Item>
+		</Properties>
+        <Pages>
+			<Columns>
+				<Properties>
+					<Item Name="AppearanceHeader"></Item>
+					<Item Name="Caption"></Item>
+					<Item Name="ImageIndex"></Item>
+					<Item Name="ImageAlignment"></Item>
+					<Item Name="OptionsColumn.ShowCaption"></Item>
+					<Item Name="ToolTip"></Item>
+				</Properties>
+				<ExpandedPropertiesOnStart>
+					<ExpandedItem Name="OptionsColumn"></ExpandedItem>
+				</ExpandedPropertiesOnStart>
+			</Columns>
+		</Pages>
+        <ExpandedPropertiesOnStart>
+			<ExpandedItem Name="OptionsView"></ExpandedItem>
+			<ExpandedItem Name="Appearance"></ExpandedItem>
+		</ExpandedPropertiesOnStart>
+		<Description>
+			Column headers provide information about the contents of columns and allow numerous end-user operations such as column reordering, resizing, sorting, grouping, etc.
+			
+			Visibility: 
+			[{(OptionsView.ShowColumnHeaders=False)}OptionsView.ShowColumnHeaders] option. 
+			
+			Appearance: 
+			[{Appearance.HeaderPanel}Appearance.HeaderPanel], [{goto:Columns,AppearanceHeader}Column.AppearanceHeader] properties.
+			
+			Size: 
+			[{ColumnPanelRowHeight}ColumnPanelRowHeight] property.
+			
+			Content: 
+			[{goto:Columns,Caption}Column.Caption], [{Images}Images], [{goto:Columns,ImageIndex}Column.ImageIndex], [{goto:Columns,ImageAlignment}Column.ImageAlignment] properties.
+
+			Hints:
+			[{(OptionsHint.ShowColumnHeaderHints=False)}OptionsHint.ShowColumnHeaderHints], [{goto:Columns,ToolTip}Column.ToolTip] properties.
+			
+			Manual painting: 
+			[{CustomDrawColumnHeader}CustomDrawColumnHeader] event.
+			
+			Related Features: [{gotoFeature:Layout_Columns}Column Layout], [{gotoFeature:VE_ContextMenus}Context Menus].
+		</Description>
+	</FeatureItem>
+	<FeatureItem ID="VE_ContextMenus" Name="Context Menus" Category="VE_Main" SelectedPropertyOnStart="OptionsMenu.EnableColumnMenu" SampleSetupClass="">
+        <Properties>
+			<Item Name="OptionsMenu.EnableColumnMenu"></Item>
+			<Item Name="OptionsMenu.EnableGroupPanelMenu"></Item>
+			<Item Name="OptionsMenu.EnableFooterMenu"></Item>
+			<Item Name="ShowGridMenu"></Item>
+			<Item Name="GridMenuItemClick"></Item>
+		</Properties>
+        <ExpandedPropertiesOnStart>
+			<ExpandedItem Name="OptionsView"></ExpandedItem>
+			<ExpandedItem Name="OptionsMenu"></ExpandedItem>
+		</ExpandedPropertiesOnStart>
+		<Description>
+			The grid view's built-in context menus can be invoked in [{gotoFeature:VE_GroupPanel}group panel], [{gotoFeature:VE_ColumnHeaders}column headers], [{gotoFeature:VE_Footer},footer] and [{gotoFeature:VE_GroupFooters}group footers]. They allow end users to customize the layout of groups, manipulate columns and specify summaries, respectively.
+			
+			Availability: 
+			[{(OptionsMenu.EnableGroupPanelMenu=False)}OptionsMenu.EnableGroupPanelMenu], [{(OptionsMenu.EnableColumnMenu=False)}OptionsMenu.EnableColumnMenu], [{(OptionsMenu.EnableFooterMenu=False)}OptionsMenu.EnableFooterMenu] options in [{(OptionsMenu is null)}OptionsMenu]. 
+			
+			Custom content: 
+			[ShowGridMenu] event enables you to customize context menus before they are displayed.
+			
+			Custom behavior: 
+			[GridMenuItemClick] event lets you process item clicks in a custom manner.
+		</Description>
+	</FeatureItem>
+	<FeatureItem ID="VE_CustomizationForm" Name="Customization Form" Category="VE_Main" SelectedPropertyOnStart="OptionsMenu.EnableColumnMenu" SampleSetupClass="">	
+		<SupportedComponents GridView="True"></SupportedComponents>
+		<Properties>
+			<Item Name="ShowCustomizationForm"></Item>
+			<Item Name="HideCustomizationForm"></Item>
+			<Item Name="OptionsMenu.EnableColumnMenu"></Item>
+		</Properties>
+		<Pages>
+			<Columns>
+				<Properties>
+					<Item Name="OptionsColumn.ShowInCustomizationForm"></Item>
+					<Item Name="CustomizationCaption"></Item>
+					<Item Name="Visible"></Item>
+				</Properties>
+			</Columns>
+		</Pages>
+		<Description>
+			Availability via context menu: 
+			[{(OptionsMenu.EnableColumnMenu=False)}OptionsMenu.EnableColumnMenu] option.
+			
+			Content (hidden columns): 
+			[{goto:Columns,Visible}Column.Visible], [{goto:Columns,OptionsColumn.ShowInCustomizationForm}Column.OptionsColumn.ShowInCustomizationForm] properties.
+			
+			Column caption when in customization form:
+			[{goto:Columns,CustomizationCaption}Column.CustomizationCaption] property.
+			
+			Before customization form is displayed: 
+			[ShowCustomizationForm] event.
+			
+			Hide notification: 
+			[HideCustomizationForm].
+		</Description>
+	</FeatureItem>
+	<FeatureItem ID="VE_DetailExpandButtons" Name="Detail Expand Buttons" Category="VE_Main" ExpandAll="True" SelectedPropertyOnStart="OptionsView.ShowDetailButtons">
+        <Properties>
+			<Item Name="OptionsView.ShowDetailButtons"></Item>
+			<Item Name="OptionsDetail.SmartDetailExpandButtonMode"></Item>
+			<Item Name="OptionsDetail.EnableMasterViewMode"></Item>
+		</Properties>
+		<Description>
+			Availability:
+			[{(OptionsDetail.EnableMasterViewMode=False)}OptionsDetail.EnableMasterViewMode] option (if there are details).
+				
+			Visiblity: 
+			[{(OptionsView.ShowDetailButtons=False)}OptionsView.ShowDetailButtons] option.
+			
+			Appears enabled or disabled depending on: 
+			[{(OptionsDetail.SmartDetailExpandButton=False)}OptionsDetail.SmartDetailExpandButtonMode] option.
+		</Description>
+	</FeatureItem>
+	<FeatureItem ID="VE_DetailTabs" Name="Detail Tabs" Category="VE_Main" ExpandAll="True" SelectedPropertyOnStart="OptionsDetail.ShowDetailTabs">
+        <Properties>
+			<Item Name="OptionsDetail.EnableMasterViewMode"></Item>
+			<Item Name="DetailTabHeaderLocation"></Item>
+			<Item Name="OptionsDetail.ShowDetailTabs"></Item>
+		</Properties>
+		<Description>
+			Availability:
+			[{(OptionsDetail.EnableMasterViewMode=False)}OptionsDetail.EnableMasterViewMode] option (if there are multiple details).
+
+			Visiblity: 
+			[{(OptionsDetail.ShowDetailTabs=False)}OptionsDetail.ShowDetailTabs] option.
+			
+			Position: 
+			[DetailTabHeaderLocation] property.
+		</Description>
+	</FeatureItem>
+	<FeatureItem ID="VE_DetailToolTip" Name="Detail Tooltip" Category="VE_Main" SelectedPropertyOnStart="OptionsDetail.EnableDetailToolTip">
+        <Properties>
+			<Item Name="OptionsDetail.EnableMasterViewMode"></Item>
+			<Item Name="OptionsDetail.EnableDetailToolTip"></Item>
+			<Item Name="Appearance.DetailTip"></Item>
+		</Properties>
+        <ExpandedPropertiesOnStart>
+			<ExpandedItem Name="OptionsDetail"></ExpandedItem>
+			<ExpandedItem Name="Appearance"></ExpandedItem>
+		</ExpandedPropertiesOnStart>
+		<Description>
+			Availability:
+			[{(OptionsDetail.EnableMasterViewMode=False)}OptionsDetail.EnableMasterViewMode] option (if there are multiple details).
+
+			Visibility: 
+			[{(OptionsDetail.EnableDetailToolTip=False)}OptionsDetail.EnableDetailToolTip] option.
+			
+			Appearance: 
+			[Appearance.DetailTip] property.
+		</Description>
+	</FeatureItem>
+	<FeatureItem ID="VE_FilterButtons" Name="Filter Buttons" Category="VE_Main" SelectedPropertyOnStart="OptionsCustomization.AllowFilter" SampleSetupClass="">
+        <Properties>
+			<Item Name="OptionsCustomization.AllowFilter"></Item>
+			<Item Name="Appearance.ColumnFilterButton"></Item>
+			<Item Name="Appearance.ColumnFilterButtonActive"></Item>
+			<Item Name="CustomDrawColumnHeader"></Item>
+			<Item Name="OptionsView.HeaderFilterButtonShowMode"></Item>
+		</Properties>
+        <ExpandedPropertiesOnStart>
+			<ExpandedItem Name="OptionsCustomization"></ExpandedItem>
+			<ExpandedItem Name="Appearance"></ExpandedItem>
+		</ExpandedPropertiesOnStart>
+		<Pages>
+			<Columns>
+				<Properties>
+					<Item Name="OptionsFilter.AllowAutoFilter"></Item>
+				</Properties>
+			</Columns>
+		</Pages>
+		<Description>
+			Filter buttons are displayed within [{gotoFeature:VE_ColumnHeaders}column headers]. They invoke filter dropdowns that are used to apply filtering in MS Excel(r) style.
+			
+			Visibility: 
+			[{(OptionsCustomization.AllowFilter=False)}OptionsCustomization.AllowFilter], [{goto:Columns,OptionsFilter.AllowAutoFilter}Column.OptionsFilter.AllowAutoFilter] options.
+			
+			Shape and behavior:
+			[OptionsView.HeaderFilterButtonShowMode] property.
+			
+			Appearance: 
+			[Appearance.ColumnFilterButton], [Appearance.ColumnFilterButtonActive] properties.
+			
+			Manual painting: 
+			[CustomDrawColumnHeader] event.		
+		</Description>
+	</FeatureItem>
+	<FeatureItem ID="VE_Focus" Name="Focus" Category="VE_Main" SelectedPropertyOnStart="OptionsSelection.InvertSelection" SampleSetupClass="">	
+		<Properties>
+			<Item Name="FocusRectStyle"></Item>
+			<Item Name="Appearance.HideSelectionRow"></Item>
+			<Item Name="Appearance.FocusedRow"></Item>
+			<Item Name="Appearance.FocusedCell"></Item>
+			<Item Name="OptionsSelection.InvertSelection"></Item>
+			<Item Name="OptionsSelection.EnableAppearanceFocusedCell"></Item>
+			<Item Name="OptionsSelection.EnableAppearanceFocusedRow"></Item>
+		</Properties>
+        <ExpandedPropertiesOnStart>
+			<ExpandedItem Name="Appearance"></ExpandedItem>
+			<ExpandedItem Name="OptionsSelection"></ExpandedItem>
+		</ExpandedPropertiesOnStart>
+		<Description>
+			Row or cell highlighting: 
+			[OptionsSelection.InvertSelection], [FocusRectStyle] option.
+			
+			Appearance availability: 
+			[{(OptionsSelection.EnableAppearanceFocusedRow=False)}OptionsSelection.EnableAppearanceFocusedRow], [{(OptionsSelection.EnableAppearanceFocusedCell=False)}OptionsSelection.EnableAppearanceFocusedCell] options.
+			
+			Appearance: 
+			[Appearance.FocusedRow], [Appearance.FocusedCell] properties.
+			
+			Appearance when grid is not focused: 
+			[Appearance.HideSelectionRow] property.
+		</Description>
+	</FeatureItem>
+	<FeatureItem ID="VE_Footer" Name="Footer" Category="VE_Main" SelectedPropertyOnStart="OptionsView.ShowFooter" SampleSetupClass="">
+        <Properties>
+			<Item Name="OptionsView.ShowFooter"></Item>
+			<Item Name="Appearance.FooterPanel"></Item>
+			<Item Name="CustomDrawFooter"></Item>
+			<Item Name="CustomDrawFooterCell"></Item>
+			<Item Name="FooterPanelHeight"></Item>
+		</Properties>
+        <ExpandedPropertiesOnStart>
+			<ExpandedItem Name="OptionsView"></ExpandedItem>
+			<ExpandedItem Name="Appearance"></ExpandedItem>
+		</ExpandedPropertiesOnStart>
+		<Pages>
+			<Columns>
+				<Properties>
+					<Item Name="SummaryItem"></Item>
+				</Properties>
+			</Columns>
+		</Pages>
+		<Description>
+			The footer panel is designed to show [{gotoFeature:Feature_TotalSummary}total summary] values. End users can use the footer's [{gotoFeature:VE_ContextMenus}context menu] to change the total summary type for columns.
+			
+			Visibility: 
+			[{(OptionsView.ShowFooter=False)}OptionsView.ShowFooter] option. 
+			
+			Appearance: 
+			[Appearance.FooterPanel] property.
+			
+			Content:
+			[{goto:Columns,SummaryItem}Column.SummaryItem] property. See [{gotoFeature:Feature_TotalSummary}total summary] for details.
+			
+			Size: 
+			[FooterPanelHeight] property.
+			
+			Manual Painting: 
+			[CustomDrawFooter] and [CustomDrawFooterCell] events.
+		</Description>
+	</FeatureItem>
+	<FeatureItem ID="VE_GridLines" Name="Grid Lines" Category="VE_Main" SelectedPropertyOnStart="OptionsView.ShowVertLines">
+        <Properties>
+			<Item Name="OptionsView.ShowVerticalLines"></Item>
+			<Item Name="OptionsView.ShowHorizontalLines"></Item>
+			<Item Name="AppearancePrint.Lines"></Item>
+			<Item Name="Appearance.HorzLine"></Item>
+			<Item Name="Appearance.VertLine"></Item>
+			<Item Name="RowSeparatorHeight"></Item>
+		</Properties>
+        <ExpandedPropertiesOnStart>
+			<ExpandedItem Name="Appearance"></ExpandedItem>
+		</ExpandedPropertiesOnStart>
+		<Description>
+			Visibility: 
+			[OptionsView.ShowHorizontalLines], [OptionsView.ShowVerticalLines] properties.
+
+			Row separator:
+			[RowSeparatorHeight]
+
+			Appearance: 
+			[Appearance.HorzLine], [Appearance.VertLine] properties.
+			
+			In printed grid:
+			Appearance: [AppearancePrint.Lines].
+		</Description>
+	</FeatureItem>
+	<FeatureItem ID="VE_GroupFooters" Name="Group Footers" Category="VE_Main" SelectedPropertyOnStart="GroupFooterShowMode" SampleSetupClass="DevExpress.XtraGrid.FeatureBrowser.FeatureBrowserGridGroupingCustomization">
+        <Properties>
+			<Item Name="GroupFooterShowMode"></Item>
+			<Item Name="Appearance.GroupFooter"></Item>
+			<Item Name="CustomDrawRowFooter"></Item>
+			<Item Name="CustomDrawRowFooterCell"></Item>
+		</Properties>
+        <ExpandedPropertiesOnStart>
+			<ExpandedItem Name="OptionsView"></ExpandedItem>
+			<ExpandedItem Name="Appearance"></ExpandedItem>
+		</ExpandedPropertiesOnStart>
+		<Pages>
+			<GroupSummaries>
+        <Properties>
+          <Item Name="DisplayFormat"></Item>
+          <Item Name="FieldName"></Item>
+          <Item Name="ShowInGroupColumnFooter"></Item>
+          <Item Name="SummaryType"></Item>
+          <Item Name="Tag"></Item>
+        </Properties>
+			</GroupSummaries>
+		</Pages>
+		<Description>
+			Group footers are designed to show [{gotoFeature:Feature_GroupSummary}group summary] values. End users can use the footers' [{gotoFeature:VE_ContextMenus}context menu] to change the summary type for columns.
+			
+			Visibility: 
+			[GroupFooterShowMode] option. 
+			
+			Appearance: 
+			[Appearance.GroupFooter] property.
+			
+			Content:
+			[{goto:Group Summary}group summaries].
+			
+			Manual Painting: 
+			[CustomDrawRowFooter] and [CustomDrawRowFooterCell] events.
+		</Description>
+	</FeatureItem>
+	<FeatureItem ID="VE_GroupPanel" Name="Group Panel" Category="VE_Main" SelectedPropertyOnStart="OptionsView.ShowGroupPanel" SampleSetupClass="">
+        <Properties>
+			<Item Name="OptionsView.ShowGroupPanel"></Item>
+			<Item Name="GroupPanelText"></Item>
+			<Item Name="Appearance.GroupPanel"></Item>
+			<Item Name="CustomDrawGroupPanel"></Item>
+		</Properties>
+        <ExpandedPropertiesOnStart>
+			<ExpandedItem Name="OptionsView"></ExpandedItem>
+			<ExpandedItem Name="Appearance"></ExpandedItem>
+		</ExpandedPropertiesOnStart>
+		<Description>
+			The Group Panel allows end-user grouping. Dragging a column header onto the Group Panel results in grouping the view against that column.
+			
+			Visibility: 
+			[{(OptionsView.ShowGroupPanel=False)}OptionsView.ShowGroupPanel] option. 
+			
+			Content: 
+			[GroupPanelText] property.
+			
+			Appearance: 
+			[Appearance.GroupPanel] property. 
+			
+			Manual painting: 
+			[CustomDrawGroupPanel] event.
+			
+			Related Features: [{gotoFeature:Feature_Grouping}Grouping], [{gotoFeature:VE_ContextMenus}Context Menus].
+		</Description>
+	</FeatureItem>
+	<FeatureItem ID="VE_GroupRows" Name="Group Rows" Category="VE_Main" SelectedPropertyOnStart="OptionsView.GroupDrawMode" SampleSetupClass="DevExpress.XtraGrid.FeatureBrowser.FeatureBrowserGridGroupingCustomization">
+        <Properties>
+			<Item Name="GroupFormat"></Item>
+			<Item Name="GroupRowHeight"></Item>
+			<Item Name="Appearance.GroupRow"></Item>
+			<Item Name="CalcRowHeight"></Item>
+			<Item Name="CustomDrawGroupRow"></Item>
+			<Item Name="GroupLevelStyle"></Item>
+			<Item Name="OptionsView.GroupDrawMode"></Item>
+		</Properties>
+        <Pages>
+			<Columns>
+				<Properties>
+					<Item Name="GroupFormat"></Item>
+				</Properties>
+			</Columns>
+			<GroupSummaries>
+        <Properties>
+          <Item Name="DisplayFormat"></Item>
+          <Item Name="FieldName"></Item>
+          <Item Name="ShowInGroupColumnFooter"></Item>
+          <Item Name="SummaryType"></Item>
+          <Item Name="Tag"></Item>
+        </Properties>
+			</GroupSummaries>
+		</Pages>
+        <ExpandedPropertiesOnStart>
+			<ExpandedItem Name="Appearance"></ExpandedItem>
+		</ExpandedPropertiesOnStart>
+		<Description>
+			Group rows are used to organize data rows into a tree when data [{gotoFeature:Feature_Grouping}grouping] is applied. They display grouping values and [{gotoFeature:Feature_GroupSummary}group summaries] and allow end users to expand and collapse groups.
+			
+			Appearance: 
+			[OptionsView.GroupDrawMode], [Appearance.GroupRow] properties. [GroupLevelStyle] event to specify level-dependent group row styles.
+			
+			Content: 
+			[GroupFormat] property, [{goto:Columns,GroupFormat}Column.GroupFormat], [{gotoFeature:Feature_GroupSummary}group summaries].
+			
+			Size: 
+			[GroupRowHeight] property, [CalcRowHeight] event.
+			
+			Manual Painting: 
+			[CustomDrawGroupRow] event.
+		</Description>
+	</FeatureItem>
+	<FeatureItem ID="VE_Hints" Name="Hints" Category="VE_Main" ExpandAll="True" SelectedPropertyOnStart="OptionsHint.ShowCellHints">
+        <Properties>
+			<Item Name="OptionsHint"></Item>
+			<Item Name="VertScrollTipFieldName"></Item>
+		</Properties>
+        <Pages>
+			<Columns>
+				<Properties>
+					<Item Name="ToolTip"></Item>
+				</Properties>
+			</Columns>
+		</Pages>
+		<Description>
+			Automatic cell and column header hints:
+			[{(OptionsHint.ShowCellHints=False)}OptionsHint.ShowCellHints], [{(OptionsHint.ShowColumnHeaderHints=False)}OptionsHint.ShowColumnHeaderHints] options.
+			
+			Custom hints for column headers:
+			[{goto:Columns,ToolTip}Column.ToolTip] property.
+			
+			Vertical scrolling tool tip:
+			[VertScrollTipFieldName] property.	
+		</Description>
+	</FeatureItem>
+	<FeatureItem ID="VE_Indicator" Name="Indicator" Category="VE_Main" SelectedPropertyOnStart="OptionsView.ShowIndicator">	
+		<Properties>
+			<Item Name="Appearance.HeaderPanel"></Item>
+			<Item Name="IndicatorWidth"></Item>
+			<Item Name="OptionsView.ShowIndicator"></Item>
+			<Item Name="CustomDrawRowIndicator"></Item>
+		</Properties>
+        <ExpandedPropertiesOnStart>
+			<ExpandedItem Name="Appearance"></ExpandedItem>
+			<ExpandedItem Name="OptionsView"></ExpandedItem>
+		</ExpandedPropertiesOnStart>
+		<Description>
+			Visibility: 
+			[OptionsView.ShowIndicator] property.
+			
+			Appearance: 
+			[Appearance.HeaderPanel] property.
+			
+			Size: 
+			[IndicatorWidth] property.
+			
+			Manual painting: 
+			[CustomDrawRowIndicator] event.
+		</Description>
+	</FeatureItem>
+	<FeatureItem ID="VE_JoinedGroupPanel" Name="Joined Group Panel" Category="VE_Main" SelectedPropertyOnStart="OptionsView.ShowChildrenInGroupPanel" SampleSetupClass="">
+        <Properties>
+			<Item Name="OptionsView.ShowChildrenInGroupPanel"></Item>
+			<Item Name="ChildGridLevelName"></Item>
+			<Item Name="ViewCaption"></Item>
+		</Properties>
+        <ExpandedPropertiesOnStart>
+			<ExpandedItem Name="OptionsView"></ExpandedItem>
+		</ExpandedPropertiesOnStart>
+		<Description>
+			The [{gotoFeature:VE_GroupPanel}Group panel] can be turned into a Joined Group Panel to create a shared panel for the view and its details.
+			
+			Avaiability: 
+			[{(OptionsView.ShowChildrenInGroupPanel=true)}OptionsView.ShowChildrenInGroupPanel], [ChildGridLevelName] properties.
+			
+			Content: 
+			[ViewCaption] property to specify the text which represents the view in the joined group panel.
+		</Description>
+	</FeatureItem>
+	<FeatureItem ID="VE_NewItemRow" Name="New Item Row" Category="VE_Main" SelectedPropertyOnStart="OptionsView.NewItemRowPosition">
+        <Properties>
+			<Item Name="OptionsView.NewItemRowPosition"></Item>
+			<Item Name="NewItemRowText"></Item>
+			<Item Name="Appearance.TopNewRow"></Item>
+			<Item Name="InitNewRow"></Item>
+		</Properties>
+        <ExpandedPropertiesOnStart>
+			<ExpandedItem Name="Appearance"></ExpandedItem>
+		</ExpandedPropertiesOnStart>
+		<Description>
+			New Item Row allows end users to add new records.
+			
+			Visibility and position: 
+			[{(OptionsView.NewItemRowPosition=0)}OptionsView.NewItemRowPosition] property.
+			
+			Content when inactive: 
+			[NewItemRowText] property.
+			
+			Appearance: 
+			[Appearance.TopNewRow] if displayed at the top, otherwise the same as for [{gotoFeature:VE_Rows}data rows].
+			
+			New row initialization: 
+			[InitNewRow] event.
+		</Description>
+	</FeatureItem>
+	<FeatureItem ID="VE_Preview" Name="Preview Section" Category="VE_Main" SelectedPropertyOnStart="OptionsView.ShowPreview" SampleSetupClass="DevExpress.XtraGrid.FeatureBrowser.FeatureBrowserGridPreviewCustomization">	
+		<Properties>
+			<Item Name="OptionsView.ShowPreview"></Item>
+			<Item Name="PreviewFieldName"></Item>
+			<Item Name="Appearance.Preview"></Item>
+			<Item Name="AppearancePrint.Preview"></Item>
+			<Item Name="OptionsPrint.PrintPreview"></Item>
+			<Item Name="CustomDrawRowPreview"></Item>
+			<Item Name="OptionsView.ShowPreviewRowLines"></Item>
+			<Item Name="PreviewIndent"></Item>
+		</Properties>
+        <ExpandedPropertiesOnStart>
+			<ExpandedItem Name="OptionsView"></ExpandedItem>
+			<ExpandedItem Name="Appearance"></ExpandedItem>
+		</ExpandedPropertiesOnStart>
+		<Description>
+			Visibility: 
+			[{(OptionsView.ShowPreview=False)}OptionsView.ShowPreview] property.
+			
+			Indent:
+			[PreviewIndent] property.
+			
+			Appearance: 
+			[Appearance.Preview] property.
+			
+			Manual Painting: 
+			[CustomDrawRowPreview] event.
+			
+			Content and Size: 
+			see [{gotoFeature:Feature_Preview}preview feature].
+			
+			When [{gotoFeature:Grid_Printing}printed]:
+			Visibility: [OptionsPrint.PrintPreview] property.
+			Appearance: [AppearancePrint.Preview] property.
+		</Description>
+	</FeatureItem>
+	<FeatureItem ID="VE_Rows" Name="Rows" Category="VE_Main" SelectedPropertyOnStart="RowHeight" SampleSetupClass="">
+        <Properties>
+			<Item Name="RowHeight"></Item>
+			<Item Name="CalcRowHeight"></Item>
+			<Item Name="OptionsView.RowAutoHeight"></Item>
+			<Item Name="Appearance.Row"></Item>
+			<Item Name="Appearance.OddRow"></Item>
+			<Item Name="Appearance.EvenRow"></Item>
+			<Item Name="OptionsView.EnableAppearanceEvenRow"></Item>
+			<Item Name="OptionsView.EnableAppearanceOddRow"></Item>
+			<Item Name="RowStyle"></Item>
+		</Properties>
+        <ExpandedPropertiesOnStart>
+			<ExpandedItem Name="Appearance"></ExpandedItem>
+			<ExpandedItem Name="OptionsView"></ExpandedItem>
+		</ExpandedPropertiesOnStart>
+		<Pages>
+			<Columns>
+				<Properties>
+					<Item Name="ColumnEdit"></Item>
+				</Properties>
+			</Columns>
+		</Pages>
+		<Description>
+			The main settings which affect the appearance and layout of data rows are:
+			
+			Appearance: 
+			- any row:[Appearance.Row] property, [{goto:Appearance_StyleConditions}style conditions], [RowStyle] event.
+			- even rows: [OptionsView.EnableAppearanceEvenRow], [Appearance.EvenRow].
+			- odd rows: [OptionsView.EnableAppearanceOddRow], [Appearance.OddRow].
+			
+			Size: 
+			[RowHeight] property, [CalcRowHeight] event.
+			
+			Auto size: 
+			[OptionsView.RowAutoHeight] option (in effect only when memo or picture [{goto:Columns,ColumnEdit}editors] are used).
+		</Description>
+	</FeatureItem>
+	<FeatureItem ID="VE_FilterDropdowns" Name="Filter Dropdowns" Category="VE_Main" ExpandAll="True" SelectedPropertyOnStart="OptionsFilter.ShowAllTableValuesInFilterPopup" SampleSetupClass="">
+        <Properties>
+			<Item Name="ShowFilterPopupListBox"></Item>
+			<Item Name="OptionsFilter.ShowAllTableValuesInFilterPopup"></Item>
+			<Item Name="OptionsFilter.UseNewCustomFilterDialog"></Item>
+			<Item Name="OptionsFilter.ColumnFilterPopupMaxRecordsCount"></Item>
+			<Item Name="OptionsFilter.ColumnFilterPopupRowCount"></Item>
+			<Item Name="OptionsFilter.AllowColumnMRUFilterList"></Item>
+			<Item Name="OptionsFilter.MRUColumnFilterListCount"></Item>
+			<Item Name="CustomFilterDialog"></Item>
+		</Properties>
+		<Description>
+			Filter dropdowns are shown when filter buttons are clicked. They allow end users to filter columns by the values in a particular column or specify a custom filtering condition.
+			
+			Content: 
+			[OptionsFilter.ShowAllTableValuesInFilterPopup] and [OptionsFilter.ColumnFilterPopupMaxRecordsCount] properties, [ShowFilterPopupListBox] event.
+			
+			Size: 
+			[OptionsFilter.ColumnFilterPopupRowCount] property.
+			
+			MRU list: 
+			[OptionsFilter.AllowColumnMRUFilterList], [OptionsFilter.MRUColumnFilterListCount] options.
+			
+			(Custom) item behavior: 
+			[OptionsFilter.UseNewCustomFilterDialog] property, [CustomFilterDialog] event.
+		</Description>
+	</FeatureItem>
+	<FeatureItem ID="VE_FilterPanel" Name="Filter Panel" Category="VE_Main" SelectedPropertyOnStart="OptionsView.ShowFilterPanelMode" SampleSetupClass="DevExpress.XtraGrid.FeatureBrowser.FeatureBrowserGridFilteringCustomization">
+        <Properties>
+			<Item Name="OptionsView.ShowFilterPanelMode"></Item>
+			<Item Name="Appearance.FilterPanel"></Item>
+			<Item Name="Appearance.FilterCloseButton"></Item>
+			<Item Name="CustomDrawFilterPanel"></Item>
+			<Item Name="AppearancePrint.FilterPanel"></Item>
+			<Item Name="OptionsFilter.AllowMRUFilterList"></Item>
+			<Item Name="OptionsFilter.MRUFilterListCount"></Item>
+			<Item Name="OptionsFilter.MRUFilterListPopupCount"></Item>
+		</Properties>
+        <ExpandedPropertiesOnStart>
+			<ExpandedItem Name="OptionsView"></ExpandedItem>
+			<ExpandedItem Name="Appearance"></ExpandedItem>
+			<ExpandedItem Name="AppearancePrint"></ExpandedItem>
+		</ExpandedPropertiesOnStart>
+		<Description>
+			The filter panel displays the currenly applied filter criteria, allows you to enable, disable or cancel the current filter and provides access to the most recently used filter conditions. 
+			
+			Provide an indication of when the view is filtered: 
+			[OptionsView.ShowFilterPanelMode] property.
+			
+			Appearance: 
+			[Appearance.FilterPanel], [Appearance.FilterCloseButton] properties.
+			
+			MRU filter conditions:
+			[{(OptionsFilter.AllowMRUFilterList=False)}OptionsFilter.AllowMRUFilterList], [OptionsFilter.MRUFilterListCount], [OptionsFilter.MRUFilterListPopupCount] properties.
+			
+			Printed appearance: 
+			[AppearancePrint.FilterPanel] property.
+			
+			Manual painting: 
+			[CustomDrawFilterPanel] event.
+			
+			Related features: [{gotoFeature:Feature_Filtering}filtering].
+		</Description>
+	</FeatureItem>
+	<FeatureItem ID="EndUser_ColumnLayout" Name="Column Layout" Category="EndUser_Main" ExpandAll="True" SelectedPropertyOnStart="OptionsCustomization.AllowColumnMoving" SampleSetupClass="">
+		<SupportedComponents GridView="True"></SupportedComponents>
+        <Properties>
+			<Item Name="OptionsCustomization.AllowColumnMoving"></Item>
+			<Item Name="OptionsCustomization.AllowColumnResizing"></Item>
+			<Item Name="BestFitMaxRowCount"></Item>
+			<Item Name="OptionsMenu.EnableColumnMenu"></Item>
+			<Item Name="ColumnChanged"></Item>
+			<Item Name="ColumnWidthChanged"></Item>
+		</Properties>
+        <Pages>
+			<Columns>
+				<Properties>
+					<Item Name="OptionsColumn.AllowMove"></Item>
+					<Item Name="OptionsColumn.AllowSize"></Item>
+					<Item Name="MinWidth"></Item>
+					<Item Name="OptionsColumn.FixedWidth"></Item>
+				</Properties>
+			</Columns>
+		</Pages>
+		<Description>
+			Allow column moving: 
+			[{(OptionsCustomization.AllowColumnMoving=False)}OptionsCustomization.AllowColumnMoving], [{goto:Columns,OptionsColumn.AllowMove}Column.OptionsColumn.AllowMove] properties.
+			
+			Allow column resizing: 
+			[{(OptionsCustomization.AllowColumnResizing=False)}OptionsCustomization.AllowColumnResizing], [{goto:Columns,OptionsColumn.AllowSize}Column.OptionsColumn.AllowSize] properties.
+			
+			Width: 
+			[{goto:Columns,MinWidth}Column.MinWidth,] [{goto:Columns,OptionsColumn.FixedWidth}Column.OptionsColumn.FixedWidth] properties.
+
+			Best Fit feature: 
+			[BestFitMaxRowCount] property.
+			
+			Column customization menu: 
+			[{(OptionsMenu.EnableColumnMenu=False)}OptionsMenu.EnableColumnMenu] option.
+			
+			Column layout changes notifications: 
+			[{ColumnChanged}ColumnChanged], [ColumnWidthChanged] events.
+		</Description>
+	</FeatureItem>
+	<FeatureItem ID="EndUser_Grouping" Name="Grouping" Category="EndUser_Main" ExpandAll="True" SelectedPropertyOnStart="OptionsCustomization.AllowGroup" SampleSetupClass="">
+        <Properties>
+			<Item Name="OptionsCustomization.AllowGroup"></Item>
+			<Item Name="GroupRowCollapsing"></Item>
+			<Item Name="GroupRowExpanding"></Item>
+			<Item Name="GroupRowCollapsed"></Item>
+			<Item Name="GroupRowExpanded"></Item>
+			<Item Name="StartGrouping"></Item>
+			<Item Name="EndGrouping"></Item>
+		</Properties>
+        <Pages>
+			<Columns>
+				<Properties>
+					<Item Name="OptionsColumn.AllowGroup"></Item>
+				</Properties>
+			</Columns>
+		</Pages>
+        <ExpandedPropertiesOnStart>
+			<ExpandedItem Name="OptionsView"></ExpandedItem>
+		</ExpandedPropertiesOnStart>
+		<Description>
+			Availability: 
+			[OptionsCustomization.AllowGroup], [{goto:Columns}Column.Options.AllowGroup] options.
+			
+			Grouping Notifications: 
+			[StartGrouping], [EndGrouping] events.
+			
+			Respond to and customize group row state changes: 
+			[GroupRowExpanding], [GroupRowExpanded], [GroupRowCollapsing], [GroupRowCollapsed] events.
+		</Description>
+	</FeatureItem>
+	<FeatureItem ID="EndUser_Filtering" Name="Filtering" Category="EndUser_Main" ExpandAll="True" SelectedPropertyOnStart="OptionsCustomization.AllowFilter" SampleSetupClass="">
+        <Properties>
+			<Item Name="ColumnFilterChanged"></Item>
+			<Item Name="OptionsCustomization.AllowFilter"></Item>
+			<Item Name="OptionsView.ShowAutoFilterRow"></Item>
+			<Item Name="OptionsView.ShowFilterPanelMode"></Item>
+		</Properties>
+        <Pages>
+			<Columns>
+				<Properties>
+					<Item Name="OptionsFilter.AllowAutoFilter"></Item>
+					<Item Name="OptionsFilter.AllowFilter"></Item>
+				</Properties>
+			</Columns>
+		</Pages>
+        <ExpandedPropertiesOnStart></ExpandedPropertiesOnStart>
+        <Description>
+			MS Excel(r) style filtering availabilty:
+			[{(OptionsCustomization.AllowFilter=False)}OptionsCustomization.AllowFilter], [{goto:Columns,OptionsFilter.AllowFilter}Column.OptionsFilter.AllowFilter] options.
+			
+			Auto Filter Row availability:
+			[{(OptionsView.ShowAutoFilterRow=False)}OptionsView.ShowAutoFilterRow], [{goto:Columns,OptionsFilter.AllowAutoFilter}Column.OptionsFilter.AllowAutoFilter] options.
+			
+			Filter change notification:
+			[ColumnFilterChanged] event.
+		</Description>
+	</FeatureItem>
+	<FeatureItem ID="EndUser_Sorting" Name="Sorting" Category="EndUser_Main" SelectedPropertyOnStart="OptionsCustomization.AllowSort" SampleSetupClass="">
+        <Properties>
+			<Item Name="OptionsCustomization.AllowSort"></Item>
+			<Item Name="OptionsView.ShowColumnHeaders"></Item>
+			<Item Name="OptionsMenu.EnableColumnMenu"></Item>
+			<Item Name="StartSorting"></Item>
+			<Item Name="EndSorting"></Item>
+		</Properties>
+        <ExpandedPropertiesOnStart>
+			<ExpandedItem Name="OptionsView"></ExpandedItem>
+			<ExpandedItem Name="OptionsMenu"></ExpandedItem>
+			<ExpandedItem Name="OptionsCustomization"></ExpandedItem>
+		</ExpandedPropertiesOnStart>
+		<Pages>
+			<Columns>
+				<Properties>
+					<Item Name="OptionsColumn.AllowSort"></Item>
+				</Properties>
+			</Columns>
+		</Pages>
+		<Description>
+			Related visual elements: 
+			[{(OptionsView.ShowColumnHeaders=False)}OptionsView.ShowColumnHeaders], [{(OptionsMenu.EnableColumnMenu=False)}OptionsMenu.EnableColumnMenu] properties.
+			
+			Sorting availability: 
+			[{(OptionsCustomization.AllowSort=False)}OptionsCustomization.AllowSort], [{goto:Columns,OptionsColumn.AllowSort}Column.OptionsColumn.AllowSort] options.
+			
+			Sorting notifications: 
+			[StartSorting] and [EndSorting] events.
+		</Description>
+	</FeatureItem>
+	<FeatureItem ID="EndUser_Scrolling" Name="Scrolling" Category="EndUser_Main" SelectedPropertyOnStart="" SampleSetupClass="">	
+		<Properties>
+			<Item Name="HorzScrollVisibility"></Item>
+			<Item Name="VertScrollVisibility"></Item>
+			<Item Name="TopRowChanged"></Item>
+			<Item Name="LeftCoordChanged"></Item>
+		</Properties>
+		<Description>
+			Scrollbar availability: 
+			[HorzScrollVisibility], [VertScrollVisibility] properties.
+			
+			Scrolling notifications: 
+			[TopRowChanged], [LeftCoordChanged] events.
+		</Description>
+	</FeatureItem>
+	<FeatureItem ID="EndUser_Focus" Name="Focus" Category="EndUser_Main" SelectedPropertyOnStart="FocusedRowChanged">
+        <Properties>
+			<Item Name="FocusedRowChanged"></Item>
+			<Item Name="FocusedColumnChanged"></Item>
+		</Properties>
+        <Pages>
+			<Columns>
+				<Properties>
+					<Item Name="OptionsColumn.AllowFocus"></Item>
+				</Properties>
+			</Columns>
+		</Pages>
+		<Description>
+			Focus change notifications: 
+			[FocusedRowChanged], [FocusedColumnChanged] events.
+		</Description>
+	</FeatureItem>
+	<FeatureItem ID="EndUser_MultiSelect" Name="Multiple Row Selection" Category="EndUser_Main" SelectedPropertyOnStart="OptionsSelection.MultiSelect">
+        <Properties>
+			<Item Name="OptionsSelection.MultiSelect"></Item>
+			<Item Name="OptionsSelection.UseIndicatorForSelection"></Item>
+			<Item Name="SelectionChanged"></Item>
+		</Properties>
+		<Description>
+			Availability: 
+			[OptionsSelection.MultiSelect] option.
+			
+			Selection change notification: 
+			[SelectionChanged] event.
+			
+			Selecting via [{gotoFeature:VE_Indicator}indicator]: 
+			[OptionsSelection.UseIndicatorForSelection] option.
+		</Description>
+	</FeatureItem>
+	<FeatureItem ID="EndUser_MD" Name="Master-Detail" Category="EndUser_Main" SelectedPropertyOnStart="MasterRowCollapsed">
+        <Properties>
+			<Item Name="MasterRowCollapsed"></Item>
+			<Item Name="MasterRowExpanded"></Item>
+		</Properties>
+        <ExpandedPropertiesOnStart>
+			<ExpandedItem Name="OptionsDetail"></ExpandedItem>
+		</ExpandedPropertiesOnStart>
+		<Description>
+			Expand / collapse notifications:
+			[MasterRowCollapsed], [MasterRowExpanded] events.
+		</Description>
+	</FeatureItem>
+	<FeatureItem ID="Behavior_Grouping" Name="Grouping" Category="Behavior_Main" ExpandAll="True" SelectedPropertyOnStart="OptionsView.ShowGroupedColumns" SampleSetupClass="">
+        <Properties>
+			<Item Name="OptionsView.ShowGroupedColumns"></Item>
+			<Item Name="OptionsBehavior.AutoExpandAllGroups"></Item>
+			<Item Name="OptionsBehavior.KeepGroupExpandedOnSorting"></Item>
+			<Item Name="CustomColumnGroup"></Item>
+		</Properties>
+        <Pages>
+			<Columns>
+				<Properties>
+					<Item Name="GroupIndex"></Item>
+					<Item Name="GroupInterval"></Item>
+				</Properties>
+			</Columns>
+		</Pages>
+		<Description>
+			Custom Group Intervals: 
+			[{goto:Columns}Column.GroupInterval] property, [CustomColumnGroup] event.
+			
+			Grouping behavior:
+			[{(OptionsBehavior.AutoExpandAllGroups=False)}OptionsBehavior.AutoExpandAllGroups], [{(OptionsBehavior.KeepGroupExpandedOnSorting=False)}OptionsBehavior.KeepGroupExpandedOnSorting] options.
+		</Description>
+	</FeatureItem>
+	<FeatureItem ID="Behavior_Filtering" Name="Filtering" Category="Behavior_Main" ExpandAll="True" SelectedPropertyOnStart="OptionsFilter.UseNewCustomFilterDialog" SampleSetupClass="">
+        <Properties>
+			<Item Name="OptionsFilter.UseNewCustomFilterDialog"></Item>
+			<Item Name="CustomFilterDialog"></Item>
+			<Item Name="CustomRowFilter"></Item>
+			 
+		</Properties>
+        <Pages>
+			<Columns>
+				<Properties>
+					<Item Name="OptionsFilter.AutoFilterCondition"></Item>
+					<Item Name="OptionsFilter.ImmediateUpdateAutoFilter"></Item>
+				</Properties>
+			</Columns>
+		</Pages>
+		<Description>
+			Filter rows manually:
+			[CustomRowFilter] event.
+			
+			Filter dialog to use for columns: 
+			[OptionsFilter.UseNewCustomFilterDialog] property, [CustomFilterDialog] event.
+			
+			Filter condition for [{gotoFeature:VE_AutoFilterRow}auto filter row]: 
+			[{goto:Columns,OptionsFilter.AutoFilterCondition}Column.OptionsFilter.AutoFilterCondition] option.
+			
+			Filter update mode for [{gotoFeature:VE_AutoFilterRow}auto filter row]: 
+			[{goto:Columns,OptionsFilter.ImmediateUpdateAutoFilter}Column.OptionsFilter.ImmediateUpdateAutoFilter] option.
+		</Description>
+	</FeatureItem>
+	<FeatureItem ID="Behavior_Summary" Name="Summaries" Category="Behavior_Main" ExpandAll="True" SelectedPropertyOnStart="OptionsBehavior.AutoUpdateTotalSummary" SampleSetupClass="">
+        <Properties>
+			<Item Name="OptionsBehavior.AutoUpdateTotalSummary"></Item>
+			<Item Name="CustomSummaryExists"></Item>
+			<Item Name="CustomSummaryCalculate"></Item>
+			<Item Name="GridMenuItemClick"></Item>
+		</Properties>
+        <Pages>
+			<Columns>
+				<Properties>
+					<Item Name="SummaryItem.SummaryType"></Item>
+				</Properties>
+			</Columns>
+			<GroupSummaries>
+        <Properties>
+          <Item Name="DisplayFormat"></Item>
+          <Item Name="FieldName"></Item>
+          <Item Name="ShowInGroupColumnFooter"></Item>
+          <Item Name="SummaryType"></Item>
+          <Item Name="Tag"></Item>
+        </Properties>
+			</GroupSummaries>
+		</Pages>
+		<Description>
+			Suppress particular summaries: 
+			[CustomSummaryExists] event.
+			
+			Custom functions: 
+			[{goto:Columns,SummaryItem.SummaryType}Column.SummaryItem.SummaryType], [{goto:Group Summary}SummaryItem.SummaryType] properties, [CustomSummaryCalculate] event.
+			
+			Process summary changes: 
+			[GridMenuItemClick] event.
+			
+			Total summary update mode: 
+			[OptionsBehavior.AutoUpdateTotalSummary] option. 	
+		</Description>
+	</FeatureItem>
+	<FeatureItem ID="Behavior_Sorting" Name="Sorting" Category="Behavior_Main" ExpandAll="True" SelectedPropertyOnStart="OptionsBehavior.KeepGroupExpandedOnSorting" SampleSetupClass="">
+        <Properties>
+			<Item Name="OptionsBehavior.KeepGroupExpandedOnSorting"></Item>
+			<Item Name="CustomColumnSort"></Item>
+			<Item Name="CustomColumnDisplayText"></Item>
+		</Properties>
+        <Pages>
+			<Columns>
+				<Properties>
+					<Item Name="SortMode"></Item>
+					<Item Name="ColumnEdit"></Item>
+				</Properties>
+			</Columns>
+		</Pages>
+		<Description>
+			Sort mode: 
+			[{goto:Columns,SortMode}Column.SortMode] property.
+
+			If "sort by display text" mode is enabled, the text can differ from the edit values if:
+			A particular editor is assigned: [{goto:Columns,ColumnEdit}Column.ColumnEdit] property.
+			Custom text is supplied manually: [CustomColumnDisplayText] event.
+			
+			If custom sort mode is enabled:
+			The sorting algorithm is supplied via the: [CustomColumnSort] event.
+		</Description>
+	</FeatureItem>
+	<FeatureItem ID="Behavior_Scrolling" Name="Scrolling" Category="Behavior_Main" ExpandAll="True" SelectedPropertyOnStart="ScrollStyle" SampleSetupClass="">	
+		<Properties>
+			<Item Name="OptionsBehavior.SmartVertScrollBar"></Item>
+			<Item Name="HorzScrollStep"></Item>
+			<Item Name="VertScrollTipFieldName"></Item>
+			<Item Name="ScrollStyle"></Item>
+		</Properties>
+		<Description>
+			Scrolling behavior: 
+			[ScrollStyle], [OptionsBehavior.SmartVertScrollBar], [HorzScrollStep] properties.
+			
+			Vertical scrolling hint: 
+			[VertScrollTipFieldName] property.
+		</Description>
+	</FeatureItem>
+	<FeatureItem ID="Behavior_Focus" Name="Focus and Navigation" Category="Behavior_Main" ExpandAll="True" SelectedPropertyOnStart="OptionsNavigation">
+        <Properties>
+			<Item Name="OptionsNavigation"></Item>
+			<Item Name="BeforeLeaveRow"></Item>
+		</Properties>
+        <Pages>
+			<Columns>
+				<Properties>
+					<Item Name="OptionsColumn.AllowFocus"></Item>
+				</Properties>
+			</Columns>
+		</Pages>
+		<Description>
+			Navigation settings: 
+			[OptionsNavigation] options.
+			
+			Column focus restriction: 
+			[{goto:Columns,OptionsColumn.AllowFocus}Column.OptionsColumn.AllowFocus] option.
+			
+			Row focus restrictions: 
+			[BeforeLeaveRow] event. 
+		</Description>
+	</FeatureItem>
+	<FeatureItem ID="Behavior_MD" Name="Master-Detail" Category="Behavior_Main" ExpandAll="True" SelectedPropertyOnStart="OptionsDetail.AutoZoomDetail">
+        <Properties>
+			<Item Name="OptionsDetail.AllowOnlyOneMasterRowExpanded"></Item>
+			<Item Name="OptionsDetail.AllowExpandEmptyDetails"></Item>
+			<Item Name="OptionsDetail.SmartDetailExpand"></Item>
+			<Item Name="MasterRowCollapsing"></Item>
+			<Item Name="MasterRowExpanding"></Item>
+			<Item Name="OptionsDetail.AllowZoomDetail"></Item>
+			<Item Name="OptionsDetail.AutoZoomDetail"></Item>
+			<Item Name="DefaultRelationIndex"></Item>
+		</Properties>
+		<Description>
+    		Expanding Behavior:
+			[{(OptionsDetail.AllowOnlyOneMasterRowExpanded=False)}OptionsDetail.AllowOnlyOneMasterRowExpanded], [{(OptionsDetail.AllowExpandEmptyDetails=False)}OptionsDetail.AllowExpandEmptyDetails], [{(OptionsDetail.SmartDetailExpand=False)}OptionsDetail.SmartDetailExpand], [DefaultRelationIndex].
+			
+			Custom expanding behavior:
+			[MasterRowCollapsing], [MasterRowExpanding].
+			
+			View zooming behavior:
+			[{(OptionsDetail.AllowZoomDetail=False)}OptionsDetail.AllowZoomDetail], [{(OptionsDetail.AutoZoomDetail=False)}OptionsDetail.AutoZoomDetail].
+		</Description>
+	</FeatureItem>
+	<FeatureItem ID="Behavior_DragDrop" Name="Drag and Drop" Category="Behavior_Main" SelectedPropertyOnStart="DragObjectStart">
+        <Properties>
+			<Item Name="DragObjectStart"></Item>
+			<Item Name="DragObjectOver"></Item>
+			<Item Name="DragObjectDrop"></Item>
+		</Properties>
+		<Description>
+			Control internal drag and drop operations:
+			- start: [DragObjectStart] event.
+			- process: [DragObjectOver] event.
+			- drop: [DragObjectDrop] event.
+		</Description>
+	</FeatureItem>
+</FeatureItems>

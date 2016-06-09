@@ -1,0 +1,107 @@
+﻿<ResourceDictionary x:Class="DevExpress.Design.SmartTags.PropertyLineDataTemplates"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:SmartTags="clr-namespace:DevExpress.Design.SmartTags"
+        xmlns:CoreUtils="clr-namespace:DevExpress.Xpf.Core.Design.CoreUtils"
+        xmlns:SmartTags_Design="clr-namespace:DevExpress.Design.SmartTags;assembly=DevExpress.Design.v15.2"
+        xmlns:local="clr-namespace:DevExpress.Xpf.Core.Design.SmartTags"
+        xmlns:CoreDesign="clr-namespace:DevExpress.Xpf.Core.Design">
+    
+    <BooleanToVisibilityConverter x:Key="booleanToVisibilityConverter"/>
+    <Color x:Key="foregroundColor">#FF0E70C0</Color>
+    <SolidColorBrush x:Key="foregroundBrush" Color="{StaticResource foregroundColor}"/>
+    <CoreUtils:EnumToObjectConverter x:Key="IsBindingPresentToImageSourceConverter">
+        <CoreUtils:EnumToObjectConverter.Values>
+            <BitmapImage x:Key="False" UriSource="/DevExpress.Xpf.Core.v15.2.Design;component/Images/MVVMAssistant/disable-binding-barrel.png" />
+            <BitmapImage x:Key="True" UriSource="/DevExpress.Xpf.Core.v15.2.Design;component/Images/MVVMAssistant/binding-barrel.png" />
+        </CoreUtils:EnumToObjectConverter.Values>
+    </CoreUtils:EnumToObjectConverter>
+    <DataTemplate x:Key="PropertyLineTemplate">
+        <Grid MouseRightButtonUp="Grid_MouseRightButtonUp" SizeChanged="Grid_SizeChanged">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition SharedSizeGroup="captionColumn" />
+                <ColumnDefinition Width="8"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition SharedSizeGroup="lastColumn"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Name="txtBlock" Text="{Binding PropertyName, Mode=OneTime}"
+                    MinWidth="70" TextTrimming="CharacterEllipsis"
+                    VerticalAlignment="Center" HorizontalAlignment="Left"
+                    ToolTipService.InitialShowDelay="0" ToolTipService.BetweenShowDelay="0"
+                    SizeChanged="OnTextBlockSizeChanged"/>
+            <ContentPresenter x:Name="editorPresenter" HorizontalAlignment="Stretch" Content="{Binding}" ContentTemplateSelector="{x:Null}" VerticalAlignment="Center" Grid.Column="2"/>
+            <Grid x:Name="BindingIndcatorPlaceHolder" Grid.Column="4">
+                <local:DesignTimeButton Name="bindingButton" Command="{Binding Path=OpenBindingPopupCommand}"
+                        Height="22" VerticalAlignment="Center" VerticalContentAlignment="Center" Visibility="{Binding IsBindingButtonVisible, Converter={StaticResource booleanToVisibilityConverter}}"
+                        IsMouseOverEx="{Binding Path=IsMouseOverBindingPopupButton, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                    <local:DesignTimeButton.Template>
+                        <ControlTemplate TargetType="local:DesignTimeButton">
+                            <ContentPresenter Content="{TemplateBinding Content}"/>
+                        </ControlTemplate>
+                    </local:DesignTimeButton.Template>
+                    <Grid SnapsToDevicePixels="True">
+                        <Image Stretch="UniformToFill" ToolTip="{Binding Path=BindingInfo.ToolTip, Mode=OneWay}"
+                                Source="{Binding Path=IsBindingPresent, Converter={StaticResource IsBindingPresentToImageSourceConverter}, Mode=OneWay}"
+                                RenderOptions.BitmapScalingMode="NearestNeighbor"/>
+                        <Image Stretch="UniformToFill" ToolTip="{Binding Path=BindingInfo.ToolTip, Mode=OneWay}"
+                                Source="/DevExpress.Xpf.Core.v15.2.Design;component/Images/MVVMAssistant/hover-binding-barrel.png" Visibility="{Binding Path=IsMouseOver, Converter={StaticResource booleanToVisibilityConverter}, ElementName=bindingButton}"
+                                RenderOptions.BitmapScalingMode="NearestNeighbor"/>
+                    </Grid>
+                </local:DesignTimeButton>
+                <local:DesignTimePopup IsOpenExt="{Binding Path=IsBindingPopupOpen, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                        AllowsTransparency="True" PlacementTarget="{Binding ElementName=editorPresenter}" Placement="Bottom" StaysOpen="False"
+                        ActualIsOpen="{Binding Path=ActualIsBindingPopupOpen, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                    <Border BorderBrush="#FFD8D8D8" BorderThickness="1" Background="White" Padding="12">
+                        <ContentControl Content="{Binding Path=BindingPopupContent}" ContentTemplate="{x:Null}" ContentTemplateSelector="{x:Null}" />
+                    </Border>
+                </local:DesignTimePopup>
+            </Grid>
+            <Grid.ContextMenu>
+                <ContextMenu UseLayoutRounding="True">
+                    <MenuItem Header="Clear Value" Command="{Binding ClearValueCommand}" Style="{x:Null}">
+                        <MenuItem.Icon>
+                            <Image HorizontalAlignment="Center" VerticalAlignment="Center" Source="/DevExpress.Xpf.Core.v15.2.Design;component/Images/delete.png" RenderOptions.BitmapScalingMode="NearestNeighbor" Stretch="UniformToFill"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                </ContextMenu>
+            </Grid.ContextMenu>
+        </Grid>
+        <DataTemplate.Triggers>
+            <DataTrigger Binding="{Binding IsBindingButtonVisible}" Value="False">
+                <Setter TargetName="BindingIndcatorPlaceHolder" Property="Visibility" Value="Collapsed"/>
+            </DataTrigger>
+            <Trigger SourceName="txtBlock" Property="SmartTags_Design:TextBlockService.IsTextTrimmed" Value="True">
+                <Setter TargetName="txtBlock" Property="ToolTip" Value="{Binding PropertyName, Mode=OneTime}"/>
+            </Trigger>
+        </DataTemplate.Triggers>
+    </DataTemplate>
+    <SmartTags:PropertyLinesResourceDataTemplateSelector x:Key="PropertyLinesResourceDataTemplateSelector"
+                                                         PropertyLineTemplate="{StaticResource PropertyLineTemplate}">
+    </SmartTags:PropertyLinesResourceDataTemplateSelector>
+    
+    <DataTemplate x:Key="PropertyLinesTempate">
+        <ItemsControl ItemsSource="{Binding Lines}" Margin="0" ItemTemplateSelector="{StaticResource PropertyLinesResourceDataTemplateSelector}">
+            <ItemsControl.ItemContainerStyle>
+                <Style TargetType="ContentPresenter">
+                    <Setter Property="Margin" Value="0,1,0,2"/>
+                    <Setter Property="Visibility" Value="{Binding IsVisible, Converter={StaticResource booleanToVisibilityConverter}}"/>
+                </Style>
+            </ItemsControl.ItemContainerStyle>
+            <ItemsControl.Template>
+                <ControlTemplate TargetType="ItemsControl">
+                    <ItemsPresenter CoreDesign:UpdateLayoutHelper.UpdateLayoutOnDataContextChanged="True"/>
+                </ControlTemplate>
+            </ItemsControl.Template>
+        </ItemsControl>
+    </DataTemplate>
+    
+    <DataTemplate x:Key="SmartToolbarTemplate">
+        <ItemsControl ItemsSource="{Binding Buttons}" ItemTemplateSelector="{StaticResource SmartToolbarButtonsDataTemplateSelector}">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel IsItemsHost="True" Orientation="Horizontal"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+        </ItemsControl>
+    </DataTemplate>
+</ResourceDictionary>

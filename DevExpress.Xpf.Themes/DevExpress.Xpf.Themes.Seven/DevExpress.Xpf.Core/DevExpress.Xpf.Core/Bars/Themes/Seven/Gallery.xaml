@@ -1,0 +1,324 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
+                    xmlns:dxbt="http://schemas.devexpress.com/winfx/2008/xaml/bars/themekeys"
+                    xmlns:dxcn="http://schemas.devexpress.com/winfx/2008/xaml/core/internal">
+
+
+    <Thickness x:Key="{dxbt:GalleryItemControlThemeKey ResourceKey=DefaultItemMargin}">0,0,1,1</Thickness>
+
+    <Thickness x:Key="{dxbt:GalleryItemGroupControlThemeKey ResourceKey=DefaultGroupCaptionMargin}">3,2,3,2</Thickness>
+
+    <Thickness x:Key="{dxbt:GalleryItemGroupControlThemeKey ResourceKey=DefaultGroupItemsMargin}">1,1,0,0</Thickness>
+
+    <Thickness x:Key="{dxbt:GalleryItemControlThemeKey ResourceKey=DefaultGlyphBorderPadding}">0</Thickness>
+
+    <Thickness x:Key="{dxbt:GalleryItemControlThemeKey ResourceKey=DefaultGlyphMargin}">0</Thickness>
+    <Thickness x:Key="{dxbt:GalleryItemControlThemeKey ResourceKey=DefaultCaptionMargin}">0</Thickness>
+    <Thickness x:Key="{dxbt:GalleryItemControlThemeKey ResourceKey=DefaultDescriptionMargin}">0</Thickness>
+
+    <Style x:Key="{dxbt:GalleryItemControlThemeKey ResourceKey=SplitLayoutStyle}" TargetType="{x:Type dxb:SplitLayoutPanel}">
+        <Setter Property="SingleContent1Margin" Value="3"/> 
+        <Setter Property="SingleContent2Margin" Value="3"/>
+        <Setter Property="TopContent1Margin"    Value="3,3,3,0"/>
+        <Setter Property="TopContent2Margin"    Value="3"/>
+        <Setter Property="BottomContent1Margin" Value="3,0,3,3"/>
+        <Setter Property="BottomContent2Margin" Value="3"/>
+        <Setter Property="LeftContent1Margin"   Value="3,3,0,3"/>
+        <Setter Property="LeftContent2Margin"   Value="3"/>
+        <Setter Property="RightContent1Margin"  Value="0,3,3,3"/>
+        <Setter Property="RightContent2Margin"  Value="3"/>
+    </Style>
+
+    <dxb:StatedStyleSelector x:Key="{dxbt:GalleryControlThemeKey ResourceKey=StandaloneCaptionTextStyleSelector}">
+        <dxb:StatedStyleSelectorState IsDefault="True">
+            <Style TargetType="{x:Type ContentControl}">
+                <Setter Property="Foreground" Value="#FF254264" />
+            </Style>
+        </dxb:StatedStyleSelectorState>
+    </dxb:StatedStyleSelector>
+
+    <dxb:StatedStyleSelector x:Key="{dxbt:GalleryControlThemeKey ResourceKey=StandaloneDescriptionTextStyleSelector}">
+        <dxb:StatedStyleSelectorState IsDefault="True">
+            <Style TargetType="{x:Type ContentControl}">
+                <Setter Property="Foreground" Value="#FF787890" />
+            </Style>
+        </dxb:StatedStyleSelectorState>
+    </dxb:StatedStyleSelector>
+
+    <Style x:Key="{dxbt:GalleryItemControlThemeKey ResourceKey=DefaultItemCaptionTextStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Foreground" Value="#FF254264"/>
+    </Style>
+
+    <Style x:Key="{dxbt:GalleryItemControlThemeKey ResourceKey=DefaultItemDescriptionTextStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Foreground" Value="#FF787890"/>
+    </Style>
+
+    <Style x:Key="{dxbt:GalleryItemControlThemeKey ResourceKey=DefaultGroupCaptionTextStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Foreground" Value="#FF4C607A"/>
+    </Style>
+
+    <Style x:Key="{dxbt:GalleryItemControlThemeKey ResourceKey=DefaultNormalFilterCaptionTextStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Foreground" Value="#FF4C607A"/>
+        <Setter Property="Margin" Value="4,3,4,4"/>
+    </Style>
+
+    <Style x:Key="{dxbt:GalleryItemControlThemeKey ResourceKey=DefaultSelectedFilterCaptionTextStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Foreground" Value="#FF4C607A"/>
+        <Setter Property="Margin" Value="4,3,4,4"/>
+    </Style>
+
+    <Style x:Key="{dxbt:GalleryItemControlThemeKey ResourceKey=DefaultHintTextStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Foreground" Value="#FF787890"/>
+    </Style>
+
+    <Style x:Key="{dxbt:GalleryItemControlThemeKey ResourceKey=DefaultHintCaptionTextStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Foreground" Value="#FF254264"/>
+    </Style>
+
+    <Style x:Key="{dxbt:GalleryControlThemeKey ResourceKey=StandaloneContentStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Margin" Value="1"/>
+    </Style>
+
+    <Style x:Key="{dxbt:GalleryControlThemeKey ResourceKey=StandaloneCaptionStyle}" TargetType="{x:Type ToggleButton}">
+        <Setter Property="Margin" Value="0"/>
+    </Style>
+
+    <Style x:Key="{dxbt:GalleryControlThemeKey ResourceKey=StandaloneVerticalScrollBarContainerStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Margin" Value="0"/>
+    </Style>
+
+    <Style x:Key="{dxbt:GalleryControlThemeKey ResourceKey=StandaloneGroupsBackgroundStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Margin" Value="0"/>
+    </Style>
+
+    <Style x:Key="{dxbt:GalleryControlThemeKey ResourceKey=StandaloneGroupsViewportStyle}" TargetType="{x:Type dxb:GalleryGroupsViewer}">
+        <Setter Property="Margin" Value="0"/>
+    </Style>
+
+    <ControlTemplate x:Key="{dxbt:GalleryControlThemeKey ResourceKey=StandaloneCaptionTemplate}" TargetType="{x:Type ToggleButton}">
+        <Grid>
+        <Border Background="#FFEBF2F7">
+            <Grid>
+                <Border Background="#FFCFDBEB" BorderBrush="#FFF5F7F9" BorderThickness="0,0,0,1"
+                        Height="2" VerticalAlignment="Bottom"/>
+                <ContentPresenter/>
+            </Grid>
+        </Border>
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup x:Name="CommonStates">
+                    <VisualState x:Name="Normal"/>
+                    <VisualState x:Name="MouseOver"/>
+                    <VisualState x:Name="Pressed"/>
+                </VisualStateGroup>
+                <VisualStateGroup x:Name="CheckedStates">
+                    <VisualState x:Name="Unchecked"/>
+                    <VisualState x:Name="Checked"/>
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+        </Grid>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="{dxbt:GalleryControlThemeKey ResourceKey=StandaloneBackgroundTemplate}" TargetType="{x:Type ContentControl}">
+        <Border Background="#FFFFFFFF" BorderBrush="#FF828790" BorderThickness="1">
+            <ContentPresenter/>
+        </Border>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="{dxbt:GalleryControlThemeKey ResourceKey=StandaloneGroupsBackgroundTemplate}" TargetType="{x:Type ContentControl}">
+        <ContentPresenter/>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="StandaloneBorderTemplate_Normal" TargetType="{x:Type ContentControl}"/>
+
+    <ControlTemplate x:Key="StandaloneBorderTemplate_Hover" TargetType="{x:Type ContentControl}">
+       <Border Background="#FF9DC4F3" CornerRadius="2" Padding="1">
+            <Border Padding="1" CornerRadius="1">
+                <Border.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FFFDFEFF" Offset="0"/>
+                        <GradientStop Color="#FFEEF3F9" Offset="1"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+                <Border CornerRadius="1">
+                    <Border.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#FFF2F7FE" Offset="0"/>
+                            <GradientStop Color="#FFE0EDFD" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Border.Background>
+                </Border>
+            </Border>
+        </Border>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="StandaloneBorderTemplate_HoverChecked" TargetType="{x:Type ContentControl}">
+       <Border Background="#FF9DC4F3" CornerRadius="2" Padding="1">
+            <Border Padding="1" CornerRadius="1">
+                <Border.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FFFDFEFF" Offset="0"/>
+                        <GradientStop Color="#FFEEF3F9" Offset="1"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+                <Border CornerRadius="1">
+                    <Border.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#FFF2F7FE" Offset="0"/>
+                            <GradientStop Color="#FFE0EDFD" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Border.Background>
+                </Border>
+            </Border>
+        </Border>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="StandaloneBorderTemplate_Checked" TargetType="{x:Type ContentControl}">
+        <Border Background="#FF7DA2CE" CornerRadius="2" Padding="1">
+            <Border Padding="1" CornerRadius="1">
+                <Border.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FFEBF4FD" Offset="0"/>
+                        <GradientStop Color="#FFDBEAFD" Offset="1"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+                <Border CornerRadius="1">
+                    <Border.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#FFDCEBFC" Offset="0"/>
+                            <GradientStop Color="#FFC1DBFC" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Border.Background>
+                </Border>
+            </Border>
+        </Border>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="StandaloneBorderTemplate_Focused" TargetType="{x:Type ContentControl}">
+       <Border Background="#FF9DC4F3" CornerRadius="2" Padding="1">
+            <Border Padding="1" CornerRadius="1">
+                <Border.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FFFDFEFF" Offset="0"/>
+                        <GradientStop Color="#FFEEF3F9" Offset="1"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+                <Border CornerRadius="1">
+                    <Border.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#FFF2F7FE" Offset="0"/>
+                            <GradientStop Color="#FFE0EDFD" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Border.Background>
+                </Border>
+            </Border>
+        </Border>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="{dxbt:GalleryItemControlThemeKey ResourceKey=StandaloneBorderTemplate}" TargetType="{x:Type dxb:ItemBorderControl}">
+        <Grid Background="Transparent">
+            <ContentControl x:Name="PART_Normal" Template="{StaticResource StandaloneBorderTemplate_Normal}" Visibility="Visible"/>
+            <ContentControl x:Name="PART_Hover" Template="{StaticResource StandaloneBorderTemplate_Hover}" Visibility="Collapsed"/>
+            <ContentControl x:Name="PART_HoverChecked" Template="{StaticResource StandaloneBorderTemplate_HoverChecked}" Visibility="Collapsed"/>
+            <ContentControl x:Name="PART_Checked" Template="{StaticResource StandaloneBorderTemplate_Checked}" Visibility="Collapsed"/>
+            <ContentControl x:Name="PART_Focused" Template="{StaticResource StandaloneBorderTemplate_Focused}" Visibility="Collapsed"/>
+            <ContentPresenter />
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup x:Name="State">
+                    <VisualState x:Name="Normal"/>
+                    <VisualState x:Name="Hover">
+                        <Storyboard>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Hover"
+                                                           Storyboard.TargetProperty="Visibility"
+                                                           dxcn:ValueSetter.Visibility="Visible"/>
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Pressed"/>
+                    <VisualState x:Name="Checked">
+                        <Storyboard>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Checked"
+                                                           Storyboard.TargetProperty="Visibility"
+                                                           dxcn:ValueSetter.Visibility="Visible"/>
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="HoverChecked">
+                        <Storyboard>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_HoverChecked"
+                                                           Storyboard.TargetProperty="Visibility"
+                                                           dxcn:ValueSetter.Visibility="Visible"/>
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Focused">
+                        <Storyboard>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Focused"
+                                                           Storyboard.TargetProperty="Visibility"
+                                                           dxcn:ValueSetter.Visibility="Visible"/>
+                        </Storyboard>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+        </Grid>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="{dxbt:GalleryItemControlThemeKey ResourceKey=StandaloneGlyphBorderTemplate}" TargetType="{x:Type dxb:ItemBorderControl}">
+        <Grid Background="Transparent">
+            <ContentControl x:Name="PART_Checked" Template="{StaticResource StandaloneBorderTemplate_Checked}" Visibility="Collapsed"/>
+            <ContentPresenter/>
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup x:Name="State">
+                    <VisualState x:Name="Normal">
+                        <Storyboard>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Checked"
+                                                           Storyboard.TargetProperty="Visibility"
+                                                           dxcn:ValueSetter.Visibility="Collapsed"/>
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Hover"/>
+                    <VisualState x:Name="Pressed"/>
+                    <VisualState x:Name="Checked">
+                        <Storyboard>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Checked"
+                                                           Storyboard.TargetProperty="Visibility"
+                                                           dxcn:ValueSetter.Visibility="Visible"/>
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="HoverChecked"/>
+                    <VisualState x:Name="Focused"/>
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+        </Grid>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="{dxbt:GalleryItemGroupControlThemeKey ResourceKey=CaptionTemplate}" TargetType="{x:Type ContentControl}">
+        <Border Background="#FFEBF2F7" BorderBrush="#FFCFDBEB" BorderThickness="0,0,0,1">
+            <ContentPresenter/>
+        </Border>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="{dxbt:GalleryItemGroupControlThemeKey ResourceKey=BackgroundTemplate}" TargetType="{x:Type ContentControl}">
+        <ContentPresenter/>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="{dxbt:GalleryItemGroupControlThemeKey ResourceKey=ItemsBackgroundTemplate}" TargetType="{x:Type ContentControl}">
+        <ContentPresenter/>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="{dxbt:GalleryItemControlThemeKey ResourceKey=HoverContentControlTemplate}" TargetType="{x:Type ContentControl}">
+        <Border Background="#FFFFFFFF" BorderBrush="#FF4A4A4A" BorderThickness="2"
+                VerticalAlignment="Center" HorizontalAlignment="Center">
+            <ContentPresenter Margin="3"/>
+        </Border>
+    </ControlTemplate>
+
+    <!--BEGIN WPF-->
+    <!-- Tool Tip Templates -->
+    <ControlTemplate x:Key="{dxbt:GalleryItemControlThemeKey ResourceKey=ItemToolTipBackgroundTemplate}" TargetType="{x:Type ContentControl}">
+        <Border Background="#FFD2E6FF" BorderBrush="#FF021743" BorderThickness="1"
+                CornerRadius="3" Padding="2" VerticalAlignment="Center" HorizontalAlignment="Center"
+                SnapsToDevicePixels="True">
+            <ContentPresenter/>
+        </Border>
+    </ControlTemplate>
+    <!--END WPF-->
+
+</ResourceDictionary>

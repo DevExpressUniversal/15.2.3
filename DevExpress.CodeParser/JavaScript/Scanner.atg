@@ -1,0 +1,281 @@
+EofCode = EOF;
+TokenKind = Type;
+TokenValue = Value;
+
+SCANNER Scanner
+
+FRAME
+-->begin
+using System;
+using System.IO;
+using System.Collections;
+using System.Collections.Specialized;
+
+#if DXCORE
+namespace DevExpress.CodeRush.StructuralParser.JavaScript
+#else
+namespace DevExpress.CodeParser.JavaScript
+#endif
+{
+  partial class JavaScriptScanner
+  {
+    -->declarations
+
+    // protected methods...
+    protected override void InitializeIgnoreTable()
+    {
+      ignore = new BitArray(charSetSize + 1);
+      ignore[' '] = true;  // blanks are always white space
+      -->initialization
+    }
+    protected override void NextChCasing()
+    {
+      -->casing1
+    }
+    protected override void AddCh()
+    {
+      base.AddCh();
+      -->casing2
+      NextCh();
+    }
+    -->comments
+    void CheckLiteral()
+    {
+      -->literals
+    }
+    protected override void NextTokenComments()
+    {
+      -->scan1
+    }
+
+    protected override void NextTokenScan(int state)
+		{
+      int recKind = noSym;
+		  int recEnd = pos;
+      int recPrevLineStart = prevLineStart;
+
+      if (ShouldReadRegExpToken)
+      {
+        ReadRegExpToken();
+        return;
+      }
+
+			AddCh();		
+			switch (state)
+			{
+				case -1: { t.Type = eofSym; break; } // NextCh already done
+				case 0:
+        {
+				  if (recKind != noSym)
+          {
+					  tlen = recEnd - t.StartPosition;
+            prevLineStart = recPrevLineStart;
+					  BackTrackScannerToToken();
+				  }
+				  t.Type = recKind;
+          break;
+			  }
+			  -->scan2
+			}
+		}
+  } // end Scanner
+}
+$$$
+ENDFRAME
+
+CHARACTERS
+  cr															= '\r'.
+  lf															= '\n'.
+  tab															= '\t'.
+  whitespace												= " ".
+  octdigit												= "01234567".
+  decdigit												= "0123456789".
+  hexdigit												= "0123456789abcdefABCDEF".
+  intsuffix												= "uULl".
+	hexprefix												= "xX".	
+	realsuffix											= "FfLl".
+	exponent												= "Ee".
+	sign														= "+-".
+	singlechar											= ANY - "'" -"\\".
+	singlestringchar								= ANY -'\"' -"\\".
+	esqapechar											= "0abfnrtv"+ '\''+'\"'+'\\'.
+	nonnulloct											="123456".
+	characterprefix									= "L".
+	stringprefix									= "LS".
+	letterchar											= "$qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM_"+ UnicodeLetter.
+	identchar												= letterchar + decdigit + UnicodeLetter.
+	multilinecommentschar						= ANY -"*"-"/".
+	singlelinecommentschar					= ANY - cr -lf -"/".	
+	regularexpressionchar					= ANY - "/" - cr - lf - '\\'.
+	regularexpressionfirstchar				= regularexpressionchar - "*".
+	nonterminator							= ANY - cr - lf.
+  any = ANY.
+	anyCodeEmbedChar = ANY - "%"- ">".
+TOKENS
+	IDENTIFIER =( 	
+				( letterchar 
+				|(("\\" "u" hexdigit hexdigit hexdigit hexdigit)|("\\" "U" hexdigit hexdigit hexdigit hexdigit hexdigit hexdigit hexdigit hexdigit )))
+				{
+				  (identchar
+				| (("\\" "u" hexdigit hexdigit hexdigit hexdigit)|("\\" "U" hexdigit hexdigit hexdigit hexdigit hexdigit hexdigit hexdigit hexdigit )))
+				}
+				).
+	CODEEMBEDDING =		"<%" {
+								(
+									anyCodeEmbedChar|("%" {anyCodeEmbedChar})
+								)
+							}  "%>". 
+	INTEGERLITERAL = (decdigit {decdigit} )|("0" hexprefix hexdigit {hexdigit}).
+	FLOATINGPOINTLITERAL =( ((( [decdigit {decdigit}] "." decdigit {decdigit}) |(decdigit {decdigit} ".")) [( exponent [sign] decdigit {decdigit} )] )
+  | (decdigit {decdigit} ( exponent [sign] decdigit {decdigit} ) )).
+
+  STRINGLITERAL =
+           (
+             "\""
+               {
+                 singlestringchar
+                 | ("\\" any { cr | lf })
+               }
+             "\""
+           )
+           |
+           (
+             "'"
+             {
+               singlechar
+               | ("\\" nonterminator)
+             }
+             "'"
+           ).
+	/*REGEXPLITERAL = "/"
+						(
+							regularexpressionfirstchar
+						| "\\"nonterminator
+						)
+						{	
+							regularexpressionchar
+						|	"\\"nonterminator
+						}
+					"/"{identchar}.*/
+	//Keywords
+	BREAK = "break".
+	CASE = "case".
+	CATCH = "catch".
+	CONTINUE = "continue".
+	DEFAULT = "default".
+	DELETE = "delete".
+	DO = "do".
+	ELSE = "else".
+	FINALLY = "finally".
+	FOR = "for".
+	FUNCTION = "function".
+	IFKEYWORD = "if".
+	IN = "in".
+	INSTANCEOF = "instanceof".
+	NEW = "new".
+	RETURN = "return".
+	SWITCH = "switch".
+	THIS = "this".
+	THROW = "throw".
+	TRY = "try".
+	TYPEOF = "typeof".
+	VAR = "var".
+	VOID = "void".
+	WHILE = "while".
+	WITH = "with".
+
+//Reserved words
+/*
+	ABSTRACT = "abstract".
+	BOOLEAN = "boolean".
+	BYTE = "byte".
+	CHAR = "char".
+	CLASS = "class".
+	CONST = "const".
+	ENUM = "enum".
+	EXPORT = "export".
+	EXTENDS = "extends".
+	FINAL = "final".
+	FLOAT = "float".
+	GOTO = "goto".
+	IMPLEMENTS = "implements".
+	INT = "int".
+	INTERFACE = "interface".
+	LONG = "long".
+	NATIVE = "native".
+	PACKAGE = "package".
+	PRIVATE = "private".
+	PROTECTED = "protected".
+	SHORT = "short".
+	STATIC = "static".
+	SUPER = "super".
+	SYNCHRONIZED = "synchronized".
+	THROWS = "throws".
+	TRANSIENT = "transient".
+	VOLATILE = "volatile".
+	DOUBLE = "double".
+	IMPORT = "import".
+	PUBLIC = "public".
+*/
+
+	NULL   = "null".
+	TRUE   = "true".
+	FALSE  = "false".
+	
+//Punctuators
+	LBRACE					= "{".
+	RBRACE					= "}".
+	LPAR					= "(".
+	RPAR					= ")".
+	LBRACK					= "[".
+	RBRACK					= "]".
+	DOT						= ".".
+	SEMICOLON				= ";".
+	COMMA					= ",".
+	LESSTHAN				= "<".
+	GREATERTHAN 			= ">".
+	LESSOREQUAL				= "<=".
+	GREATEROREQUAL			= ">=".
+	DOUBLEEQUALS			= "==".
+	NOTEQUALS				= "!=".
+	TRIPLEEQUALS			= "===".
+	NOTDOUBLEEQUALS			= "!==".
+	PLUS					= "+".
+	MINUS					= "-".
+	ASTERISK				= "*".
+	PERCENTSYMBOL			= "%".
+	PLUSPLUS				= "++".
+	MINUSMINUS				= "--".
+	SHIFTLEFT				= "<<".
+	SHIFTRIGHT				= ">>".
+	TRIPLESHIFTRIGHT		= ">>>".
+	BITAND					= "&".
+	BITOR					= "|".
+	XORSYMBOL				= "^".
+	EXCLAMATIONSYMBOL		= "!".
+	TILDE					= "~".
+	ANDAND					= "&&".
+	OROR					= "||".
+	QUESTIONSYMBOL			= "?".
+	COLON					= ":".
+	EQUALSSYMBOL			= "=".
+	PLUSEQUAL				= "+=". 
+	MINUSEQUAL				= "-=". 
+	MULEQUAL				= "*=". 
+	MODEQUAL				= "%=".
+	SHIFTLEFTEQUAL			= "<<=".
+	SHIFTRIGHTEQUAL			= ">>=".
+	TRIPLESHIFTRIGHTEQUAL	= ">>>=".
+	ANDEQUAL				= "&=".
+	OREQUAL					= "|=".
+	XOREQUAL				= "^=".
+	SLASH					= "/".
+	DIVEQUAL				= "/=".
+	
+	SINGLELINECOMMENT ="//" {singlelinecommentschar| "/"} .
+	MULTILINECOMMENT = "/*" {"/" | multilinecommentschar | "*" {"*"} multilinecommentschar} "*" {"*"} "/".
+	XMLCOMMENT = "<!--" {nonterminator}.
+	REGEXPLITERAL
+	
+IGNORE  tab + cr + lf
+END Scanner.

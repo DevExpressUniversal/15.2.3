@@ -1,0 +1,89 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+            xmlns:dxdiag="clr-namespace:DevExpress.Xpf.Diagram;assembly=DevExpress.Xpf.Diagram.v15.2"
+            xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+            xmlns:dxpg="http://schemas.devexpress.com/winfx/2008/xaml/propertygrid"
+            xmlns:designernativemetadata="clr-namespace:DevExpress.Xpf.Reports.UserDesigner.Native.Metadata"
+            xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
+            xmlns:designereditors="clr-namespace:DevExpress.Xpf.Reports.UserDesigner.Editors">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/DevExpress.Xpf.Diagram.v15.2;component/Behaviors/CollectionUITypeEditors/Themes/SingleSelectionCollectionEditor.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    <Style TargetType="designereditors:XRTableOfContentsLevelCollectionEditor" BasedOn="{StaticResource {x:Type dxdiag:SingleSelectionCollectionEditor}}" >
+        <Setter Property="ItemsListTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <dxe:ListBoxEdit Grid.Row="1" Grid.Column="0" ItemsSource="{Binding Path=(dxdiag:CollectionEditorBase.Editor).EditValue, RelativeSource={RelativeSource Self}}" 
+                                         EditValue="{Binding Path=(dxdiag:CollectionEditorBase.Editor).SelectedItem, RelativeSource={RelativeSource Self}, UpdateSourceTrigger=PropertyChanged}" 
+                                         ItemTemplate="{Binding Path=(dxdiag:CollectionEditorBase.Editor).ItemTemplate, RelativeSource={RelativeSource Self}}"
+                                         SelectionMode="Single">
+                        <dxmvvm:Interaction.Behaviors>
+                            <designereditors:SetAlternationIndexBehavior  />
+                        </dxmvvm:Interaction.Behaviors>
+                    </dxe:ListBoxEdit>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+
+        <Setter Property="ItemTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Button IsHitTestVisible="False" Content="{Binding Path=(ItemsControl.AlternationIndex), RelativeSource={RelativeSource FindAncestor, AncestorType=ListBoxItem}}" Padding="2,0" />
+                        <TextBlock Grid.Column="1" Text="Table Of Contents Level" Margin="5,0,0,0" />
+                    </Grid>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+
+        <Setter Property="ItemDetailedDescriptionTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <dxpg:PropertyGridControl SelectedObject="{Binding}" ExpandCategoriesWhenSelectedObjectChanged="True">
+                        <dxpg:PropertyGridControl.Resources>
+                            <DataTemplate x:Key="{x:Static designernativemetadata:MetadataPropertyGridEditorTemplateKeys.Color}">
+                                <dxpg:PropertyDefinition IsReadOnly="False">
+                                    <dxpg:PropertyDefinition.EditSettings>
+                                        <dxe:PopupColorEditSettings />
+                                    </dxpg:PropertyDefinition.EditSettings>
+                                </dxpg:PropertyDefinition>
+                            </DataTemplate>
+                            <DataTemplate x:Key="{x:Static designernativemetadata:MetadataPropertyGridEditorTemplateKeys.ForUseTypeConverterToStringConversion}">
+                                <dxpg:PropertyDefinition IsReadOnly="False" UseTypeConverterToStringConversion="True" />
+                            </DataTemplate>
+                            <DataTemplate x:Key="{x:Static designernativemetadata:MetadataPropertyGridEditorTemplateKeys.Font}">
+                                <dxpg:PropertyDefinition IsReadOnly="False">
+                                    <dxpg:PropertyDefinition.EditSettings>
+                                        <dxe:ButtonEditSettings AllowDefaultButton="False">
+                                            <dxe:ButtonEditSettings.Buttons>
+                                                <dxe:ButtonInfo GlyphKind="Regular">
+                                                    <dxmvvm:Interaction.Behaviors>
+                                                        <dxe:CustomDialogServiceEditorBehavior>
+                                                            <dxe:CustomDialogServiceEditorBehavior.DialogServiceTemplate>
+                                                                <DataTemplate>
+                                                                    <ContentControl>
+                                                                        <designereditors:FontDialogService />
+                                                                    </ContentControl>
+                                                                </DataTemplate>
+                                                            </dxe:CustomDialogServiceEditorBehavior.DialogServiceTemplate>
+                                                        </dxe:CustomDialogServiceEditorBehavior>
+                                                    </dxmvvm:Interaction.Behaviors>
+                                                </dxe:ButtonInfo>
+                                            </dxe:ButtonEditSettings.Buttons>
+                                        </dxe:ButtonEditSettings>
+                                    </dxpg:PropertyDefinition.EditSettings>
+                                </dxpg:PropertyDefinition>
+                            </DataTemplate>
+                        </dxpg:PropertyGridControl.Resources>
+                    </dxpg:PropertyGridControl>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

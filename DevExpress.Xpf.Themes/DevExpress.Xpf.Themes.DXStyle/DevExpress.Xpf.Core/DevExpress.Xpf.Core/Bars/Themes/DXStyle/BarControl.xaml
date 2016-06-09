@@ -1,0 +1,336 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+                    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+                    xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
+                    xmlns:dxbt="http://schemas.devexpress.com/winfx/2008/xaml/bars/themekeys"
+                    xmlns:dxcn="http://schemas.devexpress.com/winfx/2008/xaml/core/internal">
+
+    <sys:Double x:Key="{dxbt:BarControlThemeKey ResourceKey=ClientPanelMinHeight}">23</sys:Double> 
+    <Thickness x:Key="{dxbt:BarControlThemeKey ResourceKey=ClientPanelPadding}">1,1,0,0</Thickness> 
+
+    <ControlTemplate x:Key="{dxbt:BarControlThemeKey ResourceKey=DragWidgetTemplate}" TargetType="{x:Type dxb:DragWidget}">
+        <Grid Background="Transparent">
+            <StackPanel Margin="2,2,0,2" Orientation="Horizontal">
+                <StackPanel.OpacityMask>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#00FFFFFF" Offset="0"/>
+                        <GradientStop Color="#00FFFFFF" Offset="1"/>
+                        <GradientStop Color="#FFFFFFFF" Offset="0.5"/>
+                    </LinearGradientBrush>
+                </StackPanel.OpacityMask>
+                <Border Background="#FFC2C4CB" Width="1" Margin="1,0,0,0" />
+                <Border Background="#FFC2C4CB" Width="1" Margin="1,0,0,0" /> 
+                <Border Background="#FFC2C4CB" Width="1" Margin="1,0,0,0" />
+            </StackPanel>
+        </Grid>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="{dxbt:BarControlThemeKey ResourceKey=QuickCustomizationButtonTemplate}" TargetType="{x:Type dxb:BarQuickCustomizationButton}">
+        <Grid Background="Transparent" Margin="0,1,1,1">
+            <Border x:Name="DefaultState" CornerRadius="0,2,2,0">
+                <Border.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#3FB8BAC2" Offset="0"/>
+                        <GradientStop Color="#FFB8BAC2" Offset="1"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+                <Border BorderThickness="1" CornerRadius="0,1,1,0" Margin="1,0,0,0">
+                    <Border.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#FFFFFFFF" Offset="0"/>
+                            <GradientStop Color="#FFF9FAFB" Offset="1"/>
+                            <GradientStop Color="#FFE2E4EA" Offset="0.5"/>
+                        </LinearGradientBrush>
+                    </Border.Background>
+                    <Border.BorderBrush>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#FFFFFFFF" Offset="0"/>
+                            <GradientStop Color="#FFFEFEFE" Offset="1"/>
+                            <GradientStop Color="#FFF1F2F5" Offset="0.5"/>
+                        </LinearGradientBrush>
+                    </Border.BorderBrush>
+                </Border>
+            </Border>
+            <Border x:Name="HoverState" CornerRadius="0,2,2,0" Opacity="0">
+                <Border.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#3FB8BAC2" Offset="0"/>
+                        <GradientStop Color="#FFB8BAC2" Offset="1"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+                <Border BorderThickness="1" CornerRadius="0,1,1,0" Margin="1,0,0,0">
+                    <Border.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FFFFFFFF" Offset="0"/>
+                        <GradientStop Color="#FFEAEEFB" Offset="1"/>
+                        <GradientStop Color="#FFCBD6F5" Offset="0.5"/>
+                        </LinearGradientBrush>
+                    </Border.Background>
+                    <Border.BorderBrush>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#FFFFFFFF" Offset="0"/>
+                            <GradientStop Color="#FFFAFBFE" Offset="1"/>
+                            <GradientStop Color="#FFE5EBFA" Offset="0.5"/>
+                        </LinearGradientBrush>
+                    </Border.BorderBrush>
+                </Border>
+            </Border>
+            <Grid x:Name="Glyph" Margin="4,1,3,0" Height="3" Width="6" SnapsToDevicePixels="True">
+                <Path x:Name="Path1" Stretch="Fill" Fill="#7FFFFFFF" Data="F1 M 1515,989L 1521,989L 1518,992L 1515,989 Z " Margin="0,1,0,-1" />
+                <Path x:Name="Path2" Stretch="Fill" Fill="#FF80838F" Data="F1 M 1515,989L 1521,989L 1518,992L 1515,989 Z "/>
+            </Grid>
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup x:Name="CommonStates">
+                    <VisualState x:Name="Normal"/>
+                    <VisualState x:Name="MouseOver">
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetName="HoverState" Storyboard.TargetProperty="Opacity" Duration="0" To="1"/>
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Pressed">
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetName="HoverState" Storyboard.TargetProperty="Opacity" Duration="0" To="1"/>
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Checked">
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetName="HoverState" Storyboard.TargetProperty="Opacity" Duration="0" To="1"/>
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Disabled">
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetName="Glyph" Storyboard.TargetProperty="Opacity" Duration="0" To="0.35"/>
+                        </Storyboard>
+                    </VisualState>
+                </VisualStateGroup>
+                <VisualStateGroup x:Name="OrientationStates">
+                    <VisualState x:Name="Horizontal"/>
+                    <VisualState x:Name="Vertical">
+                        <Storyboard>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Glyph" Storyboard.TargetProperty="Margin" dxcn:ValueSetter.Thickness="2,3,2,0"/>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Glyph" Storyboard.TargetProperty="VerticalAlignment" dxcn:ValueSetter.VerticalAlignment="Top"/>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Glyph" Storyboard.TargetProperty="RenderTransform">
+                                <DiscreteObjectKeyFrame KeyTime="0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <RotateTransform CenterX="3.5" CenterY="3.5" Angle="180"/>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+        </Grid>
+    </ControlTemplate>   
+
+    <ControlTemplate x:Key="{dxbt:BarControlThemeKey ResourceKey=QuickCustomizationButtonInMainMenuTemplate}" TargetType="{x:Type dxb:BarQuickCustomizationButton}">
+        <Grid>           
+                <Grid x:Name="Glyph" Margin="3" Height="5" Width="8">
+                    <Path x:Name="Path1" Stretch="Fill" Fill="#9AFFFFFF" Data="F1 M 54,23L 54,24L 58,28L 62,24L 62,23L 54,23 Z"/>
+                    <Path x:Name="Path2" Stretch="Fill" Fill="#FFBDCADE" Data="F1 M 54,23L 62,23L 58,27L 54,23 Z" Margin="0,0,0,1"/>
+                </Grid>
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup x:Name="CommonStates">
+                    <VisualState x:Name="Normal"/>
+                    <VisualState x:Name="MouseOver">
+                        <Storyboard>
+                            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Path.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="Path2">
+                                <EasingColorKeyFrame KeyTime="0" Value="#FF8897AF"/>
+                            </ColorAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Pressed">
+                        <Storyboard>
+                            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Path.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="Path2">
+                                <EasingColorKeyFrame KeyTime="0" Value="#FF8897AF"/>
+                            </ColorAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Checked">
+                        <Storyboard>
+                            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Path.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="Path2">
+                                <EasingColorKeyFrame KeyTime="0" Value="#FF8897AF"/>
+                            </ColorAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Disabled">
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetName="Glyph" Storyboard.TargetProperty="Opacity" Duration="0" To="0.35"/>
+                            <DoubleAnimation Storyboard.TargetName="Path1" Storyboard.TargetProperty="Opacity" Duration="0" To="0.0"/>
+                        </Storyboard>
+                    </VisualState>
+                </VisualStateGroup>
+                <VisualStateGroup x:Name="OrientationStates">
+                    <VisualState x:Name="Horizontal"/>
+                    <VisualState x:Name="Vertical">
+                        <Storyboard>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Glyph" Storyboard.TargetProperty="Margin"
+                                                           dxcn:ValueSetter.Thickness="2,3,2,0"/>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Glyph" Storyboard.TargetProperty="VerticalAlignment"
+                                                           dxcn:ValueSetter.VerticalAlignment="Top"/>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Glyph" Storyboard.TargetProperty="RenderTransform">
+                                <DiscreteObjectKeyFrame KeyTime="0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <RotateTransform CenterX="3.5" CenterY="3.5" Angle="180"/>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+        </Grid>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="{dxbt:BarControlThemeKey ResourceKey=ThumbTemplate}" TargetType="{x:Type Thumb}">
+        <Border BorderBrush="#FFC4C5CC" BorderThickness="0,1,0,0">
+            <Border.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFD8D9DE" Offset="0" />
+                    <GradientStop Color="#FFC9CAD1" Offset="1" />
+                </LinearGradientBrush>
+            </Border.Background>
+            <Grid>
+                <Border BorderBrush="#3FFFFFFF" BorderThickness="0,1,0,0" />
+                <Grid Background="Transparent" Height="10" Width="10" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,3,3">
+                    <Path Stretch="Fill" Fill="#7FFFFFFF" Data="F1 M 0,8.99998L 2,8.99998L 2,11L 0,11L 0,8.99998 Z M 3.99997,8.99999L 5.99997,8.99999L 5.99997,11L 3.99997,11L 3.99997,8.99999 Z M 7.99998,8.99999L 9.99998,8.99999L 9.99998,11L 7.99998,11L 7.99998,8.99999 Z M 7.99998,4.99999L 9.99998,4.99999L 9.99998,6.99999L 7.99998,6.99999L 7.99998,4.99999 Z M 7.99999,0.999989L 9.99999,0.999989L 9.99999,2.99998L 7.99999,2.99998L 7.99999,0.999989 Z M 4,4.99998L 6,4.99998L 6,6.99998L 4,6.99998L 4,4.99998 Z " Margin="0,1,0,-1" />
+                    <Path Stretch="Fill" Fill="#FF868995" Data="F1 M 0,7.99999L 2,7.99999L 2,9.99999L 0,9.99999L 0,7.99999 Z M 3.99997,8L 5.99997,8L 5.99997,10L 3.99997,10L 3.99997,8 Z M 7.99998,8L 9.99998,8L 9.99998,10L 7.99998,10L 7.99998,8 Z M 7.99998,4L 9.99998,4L 9.99998,6L 7.99998,6L 7.99998,4 Z M 7.99999,0L 9.99999,0L 9.99999,2L 7.99999,2L 7.99999,0 Z M 4,4L 6,4L 6,6L 4,6L 4,4 Z "/>
+                </Grid>
+            </Grid>
+        </Border>
+    </ControlTemplate>    
+
+    <ControlTemplate x:Key="{dxbt:BarControlThemeKey ResourceKey=DropIndicatorTemplate}" TargetType="{x:Type ContentControl}">
+        <!--First element MUST have a name "PART_Content"-->
+        <Grid x:Name="PART_Content" SnapsToDevicePixels="True">
+            <Grid.RenderTransform>
+                <TranslateTransform X="-3" Y="0"/>
+            </Grid.RenderTransform>
+            <Border Background="#FF000000" BorderBrush="#FFFFFFFF" BorderThickness="1"
+                    Width="9" Height="3" VerticalAlignment="Top"/>
+            <Border Background="#FF000000" BorderBrush="#FFFFFFFF" BorderThickness="1"
+                    Width="9" Height="3" VerticalAlignment="Bottom"/>
+            <dx:PixelSnapper HorizontalAlignment="Center" Margin="0,2,0,2">
+                <Border Background="#FF000000" BorderBrush="#FFFFFFFF" BorderThickness="1,0,1,0" Width="3"/>
+            </dx:PixelSnapper>
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup x:Name="Orientation">
+                    <VisualState x:Name="Horizontal">
+                        <Storyboard>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Content" Storyboard.TargetProperty="RenderTransform">
+                                <DiscreteObjectKeyFrame KeyTime="0:0:0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <TransformGroup x:Name="HorizontalTransform">
+                                            <TranslateTransform Y="0" X="-3"/>
+                                        </TransformGroup>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Vertical">
+                        <Storyboard>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Content" Storyboard.TargetProperty="RenderTransform">
+                                <DiscreteObjectKeyFrame KeyTime="0:0:0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <TransformGroup x:Name="VerticalTransform">
+                                            <RotateTransform Angle="-90" CenterX="0.5" CenterY="0.5"/>
+                                            <TranslateTransform Y="3" X="0"/>
+                                        </TransformGroup>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+        </Grid>
+    </ControlTemplate>
+
+    <Style x:Key="{dxbt:BarControlThemeKey ResourceKey=BarContentStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Foreground" Value="#FF201F35"/>
+        <Setter Property="FontWeight" Value="Normal" />
+		<Setter Property="FontStyle"  Value="Normal" />
+		<Setter Property="FontSize"   Value="12" />
+		<Setter Property="FontFamily" Value="Segoe UI" />
+    </Style>
+
+    <Style x:Key="{dxbt:BarControlThemeKey ResourceKey=MenuContentStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Foreground" Value="#FF201F35"/>
+        <Setter Property="FontWeight" Value="Normal" />
+		<Setter Property="FontStyle"  Value="Normal" />
+		<Setter Property="FontSize"   Value="12" />
+		<Setter Property="FontFamily" Value="Segoe UI" />
+        <!--ONLY SL
+        <Setter Property="VerticalContentAlignment" Value="Stretch"/>
+        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+        ONLY SL-->
+    </Style>
+
+    <Style x:Key="{dxbt:BarControlThemeKey ResourceKey=MainMenuContentStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Foreground" Value="#FF201F35"/>
+        
+    </Style>
+
+    <Style x:Key="{dxbt:BarControlThemeKey ResourceKey=StatusBarContentStyle}" TargetType="{x:Type ContentControl}">
+        <Setter Property="Foreground" Value="#FF201F35"/>
+    </Style>
+
+    <Style x:Key="{dxbt:BarControlThemeKey ResourceKey=BarStyle}" TargetType="{x:Type ContentControl}">
+    </Style>
+
+    <Style x:Key="{dxbt:BarControlThemeKey ResourceKey=FloatingBarStyle}" TargetType="{x:Type ContentControl}">
+    </Style>    
+    
+    <Style x:Key="{dxbt:BarControlThemeKey ResourceKey=MainMenuStyle}" TargetType="{x:Type ContentControl}">
+    </Style>
+
+    <Style x:Key="{dxbt:BarControlThemeKey ResourceKey=StatusBarStyle}" TargetType="{x:Type ContentControl}">
+    </Style>
+
+    <ControlTemplate x:Key="{dxbt:BarControlThemeKey ResourceKey=BarTemplate}" TargetType="{x:Type ContentControl}">
+        <Grid Margin="0,0,1,1"> 
+            <Grid.Effect>
+                <DropShadowEffect x:Name="Shadow" Direction="270" ShadowDepth="1" BlurRadius="3" Opacity="0.12"/>
+            </Grid.Effect>
+            <Border BorderThickness="1" CornerRadius="2">
+                <Border.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FFFFFFFF" Offset="0"/>
+                        <GradientStop Color="#FFF1F2F6" Offset="1"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+                <Border.BorderBrush>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#3FB8BAC2" Offset="0"/>
+                        <GradientStop Color="#FFB8BAC2" Offset="1"/>
+                    </LinearGradientBrush>
+                </Border.BorderBrush>
+            </Border>
+            <ContentPresenter Margin="1" />
+        </Grid>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="{dxbt:BarControlThemeKey ResourceKey=MainMenuTemplate}" TargetType="{x:Type ContentControl}">
+        <Border Background="#FFEBECEF">
+            <ContentPresenter/>
+        </Border>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="{dxbt:BarControlThemeKey ResourceKey=StatusBarTemplate}" TargetType="{x:Type ContentControl}">
+        <Border x:Name="Border" BorderBrush="#FFC4C5CC" BorderThickness="0,1,0,0">
+            <Border.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFD8D9DE" Offset="0"/>
+                    <GradientStop Color="#FFC9CAD1" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
+            <Grid>
+                <Border BorderBrush="#3FFFFFFF" BorderThickness="0,1,0,0" />
+                <ContentPresenter Margin="0,-1,0,0"/>
+            </Grid>
+        </Border>
+    </ControlTemplate>
+
+</ResourceDictionary>

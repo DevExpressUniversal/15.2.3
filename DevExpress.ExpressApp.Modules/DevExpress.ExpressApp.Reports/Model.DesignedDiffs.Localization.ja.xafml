@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application>
+  <ActionDesign>
+    <Actions>
+      <Action Id="ShowInReport" Caption="レポートに表示" ToolTip="選択されたレコードをレポートに表示" />
+    </Actions>
+  </ActionDesign>
+  <BOModel>
+    <Class Name="DevExpress.Persistent.BaseImpl.ReportData" Caption="レポート">
+      <OwnMembers>
+        <Member Name="DataTypeCaption" Caption="データ タイプ" />
+        <Member Name="IsInplaceReport" Caption="インプレース レポート" />
+        <Member Name="ReportName" Caption="レポート名" />
+      </OwnMembers>
+    </Class>
+  </BOModel>
+  <NavigationItems RelatedReportsGroupCaption="レポート">
+    <Items>
+      <Item Id="Reports" Caption="レポート">
+        <Items>
+          <Item Id="Reports" Caption="レポート" />
+        </Items>
+      </Item>
+    </Items>
+  </NavigationItems>
+  <Views>
+    <ListView Id="ReportData_ListView" Caption="レポート" />
+  </Views>
+</Application>

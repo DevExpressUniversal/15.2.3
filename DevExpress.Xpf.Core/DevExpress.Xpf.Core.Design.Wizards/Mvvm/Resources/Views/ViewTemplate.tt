@@ -1,0 +1,32 @@
+﻿<#@ template language="C#" #>
+
+<#@ assembly name="System.Core" #>
+<#@ assembly name="System.Xml" #>
+
+<#@ import namespace="System" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.Diagnostics" #>
+<#@ import namespace="System.IO" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Xml" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="DevExpress.Xpf.Core.Design.Wizards.Mvvm.EntityFramework" #>
+<#@ import namespace="DevExpress.Xpf.Core.Design.Wizards.Mvvm" #>
+<#
+    this.GenerationEnvironment.Clear();
+    T4TemplateInfo templateInfo = this.Session["T4TemplateInfo"] as T4TemplateInfo;
+    string namespaceName = templateInfo.Properties["Namespace"].ToString();
+    string viewName = templateInfo.Properties["ViewName"].ToString();
+#>
+using System;
+using System.Linq;
+using System.Windows.Controls;
+using System.Collections.Generic;
+
+namespace <#=namespaceName#>{
+    public partial class <#=viewName#> : UserControl {
+        public <#=viewName#>() {
+            InitializeComponent();
+        }
+    }
+}

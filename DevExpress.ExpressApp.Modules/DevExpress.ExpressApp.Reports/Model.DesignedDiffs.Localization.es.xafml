@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application>
+  <ActionDesign>
+    <Actions>
+      <Action Id="ShowInReport" Caption="Mostrar en el Informe" ToolTip="Mostrar los registros seleccionados en un informe" />
+    </Actions>
+  </ActionDesign>
+  <BOModel>
+    <Class Name="DevExpress.Persistent.BaseImpl.ReportData" Caption="Informe">
+      <OwnMembers>
+        <Member Name="DataTypeCaption" Caption="Tipo de datos" />
+        <Member Name="IsInplaceReport" Caption="Es Informe inplace" />
+        <Member Name="ReportName" Caption="Nombre del informe" />
+      </OwnMembers>
+    </Class>
+  </BOModel>
+  <NavigationItems RelatedReportsGroupCaption="Reportes" />
+  <Views>
+    <DetailView Id="ReportData_DetailView">
+      <Layout>
+        <LayoutGroup Id="Main" Caption="Principales" />
+      </Layout>
+    </DetailView>
+    <ListView Id="ReportData_ListView" Caption="Informes" />
+  </Views>
+</Application>

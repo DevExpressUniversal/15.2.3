@@ -1,0 +1,104 @@
+﻿<dx:DXWindow x:Class="DevExpress.Xpf.Scheduler.Reporting.UI.SchedulerPrintingSettingsForm"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+        xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+        xmlns:dxschint="http://schemas.devexpress.com/winfx/2008/xaml/scheduler/internal"
+        xmlns:dxsch="clr-namespace:DevExpress.Xpf.Scheduler"
+        xmlns:dxschd="clr-namespace:DevExpress.Xpf.Scheduler.Drawing"
+        xmlns:system="clr-namespace:System;assembly=mscorlib"
+        dxsch:SchedulerFormBehavior.Title ="{Binding Title}" MinHeight="420" MinWidth="600"
+        Height="420" Width="600" Closing="OnWindowClosing">
+    <Grid Margin="8,8,8,8">
+        <Grid.Resources>
+            <dxschd:IntervalEndConverter x:Key="intervalEndConverter" />
+            <dxsch:SchedulerControlStringIdConverter x:Key="SchedulerControlStringIdConverter"/>
+        </Grid.Resources>
+            <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0" Text="{Binding Source={StaticResource SchedulerControlStringIdConverter}, ConverterParameter=Form_OpenReportTemplate, Converter={StaticResource SchedulerControlStringIdConverter}}" Margin="4,2,4,4"/>
+        <dxe:ComboBoxEdit Grid.Row="1" Margin="4,0,4,4" x:Name="cbe_reportTemplate"
+                            ShowSizeGrip="False"
+                            IsTextEditable="False"
+                            DisplayMember="DisplayName" ValueMember="ReportTemplatePath"
+                            SelectedIndex="{Binding PrintingSettings.ActiveReportTemplateIndex, Mode=TwoWay}"/>
+        <dx:DXTabControl Grid.Row="2" x:Name="tabControl" Margin="4,12,4,12">
+            <dx:DXTabItem Header="{Binding Source={StaticResource SchedulerControlStringIdConverter}, ConverterParameter=Form_PrintingSettings_Format, Converter={StaticResource SchedulerControlStringIdConverter}}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Row="0" Grid.Column="0" Text="{Binding Source={StaticResource SchedulerControlStringIdConverter}, ConverterParameter=Form_StartDate, Converter={StaticResource SchedulerControlStringIdConverter}}" Margin="0,0,4,4"/>
+                    <dxe:DateEdit x:Name="dte_StartDate" Grid.Row="0" Grid.Column="1" EditValue="{Binding PrintingSettings.TimeInterval.Start, Mode=TwoWay}" Margin="40,0,4,4"/>
+                    <TextBlock Grid.Row="1" Grid.Column="0" Text="{Binding Source={StaticResource SchedulerControlStringIdConverter}, ConverterParameter=Form_EndDate, Converter={StaticResource SchedulerControlStringIdConverter}}" Margin="0,4,4,4"/>
+                    <dxe:DateEdit x:Name="dte_EndDate" Grid.Row="1" Grid.Column="1" EditValue="{Binding PrintingSettings.TimeInterval.End, Converter={StaticResource intervalEndConverter}, Mode=TwoWay}" Margin="40,4,4,4"/>
+                </Grid>
+            </dx:DXTabItem>
+            <dx:DXTabItem Header="{Binding Source={StaticResource SchedulerControlStringIdConverter}, ConverterParameter=Form_PrintingSettings_Resources, Converter={StaticResource SchedulerControlStringIdConverter}}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0" Margin="0,2,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Text="{Binding Source={StaticResource SchedulerControlStringIdConverter}, ConverterParameter=Form_ResourcesKind, Converter={StaticResource SchedulerControlStringIdConverter}}" HorizontalAlignment="Right" Margin="0,4,12,0"/>
+                        <dxe:ComboBoxEdit x:Name="cbe_ResourcesKind" Grid.Column="1" IsTextEditable="False" 
+                                          SelectedIndex="{Binding PrintingSettings.ResourcesKindIndex, Mode=TwoWay}" 
+                                          IsEnabled="{Binding ElementName=chk_PrintCustomCollection, Path=IsChecked, Converter={dxschd:InvertedBoolConverter}}"
+                                          ItemsSource="{Binding ResourcesKindSource}"/>
+                    </Grid>
+<!--BEGIN WPF-->                    
+                    <Grid Grid.Row="1" Margin="0,14,0,0" IsEnabled="{Binding ElementName=chk_PrintCustomCollection, Path=IsChecked}">
+<!--END WPF-->
+<!--ONLY SL         <Grid Grid.Row="1" Margin="0,14,0,0">               ONLY SL-->
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="48"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Row="0" Grid.Column="0" Text="{Binding Source={StaticResource SchedulerControlStringIdConverter}, ConverterParameter=Form_AvailableResources, Converter={StaticResource SchedulerControlStringIdConverter}}" HorizontalAlignment="Left" Margin="0,0,0,4"/>
+                        <TextBlock Grid.Row="0" Grid.Column="2" Text="{Binding Source={StaticResource SchedulerControlStringIdConverter}, ConverterParameter=Form_ResourcesToPrint, Converter={StaticResource SchedulerControlStringIdConverter}}" HorizontalAlignment="Left" Margin="0,0,0,4"/>
+                        <dxe:ListBoxEdit Grid.Row="1" Grid.Column="0" Name="lbe_AvailableResources" IsEnabled="{Binding ElementName=chk_PrintCustomCollection, Path=IsChecked}"/>
+                        <dxe:ListBoxEdit Grid.Row="1" Grid.Column="2" Name="lbe_CustomResources" IsEnabled="{Binding ElementName=chk_PrintCustomCollection, Path=IsChecked}"/>
+                        <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Vertical" Margin="0,12,0,0">
+                            <Button Name="btn_ToCustomCollection" Width="24" Height="22" Margin="0,0,0,4" Padding="0" Click="OnBtnToCustomCollectionClick" IsEnabled="{Binding ElementName=chk_PrintCustomCollection, Path=IsChecked}">
+                                <Path Name="rightPath" Data="F1 M 605,392L 600,397L 600,394L 595,394L 595,390L 600,390L 600,387L 605,392 Z " Stretch="Fill" Height="10" Width="10" Fill="{Binding Path=Foreground, ElementName=btn_ToCustomCollection}"/>
+                            </Button>
+                            <Button Name="btn_FromCustomCollection" Width="24" Height="22" Margin="0,0,0,4" Padding="0" Click="OnBtnFromCustomCollectionClick" IsEnabled="{Binding ElementName=chk_PrintCustomCollection, Path=IsChecked}">
+                                <Path x:Name="leftPath" Data="F1 M 561,389L 566,384L 566,387L 571,387L 571,391L 566,391L 566,394L 561,389 Z " Stretch="Fill" Height="10" Width="10" Fill="{Binding Path=Foreground, ElementName=btn_FromCustomCollection}"/>
+                            </Button>
+                            <Button Name="btn_MoveUp" Width="24" Height="22" Margin="0,0,0,4" Padding="0" Click="OnBtnMoveUpClick" IsEnabled="{Binding ElementName=chk_PrintCustomCollection, Path=IsChecked}">
+                                <Path Name="upPath" Data="F1 M 574,370L 579,375L 576,375L 576,380L 572,380L 572,375L 569,375L 574,370 Z " Stretch="Fill" Height="10" Width="10" Fill="{Binding Path=Foreground, ElementName=btn_MoveUp}"/>
+                            </Button>
+                            <Button Name="btn_MoveDown" Width="24" Height="22" Margin="0,0,0,4" Padding="0" Click="OnBtnMoveDownClick" IsEnabled="{Binding ElementName=chk_PrintCustomCollection, Path=IsChecked}">
+                                <Path Name="downPath" Data="F1 M 583,395L 578,390L 581,390L 581,385L 585,385L 585,390L 588,390L 583,395 Z " Stretch="Fill" Height="10" Width="10" Fill="{Binding Path=Foreground, ElementName=btn_MoveDown}"/>
+                            </Button>
+                        </StackPanel>
+                    </Grid>
+                    <dxe:CheckEdit Grid.Row="2" x:Name="chk_PrintCustomCollection" Grid.Column="0" Content="{Binding Source={StaticResource SchedulerControlStringIdConverter}, ConverterParameter=Form_PrintUsingCustomCollection, Converter={StaticResource SchedulerControlStringIdConverter}}" Margin="0,17,0,5" IsChecked="{Binding PrintingSettings.UseSpecificResources, Mode=TwoWay}"/>
+                </Grid>
+            </dx:DXTabItem>
+        </dx:DXTabControl>
+        <Grid Grid.Row="3" Margin="4,0,4,4">
+            <Button Grid.Column="0" Name="btn_Preview" Content="{Binding Source={StaticResource SchedulerControlStringIdConverter}, ConverterParameter=Form_Preview, Converter={StaticResource SchedulerControlStringIdConverter}}" Width="85" Height="25" HorizontalAlignment="Right" Click="OnBtnPreviewClick"/>
+        </Grid>
+    </Grid>
+</dx:DXWindow>

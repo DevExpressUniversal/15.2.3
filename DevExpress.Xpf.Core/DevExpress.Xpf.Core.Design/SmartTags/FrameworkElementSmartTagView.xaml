@@ -1,0 +1,20 @@
+﻿<UserControl x:Class="DevExpress.Xpf.Core.Design.FrameworkElementSmartTagView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:DevExpress.Xpf.Core.Design"
+             xmlns:SmartTags="clr-namespace:DevExpress.Design.SmartTags"
+             mc:Ignorable="d" Background="White" Padding="11,16,11,8"
+             d:DesignHeight="300" d:DesignWidth="300" UseLayoutRounding="True" SnapsToDevicePixels="True">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="PropertyLineDataTemplates.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <DataTemplate DataType="{x:Type local:FrameworkElementSmartTagViewModel}">
+                 <SmartTags:SmartTagContentView Grid.ColumnSpan="3" />
+            </DataTemplate>
+        </ResourceDictionary>
+    </UserControl.Resources>
+</UserControl>

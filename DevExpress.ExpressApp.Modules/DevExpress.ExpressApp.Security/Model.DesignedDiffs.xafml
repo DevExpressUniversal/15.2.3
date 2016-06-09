@@ -1,0 +1,428 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application>
+  <ActionDesign>
+    <ActionToContainerMapping>
+      <ActionContainer Id="Security">
+        <ActionLink ActionId="MyDetails" Index="0" />
+      </ActionContainer>
+    </ActionToContainerMapping>
+  </ActionDesign>
+  <Localization>
+    <LocalizationGroup Name="Messages">
+      <LocalizationItem Name="Create" Value="Create" IsNewNode="True" />
+      <LocalizationItem Name="Delete" Value="Delete" IsNewNode="True" />
+      <LocalizationItem Name="Read" Value="Read" IsNewNode="True" />
+      <LocalizationItem Name="Write" Value="Write" IsNewNode="True" />
+      <LocalizationItem Name="Navigate" Value="Navigate" IsNewNode="True" />
+      <LocalizationItem Name="IsInheritedFrom" Value=" is inherited from '{0}' class. " IsNewNode="True" />
+      <LocalizationItem Name="IsGrantedFrom" Value=" is granted on member in '{0}' class." IsNewNode="True" />
+    </LocalizationGroup>
+    <LocalizationGroup Name="Exceptions" IsNewNode="True">
+      <LocalizationItem Name="CanNotDeleteObject" Value="You can not delete the '{0}' object due to the security restrictions." IsNewNode="True" />
+      <LocalizationItem Name="CanNotSaveObject" Value="You can not save the '{0}' object due to the security restrictions." IsNewNode="True" />
+    </LocalizationGroup>
+  </Localization>
+  <SchemaModules>
+    <SchemaModule Name="SystemModule" Version="13.1.6.0" IsNewNode="True" />
+  </SchemaModules>
+  <Views>
+    <DetailView Id="ChangePasswordOnLogonParameters_DetailView" Caption="Change password on first logon">
+      <Items>
+        <StaticImage Id="ChangePasswordImage" ImageName="Attention_Image" SizeMode="AutoSize" IsNewNode="True" />
+        <StaticText Id="ChangePasswordText" Text="For security reasons, you must now set your own password. Please enter your new password in the two text fields below, and be sure not to reuse a password you used before." IsNewNode="True" />
+      </Items>
+      <Layout>
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors" Index="1">
+            <LayoutGroup Id="ChangePasswordOnLogonParameters">
+              <LayoutItem Id="ConfirmPassword" Index="1" ViewItem="ConfirmPassword" />
+              <LayoutItem Id="NewPassword" Index="0" ViewItem="NewPassword" />
+            </LayoutGroup>
+          </LayoutGroup>
+          <LayoutGroup Id="Static" Index="0" Direction="Horizontal" ShowCaption="False" Caption="Static" IsNewNode="True">
+            <LayoutItem Id="ChangePasswordImage" Index="0" ShowCaption="False" RelativeSize="1" ViewItem="ChangePasswordImage" IsNewNode="True" />
+            <LayoutItem Id="ChangePasswordText" Index="1" ShowCaption="False" RelativeSize="99" ViewItem="ChangePasswordText" IsNewNode="True" />
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="AuthenticationStandardLogonParameters_DetailView" Caption="Log On">
+      <Items>
+        <StaticImage Id="LogonImage" ImageName="Security_Image" SizeMode="AutoSize" VerticalAlign="Middle" IsNewNode="True" />
+        <StaticText Id="LogonText" Text="Welcome! Please enter your user name and password below." IsNewNode="True" />
+      </Items>
+      <Layout>
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors" Removed="True" />
+          <LayoutGroup Id="RootGroup" Direction="Horizontal" Index="0" ShowCaption="False" IsNewNode="True">
+            <LayoutGroup Id="ImageGroup" Direction="Vertical" Index="0" ShowCaption="False" RelativeSize="1" IsNewNode="True">
+              <LayoutItem Id="LogonImage" Index="0" ShowCaption="False" ViewItem="LogonImage" IsNewNode="True" />
+            </LayoutGroup>
+            <LayoutGroup Id="EditorsGroup" Direction="Vertical" Index="1" ShowCaption="False" RelativeSize="99" IsNewNode="True">
+              <LayoutGroup Id="Text" Direction="Vertical" Index="0" ShowCaption="False" IsNewNode="True">
+                <LayoutItem Id="LogonText" Index="0" ShowCaption="False" ViewItem="LogonText" CustomCSSClassName="LogonTextClassCSS" IsNewNode="True" />
+              </LayoutGroup>
+              <LayoutGroup Id="Editors" Direction="Vertical" Index="1" ShowCaption="False" IsNewNode="True">
+                <LayoutItem Id="UserName" Index="1" ViewItem="UserName" CustomCSSClassName="LogonItemClassCSS" IsNewNode="True" />
+                <LayoutItem Id="Password" Index="2" ViewItem="Password" CustomCSSClassName="LogonItemClassCSS" IsNewNode="True" />
+              </LayoutGroup>
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="ResetPasswordParameters_DetailView" Caption="Reset Password">
+      <Items>
+        <StaticImage Id="ResetPasswordImage" ImageName="Attention_Image" SizeMode="AutoSize" IsNewNode="True" />
+        <StaticText Id="ResetPasswordText" Text="Setting the user's password will create a new password for the user automatically, and at the same time disable the user's login with the old password. You must then pass on the new password to the user, so he/she can continue to work with the application. Are you sure you want to do this?" IsNewNode="True" />
+      </Items>
+      <Layout>
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors" Index="1" />
+          <LayoutGroup Id="Static" Index="0" Direction="Horizontal" ShowCaption="False" Caption="Static" IsNewNode="True">
+            <LayoutItem Id="ResetPasswordImage" Index="0" ShowCaption="False" RelativeSize="1" ViewItem="ResetPasswordImage" IsNewNode="True" />
+            <LayoutItem Id="ResetPasswordText" Index="1" ShowCaption="False" RelativeSize="99" ViewItem="ResetPasswordText" IsNewNode="True" />
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="ChangePasswordParameters_DetailView" Caption="Change Password">
+      <Items>
+        <StaticImage Id="ChangePasswordImage" ImageName="Attention_Image" SizeMode="AutoSize" IsNewNode="True" />
+        <StaticText Id="ChangePasswordText" Text="To change your password, please enter your old and new passwords in the text fields below." IsNewNode="True" />
+      </Items>
+      <Layout>
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors" Index="1">
+            <LayoutGroup Id="ChangePasswordOnLogonParameters" IsNewNode="True">
+              <LayoutItem Id="ConfirmPassword" Index="1" ViewItem="ConfirmPassword" IsNewNode="True" />
+              <LayoutItem Id="NewPassword" Index="0" ViewItem="NewPassword" IsNewNode="True" />
+            </LayoutGroup>
+          </LayoutGroup>
+          <LayoutGroup Id="Static" Index="0" Direction="Horizontal" ShowCaption="False" Caption="Static" IsNewNode="True">
+            <LayoutItem Id="ChangePasswordImage" Index="0" ShowCaption="False" RelativeSize="1" ViewItem="ChangePasswordImage" IsNewNode="True" />
+            <LayoutItem Id="ChangePasswordText" Index="1" ShowCaption="False" RelativeSize="99" ViewItem="ChangePasswordText" IsNewNode="True" />
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="MemberOperationPermissionData_DetailView">
+      <Layout>
+        <LayoutGroup Id="Main" RelativeSize="100" ImageName="">
+          <LayoutGroup Id="SimpleEditors" RelativeSize="100" ImageName="">
+            <LayoutGroup Id="MemberOperationPermissionData" RelativeSize="6" Caption="Members" ImageName="">
+              <LayoutItem Id="TargetType" ViewItem="TargetType" Index="0" RelativeSize="54" IsNewNode="True" />
+              <LayoutItem Id="Members" Index="1" RelativeSize="45" />
+            </LayoutGroup>
+            <LayoutGroup Id="TypePermissionData" RelativeSize="93" ImageName="">
+              <LayoutItem Id="AllowRead" Index="0" RelativeSize="3" ViewItem="AllowRead" />
+              <LayoutItem Id="AllowWrite" Index="1" RelativeSize="96" ViewItem="AllowWrite" />
+              <LayoutItem Id="TargetType" ViewItem="TargetType" Removed="True" />
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="ObjectOperationPermissionData_DetailView">
+      <Layout>
+        <LayoutGroup Id="Main" RelativeSize="100" ImageName="">
+          <LayoutGroup Id="SimpleEditors" RelativeSize="100" ImageName="">
+            <LayoutItem Id="TargetType" ViewItem="TargetType" Index="0" RelativeSize="3" IsNewNode="True" />
+            <LayoutItem Id="Criteria" ViewItem="Criteria" Index="1" RelativeSize="2" IsNewNode="True" />
+            <LayoutItem Id="AllowRead" ViewItem="AllowRead" Index="2" RelativeSize="2" IsNewNode="True" />
+            <LayoutItem Id="AllowWrite" ViewItem="AllowWrite" Index="3" RelativeSize="2" IsNewNode="True" />
+            <LayoutItem Id="AllowCreate" ViewItem="AllowCreate" Index="4" RelativeSize="2" IsNewNode="True" />
+            <LayoutItem Id="AllowDelete" ViewItem="AllowDelete" Index="5" RelativeSize="2" IsNewNode="True" />
+            <LayoutItem Id="AllowNavigate" ViewItem="AllowNavigate" Index="6" RelativeSize="83" IsNewNode="True" />
+            <LayoutGroup Id="TypeOperationPermissionData" RelativeSize="53" ImageName="" Removed="True">
+              <LayoutItem Id="AllowCreate" RelativeSize="37" ViewItem="AllowCreate" />
+              <LayoutItem Id="AllowDelete" RelativeSize="27" ViewItem="AllowDelete" />
+              <LayoutItem Id="AllowNavigate" RelativeSize="34" ViewItem="AllowNavigate" />
+            </LayoutGroup>
+            <LayoutGroup Id="TypePermissionData" Removed="True" />
+          </LayoutGroup>
+          <LayoutGroup Id="SizeableEditors" RelativeSize="79" ImageName="" Direction="Horizontal" Removed="True">
+            <LayoutItem Id="Criteria" ViewItem="Criteria" Removed="True" />
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="TypeOperationPermissionData_DetailView">
+      <Layout>
+        <LayoutGroup Id="Main" RelativeSize="100" ImageName="">
+          <LayoutGroup Id="SimpleEditors" RelativeSize="100" ImageName="">
+            <LayoutItem Id="TargetType" ViewItem="TargetType" Index="0" RelativeSize="3" IsNewNode="True" />
+            <LayoutItem Id="AllowRead" ViewItem="AllowRead" Index="1" RelativeSize="2" IsNewNode="True" />
+            <LayoutItem Id="AllowWrite" ViewItem="AllowWrite" Index="2" RelativeSize="2" IsNewNode="True" />
+            <LayoutItem Id="AllowCreate" ViewItem="AllowCreate" Index="3" RelativeSize="2" IsNewNode="True" />
+            <LayoutItem Id="AllowDelete" ViewItem="AllowDelete" Index="4" RelativeSize="2" IsNewNode="True" />
+            <LayoutItem Id="AllowNavigate" ViewItem="AllowNavigate" Index="5" RelativeSize="85" IsNewNode="True" />
+            <LayoutGroup Id="TypeOperationPermissionData" RelativeSize="12" Removed="True">
+              <LayoutItem Id="TargetType" ViewItem="TargetType" Index="0" RelativeSize="29" IsNewNode="True" />
+              <LayoutItem Id="AllowCreate" Index="1" RelativeSize="21" ViewItem="AllowCreate" />
+              <LayoutItem Id="AllowDelete" Index="2" RelativeSize="21" ViewItem="AllowDelete" />
+              <LayoutItem Id="AllowNavigate" Index="3" RelativeSize="27" ViewItem="AllowNavigate" />
+            </LayoutGroup>
+            <LayoutGroup Id="TypePermissionData" RelativeSize="88" Removed="True">
+              <LayoutItem Id="AllowRead" Index="0" RelativeSize="3" ViewItem="AllowRead" />
+              <LayoutItem Id="AllowWrite" Index="1" RelativeSize="96" ViewItem="AllowWrite" />
+              <LayoutItem Id="TargetType" ViewItem="TargetType" Removed="True" />
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="SecurityUser_DetailView">
+      <Layout>
+        <LayoutGroup Id="Main" RelativeSize="100">
+          <LayoutGroup Id="SimpleEditors" RelativeSize="15">
+            <LayoutGroup Id="SecurityUserBase" RelativeSize="100">
+              <LayoutItem Id="UserName" Index="0" RelativeSize="39" ViewItem="UserName" />
+              <LayoutItem Id="IsActive" Index="1" RelativeSize="26" ViewItem="IsActive" />
+              <LayoutItem Id="ChangePasswordOnFirstLogon" Index="2" RelativeSize="34" ViewItem="ChangePasswordOnFirstLogon" />
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="SecurityRole_DetailView">
+      <Layout>
+        <LayoutGroup Id="Main" RelativeSize="100">
+          <LayoutGroup Id="SimpleEditors" RelativeSize="12">
+            <LayoutGroup Id="SecurityStrategyRole" Index="0" RelativeSize="100">
+              <LayoutItem Id="Name" RelativeSize="53" ViewItem="Name" />
+              <LayoutItem Id="CanEditModel" ViewItem="CanEditModel" Index="1" RelativeSize="46" IsNewNode="True" />
+            </LayoutGroup>
+            <LayoutGroup Id="SecurityRole" Removed="True" />
+          </LayoutGroup>
+          <TabbedGroup Id="Tabs" Index="1" RelativeSize="87">
+            <LayoutGroup Id="PersistentPermissions" Removed="True" />
+            <LayoutGroup Id="Users" ImageName="BO_User" />
+          </TabbedGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <ListView Id="SecurityRole_Permissions_ListView" UseServerMode="False">
+      <Columns>
+        <ColumnInfo Id="Object" SortIndex="0" SortOrder="Ascending" />
+        <ColumnInfo Id="Category" SortOrder="Ascending" GroupIndex="0" />
+        <ColumnInfo Id="Read" Index="1" />
+        <ColumnInfo Id="Write" Index="2" />
+        <ColumnInfo Id="Create" Index="3" />
+        <ColumnInfo Id="Delete" Index="4" />
+        <ColumnInfo Id="Navigate" Index="5" />
+      </Columns>
+    </ListView>
+    <ListView Id="SecurityStrategyRole_LookupListView" Caption="Role" />
+    <ListView Id="SecurityUserBase_LookupListView" Caption="User" />
+    <ListView Id="SecurityUserWithRolesBase_LookupListView" Caption="User" />
+    <DetailView Id="MemberOperationPermissionDescriptor_DetailView">
+      <Layout>
+        <LayoutGroup Id="Main" RelativeSize="100">
+          <LayoutGroup Id="SimpleEditors" RelativeSize="100">
+            <LayoutGroup Id="MemberOperationPermissionDescriptor" RelativeSize="100">
+              <LayoutItem Id="MemberName" RelativeSize="6" ViewItem="MemberName" />
+              <LayoutItem Id="Read" RelativeSize="4" ViewItem="Read" />
+              <LayoutItem Id="Write" RelativeSize="4" ViewItem="Write" />
+              <LayoutItem Id="InheritedFrom" RelativeSize="84" ViewItem="InheritedFrom" />
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="ObjectOperationPermissionDescriptor_DetailView">
+      <Layout>
+        <LayoutGroup Id="Main" RelativeSize="100">
+          <LayoutGroup Id="SimpleEditors" RelativeSize="100">
+            <LayoutGroup Id="ObjectOperationPermissionDescriptor" ShowCaption="False" Direction="Vertical" RelativeSize="100">
+              <LayoutGroup Id="ObjectOperationPermissionDescriptor_col1" RelativeSize="100">
+                <LayoutItem Id="Caption" RelativeSize="6" ViewItem="Caption" />
+                <LayoutItem Id="Criteria" RelativeSize="4" ViewItem="Criteria" />
+                <LayoutItem Id="Navigate" ViewItem="Navigate" Index="2" RelativeSize="4" IsNewNode="True" />
+                <LayoutItem Id="Read" Index="3" RelativeSize="4" ViewItem="Read" />
+                <LayoutItem Id="Write" Index="4" RelativeSize="4" ViewItem="Write" />
+                <LayoutItem Id="Create" ViewItem="Create" Index="5" RelativeSize="4" IsNewNode="True" />
+                <LayoutItem Id="Delete" ViewItem="Delete" Index="6" RelativeSize="4" IsNewNode="True" />
+                <LayoutItem Id="InheritedFrom" ViewItem="InheritedFrom" Index="7" RelativeSize="66" IsNewNode="True" />
+              </LayoutGroup>
+              <LayoutGroup Id="ObjectOperationPermissionDescriptor_col2" Removed="True" />
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="TypeOperationPermissionDescriptor_DetailView">
+      <Layout>
+        <LayoutGroup Id="Main" RelativeSize="100">
+          <LayoutGroup Id="SimpleEditors" RelativeSize="100">
+            <LayoutGroup Id="TypeOperationPermissionDescriptor" ShowCaption="False" Direction="Vertical" RelativeSize="100">
+              <LayoutGroup Id="TypeOperationPermissionDescriptor_col1" RelativeSize="100">
+                <LayoutItem Id="Category" Index="0" RelativeSize="6" ViewItem="Category" />
+                <LayoutItem Id="Object" Index="1" RelativeSize="4" ViewItem="Object" />
+                <LayoutItem Id="Navigate" ViewItem="Navigate" Index="2" RelativeSize="4" IsNewNode="True" />
+                <LayoutItem Id="Read" Index="3" RelativeSize="4" ViewItem="Read" />
+                <LayoutItem Id="Write" Index="4" RelativeSize="4" ViewItem="Write" />
+                <LayoutItem Id="Create" ViewItem="Create" Index="5" RelativeSize="4" IsNewNode="True" />
+                <LayoutItem Id="Delete" ViewItem="Delete" Index="6" RelativeSize="71" IsNewNode="True" />
+              </LayoutGroup>
+              <LayoutGroup Id="TypeOperationPermissionDescriptor_col2" Removed="True" />
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="MemberOperationPermissionDescriptor_DetailView">
+      <Layout>
+        <LayoutGroup Id="Main" RelativeSize="100">
+          <LayoutGroup Id="SimpleEditors" RelativeSize="100">
+            <LayoutGroup Id="MemberOperationPermissionDescriptor" RelativeSize="100">
+              <LayoutItem Id="MemberName" RelativeSize="6" />
+              <LayoutItem Id="Read" RelativeSize="4" />
+              <LayoutItem Id="Write" RelativeSize="4" />
+              <LayoutItem Id="InheritedFrom" RelativeSize="84" />
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <ListView Id="SecuritySystemTypePermissionsObjectOwner_TypePermissionMatrix_ListView" IsGroupPanelVisible="False">
+      <Columns>
+        <ColumnInfo Id="Object" SortIndex="0" SortOrder="Ascending" />
+        <ColumnInfo Id="Category" SortOrder="Ascending" GroupIndex="0" />
+        <ColumnInfo Id="Read" Index="1" />
+        <ColumnInfo Id="Write" Index="2" />
+        <ColumnInfo Id="Create" Index="3" />
+        <ColumnInfo Id="Delete" Index="4" />
+        <ColumnInfo Id="Navigate" Index="5" />
+      </Columns>
+    </ListView>
+    <DetailView Id="TypePermissionMatrixItem_DetailView">
+      <Layout>
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutItem Id="Object" ViewItem="Object" SizeConstraintsType="Default" Index="0" RelativeSize="48" IsNewNode="True" />
+            <LayoutGroup Id="Permissions" ShowCaption="False" Direction="Horizontal" Index="1" RelativeSize="51" IsNewNode="True">
+              <LayoutItem Id="Read" ViewItem="Read" SizeConstraintsType="Default" Index="0" RelativeSize="20" IsNewNode="True" />
+              <LayoutItem Id="Write" ViewItem="Write" SizeConstraintsType="Default" Index="1" RelativeSize="20" IsNewNode="True" />
+              <LayoutItem Id="Create" ViewItem="Create" SizeConstraintsType="Default" Index="2" RelativeSize="20" IsNewNode="True" />
+              <LayoutItem Id="Delete" ViewItem="Delete" SizeConstraintsType="Default" Index="3" RelativeSize="20" IsNewNode="True" />
+              <LayoutItem Id="Navigate" ViewItem="Navigate" SizeConstraintsType="Default" Index="4" RelativeSize="20" IsNewNode="True" />
+            </LayoutGroup>
+            <LayoutGroup Id="TypePermissionMatrixItem" Removed="True" />
+          </LayoutGroup>
+          <TabbedGroup Id="Tabs" Index="1" RelativeSize="91">
+            <LayoutGroup Id="MemberPermissions" RelativeSize="100" Caption="Member Permissions" ImageName="BO_Security_Permission_Member" CaptionLocation="Default">
+              <LayoutItem Id="MemberPermissions" ViewItem="MemberPermissions" />
+            </LayoutGroup>
+            <LayoutGroup Id="ObjectPermissions" Caption="Object Permissions" ImageName="BO_Security_Permission_Object">
+              <LayoutItem Id="ObjectPermissions" ViewItem="ObjectPermissions" />
+            </LayoutGroup>
+          </TabbedGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="SecuritySystemTypePermissionObject_DetailView">
+      <Layout>
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors" Index="0">
+            <LayoutGroup Id="SecuritySystemTypePermissionsObjectBase_col1" ShowCaption="False" Index="0" RelativeSize="100" IsNewNode="True">
+              <LayoutItem Id="TargetType" ViewItem="TargetType" Index="0" RelativeSize="48" IsNewNode="True" />
+              <LayoutGroup Id="Item1" ShowCaption="False" CaptionLocation="Top" TextAlignMode="AlignLocal" Direction="Horizontal" Index="1" RelativeSize="51" IsNewNode="True">
+                <LayoutItem Id="AllowRead" ViewItem="AllowRead" Index="0" RelativeSize="20" IsNewNode="True" />
+                <LayoutItem Id="AllowWrite" ViewItem="AllowWrite" Index="1" RelativeSize="20" IsNewNode="True" />
+                <LayoutItem Id="AllowCreate" ViewItem="AllowCreate" Index="2" RelativeSize="20" IsNewNode="True" />
+                <LayoutItem Id="AllowDelete" ViewItem="AllowDelete" Index="3" RelativeSize="20" IsNewNode="True" />
+                <LayoutItem Id="AllowNavigate" ViewItem="AllowNavigate" Index="4" RelativeSize="20" IsNewNode="True" />
+              </LayoutGroup>
+            </LayoutGroup>
+            <LayoutGroup Id="SecuritySystemTypePermissionsObjectBase" Removed="True" />
+          </LayoutGroup>
+          <TabbedGroup Id="Tabs" Index="1" RelativeSize="86" />
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="SecuritySystemMemberPermissionsObject_DetailView">
+      <Layout>
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="SecuritySystemMemberPermissionsObject">
+              <LayoutItem Id="Members" ViewItem="Members" Index="0" RelativeSize="6" IsNewNode="True" />
+              <LayoutItem Id="Criteria" Index="1" RelativeSize="6" ViewItem="Criteria" IsNewNode="True" />
+              <LayoutItem Id="EffectiveRead" Index="2" RelativeSize="4" ViewItem="EffectiveRead" />
+              <LayoutItem Id="EffectiveWrite" Index="3" RelativeSize="4" ViewItem="EffectiveWrite" />
+              <LayoutItem Id="InheritedFrom" Index="4" RelativeSize="6" ViewItem="InheritedFrom" />
+            </LayoutGroup>
+          </LayoutGroup>
+          <LayoutGroup Id="SizeableEditors" Removed="True" />
+        </LayoutGroup>
+      </Layout>
+      <Items>
+        <PropertyEditor Id="Members" RowCount="0" />
+      </Items>
+    </DetailView>
+    <DetailView Id="SecuritySystemObjectPermissionsObject_DetailView">
+      <Layout>
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutItem Id="Criteria" ViewItem="Criteria" Index="0" RelativeSize="6" IsNewNode="True" />
+            <LayoutGroup Id="AutoCreatedLayoutGroup" ShowCaption="False" Direction="Horizontal" Index="1" RelativeSize="4" IsNewNode="True">
+              <LayoutItem Id="EffectiveRead" ViewItem="EffectiveRead" Index="0" RelativeSize="25" IsNewNode="True" />
+              <LayoutItem Id="EffectiveWrite" ViewItem="EffectiveWrite" Index="1" RelativeSize="25" IsNewNode="True" />
+              <LayoutItem Id="EffectiveDelete" ViewItem="EffectiveDelete" Index="2" RelativeSize="25" IsNewNode="True" />
+              <LayoutItem Id="EffectiveNavigate" ViewItem="EffectiveNavigate" Index="3" RelativeSize="25" IsNewNode="True" />
+            </LayoutGroup>
+            <LayoutItem Id="InheritedFrom" ViewItem="InheritedFrom" Index="2" RelativeSize="89" IsNewNode="True" />
+            <LayoutGroup Id="SecuritySystemObjectPermissionsObject" Removed="True" />
+          </LayoutGroup>
+          <LayoutGroup Id="SizeableEditors" Removed="True" />
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="SecuritySystemRole_DetailView">
+      <Layout>
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors" Removed="True" />
+          <LayoutGroup Id="Tabs" Removed="True" />
+          <LayoutGroup Id="SimpleEditors1" Index="0" IsNewNode="True">
+            <LayoutItem Id="Name" ViewItem="Name" Index="0" IsNewNode="True" />
+            <LayoutItem Id="IsAdministrative" ViewItem="IsAdministrative" Index="1" IsNewNode="True" />
+            <LayoutItem Id="CanEditModel" ViewItem="CanEditModel" Index="2" IsNewNode="True" />
+          </LayoutGroup>
+          <TabbedGroup Id="Tabs1" Index="1" IsNewNode="True">
+            <LayoutGroup Id="Users" Index="0" IsNewNode="True">
+              <LayoutItem Id="Users" ViewItem="Users" IsNewNode="True" />
+            </LayoutGroup>
+            <LayoutGroup Id="TypePermissions" Index="1" IsNewNode="True">
+              <LayoutItem Id="TypePermissions" ViewItem="TypePermissions" IsNewNode="True" />
+            </LayoutGroup>       
+            <LayoutGroup Id="ChildRoles" Index="2" IsNewNode="True">
+              <LayoutItem Id="ChildRoles" ViewItem="ChildRoles" IsNewNode="True" />
+            </LayoutGroup>
+            <LayoutGroup Id="ParentRoles" Index="3" IsNewNode="True">
+              <LayoutItem Id="ParentRoles" ViewItem="ParentRoles" IsNewNode="True" />
+            </LayoutGroup>
+            <!--<LayoutGroup Id="NavigatePermissions" Index="4" IsNewNode="True">
+              <LayoutItem Id="NavigatePermissions" ViewItem="NavigatePermissions" IsNewNode="True" />
+            </LayoutGroup>-->
+          </TabbedGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="SecuritySystemUser_DetailView">
+      <Layout>
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors" Removed="True" />
+          <LayoutGroup Id="Roles_Group" Removed="True" />
+          <LayoutGroup Id="SimpleEditors1" Index="0" IsNewNode="True">
+            <LayoutItem Id="UserName" Index="0" ViewItem="UserName" IsNewNode="True" />
+            <LayoutItem Id="IsActive" ViewItem="IsActive" Index="1" IsNewNode="True" />
+            <LayoutItem Id="ChangePasswordOnFirstLogon" ViewItem="ChangePasswordOnFirstLogon" Index="2" IsNewNode="True" />
+          </LayoutGroup>
+          <LayoutGroup Id="Roles_Group1" Index="1" Caption="Roles" ShowCaption="True" IsNewNode="True">
+            <LayoutItem Id="Roles" ViewItem="Roles" IsNewNode="True" />
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+  </Views>
+</Application>

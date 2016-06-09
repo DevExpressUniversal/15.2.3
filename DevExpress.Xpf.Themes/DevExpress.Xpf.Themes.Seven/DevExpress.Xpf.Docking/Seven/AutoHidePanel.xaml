@@ -1,0 +1,168 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+                    xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/docking/themekeys"
+                    xmlns:ve="http://schemas.devexpress.com/winfx/2008/xaml/docking/visualelements"
+                    xmlns:dxcn="http://schemas.devexpress.com/winfx/2008/xaml/core/internal"
+                    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core">
+
+    <Thickness x:Key="{dxt:AutoHideTrayHeadersGroupElementsThemeKey ResourceKey=LeftMargin}">0,3</Thickness>
+    <Thickness x:Key="{dxt:AutoHideTrayHeadersGroupElementsThemeKey ResourceKey=TopMargin}">3,0</Thickness>
+    <Thickness x:Key="{dxt:AutoHideTrayHeadersGroupElementsThemeKey ResourceKey=RightMargin}">0,3</Thickness>
+    <Thickness x:Key="{dxt:AutoHideTrayHeadersGroupElementsThemeKey ResourceKey=BottomMargin}">3,0</Thickness>
+
+    <ControlTemplate x:Key="{dxt:AutoHideTrayElementsThemeKey ResourceKey=Caption}">
+        <Grid x:Name="itemHeader" ve:DockPane.HitTestType="Header" Visibility="{Binding Path=Visibility}">
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup x:Name="CommonStates">
+                       <VisualState x:Name="Normal">
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetName="NormalState" Storyboard.TargetProperty="Opacity" Duration="0" To="1"/>
+                            <DoubleAnimation Storyboard.TargetName="HighlightBorder" Storyboard.TargetProperty="Opacity" Duration="0" To="0.35"/>
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="MouseOver">
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetName="HoverState" Storyboard.TargetProperty="Opacity" Duration="0" To="1"/>
+                            <DoubleAnimation Storyboard.TargetName="HighlightBorder" Storyboard.TargetProperty="Opacity" Duration="0" To="0.5"/>
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Selected">
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetName="PressedState" Storyboard.TargetProperty="Opacity" Duration="0" To="1"/>
+                            <DoubleAnimation Storyboard.TargetName="HighlightBorder" Storyboard.TargetProperty="Opacity" Duration="0" To="0"/>
+                        </Storyboard>
+                    </VisualState>
+                </VisualStateGroup>
+                <VisualStateGroup x:Name="LocationStates">
+                    <VisualState x:Name="Left">
+                        <Storyboard>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Margin" dxcn:ValueSetter.Thickness="0,0,0,-1" Storyboard.TargetName="itemHeader" />
+                            <PointAnimation Duration="0" To="1,0.5" Storyboard.TargetProperty="(Border.Background).(LinearGradientBrush.EndPoint)" Storyboard.TargetName="NormalState"/>
+                            <PointAnimation Duration="0" To="0,0.5" Storyboard.TargetProperty="(Border.Background).(LinearGradientBrush.StartPoint)" Storyboard.TargetName="NormalState"/>
+                            <PointAnimation Duration="0" To="1,0.5" Storyboard.TargetProperty="(Border.Background).(LinearGradientBrush.EndPoint)" Storyboard.TargetName="HoverState"/>
+                            <PointAnimation Duration="0" To="0,0.5" Storyboard.TargetProperty="(Border.Background).(LinearGradientBrush.StartPoint)" Storyboard.TargetName="HoverState"/>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Padding" dxcn:ValueSetter.Thickness="0,1,1,1" Storyboard.TargetName="Border"/>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderThickness" dxcn:ValueSetter.Thickness="0,1,1,1" Storyboard.TargetName="HighlightBorder"/>
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Right">
+                        <Storyboard>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Margin" dxcn:ValueSetter.Thickness="0,0,0,-1" Storyboard.TargetName="itemHeader" />
+                            <PointAnimation Duration="0" To="1,0.5" Storyboard.TargetProperty="(Border.Background).(LinearGradientBrush.EndPoint)" Storyboard.TargetName="NormalState"/>
+                            <PointAnimation Duration="0" To="0,0.5" Storyboard.TargetProperty="(Border.Background).(LinearGradientBrush.StartPoint)" Storyboard.TargetName="NormalState"/>
+                            <PointAnimation Duration="0" To="1,0.5" Storyboard.TargetProperty="(Border.Background).(LinearGradientBrush.EndPoint)" Storyboard.TargetName="HoverState"/>
+                            <PointAnimation Duration="0" To="0,0.5" Storyboard.TargetProperty="(Border.Background).(LinearGradientBrush.StartPoint)" Storyboard.TargetName="HoverState"/>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Padding" dxcn:ValueSetter.Thickness="1,1,0,1" Storyboard.TargetName="Border"/>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderThickness" dxcn:ValueSetter.Thickness="1,1,0,1" Storyboard.TargetName="HighlightBorder"/>
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Top">
+                        <Storyboard>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Margin" dxcn:ValueSetter.Thickness="0,0,-1,0" Storyboard.TargetName="itemHeader" />
+                            <PointAnimation Duration="0" To="0.5,1" Storyboard.TargetProperty="(Border.Background).(LinearGradientBrush.EndPoint)" Storyboard.TargetName="NormalState"/>
+                            <PointAnimation Duration="0" To="0.5,0" Storyboard.TargetProperty="(Border.Background).(LinearGradientBrush.StartPoint)" Storyboard.TargetName="NormalState"/>
+                            <PointAnimation Duration="0" To="0.5,1" Storyboard.TargetProperty="(Border.Background).(LinearGradientBrush.EndPoint)" Storyboard.TargetName="HoverState"/>
+                            <PointAnimation Duration="0" To="0.5,0" Storyboard.TargetProperty="(Border.Background).(LinearGradientBrush.StartPoint)" Storyboard.TargetName="HoverState"/>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Padding" dxcn:ValueSetter.Thickness="1,0,1,1" Storyboard.TargetName="Border"/>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderThickness" dxcn:ValueSetter.Thickness="1,0,1,1" Storyboard.TargetName="HighlightBorder"/>
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Bottom">
+                        <Storyboard>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Margin" dxcn:ValueSetter.Thickness="0,0,-1,0" Storyboard.TargetName="itemHeader" />
+                            <PointAnimation Duration="0" To="0.5,1" Storyboard.TargetProperty="(Border.Background).(LinearGradientBrush.EndPoint)" Storyboard.TargetName="NormalState"/>
+                            <PointAnimation Duration="0" To="0.5,0" Storyboard.TargetProperty="(Border.Background).(LinearGradientBrush.StartPoint)" Storyboard.TargetName="NormalState"/>
+                            <PointAnimation Duration="0" To="0.5,1" Storyboard.TargetProperty="(Border.Background).(LinearGradientBrush.EndPoint)" Storyboard.TargetName="HoverState"/>
+                            <PointAnimation Duration="0" To="0.5,0" Storyboard.TargetProperty="(Border.Background).(LinearGradientBrush.StartPoint)" Storyboard.TargetName="HoverState"/>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Padding" dxcn:ValueSetter.Thickness="1,1,1,0" Storyboard.TargetName="Border"/>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderThickness" dxcn:ValueSetter.Thickness="1,1,1,0" Storyboard.TargetName="HighlightBorder"/>
+                        </Storyboard>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+            <Border x:Name="Border" Background="#FF8896AB" Padding="1">
+                <Grid>
+                    <Border x:Name="NormalState" Opacity="0">
+                        <Border.Background>
+                            <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
+                                <GradientStop Color="#FFE1ECF7" Offset="0" />
+                                <GradientStop Color="#FFB9D2E8" Offset="1" />
+                            </LinearGradientBrush>
+                        </Border.Background>
+                    </Border>
+                    <Border x:Name="HoverState" Opacity="0">
+                        <Border.Background>
+                            <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
+                                <GradientStop Color="#FFF4F8FB" Offset="0"/>
+                                <GradientStop Color="#FFD4E4F1" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Border.Background>
+                    </Border>
+                    <Border x:Name="PressedState" Background="#FFA7BED6" Opacity="0"/>
+                    <Border x:Name="HighlightBorder" BorderBrush="#FFFFFFFF" BorderThickness="1" Opacity="0.35"/>
+                </Grid>
+            </Border>
+            <ve:AutoHideTransformPanel x:Name="PART_TransformPanel">
+                <ve:AutoHideTransformPanel.Orientation>
+                    <Binding Path="(ve:AutoHideTray.Orientation)" RelativeSource="{RelativeSource TemplatedParent}">
+                        <Binding.Converter>
+                            <ve:OrientationInvertConverter/>
+                        </Binding.Converter>
+                    </Binding>
+                </ve:AutoHideTransformPanel.Orientation>
+                <Border x:Name="front">
+                    <ve:TemplatedTabCaptionControl x:Name="PART_CaptionControlPresenter" LayoutItem="{Binding}" Padding="5,3" />
+                </Border>
+            </ve:AutoHideTransformPanel>
+        </Grid>
+    </ControlTemplate>
+
+    <sys:Double x:Key="{dxt:AutoHidePaneElementsThemeKey ResourceKey=SizerThickness}">6</sys:Double>
+    <sys:Double x:Key="{dxt:AutoHidePaneElementsThemeKey ResourceKey=TouchSizerThickness}">24</sys:Double>
+    <ControlTemplate x:Key="{dxt:AutoHidePaneElementsThemeKey ResourceKey=Template}" TargetType="ve:AutoHidePane">
+        <!--BEGIN WPF-->
+        <ve:AutoHidePanePresenter x:Name="PART_Presenter">
+            <!--END WPF-->
+            <DockPanel Background="Transparent">
+                <DockPanel.Resources>
+                    <ve:DockToVerticalAlignmentConverter x:Key="dockToVerticalAlignmentConverter" />
+                    <ve:DockToHorizontalAlignmentConverter x:Key="dockToHorizontalAlignmentConverter" />
+                    <ve:DockTypeToThicknessConverter x:Key="dockTypeToThicknessConverter" All="7" Inverted="True" />
+                    <dx:BoolToVisibilityConverter x:Key="boolToVisibilityConverter" />
+                    <dx:BoolToVisibilityInverseConverter x:Key="boolToVisibilityInverseConverter" />
+                    <ve:DockInverseConverter x:Key="dockInverseConverter" />
+                </DockPanel.Resources>
+                <Grid DockPanel.Dock="{Binding DockType,RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource dockInverseConverter}}" 
+                      Background="Transparent" Visibility="{Binding IsSizerVisible,RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource boolToVisibilityConverter}}"
+                      HorizontalAlignment="{Binding DockType, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource ResourceKey=dockToHorizontalAlignmentConverter}}"
+                      VerticalAlignment="{Binding DockType, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource ResourceKey=dockToVerticalAlignmentConverter}}"
+                      ve:DockPane.HitTestType="Border" Cursor="{Binding ElementName=PART_Sizer, Path=Cursor}">
+                    <ve:ElementSizer x:Name="PART_Sizer" Thickness="{DynamicResource {dxt:AutoHidePaneElementsThemeKey ResourceKey=SizerThickness}}" Orientation="{Binding Path=(ve:AutoHideTray.Orientation), RelativeSource={RelativeSource TemplatedParent}}"
+                                     HorizontalAlignment="Center" VerticalAlignment="Center" />
+                </Grid>
+                <Grid x:Name="PART_PaneContent" Background="Transparent">
+                    <Grid ve:DockPane.HitTestType="Border">
+                        <Border Background="#FF000000" Margin="5,5,1,1" IsHitTestVisible="False" Opacity="0.10"
+                                        Visibility="{Binding IsSizerVisible,RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource boolToVisibilityInverseConverter}}"/>
+                        <ContentPresenter Content="{TemplateBinding Content}" Cursor="Arrow" Margin="2" />
+                    </Grid>
+                    <Border x:Name="PART_PaneBorder" BorderBrush="Transparent" ve:DockPane.HitTestType="Border"
+                                    Visibility="{Binding IsSizerVisible,RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource boolToVisibilityInverseConverter}}"
+                                    BorderThickness="{Binding DockType, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource ResourceKey=dockTypeToThicknessConverter}}">
+                    </Border>
+                </Grid>
+            </DockPanel>
+            <!--BEGIN WPF-->
+        </ve:AutoHidePanePresenter>
+        <!--END WPF-->
+    </ControlTemplate>
+    <!-- AutoHide Theme Elements -->
+    <ControlTemplate TargetType="ve:ElementSizer" x:Key="{dxt:DockElementsThemeKey ResourceKey=ElementSizer}">
+        <dx:Container Background="{TemplateBinding Background}" UseLayoutRounding="True">
+            <dx:Container x:Name="HorizontalRootElement" Width="16" Height="{TemplateBinding Thickness}" Cursor="SizeNS"/>
+            <dx:Container x:Name="VerticalRootElement" Width="{TemplateBinding Thickness}" Height="16" Cursor="SizeWE"/>
+        </dx:Container>
+    </ControlTemplate>
+
+</ResourceDictionary>

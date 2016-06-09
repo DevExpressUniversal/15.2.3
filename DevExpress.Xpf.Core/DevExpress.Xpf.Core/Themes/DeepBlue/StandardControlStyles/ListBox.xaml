@@ -1,0 +1,159 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:dxtEx="clr-namespace:DevExpress.Xpf.Utils.Themes"
+    xmlns:dxt="clr-namespace:DevExpress.Xpf.Utils.Themes"
+	xmlns:dx="clr-namespace:DevExpress.Xpf.Core">
+	<ResourceDictionary.MergedDictionaries>
+		<dxtEx:ResourceDictionaryEx Source="{dx:UtilsResource Themes/DeepBlue/StandardControlStyles/Brushes.xaml}" />
+	</ResourceDictionary.MergedDictionaries>
+
+
+    <ControlTemplate x:Key="DemoScrollViewerControlTemplate" TargetType="{x:Type ScrollViewer}">
+        <Grid x:Name="Grid" Background="{TemplateBinding Background}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <ScrollContentPresenter Margin="{TemplateBinding Padding}" x:Name="PART_ScrollContentPresenter" Grid.Column="0" Grid.Row="0" CanContentScroll="{TemplateBinding CanContentScroll}" CanHorizontallyScroll="False" CanVerticallyScroll="False" />
+            <dx:DxScrollBar CornerRadius="0,2,2,0" Style="{DynamicResource {dxt:ScrollBarThemeKey ResourceKey=ScrollBarVertStyle}}" Visibility="{TemplateBinding ComputedVerticalScrollBarVisibility}" Cursor="Arrow" x:Name="PART_VerticalScrollBar" Grid.Column="1" Grid.Row="0" ViewportSize="{TemplateBinding ViewportHeight}" Maximum="{TemplateBinding ScrollableHeight}" Minimum="0" Value="{Binding Path=VerticalOffset, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}" AutomationProperties.AutomationId="VerticalScrollBar" Margin="{DynamicResource DemoVerticalScrollBarMargin}" />
+            <dx:DxScrollBar Style="{DynamicResource {dxt:ScrollBarThemeKey ResourceKey=ScrollBarHorzStyle}}" Visibility="{TemplateBinding ComputedHorizontalScrollBarVisibility}" Cursor="Arrow" x:Name="PART_HorizontalScrollBar" Grid.Column="0" Grid.Row="1" Orientation="Horizontal" ViewportSize="{TemplateBinding ViewportWidth}" Maximum="{TemplateBinding ScrollableWidth}" Minimum="0" Value="{Binding Path=HorizontalOffset, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}" AutomationProperties.AutomationId="HorizontalScrollBar" />
+            <Border x:Name="Corner" Grid.Row="1" Grid.Column="1" />
+        </Grid>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="{dxt:ListBoxThemeKey ResourceKey=ControlTemplate}" TargetType="{x:Type ListBox}">
+        <Border Width="Auto" Height="Auto" Background="#FFFFFFFF" BorderThickness="{TemplateBinding BorderThickness}" x:Name="border">
+            <Border.BorderBrush>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF5B81BE" Offset="0" />
+                    <GradientStop Color="#FF43609B" Offset="1" />
+                </LinearGradientBrush>
+            </Border.BorderBrush>
+            <ScrollViewer x:Name="scrollViewer" Padding="{TemplateBinding Padding}" Width="Auto" Height="Auto" Focusable="False">
+                <ItemsPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+            </ScrollViewer>
+        </Border>
+        <ControlTemplate.Triggers>
+            <Trigger Property="Border.BorderThickness" Value="0">
+                <Setter Property="BorderThickness" TargetName="border" Value="0" />
+                <Setter Property="Padding" TargetName="border" Value="0" />
+            </Trigger>
+            <Trigger Property="Border.Background" Value="{x:Null}">
+                <Setter Property="BorderThickness" TargetName="border" Value="0" />
+                <Setter Property="Padding" TargetName="border" Value="0" />
+                <Setter Property="Background" TargetName="border" Value="Transparent" />
+                <Setter Property="Margin" TargetName="border" Value="-3,-2,-3,-2" />
+                <Setter Property="Padding" TargetName="scrollViewer" Value="0" />
+            </Trigger>
+            <Trigger Property="IsGrouping" Value="True">
+                <Setter Property="ScrollViewer.CanContentScroll" Value="False" />
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <Style x:Key="DemoListBox" TargetType="{x:Type ListBox}">
+        <Setter Property="Background"  Value="#FFFFFFFF"/>
+        <Setter Property="BorderBrush" Value="#FF5B81BE"/>
+        <Setter Property="Foreground" Value="#FF000000"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto"/>
+        <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto"/>
+        <Setter Property="ScrollViewer.CanContentScroll" Value="True"/>
+        <Setter Property="ScrollViewer.PanningMode" Value="Both"/>
+        <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="SnapsToDevicePixels" Value="True"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ListBox}">
+                    <Border x:Name="Border"
+							Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}"
+                            Padding="1" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
+                        <ScrollViewer Padding="{TemplateBinding Padding}" Focusable="False">
+                            <ItemsPresenter/>
+                        </ScrollViewer>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="Border" Property="Opacity" Value="0.35"/>
+                        </Trigger>
+                        <Trigger Property="IsGrouping" Value="True">
+                            <Setter Property="ScrollViewer.CanContentScroll" Value="False"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <LinearGradientBrush x:Key="ListBoxItemMouseOverGradient" EndPoint="0.5,1" StartPoint="0.5,0">
+        <GradientStop Color="#FF99bce4" Offset="0" />
+        <GradientStop Color="#FF87acd5" Offset="1" />
+    </LinearGradientBrush>
+
+    <ControlTemplate x:Key="{dxt:ListBoxThemeKey ResourceKey=ItemContainerTemplate}" TargetType="{x:Type ListBoxItem}">
+        <Grid>
+            <Rectangle x:Name="FocusVisual" StrokeThickness="1" Stroke="#FF000000" StrokeDashArray="1 2" SnapsToDevicePixels="True" Opacity="0" />
+            <Border x:Name="Hovered" CornerRadius="2" Opacity="0">
+                <Border.Background>
+                    <LinearGradientBrush EndPoint="0.5,0" StartPoint="0.5,1">
+                        <GradientStop Color="#FF6488BC" Offset="0" />
+                        <GradientStop Color="#FF759BD2" Offset="1" />
+                    </LinearGradientBrush>
+                </Border.Background>
+            </Border>
+            <Border x:Name="Selected" CornerRadius="2" Opacity="0">
+                <Border.Background>
+                    <LinearGradientBrush EndPoint="0.5,0" StartPoint="0.5,1">
+                        <GradientStop Color="#FF4B6FA5" Offset="0" />
+                        <GradientStop Color="#FF5E81B4" Offset="1" />
+                    </LinearGradientBrush>
+                </Border.Background>
+            </Border>
+            <ContentPresenter x:Name="contentPresenter" Margin="3,2,3,2" VerticalAlignment="Center" Width="Auto" Height="Auto" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+           
+        </Grid>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter TargetName="contentPresenter" Property="Opacity" Value="0.35"/>
+            </Trigger>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Opacity" TargetName="Hovered" Value="1" />
+                <Setter Property="Opacity" TargetName="Selected" Value="0" />
+                <Setter Property="Opacity" TargetName="FocusVisual" Value="0" />
+            </Trigger>
+            <Trigger Property="Selector.IsSelected" Value="True">
+                <Setter Property="Opacity" TargetName="Hovered" Value="1" />
+                <Setter Property="Opacity" TargetName="Selected" Value="0" />
+                <Setter Property="Opacity" TargetName="FocusVisual" Value="0" />
+                <Setter Property="Foreground" Value="#FFFFFFFF" />
+            </Trigger>
+            <Trigger Property="IsKeyboardFocused" Value="True">
+                <Setter Property="Opacity" TargetName="Hovered" Value="0" />
+                <Setter Property="Opacity" TargetName="Selected" Value="0" />
+                <Setter Property="Opacity" TargetName="FocusVisual" Value="1" />
+            </Trigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsKeyboardFocused" Value="True"/>
+                    <Condition Property="Selector.IsSelected" Value="True"/>
+                </MultiTrigger.Conditions>
+                <Setter Property="Opacity" TargetName="Hovered" Value="0" />
+                <Setter Property="Opacity" TargetName="Selected" Value="1" />
+                <Setter Property="Opacity" TargetName="FocusVisual" Value="0" />
+                <Setter Property="Foreground" Value="#FFFFFFFF" />
+            </MultiTrigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <Style x:Key="{dxt:ListBoxThemeKey ResourceKey=ItemContainerStyle}" TargetType="{x:Type ListBoxItem}">
+        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        <Setter Property="HorizontalContentAlignment" Value="{Binding Path=HorizontalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}" />
+        <Setter Property="VerticalContentAlignment" Value="{Binding Path=VerticalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}" />
+        <Setter Property="Template" Value="{DynamicResource {dxt:ListBoxThemeKey ResourceKey=ItemContainerTemplate}}" />
+    </Style>
+
+</ResourceDictionary>

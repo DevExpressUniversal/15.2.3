@@ -1,0 +1,1237 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{A8B583AD-D8CB-414C-85ED-B310EF3DF24B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DevExpress.Xpf.Core.Design.Wizards</RootNamespace>
+    <AssemblyName>DevExpress.Xpf.Core.v15.2.Design.Wizards</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <BaseIntermediateOutputPath>obj.Wpf</BaseIntermediateOutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\..\Bin\Framework\Design\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <NoWarn>3008,1762</NoWarn>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\..\Bin\Framework\Design\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <NoWarn>3008,1762</NoWarn>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+  </PropertyGroup>
+  
+  
+  <ItemGroup>
+    <Reference Include="Microsoft.VisualStudio.Shell, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>True</SpecificVersion>
+      
+    <Private>False</Private></Reference>
+    <Reference Include="Microsoft.VisualStudio.Shell.Design, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>True</SpecificVersion>
+      
+    <Private>False</Private></Reference>
+    <Reference Include="Microsoft.VisualStudio.Shell.Immutable.10.0, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>True</SpecificVersion>
+      
+    <Private>False</Private></Reference>
+    <Reference Include="DevExpress.CodeConverter.v15.2">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Bin\Framework\DevExpress.CodeConverter.v15.2.dll</HintPath>
+    <Private>False</Private></Reference>
+    <Reference Include="DevExpress.Design.v15.2">
+      <Aliases>global,Platform</Aliases>
+    <HintPath>..\..\..\Bin\Framework\Design\DevExpress.Design.v15.2.dll</HintPath><Private>False</Private></Reference>
+    <Reference Include="DevExpress.Data.v15.2">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Bin\Framework\DevExpress.Data.v15.2.dll</HintPath>
+    <Private>False</Private></Reference>
+    <Reference Include="DevExpress.Images.v15.2">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Bin\Framework\DevExpress.Images.v15.2.dll</HintPath>
+    <Private>False</Private></Reference>
+    <Reference Include="DevExpress.Mvvm.v15.2">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Bin\Framework\DevExpress.Mvvm.v15.2.dll</HintPath>
+    <Private>False</Private></Reference>
+    <Reference Include="DevExpress.Xpf.Core.v15.2">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Bin\Framework\DevExpress.Xpf.Core.v15.2.dll</HintPath>
+    <Private>False</Private></Reference>
+    <Reference Include="EnvDTE, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    <Private>False</Private></Reference>
+    <Reference Include="EnvDTE80, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    <Private>False</Private></Reference>
+    <Reference Include="Microsoft.VisualStudio.OLE.Interop, Version=7.1.40304.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+      <SpecificVersion>False</SpecificVersion>
+      
+    <Private>False</Private></Reference>
+    <Reference Include="Microsoft.VisualStudio.Shell.Interop, Version=7.1.40304.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+      <SpecificVersion>False</SpecificVersion>
+      
+    <Private>False</Private></Reference>
+    <Reference Include="Microsoft.VisualStudio.TextManager.Interop, Version=7.1.40304.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+      <SpecificVersion>False</SpecificVersion>
+    <Private>False</Private></Reference>
+    <Reference Include="Microsoft.VisualStudio.TextTemplating.Interfaces.10.0, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      
+    <Private>False</Private></Reference>
+    <Reference Include="Microsoft.Windows.Design.Extensibility">
+      <Private>False</Private>
+      
+    </Reference>
+    <Reference Include="Microsoft.Windows.Design.Interaction">
+      <Private>False</Private>
+      
+    </Reference>
+    
+    <Reference Include="PresentationCore"><Private>False</Private></Reference>
+    <Reference Include="PresentationFramework"><Private>False</Private></Reference>
+    <Reference Include="System"><Private>False</Private></Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations"><Private>False</Private></Reference>
+    <Reference Include="System.Core"><Private>False</Private></Reference>
+    <Reference Include="System.Data.Entity"><Private>False</Private></Reference>
+    <Reference Include="System.Data.Entity.Design"><Private>False</Private></Reference>
+    <Reference Include="System.Drawing"><Private>False</Private></Reference>
+    <Reference Include="System.Runtime.Serialization"><Private>False</Private></Reference>
+    <Reference Include="System.ServiceModel"><Private>False</Private></Reference>
+    <Reference Include="System.Windows.Forms"><Private>False</Private></Reference>
+    <Reference Include="System.Windows.Presentation"><Private>False</Private></Reference>
+    <Reference Include="System.Xaml"><Private>False</Private></Reference>
+    <Reference Include="System.Xml.Linq"><Private>False</Private></Reference>
+    <Reference Include="System.Data.DataSetExtensions"><Private>False</Private></Reference>
+    <Reference Include="Microsoft.CSharp"><Private>False</Private></Reference>
+    <Reference Include="System.Data"><Private>False</Private></Reference>
+    <Reference Include="System.Xml"><Private>False</Private></Reference>
+    <Reference Include="VSLangProj, Version=7.0.3300.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    <Private>False</Private></Reference>
+    <Reference Include="WindowsBase"><Private>False</Private></Reference>
+  </ItemGroup>
+  
+  <ItemGroup>
+    <Compile Include="ItemsSourceWizard\DataSourceInfo.cs" />
+    <Compile Include="ItemsSourceWizard\Localization\ItemsSourceWizardLocalizer.cs" />
+    <Compile Include="ItemsSourceWizard\Localization\ItemsSourceWizardStringId.cs" />
+    <Compile Include="ItemsSourceWizard\Localization\ItemsSourceWizardStringIdExtension.cs" />
+    <Compile Include="ItemsSourceWizard\Templates\Controls.cs" />
+    <Compile Include="ItemsSourceWizard\Templates\CollectionViewConfiguratorViewModel.cs" />
+    <Compile Include="ItemsSourceWizard\Templates\Converters.cs" />
+    <Compile Include="ItemsSourceWizard\Templates\ConfigurationViewModel.cs" />
+    <Compile Include="ItemsSourceWizard\Templates\DomainDataSourceConfigurationViewModel.cs" />
+    <Compile Include="ItemsSourceWizard\Templates\InstantFeedBackConfigurationViewModel.cs" />
+    <Compile Include="ItemsSourceWizard\Templates\MessageWindow.xaml.cs">
+      <DependentUpon>MessageWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ItemsSourceWizard\Templates\PLinqInstantFeedBackConfigurationViewModel.cs" />
+    <Compile Include="ItemsSourceWizard\ViewModelGenerator.cs" />
+    <Compile Include="ItemsSourceWizard\Interfaces.cs" />
+    <Compile Include="ItemsSourceWizard\ItemsSorceWizardViewModel.cs" />
+    <Compile Include="ItemsSourceWizard\ItemsSourceWizard.xaml.cs">
+      <DependentUpon>ItemsSourceWizard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ItemsSourceWizard\ItemsSourceWizardWindow.xaml.cs">
+      <DependentUpon>ItemsSourceWizardWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ItemsSourceWizard\SourceItem.cs" />
+    <Compile Include="Mvvm.UI\DataModel.cs" />
+    <Compile Include="Mvvm.UI\DefaultLogServicesImpl.cs" />
+    <Compile Include="Mvvm.UI\DefaultWizardRunContext.cs" />
+    <Compile Include="Mvvm.UI\EntityFramework\Interfaces\EntitySetInfoExtensions.cs" />
+    <Compile Include="Mvvm.UI\EntityFramework\Interfaces\IEntityContainerInfo.cs" />
+    <Compile Include="Mvvm.UI\EntityFramework\Interfaces\IEntitySetInfo.cs" />
+    <Compile Include="Mvvm.UI\Enums.cs" />
+    <Compile Include="Mvvm.UI\Interfaces.cs" />
+    <Compile Include="Mvvm.UI\Log.cs" />
+    <Compile Include="Mvvm.UI\MetadataWorkspaceRuntimeWrapper.cs" />
+    <Compile Include="Mvvm.UI\SR_Mvvm.cs" />
+    <Compile Include="Mvvm.UI\UI\AppLayerConstructorBase.cs" />
+    <Compile Include="Mvvm.UI\UI\ConstructorStartPageView.xaml.cs">
+      <DependentUpon>ConstructorStartPageView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Mvvm.UI\UI\ConstructorStartPageViewModel.cs" />
+    <Compile Include="Mvvm.UI\UI\DataLayerTask\DataLayerConstructor.cs" />
+    <Compile Include="Mvvm.UI\UI\DataLayerTask\TablesSelectorView.xaml.cs">
+      <DependentUpon>TablesSelectorView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Mvvm.UI\UI\DataLayerTask\TablesSelectorViewModel.cs" />
+    <Compile Include="Mvvm.UI\UI\HierarchyItemViewModel.cs" />
+    <Compile Include="Mvvm.UI\UI\IUndoManager.cs" />
+    <Compile Include="Mvvm.UI\UI\MessageLogWindow.xaml.cs">
+      <DependentUpon>MessageLogWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Mvvm.UI\UI\MessageLogWindowViewModel.cs" />
+    <Compile Include="Mvvm.UI\UI\MvvmConstructorContext.cs" />
+    <Compile Include="Mvvm.UI\UI\MvvmConstructorPageViewModelBase.cs" />
+    <Compile Include="Mvvm.UI\UI\MvvmConstructorTaskView.xaml.cs">
+      <DependentUpon>MvvmConstructorTaskView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Mvvm.UI\UI\MvvmConstructorViewModel.cs" />
+    <Compile Include="Mvvm.UI\UI\MvvmDXDesignWindowViewModel.cs" />
+    <Compile Include="Mvvm.UI\UI\RichTextBoxUtils.cs" />
+    <Compile Include="Mvvm.UI\UI\ServiceCache.cs" />
+    <Compile Include="Mvvm.UI\UI\SimpleWizardTask.cs" />
+    <Compile Include="Mvvm.UI\UI\StepsLineItem.cs" />
+    <Compile Include="Mvvm.UI\UI\TabbedMDI\TabbedMDIConstrucor.cs" />
+    <Compile Include="Mvvm.UI\UI\TaskManager.cs" />
+    <Compile Include="Mvvm.UI\UI\ViewModelBase.cs" />
+    <Compile Include="Mvvm.UI\UI\ViewModelTask\ViewModelConstructor.cs" />
+    <Compile Include="Mvvm.UI\UI\ViewModelTask\ViewModelEntityDefinitionsView.xaml.cs">
+      <DependentUpon>ViewModelEntityDefinitionsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Mvvm.UI\UI\ViewModelTask\ViewModelEntityDefinitionsViewModel.cs" />
+    <Compile Include="Mvvm.UI\UI\ViewTask\ViewConstructor.cs" />
+    <Compile Include="Mvvm.UI\UI\ViewTask\ViewModelSelectorPage.xaml.cs">
+      <DependentUpon>ViewModelSelectorPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Mvvm.UI\UI\ViewTask\ViewModelSelectorPageModel.cs" />
+    <Compile Include="Mvvm.UI\UI\WizardInterfaces.cs" />
+    <Compile Include="Mvvm.UI\UI\WizardTaskManager.cs" />
+    <Compile Include="Mvvm\DataModel\DataModel.cs" />
+    <Compile Include="Mvvm\EntityFramework\MetadataInfo\WcfMapper.cs" />
+    <Compile Include="Mvvm\EntityFramework\Model\EFContainerBuilder.cs" />
+    <Compile Include="Mvvm\EntityFramework\Model\WCFContainerBuilder.cs" />
+    <Compile Include="Mvvm\EntityFramework\Model\WcfModelHelper.cs" />
+    <Compile Include="Mvvm\MetaData\SolutionTypesProvider.cs" />
+    <Compile Include="Mvvm\Resources\Common\CommonResourcesTemplate.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CommonResourcesTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Mvvm\Resources\Common\CommonResources_DesignerTemplate.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CommonResources_DesignerTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Mvvm\Resources\Common\DataModel\DbExceptionsTemplate.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DbExceptionsTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Mvvm\Resources\Common\DataModel\DesignTime\DesignTimeInstantFeedbackSourceTemplate.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DesignTimeInstantFeedbackSourceTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Mvvm\Resources\Common\DataModel\DesignTime\DesignTimeReadOnlyRepositoryTemplate.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DesignTimeReadOnlyRepositoryTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Mvvm\Resources\Common\DataModel\DesignTime\DesignTimeRepositoryTemplate.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DesignTimeRepositoryTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Mvvm\Resources\Common\DataModel\DesignTime\DesignTimeUnitOfWorkTemplate.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DesignTimeUnitOfWorkTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Mvvm\Resources\Common\DataModel\DesignTime\DesignTimeUnitOfWorkFactoryTemplate.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DesignTimeUnitOfWorkFactoryTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Mvvm\Resources\Common\DataModel\EntityFramework\DbExceptionsConverterTemplate.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DbExceptionsConverterTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Mvvm\Resources\Common\DataModel\EntityFramework\DbReadOnlyRepositoryTemplate.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DbReadOnlyRepositoryTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Mvvm\Resources\Common\DataModel\EntityFramework\DbRepositoryTemplate.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DbRepositoryTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Mvvm\Resources\Common\DataModel\EntityFramework\DbUnitOfWorkFactoryTemplate.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DbUnitOfWorkFactoryTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Mvvm\Resources\Common\DataModel\EntityFramework\DbUnitOfWorkTemplate.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DbUnitOfWorkTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Mvvm\Resources\Common\DataModel\EntityFramework\InstantFeedbackSourceTemplate.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>InstantFeedbackSourceTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Mvvm\Resources\Common\DataModel\EntityStateTemplate.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EntityStateTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Mvvm\Resources\Common\DataModel\IReadOnlyRepositoryTemplate.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>IReadOnlyRepositoryTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Mvvm\Resources\Common\DataModel\IRepositoryTemplate.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>IRepositoryTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Mvvm\Resources\Common\DataModel\IUnitOfWorkTemplate.cs">
+      <DependentUpon>IUnitOfWorkTemplate.tt</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Include="Mvvm\Resources\Common\DataModel\UnitOfWorkBaseTemplate.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>UnitOfWorkBaseTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Mvvm\Resources\Common\DataModel\WCF\DbExceptionsConverterTemplate.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DbExceptionsConverterTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Mvvm\Resources\Common\DataModel\WCF\DbReadOnlyRepositoryTemplate.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DbReadOnlyRepositoryTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Mvvm\Resources\Common\DataModel\WCF\DbRepositoryTemplate.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DbRepositoryTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Mvvm\Resources\Common\DataModel\WCF\DbUnitOfWorkFactoryTemplate.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DbUnitOfWorkFactoryTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Mvvm\Resources\Common\DataModel\WCF\DbUnitOfWorkTemplate.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DbUnitOfWorkTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Mvvm\Resources\Common\DataModel\WCF\InstantFeedbackSourceTemplate.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>InstantFeedbackSourceTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Mvvm\Resources\Common\DataModel\WCF\QueryableWrapperTemplate.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QueryableWrapperTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Mvvm\Resources\Common\ViewModel\AddRemoveDetailEntitiesViewModelTemplate.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AddRemoveDetailEntitiesViewModelTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Mvvm\Resources\Common\ViewModel\AddRemoveJunctionDetailEntitiesViewModelTemplate.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AddRemoveJunctionDetailEntitiesViewModelTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Mvvm\Resources\Common\ViewModel\DocumentManagerServiceExtensionsTemplate.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DocumentManagerServiceExtensionsTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Mvvm\Resources\Common\LayoutSettingsTemplate.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LayoutSettingsTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Mvvm\Resources\Common\LayoutSettings_DesignerTemplate.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LayoutSettings_DesignerTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Mvvm\Resources\Common\Utils\DbExtensionsTemplate.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DbExtensionsTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Mvvm\Resources\Common\Utils\ExpressionHelperTemplate.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ExpressionHelperTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Mvvm\Resources\Common\ViewModel\CollectionViewModelTemplate.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CollectionViewModelTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Mvvm\Resources\Common\ViewModel\DocumentsViewModelTemplate.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DocumentsViewModelTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Mvvm\Resources\Common\ViewModel\InstantFeedbackCollectionViewModelTemplate.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>InstantFeedbackCollectionViewModelTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Mvvm\Resources\Common\ViewModel\PeekCollectionViewModelTemplate.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PeekCollectionViewModelTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Mvvm\Resources\Common\ViewModel\EntitiesViewModelTemplate.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EntitiesViewModelTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Mvvm\Resources\Common\ViewModel\ISingleObjectViewModelTemplate.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ISingleObjectViewModelTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Mvvm\Resources\Common\ViewModel\LookUpEntitiesViewModelTemplate.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LookUpEntitiesViewModelTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Mvvm\Resources\Common\ViewModel\MessagesTemplate.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MessagesTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Mvvm\Resources\Common\ViewModel\ReadOnlyCollectionViewModelTemplate.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ReadOnlyCollectionViewModelTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Mvvm\Resources\Common\ViewModel\SingleObjectViewModelTemplate.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SingleObjectViewModelTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Mvvm\Resources\Common\ViewModel\PersistentLayoutHelperTemplate.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PersistentLayoutHelperTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Mvvm\Resources\DataModel\UnitOfWorkDesignTimeTemplate.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>UnitOfWorkDesignTimeTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Mvvm\Resources\DataModel\UnitOfWorkTemplate.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>UnitOfWorkTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Mvvm\Resources\DataModel\UnitOfWorkRuntimeTemplate.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>UnitOfWorkRuntimeTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Mvvm\Resources\DataModel\UnitOfWorkSourceTemplate.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>UnitOfWorkSourceTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Mvvm\Resources\ViewModels\DocumentManagerViewModelTemplate.cs">
+      <DependentUpon>DocumentManagerViewModelTemplate.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Mvvm\Resources\Views\DocumentManagerView_BrowserTemplate.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DocumentManagerView_BrowserTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Mvvm\Resources\Views\DocumentManagerView_OutlookTemplate.cs">
+      <DependentUpon>DocumentManagerView_OutlookTemplate.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Mvvm\Resources\Views\DocumentManagerViewTemplate.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DocumentManagerViewTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Mvvm\Resources\Views\DocumentManagerView_WinUITemplate.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DocumentManagerView_WinUITemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Mvvm\Resources\TemplatePartialClasses.cs" />
+    <Compile Include="Mvvm\Resources\ViewModels\EmptyViewModelTemplate.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EmptyViewModelTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Mvvm\Resources\ViewModels\EntityEditViewModelTemplate.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EntityEditViewModelTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Mvvm\Resources\ViewModels\EntityRepositoryViewModelTemplate.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EntityRepositoryViewModelTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Mvvm\Resources\Views\ElementViewTemplate.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ElementViewTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Mvvm\Resources\Views\ElementView_WinUITemplate.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ElementView_WinUITemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Mvvm\Resources\Views\PeekCollectionViewTemplate.cs">
+      <DependentUpon>PeekCollectionViewTemplate.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Mvvm\Resources\Views\RepositoryViewTemplate.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RepositoryViewTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Mvvm\Resources\Views\RepositoryView_WinUITemplate.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RepositoryView_WinUITemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Mvvm\Resources\Views\ViewCodeBehindTemplate.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ViewCodeBehindTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Mvvm\Resources\Views\ViewTemplate.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ViewTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Mvvm\Resources\Views\WinForms\Outlook\CollectionView_Outlook.cs">
+      <DependentUpon>CollectionView_Outlook.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Mvvm\Resources\Views\WinForms\Outlook\CollectionView_OutlookDesigner.cs">
+      <DependentUpon>CollectionView_OutlookDesigner.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Mvvm\Resources\Views\WinForms\Outlook\DocumentManagerView_Outlook.cs">
+      <DependentUpon>DocumentManagerView_Outlook.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Mvvm\Resources\Views\WinForms\Outlook\DocumentManagerView_OutlookDesigner.cs">
+      <DependentUpon>DocumentManagerView_OutlookDesigner.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Mvvm\Resources\Views\WinForms\Outlook\ElementView_Outlook.cs">
+      <DependentUpon>ElementView_Outlook.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Mvvm\Resources\Views\WinForms\Outlook\ElementView_OutlookDesigner.cs">
+      <DependentUpon>ElementView_OutlookDesigner.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Mvvm\Resources\Views\WinForms\Standart\DocumentManagerView_TabbedMDI.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DocumentManagerView_TabbedMDI.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Mvvm\Resources\Views\WinForms\Standart\DocumentManagerView_TabbedMDIDesigner.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DocumentManagerView_TabbedMDIDesigner.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Mvvm\Resources\Views\WinForms\Standart\ElementView_TabbedMDI.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ElementView_TabbedMDI.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Mvvm\Resources\Views\WinForms\Standart\ElementView_TabbedMDIDesigner.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ElementView_TabbedMDIDesigner.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Mvvm\Resources\Views\WinForms\Standart\CollectionView_TabbedMDI.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CollectionView_TabbedMDI.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Mvvm\Resources\Views\WinForms\Standart\CollectionView_TabbedMDIDesigner.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CollectionView_TabbedMDIDesigner.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Mvvm\Resources\Views\WinForms\WinUI\CollectionView_WinUIDesigner.cs">
+      <DependentUpon>CollectionView_WinUIDesigner.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Mvvm\Resources\Views\WinForms\WinUI\CollectionView_WinUI.cs">
+      <DependentUpon>CollectionView_WinUI.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Mvvm\Resources\Views\WinForms\WinUI\DocumentManagerView_WinUI.cs">
+      <DependentUpon>DocumentManagerView_WinUI.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Mvvm\Resources\Views\WinForms\WinUI\DocumentManagerView_WinUIDesigner.cs">
+      <DependentUpon>DocumentManagerView_WinUIDesigner.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Mvvm\Resources\Views\WinForms\WinUI\ElementView_WinUI.cs">
+      <DependentUpon>ElementView_WinUI.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Mvvm\Resources\Views\WinForms\WinUI\ElementView_WinUIDesigner.cs">
+      <DependentUpon>ElementView_WinUIDesigner.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Mvvm\TextTemplating\AddAssemblyReferenceTask.cs" />
+    <Compile Include="Mvvm\TextTemplating\BuildHelper.cs" />
+    <Compile Include="Mvvm\TextTemplating\CompoundMultiTask\CompoundMultiTask.cs" />
+    <Compile Include="Mvvm\TextTemplating\CompoundMultiTask\ProgressDialog.xaml.cs">
+      <DependentUpon>ProgressDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Mvvm\TextTemplating\EditorsGeneratorCompatibility.cs" />
+    <Compile Include="Mvvm\TextTemplating\ModelColumnsGenerator.cs" />
+    <Compile Include="Mvvm\TextTemplating\RebuildTask.cs" />
+    <Compile Include="Mvvm\TextTemplating\TemplatesConstants.cs" />
+    <Compile Include="Mvvm\TextTemplating\TemplatesPaths.cs" />
+    <Compile Include="Mvvm\TextTemplating\TemplatesResources.cs" />
+    <Compile Include="Mvvm\TextTemplating\TemplatingUtils.cs" />
+    <Compile Include="Mvvm\ViewModelData\CollectionViewModelData.cs" />
+    <Compile Include="Mvvm\ViewModelData\CommandInfo.cs" />
+    <Compile Include="Mvvm\ViewModelData\DocumentManagerViewModelInfo.cs" />
+    <Compile Include="Mvvm\ViewModelData\EntityViewModelData.cs" />
+    <Compile Include="Mvvm\ViewModelData\ViewModelDataBase.cs" />
+    <Compile Include="Mvvm\ViewModelData\ViewModelDataSource.cs" />
+    <Compile Include="Mvvm\ViewModelData\ViewModelInfoBase.cs" />
+    <Compile Include="Mvvm\MetaData\ViewModelLayerService.cs" />
+    <Compile Include="Mvvm\DataModel\DataAccesLayerService.cs" />
+    <Compile Include="Mvvm\EntityFramework\EntityFrameworkModel.cs" />
+    <Compile Include="Mvvm\EntityFramework\EntityModelData.cs" />
+    <Compile Include="Mvvm\MvvmWizardBase.cs" />
+    <Compile Include="Mvvm\TextTemplating\ITemplatesPlatform.cs" />
+    <Compile Include="Mvvm\TextTemplating\TemplatesCodeGen.cs" />
+    <Compile Include="Mvvm\TextTemplating\TextTemplatingAssemblyResolver.cs" />
+    <Compile Include="Mvvm\TextTemplating\TextTemplatingHelper.cs" />
+    <Compile Include="Mvvm\TextTemplating\XamlTemplateNamespaces.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <Compile Include="Utils\DTEHelper.cs" />
+    <Compile Include="Utils\DXItemTemplateWizardHelper.cs" />
+    <Compile Include="Utils\ItemCreationHelper.cs" />
+    <Compile Include="Utils\LicXFileCreator.cs" />
+    <Compile Include="Utils\StandaloneTemplatesCodeGen.cs" />
+    <Compile Include="Utils\Validators.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="ItemsSourceWizard\ItemsSourceWizard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ItemsSourceWizard\ItemsSourceWizardWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <EmbeddedResource Include="LocalizationRes.resx" />
+    
+    <Page Include="ItemsSourceWizard\Templates\ItemsSourceWizardTemplates.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ItemsSourceWizard\Templates\ItemsSourceWizardResources.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ItemsSourceWizard\Templates\MessageWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Mvvm.UI\UI\ConstructorStartPageView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Mvvm.UI\UI\DataLayerTask\TablesSelectorView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Mvvm.UI\UI\MessageLogWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Mvvm.UI\UI\MvvmConstructorTaskView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Mvvm.UI\UI\ViewModelTask\ViewModelEntityDefinitionsView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Mvvm.UI\UI\ViewTask\ViewModelSelectorPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Mvvm\TextTemplating\CompoundMultiTask\ProgressDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    
+    
+  </ItemGroup>
+  <ItemGroup>
+    
+    
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="ItemsSourceWizard\Images\btnNext.png" />
+    <Resource Include="ItemsSourceWizard\Images\btnPrev.png" />
+    <Resource Include="ItemsSourceWizard\Images\Layouts\ClientArea.png" />
+    <Resource Include="ItemsSourceWizard\Images\Layouts\HeaderClientArea.png" />
+    <Resource Include="ItemsSourceWizard\Images\Layouts\HeaderClientAreaFooter.png" />
+    <Resource Include="ItemsSourceWizard\Images\logo.png" />
+    <Resource Include="ItemsSourceWizard\Images\Themes\Aqua.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ItemsSourceWizard\Images\Presets\" />
+    <Folder Include="Mvvm\EntityFramework\Model\DescendantBuilding\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="ItemsSourceWizard\Images\DataSourceIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="ItemsSourceWizard\Images\Down.png" />
+    <Resource Include="ItemsSourceWizard\Images\Up.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ItemsSourceWizard\Data\Technologies\DataSet.rtf" />
+    <EmbeddedResource Include="ItemsSourceWizard\Data\Technologies\EntityFramework.rtf" />
+    <EmbeddedResource Include="ItemsSourceWizard\Data\Technologies\IEnumerable.rtf" />
+    <EmbeddedResource Include="ItemsSourceWizard\Data\Technologies\LinqTosql.rtf" />
+    <EmbeddedResource Include="ItemsSourceWizard\Data\Technologies\RIA.rtf" />
+    <EmbeddedResource Include="ItemsSourceWizard\Data\Technologies\WCF.rtf" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ItemsSourceWizard\Data\DataSourceTypes\CollectionViewSource.rtf" />
+    <EmbeddedResource Include="ItemsSourceWizard\Data\DataSourceTypes\ICollectionView.rtf" />
+    <EmbeddedResource Include="ItemsSourceWizard\Data\DataSourceTypes\InstantFeedBack.rtf" />
+    <EmbeddedResource Include="ItemsSourceWizard\Data\DataSourceTypes\PLinqInstantFeedBack.rtf" />
+    <EmbeddedResource Include="ItemsSourceWizard\Data\DataSourceTypes\PLinqServerMode.rtf" />
+    <EmbeddedResource Include="ItemsSourceWizard\Data\DataSourceTypes\ServerMode.rtf" />
+    <EmbeddedResource Include="ItemsSourceWizard\Data\DataSourceTypes\Simple.rtf" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ItemsSourceWizard\Data\ConfigurationProperties\CheckThreading.rtf" />
+    <EmbeddedResource Include="ItemsSourceWizard\Data\ConfigurationProperties\DefaultSorting.rtf" />
+    <EmbeddedResource Include="ItemsSourceWizard\Data\ConfigurationProperties\DistinctValues.rtf" />
+    <EmbeddedResource Include="ItemsSourceWizard\Data\ConfigurationProperties\KeyExpression.rtf" />
+    <EmbeddedResource Include="ItemsSourceWizard\Data\ConfigurationProperties\RowsCount.rtf" />
+    <EmbeddedResource Include="ItemsSourceWizard\Data\ConfigurationProperties\ShowSampleData.rtf" />
+    <EmbeddedResource Include="ItemsSourceWizard\Data\ConfigurationProperties\SyncCurrentItem.rtf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="ItemsSourceWizard\Images\DX.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ItemsSourceWizard\Data\ConfigurationProperties\ServiceRoot.rtf" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ItemsSourceWizard\Data\ConfigurationProperties\FlattenHierarchy.rtf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Mvvm.UI\Images\Assembly.png" />
+    <Resource Include="Mvvm.UI\Images\Class.png" />
+    <Resource Include="Mvvm.UI\Images\DataBaseTable.png" />
+    <Resource Include="Mvvm.UI\Images\DataBaseView.png" />
+    <Resource Include="Mvvm.UI\Images\Namespace.png" />
+  </ItemGroup>
+  <ItemGroup>
+    
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Mvvm\Resources\Common\CommonResourcesTemplate.tt">
+      <Generator>DXT4Preprocessor</Generator>
+      <LastGenOutput>CommonResourcesTemplate.cs</LastGenOutput>
+      <ClassNamespace>DevExpress.Xpf.Core.Design.Wizards.Mvvm.Resources.Common</ClassNamespace>
+    </Content>
+    <Content Include="Mvvm\Resources\Common\CommonResources_DesignerTemplate.tt">
+      <Generator>DXT4Preprocessor</Generator>
+      <LastGenOutput>CommonResources_DesignerTemplate.cs</LastGenOutput>
+      <ClassNamespace>DevExpress.Xpf.Core.Design.Wizards.Mvvm.Resources.Common</ClassNamespace>
+    </Content>
+    <Content Include="Mvvm\Resources\Common\DataModel\DbExceptionsTemplate.tt">
+      <Generator>DXT4Preprocessor</Generator>
+      <LastGenOutput>DbExceptionsTemplate.cs</LastGenOutput>
+      <ClassNamespace>DevExpress.Xpf.Core.Design.Wizards.Mvvm.Resources.Common.DataModel</ClassNamespace>
+    </Content>
+    <Content Include="Mvvm\Resources\Common\DataModel\DesignTime\DesignTimeReadOnlyRepositoryTemplate.tt">
+      <Generator>DXT4Preprocessor</Generator>
+      <LastGenOutput>DesignTimeReadOnlyRepositoryTemplate.cs</LastGenOutput>
+      <ClassNamespace>DevExpress.Xpf.Core.Design.Wizards.Mvvm.Resources.Common.DataModel.DesignTime</ClassNamespace>
+    </Content>
+    <Content Include="Mvvm\Resources\Common\DataModel\DesignTime\DesignTimeRepositoryTemplate.tt">
+      <Generator>DXT4Preprocessor</Generator>
+      <LastGenOutput>DesignTimeRepositoryTemplate.cs</LastGenOutput>
+      <ClassNamespace>DevExpress.Xpf.Core.Design.Wizards.Mvvm.Resources.Common.DataModel.DesignTime</ClassNamespace>
+    </Content>
+    <Content Include="Mvvm\Resources\Common\DataModel\DesignTime\DesignTimeUnitOfWorkTemplate.tt">
+      <Generator>DXT4Preprocessor</Generator>
+      <LastGenOutput>DesignTimeUnitOfWorkTemplate.cs</LastGenOutput>
+      <ClassNamespace>DevExpress.Xpf.Core.Design.Wizards.Mvvm.Resources.Common.DataModel.DesignTime</ClassNamespace>
+    </Content>
+    <Content Include="Mvvm\Resources\Common\DataModel\EntityFramework\DbExceptionsConverterTemplate.tt">
+      <Generator>DXT4Preprocessor</Generator>
+      <LastGenOutput>DbExceptionsConverterTemplate.cs</LastGenOutput>
+      <ClassNamespace>DevExpress.Xpf.Core.Design.Wizards.Mvvm.Resources.Common.DataModel.EntityFramework</ClassNamespace>
+    </Content>
+    <Content Include="Mvvm\Resources\Common\DataModel\EntityFramework\DbReadOnlyRepositoryTemplate.tt">
+      <Generator>DXT4Preprocessor</Generator>
+      <LastGenOutput>DbReadOnlyRepositoryTemplate.cs</LastGenOutput>
+      <ClassNamespace>DevExpress.Xpf.Core.Design.Wizards.Mvvm.Resources.Common.DataModel.EntityFramework</ClassNamespace>
+    </Content>
+    <Content Include="Mvvm\Resources\Common\DataModel\EntityFramework\DbRepositoryTemplate.tt">
+      <Generator>DXT4Preprocessor</Generator>
+      <LastGenOutput>DbRepositoryTemplate.cs</LastGenOutput>
+      <ClassNamespace>DevExpress.Xpf.Core.Design.Wizards.Mvvm.Resources.Common.DataModel.EntityFramework</ClassNamespace>
+    </Content>
+    <Content Include="Mvvm\Resources\Common\DataModel\EntityFramework\DbUnitOfWorkTemplate.tt">
+      <Generator>DXT4Preprocessor</Generator>
+      <LastGenOutput>DbUnitOfWorkTemplate.cs</LastGenOutput>
+      <ClassNamespace>DevExpress.Xpf.Core.Design.Wizards.Mvvm.Resources.Common.DataModel.EntityFramework</ClassNamespace>
+    </Content>
+    <Content Include="Mvvm\Resources\Common\DataModel\EntityStateTemplate.tt">
+      <Generator>DXT4Preprocessor</Generator>
+      <LastGenOutput>EntityStateTemplate.cs</LastGenOutput>
+      <ClassNamespace>DevExpress.Xpf.Core.Design.Wizards.Mvvm.Resources.Common.DataModel</ClassNamespace>
+    </Content>
+    <Content Include="Mvvm\Resources\Common\DataModel\IReadOnlyRepositoryTemplate.tt">
+      <Generator>DXT4Preprocessor</Generator>
+      <LastGenOutput>IReadOnlyRepositoryTemplate.cs</LastGenOutput>
+      <ClassNamespace>DevExpress.Xpf.Core.Design.Wizards.Mvvm.Resources.Common.DataModel</ClassNamespace>
+    </Content>
+    <Content Include="Mvvm\Resources\Common\DataModel\IRepositoryTemplate.tt">
+      <Generator>DXT4Preprocessor</Generator>
+      <LastGenOutput>IRepositoryTemplate.cs</LastGenOutput>
+      <ClassNamespace>DevExpress.Xpf.Core.Design.Wizards.Mvvm.Resources.Common.DataModel</ClassNamespace>
+    </Content>
+    <Content Include="Mvvm\Resources\Common\DataModel\IUnitOfWorkTemplate.tt">
+      <Generator>DXT4Preprocessor</Generator>
+      <LastGenOutput>IUnitOfWorkTemplate.cs</LastGenOutput>
+      <ClassNamespace>DevExpress.Xpf.Core.Design.Wizards.Mvvm.Resources.Common.DataModel</ClassNamespace>
+    </Content>
+    <Content Include="Mvvm\Resources\Common\DataModel\UnitOfWorkBaseTemplate.tt">
+      <Generator>DXT4Preprocessor</Generator>
+      <LastGenOutput>UnitOfWorkBaseTemplate.cs</LastGenOutput>
+      <ClassNamespace>DevExpress.Xpf.Core.Design.Wizards.Mvvm.Resources.Common.DataModel</ClassNamespace>
+    </Content>
+    <Content Include="Mvvm\Resources\Common\DataModel\WCF\DbExceptionsConverterTemplate.tt">
+      <Generator>DXT4Preprocessor</Generator>
+      <LastGenOutput>DbExceptionsConverterTemplate.cs</LastGenOutput>
+      <ClassNamespace>DevExpress.Xpf.Core.Design.Wizards.Mvvm.Resources.Common.DataModel.WCF</ClassNamespace>
+    </Content>
+    <Content Include="Mvvm\Resources\Common\DataModel\WCF\DbReadOnlyRepositoryTemplate.tt">
+      <Generator>DXT4Preprocessor</Generator>
+      <LastGenOutput>DbReadOnlyRepositoryTemplate.cs</LastGenOutput>
+      <ClassNamespace>DevExpress.Xpf.Core.Design.Wizards.Mvvm.Resources.Common.DataModel.WCF</ClassNamespace>
+    </Content>
+    <Content Include="Mvvm\Resources\Common\DataModel\WCF\DbRepositoryTemplate.tt">
+      <Generator>DXT4Preprocessor</Generator>
+      <LastGenOutput>DbRepositoryTemplate.cs</LastGenOutput>
+      <ClassNamespace>DevExpress.Xpf.Core.Design.Wizards.Mvvm.Resources.Common.DataModel.WCF</ClassNamespace>
+    </Content>
+    <Content Include="Mvvm\Resources\Common\DataModel\WCF\DbUnitOfWorkTemplate.tt">
+      <Generator>DXT4Preprocessor</Generator>
+      <LastGenOutput>DbUnitOfWorkTemplate.cs</LastGenOutput>
+      <ClassNamespace>DevExpress.Xpf.Core.Design.Wizards.Mvvm.Resources.Common.DataModel.WCF</ClassNamespace>
+    </Content>
+    <Content Include="Mvvm\Resources\Common\DataModel\WCF\QueryableWrapperTemplate.tt">
+      <Generator>DXT4Preprocessor</Generator>
+      <LastGenOutput>QueryableWrapperTemplate.cs</LastGenOutput>
+      <ClassNamespace>DevExpress.Xpf.Core.Design.Wizards.Mvvm.Resources.Common.DataModel.WCF</ClassNamespace>
+    </Content>
+    <Content Include="Mvvm\Resources\Common\Utils\DbExtensionsTemplate.tt">
+      <Generator>DXT4Preprocessor</Generator>
+      <LastGenOutput>DbExtensionsTemplate.cs</LastGenOutput>
+      <ClassNamespace>DevExpress.Xpf.Core.Design.Wizards.Mvvm.Resources.Common.Utils</ClassNamespace>
+    </Content>
+    <Content Include="Mvvm\Resources\Common\Utils\ExpressionHelperTemplate.tt">
+      <Generator>DXT4Preprocessor</Generator>
+      <LastGenOutput>ExpressionHelperTemplate.cs</LastGenOutput>
+      <ClassNamespace>DevExpress.Xpf.Core.Design.Wizards.Mvvm.Resources.Common.Utils</ClassNamespace>
+    </Content>
+    <Content Include="Mvvm\Resources\Common\ViewModel\AddRemoveDetailEntitiesViewModelTemplate.tt">
+      <Generator>DXT4Preprocessor</Generator>
+      <LastGenOutput>AddRemoveDetailEntitiesViewModelTemplate.cs</LastGenOutput>
+      <ClassNamespace>DevExpress.Xpf.Core.Design.Wizards.Mvvm.Resources.Common.ViewModel</ClassNamespace>
+    </Content>
+    <Content Include="Mvvm\Resources\Common\ViewModel\AddRemoveJunctionDetailEntitiesViewModelTemplate.tt">
+      <Generator>DXT4Preprocessor</Generator>
+      <ClassNamespace>DevExpress.Xpf.Core.Design.Wizards.Mvvm.Resources.Common.ViewModel</ClassNamespace>
+      <LastGenOutput>AddRemoveJunctionDetailEntitiesViewModelTemplate.cs</LastGenOutput>
+    </Content>
+    <Content Include="Mvvm\Resources\Common\ViewModel\CollectionViewModelTemplate.tt">
+      <Generator>DXT4Preprocessor</Generator>
+      <LastGenOutput>CollectionViewModelTemplate.cs</LastGenOutput>
+      <ClassNamespace>DevExpress.Xpf.Core.Design.Wizards.Mvvm.Resources.Common.ViewModel</ClassNamespace>
+    </Content>
+    <Content Include="Mvvm\Resources\Common\ViewModel\DocumentsViewModelTemplate.tt">
+      <Generator>DXT4Preprocessor</Generator>
+      <LastGenOutput>DocumentsViewModelTemplate.cs</LastGenOutput>
+      <ClassNamespace>DevExpress.Xpf.Core.Design.Wizards.Mvvm.Resources.Common.ViewModel</ClassNamespace>
+    </Content>
+    <Content Include="Mvvm\Resources\Common\ViewModel\PeekCollectionViewModelTemplate.tt">
+      <Generator>DXT4Preprocessor</Generator>
+      <LastGenOutput>PeekCollectionViewModelTemplate.cs</LastGenOutput>
+      <ClassNamespace>DevExpress.Xpf.Core.Design.Wizards.Mvvm.Resources.Common.ViewModel</ClassNamespace>
+    </Content>
+    <Content Include="Mvvm\Resources\Common\ViewModel\EntitiesViewModelTemplate.tt">
+      <Generator>DXT4Preprocessor</Generator>
+      <LastGenOutput>EntitiesViewModelTemplate.cs</LastGenOutput>
+      <ClassNamespace>DevExpress.Xpf.Core.Design.Wizards.Mvvm.Resources.Common.ViewModel</ClassNamespace>
+    </Content>
+    <Content Include="Mvvm\Resources\Common\ViewModel\ISingleObjectViewModelTemplate.tt">
+      <Generator>DXT4Preprocessor</Generator>
+      <LastGenOutput>ISingleObjectViewModelTemplate.cs</LastGenOutput>
+      <ClassNamespace>DevExpress.Xpf.Core.Design.Wizards.Mvvm.Resources.Common.ViewModel</ClassNamespace>
+    </Content>
+    <Content Include="Mvvm\Resources\Common\ViewModel\LookUpEntitiesViewModelTemplate.tt">
+      <Generator>DXT4Preprocessor</Generator>
+      <LastGenOutput>LookUpEntitiesViewModelTemplate.cs</LastGenOutput>
+      <ClassNamespace>DevExpress.Xpf.Core.Design.Wizards.Mvvm.Resources.Common.ViewModel</ClassNamespace>
+    </Content>
+    <Content Include="Mvvm\Resources\Common\ViewModel\MessagesTemplate.tt">
+      <Generator>DXT4Preprocessor</Generator>
+      <LastGenOutput>MessagesTemplate.cs</LastGenOutput>
+      <ClassNamespace>DevExpress.Xpf.Core.Design.Wizards.Mvvm.Resources.Common.ViewModel</ClassNamespace>
+    </Content>
+    <Content Include="Mvvm\Resources\Common\ViewModel\ReadOnlyCollectionViewModelTemplate.tt">
+      <Generator>DXT4Preprocessor</Generator>
+      <LastGenOutput>ReadOnlyCollectionViewModelTemplate.cs</LastGenOutput>
+      <ClassNamespace>DevExpress.Xpf.Core.Design.Wizards.Mvvm.Resources.Common.ViewModel</ClassNamespace>
+    </Content>
+    <Content Include="Mvvm\Resources\Common\ViewModel\SingleObjectViewModelTemplate.tt">
+      <Generator>DXT4Preprocessor</Generator>
+      <LastGenOutput>SingleObjectViewModelTemplate.cs</LastGenOutput>
+      <ClassNamespace>DevExpress.Xpf.Core.Design.Wizards.Mvvm.Resources.Common.ViewModel</ClassNamespace>
+    </Content>
+    <Content Include="Mvvm\Resources\DataModel\UnitOfWorkDesignTimeTemplate.tt">
+      <Generator>DXT4Preprocessor</Generator>
+      <LastGenOutput>UnitOfWorkDesignTimeTemplate.cs</LastGenOutput>
+      <ClassNamespace>DevExpress.Xpf.Core.Design.Wizards.Mvvm.Resources.DataModel</ClassNamespace>
+    </Content>
+    <Content Include="Mvvm\Resources\DataModel\UnitOfWorkTemplate.tt">
+      <Generator>DXT4Preprocessor</Generator>
+      <LastGenOutput>UnitOfWorkTemplate.cs</LastGenOutput>
+      <ClassNamespace>DevExpress.Xpf.Core.Design.Wizards.Mvvm.Resources.DataModel</ClassNamespace>
+    </Content>
+    <Content Include="Mvvm\Resources\DataModel\UnitOfWorkRuntimeTemplate.tt">
+      <Generator>DXT4Preprocessor</Generator>
+      <LastGenOutput>UnitOfWorkRuntimeTemplate.cs</LastGenOutput>
+      <ClassNamespace>DevExpress.Xpf.Core.Design.Wizards.Mvvm.Resources.DataModel</ClassNamespace>
+    </Content>
+    <Content Include="Mvvm\Resources\DataModel\UnitOfWorkSourceTemplate.tt">
+      <Generator>DXT4Preprocessor</Generator>
+      <LastGenOutput>UnitOfWorkSourceTemplate.cs</LastGenOutput>
+      <ClassNamespace>DevExpress.Xpf.Core.Design.Wizards.Mvvm.Resources.DataModel</ClassNamespace>
+    </Content>
+    <Content Include="Mvvm\Resources\ViewModels\DocumentManagerViewModelTemplate.tt">
+      <Generator>DXT4Preprocessor</Generator>
+      <LastGenOutput>DocumentManagerViewModelTemplate.cs</LastGenOutput>
+      <ClassNamespace>DevExpress.Xpf.Core.Design.Wizards.Mvvm.Resources.ViewModels</ClassNamespace>
+    </Content>
+    <Content Include="Mvvm\Resources\Views\DocumentManagerView_OutlookTemplate.tt">
+      <Generator>DXT4Preprocessor</Generator>
+      <LastGenOutput>DocumentManagerView_OutlookTemplate.cs</LastGenOutput>
+      <ClassNamespace>DevExpress.Xpf.Core.Design.Wizards.Mvvm.Resources.Views</ClassNamespace>
+    </Content>
+    <Content Include="Mvvm\Resources\Views\DocumentManagerViewTemplate.tt">
+      <Generator>DXT4Preprocessor</Generator>
+      <LastGenOutput>DocumentManagerViewTemplate.cs</LastGenOutput>
+      <ClassNamespace>DevExpress.Xpf.Core.Design.Wizards.Mvvm.Resources.Views</ClassNamespace>
+    </Content>
+    <Content Include="Mvvm\Resources\Views\DocumentManagerView_WinUITemplate.tt">
+      <Generator>DXT4Preprocessor</Generator>
+      <LastGenOutput>DocumentManagerView_WinUITemplate.cs</LastGenOutput>
+      <ClassNamespace>DevExpress.Xpf.Core.Design.Wizards.Mvvm.Resources.Views</ClassNamespace>
+    </Content>
+    <Content Include="Mvvm\Resources\ViewModels\EmptyViewModelTemplate.tt">
+      <Generator>DXT4Preprocessor</Generator>
+      <LastGenOutput>EmptyViewModelTemplate.cs</LastGenOutput>
+      <ClassNamespace>DevExpress.Xpf.Core.Design.Wizards.Mvvm.Resources.ViewModels</ClassNamespace>
+    </Content>
+    <Content Include="Mvvm\Resources\ViewModels\EntityEditViewModelTemplate.tt">
+      <Generator>DXT4Preprocessor</Generator>
+      <LastGenOutput>EntityEditViewModelTemplate.cs</LastGenOutput>
+      <ClassNamespace>DevExpress.Xpf.Core.Design.Wizards.Mvvm.Resources.ViewModels</ClassNamespace>
+    </Content>
+    <Content Include="Mvvm\Resources\ViewModels\EntityRepositoryViewModelTemplate.tt">
+      <Generator>DXT4Preprocessor</Generator>
+      <LastGenOutput>EntityRepositoryViewModelTemplate.cs</LastGenOutput>
+      <ClassNamespace>DevExpress.Xpf.Core.Design.Wizards.Mvvm.Resources.ViewModels</ClassNamespace>
+    </Content>
+    <Content Include="Mvvm\Resources\Views\ElementViewTemplate.tt">
+      <Generator>DXT4Preprocessor</Generator>
+      <LastGenOutput>ElementViewTemplate.cs</LastGenOutput>
+      <ClassNamespace>DevExpress.Xpf.Core.Design.Wizards.Mvvm.Resources.Views</ClassNamespace>
+    </Content>
+    <Content Include="Mvvm\Resources\Views\ElementView_WinUITemplate.tt">
+      <Generator>DXT4Preprocessor</Generator>
+      <LastGenOutput>ElementView_WinUITemplate.cs</LastGenOutput>
+      <ClassNamespace>DevExpress.Xpf.Core.Design.Wizards.Mvvm.Resources.Views</ClassNamespace>
+    </Content>
+    <Content Include="Mvvm\Resources\Views\PeekCollectionViewTemplate.tt">
+      <Generator>DXT4Preprocessor</Generator>
+      <LastGenOutput>PeekCollectionViewTemplate.cs</LastGenOutput>
+      <ClassNamespace>DevExpress.Xpf.Core.Design.Wizards.Mvvm.Resources.Views</ClassNamespace>
+    </Content>
+    <Content Include="Mvvm\Resources\Views\RepositoryViewTemplate.tt">
+      <Generator>DXT4Preprocessor</Generator>
+      <LastGenOutput>RepositoryViewTemplate.cs</LastGenOutput>
+      <ClassNamespace>DevExpress.Xpf.Core.Design.Wizards.Mvvm.Resources.Views</ClassNamespace>
+    </Content>
+    <Content Include="Mvvm\Resources\Views\RepositoryView_WinUITemplate.tt">
+      <Generator>DXT4Preprocessor</Generator>
+      <LastGenOutput>RepositoryView_WinUITemplate.cs</LastGenOutput>
+      <ClassNamespace>DevExpress.Xpf.Core.Design.Wizards.Mvvm.Resources.Views</ClassNamespace>
+    </Content>
+    <Content Include="Mvvm\Resources\Views\ViewCodeBehindTemplate.tt">
+      <Generator>DXT4Preprocessor</Generator>
+      <LastGenOutput>ViewCodeBehindTemplate.cs</LastGenOutput>
+      <ClassNamespace>DevExpress.Xpf.Core.Design.Wizards.Mvvm.Resources.Views</ClassNamespace>
+    </Content>
+    <Content Include="Mvvm\Resources\Views\ViewTemplate.tt">
+      <Generator>DXT4Preprocessor</Generator>
+      <LastGenOutput>ViewTemplate.cs</LastGenOutput>
+      <ClassNamespace>DevExpress.Xpf.Core.Design.Wizards.Mvvm.Resources.Views</ClassNamespace>
+    </Content>
+    <Content Include="Mvvm\Resources\Views\WinForms\Standart\DocumentManagerView_TabbedMDI.tt">
+      <Generator>DXT4Preprocessor</Generator>
+      <LastGenOutput>DocumentManagerView_TabbedMDI.cs</LastGenOutput>
+      <ClassNamespace>DevExpress.Xpf.Core.Design.Wizards.Mvvm.Resources.Views.WinForms.Standart</ClassNamespace>
+    </Content>
+    <Content Include="Mvvm\Resources\Views\WinForms\Standart\DocumentManagerView_TabbedMDIDesigner.tt">
+      <Generator>DXT4Preprocessor</Generator>
+      <LastGenOutput>DocumentManagerView_TabbedMDIDesigner.cs</LastGenOutput>
+      <ClassNamespace>DevExpress.Xpf.Core.Design.Wizards.Mvvm.Resources.Views.WinForms.Standart</ClassNamespace>
+    </Content>
+    <Content Include="Mvvm\Resources\Views\WinForms\Standart\ElementView_TabbedMDI.tt">
+      <Generator>DXT4Preprocessor</Generator>
+      <LastGenOutput>ElementView_TabbedMDI.cs</LastGenOutput>
+      <ClassNamespace>DevExpress.Xpf.Core.Design.Wizards.Mvvm.Resources.Views.WinForms.Standart</ClassNamespace>
+    </Content>
+    <Content Include="Mvvm\Resources\Views\WinForms\Standart\ElementView_TabbedMDIDesigner.tt">
+      <Generator>DXT4Preprocessor</Generator>
+      <LastGenOutput>ElementView_TabbedMDIDesigner.cs</LastGenOutput>
+      <ClassNamespace>DevExpress.Xpf.Core.Design.Wizards.Mvvm.Resources.Views.WinForms.Standart</ClassNamespace>
+    </Content>
+    <Content Include="Mvvm\Resources\Views\WinForms\Standart\CollectionView_TabbedMDI.tt">
+      <Generator>DXT4Preprocessor</Generator>
+      <LastGenOutput>CollectionView_TabbedMDI.cs</LastGenOutput>
+      <ClassNamespace>DevExpress.Xpf.Core.Design.Wizards.Mvvm.Resources.Views.WinForms.Standart</ClassNamespace>
+    </Content>
+    <Content Include="Mvvm\Resources\Views\WinForms\Standart\CollectionView_TabbedMDIDesigner.tt">
+      <Generator>DXT4Preprocessor</Generator>
+      <LastGenOutput>CollectionView_TabbedMDIDesigner.cs</LastGenOutput>
+      <ClassNamespace>DevExpress.Xpf.Core.Design.Wizards.Mvvm.Resources.Views.WinForms.Standart</ClassNamespace>
+    </Content>
+    <Content Include="TextTemplating14\Microsoft.TextTemplating.targets" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Mvvm\Resources\Common\DataModel\DesignTime\DesignTimeInstantFeedbackSourceTemplate.tt">
+      <Generator>DXT4Preprocessor</Generator>
+      <LastGenOutput>DesignTimeInstantFeedbackSourceTemplate.cs</LastGenOutput>
+      <ClassNamespace>DevExpress.Xpf.Core.Design.Wizards.Mvvm.Resources.Common.DataModel.DesignTime</ClassNamespace>
+    </Content>
+    <Content Include="Mvvm\Resources\Common\DataModel\DesignTime\DesignTimeUnitOfWorkFactoryTemplate.tt">
+      <Generator>DXT4Preprocessor</Generator>
+      <LastGenOutput>DesignTimeUnitOfWorkFactoryTemplate.cs</LastGenOutput>
+      <ClassNamespace>DevExpress.Xpf.Core.Design.Wizards.Mvvm.Resources.Common.DataModel.DesignTime</ClassNamespace>
+    </Content>
+    <Content Include="Mvvm\Resources\Common\DataModel\EntityFramework\DbUnitOfWorkFactoryTemplate.tt">
+      <Generator>DXT4Preprocessor</Generator>
+      <LastGenOutput>DbUnitOfWorkFactoryTemplate.cs</LastGenOutput>
+      <ClassNamespace>DevExpress.Xpf.Core.Design.Wizards.Mvvm.Resources.Common.DataModel.EntityFramework</ClassNamespace>
+    </Content>
+    <Content Include="Mvvm\Resources\Common\DataModel\EntityFramework\InstantFeedbackSourceTemplate.tt">
+      <Generator>DXT4Preprocessor</Generator>
+      <LastGenOutput>InstantFeedbackSourceTemplate.cs</LastGenOutput>
+      <ClassNamespace>DevExpress.Xpf.Core.Design.Wizards.Mvvm.Resources.Common.DataModel.EntityFramework</ClassNamespace>
+    </Content>
+    <Content Include="Mvvm\Resources\Common\DataModel\WCF\DbUnitOfWorkFactoryTemplate.tt">
+      <Generator>DXT4Preprocessor</Generator>
+      <LastGenOutput>DbUnitOfWorkFactoryTemplate.cs</LastGenOutput>
+      <ClassNamespace>DevExpress.Xpf.Core.Design.Wizards.Mvvm.Resources.Common.DataModel.WCF</ClassNamespace>
+    </Content>
+    <Content Include="Mvvm\Resources\Common\DataModel\WCF\InstantFeedbackSourceTemplate.tt">
+      <Generator>DXT4Preprocessor</Generator>
+      <LastGenOutput>InstantFeedbackSourceTemplate.cs</LastGenOutput>
+      <ClassNamespace>DevExpress.Xpf.Core.Design.Wizards.Mvvm.Resources.Common.DataModel.WCF</ClassNamespace>
+    </Content>
+    <Content Include="Mvvm\Resources\Common\ViewModel\DocumentManagerServiceExtensionsTemplate.tt">
+      <Generator>DXT4Preprocessor</Generator>
+      <LastGenOutput>DocumentManagerServiceExtensionsTemplate.cs</LastGenOutput>
+      <ClassNamespace>DevExpress.Xpf.Core.Design.Wizards.Mvvm.Resources.Common.ViewModel</ClassNamespace>
+    </Content>
+    <Content Include="Mvvm\Resources\Common\LayoutSettingsTemplate.tt">
+      <Generator>DXT4Preprocessor</Generator>
+      <LastGenOutput>LayoutSettingsTemplate.cs</LastGenOutput>
+      <ClassNamespace>DevExpress.Xpf.Core.Design.Wizards.Mvvm.Resources.Common</ClassNamespace>
+    </Content>
+    <Content Include="Mvvm\Resources\Common\LayoutSettings_DesignerTemplate.tt">
+      <Generator>DXT4Preprocessor</Generator>
+      <LastGenOutput>LayoutSettings_DesignerTemplate.cs</LastGenOutput>
+      <ClassNamespace>DevExpress.Xpf.Core.Design.Wizards.Mvvm.Resources.Common</ClassNamespace>
+    </Content>
+    <Content Include="Mvvm\Resources\Common\ViewModel\InstantFeedbackCollectionViewModelTemplate.tt">
+      <Generator>DXT4Preprocessor</Generator>
+      <LastGenOutput>InstantFeedbackCollectionViewModelTemplate.cs</LastGenOutput>
+      <ClassNamespace>DevExpress.Xpf.Core.Design.Wizards.Mvvm.Resources.Common.ViewModel</ClassNamespace>
+    </Content>
+    <Content Include="Mvvm\Resources\Common\ViewModel\PersistentLayoutHelperTemplate.tt">
+      <Generator>DXT4Preprocessor</Generator>
+      <LastGenOutput>PersistentLayoutHelperTemplate.cs</LastGenOutput>
+      <ClassNamespace>DevExpress.Xpf.Core.Design.Wizards.Mvvm.Resources.Common.ViewModel</ClassNamespace>
+    </Content>
+    <Content Include="Mvvm\Resources\Views\DocumentManagerView_BrowserTemplate.tt">
+      <Generator>DXT4Preprocessor</Generator>
+      <LastGenOutput>DocumentManagerView_BrowserTemplate.cs</LastGenOutput>
+      <ClassNamespace>DevExpress.Xpf.Core.Design.Wizards.Mvvm.Resources.Views</ClassNamespace>
+    </Content>
+    <Content Include="TextTemplating14\Microsoft.TextTemplating.Build.Tasks.dll" />
+    <Content Include="TextTemplating14\Microsoft.VisualStudio.TextTemplating.14.0.dll" />
+    <Content Include="TextTemplating14\Microsoft.VisualStudio.TextTemplating.Interfaces.10.0.dll" />
+    <Content Include="TextTemplating14\Microsoft.VisualStudio.TextTemplating.Sdk.Host.10.0.dll" />
+    <Content Include="TextTemplating14\Microsoft.VisualStudio.TextTemplating.Sdk.Host.14.0.dll" />
+    <Content Include="Mvvm\Resources\Views\WinForms\WinUI\ElementView_WinUIDesigner.tt">
+      <Generator>DXT4Preprocessor</Generator>
+      <LastGenOutput>ElementView_WinUIDesigner.cs</LastGenOutput>
+      <ClassNamespace>DevExpress.Xpf.Core.Design.Wizards.Mvvm.Resources.Views.WinForms.WinUI</ClassNamespace>
+    </Content>
+    <Content Include="Mvvm\Resources\Views\WinForms\WinUI\ElementView_WinUI.tt">
+      <Generator>DXT4Preprocessor</Generator>
+      <LastGenOutput>ElementView_WinUI.cs</LastGenOutput>
+      <ClassNamespace>DevExpress.Xpf.Core.Design.Wizards.Mvvm.Resources.Views.WinForms.WinUI</ClassNamespace>
+    </Content>
+    <Content Include="Mvvm\Resources\Views\WinForms\WinUI\DocumentManagerView_WinUIDesigner.tt">
+      <Generator>DXT4Preprocessor</Generator>
+      <LastGenOutput>DocumentManagerView_WinUIDesigner.cs</LastGenOutput>
+      <ClassNamespace>DevExpress.Xpf.Core.Design.Wizards.Mvvm.Resources.Views.WinForms.WinUI</ClassNamespace>
+    </Content>
+    <Content Include="Mvvm\Resources\Views\WinForms\WinUI\DocumentManagerView_WinUI.tt">
+      <Generator>DXT4Preprocessor</Generator>
+      <LastGenOutput>DocumentManagerView_WinUI.cs</LastGenOutput>
+      <ClassNamespace>DevExpress.Xpf.Core.Design.Wizards.Mvvm.Resources.Views.WinForms.WinUI</ClassNamespace>
+    </Content>
+    <Content Include="Mvvm\Resources\Views\WinForms\WinUI\CollectionView_WinUI.tt">
+      <Generator>DXT4Preprocessor</Generator>
+      <LastGenOutput>CollectionView_WinUI.cs</LastGenOutput>
+      <ClassNamespace>DevExpress.Xpf.Core.Design.Wizards.Mvvm.Resources.Views.WinForms.WinUI</ClassNamespace>
+    </Content>
+    <Content Include="Mvvm\Resources\Views\WinForms\WinUI\CollectionView_WinUIDesigner.tt">
+      <Generator>DXT4Preprocessor</Generator>
+      <LastGenOutput>CollectionView_WinUIDesigner.cs</LastGenOutput>
+      <ClassNamespace>DevExpress.Xpf.Core.Design.Wizards.Mvvm.Resources.Views.WinForms.WinUI</ClassNamespace>
+    </Content>
+    <Content Include="Mvvm\Resources\Views\WinForms\Outlook\ElementView_OutlookDesigner.tt">
+      <Generator>DXT4Preprocessor</Generator>
+      <LastGenOutput>ElementView_OutlookDesigner.cs</LastGenOutput>
+      <ClassNamespace>DevExpress.Xpf.Core.Design.Wizards.Mvvm.Resources.Views.WinForms.Outlook</ClassNamespace>
+    </Content>
+    <Content Include="Mvvm\Resources\Views\WinForms\Outlook\ElementView_Outlook.tt">
+      <Generator>DXT4Preprocessor</Generator>
+      <LastGenOutput>ElementView_Outlook.cs</LastGenOutput>
+      <ClassNamespace>DevExpress.Xpf.Core.Design.Wizards.Mvvm.Resources.Views.WinForms.Outlook</ClassNamespace>
+    </Content>
+    <Content Include="Mvvm\Resources\Views\WinForms\Outlook\DocumentManagerView_OutlookDesigner.tt">
+      <Generator>DXT4Preprocessor</Generator>
+      <LastGenOutput>DocumentManagerView_OutlookDesigner.cs</LastGenOutput>
+      <ClassNamespace>DevExpress.Xpf.Core.Design.Wizards.Mvvm.Resources.Views.WinForms.Outlook</ClassNamespace>
+    </Content>
+    <Content Include="Mvvm\Resources\Views\WinForms\Outlook\DocumentManagerView_Outlook.tt">
+      <Generator>DXT4Preprocessor</Generator>
+      <LastGenOutput>DocumentManagerView_Outlook.cs</LastGenOutput>
+      <ClassNamespace>DevExpress.Xpf.Core.Design.Wizards.Mvvm.Resources.Views.WinForms.Outlook</ClassNamespace>
+    </Content>
+    <Content Include="Mvvm\Resources\Views\WinForms\Outlook\CollectionView_OutlookDesigner.tt">
+      <Generator>DXT4Preprocessor</Generator>
+      <LastGenOutput>CollectionView_OutlookDesigner.cs</LastGenOutput>
+      <ClassNamespace>DevExpress.Xpf.Core.Design.Wizards.Mvvm.Resources.Views.WinForms.Outlook</ClassNamespace>
+    </Content>
+    <Content Include="Mvvm\Resources\Views\WinForms\Outlook\CollectionView_Outlook.tt">
+      <Generator>DXT4Preprocessor</Generator>
+      <LastGenOutput>CollectionView_Outlook.cs</LastGenOutput>
+      <ClassNamespace>DevExpress.Xpf.Core.Design.Wizards.Mvvm.Resources.Views.WinForms.Outlook</ClassNamespace>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    
+  </PropertyGroup>
+  <Import Project="TextTemplating14\Microsoft.TextTemplating.targets" />
+  <PropertyGroup>
+    <TransformOnBuild>true</TransformOnBuild>
+    <TransformOutOfDateOnly>true</TransformOutOfDateOnly>
+    <OverwriteReadOnlyOutputFiles>true</OverwriteReadOnlyOutputFiles>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,214 @@
+﻿<#@ template language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="DevExpress.Design.Mvvm" #>
+<#@ import namespace="DevExpress.Xpf.Core.Design.Wizards.Mvvm.EntityFramework" #>
+<#@ import namespace="DevExpress.Xpf.Core.Design.Wizards.Mvvm" #>
+<#@ import namespace="DevExpress.Xpf.Core.Design.Wizards.Mvvm.ViewModelData" #>
+<#@ import namespace="DevExpress.Xpf.Core.Native" #>
+<#@ import namespace ="DevExpress.Mvvm.UI.Native.ViewGenerator"#>
+<#@ import namespace ="DevExpress.Entity.Model"#>
+<#@ import namespace ="DevExpress.Mvvm.Native"#>
+<#@ import namespace ="System.Data.Entity.Design.PluralizationServices"#>
+<#@ import namespace ="System.Globalization"#>
+<#
+	T4TemplateInfo templateInfo = this.GetTemplateInfo();
+	EntityViewModelData viewModelData = templateInfo.Properties["IViewModelInfo"] as EntityViewModelData;
+    string viewName = templateInfo.Properties["ViewName"].ToString();
+    string localNamespace = templateInfo.Properties["Namespace"].ToString();
+	string viewFullName = localNamespace +"." + viewName;
+	string mvvmContextFullName = viewModelData.Namespace+"."+viewModelData.Name;
+	string bindingSourceName = Char.ToLowerInvariant(viewName[0]) + viewName.Substring(1) + "BindingSource";
+
+List<PropertyEditorInfo> listLookUpInfo = templateInfo.Properties["GeneratedLookups"] as List<PropertyEditorInfo>;
+	bool IsVisualBasic = (bool)templateInfo.Properties["IsVisualBasic"];
+#>
+<#
+if(!IsVisualBasic){
+#>
+using System;
+using System.Linq;
+using System.Collections.Generic;
+using DevExpress.XtraEditors;
+using DevExpress.Utils.MVVM;
+using DevExpress.Utils.MVVM.Services;
+using DevExpress.XtraGrid.Views.Grid;
+using DevExpress.XtraGrid.Views.Base;
+
+namespace <#=viewFullName#>{
+    public partial class <#=viewName#> : XtraUserControl {
+        public <#=viewName#>() {
+            InitializeComponent();
+			if(!mvvmContext.IsDesignMode)
+				InitBindings();
+		}
+		void InitBindings() {
+		    var fluentAPI = mvvmContext.OfType<<#=mvvmContextFullName#>>();
+			fluentAPI.WithEvent(this, "Load").EventToCommand(x => x.OnLoaded());
+            fluentAPI.SetObjectDataSourceBinding(
+                <#=bindingSourceName#>, x => x.<#=viewModelData.EntityPropertyName#>, x => x.Update());
+			<#foreach(var lookUpTable in viewModelData.LookUpTables){
+				string nameForGridControl = lookUpTable.LookUpCollectionPropertyAssociationName +"GridControl";
+				string nameForGridView = lookUpTable.LookUpCollectionPropertyAssociationName +"GridView";
+				string nameForMVVMContext = lookUpTable.LookUpCollectionPropertyAssociationName +"MVVMContext";
+				string nameForPopUpMenu = lookUpTable.LookUpCollectionPropertyAssociationName +"PopUpMenu";
+				string lookUpPropertyName = GetLookUpPropertyName(viewModelData,lookUpTable);
+			#>
+			#region <#=lookUpTable.LookUpCollectionPropertyAssociationName#> Detail Collection
+			// We want to synchronize the ViewModel.SelectedEntity and the GridView.FocusedRowRandle in two-way manner
+            fluentAPI.WithEvent<GridView, FocusedRowObjectChangedEventArgs>(<#=nameForGridView#>, "FocusedRowObjectChanged")
+                .SetBinding(x => x.<#=lookUpPropertyName#>.SelectedEntity,
+                    args => args.Row as <#=lookUpTable.EntityTypeFullName#>,
+                    (gView, entity) => gView.FocusedRowHandle = gView.FindRow(entity));
+			<#
+			if(lookUpTable.HasEntityEditProperty()){
+			#>
+			// We want to proceed the Edit command when row double-clicked
+			fluentAPI.WithEvent<RowClickEventArgs>(<#=nameForGridView#>, "RowClick")
+						.EventToCommand(
+						    x => x.<#=lookUpPropertyName#>.Edit(null), x => x.<#=lookUpPropertyName#>.SelectedEntity,
+						    args => (args.Clicks == 2) && (args.Button == System.Windows.Forms.MouseButtons.Left));
+			<#}#>
+			//We want to show PopupMenu when row clicked by right button
+			<#=nameForGridView#>.RowClick += (s, e) => {
+                if(e.Clicks == 1 && e.Button == System.Windows.Forms.MouseButtons.Right) {
+                    <#=nameForPopUpMenu#>.ShowPopup(<#=nameForGridControl#>.PointToScreen(e.Location), s);
+                }
+            };
+			// We want to show the <#=lookUpPropertyName#> collection in grid and react on this collection external changes (Reload, server-side Filtering)
+			fluentAPI.SetBinding(<#=nameForGridControl#>, g => g.DataSource, x => x.<#=lookUpPropertyName#>.Entities);
+				
+				<#
+				foreach(var commandLookUpTable in lookUpTable.Commands){
+				string commandName = commandLookUpTable.CommandPropertyName.Remove(commandLookUpTable.CommandPropertyName.Length -7,7);
+				string nameForBarItemInLookUpTable = lookUpTable.LookUpCollectionPropertyAssociationName + commandName;
+				
+				#>
+					<#
+					if(String.IsNullOrEmpty(commandLookUpTable.ParameterPropertyName))
+					{
+					#>
+					fluentAPI.BindCommand(bbi<#=nameForBarItemInLookUpTable#>, x => x.<#=lookUpPropertyName#>.<#=commandName#>());
+					<#}#>
+					<#
+					if(!String.IsNullOrEmpty(commandLookUpTable.ParameterPropertyName))
+					{
+					#>
+					fluentAPI.BindCommand(bbi<#=nameForBarItemInLookUpTable#>,x => x.<#=lookUpPropertyName#>.<#=commandName#>(null), x=>x.<#=lookUpPropertyName#>.SelectedEntity);
+					<#}#>
+				<#}#>
+			#endregion
+			<#}#>
+			<#
+			foreach(var realLookUpInfo in listLookUpInfo){
+			string nameForLookUp = realLookUpInfo.Property.Name+"LookUpEdit";
+			if(realLookUpInfo.Lookup.ItemsSource != null){
+			#>
+			// Binding for <#=realLookUpInfo.Property.Name#> LookUp editor
+			fluentAPI.SetBinding(<#=nameForLookUp#>.Properties, p => p.DataSource, x => x.<#=realLookUpInfo.Lookup.ItemsSource#>);
+			<#}}#> 
+			bbiCustomize.ItemClick += (s, e) => { dataLayoutControl1.ShowCustomizationForm(); };
+       }
+    }
+}
+<#
+}
+if(IsVisualBasic){
+#>
+Imports System
+Imports System.Linq
+Imports System.Collections.Generic
+Imports DevExpress.XtraEditors
+Imports DevExpress.Utils.MVVM
+Imports DevExpress.Utils.MVVM.Services
+Imports DevExpress.XtraGrid.Views.Grid
+Imports DevExpress.XtraGrid.Views.Base
+
+Namespace Global.<#=viewFullName#>
+	Partial Public Class <#=viewName#>
+		Inherits XtraUserControl
+
+		Public Sub New()
+			InitializeComponent()
+			If Not mvvmContext.IsDesignMode Then
+				InitBindings()
+			End If
+		End Sub
+		Private Sub InitBindings()
+			Dim fluentAPI = mvvmContext.OfType(Of Global.<#=mvvmContextFullName#>)()
+			fluentAPI.WithEvent(Me, "Load").EventToCommand(Sub(x) x.OnLoaded())
+			fluentAPI.SetObjectDataSourceBinding(<#=bindingSourceName#>,Function(x) x.<#=viewModelData.EntityPropertyName#>, Sub(x) x.Update())
+			<#foreach(var lookUpTable in viewModelData.LookUpTables){
+				string nameForGridControl = lookUpTable.LookUpCollectionPropertyAssociationName +"GridControl";
+				string nameForGridView = lookUpTable.LookUpCollectionPropertyAssociationName +"GridView";
+				string nameForMVVMContext = lookUpTable.LookUpCollectionPropertyAssociationName +"MVVMContext";
+				string nameForPopUpMenu = lookUpTable.LookUpCollectionPropertyAssociationName +"PopUpMenu";
+				string lookUpPropertyName = GetLookUpPropertyName(viewModelData,lookUpTable);
+			#>
+#Region "<#=lookUpTable.LookUpCollectionPropertyAssociationName#> Detail Collection"
+			' We want to synchronize the ViewModel.SelectedEntity and the GridView.FocusedRowRandle in two-way manner
+			fluentAPI.WithEvent(Of GridView, FocusedRowObjectChangedEventArgs)(<#=nameForGridView#>, "FocusedRowObjectChanged").SetBinding(
+                Function(x) x.<#=lookUpPropertyName#>.SelectedEntity,
+                Function(args) TryCast(args.Row, <#=lookUpTable.EntityTypeFullName#>),
+                Sub(gView, entity) gView.FocusedRowHandle = gView.FindRow(entity))
+			<#
+			if(lookUpTable.HasEntityEditProperty()){
+			#>
+			' We want to proceed the Edit command when row double-clicked
+            fluentAPI.WithEvent(Of RowClickEventArgs)(<#=nameForGridView#>, "RowClick").EventToCommand(
+                Sub(x) x.<#=lookUpPropertyName#>.Edit(Nothing),
+                Function(x) x.<#=lookUpPropertyName#>.SelectedEntity,
+                Function(args) (args.Clicks = 2) AndAlso (args.Button = System.Windows.Forms.MouseButtons.Left))
+			<#}#>
+			' We want to show PopupMenu when row clicked by right button
+            AddHandler <#=nameForGridView#>.RowClick, Sub(s, e)
+				If e.Clicks = 1 AndAlso e.Button = System.Windows.Forms.MouseButtons.Right Then
+					<#=nameForPopUpMenu#>.ShowPopup(<#=nameForGridControl#>.PointToScreen(e.Location), s)
+				End If
+			End Sub
+			' We want to show the <#=lookUpPropertyName#> collection in grid and react on this collection external changes (Reload, server-side Filtering)
+			fluentAPI.SetBinding(<#=nameForGridControl#>, Function(g) g.DataSource, Function(x) x.<#=lookUpPropertyName#>.Entities)
+				<#
+				foreach(var commandLookUpTable in lookUpTable.Commands){
+				string commandName = commandLookUpTable.CommandPropertyName.Remove(commandLookUpTable.CommandPropertyName.Length -7,7);
+				string nameForBarItemInLookUpTable = lookUpTable.LookUpCollectionPropertyAssociationName + commandName;
+				
+				#>
+					<#
+					if(String.IsNullOrEmpty(commandLookUpTable.ParameterPropertyName))
+					{
+					#>
+					fluentAPI.BindCommand(bbi<#=nameForBarItemInLookUpTable#>, Sub(x) x.<#=lookUpPropertyName#>.<#=commandName#>())
+					<#}#>
+					<#
+					if(!String.IsNullOrEmpty(commandLookUpTable.ParameterPropertyName))
+					{
+					#>
+					fluentAPI.BindCommand(bbi<#=nameForBarItemInLookUpTable#>, Sub(x) x.<#=lookUpPropertyName#>.<#=commandName#>(Nothing), Function(x) x.<#=lookUpPropertyName#>.SelectedEntity)
+					<#}#>
+				<#}#>
+#End Region
+			<#}#>
+			<#
+			foreach(var realLookUpInfo in listLookUpInfo){
+			string nameForLookUp = realLookUpInfo.Property.Name+"LookUpEdit";
+			if(realLookUpInfo.Lookup.ItemsSource != null){
+			#>
+			' Binding for <#=realLookUpInfo.Property.Name#> LookUp editor
+			fluentAPI.SetBinding(<#=nameForLookUp#>.Properties, Function(p) p.DataSource, Function(x) x.<#=realLookUpInfo.Lookup.ItemsSource#>)
+			<#}}#> 
+			AddHandler bbiCustomize.ItemClick, Sub(s, e) dataLayoutControl1.ShowCustomizationForm()
+		End Sub
+	End Class
+End Namespace
+<#
+}
+#>
+<#+
+static string GetLookUpPropertyName(EntityViewModelData parentViewModelData, LookUpCollectionViewModelData viewModelData){
+	return parentViewModelData.EntityTypeName+viewModelData.LookUpCollectionPropertyAssociationName + "Details";
+}
+#>
+

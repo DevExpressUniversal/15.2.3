@@ -1,0 +1,79 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:dxgcore="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+    xmlns:dxg="clr-namespace:DevExpress.Xpf.Grid"
+    xmlns:dxgt="clr-namespace:DevExpress.Xpf.Grid.Themes">
+
+	<Style x:Key="{dxgt:CardTemplatesThemeKey ResourceKey=CardRowHeaderTextStyle}" TargetType="{x:Type TextBlock}">
+		<Setter Property="Margin" Value="0,3,0,2" />
+	</Style>
+
+    <dxg:DefaultStyle x:Key="{dxgt:CardTemplatesThemeKey ResourceKey=CellStyle}" TargetType="{x:Type dxgcore:CellContentPresenter}">
+		<Setter Property="Border.CornerRadius" Value="3" />
+        <Setter Property="dxgcore:CellContentPresenter.BorderThickness" Value="1" />
+        <Style.Triggers>
+            <Trigger Property="dxg:GridViewBase.IsFocusedCell" Value="true">
+                <Setter Property="dxgcore:CellContentPresenter.Background" Value="White" />
+                <Setter Property="dxgcore:CellContentPresenter.BorderBrush" Value="#FF5272B1" />
+            </Trigger>
+        </Style.Triggers>
+	</dxg:DefaultStyle>
+
+    <Thickness x:Key="{dxgt:CardTemplatesThemeKey ResourceKey=CellContentPresenterMargin}">0,0,0,0</Thickness>
+
+    <DataTemplate x:Key="{dxgt:CardTemplatesThemeKey ResourceKey=SeparatorTemplate}">
+		<DataTemplate.Resources>
+				<Storyboard x:Key="Storyboard1">
+					<ColorAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="scrolling" Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)">
+						<SplineColorKeyFrame KeyTime="00:00:00.2500000" Value="#FF698ACA" />
+					</ColorAnimationUsingKeyFrames>
+					<ColorAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="rectangle" Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)">
+						<SplineColorKeyFrame KeyTime="00:00:00" Value="#FF96AFD0" />
+						<SplineColorKeyFrame KeyTime="00:00:00.2500000" Value="#FF5272B1" />
+					</ColorAnimationUsingKeyFrames>
+					<ColorAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="border" Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)">
+						<SplineColorKeyFrame KeyTime="00:00:00" Value="#FFDCECFF" />
+						<SplineColorKeyFrame KeyTime="00:00:00.2500000" Value="#FFAECAEE" />
+					</ColorAnimationUsingKeyFrames>
+				</Storyboard>
+				<Storyboard x:Key="Storyboard2">
+					<ColorAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="scrolling" Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)">
+						<SplineColorKeyFrame KeyTime="00:00:00.5000000" Value="#FFC7DCF7" />
+					</ColorAnimationUsingKeyFrames>
+					<ColorAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="border" Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)">
+						<SplineColorKeyFrame KeyTime="00:00:00.5000000" Value="#FFDCECFF" />
+					</ColorAnimationUsingKeyFrames>
+					<ColorAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="rectangle" Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)">
+						<SplineColorKeyFrame KeyTime="00:00:00.5000000" Value="#FFC7DCF7" />
+					</ColorAnimationUsingKeyFrames>
+				</Storyboard>
+			</DataTemplate.Resources>
+		<Grid x:Name="container">
+			<Border x:Name="scrolling" Background="#FFC7DCF7" CornerRadius="2,2,2,2" Padding="1,1,1,1">
+				<Border x:Name="border" Background="#FFDCECFF" CornerRadius="1,1,1,1">
+					<Rectangle HorizontalAlignment="Center" x:Name="rectangle" VerticalAlignment="Center" Fill="#FFC7DCF7" Stroke="{x:Null}" StrokeThickness="0" />
+				</Border>
+			</Border>
+		</Grid>
+		<DataTemplate.Triggers>
+			<Trigger Property="IsMouseOver" Value="True">
+				<Trigger.EnterActions>
+					<BeginStoryboard Storyboard="{StaticResource Storyboard1}" />
+				</Trigger.EnterActions>
+				<Trigger.ExitActions>
+					<BeginStoryboard Storyboard="{StaticResource Storyboard2}" />
+				</Trigger.ExitActions>
+			</Trigger>
+			<DataTrigger Binding="{Binding Path=(dxg:GridControl.ActiveView).Orientation, RelativeSource={RelativeSource TemplatedParent}}" Value="Horizontal">
+				<Setter Property="Margin" Value="0,6,0,6" TargetName="container" />
+				<Setter Property="Width" Value="1" TargetName="rectangle" />
+				<Setter Property="Height" Value="16" TargetName="rectangle" />
+			</DataTrigger>
+			<DataTrigger Binding="{Binding Path=(dxg:GridControl.ActiveView).Orientation, RelativeSource={RelativeSource TemplatedParent}}" Value="Vertical">
+				<Setter Property="Margin" Value="6,0,6,0" TargetName="container" />
+				<Setter Property="Width" Value="16" TargetName="rectangle" />
+				<Setter Property="Height" Value="1" TargetName="rectangle" />
+			</DataTrigger>
+		</DataTemplate.Triggers>
+	</DataTemplate>
+</ResourceDictionary>

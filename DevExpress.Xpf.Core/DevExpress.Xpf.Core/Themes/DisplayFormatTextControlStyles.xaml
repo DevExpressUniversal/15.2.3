@@ -1,0 +1,86 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:dxtEx="clr-namespace:DevExpress.Xpf.Utils.Themes"
+                    xmlns:dxc="clr-namespace:DevExpress.Xpf.Core"
+                    xmlns:dxe="clr-namespace:DevExpress.Xpf.Editors"
+                    xmlns:dxet="clr-namespace:DevExpress.Xpf.Editors.Themes">
+    <Style x:Key="{dxet:DisplayFormatTextControlThemeKey ResourceKey=ComboBoxStyle}" TargetType="{x:Type dxe:ComboBoxEdit}">
+        <!--BEGIN WPF-->
+        <Setter Property="ScrollViewer.CanContentScroll" Value="False"/>
+        <!--END WPF-->
+    </Style>
+    <!--BEGIN WPF-->
+    <dxc:GroupNameToCaptionConverter x:Key="GroupNameToCaptionConverter"/>
+    <!--END WPF-->
+    <dxc:NullDisplayFormatToTextConverter x:Key="NullDisplayFormatToTextConverter"/>
+    <ControlTemplate x:Key="{dxet:DisplayFormatTextControlThemeKey ResourceKey=Template}" TargetType="{x:Type dxc:DisplayFormatTextControl}">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="1.3*"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <TextBlock x:Name="PART_PrefixCaption" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="0,0,0,3"/>
+            <TextBlock Grid.Column="1" x:Name="PART_DisplayTextFormat" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="12,0,24,3"/>
+            <TextBlock Grid.Column="2" x:Name="PART_SuffixCaption" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="0,0,0,3"/>
+            <dxe:TextEdit Grid.Row="1" x:Name="PART_PrefixValue" EditValue="{Binding Prefix, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"/>
+            <dxe:ComboBoxEdit 
+                Grid.Row="1" 
+                Grid.Column="1" 
+                x:Name="PART_DisplayFormatComboBox"
+                Margin="12,0" 
+                ItemsSource="{TemplateBinding DisplayFormatSourceCollection}" DisplayMember="Value" 
+                ValueMember="Value" 
+                ValidateOnTextInput="False" 
+                ShowNullTextForEmptyValue="False" 
+                Style="{DynamicResource {dxet:DisplayFormatTextControlThemeKey ResourceKey=ComboBoxStyle}}"
+                AllowCollectionView="True">
+                <dxe:ComboBoxEdit.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition MinWidth="135"/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="{Binding Value, Converter={StaticResource NullDisplayFormatToTextConverter}}" FontWeight="SemiBold"/>
+                            <TextBlock Grid.Column="1" Text="{Binding Example}" FontStyle="Italic"/>
+                        </Grid>
+                    </DataTemplate>
+                </dxe:ComboBoxEdit.ItemTemplate>
+                <!--BEGIN WPF-->
+                <dxe:ComboBoxEdit.GroupStyle>
+                    <GroupStyle HidesIfEmpty="True">                        
+                        <GroupStyle.ContainerStyle>
+                            <Style TargetType="{x:Type GroupItem}">
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type GroupItem}">
+                                            <StackPanel Margin="0,0,0,10">
+                                                <TextBlock Margin="5,0,0,0" Text="{Binding Path=Name, Converter={StaticResource GroupNameToCaptionConverter}}" FontStyle="Italic" FontWeight="Bold"/>
+                                                <ItemsPresenter />
+                                            </StackPanel>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </GroupStyle.ContainerStyle>
+                    </GroupStyle>                    
+                </dxe:ComboBoxEdit.GroupStyle>
+                <!--END WPF-->
+            </dxe:ComboBoxEdit>
+            <dxe:TextEdit Grid.Row="1" Grid.Column="2" x:Name="PART_SuffixValue" EditValue="{Binding Suffix, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"/>
+            <StackPanel Grid.Row="2" Grid.ColumnSpan="3" Orientation="Horizontal" Margin="0,10,0,0">
+                <TextBlock x:Name="PART_ExampleCaption"/>
+                <TextBlock x:Name="PART_ExampleValue" Text="{TemplateBinding ExampleText}"/>
+            </StackPanel>
+        </Grid>
+    </ControlTemplate>
+    <Style TargetType="{x:Type dxc:DisplayFormatTextControl}">
+        <Setter Property="IsEnabled" Value="False"/>
+        <Setter Property="Template" Value="{DynamicResource {dxet:DisplayFormatTextControlThemeKey ResourceKey=Template}}"/>
+    </Style>
+</ResourceDictionary>

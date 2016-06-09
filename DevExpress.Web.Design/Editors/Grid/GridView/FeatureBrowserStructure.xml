@@ -1,0 +1,654 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<FeatureItems SourceType="ASPxGridView">
+  <FeatureItem ID="DataBinding" Name="Data Binding" Category="">
+    <Description>
+      To bind ASPxGridView with a data source set the [{DataSourceID}DataSourceID] property according to the ID of the required data source.
+
+      The [{KeyFieldName}KeyFieldName] property should be specified when using the following ASPxGridView features:
+        - data editing;
+        - selecting rows;
+        - master-detail view;
+        - endless paging.
+        
+      When ASPxGridView is bound to a large data set, you can improve the control performance by loading on demand only small portions of the data. 
+      
+      For this purpose do one of the following. 
+        - Use our [{lnk_#CoreLibraries/clsDevExpressXpoXpoDataSourcetopic}XpoDataSource] or [{lnk_#AspNet/clsDevExpressDataLinqLinqServerModeDataSourcetopic}LinqServerModeSource] component.
+        - Enable the [{DataSourceForceStandardPaging}DataSourceForceStandardPaging] option to turn on the capability to pass default data source paging parameters to the ExecuteSelect method.
+          In this case grid paging capabilities are turned off. You can use only those data sources that support data paging, e.g. ObjectDataSource, LinqDataSource.
+          AccessDataSource and SqlDataSource cannot be used.
+    </Description>
+    <Properties>
+      <Item Name="DataSourceID" />
+      <Item Name="DataMember" />
+      <Item Name="KeyFieldName" />
+      <Item Name="DataSourceForceStandardPaging" />
+      <!-- Events -->
+      <Item Name="DataBinding" />
+      <Item Name="DataBound" />
+      <Item Name="CustomUnboundColumnData" />
+    </Properties>
+    <Pages>
+      <Columns_Binding>
+        <Properties>
+          <Item Name="FieldName" />
+          <Item Name="UnboundType" />
+          <Item Name="UnboundExpression" />
+        </Properties>
+      </Columns_Binding>
+    </Pages>
+  </FeatureItem>
+  <FeatureItem ID="Sorting" Name="Sorting" Category="" ExpandAll="True">
+    <Description>
+      Sorting availability: [{SettingsBehavior.AllowSort}AllowSort]
+
+      End-users can sort data by clicking column headers, whose visibility is controlled by the [{Settings.ShowColumnHeaders}ShowColumnHeaders] property.
+      
+      The [{SettingsBehavior.SortMode}SortMode] property specifies the default algorithm used to sort column data (by display text, edit value or using a custom sorting algorithm).
+      
+      You can specify sort settings for individual [{goto:Columns_Sorting_Page}Columns] as well.
+    </Description>
+    <Properties>
+      <Item Name="SettingsBehavior.AllowSort" />
+      <Item Name="SettingsBehavior.SortMode" />
+      <Item Name="Settings.ShowColumnHeaders" />
+      <!-- Events -->
+      <Item Name="BeforeColumnSortingGrouping" />
+      <Item Name="CustomColumnSort" />
+      <Item Name="CustomColumnDisplayText" />
+    </Properties>
+    <Pages>
+      <Columns_Sorting_Page ExpandAll="True">
+        <Properties>
+          <Item Name="SortIndex" />
+          <Item Name="SortOrder" />
+          <Item Name="Settings.AllowSort" />
+          <Item Name="Settings.SortMode" />
+        </Properties>
+      </Columns_Sorting_Page>
+    </Pages>
+  </FeatureItem>
+  <FeatureItem ID="Grouping" Name="Grouping" Category="">
+    <Description>
+      Grouping availability: [{SettingsBehavior.AllowGroup}AllowGroup]
+      
+      End-users can group data by dragging a column header and dropping it onto the group panel, whose visibility is controlled by the [{Settings.ShowGroupPanel}ShowGroupPanel] property.
+      
+      To group data by column, set the column’s [{goto:Columns_Grouping_Page,GroupIndex}GroupIndex] property.
+
+      To enable fixed groups, set the [{SettingsBehavior.AllowFixedGroups}AllowFixedGroups] property.
+
+      To enable a group summary, create and set a [{gotoFeature:GroupSummary}GroupSummary] item(s).
+
+      You can specify grouping settings for individual [{goto:Columns_Grouping_Page}Columns] as well.
+    </Description>
+    <Properties>
+      <Item Name="Settings.ShowGroupPanel" />
+      <Item Name="Settings.ShowColumnHeaders" />
+      <Item Name="Settings.ShowGroupButtons" />
+      <Item Name="Settings.ShowGroupFooter" />
+      <Item Name="Settings.ShowGroupedColumns" />
+      <Item Name="Settings.GroupFormat" />
+      <Item Name="SettingsBehavior.AllowFixedGroups" />
+      <Item Name="SettingsBehavior.AllowGroup" />
+      <Item Name="SettingsBehavior.AutoExpandAllGroups" />
+      <!-- Styles -->
+      <Item Name="Styles.GroupRow" />
+      <Item Name="Styles.GroupPanel" />
+      <Item Name="Styles.GroupFooter" />
+      <!-- Events -->
+      <Item Name="CustomColumnGroup" />
+      <Item Name="BeforeColumnSortingGrouping" />
+      <Item Name="CustomGroupDisplayText" />
+    </Properties>
+    <ExpandedPropertiesOnStart>
+      <ExpandedItem Name="Settings" />
+      <ExpandedItem Name="SettingsBehavior" />
+      <ExpandedItem Name="Styles" />
+    </ExpandedPropertiesOnStart>
+    <Pages>
+      <Columns_Grouping_Page ExpandAll="True">
+        <Properties>
+          <Item Name="GroupIndex" />
+          <Item Name="Settings.SortMode" />
+          <Item Name="Settings.AllowGroup" />
+          <Item Name="Settings.GroupInterval" />
+        </Properties>
+      </Columns_Grouping_Page>
+    </Pages>
+  </FeatureItem>
+  <FeatureItem ID="Filtering" Name="Filtering" Category="">
+    <Description>
+      Filter elements availability:
+      
+      Filter row: [{Settings.ShowFilterRow}ShowFilterRow]
+      
+      Header filter: [{Settings.ShowHeaderFilterButton}ShowHeaderFilterButton]
+      
+      Filter bar: [{Settings.ShowFilterBar}ShowFilterBar]
+      
+      Search panel: [{SettingsSearchPanel.Visible}SettingsSearchPanel.Visible]
+    </Description>
+    <Properties>
+      <Item Name="Settings.ShowFilterRow" />
+      <Item Name="Settings.ShowHeaderFilterButton" />
+      <Item Name="Settings.ShowFilterBar" />
+      <Item Name="SettingsSearchPanel.Visible" />
+      <!-- Events -->
+      <Item Name="CustomColumnDisplayText" />
+    </Properties>
+    <ExpandedPropertiesOnStart>
+      <ExpandedItem Name="Settings" />
+      <ExpandedItem Name="SettingsSearchPanel" />
+    </ExpandedPropertiesOnStart>
+  </FeatureItem>
+  <FeatureItem ID="FilterRow" Name="Filter Row" Category="Filtering">
+    <Description>
+      Filter row availability: [{Settings.ShowFilterRow}ShowFilterRow]
+      
+      Filter row mode (OnClick or Auto): [{SettingsBehavior.FilterRowMode}FilterRowMode]
+      
+      In Auto filter mode, the filter is applied on the fly, when an end-user types text within a row. You can set the time interval between the time a user starts typing and filtering is applied using the [{SettingsBehavior.AutoFilterRowInputDelay}AutoFilterRowInputDelay] property.
+      
+      In OnClick filter mode, the filter is applied on the Apply button click or after special button (ENTER, CTRL+BACKSPACE) are pressed.
+    </Description>
+    <Properties>
+      <Item Name="Settings.ShowFilterRow" />
+      <Item Name="Settings.ShowFilterRowMenu" />
+      <Item Name="SettingsBehavior.AutoFilterRowInputDelay" />
+      <Item Name="SettingsBehavior.FilterRowMode" />
+      <!-- Styles -->
+      <Item Name="Styles.FilterRow" />
+      <Item Name="Styles.FilterCell" />
+      <Item Name="Styles.FilterRowMenu" />
+      <Item Name="Styles.FilterRowMenuItem" />
+      <!-- Events -->
+      <Item Name="ProcessColumnAutoFilter" />
+      <Item Name="ProcessOnClickRowFilter" />
+      <Item Name="AutoFilterCellEditorCreate" />
+      <Item Name="AutoFilterCellEditorInitialize" />
+      <Item Name="CustomColumnDisplayText" />
+    </Properties>
+    <ExpandedPropertiesOnStart>
+      <ExpandedItem Name="Settings" />
+      <ExpandedItem Name="SettingsBehavior" />
+      <ExpandedItem Name="Styles" />
+    </ExpandedPropertiesOnStart>
+    <Pages>
+      <Columns_Filtering>
+        <Properties>
+          <Item Name="Settings.FilterMode" />
+          <Item Name="Settings.AllowAutoFilter" />
+          <Item Name="Settings.ShowFilterRowMenu" />
+          <Item Name="Settings.AutoFilterCondition" />
+          <!-- Styles -->
+          <Item Name="FilterCellStyle" />
+        </Properties>
+        <ExpandedPropertiesOnStart>
+          <ExpandedItem Name="Settings" />
+          <ExpandedItem Name="FilterCellStyle" />
+        </ExpandedPropertiesOnStart>
+      </Columns_Filtering>
+    </Pages>
+  </FeatureItem>
+  <FeatureItem ID="HeaderFilter" Name="Header Filter" Category="Filtering">
+    <Description>
+      Header filter availability : [{Settings.ShowHeaderFilterButton}ShowHeaderFilterButton]
+      
+      Set a column's header filter mode (List or CheckedList) using the [{goto:Columns_Filtering_HeaderFilter}HeaderFilterMode] property.
+
+      In List mode, the header filter is displayed as a regular list of filter items.
+
+      In CheckedList mode, the header filter is displayed as a checked list of filter items. In this mode, an end-user can select more than one item simultaneously.
+    </Description>
+    <Properties>
+      <Item Name="Settings.ShowHeaderFilterButton" />
+      <Item Name="Settings.ShowHeaderFilterBlankItems" />
+      <Item Name="SettingsBehavior.HeaderFilterMaxRowCount" />
+      <Item Name="SettingsPopup.HeaderFilter" />
+      <!-- Styles -->
+      <Item Name="Styles.HeaderFilterItem" />
+      <Item Name="StylesPopup.HeaderFilter" />
+      <!-- Events -->
+      <Item Name="BeforeHeaderFilterFillItems" />
+      <Item Name="HeaderFilterFillItems" />
+      <Item Name="CustomColumnDisplayText" />
+    </Properties>
+    <ExpandedPropertiesOnStart>
+      <ExpandedItem Name="Settings" />
+      <ExpandedItem Name="SettingsBehavior" />
+      <ExpandedItem Name="SettingsPopup" />
+      <ExpandedItem Name="Styles" />
+      <ExpandedItem Name="StylesPopup" />
+    </ExpandedPropertiesOnStart>
+    <Pages>
+      <Columns_Filtering_HeaderFilter>
+        <Properties>
+          <Item Name="Settings.AllowHeaderFilter" />
+          <Item Name="Settings.HeaderFilterMode" />
+          <Item Name="Settings.FilterMode" />
+        </Properties>
+        <ExpandedPropertiesOnStart>
+          <ExpandedItem Name="Settings" />
+        </ExpandedPropertiesOnStart>
+      </Columns_Filtering_HeaderFilter>
+    </Pages>
+  </FeatureItem>
+  <FeatureItem ID="FilterBar" Name="Filter Bar" Category="Filtering">
+    <Properties>
+      <Item Name="Settings.ShowFilterBar" />
+      <!-- Styles -->
+      <Item Name="StylesFilterControl" />
+      <!-- Events -->
+      <Item Name="FilterControlCustomValueDisplayText" />
+      <Item Name="FilterControlOperationVisibility" />
+      <Item Name="FilterControlParseValue" />
+      <Item Name="CustomFilterExpressionDisplayText" />
+      <Item Name="CustomColumnDisplayText" />
+    </Properties>
+    <ExpandedPropertiesOnStart>
+      <ExpandedItem Name="Settings" />
+      <ExpandedItem Name="StylesFilterControl" />
+    </ExpandedPropertiesOnStart>
+    <Pages>
+      <Columns_Filtering_FilterBar>
+        <Properties>
+          <Item Name="Settings.ShowInFilterControl" />
+          <Item Name="Settings.FilterMode" />
+        </Properties>
+        <ExpandedPropertiesOnStart>
+          <ExpandedItem Name="Settings" />
+        </ExpandedPropertiesOnStart>
+      </Columns_Filtering_FilterBar>
+    </Pages>
+  </FeatureItem>
+  <FeatureItem ID="SearchPanel" Name="Search Panel" Category="Filtering">
+    <Description>
+      Search panel availability: [{SettingsSearchPanel.Visible}Visible]
+      
+      A search panel filter criterion is applied automatically after the time period specified by the [{SettingsSearchPanel.Delay}Delay] property is passed.
+    
+      You can disable the time delay by using the [{SettingsSearchPanel.AllowTextInputTimer}AllowTextInputTimer] property to false. In this case, the filter criterion is not applied automatically. An end-user can click the Apply (Search) button or press the ENTER key to apply the entered criterion.
+    </Description>
+    <Properties>
+      <Item Name="SettingsSearchPanel" />
+      <!-- Styles -->
+      <Item Name="Styles.SearchPanel" />
+      <!-- Events -->
+      <Item Name="SearchPanelEditorCreate" />
+      <Item Name="SearchPanelEditorInitialize" />
+      <Item Name="CustomColumnDisplayText" />
+    </Properties>
+    <ExpandedPropertiesOnStart>
+      <ExpandedItem Name="SettingsSearchPanel" />
+    </ExpandedPropertiesOnStart>
+    <Pages>
+      <Columns_Filtering_SearchPanel>
+        <Properties>
+          <Item Name="Settings.AllowFilterBySearchPanel" />
+        </Properties>
+        <ExpandedPropertiesOnStart>
+          <ExpandedItem Name="Settings" />
+        </ExpandedPropertiesOnStart>
+      </Columns_Filtering_SearchPanel>
+    </Pages>
+  </FeatureItem>
+  <FeatureItem ID="Summary" Name="Summary" Category="">
+    <Description>
+      A summary is brief information about groups of rows or individual data columns, e.g., the number of records or the maximum value.
+
+      ASPxGridView supports two types of summary.
+
+      [{gotoFeature:Total}Total Summary] - is the value of an aggregate function calculated over all the rows within ASPxGridView and are displayed within the footer.
+
+      [{gotoFeature:GroupSummary}Group Summary] - is the value of an aggregate function calculated over all rows within a group and displayed in the group row or group footer.
+    </Description>
+  </FeatureItem>
+  <FeatureItem ID="Total" Name="Total" Category="Summary">
+    <Description>
+      To display a total summary:
+      
+      - enable a footer by the [{Settings.ShowFooter}ShowFooter] property,
+      
+      - create and set [{goto:Items_TotalSummary_Page}TotalSummary] item(s).
+    </Description>
+    <Properties>
+      <Item Name="Settings.ShowFooter" />
+      <!-- Styles -->
+      <Item Name="Styles.Footer" />
+      <!-- Events -->
+      <Item Name="CustomSummaryCalculate" />
+      <Item Name="SummaryDisplayText" />
+    </Properties>
+    <ExpandedPropertiesOnStart>
+      <ExpandedItem Name="Settings" />
+      <ExpandedItem Name="Styles" />
+    </ExpandedPropertiesOnStart>
+    <Pages>
+      <Items_TotalSummary_Page>
+        <Properties>
+          <Item Name="TotalSummary" />
+        </Properties>
+      </Items_TotalSummary_Page>
+    </Pages>
+  </FeatureItem>
+  <FeatureItem ID="GroupSummary" Name="Group" Category="Summary">
+    <Description>
+      To display a group summary:
+      
+      - enable a group footer by the [{Settings.ShowGroupFooter}ShowGroupFooter] property,
+      
+      - create and set [{goto:Items_GroupSummary_Page}GroupSummary] item(s).
+    </Description>
+    <Properties>
+      <Item Name="Settings.ShowGroupFooter" />
+      <Item Name="Settings.GroupSummaryTextSeparator" />
+      <!-- Styles -->
+      <Item Name="Styles.GroupFooter" />
+      <!-- Events -->
+      <Item Name="CustomSummaryCalculate" />
+      <Item Name="SummaryDisplayText" />
+    </Properties>
+    <ExpandedPropertiesOnStart>
+      <ExpandedItem Name="Settings" />
+      <ExpandedItem Name="Styles" />
+    </ExpandedPropertiesOnStart>
+    <Pages>
+      <Items_GroupSummary_Page>
+        <Properties>
+          <Item Name="GroupSummary" />
+        </Properties>
+      </Items_GroupSummary_Page>
+    </Pages>
+  </FeatureItem>
+  <FeatureItem ID="Editing" Name="Editing" Category="">
+    <Description>
+      To enable editing do the following.
+      
+      - Setup datasecurity properties:
+      [{SettingsDataSecurity.AllowInsert}AllowInsert]
+      [{SettingsDataSecurity.AllowEdit}AllowEdit]
+      [{SettingsDataSecurity.AllowDelete}AllowDelete]
+      
+      - Display edit buttons by using the following command column properties. If a command column does not exist, it will be created automatically.
+      [{CommandColumns_ShowNewButton}ShowNewButton]
+      [{CommandColumns_ShowEditButton}ShowEditButton]
+      [{CommandColumns_ShowDeleteButton}ShowDeleteButton]
+      
+      - To specify if the built-in ASPxFormLayout control is used on the edit form, use the [{SettingsEditing.UseFormLayout}UseFormLayout] property. To customize layout items, use the [{EditForm_UseFormLayout}EditForm Layout Items] section.
+    </Description>
+    <Properties>
+      <Item Name="SettingsEditing.Mode" />
+      <Item Name="SettingsEditing.NewItemRowPosition" />
+      <Item Name="SettingsEditing.UseFormLayout" />
+      <Item Name="SettingsBehavior.ConfirmDelete" />
+      <Item Name="SettingsDataSecurity" />
+      <!-- Events -->
+      <Item Name="RowInserting" />
+      <Item Name="RowInserted" />
+      <Item Name="RowUpdating" />
+      <Item Name="RowUpdated" />
+      <Item Name="RowDeleting" />
+      <Item Name="RowDeleted" />
+      <Item Name="RowValidating" />
+      <Item Name="StartRowEditing" />
+      <Item Name="CancelRowEditing" />
+      <Item Name="ParseValue" />
+      <Item Name="CellEditorInitialize" />
+    </Properties>
+    <ExpandedPropertiesOnStart>
+      <ExpandedItem Name="SettingsEditing" />
+      <ExpandedItem Name="SettingsBehavior" />
+      <ExpandedItem Name="SettingsDataSecurity" />
+    </ExpandedPropertiesOnStart>
+    <Pages>
+      <CommandColumns_Editing>
+        <Properties>
+          <Item Name="ButtonType" />
+          <Item Name="ShowNewButton" />
+          <Item Name="ShowEditButton" />
+          <Item Name="ShowDeleteButton" />
+          <Item Name="ShowUpdateButton" />
+          <Item Name="ShowCancelButton" />
+        </Properties>
+      </CommandColumns_Editing>
+    </Pages>
+  </FeatureItem>
+  <FeatureItem ID="Inline" Name="Inline" Category="Editing">
+    <Properties>
+      <!-- Styles -->
+      <Item Name="Styles.InlineEditRow" />
+      <Item Name="Styles.InlineEditCell" />
+    </Properties>
+    <ExpandedPropertiesOnStart>
+      <ExpandedItem Name="Styles" />
+    </ExpandedPropertiesOnStart>
+  </FeatureItem>
+  <FeatureItem ID="EditForm" Name="Edit Form" Category="Editing">
+    <Properties>
+      <!-- Styles -->
+      <Item Name="Styles.EditFormDisplayRow" />
+      <Item Name="Styles.EditForm" />
+      <!-- Events -->
+      <Item Name="HtmlEditFormCreated" />
+    </Properties>
+    <ExpandedPropertiesOnStart>
+      <ExpandedItem Name="Styles" />
+    </ExpandedPropertiesOnStart>
+  </FeatureItem>
+  <FeatureItem ID="PopupEditForm" Name="Popup Edit Form" Category="Editing">
+    <Properties>
+      <Item Name="SettingsPopup.EditForm" />
+      <!-- Styles -->
+      <Item Name="StylesPopup.EditForm" />
+      <!-- Events -->
+      <Item Name="HtmlEditFormCreated" />
+    </Properties>
+    <ExpandedPropertiesOnStart>
+      <ExpandedItem Name="SettingsPopup" />
+      <ExpandedItem Name="StylesPopup" />
+    </ExpandedPropertiesOnStart>
+  </FeatureItem>
+  <FeatureItem ID="BatchEdit" Name="Batch Editing" Category="Editing">
+    <Properties>
+      <Item Name="SettingsEditing.BatchEditSettings" />
+      <!-- Styles -->
+      <Item Name="Styles.BatchEditCell" />
+      <Item Name="Styles.BatchEditModifiedCell" />
+      <!-- Events -->
+      <Item Name="BatchUpdate" />
+    </Properties>
+    <ExpandedPropertiesOnStart>
+      <ExpandedItem Name="SettingsEditing" />
+      <ExpandedItem Name="Styles" />
+    </ExpandedPropertiesOnStart>
+  </FeatureItem>
+  <FeatureItem ID="FocusSelectionNavigation" Name="Focus and Selection" Category="">
+    <Description>
+      Row focusing availability: [{SettingsBehavior.AllowFocusedRow}AllowFocusedRow]
+
+      Row selection availability: [{SettingsBehavior.AllowSelectByRowClick}AllowSelectByRowClick]
+      
+      Display select check boxes by using a command column's [{CommandColumns_ShowSelectCheckbox}ShowSelectCheckbox] property. If the command column does not exist, it will be created automatically.
+      
+      Keyboard support: [{KeyboardSupport}KeyboardSupport]
+    </Description>
+    <Properties>
+      <Item Name="SettingsBehavior.AllowFocusedRow" />
+      <Item Name="SettingsBehavior.AllowSelectByRowClick" />
+      <Item Name="KeyboardSupport" />
+    </Properties>
+    <ExpandedPropertiesOnStart>
+      <ExpandedItem Name="SettingsBehavior" />
+    </ExpandedPropertiesOnStart>
+  </FeatureItem>
+  <FeatureItem ID="Focus" Name="Focus" Category="FocusSelectionNavigation">
+    <Properties>
+      <Item Name="SettingsBehavior.AllowFocusedRow" />
+      <Item Name="SettingsBehavior.ProcessFocusedRowChangedOnServer" />
+      <!-- Styles -->
+      <Item Name="Styles.FocusedRow" />
+      <Item Name="Styles.FocusedGroupRow" />
+      <!-- Events -->
+      <Item Name="FocusedRowChanged" />
+    </Properties>
+    <ExpandedPropertiesOnStart>
+      <ExpandedItem Name="Settings" />
+      <ExpandedItem Name="SettingsBehavior" />
+      <ExpandedItem Name="Styles" />
+    </ExpandedPropertiesOnStart>
+  </FeatureItem>
+  <FeatureItem ID="Selection" Name="Selection" Category="FocusSelectionNavigation">
+    <Properties>
+      <Item Name="SettingsBehavior.AllowSelectByRowClick" />
+      <Item Name="SettingsBehavior.SelectionStoringMode" />
+      <Item Name="SettingsBehavior.AllowSelectSingleRowOnly" />
+      <Item Name="SettingsBehavior.ProcessSelectionChangedOnServer" />
+      <!-- Styles -->
+      <Item Name="Styles.SelectedRow" />
+      <!-- Events -->
+      <Item Name="SelectionChanged" />
+    </Properties>
+    <ExpandedPropertiesOnStart>
+      <ExpandedItem Name="SettingsBehavior" />
+      <ExpandedItem Name="Styles" />
+    </ExpandedPropertiesOnStart>
+    <Pages>
+      <CommandColumns_Selection>
+        <Properties>
+          <Item Name="ShowSelectCheckbox" />
+          <Item Name="SelectAllCheckboxMode" />
+        </Properties>
+      </CommandColumns_Selection>
+    </Pages>
+  </FeatureItem>
+  <FeatureItem ID="PagingScrolling" Name="Paging and Scrolling" Category="">
+    <Description>
+      Paging availability: [{SettingsPager.Visible}SettingsPager.Visible]
+
+      Paging mode: [{SettingsPager.Mode}SettingsPager.Mode]
+
+      Scrolling availability: [{Settings.VerticalScrollBarMode}VerticalScrollBarMode], [{Settings.HorizontalScrollBarMode}HorizontalScrollBarMode]
+
+      Keyboard support: [{KeyboardSupport}KeyboardSupport]
+    </Description>
+    <Properties>
+      <Item Name="KeyboardSupport" />
+      <Item Name="SettingsPager.Visible" />
+      <Item Name="SettingsPager.Mode" />
+      <Item Name="SettingsPager.Mode" />
+      <Item Name="Settings.HorizontalScrollBarMode" />
+      <Item Name="Settings.VerticalScrollBarMode" />
+    </Properties>
+    <ExpandedPropertiesOnStart>
+      <ExpandedItem Name="Settings" />
+      <ExpandedItem Name="SettingsPager" />
+    </ExpandedPropertiesOnStart>
+  </FeatureItem>
+  <FeatureItem ID="Scrolling" Name="Scrolling" Category="PagingScrolling">
+    <Properties>
+      <Item Name="Settings.HorizontalScrollBarMode" />
+      <Item Name="Settings.VerticalScrollBarMode" />
+      <Item Name="Settings.VerticalScrollableHeight" />
+      <Item Name="Settings.VerticalScrollBarStyle" />
+      <!-- Styles -->
+      <Item Name="Styles.FixedColumn" />
+    </Properties>
+    <ExpandedPropertiesOnStart>
+      <ExpandedItem Name="Settings" />
+      <ExpandedItem Name="Styles" />
+    </ExpandedPropertiesOnStart>
+    <Pages>
+      <Columns_Scrolling>
+        <Properties>
+          <!-- Styles -->
+          <Item Name="FixedStyle" />
+        </Properties>
+      </Columns_Scrolling>
+    </Pages>
+  </FeatureItem>
+  <FeatureItem ID="Paging" Name="Paging" Category="PagingScrolling">
+    <Properties>
+      <Item Name="SettingsPager" />
+      <!-- Styles -->
+      <Item Name="Styles.PagerTopPanel" />
+      <Item Name="Styles.PagerBottomPanel" />
+      <!-- Events -->
+      <Item Name="PageIndexChanged" />
+      <Item Name="PageSizeChanged" />
+    </Properties>
+    <ExpandedPropertiesOnStart>
+      <ExpandedItem Name="SettingsPager" />
+      <ExpandedItem Name="Styles" />
+    </ExpandedPropertiesOnStart>
+  </FeatureItem>
+  <FeatureItem ID="MasterDetail" Name="Master Detail" Category="">
+    <Description>
+To implement a master-detail grid, do the following.
+
+- Add two ASPxGridView controls, which are master and detail grids, to your project.
+
+For a master grid:
+
+- Enable the [{ShowDetailRow}ShowDetailRow] option.
+- [{gotoFeature:DataBinding}Bind] the grid to the master data source.
+- Specify the [{url_#AspNet/DevExpressWebASPxGridView_KeyFieldNametopic}KeyFieldName] property.
+- Create a DetailRow template and place the detail grid onto it.
+
+For a detail grid:
+
+- [{gotoFeature:DataBinding}Bind,BeforePerformDataSelect] the grid to the detail data source.
+- Handle the [{BeforePerformDataSelect}BeforePerformDataSelect] event and specify session values.
+    </Description>
+    <Properties>
+      <Item Name="SettingsDetail" />
+      <!-- Styles -->
+      <Item Name="Styles.DetailRow" />
+      <Item Name="Styles.DetailCell" />
+      <Item Name="Styles.DetailButton" />
+      <!-- Events -->
+      <Item Name="BeforePerformDataSelect" />
+      <Item Name="DetailsChanged" />
+      <Item Name="DetailRowExpandedChanged" />
+      <Item Name="DetailRowGetButtonVisibility" />
+    </Properties>
+    <ExpandedPropertiesOnStart>
+      <ExpandedItem Name="SettingsDetail" />
+      <ExpandedItem Name="Styles" />
+    </ExpandedPropertiesOnStart>
+  </FeatureItem>
+  <FeatureItem ID="ContextMenu" Name="Context Menu" Category="">
+    <Description>
+Grid provides different context menu types for the following elements: row, column, footer and group panel.
+
+To specify the visibility of all menu types use the [{SettingsContextMenu.Enabled}Enabled] property.
+
+To control the menu visibility for a particular element, use the following properties.
+[{SettingsContextMenu.EnableRowMenu}EnableRowMenu]
+[{SettingsContextMenu.EnableColumnMenu}EnableColumnMenu]
+[{SettingsContextMenu.EnableFooterMenu}EnableFooterMenu]
+[{SettingsContextMenu.EnableGroupPanelMenu}EnableGroupPanelMenu]
+
+To control the visibility of a particular menu items use the following properties.
+[{SettingsContextMenu.RowMenuItemVisibility}RowMenuItemVisibility]
+[{SettingsContextMenu.ColumnMenuItemVisibility}ColumnMenuItemVisibility]
+[{SettingsContextMenu.FooterMenuItemVisibility}FooterMenuItemVisibility]
+[{SettingsContextMenu.GroupPanelMenuItemVisibility}GroupPanelMenuItemVisibility]     
+    </Description>
+    <Properties>
+      <Item Name="SettingsContextMenu" />
+      <!-- Styles -->
+      <Item Name="StylesContextMenu" />
+      <!-- Events -->
+      <Item Name="FillContextMenuItems" />
+      <Item Name="ContextMenuItemClick" />
+      <Item Name="ContextMenuItemVisibility" />
+    </Properties>
+    <ExpandedPropertiesOnStart>
+      <ExpandedItem Name="SettingsContextMenu" />
+      <ExpandedItem Name="StylesContextMenu" />
+    </ExpandedPropertiesOnStart>
+  </FeatureItem>
+  <FeatureItem ID="FormatConditions_Selector" Name="Conditional Formating">
+  </FeatureItem>
+</FeatureItems>

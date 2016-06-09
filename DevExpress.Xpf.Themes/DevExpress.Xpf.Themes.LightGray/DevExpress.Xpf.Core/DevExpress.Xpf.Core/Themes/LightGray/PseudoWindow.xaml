@@ -1,0 +1,396 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+    xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys" 
+    xmlns:dxcore="http://schemas.devexpress.com/winfx/2008/xaml/core" 
+    xmlns:input="clr-namespace:System.Windows.Input;assembly=PresentationCore"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d">
+    
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/DevExpress.Xpf.Themes.LightGray.v15.2;component/DevExpress.Xpf.Core/DevExpress.Xpf.Core/Themes/Generic/PseudoWindow.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    <Thickness x:Key="{dxt:DXWindowThemeKey ResourceKey=ResizeBorderThickness}">5</Thickness>
+    <Thickness x:Key="{dxt:DXWindowThemeKey ResourceKey=BorderEffectOffset}">40</Thickness>
+    <Thickness x:Key="{dxt:DXWindowThemeKey ResourceKey=BorderEffectLeftMargins}">0, 80, 0, 80</Thickness>
+    <Thickness x:Key="{dxt:DXWindowThemeKey ResourceKey=BorderEffectRightMargins}">0, 80, 0, 80</Thickness>
+    <Thickness x:Key="{dxt:DXWindowThemeKey ResourceKey=BorderEffectTopMargins}">0</Thickness>
+    <Thickness x:Key="{dxt:DXWindowThemeKey ResourceKey=BorderEffectBottomMargins}">0</Thickness>
+    <SolidColorBrush x:Key="{dxt:DXWindowThemeKey ResourceKey=BorderEffectActiveColor}" Color="Black" />
+    <SolidColorBrush x:Key="{dxt:DXWindowThemeKey ResourceKey=BorderEffectInactiveColor}" Color="Black" />
+    <ControlTemplate x:Key="{dxt:FloatingContainerThemeKey  ResourceKey=FloatingContainerDragWidgetTemplate}" TargetType="{x:Type Thumb}">
+		<Border Background="Transparent">
+		</Border>
+	</ControlTemplate>
+	<ControlTemplate x:Key="{dxt:FloatingContainerThemeKey  ResourceKey=FloatingContainerSizeGripTemplate}" TargetType="{x:Type Thumb}">
+		<Grid Width="12" Height="12" Background="#00170F0F ">
+			<Viewbox Width="12" Height="12">
+				<Canvas Width="12" Height="12" Background="#00FFFFFF ">
+					<Path Fill="#FFFFFFFF " Stretch="Fill" Width="10" Height="10" Opacity="0.5" Canvas.Left="2" Canvas.Top="2" Data="F1M0,8.99998L2,8.99998 2,11 0,11 0,8.99998z M3.99997,8.99999L5.99997,8.99999 5.99997,11 3.99997,11 3.99997,8.99999z M7.99998,8.99999L9.99998,8.99999 9.99998,11 7.99998,11 7.99998,8.99999z M7.99998,4.99999L9.99998,4.99999 9.99998,6.99999 7.99998,6.99999 7.99998,4.99999z M7.99999,0.999989L9.99999,0.999989 9.99999,2.99998 7.99999,2.99998 7.99999,0.999989z M4,4.99998L6,4.99998 6,6.99998 4,6.99998 4,4.99998z" />
+					<Path Fill="#FF9199A4 " Stretch="Fill" Width="10" Height="10" Canvas.Left="1" Canvas.Top="1" Data="F1M0,7.99999L2,7.99999 2,9.99999 0,9.99999 0,7.99999z M3.99997,8L5.99997,8 5.99997,10 3.99997,10 3.99997,8z M7.99998,8L9.99998,8 9.99998,10 7.99998,10 7.99998,8z M7.99998,4L9.99998,4 9.99998,6 7.99998,6 7.99998,4z M7.99999,0L9.99999,0 9.99999,2 7.99999,2 7.99999,0z M4,4L6,4 6,6 4,6 4,4z" />
+				</Canvas>
+			</Viewbox>
+		</Grid>
+	</ControlTemplate>
+	<DataTemplate x:Key="{dxt:FloatingContainerThemeKey  ResourceKey=FloatingContainerCaptionTemplate}">
+        <Grid Height="Auto">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Image x:Name="PART_Icon" Width="Auto" Height="Auto" Margin="6,3,0,3" Stretch="None" Source="{Binding Path=(dxcore:FloatingContainer.FloatingContainer).Icon, RelativeSource={RelativeSource AncestorType=ContentPresenter}}" />
+            <dxcore:FloatingContainerHeaderPanel Grid.Column="1">
+                <TextBlock x:Name="PART_Text" TextTrimming="WordEllipsis" Background="{x:Null}" Foreground="#FFFFFFFF " Margin="6,3,6,3" VerticalAlignment="Center" IsHitTestVisible="False" Text="{Binding Path=(dxcore:FloatingContainer.FloatingContainer).Caption, RelativeSource={RelativeSource AncestorType=ContentPresenter}}" />
+            </dxcore:FloatingContainerHeaderPanel>
+        </Grid>
+        <DataTemplate.Triggers>
+            <Trigger Property="Source" SourceName="PART_Icon" Value="{x:Null}">
+                <Setter TargetName="PART_Icon" Property="Visibility" Value="Collapsed" />
+            </Trigger>
+        </DataTemplate.Triggers>
+    </DataTemplate>
+    
+    <Style x:Key="redButton" TargetType="Button">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Grid>
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Disabled" />
+                                <VisualState x:Name="Normal" />
+                                <VisualState x:Name="MouseOver">
+                                    <Storyboard>
+                                        <DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="border" d:IsOptimized="True" />
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Pressed">
+                                    <Storyboard>
+                                        <DoubleAnimation Duration="0" To="0" Storyboard.TargetProperty="(Border.Background).(GradientBrush.GradientStops)[0].(GradientStop.Offset)" Storyboard.TargetName="border" d:IsOptimized="True" />
+                                        <ColorAnimation Duration="0" To="#FF4E4E4E" Storyboard.TargetProperty="(Border.Background).(GradientBrush.GradientStops)[0].(GradientStop.Color)" Storyboard.TargetName="border" d:IsOptimized="True" />
+                                        <ColorAnimation Duration="0" To="#FF404040" Storyboard.TargetProperty="(Border.Background).(GradientBrush.GradientStops)[1].(GradientStop.Color)" Storyboard.TargetName="border" d:IsOptimized="True" />
+                                        <ColorAnimation Duration="0" To="#14FFFFFF" Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" Storyboard.TargetName="border" d:IsOptimized="True" />
+                                        <DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="border" d:IsOptimized="True" />
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Border x:Name="border" BorderBrush="#26000000" Opacity="0">
+                            <Border.Background>
+                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                    <GradientStop Color="#FFD6918E" Offset="0" />
+                                    <GradientStop Color="#FFA86360" Offset="1" />
+                                </LinearGradientBrush>
+                            </Border.Background>
+                        </Border>
+                        <Grid>
+                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                        </Grid>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="blueButton" TargetType="Button">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Grid>
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Disabled" />
+                                <VisualState x:Name="Normal" />
+                                <VisualState x:Name="MouseOver">
+                                    <Storyboard>
+                                        <DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="border" />
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Pressed">
+                                    <Storyboard>
+                                        <DoubleAnimation Duration="0" To="0" Storyboard.TargetProperty="(Border.Background).(GradientBrush.GradientStops)[0].(GradientStop.Offset)" Storyboard.TargetName="border" />
+                                        <ColorAnimation Duration="0" To="#FF4E4E4E" Storyboard.TargetProperty="(Border.Background).(GradientBrush.GradientStops)[0].(GradientStop.Color)" Storyboard.TargetName="border" />
+                                        <ColorAnimation Duration="0" To="#FF404040" Storyboard.TargetProperty="(Border.Background).(GradientBrush.GradientStops)[1].(GradientStop.Color)" Storyboard.TargetName="border" />
+                                        <DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="border" />
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Border x:Name="border" Opacity="0">
+                            <Border.Background>
+                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                    <GradientStop Color="#FF8EB0D6" Offset="0" />
+                                    <GradientStop Color="#FF6082A8" Offset="1" />
+                                </LinearGradientBrush>
+                            </Border.Background>
+                        </Border>
+                        <Grid>
+                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                        </Grid>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
+    <ControlTemplate x:Key="{dxt:FloatingContainerThemeKey  ResourceKey=FloatingContainerCloseButtonTemplate}" TargetType="{x:Type Button}">
+        <Button Style="{StaticResource redButton}" MinWidth="21" MinHeight="16">
+            <Path Stretch="Fill" Fill="#FFEEEEEE" Data="F1 M 151,217L 152,217L 154.5,219.5L 157,217L 158,217L 158,218L 155.5,220.5L 158,223L 158,224L 157,224L 154.5,221.5L 152,224L 151,224L 151,223L 153.5,220.5L 151,218L 151,217 Z " Height="7" UseLayoutRounding="False" HorizontalAlignment="Center" VerticalAlignment="Center" Width="7" />
+        </Button>
+    </ControlTemplate>
+	<ControlTemplate x:Key="{dxt:FloatingContainerThemeKey  ResourceKey=FloatingContainerMaximizeButtonTemplate}" TargetType="{x:Type Button}">
+        <Button Style="{StaticResource blueButton}" MinWidth="21" MinHeight="16">
+            <Path Stretch="Fill" Fill="#FFEEEEEE" Data="F1 M 34,17L 43,17L 43,23L 34,23L 34,17 Z M 35,19L 35,22L 42,22L 42,19L 35,19 Z " Height="6" UseLayoutRounding="False" Width="9" />
+        </Button>
+    </ControlTemplate>
+	<ControlTemplate x:Key="{dxt:FloatingContainerThemeKey  ResourceKey=FloatingContainerMinimizeButtonTemplate}" TargetType="{x:Type Button}">
+        <Button Style="{StaticResource blueButton}" MinWidth="21" MinHeight="16">
+            <Rectangle Stretch="Fill" Fill="#FFEEEEEE" Height="2" Width="7" />
+        </Button>
+    </ControlTemplate>
+	<ControlTemplate x:Key="{dxt:FloatingContainerThemeKey  ResourceKey=FloatingContainerRestoreButtonTemplate}" TargetType="{x:Type Button}">
+        <Button Style="{StaticResource blueButton}" MinWidth="21" MinHeight="16">
+            <Grid Height="8" Width="9">
+                <Path Stretch="Fill" Fill="#FFEEEEEE" Data="F1 M 223,168L 229,168L 229,173L 223,173L 223,168 Z M 224,170L 224,172L 228,172L 228,170L 224,170 Z " Margin="3,0,0,3" />
+                <Path Stretch="Fill" Fill="#FFEEEEEE" Data="F1 M 220,171L 226,171L 226,176L 220,176L 220,171 Z M 221,173L 221,175L 225,175L 225,173L 221,173 Z " Margin="0,3,3,0" />
+            </Grid>
+        </Button>
+    </ControlTemplate>
+	<!--<ControlTemplate x:Key="{dxt:PseudoWindowThemeKey  ResourceKey=BorderTemplate}" TargetType="{x:Type ContentControl}">
+		<Grid x:Name="floating_window">
+			<Border Margin="9,9,3,3" IsHitTestVisible="False" Opacity="0.15" Panel.ZIndex="0" Background="#FF000000 " CornerRadius="4,4,4,4" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="Auto" Height="Auto" />
+			<Border Margin="6,6,6,6" Width="Auto" Height="Auto" Panel.ZIndex="1" Background="#FF2F2F2F " CornerRadius="3,3,3,3" Padding="1,1,1,1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+				<Grid>
+					<Grid.RowDefinitions>
+						<RowDefinition Height="Auto" />
+						<RowDefinition />
+					</Grid.RowDefinitions>
+					<Border x:Name="GroupHeader1" Grid.Row="0" BorderBrush="#FF353535 " BorderThickness="0,0,0,1" CornerRadius="2,2,0,0">
+						<Border.Background>
+							<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+								<GradientStop Color="#FF434752 " Offset="0" />
+								<GradientStop Color="#FF3B3B3B " Offset="1" />
+								<GradientStop Color="#FF3C404A " Offset="0.3" />
+								<GradientStop Color="#FF2F3030 " Offset="0.3" />
+							</LinearGradientBrush>
+						</Border.Background>
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*" />
+								<ColumnDefinition Width="Auto" />
+								<ColumnDefinition Width="Auto" />
+							</Grid.ColumnDefinitions>
+							<Button Template="{DynamicResource CloseButtonControlTemplate}" HorizontalAlignment="Right" x:Name="close_button" Width="Auto" Height="Auto" Command="ApplicationCommands.Close" CommandTarget="{Binding RelativeSource={RelativeSource FindAncestor, AncestorLevel=1, AncestorType={x:Type dxcore:PseudoWindow}}}" Margin="2" VerticalAlignment="Center" Grid.ColumnSpan="3" />
+						</Grid>
+					</Border>
+					<Border Grid.Row="1" Background="#FF4D4D4D " CornerRadius="0,0,2,2" Padding="3,0,3,3">
+						<Border Width="Auto" Height="Auto" Background="#FF404040 " CornerRadius="0,0,1,1" Padding="1,0,1,1">
+							<Border Width="Auto" Height="Auto" Background="#FFF6F7F7 ">
+								<ContentPresenter Width="Auto" Height="Auto" />
+							</Border>
+						</Border>
+					</Border>
+				</Grid>
+			</Border>
+		</Grid>
+	</ControlTemplate>-->
+    <!--<ControlTemplate x:Key="CloseButtonControlTemplate" TargetType="{x:Type Button}">
+		<Grid x:Name="Button" Width="18" Height="18">
+			<Border x:Name="hoveredState" Padding="1" Background="#7F78828F " Visibility="Hidden" CornerRadius="2,2,2,2">
+				<Border Width="Auto" Height="Auto" CornerRadius="1,1,1,1" Padding="1,1,1,1">
+					<Border.Background>
+						<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+							<GradientStop Color="#FFCDD3DA " Offset="0" />
+							<GradientStop Color="#FFDADFE3 " Offset="1" />
+							<GradientStop Color="#FFAEB6BF " Offset="0.5" />
+						</LinearGradientBrush>
+					</Border.Background>
+					<Border CornerRadius="1,1,1,1">
+						<Border.Background>
+							<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+								<GradientStop Color="#FFC3C9D0 " Offset="0" />
+								<GradientStop Color="#FFABC6D4 " Offset="1" />
+								<GradientStop Color="#FF9AA1AB " Offset="0.5" />
+								<GradientStop Color="#FF7B8895 " Offset="0.5" />
+							</LinearGradientBrush>
+						</Border.Background>
+					</Border>
+				</Border>
+			</Border>
+			<Border x:Name="pressedState" Padding="1" Background="#7F000000 " Visibility="Hidden" CornerRadius="2,2,2,2">
+				<Border Width="Auto" Height="Auto" CornerRadius="1,1,1,1" Padding="1,1,1,1">
+					<Border.Background>
+						<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+							<GradientStop Color="#FF4D555E " Offset="0" />
+							<GradientStop Color="#FF646A74 " Offset="1" />
+							<GradientStop Color="#FF3D3D3D " Offset="0.5" />
+						</LinearGradientBrush>
+					</Border.Background>
+					<Border CornerRadius="1,1,1,1">
+						<Border.Background>
+							<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+								<GradientStop Color="#FF415366 " Offset="1" />
+								<GradientStop Color="#FF363636 " Offset="0.5" />
+								<GradientStop Color="#FF000000 " Offset="0.5" />
+								<GradientStop Color="#FF494949 " Offset="0" />
+							</LinearGradientBrush>
+						</Border.Background>
+					</Border>
+				</Border>
+			</Border>
+			<Border x:Name="glyph" Background="#00FFFEFE " Width="10" Height="10" HorizontalAlignment="Center" VerticalAlignment="Center">
+				<Grid Width="10" Height="9" Margin="0,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Center">
+					<Path Stretch="Fill" Fill="#FF818080 " Data="F1 M 1196,762L 1201,767L 1206,762L 1204,762L 1201,765L 1198,762L 1196,762 Z " HorizontalAlignment="Stretch" Margin="0,0,0,4" VerticalAlignment="Stretch" x:Name="path" />
+					<Path Stretch="Fill" Data="F1 M 1204,763L 1205,763L 1202,766L 1206,770L 1204,770L 1201,767L 1198,770L 1196,770L 1200,766L 1197,763L 1198,763L 1201,766L 1204,763 Z " HorizontalAlignment="Stretch" Margin="0,1,0,1" VerticalAlignment="Stretch" x:Name="path1">
+						<Path.Fill>
+							<LinearGradientBrush StartPoint="0.200271,-0.143596" EndPoint="0.200271,0.999241">
+								<GradientStop Color="#FF878F99 " Offset="0" />
+								<GradientStop Color="#FF9FAAB8 " Offset="1" />
+							</LinearGradientBrush>
+						</Path.Fill>
+					</Path>
+				</Grid>
+			</Border>
+		</Grid>
+		<ControlTemplate.Triggers>
+			<Trigger Property="IsMouseOver" Value="True">
+				<Setter Property="Visibility" TargetName="hoveredState" Value="Visible" />
+				<Setter Property="Fill" TargetName="path" Value="#FF363535 " />
+				<Setter Property="Fill" TargetName="path1">
+					<Setter.Value>
+						<LinearGradientBrush EndPoint="0.200271,0.999241" StartPoint="0.200271,-0.143596">
+							<GradientStop Color="#FF424851 " Offset="0" />
+							<GradientStop Color="#FF4F5763 " Offset="1" />
+						</LinearGradientBrush>
+					</Setter.Value>
+				</Setter>
+			</Trigger>
+			<Trigger Property="IsPressed" Value="True">
+				<Setter Property="Visibility" TargetName="pressedState" Value="Visible" />
+				<Setter Property="Fill" TargetName="path" Value="#FF818080 " />
+				<Setter Property="Fill" TargetName="path1">
+					<Setter.Value>
+						<LinearGradientBrush EndPoint="0.200271,0.999241" StartPoint="0.200271,-0.143596">
+							<GradientStop Color="#FF878F99 " Offset="0" />
+							<GradientStop Color="#FF9FAAB8 " Offset="1" />
+						</LinearGradientBrush>
+					</Setter.Value>
+				</Setter>
+			</Trigger>
+			<Trigger Property="IsEnabled" Value="False">
+				<Setter Property="Opacity" TargetName="Button" Value="0.35" />
+			</Trigger>
+		</ControlTemplate.Triggers>
+	</ControlTemplate>-->
+	<DataTemplate x:Key="{dxt:FloatingContainerThemeKey  ResourceKey=FloatingContainerTemplate}">
+		<Grid>
+            <Border x:Name="FloatingContainerBorder" Background="#FF3D3D3D " CornerRadius="0" Padding="1">
+				<Grid>
+					<Grid.RowDefinitions>
+						<RowDefinition Height="Auto" />
+						<RowDefinition />
+					</Grid.RowDefinitions>
+                    <Border x:Name="PART_Header" Grid.Row="0" BorderBrush="#FF535353" BorderThickness="0,0,0,1" CornerRadius="0" Panel.ZIndex="99">
+                        <Border.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="#FF8A8A8A" />
+                                <GradientStop Color="#FF747474" Offset="1" />
+                            </LinearGradientBrush>
+                        </Border.Background>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <ContentPresenter x:Name="PART_CaptionContentPresenter" Content="{x:Null}" Grid.Column="0" Panel.ZIndex="100" ContentTemplate="{DynamicResource {dxt:FloatingContainerThemeKey IsVisibleInBlend=True,  ResourceKey=FloatingContainerCaptionTemplate}}" />
+                            <Thumb Template="{DynamicResource {dxt:FloatingContainerThemeKey IsVisibleInBlend=True,  ResourceKey=FloatingContainerDragWidgetTemplate}}" x:Name="PART_DragWidget" Grid.Column="0" Grid.ColumnSpan="1" />
+                            <Border x:Name="PART_ToolButtons" CornerRadius="0,0,1,1" Background="#FF3D3D3D" Margin="0,0,7,0" HorizontalAlignment="Right" VerticalAlignment="Top" Panel.ZIndex="100">
+                                <Border Margin="1,0,1,1">
+                                    <Border.Background>
+                                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                            <GradientStop Color="#FF676767" Offset="0" />
+                                            <GradientStop Color="#FF555555" Offset="1" />
+                                        </LinearGradientBrush>
+                                    </Border.Background>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="2" />
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="2" />
+                                        </Grid.ColumnDefinitions>
+                                        <Border Opacity="0.12">
+                                            <Border.Background>
+                                                <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
+                                                    <GradientStop Color="Black" Offset="0" />
+                                                    <GradientStop Offset="1" />
+                                                </LinearGradientBrush>
+                                            </Border.Background>
+                                        </Border>
+                                        <Border Grid.Column="2" Opacity="0.12">
+                                            <Border.Background>
+                                                <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
+                                                    <GradientStop Color="Black" Offset="1" />
+                                                    <GradientStop />
+                                                </LinearGradientBrush>
+                                            </Border.Background>
+                                        </Border>
+                                        <StackPanel Grid.Column="0" Grid.ColumnSpan="3" Orientation="Horizontal" x:Name="stackPanel">
+                                            <Button Template="{DynamicResource {dxt:FloatingContainerThemeKey  ResourceKey=FloatingContainerMinimizeButtonTemplate}}" x:Name="PART_Minimize" Focusable="False" />
+                                            <Button Template="{DynamicResource {dxt:FloatingContainerThemeKey  ResourceKey=FloatingContainerRestoreButtonTemplate}}" x:Name="PART_Restore" Focusable="False" Visibility="{Binding Path=(dxcore:FloatingContainer.IsMaximized), Converter={dxcore:BooleanToVisibilityConverter Invert=False}}" />
+                                            <Button Template="{DynamicResource {dxt:FloatingContainerThemeKey  ResourceKey=FloatingContainerMaximizeButtonTemplate}}" x:Name="PART_Maximize" Focusable="False" Visibility="{Binding Path=(dxcore:FloatingContainer.IsMaximized), Converter={dxcore:BooleanToVisibilityConverter Invert=True}}" />
+                                            <Button Template="{DynamicResource {dxt:FloatingContainerThemeKey  ResourceKey=FloatingContainerCloseButtonTemplate}}" x:Name="PART_CloseButton" Focusable="False" />
+                                        </StackPanel>
+                                    </Grid>
+                                </Border>
+                            </Border>
+                        </Grid>
+                    </Border>
+                    <Border x:Name="FloatingContainerBody" Grid.Row="1" Background="#FFF7F7F7 " CornerRadius="0">
+						<Grid Background="{DynamicResource {dxt:FloatingContainerThemeKey  ResourceKey=FloatingContainerBackground}}">
+							<Grid.RowDefinitions>
+								<RowDefinition Height="*" />
+								<RowDefinition Height="Auto" />
+							</Grid.RowDefinitions>
+							<ContentPresenter x:Name="PART_ContainerContent" Content="{Binding}" />
+                            <StackPanel HorizontalAlignment="Stretch" x:Name="PART_StatusPanel" VerticalAlignment="Bottom" Height="Auto" Grid.Row="0" Visibility="Collapsed">
+								<Border HorizontalAlignment="Right" Height="Auto" Background="{x:Null}" BorderBrush="{x:Null}" BorderThickness="0,0,0,0">
+									<Thumb Template="{DynamicResource {dxt:FloatingContainerThemeKey IsVisibleInBlend=True,  ResourceKey=FloatingContainerSizeGripTemplate}}" Cursor="SizeNWSE" HorizontalAlignment="Right" x:Name="PART_SizeGrip" VerticalAlignment="Bottom" />
+								</Border>
+							</StackPanel>
+						</Grid>
+					</Border>
+				</Grid>
+			</Border>
+            <Control x:Name="PART_ResizeFrame" Template="{DynamicResource {dxt:FloatingContainerThemeKey  ResourceKey=FloatingContainerResizeFrame}}" Focusable="False" 
+                     Visibility="{Binding Path=(dxcore:FloatingContainer.IsMaximized), Converter={dxcore:BooleanToVisibilityConverter Invert=True}}"/>
+        </Grid>
+		<DataTemplate.Triggers>
+			<DataTrigger Binding="{Binding Path=(dxcore:FloatingContainer.IsActive)}" Value="False">
+                <Setter Property="Background" TargetName="FloatingContainerBorder" Value="#FF6d6d6d" />
+				<Setter Property="Background" TargetName="PART_Header">
+					<Setter.Value>
+						<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#FFb3b3b3" Offset="0" />
+                            <GradientStop Color="#FFa5a5a5" Offset="1" />
+						</LinearGradientBrush>
+					</Setter.Value>
+				</Setter>
+                <Setter Property="Background" TargetName="FloatingContainerBody" Value="#FFF7F7F7" />
+                <Setter Property="BorderBrush" TargetName="PART_Header" Value="#FF6d6d6d " />
+				<Setter Property="Opacity" TargetName="PART_CaptionContentPresenter" Value="0.6" />
+                <Setter Property="Opacity" TargetName="PART_ToolButtons" Value="0.6" />
+			</DataTrigger>
+			<DataTrigger Binding="{Binding Path=(dxcore:FloatingContainer.FloatingContainer).AllowSizing, RelativeSource={RelativeSource Self}}" Value="false">
+				<Setter Property="Visibility" TargetName="PART_StatusPanel" Value="Collapsed" />
+        <Setter Property="Visibility" TargetName="PART_ResizeFrame" Value="Collapsed" />
+      </DataTrigger>
+			<DataTrigger Binding="{Binding Path=(dxcore:FloatingContainer.IsMaximized)}" Value="True">
+				<Setter Property="Margin" TargetName="FloatingContainerBorder" Value="0,0,0,0" />
+			</DataTrigger>
+		</DataTemplate.Triggers>
+	</DataTemplate>
+	<ControlTemplate x:Key="{dxt:FloatingContainerThemeKey  ResourceKey=FloatingContainerWindowTemplate}" TargetType="{x:Type dxcore:FloatingContainerControl}">
+		<dxcore:FloatingWindowContainer Style="{DynamicResource {dxt:FloatingContainerThemeKey  ResourceKey=FloatingContainerStyle}}" />
+	</ControlTemplate>
+	<ControlTemplate x:Key="{dxt:FloatingContainerThemeKey  ResourceKey=FloatingContainerAdornerTemplate}" TargetType="{x:Type dxcore:FloatingContainerControl}">
+		<dxcore:FloatingAdornerContainer Style="{DynamicResource {dxt:FloatingContainerThemeKey  ResourceKey=FloatingContainerStyle}}" />
+	</ControlTemplate>
+</ResourceDictionary>
